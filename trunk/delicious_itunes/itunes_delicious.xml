@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns="http://purl.org/rss/1.0/"
+ xmlns:cc="http://web.resource.org/cc/"
+ xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+ xmlns:admin="http://webns.net/mvcb/"
+>
+
+<channel rdf:about="http://del.icio.us/chrisjroos/podcast%2Bto_listen">
+<title>del.icio.us/chrisjroos/podcast+to_listen</title>
+<link>http://del.icio.us/chrisjroos/podcast%2Bto_listen</link>
+<description></description>
+<items>
+ <rdf:Seq>
+  <rdf:li rdf:resource="http://static2.podcatch.com/blogs/gems/snedit/cn06Dec06.mp3" />
+  <rdf:li rdf:resource="http://static2.podcatch.com/blogs/gems/snedit/cn03Dec06.mp3" />
+ </rdf:Seq>
+</items>
+</channel>
+
+<item rdf:about="http://static2.podcatch.com/blogs/gems/snedit/cn06Dec06.mp3">
+<title>Dave Winer podcast, which is a &quot;tutorial&quot; on VRM</title>
+<link>http://static2.podcatch.com/blogs/gems/snedit/cn06Dec06.mp3</link>
+<description>mentions vrm - part 2</description>
+<dc:creator>chrisjroos</dc:creator>
+<dc:date>2006-12-12T15:06:42Z</dc:date>
+<dc:subject>podcast to_listen</dc:subject>
+<taxo:topics>
+  <rdf:Bag>
+    <rdf:li resource="http://del.icio.us/tag/to_listen" />
+    <rdf:li resource="http://del.icio.us/tag/podcast" />
+  </rdf:Bag>
+</taxo:topics>
+</item>
+
+<item rdf:about="http://static2.podcatch.com/blogs/gems/snedit/cn03Dec06.mp3">
+<title>Dave Winer podcast 1</title>
+<link>http://static2.podcatch.com/blogs/gems/snedit/cn03Dec06.mp3</link>
+<description>mentions vrm</description>
+<dc:creator>chrisjroos</dc:creator>
+<dc:date>2006-12-12T15:06:18Z</dc:date>
+<dc:subject>podcast to_listen</dc:subject>
+<taxo:topics>
+  <rdf:Bag>
+    <rdf:li resource="http://del.icio.us/tag/to_listen" />
+    <rdf:li resource="http://del.icio.us/tag/podcast" />
+  </rdf:Bag>
+</taxo:topics>
+</item>
+
+</rdf:RDF>
