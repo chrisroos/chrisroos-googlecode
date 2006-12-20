@@ -1,0 +1,1349 @@
+/* Compare box - Added for Currys Collect@Store 04/07/2006*/
+.comparebox_header {
+	width: 587px !important;
+	background-color: #e5e5e5;
+	padding: 4px;
+	height: 18px;
+}
+
+.comparebox_header .cmp_txt_span {
+	float: right;
+	color: #999;
+}
+
+.comparebox_header a {
+	background-image: url(../images/compare_down.gif);
+	width: 85px;
+	height: 18px;
+	float:right;
+	margin-right: 2px;
+}
+
+.comparebox_footer {
+	width: 587px !important;
+	background-color: #e5e5e5;
+	padding: 4px;
+	height: 18px;
+}
+
+.comparebox_footer a {
+	background-image: url(../images/compare_up.gif);
+	width: 85px;
+	height: 18px;
+	float:right;
+	margin-right: 2px;
+}
+
+.comparebox_footer .cmp_txt_footer{
+	float: right;
+	color: #999;
+}
+
+
+.comparebox {
+	background-color: #e5e5e5;
+	padding: 0px;
+}
+
+.comparebox span {
+	float: right;
+	color: #999;
+}
+.comparebox a {
+	background-image: url(../images/compare_down.gif);
+	width: 85px;
+	height: 18px;
+	float:right;
+	margin-right: 2px;
+}
+.comparebox a span {
+	visibility: hidden;
+}
+
+//MP 16/10 BreadCrumb classes
+.breadcrumbbold {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: normal;
+	color: #666666;
+}
+.breadcrumbmessage {
+
+
+
+
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: normal;
+	color: #000000;
+}
+
+
+
+
+
+
+//CB 9/10 Product Page classes
+.productbodytext 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: normal;
+	color: #000000;
+}
+
+.productwhiteheader { 
+
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 12px; 
+        font-style: normal; 
+        font-weight: bold; 
+        line-height: normal; 
+        color: #FFFFFF; 
+} 
+
+
+.productbodytextbold {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: normal;
+	color: #000000;
+}
+
+.instockmessage {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 10px;
+	color: #000000;
+}
+
+/*End CB 9/10 Product Page Classes*/
+a.sidenavbold:link
+{
+	text-decoration: none;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 13px;
+	color: #000000;
+}
+
+a.sidenavbold:visited
+ {
+	text-decoration: none;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 13px;
+	color: #000000;
+}
+
+a.sidenavbold:active
+ {
+	text-decoration: none;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 13px;
+	color: #000000;
+}
+
+a.sidenavbold:hover
+ {
+	text-decoration: none;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 13px;
+	color: #000000;
+
+}
+
+/*	Dixons Global stylesheet
+	Syzygy Ltd	18/09/2000
+	Language:	CSS
+	Version:	1.0
+	Modified:	03/10/2000
+*/
+/*	MENU START */
+/* Heirmenu style for dixons templates */
+A.navLink {
+	font: bold 10px/16px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #333333;
+	text-decoration: none; 
+}
+A.navLink:hover {
+	font: bold 10px/16px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #666666;  text-decoration: underline; 
+}
+#hMenu1	{
+	visibility:hidden;
+	position:absolute;
+	left:150px;
+	top:200px;
+	width:150px;
+	height:150px;
+	z-index:102;
+}
+#hMenu2 {
+	visibility:hidden;
+	position:absolute;
+	left:300px;
+	top:200px;
+	width:150px;
+	height:150px;
+	z-index:103;
+}
+	
+/* style for menu bounding box */
+.hMenuBox {
+	position:relative;
+	left:0px;
+	top:0px;
+	width:150px;
+	height:10px;
+	background:#FFFFFF;
+	padding:5px;
+	border:1px solid #666666;
+}
+.hMenuTableOuter {
+	background:#666666;
+}
+.hMenuTableInner {
+	background:#FFFFFF;
+}
+/* pos of top menu */
+#hMenuTop {
+	position:absolute;
+	left: 6px;
+	top: -102px;
+	width: 134px;
+	height: 97px;
+	z-index: 9;
+}
+
+#staticmenu {
+	position:absolute;
+	left: 6px;
+	top: 84px;
+	width: 134px;
+	height: 150px;
+	z-index: 8;
+}
+/* EOF */
+/*	MENU END */            		  
+/*GENERAL START*/
+body, td  {
+	color : #333333;
+	font-family : verdana, arial, helvetica;
+	font-size : 10px;
+}
+b  {
+	font-weight : bold;
+}
+.vspace  {
+	line-height : 22px;
+}
+.menu  {
+	font-size : 13px;
+}
+.monospace  {
+	font-family : Courier,monospace;
+}			  
+/*GENERAL END*/
+
+/*LINKS START*/			  
+a {
+	color: #000000;
+}
+
+a.red  {
+	color : #FF0000;
+	font-weight : bold;
+	text-decoration : underline;
+}
+a.whiteUnderline  {
+	text-decoration : underline;
+	color : #FFFFFF;
+}
+a.whiteBold {
+	text-decoration : none;
+	color : #FFFFFF;
+	font-weight : bold;				
+}
+    
+a.blackUnderline  {
+	text-decoration : underline;
+	color : #333333;
+}
+a.boldUnderline  {
+	text-decoration : underline;
+	color : #003399;
+	font-weight : bold;
+}
+a.grey  {
+	text-decoration : underline;
+	color : #808080;
+}
+		  
+a.bigdarkgrey  {
+	text-decoration : none;
+	font-size : 12px;
+	color : #666666;
+	font-weight : bold;
+}
+/*LINKS END*/
+
+/*FONTS + COLORS START*/
+/*blacks start*/
+.black  {
+	text-decoration : none;
+	color : #333333;
+	font-size : 10px;
+}
+.boldbig  {
+	font-weight : bold;
+	font-size : 12px;
+	color : #333333;
+	text-decoration : none;
+}
+.boldblack  {
+	text-decoration : none;
+	font-weight : bold;
+	color : #333333;
+	font-size : 10px;
+}
+.bigblack  {
+	text-decoration : none;
+	font-weight : bold;
+	color : #333333;
+	font-size : 11px;
+}
+.biggrey  {
+	color : #333333;
+	font-size : 11px;
+	text-decoration : none;
+}  			  
+/*blacks end*/
+/*whites start*/			  			  
+.subtitle  {
+	color : #FFFFFF;
+}
+.curryssub {
+	color : #FFFFFF;
+	font-weight : bold;
+	font-size : 14px;
+}
+.whitebold {
+	font-weight : bold;
+	color : #FFFFFF;
+}
+.bigwhitebold  {
+	color : #FFFFFF;
+	font-weight : bold;
+	font-size : 12px;
+	text-decoration : none;
+}
+.hugewhitebold  {
+	color : #FFFFFF;
+	font-weight : bold;
+	font-size : 16px;
+	text-decoration : none;
+}
+/*whites end*/
+
+/*greys start*/			  
+.hrlightgrey {
+	color : #CCCCCC;
+}
+   
+.darkgrey  {
+	color : #666666;
+}
+.lightgrey  {
+	color : #333333;
+}
+.maingrey  {
+	color : #999999;
+}
+.bigdarkgrey  {
+	font-size : 11px;
+	color : #666666;
+	font-weight : bold;
+}
+.darkgreybold  {
+	color : #666666;
+	font-weight : bold;
+}
+.hugedarkgrey  {
+	font-size : 16px;
+	color : #666666;
+	font-weight : bold;
+} 
+/*greys end*/
+/*reds+orange start*/			  
+.red  {
+	color : #FF0000;				
+}
+.deepred  {
+	color : #CC0000;
+	font-weight : bold;			
+}
+.redtext  {
+	color : #CC0000;			
+}
+.deeprednodec  {
+	color : #CC0000;
+	font-weight : bold;		
+	text-decoration : none;
+}
+.deepredbig  {
+	text-decoration : none;
+	font-weight : bold;
+	color : #CC0000;
+	font-size : 12px;
+}
+.darkred  {
+	color : #CC0001;
+	font-weight : bold;
+ }
+.nobolddarkred  {
+	color : #CC0001;
+ }		
+.orangebold {
+	color : #FF6600;
+	font-weight : bold;
+}
+.bigorangebold {
+	font-size : 12px;
+	color : #FF6600;
+	font-weight : bold;
+}			  
+/*reds+orange end*/
+/*blues start*/             
+.bigbluebold  {
+	color : #000066;
+	font-weight : bold;
+	font-size : 12px;
+	text-decoration : none;
+}
+.bigblueboldunder  {
+	color : #000066;
+	font-weight : bold;
+	font-size : 10px;              	
+}
+
+.bluetext  {
+	color : #000066;
+	font-size : 10px;              	
+}
+.bluebold  {
+	color : #000066;
+	
+	font-size : 10px;  
+	            	
+}
+/*blues end*/
+/*FONTS + COLORS END*/
+/*BACKGROUND IMGS AND COLORS START*/ 
+
+.whiteCell {
+	background-color : #FFFFFF;
+}
+.orangeCell  {
+	background-color : #FFA216;
+}
+.darkgreyline  {
+	background-color : #333333;
+}
+.maingreyCell  {
+	background-color : #999999
+}
+.lightGreyCell {
+	background-color : #CCCCCC;
+}
+.currysorange  {
+	background-color : #FF6600;
+}
+.currysblue  {
+	background-color : #99CCFF;
+}
+.blueCell {
+	background-color : #3333CC;
+}
+.turquoiseblue {
+	background-color : #B5D3F1;
+}
+.darkBlueCell {
+	background-color : #003366;
+}
+.aquaCell {
+	background-color : #CCFFFF;
+}			
+.redCell {
+	background-color : #E11405;
+}
+.deepredCell {
+	background-color : #CC0000;
+}
+.purpleCell {
+	background-color : #CCCCFF;
+}
+.darkPurpleCell {
+	background-color : #6666CC;
+}
+.ocreCell {
+	background-color : #FFCC00;
+}
+.lightGreencell {
+	background-color : #99FFCC;
+}
+.olivecell {
+	background-color : #99CCCC;
+}
+.nav2bg    {
+	background-color : #D2D2D2;
+}			  
+/*BACKGROUND IMGS AND COLORS END*/
+/*COMPONENTS*/			  
+#navigation1  {
+	position : absolute;
+	left : 0px;
+	top : 0px;
+	width : 100%;
+	height : 80px;
+	z-index : 1;
+}
+#nav2background  {
+	position : absolute;
+	left : 0px;
+	top : 79px;
+	width : 148px;
+	height : 332px;
+	z-index : 2;
+}
+#navigation2  {
+	position : absolute;
+	left : 0px;
+	top : 222px;
+	width : 148px;
+	height : 332px;
+	z-index : 3;
+}
+#login  {
+	position : absolute;
+	left : 0px;
+	top : 100px;
+	width : 148px;
+	height : 17px;
+	z-index : 4;
+}
+#maincontent  {
+	position : absolute;
+	left : 148px;
+	top : 80px;
+	width : 602px;
+	z-index : 5;
+}
+#breadcrumb   {
+	position : absolute;
+	left : 200px;
+	top : 70px;
+	width : 425px;
+	z-index : 6;
+}
+
+/* for comparison message */
+#comparison {
+	position : absolute;
+	left : 467px;
+	top : 180px;
+	width : 126px;
+	height: 40px;
+	z-index : 7;
+}
+	
+.comparisonText {
+	color: #333333;
+	font-family: verdana, arial, helvetica;
+	font-size: 10px;
+	font-weight: bold;
+	width: 126px;
+}
+
+.pricetext {
+	font-family: verdana, arial, helvetica;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.nodecoration
+{
+    TEXT-DECORATION: none;
+}
+
+.penguinyellow
+{
+    BACKGROUND-COLOR: #ffff99
+}
+
+
+/*MULTIBUY STYLES*/
+
+.multibuyAffNameText
+{
+    COLOR: #333333;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none
+}
+.multibuyAffPriceText
+{
+    COLOR: #333333;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none
+}
+
+.multibuyheadingText
+{
+    COLOR: #333333;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.multibuyBundleNameText
+{
+    COLOR: #333333;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.multibuyNavigationText
+{
+    COLOR: #333333;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.multibuyIgnoreText
+{
+    COLOR: #333333;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+
+.multibuyMessageBoard
+{
+    COLOR: #FF0000;
+    FONT-SIZE: 10px;
+}
+
+.multibuyBundleDescText
+{
+    COLOR: #000000;
+    FONT-SIZE: 10px;
+}
+
+
+.multibuyTriggerDescText
+{
+    COLOR: #000066;
+    FONT-SIZE: 10px
+}
+.multibuyAffDealText
+{
+    COLOR: #CC0000;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold
+}
+.multibuyClickhereText
+{
+    COLOR: #990098;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10px;
+    FONT-WEIGHT: bold
+}
+.multibuyBuyThisText
+{
+    COLOR: #CC0000;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.multibuyline
+{
+    COLOR: #990098
+}
+
+.multibuythinline
+{
+    COLOR: #990098
+}
+.multibuylightPurpleCell
+{
+    BACKGROUND-COLOR: #cc99cc
+}
+/* END OF MULTIBUY STYLE */
+
+/*     Checkout style classes for currys */
+.boxBorder
+{
+    BORDER: #FF6600 2px solid
+}
+.checkoutsub {
+   color : #FFFFFF;
+   font-weight : bold;
+   font-size : 14px;
+}
+.dividerCell
+{
+    BACKGROUND-COLOR: #cccccc
+}
+.dividerLine
+{
+    COLOR: #999999
+}
+.highlight1
+{
+    COLOR: #cc0001
+}
+.highlight2
+{
+    FONT-WEIGHT: bold;
+    COLOR: FF6600;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.highlightBold {
+   color : #CC0001;
+   font-weight : bold;
+}
+.headerCell {
+   background-color : #FF6600;
+}
+.CRT_boldblack
+{
+    FONT-SIZE: 11px;
+    COLOR: #333333;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+}
+/* END Checkout style classes for currys */
+/* Added by Matt Earle 08/10/02 */
+
+.sidenavbold {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 13px;
+	color: #000000;
+
+
+
+}
+.promo1greyproduct {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 14px;
+	color: #666666;
+
+}
+.pricemessage {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 10px;
+	color: #FF0000;
+}
+.price {
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 12px;
+	color: #FF0000;
+}
+
+.pricelight {
+
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 10px;
+	color: #FF0000;
+}
+.promo2greyproductlight { 
+
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: normal; 
+        color: #000000; 
+} 
+.promo2greyproduct { 
+
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 12px; 
+        font-style: normal; 
+        font-weight: bold; 
+        line-height: 14px; 
+        color: #003399; 
+} 
+
+
+.sidepromobold {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 10px;
+	color: #000000;
+}
+/* added by Matt Earle */
+a.promo3white:link 
+{ 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 12px; 
+        font-style: normal; 
+        font-weight: bold; 
+        line-height: 12px; 
+        color: #FFFFFF; 
+
+} 
+
+a.promo3white:visited 
+{ 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 12px; 
+        font-style: normal; 
+        font-weight: bold; 
+        line-height: 12px; 
+        color: #FFFFFF; 
+
+} 
+
+a.promo3white:active 
+{ 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 12px; 
+        font-style: normal; 
+        font-weight: bold; 
+        line-height: 12px; 
+        color: #FFFFFF; 
+
+} 
+
+a.promo3white:hover 
+{ 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 12px; 
+        font-style: normal; 
+        font-weight: bold; 
+        line-height: 12px; 
+        color: #FFFFFF; 
+
+} 
+
+
+
+a.promo3whitemoredetails:link 
+{ 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: normal; 
+        color: #FFFFFF; 
+} 
+
+a.promo3whitemoredetails:visited 
+{ 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: normal; 
+        color: #FFFFFF; 
+} 
+
+a.promo3whitemoredetails:active 
+{ 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: normal; 
+        color: #FFFFFF; 
+} 
+
+a.promo3whitemoredetails:hover 
+{ 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: normal; 
+        color: #FFFFFF; 
+} 
+/* end */
+
+
+a.pricelight:link { 
+
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: 10px; 
+        color: #FF0000; 
+        text-decoration: none; 
+} 
+
+a.pricelight:active { 
+
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: 10px; 
+        color: #FF0000; 
+        text-decoration: none; 
+} 
+
+a.pricelight:hover { 
+
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: 10px; 
+        color: #FF0000; 
+        text-decoration: none; 
+} 
+
+a.pricelight:visited { 
+
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: 10px; 
+        color: #FF0000; 
+        text-decoration: none; 
+} 
+
+a.sidepromobold:link { 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: 10px; 
+        color: #000000; 
+        text-decoration: none; 
+
+} 
+
+a.sidepromobold:visited { 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: 10px; 
+        color: #000000; 
+        text-decoration: none; 
+
+} 
+
+a.sidepromobold:active { 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: 10px; 
+        color: #000000; 
+        text-decoration: none; 
+
+} 
+
+a.sidepromobold:hover { 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: normal; 
+        line-height: 10px; 
+        color: #000000; 
+        text-decoration: none; 
+
+} 
+
+
+a.sidenavbold:link 
+ { 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: bold; 
+        line-height: 13px; 
+        color: #000000; 
+} 
+
+a.sidenavbold:visited 
+ { 
+        text-decoration: none; 
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        font-size: 10px; 
+        font-style: normal; 
+        font-weight: bold; 
+        line-height: 13px; 
+        color: #000000; 
+} 
+
+/* EOF */
+/* added by Matt Earle 10/10/02 */
+#Main a.cattabtext:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+#Main a.cattabtext:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+#Main a.cattabtext:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+#Main a.cattabtext:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+.catheader {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bolder;
+	color: #000000;
+	border-bottom: #999999 1px solid;
+	padding: 2px;
+}
+.listprice 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 10px;
+	color: #000000;
+}
+
+#column2 {
+	background-color: #FAFAFA;
+	background-position:top left;
+	background-repeat:no-repeat;
+}
+
+#column2 .content {
+	margin:0px;
+	padding: 10px 5px 0px 5px;
+}
+
+#column2 p {
+	margin: 0px; padding: 0px;
+}
+
+.addtobasket { 	background-color: #e5e5e5;	text-align: right; }
+.addtobasket a { background-image: url(../gfx/buttons/add_to_basket_down.gif); width: 100px;	height: 18px; display:block; margin: 4px 5px 0 4px; }
+.addtobasket .up { background-image: url(../gfx/buttons/add_to_basket_up.gif); }
+
+.note {
+	font-weight: normal;
+	color: #8D8D8D;
+	font-size: 10px !important;
+	width: 576px;
+	text-align: right;
+	padding: 4px;
+}
+
+.product .price-info {
+	width: 31%;
+	text-align: right;
+	margin-left: 5px;
+	margin-top: 14px;
+	height: 70px;
+	float:left;
+}
+
+.price-info span {
+	display: block;
+	margin-top: 10px;
+	color: #999;
+}
+
+.product-desc h2 {
+	font-size: 120%;
+	padding: 0 0 2px 0;
+	margin: 0px 2px;
+	float:left;
+}
+
+.product-desc h2 a {
+	color: #000;
+	text-decoration: underline !important;
+}
+
+.product-desc h2 a:hover {
+	color: #000;
+	text-decoration: none !important;
+}
+
+.product-desc .model-number {
+	color: #999;
+	padding: 3px 0 4px 0;
+	font-weight: bold;
+}
+
+.product-desc p {
+	padding: 0px;
+	margin: 0px;
+}
+
+.product-desc a {
+	margin: 0px;
+}
+
+.top-border {
+	border-top: 1px solid #e5e5e5;
+}
+
+.nocheckbox {
+	background-image:none;
+}
+
+
+/*Utility styles */
+.disabled {
+	color: #999;
+}
+
+#message1 {
+	margin-bottom: 3px;
+}
+
+#message1, #message2 {
+	color: #CC0C0C;
+	text-align: right;
+	display: none;
+	visibility: hidden;
+	width: 200px;
+}
+
+/* Shopping basket (list) */
+#shopping_list {
+	border-left:1px solid #CC0C0C;
+	border-right: 1px solid #CC0C0C;
+	background-color: #E5E5E5;
+}
+
+#shopping_list em {
+	color: #999;
+}
+
+#shopping_list a {
+	text-decoration: underline !important;
+}
+
+#shopping_list tr th {
+	padding: 3px 0px 3px 10px;
+	font-weight: bold;
+
+	font-size: 10px;
+	text-align: left;
+}
+
+#shopping_list tr td {
+	padding: 3px 0px 3px 8px;
+	border-top: 1px solid #CCCCCC;
+	background-color: #FFFFFF;
+}
+
+.shopping_list_sub_item {
+	background-color: #FFFFFF !important;
+	
+}
+
+.shopping_list_sub_item td {
+	background-color: #FFFFFF !important;
+	border-top: 0px !important;
+}
+
+.shopping_list_total td, .shopping_list_total div {
+	font-size: 90%;
+	color:#2A1FAA;
+	font-weight: bold;
+}
+
+#shopping_list .group-left {
+	background-color: #FAFAFA !important; border-left: 2px solid #efefef;
+}
+
+#shopping_list .group-right {
+	background-color: #FAFAFA !important; border-right: 2px solid #efefef; border-left: 2px solid #efefef;
+}
+
+.shopping_list_bottom {
+	border-top: 2px solid #CCCCCC !important;
+	background-color: #F1F1F1 !important;
+}
+
+.shopping_list_body {
+	background-color: #F1F1F1 !important;
+	border-top: 0px !important;
+
+}
+
+.shopping_list_bottom .column-right {
+	width:130px;
+	float: left;
+}
+
+.shopping_list_bottom h2, .shopping_list_bottom .sub_total {
+	color:#2A1FAA;
+	font-weight: bold;
+	font-size: 140%;
+	width: 445px;
+	float: left;
+	margin-bottom: 4px;
+}
+
+.shopping_list_bottom .sub_total {
+	width: 60px;
+	text-align: right;
+	float:left;
+}
+
+.shopping_list_bottom p {
+	margin: 0px;
+	padding: 0px;
+	width: 449px;
+	float: left;
+	color: #000 !important;
+	font-size: 100% !important;
+}
+
+.shopping_list_bottom em {
+	color: #8d8d8d;
+	font-size: 10px;
+	font-weight: normal;
+	font-style:normal;
+}
+ckground-color: #FAFAFA !important;
+	border-top: 0px !important;
+}
+.transparent, .transparent td {
+	background-color: #FAFAFA !important;
+	border-top: 0px !important;
+}
+.currency {
+	text-align: right !important;
+}
+
+.center {
+	text-align:center !important;
+}
+
+.right {
+	text-align:right !important;
+}
+/* End shopping basket New Styles */
+
+
+.clear {
+	clear:both;
+} 
+.promo4pricetext {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: normal;
+	color: #FF0000;
+}
+.promo4title {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #000000;
+}
+.promo4product {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+.promo4features {
+
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+.promo4offertext {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #FF0000;
+}

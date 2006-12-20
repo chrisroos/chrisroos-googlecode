@@ -1,0 +1,383 @@
+/* -----------------------Homepage New Top Deals */
+#mfnewtop-cont {
+	position:relative; width:600px; height:130px;
+}
+#mfnewtop1 {
+	position:absolute; top:0; left:0; width:204px; height:83px;
+}
+#mfnewtop2 {
+	position:absolute; top:0; left:204; width:200px; height:83px;
+}
+#mfnewtop3 {
+	position:absolute; top:83; left:0; width:404px; height:47px;
+}
+#mfnewtop4 {
+	position:absolute; top:0; left:404; width:196px; height:130px;
+}
+
+/* - */
+#mfnewtop1 ul.mftopbanners li {
+	width:200px;
+	margin:0 0px 0px 0;
+	
+}
+#mfnewtop1 ul.mftopbanners span {
+	DISPLAY: none	
+}
+.mfnewtop1 {
+	DISPLAY: none
+}
+#mfnewtop1 ul {
+	list-style-type:none;
+	padding:0em 0 0 ;
+	margin:0;
+	clear:both;	
+}
+/*---------------------- Homepage Top 3 deals */
+
+#mfpromo1a thead {
+	DISPLAY: none
+}
+#mfpromo1a th {
+	DISPLAY: none
+}
+#mfpromo1a {
+	position:relative;
+	left:0px;
+	top:0px;
+	width:200px;
+	height:auto;
+	min-height:99%;
+	margin:0;
+	float:left;
+}
+
+#mfpromo1a table, #mfpromo1c table {
+	border-left:1px dotted #6699CC; border-collapse:collapse;
+	border-right:1px dotted #6699CC; border-collapse:collapse;
+}
+#mfpromo1b table {
+	border-left:1px none #FFFFFF; border-collapse:collapse;
+	border-right:1px none #FFFFFF; border-collapse:collapse;
+}
+/*#mfpromo1c table {
+	border-left:1px solid #ccc; border-collapse:collapse;
+	border-right:1px solid #ccc; border-collapse:collapse;
+	
+}
+*/
+#mfpromo1a table td, #mfpromo1b table td, #mfpromo1c table td {
+	text-align: left;
+	vertical-align: top;
+	cell-padding:2px;
+	padding: 2px;
+}
+
+.price {
+	font-size: 14px;
+	color: #FF0000;
+	font-weight: bold;
+}
+.hmcpln {
+	color:#000;
+	font-size: 7pt;
+}
+
+#mfpromo1b thead {
+	DISPLAY: none
+}
+#mfpromo1b th {
+	DISPLAY: none
+}
+#mfpromo1b {
+	position:absolute;
+	left:200px;
+	top:0px;
+	width:200px;
+	height:auto;
+	min-height:99%;
+	margin:0;
+	float:left;
+}
+
+#mfpromo1c thead {
+	DISPLAY: none
+}
+
+#mfpromo1c th {
+	DISPLAY: none
+}
+
+#mfpromo1c {
+	position:absolute;
+	left:400px;
+	top:0px;
+	width:200px;
+	height:auto;
+	min-height:99%;
+	margin:0;
+	float:left;
+}
+#mfp1-btns {
+	position:absolute;
+	left:10px;
+	top:85px;
+	align: center;
+	width:55px;
+	text-align: center;
+}
+
+/*---------------------- Homepage Top Nav */
+#mfhnavtp {
+	position:relative;
+	left:0px;
+	top:0px;
+	width:600px;
+	height:60px;
+	}
+#mfhcats ul {
+	list-style-type:none;
+	padding:0em 0 0 ;
+	margin:0;
+	clear:both;	
+}
+.mfhcats {
+	DISPLAY: none;
+	width:195px;
+}
+#mfhcats ul.cats li {
+	width:60px;
+	margin:0 0px 0px 0;
+	float:left;
+	background-repeat:no-repeat;
+}
+#mfhcats ul.cats span {
+	DISPLAY: none	
+}
+#mfhcats span {
+	DISPLAY: none	
+}
+
+/*---------------- Homepage RHS Banners */
+
+#mfhrhsnew {
+	position:relative;
+	left:0px;
+	top:0px;
+	width:200px;
+	height: auto;
+	min-height: 99%;
+}
+#mfrhsnew ul {
+	list-style-type:none;
+	padding:0em 0 0 ;
+	margin:0;
+	clear:both;	
+}
+.mfhrhsnew {
+	DISPLAY: none
+}
+#mfrhsnew ul.mfrhsbanners li {
+	width:200px;
+	margin:0 0px -4px 0;
+	
+}
+#mfrhsnew ul.mfrhsbanners span {
+	DISPLAY: none	
+}
+#mfnewRHS {
+	position:relative;
+	left:0px;
+	top:0px;
+	width:200px;
+	height: auto;
+	min-height: 99%;
+	margin:0;
+}
+
+/* ---------------------------Homepage Top Sellers */
+
+#mfpromo2-cont {
+	position:relative;
+	left:0px;
+	width:395px;
+	height: auto;
+	min-height: 99%;
+	margin:4 0;
+	border-bottom-style: dotted;
+	border-bottom-color: #6699CC;
+	border-bottom-width: 1px;
+}
+#mfpromo2 {
+	position:absolute;
+	left:0px;
+	top:15px;
+	width:85px;
+	height:85px;
+	vertical-align: middle;
+	horizontal-align: middle;
+}
+#mfp2desc {
+	position:relative;
+	left:90px;
+	width:300px;
+	height:auto;
+	min-height: 99%;
+	text-align: left;
+	vertical-align: top;
+}
+#mfp2-prc {
+	position:relative;
+	left:0px;
+	width:300px;
+	height:15px;
+	text-align: left;
+	vertical-align: top;
+}
+#mfp2c ul {
+	list-style-type:none;
+	padding:0em 0 0 ;
+	margin:0;
+	clear:both;	
+}
+.mfp2box {
+	DISPLAY: none
+}
+#mfp2c ul.mfp2box li {
+	width:400px;
+	margin:0 0px -4px 0;
+	left:0;
+}
+/*#mfp2c ul.mfp2box span {
+	DISPLAY: none	
+}*/
+#mfp2-btns {
+	position:relative;
+	align: right;
+	top: -15;
+	left:200px;
+	vertical-align: top;
+	margin:0;
+}
+/* ------------------------------------------- Homepage Footer Links Bar */
+#mfhnavfoot {
+	position:absolute;
+	left:5px;
+	top:8px;
+	width:600px;
+	height:40px;
+	vertical-align: center;
+	float:left;
+}
+/*#mfftrs ul {
+	list-style-type:none;
+	padding:0em 0 0 ;
+	margin:0;
+	clear:both;	
+}*/
+.mfftrs {
+	DISPLAY: none
+}
+#mfftrs ul.cats li {
+	width:auto;
+	margin:0 0px 0px 0;
+	float:left;
+	background-repeat:no-repeat;
+	color: #333333;
+	text-decoration: none;
+}
+#mfftrs ul.cats span {
+	DISPLAY: none	
+}
+#mfftrlinks {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	height: auto;
+	width: auto;
+	align: middle;
+	list-style-type: none;
+	
+}
+#mfftrlinks a {
+	color: #333333;
+	text-decoration: none;
+	margin-top: 15;
+}
+#mfftrlinks a:hover {
+	color: #FF0000;
+	text-decoration: underline;
+	margin-top: 15;
+}
+#mfftr {
+	position:relative;
+	left:0px;
+	top:35px;
+	width:606px;
+	height:41;
+	/*background-image:  url(/store_doc/mf05/home/footer.gif);
+	layer-background-image:  url(/store_doc/mf05/home/footer.gif); border: 1px none #000000;*/
+	align: middle;
+}
+#mffootlinks {
+	position:relative;
+	horizontal-align:middle;
+	top:35;
+	width:600px;
+	height:auto;
+}
+#mffootlinks a {
+	color: #333333;
+	text-decoration: none;
+}
+#mffootlinks a:hover {
+	color: #FF0000;
+	text-decoration: underline;
+}
+/* -nano styles - - - */
+
+
+<!--
+.emailtermstext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	line-height: 11px;
+	color: #000000;
+}
+.nanobodybold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+}
+.nanobodynormal {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+.nanobodygrey {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #999999;
+}
+.nanoheader1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #336666;
+}
+.nanobodyred {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #FF0000;
+}
+.nanopriceblack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	color: #000000;
+}
+-->

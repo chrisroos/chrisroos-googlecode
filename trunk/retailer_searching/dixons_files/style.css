@@ -1,0 +1,947 @@
+.d1
+{
+    FONT: bold 10px/16px Verdana, Geneva, Arial, Helvetica, sans-serif
+}
+.d2
+{
+    FONT: bold 10px/16px Verdana, Geneva, Arial, Helvetica, sans-serif
+}
+A.navLink
+{
+    FONT: bold 10px/16px Verdana, Geneva, Arial, Helvetica, sans-serif;
+    COLOR: #333333;
+    TEXT-DECORATION: none
+}
+A.navLink:hover
+{
+    FONT: bold 10px/16px Verdana, Geneva, Arial, Helvetica, sans-serif;
+    COLOR: #666666;
+    TEXT-DECORATION: underline
+}
+#hMenu1
+{
+    Z-INDEX: 102;
+    LEFT: 150px;
+    VISIBILITY: hidden;
+    WIDTH: 150px;
+    POSITION: absolute;
+    TOP: 200px;
+    HEIGHT: 150px
+}
+#hMenu2
+{
+    Z-INDEX: 103;
+    LEFT: 300px;
+    VISIBILITY: hidden;
+    WIDTH: 150px;
+    POSITION: absolute;
+    TOP: 200px;
+    HEIGHT: 150px
+}
+.hMenuBox
+{
+    BORDER-RIGHT: #666666 1px solid;
+    PADDING-RIGHT: 5px;
+    BORDER-TOP: #666666 1px solid;
+    PADDING-LEFT: 5px;
+    BACKGROUND: #ffffff;
+    LEFT: 0px;
+    PADDING-BOTTOM: 5px;
+    BORDER-LEFT: #666666 1px solid;
+    WIDTH: 150px;
+    PADDING-TOP: 5px;
+    BORDER-BOTTOM: #666666 1px solid;
+    POSITION: relative;
+    TOP: 0px;
+    HEIGHT: 10px
+}
+.hMenuTableOuter
+{
+    BACKGROUND: #666666
+}
+.hMenuTableInner
+{
+    BACKGROUND: #ffffff
+}
+#hMenuTop
+{
+    Z-INDEX: 9;
+    LEFT: 6px;
+    WIDTH: 134px;
+    POSITION: absolute;
+    TOP: -102px;
+    HEIGHT: 97px
+}
+#staticmenu
+{
+    Z-INDEX: 8;
+    LEFT: 6px;
+    WIDTH: 134px;
+    POSITION: absolute;
+    TOP: 84px;
+    HEIGHT: 150px
+}
+BODY
+{
+    FONT-SIZE: 10px;
+    COLOR: #333333;
+    FONT-FAMILY: verdana, arial, helvetica
+}
+TD
+{
+    FONT-SIZE: 10px;
+    COLOR: #333333;
+    FONT-FAMILY: verdana, arial, helvetica
+}
+B
+{
+    FONT-WEIGHT: bold
+}
+.vspace
+{
+    LINE-HEIGHT: 22px
+}
+.menu
+{
+    FONT-SIZE: 13px
+}
+.monospace
+{
+    FONT-FAMILY: Courier,monospace
+}
+A
+{
+    COLOR: #000000
+}
+A.red
+{
+    FONT-WEIGHT: bold;
+    COLOR: #ff0000;
+    TEXT-DECORATION: underline
+}
+A.whiteUnderline
+{
+    COLOR: #ffffff;
+    TEXT-DECORATION: underline
+}
+A.whiteBold
+{
+    FONT-WEIGHT: bold;
+    COLOR: #ffffff;
+    TEXT-DECORATION: none
+}
+A.blackUnderline
+{
+    COLOR: #333333;
+    TEXT-DECORATION: underline
+}
+A.boldUnderline
+{
+    FONT-WEIGHT: bold;
+    COLOR: #333333;
+    TEXT-DECORATION: underline
+}
+A.grey
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 10px;
+    COLOR: #808080;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-VARIANT: normal
+}
+A.bigdarkgrey
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #666666;
+    TEXT-DECORATION: none
+}
+.black
+{
+    FONT-SIZE: 10px;
+    COLOR: #333333;
+    TEXT-DECORATION: none
+}
+.boldbig
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #333333;
+    TEXT-DECORATION: none
+}
+.boldblack
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #333333;
+    TEXT-DECORATION: none
+}
+.bigblack
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    COLOR: #333333;
+    TEXT-DECORATION: none
+}
+.biggrey
+{
+    FONT-SIZE: 11px;
+    COLOR: #333333;
+    TEXT-DECORATION: none
+}
+.subtitle
+{
+    COLOR: #ffffff
+}
+.curryssub
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 14px;
+    COLOR: #ffffff
+}
+.whitebold
+{
+    FONT-WEIGHT: bold;
+    COLOR: #ffffff
+}
+.bigwhitebold
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #ffffff;
+    TEXT-DECORATION: none
+}
+.hugewhitebold  {
+	color : #FFFFFF;
+	font-weight : bold;
+	font-size : 16px;
+	text-decoration : none;
+}
+.hrlightgrey
+{
+    COLOR: #cccccc
+}
+.darkgrey
+{
+    COLOR: #666666
+}
+.lightgrey
+{
+    COLOR: #333333
+}
+.maingrey
+{
+    COLOR: #999999
+}
+.bigdarkgrey
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    COLOR: #666666
+}
+.pcwbigdarkgrey
+{
+    FONT-SIZE: 11px;
+    COLOR: #666666
+}
+.darkgreybold
+{
+    FONT-WEIGHT: bold;
+    COLOR: #333333
+}
+.hugedarkgrey  {
+	font-size : 16px;
+	color : #666666;
+	font-weight : bold;
+}
+.red
+{
+    COLOR: #ff0000
+}
+.deepred
+{
+    FONT-WEIGHT: bold;
+    COLOR: #cc0000
+}
+.redtext
+{
+    COLOR: #cc0000
+}
+.deeprednodec
+{
+    FONT-WEIGHT: bold;
+    COLOR: #cc0000;
+    TEXT-DECORATION: none
+}
+.deepredbig
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #cc0000;
+    TEXT-DECORATION: none
+}
+.darkred
+{
+    FONT-WEIGHT: bold;
+    COLOR: #cc0001
+}
+.nobolddarkred
+{
+    COLOR: #cc0001
+}
+.orangebold
+{
+    FONT-WEIGHT: bold;
+    COLOR: #ff6600
+}
+.bigorangebold
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #ff6600
+}
+.bigbluebold
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #000066;
+    TEXT-DECORATION: none
+}
+.bigblueboldunder
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #000066
+}
+.bluetext
+{
+    FONT-SIZE: 10px;
+    COLOR: #000066
+}
+.bluebold
+{
+    FONT-SIZE: 10px;
+    COLOR: #000066
+}
+
+.whiteCell {
+	background-color : #FFFFFF;
+}
+
+.orangeCell
+{
+    BACKGROUND-COLOR: #ffa216
+}
+.darkgreyline
+{
+    BACKGROUND-COLOR: #333333
+}
+.maingreyCell
+{
+    BACKGROUND-COLOR: #999999
+}
+.lightGreyCell
+{
+    BACKGROUND-COLOR: #cccccc
+}
+.currysorange
+{
+    BACKGROUND-COLOR: #ff6600
+}
+.currysblue
+{
+    BACKGROUND-COLOR: #99ccff
+}
+.blueCell
+{
+    BACKGROUND-COLOR: #000099
+}
+.turquoiseblue
+{
+    BACKGROUND-COLOR: #b5d3f1
+}
+.darkBlueCell
+{
+    BACKGROUND-COLOR: #003366
+}
+.aquaCell
+{
+    BACKGROUND-COLOR: #ccffff
+}
+.redCell
+{
+    BACKGROUND-COLOR: #e11405
+}
+.deepredCell
+{
+    BACKGROUND-COLOR: #cc0000
+}
+.purpleCell
+{
+    BACKGROUND-COLOR: #ccccff
+}
+.darkPurpleCell
+{
+    BACKGROUND-COLOR: #990098
+}
+.ocreCell
+{
+    BACKGROUND-COLOR: #ffcc00
+}
+.lightGreencell
+{
+    BACKGROUND-COLOR: #99ffcc
+}
+.olivecell
+{
+    BACKGROUND-COLOR: #99cccc
+}
+.yellowcell
+{
+    BACKGROUND-COLOR: #ffff99
+}
+.nav2bg
+{
+    BACKGROUND-COLOR: #d2d2d2
+}
+.pcpurpleCell
+{
+    BACKGROUND-COLOR: #990098
+}
+.pcwpurpleline
+{
+    COLOR: #990098
+}
+.pcwdarkPurpleCell
+{
+    BACKGROUND-COLOR: #990098
+}
+.pcwlightGreyCell
+{
+    BACKGROUND-COLOR: #cccccc
+}
+.pcwproductwhitetext
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 14px;
+    COLOR: #ffffff;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwproductmodelnoblack
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 10px;
+    COLOR: #000000;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwlightPurpleCell
+{
+    BACKGROUND-COLOR: #cc99cc
+}
+.pcwyellowcell
+{
+    BACKGROUND-COLOR: #cccccc
+}
+.pcwredCell
+{
+    BACKGROUND-COLOR: #e11405
+}
+.pcwwhitecell
+{
+    BACKGROUND-COLOR: #ffffff
+}
+.pcwbigblackboldunder
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwdarkgrey
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 12px;
+    COLOR: #666666;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwwhitebold
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #ffffff;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwredbold1
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #e11405;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwredbold2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #e11405;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwredbold3
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 16px;
+    COLOR: #e11405;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwbigblacktext
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    COLOR: #333333;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none
+}
+.pcwbigdarkgreytext
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    COLOR: #333333;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none
+}
+.pcwdarkpurpletext
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #990098;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwdarkpurpletext2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13px;
+    COLOR: #990099;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none
+}
+.pcwdarkpurpletext3
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 16px;
+    COLOR: #990098;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwpurpletext
+{
+    FONT-WEIGHT: bold;
+    COLOR: #990098;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.pcwpurpletextsubcatpages
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #990098;
+    LINE-HEIGHT: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none
+}
+.pcwinputbg
+{
+    BACKGROUND-COLOR: #deb0de
+}
+#navigation1
+{
+    Z-INDEX: 1;
+    LEFT: 0px;
+    WIDTH: 100%;
+    POSITION: absolute;
+    TOP: 0px;
+    HEIGHT: 80px
+}
+#nav2background
+{
+    Z-INDEX: 2;
+    LEFT: 0px;
+    WIDTH: 148px;
+    POSITION: absolute;
+    TOP: 79px;
+    HEIGHT: 332px
+}
+#navigation2
+{
+    Z-INDEX: 3;
+    LEFT: 0px;
+    WIDTH: 148px;
+    POSITION: absolute;
+    TOP: 222px;
+    HEIGHT: 332px
+}
+#login
+{
+    Z-INDEX: 4;
+    LEFT: 0px;
+    WIDTH: 148px;
+    POSITION: absolute;
+    TOP: 100px;
+    HEIGHT: 17px
+}
+#maincontent
+{
+    Z-INDEX: 5;
+    LEFT: 148px;
+    WIDTH: 602px;
+    POSITION: absolute;
+    TOP: 80px
+}
+#breadcrumb
+{
+    Z-INDEX: 6;
+    LEFT: 200px;
+    WIDTH: 425px;
+    POSITION: absolute;
+    TOP: 70px
+}
+#comparison
+{
+    Z-INDEX: 7;
+    LEFT: 467px;
+    WIDTH: 126px;
+    POSITION: absolute;
+    TOP: 180px;
+    HEIGHT: 40px
+}
+.comparisonText
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    WIDTH: 126px;
+    COLOR: #333333;
+    FONT-FAMILY: verdana, arial, helvetica
+}
+.dolBlueCell
+{
+    BACKGROUND-COLOR: #6699ff
+}
+.dolDarkBlueCell
+{
+    BACKGROUND-COLOR: #000099
+}
+.dolyellowbold2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #ffff00;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.doldeepredCell
+{
+    BACKGROUND-COLOR: #cc0000
+}
+.dolprdredtext
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #cc0000;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.dolprdredtext2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 14px;
+    COLOR: #cc0000;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.dolbiggreyboldunder
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #666666
+}
+.dolblueline
+{
+    COLOR: #6666cc
+}
+.dolgreybodytext
+{
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 10px;
+    COLOR: #666666;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-VARIANT: normal
+}
+.doldarkbluetext3
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 16px;
+    COLOR: #000099;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.doldarkbluetext2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 13px;
+    COLOR: #000099;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none
+}
+.dolwhitetext2
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 14px;
+    COLOR: #ffffff;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.dolboldwhite
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    COLOR: #ffffff;
+    TEXT-DECORATION: none
+}
+.dollightredCell
+{
+    BACKGROUND-COLOR: #cccccc
+}
+.doldarkgrey_T1header
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #333333
+}
+.pricetext
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 14px;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+
+.no_decoration
+{
+    TEXT-DECORATION: none
+}
+
+
+/*MULTIBUY STYLES*/
+
+.multibuyAffNameText
+{
+    COLOR: #333333;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none
+}
+.multibuyAffPriceText
+{
+    COLOR: #333333;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none
+}
+
+.multibuyMessageBoard
+{
+    COLOR: #FF0000;
+    FONT-SIZE: 10px;
+}
+
+.multibuyBundleDescText
+{
+    COLOR: #000000;
+    FONT-SIZE: 10px;
+}
+
+
+.multibuyheadingText
+{
+    COLOR: #333333;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.multibuyBundleNameText
+{
+    COLOR: #333333;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.multibuyNavigationText
+{
+    COLOR: #333333;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.multibuyIgnoreText
+{
+    COLOR: #333333;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+
+.multibuyTriggerDescText
+{
+    COLOR: #000066;
+    FONT-SIZE: 10px
+}
+.multibuyAffDealText
+{
+    COLOR: #CC0000;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold
+}
+.multibuyClickhereText
+{
+    COLOR: #990098;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10px;
+    FONT-WEIGHT: bold
+}
+.multibuyBuyThisText
+{
+    COLOR: #CC0000;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+.multibuyline
+{
+    COLOR: #6666cc
+}
+
+.multibuythinline
+{
+    COLOR: #990098
+}
+.multibuylightPurpleCell
+{
+    BACKGROUND-COLOR: #cc99cc
+}
+/* END OF MULTIBUY STYLE */
+
+/*     Checkout style classes for Dixons */
+.boxBorder
+{
+    BORDER: #000099 2px solid
+}
+.checkoutsub
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 14px;
+    COLOR: #ffffff
+}
+.dividerCell
+{
+    BACKGROUND-COLOR: #cccccc
+}
+.dividerLine
+{
+    COLOR: #999999
+}
+.headerCell
+{
+    BACKGROUND-COLOR: #000099
+}
+.highlight1
+{
+    COLOR: #cc0001
+}
+.highlight2
+{
+    FONT-WEIGHT: bold;
+    COLOR: #000099;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.highlightBold
+{
+    FONT-WEIGHT: bold;
+    COLOR: #cc0001
+}
+.CRT_boldblack
+{
+    FONT-SIZE: 11px;
+    COLOR: #333333;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+}
+/* END Checkout style classes for Dixons */
+#Main a.cattabtext:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+#Main a.cattabtext:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+#Main a.cattabtext:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+#Main a.cattabtext:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+.catheader {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bolder;
+	color: #000000;
+	border-bottom: #999999 1px solid;
+	padding: 2px;
+}
+.promo4pricetext {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: normal;
+	color: #FF0000;
+}
+.promo4title {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #000000;
+}
+.promo4product {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+.promo4features {
+
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+.promo4offertext {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #FF0000;
+}

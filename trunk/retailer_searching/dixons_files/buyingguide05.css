@@ -1,0 +1,79 @@
+.buygbodytext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+.h2text {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+.whitetext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+}
+/*a {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #38197A;
+	font-size: 12px;
+}
+a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #666;
+	font-size: 12px;
+}*/
+.bgpost {
+	background-image: url(/store_doc/mf05/guides/bgpost.gif);
+	background-repeat: no-repeat;
+}.postwasherdryers{
+	background-image: url(/store_doc/mf05/guides/bgpost_washdry.gif);
+	background-repeat: no-repeat;
+}.posttumbledryers {
+	background-image: url(/store_doc/mf05/guides/bgpost_tumbledryers.gif);
+	background-repeat: no-repeat;
+}.postlaptops {
+	background-image: url(/store_doc/mf05/guides/bgpost_laptops.gif);
+	background-repeat: no-repeat;
+}.postfridgefreezers {
+	background-image: url(/store_doc/mf05/guides/bgpost_fridgefreeze.gif);
+	background-repeat: no-repeat;}
+.postflatpaneltvs {
+	background-image: url(/store_doc/mf05/guides/bgpost_flattvs.gif);
+	background-repeat: no-repeat;}
+.postdishwashers {
+	background-image: url(/store_doc/mf05/guides/bgpost_dishwash.gif);
+	background-repeat: no-repeat;
+}
+.postwashmachine {
+	background-image: url(/store_doc/mf05/guides/post_washmachine.gif);
+	background-repeat: no-repeat;
+}
+.buyguidestrong {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+.buyguidestrong1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	/*font-size: 11px;*/
+	font-weight: normal;
+}
+.headerbar {
+	background-image: url(/store_doc/mf05/guides/headerbar.gif);
+	background-repeat: no-repeat;
+}
+.headerbar1 {
+	background-image: url(/store_doc/mf05/guides/headerbar1.gif);
+	background-repeat: no-repeat;
+	padding-bottom: 8px;
+}
+.buygwhitetext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	font-style: normal;
+	color: #FFFFFF;
+}
+.borderblue {
+	border: 1px solid #0099FF;
+}

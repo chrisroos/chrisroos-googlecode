@@ -1,0 +1,7 @@
+input.button {
+  color: #999; background: #FEFEFE;
+  font-size: 8pt;
+  font-weight:bold;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  border: solid 1px #999999;
+}
