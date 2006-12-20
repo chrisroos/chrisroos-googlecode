@@ -1,0 +1,29 @@
+DIXONS
+curl \
+-d"page=SimpleSearchProducts" \
+-d"criterion=TEST" \
+--get "http://www.dixons.co.uk/martprd/store/dix_page.jsp"
+
+COMET
+curl \
+-d"searchTerm=Plasma" \
+http://www.comet.co.uk/cometbrowse/search.do
+
+CURRYS
+curl \
+-d"page=SimpleSearchProducts" \
+-d"criterion=TEST" \
+--get http://www.currys.co.uk/martprd/store/cur_page.jsp
+
+PC WORLD
+curl \
+-d"page=SimpleSearchProducts" \
+-d"criterion=TEST" \
+--get http://www.pcworld.co.uk/martprd/store/pcw_page.jsp | grep "3 IN 1 DRIVING"
+
+AMAZON
+curl \
+-d"url=search-alias%3Daps" \
+-d"field-keywords=TEST" \
+-A"User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1) Gecko/20061010 Firefox/2.0" \
+http://amazon.co.uk/s/ref=nb_ss_w_h_/202-8788455-6512606 | grep "X-230"

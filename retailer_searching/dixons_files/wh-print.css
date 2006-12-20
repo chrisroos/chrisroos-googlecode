@@ -1,0 +1,499 @@
+body {
+
+	background-image: none;
+	background-color: #FFFFFF;
+
+}
+
+#CoreNavigationBar {
+
+	position: static;
+	visibility: visible;
+	height: 55px;
+	width: 190px;
+	overflow: hidden;
+	background-color: #FF0033;
+	margin-bottom: 10px;	
+	/*clip: rect(10px 184px 94px 0px);*/
+
+}
+
+#SubCoreNavigationBar {
+
+	position: static;
+	visibility: hidden;
+	display: none;
+
+}
+
+#SubNavigationBar {
+
+	position: static;
+
+	visibility: hidden;
+
+	display: none;
+
+}
+
+#Main {
+
+	position: static;
+
+	/*left: 0px;*/
+
+	visibility: visible;
+
+}
+
+.wh-contblock-title, .wh-contblock-title-low, /*.wh-contblock-top, */.wh-contblock-top-white {
+
+	border-top: solid;
+
+	border-bottom: solid;
+
+	border-width: 1px;
+
+	border-color: #010B87;
+
+}
+
+.wh-prodblock-cell {
+
+	border-top: solid;
+
+	border-bottom: solid;
+
+	border-width: 1px;
+
+	border-color: #999999;
+
+}
+
+.wh-cp-title {
+
+	border-top: solid;
+
+	border-bottom: solid;
+
+	border-width: 1px;
+
+	border-color: #ff0000;
+
+}
+
+.wh-basket-title {
+
+	border-top: 1px solid #010B87;
+
+	border-bottom: 1px solid #010B87;
+
+	vertical-align: middle;
+
+}
+
+.wh-contblock-title-grey {
+
+	border-top: solid;
+
+	border-bottom: solid;
+
+	border-width: 1px;
+
+	border-color: #CECBCE	
+
+}
+
+.wh-contblock-vert-divide {
+
+	border-right: solid;
+
+	border-width: 1px;
+
+	border-color: #010B87;	
+
+}
+
+.wh-print-block {
+
+	visibility: visible;
+
+	display: block;
+
+	margin-bottom: 20px;
+
+	width: auto;
+
+}
+
+.wh-print-mask {
+
+	visibility: hidden;
+
+	display: none;
+
+}
+
+#wh-terms-conditions {
+
+	height: auto !important;
+
+}
+
+.wh-contblock-title-2 {
+
+	border-top: 1px solid #0066CB;
+
+	border-bottom: 1px solid #0066CB;	
+
+}
+
+.wh-home-deal-vert2 {
+
+	border-right: 1px solid #010B87;	
+
+}
+
+.wh-home-deal-highlight {
+
+	border-top: 1px solid #010B87;
+
+	border-bottom: 1px solid #010B87;			
+
+}
+
+
+
+/* Corner styles */
+
+.wh-corner-image {
+
+	visibility: hidden;	
+
+}
+
+
+
+.wh-contblock-corner-tl {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 0px 1px 1px;
+
+}
+
+.wh-contblock-corner-tr {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 1px 1px 0px;	
+
+}
+
+.wh-contblock-corner-bl {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 0px 1px 1px;	
+
+}
+
+.wh-contblock-corner-br {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 1px 1px 0px;	
+
+}
+
+
+
+.wh-contblock2-corner-tl {
+
+	border-style: solid;
+
+	border-color: #0066CB;
+
+	border-width: 1px 0px 1px 1px;
+
+}
+
+.wh-contblock2-corner-tr {
+
+	border-style: solid;
+
+	border-color: #0066CB;
+
+	border-width: 1px 1px 1px 0px;	
+
+}
+
+
+
+.wh-basket-corner-tl {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 0px 1px 1px;	
+
+}
+
+.wh-basket-corner-tr {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 1px 1px 0px;	
+
+}
+
+.wh-basket-corner-bl {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 0px 1px 1px;	
+
+}
+
+.wh-basket-corner-br {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 1px 1px 0px;	
+
+}
+
+
+
+.wh-contblue-corner-tl {
+
+	border-style: solid;
+
+	border-color: #CCCCFF;
+
+	border-width: 1px 0px 1px 1px;	
+
+}
+
+.wh-contblue-corner-tr {
+
+	border-style: solid;
+
+	border-color: #CCCCFF;
+
+	border-width: 1px 1px 1px 0px;	
+
+}
+
+.wh-contblue-corner-bl {
+
+	border-style: solid;
+
+	border-color: #CCCCFF;
+
+	border-width: 0px 0px 1px 1px;	
+
+}
+
+.wh-contblue-corner-br {
+
+	border-style: solid;
+
+	border-color: #CCCCFF;
+
+	border-width: 0px 1px 1px 0px;	
+
+}
+
+
+
+.wh-basketitem-corner-tl {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 0px 1px 1px;	
+
+}
+
+.wh-basketitem-corner-tr {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 1px 1px 0px;	
+
+}
+
+.wh-basketitem-corner-bl {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 0px 1px 1px;	
+
+}
+
+.wh-basketitem-corner-br {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 1px 1px 0px;	
+
+}
+
+
+
+.wh-multibuy-corner-tl {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 0px 1px 1px;	
+
+}
+
+.wh-multibuy-corner-tr {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 1px 1px 0px;	
+
+}
+
+.wh-multibuy-corner-bl {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 0px 1px 1px;	
+
+}
+
+.wh-multibuy-corner-br {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 1px 1px 0px;	
+
+}
+
+.wh-multibuy-corner-tls {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 0px 0px 1px;	
+
+}
+
+.wh-multibuy-corner-trs {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 1px 1px 0px 0px;	
+
+}
+
+.wh-multibuy-corner-bls {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 0px 1px 1px;	
+
+}
+
+.wh-multibuy-corner-brs {
+
+	border-style: solid;
+
+	border-color: #010B87;
+
+	border-width: 0px 1px 1px 0px;	
+
+}
+
+/* END:Corner styles */
+/* Product Page Tabs styles */
+
+#Main .tab_off {
+	font-weight: bold;
+	color: #000000;
+	background-image: url("../images/product_details/tab_bg_off.gif");
+	background-repeat: repeat-x;
+	vertical-align: middle;
+}
+
+#Main .tab_off a, #Main .tab_off a:visited, #Main .tab_off a:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-decoration: none;
+	background: none;
+	color: #000000;
+}
+
+#Main .tab_off a:hover {
+	text-decoration: underline;
+}
+
+#Main .tab_on {
+	font-weight: bold;
+	color: #FFFFFF;
+	background-image: url("../images/product_details/tab_bg_on.gif");
+	background-repeat: repeat-x;
+	vertical-align: middle;
+}
+
+#Main .tab_on a, #Main .tab_on a:visited, #Main .tab_on a:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	text-decoration: none;
+	background: none;
+	color: #FFFFFF;
+}
+
+#Main .tab_on a:hover {
+	text-decoration: underline;
+}
+
+#Main .product_desc a, #Main .product_desc a:visited, #Main .product_desc a:link {
+	text-decoration: none;
+	color: #000000;
+}
+#Main .product_desc a:hover {
+	text-decoration: underline;
+}
+/* END: Product Page Tabs styles */

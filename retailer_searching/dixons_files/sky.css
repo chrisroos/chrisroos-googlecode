@@ -1,0 +1,191 @@
+#skymaincontainer {
+	position: relative;
+	width: 600px;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+#skytitle {
+	float: left;
+	margin-left: 16px;
+	margin-bottom: 37px;
+}
+
+#skylogo {
+	float: right;
+	margin-right: 16px;
+	padding-bottom: 44px;
+}
+
+#skystarterpack {
+	float: left;
+	margin-left: 16px;
+}
+
+#skydeal{
+	float: right;
+	margin-right: 70px;
+	margin-left: 20px;
+}
+
+.skyprice{
+	padding-left: 40px;
+}
+	
+.skyspacer {
+	position: relative;
+	clear: both;
+	margin: 0px 16px 0px 16px;
+	padding: 17px 0 17px 0;
+}
+
+#skytext {
+	position: relative;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+#skyimages {
+	float: right;
+	text-align: right;
+	margin-left: 16px;
+}
+
+#skyimage1{
+	margin-bottom: 10px;
+}
+
+#skytables {
+	position: relative;
+	clear: both;
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+#skyterms {
+	position: relative;
+	font-size: 9px;
+	margin: 10px 16px 10px 16px;
+ 	text-align:justify;
+}
+
+h1.sky{
+	font-size: 19px;
+	color: #260063;
+	margin: 0;
+	padding: 0;
+}
+
+h2.sky{
+	font-size: 12px;
+	color: #0388bb;
+	margin: 0;
+	padding: 0;
+}
+
+h3.sky{
+	font-size: 14px;
+	color: #260063;
+	margin: 0;
+	padding: 0;
+}
+
+h4.sky{
+	font-size: 9px;
+	color: #0388bb;
+	margin: 0;
+	padding: 0;
+}
+
+.sky p, li{
+	margin: 0;
+	padding: 0;
+	line-height: 14px;
+}
+
+.sky ol, ul{
+	margin-top: 0px;
+}
+
+table.sky { 
+	margin: 10px 0 0 0;
+}
+
+table.darkblue {
+	border-right: 1px solid #260063;
+	border-bottom: 1px solid #260063;
+}
+
+table.darkblue td {
+	border-left: 1px solid #260063;
+	border-top: 1px solid #260063;
+}
+
+table.darkblue td.freeperiod{
+	background-color: #260063;
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+table.darkblue td.offer{
+	background-color: #260063;
+	color: #FFFFFF;
+}
+
+table.lightblue {
+	border-right: 1px solid #0388bb;
+	border-bottom: 1px solid #0388bb;
+}
+
+table.lightblue td {
+	border-left: 1px solid #0388bb;
+	border-top: 1px solid #0388bb;
+}
+
+table.lightblue td.freeperiod{
+	background-color: #0388bb;
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+table.lightblue td.offer{
+	background-color: #0388bb;
+	color: #FFFFFF;
+}
+
+table.darkblue td.blank, table.lightblue td.blank{
+	border: 0px solid #FFFFFF;
+}
+
+#skyterms p{
+	line-height: 10px;
+}
+
+.sky td p{
+	margin: 5px 5px 5px 5px;
+}
+
+p.lightblue {
+	color: #0388bb;
+}
+
+span.darkblue{
+	color: #260063;
+}
+
+div.skybutton{
+	position: relative;
+	margin-top: 5px;
+	padding: 5px 0px 5px 0px;
+	background-color: #260063;
+	width: 125px;
+}
+
+.skybutton a:link{
+	color: #FFFFFF;
+	text-decoration: none;
+	padding: 0px 5px 0px 5px;
+}

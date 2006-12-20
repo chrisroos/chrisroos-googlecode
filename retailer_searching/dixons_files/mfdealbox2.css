@@ -1,0 +1,251 @@
+.mfdealboxh1 {
+	padding: 4px 0px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: bold;
+	line-height: 13px;
+	margin-top: -1px;
+	margin-bottom: -2px;
+}
+.mfdealboxh2 {
+	padding: 2px 0px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #00436A;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: bold;
+	line-height: 13px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.mfdealboxh3 {
+	padding: 2px 0px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: bold;
+	line-height: 13px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+td.mfdealboxtop {
+	padding: 1px 0px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: bold;
+	line-height: 14px;
+}
+td.mfdealbox {
+	padding: 9px 30px 2px 30px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: bold;
+	line-height: 14px;
+}
+.mfdealbox a {
+	padding: 9px 30px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 14px;
+}
+.mfdealbox a:link {
+	padding: 9px 30px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 14px;
+}
+.mfdealbox a:hover {
+	padding: 9px 30px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 14px;
+}
+.mfdealbox a:visited {
+	padding: 9px 30px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 14px;
+}
+td.easter {
+	padding: 6px 25px 2px 8px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: bold;
+	line-height: 13px;
+}
+.easter a {
+	padding: 6px 25px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 13px;
+}
+.easter a:link {
+	padding: 6px 25px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 13px;
+}
+.easter a:hover {
+	padding: 6px 25px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 13px;
+}
+.easter a:visited {
+	padding: 6px 25px 2px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 13px;
+}
+.easterlrg {
+	padding: 0px 0px 0px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000000;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: bolder;
+	line-height: 17px;
+}
+.eastersml {
+	padding: 0px 0px 0px 6px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #333333;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: normal;
+	line-height: 11px;
+}
+td.easterprc {
+	padding: 3px 2px 2px 6px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: cursor;
+	font-weight: bold;
+	line-height: 11px;
+}
+.easterprc a {
+	padding: 3px 2px 2px 6px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 13px;
+}
+.easterprc a:link {
+	padding: 3px 2px 2px 6px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 13px;
+}
+.easterprc a:hover {
+	padding: 3px 2px 2px 6px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 13px;
+}
+.easterprc a:visited {
+	padding: 3px 2px 2px 6px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	cursor: hand;
+	font-weight: bold;
+	line-height: 13px;
+}
+.mf {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	line-height: 11px;
+	font-weight: bold;
+	color: #00436A;
+	text-decoration: none;
+	padding: 4px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #6C91C3;
+	border-right-color: #6C91C3;
+	border-bottom-color: #6C91C3;
+	border-left-color: #6C91C3;
+	cursor: hand;
+}
+.mf2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	line-height: 11px;
+	font-weight: normal;
+	color: #00436A;
+	text-decoration: none;
+}
+.mf2 a {text-decoration: none; font-weight: normal; color: #00436A;}
+.mf2 a:link {text-decoration: none; font-weight: normal; color: #00436A;}
+.mf2 a:visited {text-decoration: none; font-weight: normal; color: #00436A;}
+.mf2 a:hover {text-decoration: none; font-weight: normal; color: #6C91C3;}
+.mf2 a:active {text-decoration: none; font-weight: normal; color: #6C91C3;}
+.gr8menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 6px;
+	margin: 0px;
+	padding: 0px;
+}

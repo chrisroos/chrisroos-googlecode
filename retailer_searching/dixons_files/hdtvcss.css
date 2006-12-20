@@ -1,0 +1,134 @@
+.HDTVLayer {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #FFFFFF;
+font-size: 11px;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 5px;
+background-color: #92BDE8;
+}
+
+.HDTVTbl {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #FFFFFF;
+font-size: 11px;
+background-color: #92BDE8;
+border-color: #DEEAF9;
+border-style: solid;
+border-top-width: 0px;
+border-right-width: 0px;
+border-bottom-width: 0px;
+border-left-width: 1px;
+}
+
+.HDTVTbl a {
+position:relative;
+display:block;
+text-decoration: none;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 5px;
+color: #FFFFFF;
+}
+
+.HDTVTbl a:hover {
+background-color: #AAC9E8;
+text-decoration: none;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #333333;
+}
+
+.HDTVTxt {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #FFFFFF;
+font-size: 11px;
+background-color: #5791CB;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 5px;
+border-color: #FFFFFF #000000 #000000;
+border-style: solid;
+border-top-width: 1px;
+border-right-width: 0px;
+border-bottom-width: 0px;
+border-left-width: 0px
+}
+
+.HDTVGraphic { background-color: #FFFFFF; }
+
+
+/* Netscape 6 Fixes */
+td > img { display: block; }
+
+p { margin-top:0px }
+
+
+/* Negates HTML padding applied to Table tag for v4 Browsers*/
+td { padding:0px }
+
+.howtoget {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #000000;
+font-size: 9px;
+background-color: #DEEAF9;
+vertical-align: top;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 3px;
+padding-right: 3px;
+border-color: #92BDE8 #AAC9E8 #AAC9E8 #92BDE8;
+border-style: solid;
+border-top-width: 1px;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-left-width: 1px
+}
+.howtoget2 {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #000000;
+font-size: 9px;
+background-color: #DEEAF9;
+vertical-align: top;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 3px;
+padding-right: 3px;
+border-color: #FFFFFF #AAC9E8 #FFFFFF #92BDE8;
+border-style: solid;
+border-top-width: 1px;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-left-width: 1px
+}
+.howtoget h1 {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+color: #000000;
+font-size: 14px;
+margin-top:0px;
+margin-bottom:0px
+}
+.howtoget h2 {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+color: #000000;
+font-size: 12px;
+margin-top:0px;
+margin-bottom:0px
+}
+.whygo {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: normal;
+color: #000000;
+font-size: 10px;
+margin-top:0px;
+margin-bottom:0px
+}
+.whygo h1 {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+color: #FFFFFF;
+font-size: 12px;
+margin-top:0px;
+margin-bottom:0px
+}

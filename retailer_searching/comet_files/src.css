@@ -1,0 +1,182 @@
+@import url("/comet/ev2/css/3col280px.css");
+@import url("/comet/ev2/css/browse.css");
+/*Layout*/
+#main{border-left:1px solid #E8E6D4; padding-bottom:35px;}
+
+/*Products*/
+#products table{background:url(/comet/ev2/images/product_bg.gif) repeat-x 0 2.1em; border-top: 3px solid #bdbdb0;}
+
+#products img{
+	float:left;
+	margin:2px 2px 0 0; /*right margin reduced from 10px*/
+	display:block;
+	vertical-align:baseline;
+}
+
+#products table td{padding:2px 10px 2px 10px;}
+#products table .last{padding-bottom:10px;}
+
+#products .moredetails{display:table; height:62px; padding-right:5px;}
+html>body #products .moredetails{display:table; position:static; padding-right:5px;}
+
+#products .moredetailsmiddle{display:block;  margin:10px 0 0 80px;} /*for explorer only*/
+html>body #products .moredetailsmiddle{display:table-cell; vertical-align:middle; position:static;}
+
+#products .moredetailsinner{position:relative; } /*for explorer only*/
+html>body #products .moredetailsinner{position:static;}
+
+#products .header1{padding:0 10px;}
+
+/*Composite image fix*/
+#products .moredetails #productlistimage {width:80px; max-width:80px; float:left; margin:0px; padding:0px;}
+
+
+#products .header1{padding:0 10px;}
+
+#products .header1 span{
+	overflow:hidden;
+	display:block;
+	font-size:1.3em;
+	line-height:30px;
+}
+
+#products .header1 span a{color:#2A2A27;}
+#products .header2{width:12.0em; padding:0;}
+#products .header2 a{display:block;}
+#products .header2 br{display:none;} /*The <br/> is inserted and then hidden for accessibility purposes*/
+
+#products .header1, #products .header2{height:30px;}
+#products table thead, #products table th{display:none;}
+
+#products .price{
+	padding-top:30px;
+	font-size:1.4em;
+	color:#F7941D;
+	display:block;
+}
+
+#products .shopprice{font-size:0.8em; color:#808080;}
+
+#products ul{padding:0 0 5px 0;}
+#products li{background:url(/comet/ev2/images/bulletpoint.gif) no-repeat left 8px; padding:1px 0 1px 10px;}
+
+#products .btnaddtobasket{margin:7px 0 4px 0;}
+#products .linedashedgrey{margin-top:5px;display:block;}
+
+/*Variation for the "Star buy" products*/
+.starbuy .header1{background:url(/comet/ev2/images/starbuy_bg.gif) repeat-x;}
+.starbuy .header2{background:url(/comet/ev2/images/starbuy.gif) repeat-x;}
+.starbuy .header2text{display:none;}
+#products .starbuy{border-bottom:0; border-top:0; background:none;}
+
+/*Headers*/
+.theknowledge{float:left; height:30px;}
+
+/*"Free delivery" & "Cover" text+icons*/
+.srcfreedelivery, .srccover, .srccover5years{font-size:0.8em}
+.srcfreedelivery{
+	background:url("/comet/ev2/images/icons/van.gif") no-repeat left;
+	padding:2px 0 2px 27px;
+	display:block;
+	margin:0 auto;
+	line-height:120%;
+}
+
+.srccover{
+	background:url("/comet/ev2/images/icons/cover.gif") no-repeat left;
+	padding:2px 0 2px 19px;
+	display:block;
+	line-height:120%;
+}
+
+.srccover5years{
+	background:url("/comet/ev2/images/icons/cover5years.gif") no-repeat left;
+	padding:2px 0 2px 21px;
+	display:block;
+	line-height:120%;
+}
+
+
+/*"Free delivery" & "Cover" text+icons*/
+.pdlfreedelivery, .pdlcover, .pdlcover5years, .pdlstandarddelivery, .pdlstorepickup {font-size:0.8em}
+
+.pdlfreedelivery{
+	background:url("/comet/ev2/images/icons/van.gif") no-repeat left;
+	padding:2px 0 2px 27px;
+	display:block;
+	margin:0 auto;
+	line-height:120%;
+}
+
+.pdlstandarddelivery{
+	background:url("/comet/ev2/images/icons/van_gold.gif") no-repeat left;
+	padding:2px 0 2px 27px;
+	display:block;
+	margin:0 auto;
+	line-height:120%;
+}
+
+.pdlstorepickup {
+	background:url("/comet/ev2/images/icons/loadedcar.gif") no-repeat left;
+	padding:2px 0 2px 23px;
+	display:block;
+	line-height:120%;
+}
+
+.pdlcover{
+	background:url("/comet/ev2/images/icons/cover.gif") no-repeat left;
+	padding:2px 0 2px 19px;
+	display:block;
+	line-height:120%;
+}
+
+.pdlcover5years{
+	background:url("/comet/ev2/images/icons/cover5years.gif") no-repeat left;
+	padding:2px 0 2px 21px;
+	display:block;
+	line-height:120%;
+}
+
+#submitSort{
+	width:52px;
+	height:19px;
+	position:relative;
+	top:5px;
+}
+
+#srclistbottom{border-top:2px solid #BDBDB0; padding-top:15px;}
+
+/*fix for IE6 onload rendering*/
+#rcbox .linedashedgrey{position:relative;}
+
+#rcnotepad{
+	background:url("/comet/ev2/images/icons/notepad.gif") no-repeat;
+	width:35px;
+	height:45px;
+	position:absolute;
+	right:18px;
+	top:-15px;
+	z-index:2
+}
+
+/*search tips list*/
+.topsearchtipsul li{
+	background:url(/comet/ev2/images/bulletpoint.gif) no-repeat left 7px;
+	padding:1px 0 1px 10px;
+	border-top:1px dashed #C4C3B0;
+}
+
+.topsearchtipsul li.last{
+	border-bottom:1px dashed #C4C3B0;
+	padding-top:10px;
+}
+/*end search tips list*/
+
+/*IE 5.5 CSS filter*/
+#products table{
+	width:96.9%;
+	voice-family:"\"}\""; 
+	voice-family:inherit;
+	width:100%
+}
+/*End of IE 5.5 CSS filter*/
