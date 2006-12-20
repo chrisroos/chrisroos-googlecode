@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet title="XSL_formatting" type="text/xsl" href="http://downloads.bbc.co.uk/rmhttp/downloadtrial/common/rss_rm.xsl"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+	<channel>
+		<title>AAA TEST</title>
+		<link>http://www.bbc.co.uk/radio1/scottmills/</link>
+		<description>The funniest moments of Scott Mills' week from his crank phone calls to flirt divert. Hear Scott, Chappers and Laura taking revenge on people who have done wrong. Want to get rid of someone hassling you for a date? Give them Scott's flirt divert number.  He'll play the best messages on his show and put them on this podcast. Subscribe to get the best clips everyday to listen to whenever you want.  You can hear Scott Mills on Radio 1 in the UK Monday to Friday from 4pm.  For more info and the podcast Terms of Use go to www.bbc.co.uk/radio1/podcasts</description>
+		<itunes:author>BBC Radio 1</itunes:author>
+
+		<language>en-gb</language>
+		<ttl>720</ttl>
+		
+		<itunes:image href="http://www.bbc.co.uk/radio/downloadtrial/images/programmes/300x300/radio1_mills.jpg"/>
+		
+		<copyright>(C) BBC 2006</copyright>
+		<pubDate>Sat, 16 Dec 2006 03:00:46 +0000</pubDate>
+		<itunes:category text="Comedy"/>
+		<itunes:keywords>comedy radio scott mills</itunes:keywords>
+
+		<itunes:explicit>No</itunes:explicit>
+		
+		<item>
+			<title>Mills: Dial-a-carol. 15 Dec 2006</title>
+			<description>We phone up some people in America who will sing any Christmas carol we want - but do they know that one off've The Pogues and  Kirsty MacColl? It's more phone-based fun from Scott Mills on Radio 1.</description>
+			<itunes:subtitle>Mills: Dial-a-carol. 15 Dec 2006</itunes:subtitle>
+			<itunes:summary>We phone up some people in America who will sing any Christmas carol we want - but do they know that one off've The Pogues and  Kirsty MacColl? It's more phone-based fun from Scott Mills on Radio 1.</itunes:summary>
+
+			<pubDate>Fri, 15 Dec 2006 12:00:00 +0000</pubDate>
+			<itunes:duration>00:04:49</itunes:duration>
+			<guid isPermaLink="false">http://downloads.bbc.co.uk/rmhttp/downloadtrial/radio1/scottmillsdaily/scottmillsdaily_20061215-1200_40_pc.mp3</guid>
+			<enclosure url="http://downloads.bbc.co.uk/rmhttp/downloadtrial/radio1/scottmillsdaily/scottmillsdaily_20061215-1200_40_pc.mp3" length="2113006" type="audio/mpeg"/>
+			<media:content url="http://downloads.bbc.co.uk/rmhttp/downloadtrial/radio1/scottmillsdaily/scottmillsdaily_20061215-1200_40_pc.mp3" 
+				fileSize="2113006" 
+				type="audio/mpeg"
+				expression="full" 
+				duration="289"
+				bitrate="40"/>
+			
+		</item>
+	</channel>
+
+</rss>
