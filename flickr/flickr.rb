@@ -1,14 +1,57 @@
 require 'rubygems'
 require 'digest/md5'
 require 'json'
+
+# #*** GET FROB
+# 
+# parameter_options = {
+#   'method' => 'flickr.auth.getFrob',
+#   'api_key' => API_KEY,
+#   'format' => 'json'
+# }
+# 
+# returned_json = return_value(`curl "#{REST_URL}?#{signed_params(parameter_options)}"`)
+# frob = returned_json['frob']['_content']
+# # frob = '6175306-226e5a1f11c943f6'
+# 
+# #*** AUTHORIZE FROB USE
+# 
+# parameter_options = {
+#   'api_key' => API_KEY,
+#   'perms' => 'read',
+#   'frob' => frob
+# }
+# url = %[#{AUTH_URL}?#{signed_params(parameter_options)}]
+# `open "#{url}"`
+# 
+# sleep 15
+# 
+# #*** GET TOKEN
+# 
+# parameter_options = {
+#  'method' => 'flickr.auth.getToken',
+#  'api_key' => API_KEY,
+#  'frob' => frob,
+#  'format' => 'json'
+# }
+# 
+# curl_cmd = %[curl "#{REST_URL}?#{signed_params(parameter_options)}"]
+# returned_json = `#{curl_cmd}`
+# token = return_value(returned_json)['auth']['token']['_content']
+# puts "token = #{token}"
+
+#*** LIST ALL PHOTOSETS
+
+
+
+#*** DOWNLOAD ALL PHOTOS FOR GIVEN PHOTOSET
+
 require 'cgi'
+require 'flickr_credentials'
 
 class Flickr
   REST_URL = 'http://api.flickr.com/services/rest/'
   AUTH_URL = 'http://flickr.com/services/auth/'
-  API_KEY = 'YOUR_API_KEY'
-  SHARED_SECRET = 'YOUR_SHARED_SECRET'
-  TOKEN = 'YOUR_AUTH_TOKEN'
   
   DEFAULT_PARAMETERS = {
     'api_key' => API_KEY,     
@@ -81,26 +124,5 @@ class Photo < Struct.new(:isprimary, :title, :farm, :id, :server, :secret)
   end
   def original_image_url
     "http://static.flickr.com/#{self.server}/#{self.id}_#{self.secret}_o_d.jpg"
-  end
-end
-
-photoset = Photoset.find('PHOTOSET_ID')
-local_photo_dir = '/users/chrisroos/desktop/pics/' + photoset.filesystem_friendly_title + '/'
-number_of_photos = photoset.number_of_photos
-current_photo = 0
-
-Dir.mkdir(local_photo_dir) unless File.exist?(local_photo_dir)
-
-photoset.photos.each do |photo|
-  current_photo += 1
-
-  filepath = local_photo_dir + photo.title + '.jpg'
-
-  if File.exists?(filepath)
-    puts "Skipping photo (already downloaded) #{current_photo} of #{number_of_photos}"
-  else
-    puts "Retrieving photo #{current_photo} of #{number_of_photos}"
-    curl_cmd = %[curl "#{photo.original_image_url}" > "#{filepath}"]
-    `#{curl_cmd}`
   end
 end
