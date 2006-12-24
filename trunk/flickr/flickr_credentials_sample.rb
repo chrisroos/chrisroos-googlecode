@@ -1,0 +1,5 @@
+class Flickr
+  API_KEY = 'YOUR_API_KEY'
+  SHARED_SECRET = 'YOUR_SHARED_SECRET'
+  TOKEN = 'YOUR_TOKEN'
+end
