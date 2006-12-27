@@ -40,14 +40,10 @@ require 'json'
 # token = return_value(returned_json)['auth']['token']['_content']
 # puts "token = #{token}"
 
-#*** LIST ALL PHOTOSETS
 
-
-
-#*** DOWNLOAD ALL PHOTOS FOR GIVEN PHOTOSET
-
-require 'cgi'
 require 'flickr_credentials'
+require 'net/http'
+require 'uri'
 
 class Flickr
   REST_URL = 'http://api.flickr.com/services/rest/'
@@ -64,8 +60,8 @@ class Flickr
   end
   def call(signed = true)
     parameters = signed ? signed_params(@parameters) : unsigned_params(@parameters)
-    curl_cmd = %[curl "#{REST_URL}?#{parameters}"]
-    response = `#{curl_cmd}`
+    uri = URI.parse("#{REST_URL}?#{parameters}")
+    response = Net::HTTP.get(uri)
     extract_json(response)
   end
 private
@@ -124,5 +120,9 @@ class Photo < Struct.new(:isprimary, :title, :farm, :id, :server, :secret)
   end
   def original_image_url
     "http://static.flickr.com/#{self.server}/#{self.id}_#{self.secret}_o_d.jpg"
+  end
+  def save_to_filesystem(path)
+    photo_uri = URI.parse(original_image_url)
+    File.open(path, 'w') { |file| file << Net::HTTP.get(photo_uri) }
   end
 end

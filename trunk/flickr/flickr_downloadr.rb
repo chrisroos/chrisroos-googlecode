@@ -23,7 +23,6 @@ photoset.photos.each do |photo|
     puts "Skipping photo (already downloaded) #{current_photo} of #{number_of_photos}"
   else
     puts "Retrieving photo #{current_photo} of #{number_of_photos}"
-    curl_cmd = %[curl "#{photo.original_image_url}" > "#{filepath}"]
-    `#{curl_cmd}`
+    photo.save_to_filesystem(filepath)
   end
 end
