@@ -20,7 +20,7 @@ photoset.photos.each do |photo|
   filepath = local_photo_dir + photo.title + '.jpg'
 
   if File.exists?(filepath)
-    puts "Skipping photo (already downloaded) #{current_photo} of #{number_of_photos}"
+    puts "Skipping photo #{photo.id} (already downloaded) #{current_photo} of #{number_of_photos}"
   else
     puts "Retrieving photo #{current_photo} of #{number_of_photos}"
     photo.save_to_filesystem(filepath)
