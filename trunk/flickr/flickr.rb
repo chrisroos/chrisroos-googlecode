@@ -1,66 +1,41 @@
 require 'rubygems'
 require 'digest/md5'
 require 'json'
-
-# #*** GET FROB
-# 
-# parameter_options = {
-#   'method' => 'flickr.auth.getFrob',
-#   'api_key' => API_KEY,
-#   'format' => 'json'
-# }
-# 
-# returned_json = return_value(`curl "#{REST_URL}?#{signed_params(parameter_options)}"`)
-# frob = returned_json['frob']['_content']
-# # frob = '6175306-226e5a1f11c943f6'
-# 
-# #*** AUTHORIZE FROB USE
-# 
-# parameter_options = {
-#   'api_key' => API_KEY,
-#   'perms' => 'read',
-#   'frob' => frob
-# }
-# url = %[#{AUTH_URL}?#{signed_params(parameter_options)}]
-# `open "#{url}"`
-# 
-# sleep 15
-# 
-# #*** GET TOKEN
-# 
-# parameter_options = {
-#  'method' => 'flickr.auth.getToken',
-#  'api_key' => API_KEY,
-#  'frob' => frob,
-#  'format' => 'json'
-# }
-# 
-# curl_cmd = %[curl "#{REST_URL}?#{signed_params(parameter_options)}"]
-# returned_json = `#{curl_cmd}`
-# token = return_value(returned_json)['auth']['token']['_content']
-# puts "token = #{token}"
-
-
-require 'flickr_credentials'
 require 'net/http'
 require 'uri'
 
+class Flickr; end
+
+auth_token_filename = File.dirname(__FILE__) + '/AUTH_TOKEN'
+if File.exist?(auth_token_filename)
+  File.open(auth_token_filename) { |file| Flickr::AUTH_TOKEN = file.read }
+end
+
 class Flickr
+  API_KEY = '07158d4b46a88c14ad3270218dba136b'
+  SHARED_SECRET = 'fb4036266c025867'
+  
   REST_URL = 'http://api.flickr.com/services/rest/'
   AUTH_URL = 'http://flickr.com/services/auth/'
   
-  DEFAULT_PARAMETERS = {
-    'api_key' => API_KEY,     
-    'auth_token' => TOKEN,
+  AUTH_PARAMETERS = {
+    'api_key' => API_KEY
+  }
+  REST_PARAMETERS = {
+    'api_key' => API_KEY,
     'format' => 'json'
   }
   
-  def initialize(parameters)
-    @parameters = DEFAULT_PARAMETERS.merge(parameters)
+  def initialize(parameters, default_parameters = REST_PARAMETERS)
+    @parameters = default_parameters.merge(parameters)
   end
-  def call(signed = true)
+  def url_with_parameters(signed = true, url = REST_URL, authorized = true)
+    @parameters['auth_token'] = AUTH_TOKEN if authorized
     parameters = signed ? signed_params(@parameters) : unsigned_params(@parameters)
-    uri = URI.parse("#{REST_URL}?#{parameters}")
+    "#{url}?#{parameters}"
+  end
+  def call(signed = true, url = REST_URL, authorized = true)
+    uri = URI.parse(url_with_parameters(signed, url, authorized))
     response = Net::HTTP.get(uri)
     extract_json(response)
   end
@@ -83,7 +58,38 @@ private
   end
 end
 
+class Authenticator
+  def self.authenticate
+    authenticator = Authenticator.new
+    frob = authenticator.get_frob
+    authenticator.register_frob(frob)
+    puts "Press a key once you've allowed access"
+    until gets; end
+    token = authenticator.get_token(frob)
+    File.open(File.dirname(__FILE__) + '/AUTH_TOKEN', 'w') do |file|
+      file << token
+    end
+    puts "All done."
+  end
+  def get_frob
+    flickr = Flickr.new('method' => 'flickr.auth.getFrob')
+    response = flickr.call
+    response['frob']['_content']
+  end
+  def register_frob(frob)
+    flickr = Flickr.new({'perms' => 'delete', 'frob' => frob}, Flickr::AUTH_PARAMETERS)
+    flickr_url = flickr.url_with_parameters(true, Flickr::AUTH_URL, false)
+    `open "#{flickr_url}"`
+  end
+  def get_token(frob)
+    flickr = Flickr.new('method' => 'flickr.auth.getToken', 'frob' => frob)
+    response = flickr.call
+    response['auth']['token']['_content']
+  end
+end
+
 class Photoset < Struct.new(:title, :primary, :farm, :photos, :id, :description, :server, :owner, :secret)
+  alias_method :number_of_photos, :photos # alias the photos method that we can re-create it to return the actual photos in this set
   class << self
     def find(id)
       flickr = Flickr.new('method' => 'flickr.photosets.getInfo', 'photoset_id' => id)
@@ -104,11 +110,13 @@ class Photoset < Struct.new(:title, :primary, :farm, :photos, :id, :description,
     response = flickr.call
     response['photoset']['photo'].collect { |json_photo| Photo.build_from_json(json_photo) })
   end
-  def number_of_photos
-    photos.size
-  end
   def filesystem_friendly_title
     self.title.gsub(/ /, '_')
+  end
+  def delete
+    flickr = Flickr.new('method' => 'flickr.photosets.delete', 'photoset_id' => self.id)
+    response = flickr.call
+    response['stat'] == 'ok'
   end
 end
 
