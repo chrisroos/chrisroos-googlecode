@@ -1,0 +1,1955 @@
+  [4;36;1mSQL (0.001944)[0m   [0;1mCREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000640)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000421)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateContents (1)
+  [4;36;1mSQL (0.002247)[0m   [0;1mCREATE TABLE contents (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255) DEFAULT NULL, `body` text DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000368)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000427)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000638)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.002597)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.001276)[0m   [0mSHOW KEYS FROM contents[0m
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:36:15) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000550)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+Completed in 0.09126 (10 reqs/sec) | Rendering: 0.00330 (3%) | DB: 0.00055 (0%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#new (for 127.0.0.1 at 2007-01-23 22:36:18) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"new", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.003046)[0m   [0mSHOW FIELDS FROM contents[0m
+Rendering  within layouts/contents
+Rendering contents/new
+Completed in 0.05012 (19 reqs/sec) | Rendering: 0.04314 (86%) | DB: 0.00305 (6%) | 200 OK [http://localhost/contents/new]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:36:33) [POST]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"commit"=>"Create", "action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my new content", "body"=>"this is the body of my content\r\n"}}
+  [4;36;1mContent Columns (0.070427)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000233)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000380)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('this is the body of my content\r\n', 'my new content')[0m
+  [4;35;1mSQL (0.000488)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/1
+Completed in 0.07820 (12 reqs/sec) | DB: 0.07153 (91%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-23 22:36:34) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002899)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000672)[0m   [0mSELECT * FROM contents WHERE (contents.id = 1) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.01178 (84 reqs/sec) | Rendering: 0.00338 (28%) | DB: 0.00357 (30%) | 200 OK [http://localhost/contents/1]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:36:36) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000618)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.002851)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01101 (90 reqs/sec) | Rendering: 0.00348 (31%) | DB: 0.00347 (31%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#destroy (for 127.0.0.1 at 2007-01-23 22:36:40) [DELETE]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"_method"=>"delete", "action"=>"destroy", "id"=>"1", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002836)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000650)[0m   [0mSELECT * FROM contents WHERE (contents.id = 1) [0m
+  [4;36;1mSQL (0.000178)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000351)[0m   [0m DELETE FROM contents
+ WHERE id = 1
+[0m
+  [4;36;1mSQL (0.000678)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/contents
+Completed in 0.01094 (91 reqs/sec) | DB: 0.00469 (42%) | 302 Found [http://localhost/contents/1]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:36:40) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000692)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+Completed in 0.00763 (131 reqs/sec) | Rendering: 0.00158 (20%) | DB: 0.00069 (9%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:37:22) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"format"=>"xml", "action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000623)[0m   [0;1mSELECT * FROM contents [0m
+Completed in 0.04578 (21 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00062 (1%) | 200 OK [http://localhost/contents.xml]
+
+
+Processing ContentsController#new (for 127.0.0.1 at 2007-01-23 22:37:27) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"new", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.002784)[0m   [0mSHOW FIELDS FROM contents[0m
+Rendering  within layouts/contents
+Rendering contents/new
+Completed in 0.00912 (109 reqs/sec) | Rendering: 0.00239 (26%) | DB: 0.00278 (30%) | 200 OK [http://localhost/contents/new]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:37:32) [POST]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"commit"=>"Create", "action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.071024)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000322)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000369)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah')[0m
+  [4;35;1mSQL (0.000620)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/2
+Completed in 0.07915 (12 reqs/sec) | DB: 0.07234 (91%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-23 22:37:32) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002830)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000663)[0m   [0mSELECT * FROM contents WHERE (contents.id = 2) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.01082 (92 reqs/sec) | Rendering: 0.00243 (22%) | DB: 0.00349 (32%) | 200 OK [http://localhost/contents/2]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-23 22:37:37) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"format"=>"xml", "action"=>"show", "id"=>"2", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002490)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000538)[0m   [0mSELECT * FROM contents WHERE (contents.id = 2) [0m
+Completed in 0.00851 (117 reqs/sec) | Rendering: 0.00007 (0%) | DB: 0.00303 (35%) | 200 OK [http://localhost/contents/2.xml]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:39:17) [POST]
+  Session ID: b46516079783e234a5a75b1513f36858
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.002410)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000179)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000295)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah')[0m
+  [4;35;1mSQL (0.000559)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/3
+Completed in 0.00972 (102 reqs/sec) | DB: 0.00344 (35%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:39:24) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000716)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.002823)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01207 (82 reqs/sec) | Rendering: 0.00416 (34%) | DB: 0.00354 (29%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:39:26) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000646)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.002641)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01164 (85 reqs/sec) | Rendering: 0.00410 (35%) | DB: 0.00329 (28%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:39:35) [POST]
+  Session ID: 697ec48b4cba5e984ec73aebd0601869
+  Parameters: {"format"=>"xml", "action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.003211)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000219)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000345)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah')[0m
+  [4;35;1mSQL (0.000665)[0m   [0mCOMMIT[0m
+Completed in 0.01225 (81 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.00444 (36%) | 201 Created [http://localhost/contents.xml]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:39:57) [POST]
+  Session ID: ae0d7bde3015f4466bbee41e6280c9b6
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.037002)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000225)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000345)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah')[0m
+  [4;35;1mSQL (0.000629)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/5
+Completed in 0.04595 (21 reqs/sec) | DB: 0.03820 (83%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:40:01) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000739)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.002746)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.05585 (17 reqs/sec) | Rendering: 0.00523 (9%) | DB: 0.00349 (6%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:46:49) [POST]
+  Session ID: f84974ff155ca87af17d599db98b2ff5
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah 222", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.002610)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000215)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000354)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah 222')[0m
+  [4;35;1mSQL (0.000663)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/6
+Completed in 0.06471 (15 reqs/sec) | DB: 0.00384 (5%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:46:56) [POST]
+  Session ID: 811911dabfbf4eec633f39a5a5f5189b
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah 222", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.001980)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000182)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000350)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah 222')[0m
+  [4;35;1mSQL (0.000597)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/7
+Completed in 0.00989 (101 reqs/sec) | DB: 0.00311 (31%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:46:58) [POST]
+  Session ID: dab6b6c10f1e8bb7771cbebd2de1b33a
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah 222", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.003593)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.001158)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000326)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah 222')[0m
+  [4;35;1mSQL (0.000511)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/8
+Completed in 0.01240 (80 reqs/sec) | DB: 0.00559 (45%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:47:23) [POST]
+  Session ID: 02d7c36a37f57e29c27cd58175da6782
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah 222", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.002658)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000182)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000290)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah 222')[0m
+  [4;35;1mSQL (0.000600)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/9
+Completed in 0.04948 (20 reqs/sec) | DB: 0.00373 (7%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:47:26) [POST]
+  Session ID: 7ecfed0685fa2b82179ce717734499ef
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah 222", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.002876)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000242)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000366)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah 222')[0m
+  [4;35;1mSQL (0.000665)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents/10
+Completed in 0.05025 (19 reqs/sec) | DB: 0.00415 (8%) | 302 Found [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:47:44) [POST]
+  Session ID: 9dcb4c48c6bfa307a02fc22630b04b67
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah 222", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.002983)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000223)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000350)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah 222')[0m
+  [4;35;1mSQL (0.000618)[0m   [0mCOMMIT[0m
+Completed in 0.05008 (19 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.00417 (8%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:48:03) [POST]
+  Session ID: 795a599c39aeaa10a0b609a03b955f95
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah 222", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.002308)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000185)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000305)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah 222')[0m
+  [4;35;1mSQL (0.000631)[0m   [0mCOMMIT[0m
+Completed in 0.04925 (20 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.00343 (6%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:52:59) [POST]
+  Session ID: 309a2508f77bd1a7e59d94d85856834e
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"blah 222", "body"=>"blurgh"}}
+  [4;36;1mContent Columns (0.002119)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000186)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000312)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('blurgh', 'blah 222')[0m
+  [4;35;1mSQL (0.000461)[0m   [0mCOMMIT[0m
+Completed in 0.08509 (11 reqs/sec) | Rendering: 0.00005 (0%) | DB: 0.00308 (3%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:54:12) [POST]
+  Session ID: 27ff2028ebb98a8eee4769ffad2daee8
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"asd", "body"=>"asdasdasd"}}
+  [4;36;1mContent Columns (0.002780)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000182)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000293)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('asdasdasd', 'asd')[0m
+  [4;35;1mSQL (0.000569)[0m   [0mCOMMIT[0m
+Completed in 0.04937 (20 reqs/sec) | Rendering: 0.00005 (0%) | DB: 0.00382 (7%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:56:58) [POST]
+  Session ID: 7fa0373c8085d207993e28a033f2a365
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"hsbc", "body"=>"secret_password"}}
+  [4;36;1mContent Columns (0.003948)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000227)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000352)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('secret_password', 'hsbc')[0m
+  [4;35;1mSQL (0.000592)[0m   [0mCOMMIT[0m
+Completed in 0.05404 (18 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.00512 (9%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-23 22:57:04) [POST]
+  Session ID: 9387440ef9812aa01021e841a2fef95a
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"hsbc", "body"=>nil}}
+  [4;36;1mContent Columns (0.002426)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000187)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000138)[0m   [0;1mCOMMIT[0m
+Completed in 0.04780 (20 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00275 (5%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:57:46) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.001019)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;36;1mContent Columns (0.002841)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.06395 (15 reqs/sec) | Rendering: 0.05318 (83%) | DB: 0.00386 (6%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#destroy (for 127.0.0.1 at 2007-01-23 22:57:53) [DELETE]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"_method"=>"delete", "action"=>"destroy", "id"=>"15", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.003149)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Load (0.000669)[0m   [0;1mSELECT * FROM contents WHERE (contents.id = 15) [0m
+  [4;35;1mSQL (0.000177)[0m   [0mBEGIN[0m
+  [4;36;1mContent Destroy (0.000347)[0m   [0;1m DELETE FROM contents
+ WHERE id = 15
+[0m
+  [4;35;1mSQL (0.000641)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/contents
+Completed in 0.05215 (19 reqs/sec) | DB: 0.00498 (9%) | 302 Found [http://localhost/contents/15]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:57:53) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000989)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.003249)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.06266 (15 reqs/sec) | Rendering: 0.05339 (85%) | DB: 0.00424 (6%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#destroy (for 127.0.0.1 at 2007-01-23 22:58:07) [DELETE]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"_method"=>"delete", "action"=>"destroy", "id"=>"3", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002876)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000664)[0m   [0mSELECT * FROM contents WHERE (contents.id = 3) [0m
+  [4;36;1mSQL (0.000173)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000372)[0m   [0m DELETE FROM contents
+ WHERE id = 3
+[0m
+  [4;36;1mSQL (0.000639)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/contents
+Completed in 0.05221 (19 reqs/sec) | DB: 0.00472 (9%) | 302 Found [http://localhost/contents/3]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-23 22:58:07) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.001103)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;36;1mContent Columns (0.002765)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.05737 (17 reqs/sec) | Rendering: 0.04843 (84%) | DB: 0.00387 (6%) | 200 OK [http://localhost/contents]
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2007-01-23 23:02:48) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"show", "id"=>"searcg", "controller"=>"contents"}
+
+
+SyntaxError (/Users/chrisroos/dev/personal/my_content/config/../app/controllers/contents_controller.rb:4: parse error, unexpected tASSOC, expecting ']'
+    @contents = Content.find(:all, :conditions => ["title LIKE :title", :title => '%'+params[:q]+'%']
+                                                                                 ^
+/Users/chrisroos/dev/personal/my_content/config/../app/controllers/contents_controller.rb:4: parse error, unexpected ']', expecting kEND):
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:203:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:249:in `load_missing_constant'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:453:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:465:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/inflector.rb:251:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/core_ext/string/inflections.rb:148:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/routing.rb:1258:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:40:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2007-01-23 23:02:50) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"show", "id"=>"search", "controller"=>"contents"}
+
+
+SyntaxError (/Users/chrisroos/dev/personal/my_content/config/../app/controllers/contents_controller.rb:4: parse error, unexpected tASSOC, expecting ']'
+    @contents = Content.find(:all, :conditions => ["title LIKE :title", :title => '%'+params[:q]+'%']
+                                                                                 ^
+/Users/chrisroos/dev/personal/my_content/config/../app/controllers/contents_controller.rb:4: parse error, unexpected ']', expecting kEND):
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:203:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:249:in `load_missing_constant'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:453:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:465:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/inflector.rb:251:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/core_ext/string/inflections.rb:148:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/routing.rb:1258:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:40:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2007-01-23 23:03:08) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"show", "id"=>"search", "controller"=>"contents"}
+
+
+SyntaxError (/Users/chrisroos/dev/personal/my_content/config/../app/controllers/contents_controller.rb:5: parse error, unexpected tIDENTIFIER, expecting ')'
+    respond_to do |format|
+              ^):
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:203:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:249:in `load_missing_constant'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:453:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:465:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/inflector.rb:251:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/core_ext/string/inflections.rb:148:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/routing.rb:1258:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:40:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2007-01-23 23:03:32) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"show", "id"=>"search", "controller"=>"contents"}
+
+
+SyntaxError (/Users/chrisroos/dev/personal/my_content/config/../app/controllers/contents_controller.rb:6: parse error, unexpected tIDENTIFIER, expecting ')'
+    respond_to do |format|
+              ^):
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:203:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:249:in `load_missing_constant'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:453:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:465:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/inflector.rb:251:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/core_ext/string/inflections.rb:148:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/routing.rb:1258:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:40:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ApplicationController#show (for 127.0.0.1 at 2007-01-23 23:03:54) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"show", "id"=>"search", "controller"=>"contents"}
+
+
+SyntaxError (/Users/chrisroos/dev/personal/my_content/config/../app/controllers/contents_controller.rb:6: parse error, unexpected tIDENTIFIER, expecting ')'
+    respond_to do |format|
+              ^):
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_without_new_constant_marking'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:204:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:203:in `load_file'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:249:in `load_missing_constant'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:453:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/dependencies.rb:465:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/inflector.rb:251:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/core_ext/string/inflections.rb:148:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/routing.rb:1258:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:40:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-23 23:04:18) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"show", "id"=>"search", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002733)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000599)[0m   [0mSELECT * FROM contents WHERE (contents.id = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Content with ID=search):
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-1.15.1/lib/active_record/base.rb:1028:in `find_one'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-1.15.1/lib/active_record/base.rb:1011:in `find_from_ids'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-1.15.1/lib/active_record/base.rb:416:in `find'
+    /app/controllers/contents_controller.rb:26:in `show'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1095:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:04:56) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"search", "controller"=>"contents"}
+
+
+TypeError (can't convert nil into String):
+    /app/controllers/contents_controller.rb:4:in `+'
+    /app/controllers/contents_controller.rb:4:in `search'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1095:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:06:07) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"search", "controller"=>"contents"}
+  [4;36;1mContent Load (0.025151)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+Rendering layoutfalseactionsearchcontent_typetext/html within layouts/contents
+
+
+ActionController::MissingTemplate (Missing template /Users/chrisroos/dev/personal/my_content/config/../app/views/contents/search.rhtml):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1205:in `assert_existence_of_template_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:804:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:738:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:863:in `render_without_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:798:in `render_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:748:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/deprecation.rb:43:in `silence'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:747:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:50:in `render'
+    /app/controllers/contents_controller.rb:6:in `search'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:167:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:161:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:105:in `respond_to'
+    /app/controllers/contents_controller.rb:6:in `search'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1095:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-23 23:06:13) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"format"=>"xml", "action"=>"show", "id"=>"search", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.002929)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Load (0.000611)[0m   [0;1mSELECT * FROM contents WHERE (contents.id = 0) [0m
+
+
+ActiveRecord::RecordNotFound (Couldn't find Content with ID=search):
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-1.15.1/lib/active_record/base.rb:1028:in `find_one'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-1.15.1/lib/active_record/base.rb:1011:in `find_from_ids'
+    /usr/local/lib/ruby/gems/1.8/gems/activerecord-1.15.1/lib/active_record/base.rb:416:in `find'
+    /app/controllers/contents_controller.rb:26:in `show'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1095:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:06:28) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"search", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000966)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+Rendering layoutfalseactionsearchcontent_typetext/html within layouts/contents
+
+
+ActionController::MissingTemplate (Missing template /Users/chrisroos/dev/personal/my_content/config/../app/views/contents/search.rhtml):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1205:in `assert_existence_of_template_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:804:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:738:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:863:in `render_without_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:798:in `render_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:748:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/deprecation.rb:43:in `silence'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:747:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:50:in `render'
+    /app/controllers/contents_controller.rb:6:in `search'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:167:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:161:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:105:in `respond_to'
+    /app/controllers/contents_controller.rb:6:in `search'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1095:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:06:39) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"format"=>"xml", "action"=>"search", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000922)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;35;1mContent Columns (0.002767)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01614 (61 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.00369 (22%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:06:55) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"format"=>"xml", "action"=>"search", "q"=>"hsbc", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000649)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%hsbc%') [0m
+Completed in 0.00565 (176 reqs/sec) | Rendering: 0.00007 (1%) | DB: 0.00065 (11%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:07:00) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"format"=>"xml", "action"=>"search", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000906)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.005948)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.05819 (17 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.00685 (11%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:07:09) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"format"=>"xml", "action"=>"search", "q"=>"asd", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000661)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%asd%') [0m
+  [4;36;1mContent Columns (0.046539)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.05385 (18 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.04720 (87%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:07:46) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"search", "q"=>"asd", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000665)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%asd%') [0m
+Rendering layoutfalseactionsearchcontent_typetext/html within layouts/contents
+
+
+ActionController::MissingTemplate (Missing template /Users/chrisroos/dev/personal/my_content/config/../app/views/contents/search.rhtml):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1205:in `assert_existence_of_template_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:804:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:738:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:863:in `render_without_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:798:in `render_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:748:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.0/lib/active_support/deprecation.rb:43:in `silence'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:747:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:50:in `render'
+    /app/controllers/contents_controller.rb:6:in `search'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:167:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:161:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/mime_responds.rb:105:in `respond_to'
+    /app/controllers/contents_controller.rb:6:in `search'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:1095:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.1/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/rails.rb:73:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:551:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:550:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:636:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:625:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:956:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel.rb:955:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/lib/mongrel/command.rb:199:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-0.3.13.3/bin/mongrel_rails:235
+    /usr/local/bin/mongrel_rails:18
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.1/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:08:32) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"search", "q"=>"asd", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000665)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%asd%') [0m
+Rendering layoutfalseactionsearchcontent_typetext/html within layouts/contents
+Rendering contents/search
+  [4;35;1mContent Columns (0.002733)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01144 (87 reqs/sec) | Rendering: 0.00384 (33%) | DB: 0.00340 (29%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-23 23:08:38) [GET]
+  Session ID: f28fbd6c7600956f32d0f93c23371324
+  Parameters: {"action"=>"search", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000912)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+Rendering layoutfalseactionsearchcontent_typetext/html within layouts/contents
+Rendering contents/search
+  [4;35;1mContent Columns (0.002892)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01046 (95 reqs/sec) | Rendering: 0.00205 (19%) | DB: 0.00380 (36%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 21:53:58) [POST]
+  Session ID: 6debac23328e94ee3f9f7ad67fab65d6
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my new title", "body"=>"this is my new content\nyeah yeah yeah\n"}}
+  [4;36;1mContent Columns (0.110984)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000687)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.016351)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('this is my new content\nyeah yeah yeah\n', 'my new title')[0m
+  [4;35;1mSQL (0.000684)[0m   [0mCOMMIT[0m
+Completed in 0.33833 (2 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.12871 (38%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 21:54:23) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.029395)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.002929)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.05144 (19 reqs/sec) | Rendering: 0.01393 (27%) | DB: 0.03232 (62%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 21:56:23) [POST]
+  Session ID: 1f76b291425fca905f1904524c91b439
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my new title", "body"=>"asd\n"}}
+  [4;36;1mContent Columns (0.047057)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000219)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000347)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('asd\n', 'my new title')[0m
+  [4;35;1mSQL (0.000588)[0m   [0mCOMMIT[0m
+Completed in 0.05545 (18 reqs/sec) | Rendering: 0.00007 (0%) | DB: 0.04821 (86%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 21:57:08) [POST]
+  Session ID: 03adcd950613c13373c328cb57a86568
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my new title", "body"=>"def sanitize_input(domain)\n  domain\nend\n\ninput_domain = 'allsignsolutions.net'\ndomain = sanitize_input(input_domain)\nresult = `whois \#{domain}`\nputs result"}}
+  [4;36;1mContent Columns (0.035102)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000224)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.019075)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('def sanitize_input(domain)\n domain\nend\n\ninput_domain = \'allsignsolutions.net\'\ndomain = sanitize_input(input_domain)\nresult = `whois #{domain}`\nputs result', 'my new title')[0m
+  [4;35;1mSQL (0.000698)[0m   [0mCOMMIT[0m
+Completed in 0.06354 (15 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.05510 (86%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 21:57:12) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000969)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.002724)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01950 (51 reqs/sec) | Rendering: 0.01109 (56%) | DB: 0.00369 (18%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 21:57:16) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"show", "id"=>"17", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002877)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.047350)[0m   [0mSELECT * FROM contents WHERE (contents.id = 17) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.07648 (13 reqs/sec) | Rendering: 0.02124 (27%) | DB: 0.05023 (65%) | 200 OK [http://localhost/contents/17]
+  [4;36;1mContent Load (0.275469)[0m   [0;1mSELECT * FROM contents ORDER BY id desc LIMIT 1[0m
+
+
+Processing ContentsController#edit (for 127.0.0.1 at 2007-01-24 21:58:17) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"edit", "id"=>"17", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002982)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000689)[0m   [0mSELECT * FROM contents WHERE (contents.id = 17) [0m
+Rendering  within layouts/contents
+Rendering contents/edit
+Completed in 0.02871 (34 reqs/sec) | Rendering: 0.02065 (71%) | DB: 0.00367 (12%) | 200 OK [http://localhost/contents/17;edit]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 21:58:28) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000971)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.070735)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.08754 (11 reqs/sec) | Rendering: 0.01142 (13%) | DB: 0.07171 (81%) | 200 OK [http://localhost/contents]
+  [4;35;1mContent Load (0.001119)[0m   [0mSELECT * FROM contents [0m
+  [4;36;1mSQL (0.000175)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Columns (0.002915)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Destroy (0.049884)[0m   [0;1m DELETE FROM contents
+ WHERE id = 2
+[0m
+  [4;35;1mSQL (0.012512)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000178)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000358)[0m   [0m DELETE FROM contents
+ WHERE id = 4
+[0m
+  [4;36;1mSQL (0.000560)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000144)[0m   [0mBEGIN[0m
+  [4;36;1mContent Destroy (0.000260)[0m   [0;1m DELETE FROM contents
+ WHERE id = 5
+[0m
+  [4;35;1mSQL (0.000565)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000145)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000261)[0m   [0m DELETE FROM contents
+ WHERE id = 6
+[0m
+  [4;36;1mSQL (0.000893)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000156)[0m   [0mBEGIN[0m
+  [4;36;1mContent Destroy (0.000306)[0m   [0;1m DELETE FROM contents
+ WHERE id = 7
+[0m
+  [4;35;1mSQL (0.000601)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000145)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000250)[0m   [0m DELETE FROM contents
+ WHERE id = 8
+[0m
+  [4;36;1mSQL (0.000600)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000145)[0m   [0mBEGIN[0m
+  [4;36;1mContent Destroy (0.000252)[0m   [0;1m DELETE FROM contents
+ WHERE id = 9
+[0m
+  [4;35;1mSQL (0.000594)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000145)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000251)[0m   [0m DELETE FROM contents
+ WHERE id = 10
+[0m
+  [4;36;1mSQL (0.000591)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000144)[0m   [0mBEGIN[0m
+  [4;36;1mContent Destroy (0.000269)[0m   [0;1m DELETE FROM contents
+ WHERE id = 11
+[0m
+  [4;35;1mSQL (0.000597)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000144)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000251)[0m   [0m DELETE FROM contents
+ WHERE id = 12
+[0m
+  [4;36;1mSQL (0.000576)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000130)[0m   [0mBEGIN[0m
+  [4;36;1mContent Destroy (0.000249)[0m   [0;1m DELETE FROM contents
+ WHERE id = 13
+[0m
+  [4;35;1mSQL (0.000586)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000145)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000250)[0m   [0m DELETE FROM contents
+ WHERE id = 14
+[0m
+  [4;36;1mSQL (0.000664)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000151)[0m   [0mBEGIN[0m
+  [4;36;1mContent Destroy (0.000412)[0m   [0;1m DELETE FROM contents
+ WHERE id = 15
+[0m
+  [4;35;1mSQL (0.000624)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000133)[0m   [0;1mBEGIN[0m
+  [4;35;1mContent Destroy (0.000255)[0m   [0m DELETE FROM contents
+ WHERE id = 16
+[0m
+  [4;36;1mSQL (0.000592)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000145)[0m   [0mBEGIN[0m
+  [4;36;1mContent Destroy (0.000311)[0m   [0;1m DELETE FROM contents
+ WHERE id = 17
+[0m
+  [4;35;1mSQL (0.000597)[0m   [0mCOMMIT[0m
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 21:58:40) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000589)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+Completed in 0.00602 (166 reqs/sec) | Rendering: 0.00127 (21%) | DB: 0.00059 (9%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:06:35) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000588)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+Completed in 0.00647 (154 reqs/sec) | Rendering: 0.00151 (23%) | DB: 0.00059 (9%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 22:07:31) [POST]
+  Session ID: 287096f3aeb15ad301ec99d2e696befb
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"My Secret Data", "body"=>nil}}
+  [4;36;1mContent Columns (0.042264)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000225)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000172)[0m   [0;1mCOMMIT[0m
+Completed in 0.04912 (20 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.04266 (86%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:07:36) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000586)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+Completed in 0.04685 (21 reqs/sec) | Rendering: 0.00128 (2%) | DB: 0.00059 (1%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 22:08:27) [POST]
+  Session ID: d25e30cc35ed29a6fb558c8e612d5081
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"My Secret Data", "body"=>nil}}
+  [4;36;1mContent Columns (0.010510)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000226)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000171)[0m   [0;1mCOMMIT[0m
+Completed in 0.05605 (17 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.01091 (19%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:19:04) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000586)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+Completed in 0.00637 (157 reqs/sec) | Rendering: 0.00125 (19%) | DB: 0.00059 (9%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:19:42) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000567)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+Completed in 0.00603 (165 reqs/sec) | Rendering: 0.00124 (20%) | DB: 0.00057 (9%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 22:20:54) [POST]
+  Session ID: 5e0c2599cfbb8315b74cb94d2f58ced3
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my cool things", "body"=>"hello world\nthis is a dummy document\n"}}
+  [4;35;1mContent Columns (0.046888)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mSQL (0.000215)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000352)[0m   [0mINSERT INTO contents (`body`, `title`) VALUES('hello world\nthis is a dummy document\n', 'my cool things')[0m
+  [4;36;1mSQL (0.000638)[0m   [0;1mCOMMIT[0m
+Completed in 0.05541 (18 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.04809 (86%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:20:58) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000623)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;36;1mContent Columns (0.002745)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.01129 (88 reqs/sec) | Rendering: 0.00365 (32%) | DB: 0.00337 (29%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 22:21:08) [POST]
+  Session ID: b0c484f83ef6ef89bd41fde0d379dd57
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my cool things", "body"=>nil}}
+  [4;35;1mContent Columns (0.001972)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mSQL (0.000173)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000129)[0m   [0mCOMMIT[0m
+Completed in 0.00800 (125 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00227 (28%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 22:21:21) [POST]
+  Session ID: 46a1b64dc08aea5c6f54e22089c97a18
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my cool things", "body"=>nil}}
+  [4;36;1mContent Columns (0.002658)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.000213)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000167)[0m   [0;1mCOMMIT[0m
+Completed in 0.01027 (97 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.00304 (29%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 22:21:30) [POST]
+  Session ID: 377e395d59785bde75dd937a4d05657f
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my cool things", "body"=>"blurgh\n"}}
+  [4;35;1mContent Columns (0.028084)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mSQL (0.000225)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000356)[0m   [0mINSERT INTO contents (`body`, `title`) VALUES('blurgh\n', 'my cool things')[0m
+  [4;36;1mSQL (0.000660)[0m   [0;1mCOMMIT[0m
+Completed in 0.03744 (26 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.02933 (78%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:21:33) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000650)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;36;1mContent Columns (0.002708)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.01174 (85 reqs/sec) | Rendering: 0.00407 (34%) | DB: 0.00336 (28%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-24 22:27:08) [POST]
+  Session ID: 5e33532b49d6498a34989b60fbecd42d
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my secret data", "body"=>"-----BEGIN PGP MESSAGE-----\nVersion: GnuPG v1.4.3 (Darwin)\n\nhQIOAySpgVtM2UmbEAf9HEMTYyY0xPyr/g28RSZXEfjCzIKJkStlLrWK0bFVnSHf\nu5LszodIw68Zbo99hauYF/TV4DctvgUFqxE9ypSlDXggNJErKitl+V0cyQKgfQbB\ndoinm7QD8WWQ9VFX0hwKwfTjskH091BhoRcQgpo257rzv2BrtpA2Tf38jcXt4JnG\n0jtuxRmPRaKABHsMyqHM8U8nV9Dutjasg6YaTGNJtaxrajYrnAX20rCRJnP+84eu\nKNUtugabHlxEmi5wicE7sCqk7QQiCBQDGLeifYNUe9I7eaAm5C6p63R1mvNo1X+x\nzmGbp7bu60s8fPk7CYdfFklCi3Eu9AaOUdDB9IEafQgAkv7jleFhHo/5jGz+QpKE\noQ4qT0L2fQcMiy7iq/UKHWclZP/ByxU8xnKyf0j2GQJuSI5KdBEtoOYqj+vWngn0\ntvtnD/zA1YGqEw8YiDLHeGU5ryzFwpBG36Hnmc58ItivDIoBgChcZsoY0OnUqF1o\n5Pa5uFs3ir2Xk9eHukREkmBqRn/JYcXq1dIFGTk8EBqXV0wPjeUtoemGeHy3pgPU\n8jWEH4mFw3nVguNO9iP9gC/AiPmKh8u2PWPeWuJg4FeG9vNhL914WZ9hhXoQjMRO\nkUTrGFPhLdTc/0najO8WvaPLi0PYiWZ3NIMflFIor2ZtlOlNboqH78IsaUwLpGKR\nk9KpAUhzPTpyA8a2pAJQbaP+f0+sRu3/TSfQHf2tQ3HhtkQ5Cza82WyneVV8T8gV\nxz/EPWkzuNi8I08x0KSKhjsY9Y6hLezNYFtuLb1PImAueKjFtighwJyS0JZWUzB+\n179nnzRzT/7tA9jnPo6hOhJsDbQWUP/Mc5ZCakhl4wKDYTOdmpWaFWAfYnYhDKnr\nY5SKGu2aSudp8JTmPNnw3x2UiS9EtLcJKZRP2Q==\n=6DE4\n-----END PGP MESSAGE-----\n"}}
+  [4;35;1mContent Columns (0.002124)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mSQL (0.001038)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000420)[0m   [0mINSERT INTO contents (`body`, `title`) VALUES('-----BEGIN PGP MESSAGE-----\nVersion: GnuPG v1.4.3 (Darwin)\n\nhQIOAySpgVtM2UmbEAf9HEMTYyY0xPyr/g28RSZXEfjCzIKJkStlLrWK0bFVnSHf\nu5LszodIw68Zbo99hauYF/TV4DctvgUFqxE9ypSlDXggNJErKitl+V0cyQKgfQbB\ndoinm7QD8WWQ9VFX0hwKwfTjskH091BhoRcQgpo257rzv2BrtpA2Tf38jcXt4JnG\n0jtuxRmPRaKABHsMyqHM8U8nV9Dutjasg6YaTGNJtaxrajYrnAX20rCRJnP+84eu\nKNUtugabHlxEmi5wicE7sCqk7QQiCBQDGLeifYNUe9I7eaAm5C6p63R1mvNo1X+x\nzmGbp7bu60s8fPk7CYdfFklCi3Eu9AaOUdDB9IEafQgAkv7jleFhHo/5jGz+QpKE\noQ4qT0L2fQcMiy7iq/UKHWclZP/ByxU8xnKyf0j2GQJuSI5KdBEtoOYqj+vWngn0\ntvtnD/zA1YGqEw8YiDLHeGU5ryzFwpBG36Hnmc58ItivDIoBgChcZsoY0OnUqF1o\n5Pa5uFs3ir2Xk9eHukREkmBqRn/JYcXq1dIFGTk8EBqXV0wPjeUtoemGeHy3pgPU\n8jWEH4mFw3nVguNO9iP9gC/AiPmKh8u2PWPeWuJg4FeG9vNhL914WZ9hhXoQjMRO\nkUTrGFPhLdTc/0najO8WvaPLi0PYiWZ3NIMflFIor2ZtlOlNboqH78IsaUwLpGKR\nk9KpAUhzPTpyA8a2pAJQbaP+f0+sRu3/TSfQHf2tQ3HhtkQ5Cza82WyneVV8T8gV\nxz/EPWkzuNi8I08x0KSKhjsY9Y6hLezNYFtuLb1PImAueKjFtighwJyS0JZWUzB+\n179nnzRzT/7tA9jnPo6hOhJsDbQWUP/Mc5ZCakhl4wKDYTOdmpWaFWAfYnYhDKnr\nY5SKGu2aSudp8JTmPNnw3x2UiS9EtLcJKZRP2Q==\n=6DE4\n-----END PGP MESSAGE-----\n', 'my secret data')[0m
+  [4;36;1mSQL (0.000471)[0m   [0;1mCOMMIT[0m
+Completed in 0.01128 (88 reqs/sec) | Rendering: 0.00005 (0%) | DB: 0.00405 (35%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:27:12) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000695)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;36;1mContent Columns (0.002701)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.01247 (80 reqs/sec) | Rendering: 0.00463 (37%) | DB: 0.00340 (27%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:29:07) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000688)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;36;1mContent Columns (0.002800)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.01168 (85 reqs/sec) | Rendering: 0.00394 (33%) | DB: 0.00349 (29%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:29:13) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"show", "id"=>"18", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.003226)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Load (0.000923)[0m   [0;1mSELECT * FROM contents WHERE (contents.id = 18) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.01157 (86 reqs/sec) | Rendering: 0.00241 (20%) | DB: 0.00415 (35%) | 200 OK [http://localhost/contents/18]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:29:16) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"show", "id"=>"19", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.003018)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Load (0.000671)[0m   [0;1mSELECT * FROM contents WHERE (contents.id = 19) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.01102 (90 reqs/sec) | Rendering: 0.00242 (21%) | DB: 0.00369 (33%) | 200 OK [http://localhost/contents/19]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:29:18) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.002870)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Load (0.000684)[0m   [0;1mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.01107 (90 reqs/sec) | Rendering: 0.00243 (21%) | DB: 0.00355 (32%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:29:30) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"format"=>"txt", "action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.002859)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Load (0.000684)[0m   [0;1mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.00886 (112 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00354 (39%) | 406 Not Acceptable [http://localhost/contents/20.txt]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:29:51) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.002993)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Load (0.000692)[0m   [0;1mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.05235 (19 reqs/sec) | Rendering: 0.00329 (6%) | DB: 0.00368 (7%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:30:31) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"format"=>"txt", "action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.002929)[0m   [0mSHOW FIELDS FROM contents[0m
+  [4;36;1mContent Load (0.000687)[0m   [0;1mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.04929 (20 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00362 (7%) | 200 OK [http://localhost/contents/20.txt]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:31:19) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000731)[0m   [0mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;36;1mContent Columns (0.002863)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.05415 (18 reqs/sec) | Rendering: 0.04605 (85%) | DB: 0.00359 (6%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#new (for 127.0.0.1 at 2007-01-24 22:31:21) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"new", "controller"=>"contents"}
+  [4;35;1mContent Columns (0.002826)[0m   [0mSHOW FIELDS FROM contents[0m
+Rendering  within layouts/contents
+Rendering contents/new
+Completed in 0.02186 (45 reqs/sec) | Rendering: 0.01508 (68%) | DB: 0.00283 (12%) | 200 OK [http://localhost/contents/new]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:31:23) [GET]
+  Session ID: 9639ef4da1c60db2ea6ed74ff6ca901b
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002808)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000666)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.01082 (92 reqs/sec) | Rendering: 0.00250 (23%) | DB: 0.00347 (32%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:35:14) [GET]
+  Session ID: 6fd2cf02706eac6fd7edf9c57f38e36a
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000669)[0m   [0;1mSELECT * FROM contents [0m
+  [4;35;1mContent Columns (0.002308)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01487 (67 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00298 (20%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:35:18) [GET]
+  Session ID: b4b84837e247e313cf4bd618c1bdabe6
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000811)[0m   [0;1mSELECT * FROM contents [0m
+  [4;35;1mContent Columns (0.002475)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01869 (53 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.00329 (17%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-24 22:35:29) [GET]
+  Session ID: 0cb84bd4a3451dea68c97f02fdc65547
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000713)[0m   [0;1mSELECT * FROM contents [0m
+  [4;35;1mContent Columns (0.002285)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01485 (67 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00300 (20%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:36:57) [GET]
+  Session ID: 88238ce18a9688b3061c6c417b1880ac
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002051)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000544)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01322 (75 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00259 (19%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:37:26) [GET]
+  Session ID: c612e883cb6aec9fd11f8f9f069ff384
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002432)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000535)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01360 (73 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00297 (21%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:37:37) [GET]
+  Session ID: a5bc8b24ba04952d047cb06d4c31256f
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002395)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000580)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01373 (72 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00297 (21%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:37:41) [GET]
+  Session ID: 69e8581f171950a4ef727678343110b7
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002086)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000558)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01337 (74 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00264 (19%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:37:48) [GET]
+  Session ID: bffd49d6c3a7ec21115afaeddc5fd89e
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.037279)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000693)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.05109 (19 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.03797 (74%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:37:54) [GET]
+  Session ID: 75a9c4458964de5f07abbb698b8b7cb9
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002455)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000672)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01669 (59 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00313 (18%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:37:57) [GET]
+  Session ID: 57653e98db1eae1bf2809cfc281abec4
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002452)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000670)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01654 (60 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00312 (18%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:02) [GET]
+  Session ID: 4106618f7212a6d5da0f2fcaff1f32e0
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002198)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000673)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01714 (58 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.00287 (16%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:07) [GET]
+  Session ID: 89cc186049e716c8c290062716811c3c
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002137)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000547)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01344 (74 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00268 (19%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:13) [GET]
+  Session ID: 32a7fae6d4860d44367613e5b8a8214d
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002087)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000589)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01347 (74 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00268 (19%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:26) [GET]
+  Session ID: 67a63a7dfd4f4aa5758f4821993b3567
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.037427)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000790)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.05136 (19 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.03822 (74%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:41) [GET]
+  Session ID: eaaee03779e543615948588805f6aa4e
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002400)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000544)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01361 (73 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00294 (21%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:46) [GET]
+  Session ID: e699a27740b9984fcc992195e39378b8
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002417)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000559)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01360 (73 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00298 (21%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:49) [GET]
+  Session ID: fbabcb25cb6a0b2b1f3be258d0ffa58d
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002391)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000553)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01364 (73 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00294 (21%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:51) [GET]
+  Session ID: e153a18b16bcc289f539a1c4203a49b7
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002370)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000592)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01374 (72 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00296 (21%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:38:54) [GET]
+  Session ID: 6ae77af9293238046e210e35c42acd07
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.001986)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000544)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01315 (76 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00253 (19%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:39:16) [GET]
+  Session ID: ecde99b767b49a4b2c6f9f2e56fa3324
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.050047)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000684)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.06380 (15 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.05073 (79%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:39:18) [GET]
+  Session ID: fdb01c4a0450730309edcbb281f56b84
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002393)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000564)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01378 (72 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00296 (21%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:39:37) [GET]
+  Session ID: 009326daee6d2a82c9a6ba627b365ef6
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.035627)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000722)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.04943 (20 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.03635 (73%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:39:39) [GET]
+  Session ID: d43403e89737c0d4e2574f3ebd227da8
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.001978)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000544)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01314 (76 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00252 (19%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:40:08) [GET]
+  Session ID: dad8685edafd6407745a0497ab7e1cbb
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.015610)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000700)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.02914 (34 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.01631 (55%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:40:20) [GET]
+  Session ID: b2320376db8b9c22e7d8ee5e9eef0838
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002621)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000676)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.01708 (58 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00330 (19%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-24 22:40:33) [GET]
+  Session ID: 24361ea94ecd76af3d7d8ac99725b0aa
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.022733)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000680)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.03613 (27 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.02341 (64%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#create (for 127.0.0.1 at 2007-01-25 20:22:06) [POST]
+  Session ID: 44ab2eb1eb0c847071c39ed9f912cb85
+  Parameters: {"action"=>"create", "controller"=>"contents", "content"=>{"title"=>"my_brilliant_secret_file", "body"=>"-----BEGIN PGP MESSAGE-----\nVersion: GnuPG v1.4.3 (Darwin)\n\nhQIOAySpgVtM2UmbEAf8CM2B53e+yg7+9L+4d4S2fVkR4yyoK+dnZ5/q98yWwwaI\ntX2gU1HS9cWf/G43s9Hhc9kRrOBu77yRoFPjTpse7qKidfjGlL7auybHmiW4HBlo\nS1V5Ql1lgFSH5UAV8uLd12qFBvgp4MCVKlU1MkZ4Tu13Ythq4TJUjbxDs6CrO8G+\nHs9rwWsshaZqrYMibrSoINR1XsQz00hruZs1DojWj75zg23qReHiblciqwnDojA0\nxxhFf2e6MTkNAhDtNlbTOMYfN3gk5T1m9uQdkjgc9QObdTnOqwXYiGYxk7h4Vds6\nLH3tMGxzcBwgXPnkZtJU+dqalCKAWutxMejsfpeiigf/RM33qQsdN4/jioLPDDcf\nyGeLx0ItYuXeNQy/hgnk/uG/Aen7b+rAeOC0sg+uQYewLHSUNG1ieruEHONf1EEv\nCBSEroEcQUdQteNP6SS6jRu/I8ZmozuYMIlmxBewVpCOkfGTh/JxMNtXrygpFxlO\n3XM6f+2se4cBa5oe6dcRuAYQt7QxeJF+4EOn5VrFYu8Ru5lvVu4fwvOOEnrkJJOK\noZXzQ3nzp5yzHmyn0+FI3iOdFFfTJJLjjmr+4MyuBp9zvQzjq8B9EEOAwKVOqALk\nLTArGnw7+5AuWcFLPR49BUrxeHk3OZGr3b2mR3fIfdvOSuMciwAcYSERZLE2037a\nI9KpAbxfVwdMeup70ZnI+5T4RJ8im6bZgeBc1IYI4JhvCv57O1v7X+REqjVcnoFw\n/xuIjD6U2sRPDQ5MIxvcMUwsz40bibYI+WYQVOYMNBYkiUoCKZjXrB6LIt+SA9hD\nHtfRmLEY/T06nTpzLyJlW0NvY3njzFU2fEumf5KZ9RQbkHjnQHZVRig1PBLRGpVa\nfyQenxPXzTtmKm0flRs4bOZFu+5msRlxBkyCLw==\n=ZqVh\n-----END PGP MESSAGE-----\n"}}
+  [4;36;1mContent Columns (0.155328)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mSQL (0.003282)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.013375)[0m   [0;1mINSERT INTO contents (`body`, `title`) VALUES('-----BEGIN PGP MESSAGE-----\nVersion: GnuPG v1.4.3 (Darwin)\n\nhQIOAySpgVtM2UmbEAf8CM2B53e+yg7+9L+4d4S2fVkR4yyoK+dnZ5/q98yWwwaI\ntX2gU1HS9cWf/G43s9Hhc9kRrOBu77yRoFPjTpse7qKidfjGlL7auybHmiW4HBlo\nS1V5Ql1lgFSH5UAV8uLd12qFBvgp4MCVKlU1MkZ4Tu13Ythq4TJUjbxDs6CrO8G+\nHs9rwWsshaZqrYMibrSoINR1XsQz00hruZs1DojWj75zg23qReHiblciqwnDojA0\nxxhFf2e6MTkNAhDtNlbTOMYfN3gk5T1m9uQdkjgc9QObdTnOqwXYiGYxk7h4Vds6\nLH3tMGxzcBwgXPnkZtJU+dqalCKAWutxMejsfpeiigf/RM33qQsdN4/jioLPDDcf\nyGeLx0ItYuXeNQy/hgnk/uG/Aen7b+rAeOC0sg+uQYewLHSUNG1ieruEHONf1EEv\nCBSEroEcQUdQteNP6SS6jRu/I8ZmozuYMIlmxBewVpCOkfGTh/JxMNtXrygpFxlO\n3XM6f+2se4cBa5oe6dcRuAYQt7QxeJF+4EOn5VrFYu8Ru5lvVu4fwvOOEnrkJJOK\noZXzQ3nzp5yzHmyn0+FI3iOdFFfTJJLjjmr+4MyuBp9zvQzjq8B9EEOAwKVOqALk\nLTArGnw7+5AuWcFLPR49BUrxeHk3OZGr3b2mR3fIfdvOSuMciwAcYSERZLE2037a\nI9KpAbxfVwdMeup70ZnI+5T4RJ8im6bZgeBc1IYI4JhvCv57O1v7X+REqjVcnoFw\n/xuIjD6U2sRPDQ5MIxvcMUwsz40bibYI+WYQVOYMNBYkiUoCKZjXrB6LIt+SA9hD\nHtfRmLEY/T06nTpzLyJlW0NvY3njzFU2fEumf5KZ9RQbkHjnQHZVRig1PBLRGpVa\nfyQenxPXzTtmKm0flRs4bOZFu+5msRlxBkyCLw==\n=ZqVh\n-----END PGP MESSAGE-----\n', 'my_brilliant_secret_file')[0m
+  [4;35;1mSQL (0.000682)[0m   [0mCOMMIT[0m
+Completed in 0.42818 (2 reqs/sec) | Rendering: 0.00006 (0%) | DB: 0.17267 (40%) | 201 Created [http://localhost/contents]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-25 20:22:25) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.032393)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.002526)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.06857 (14 reqs/sec) | Rendering: 0.02881 (42%) | DB: 0.03492 (50%) | 200 OK [http://localhost/contents]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-25 20:22:31) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"action"=>"show", "id"=>"18", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.003010)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.044801)[0m   [0mSELECT * FROM contents WHERE (contents.id = 18) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.07142 (14 reqs/sec) | Rendering: 0.01819 (25%) | DB: 0.04781 (66%) | 200 OK [http://localhost/contents/18]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-25 20:22:35) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"action"=>"show", "id"=>"21", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002721)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000653)[0m   [0mSELECT * FROM contents WHERE (contents.id = 21) [0m
+Rendering layoutfalseactionshowcontent_typetext/html within layouts/contents
+Rendering contents/show
+Completed in 0.01083 (92 reqs/sec) | Rendering: 0.00243 (22%) | DB: 0.00337 (31%) | 200 OK [http://localhost/contents/21]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-25 20:23:24) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"format"=>"txt", "action"=>"show", "id"=>"21", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.268370)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000684)[0m   [0mSELECT * FROM contents WHERE (contents.id = 21) [0m
+Completed in 0.27442 (3 reqs/sec) | Rendering: 0.00007 (0%) | DB: 0.26905 (98%) | 200 OK [http://localhost/contents/21.txt]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-25 20:23:41) [GET]
+  Session ID: 8255393cbb53f416ca6fa53fffc5dc5c
+  Parameters: {"action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.037224)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000677)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.05068 (19 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.03790 (74%) | 200 OK [http://localhost/contents/20]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:24:16) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"action"=>"search", "controller"=>"contents"}
+  [4;36;1mContent Load (0.017173)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+Rendering layoutfalseactionsearchcontent_typetext/html within layouts/contents
+Rendering contents/search
+  [4;35;1mContent Columns (0.002408)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.04124 (24 reqs/sec) | Rendering: 0.01682 (40%) | DB: 0.01958 (47%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:24:22) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000665)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+Rendering layoutfalseactionsearchcontent_typetext/html within layouts/contents
+Rendering contents/search
+  [4;35;1mContent Columns (0.002933)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.05032 (19 reqs/sec) | Rendering: 0.04243 (84%) | DB: 0.00360 (7%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:24:33) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"action"=>"search", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000732)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+Rendering layoutfalseactionsearchcontent_typetext/html within layouts/contents
+Rendering contents/search
+  [4;35;1mContent Columns (0.002736)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.00992 (100 reqs/sec) | Rendering: 0.00210 (21%) | DB: 0.00347 (34%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:25:17) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"format"=>"xml", "action"=>"search", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000731)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;35;1mContent Columns (0.002742)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.02403 (41 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.00347 (14%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:27:11) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"format"=>"xml", "action"=>"search", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000741)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;35;1mContent Columns (0.002681)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.01098 (91 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.00342 (31%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-25 20:29:35) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"format"=>"xml", "action"=>"show", "id"=>"20", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.010432)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000667)[0m   [0mSELECT * FROM contents WHERE (contents.id = 20) [0m
+Completed in 0.02351 (42 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.01110 (47%) | 200 OK [http://localhost/contents/20.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:29:45) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"format"=>"xml", "action"=>"search", "q"=>"asd", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000650)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%asd%') [0m
+Completed in 0.00533 (187 reqs/sec) | Rendering: 0.00007 (1%) | DB: 0.00065 (12%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:29:49) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"format"=>"xml", "action"=>"search", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000745)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.002501)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.01052 (95 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00325 (30%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:29:53) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"format"=>"xml", "action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000605)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.080116)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.08736 (11 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.08072 (92%) | 200 OK [http://localhost/contents/search.xml]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:31:20) [GET]
+  Session ID: 219b4914966acb44b5669e626df2e091
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000732)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002214)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.04994 (20 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00295 (5%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:31:53) [GET]
+  Session ID: a94038b4a4573a8340f6a8a43586bb7d
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000702)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.038217)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.04531 (22 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.03892 (85%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:32:00) [GET]
+  Session ID: 9ec474509af6bb02040f4f26773e352d
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000687)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.001915)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00847 (118 reqs/sec) | Rendering: 0.00009 (1%) | DB: 0.00260 (30%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:32:09) [GET]
+  Session ID: 32e064e2f9feef75d1b2b4046e083714
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000666)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002295)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00889 (112 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00296 (33%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:32:32) [GET]
+  Session ID: cf776b2b4433f412d915902ec6886cc9
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000791)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002398)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.06947 (14 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.00319 (4%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:32:49) [GET]
+  Session ID: b770ab302a09999fad63ddb75f084466
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000668)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002312)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00899 (111 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00298 (33%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:33:06) [GET]
+  Session ID: a3735067b40ec6062a378036da9d8d67
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000671)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.043464)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.05071 (19 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.04413 (87%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:33:18) [GET]
+  Session ID: 7ab68757e46bba71cad6b3e32087dad3
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000668)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002337)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00915 (109 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00301 (32%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:33:31) [GET]
+  Session ID: 306d70b3a8dd2ca2dff4f8f835736f54
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000710)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002717)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.04852 (20 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.00343 (7%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:33:54) [GET]
+  Session ID: a26a66e36d64466fe5e43b3695ae3b19
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000685)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.087386)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.09454 (10 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.08807 (93%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:34:03) [GET]
+  Session ID: b460b8ac317eddceaf544c4d3220263f
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000656)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002223)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00896 (111 reqs/sec) | Rendering: 0.00010 (1%) | DB: 0.00288 (32%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:34:21) [GET]
+  Session ID: 9f6d68b4ba60b5032cf1b2f718efd55e
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000786)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002256)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.01040 (96 reqs/sec) | Rendering: 0.00010 (1%) | DB: 0.00304 (29%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:34:32) [GET]
+  Session ID: 7cf34ddc5caec858c7fc95126aad3878
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000663)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002298)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00904 (110 reqs/sec) | Rendering: 0.00010 (1%) | DB: 0.00296 (32%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:34:54) [GET]
+  Session ID: 8de460861ae8239347a54e1e03027dfe
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.002141)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.058434)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.06860 (14 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.06058 (88%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:35:04) [GET]
+  Session ID: 5e4549bc370bc1506ba3b68e0462542f
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000665)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002249)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00882 (113 reqs/sec) | Rendering: 0.00009 (1%) | DB: 0.00291 (33%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:35:09) [GET]
+  Session ID: 6e1d0dc26feb51ec7c77fc295b22641c
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000671)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002320)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00911 (109 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00299 (32%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:35:25) [GET]
+  Session ID: 12ea92fea4c89579436fcfd588b680b2
+  Parameters: {"action"=>"search", "q"=>nil, "controller"=>"contents"}
+  [4;35;1mContent Load (0.000774)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.002700)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.05206 (19 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.00347 (6%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:36:17) [GET]
+  Session ID: 5631746f4585434d66484fc7b9e7e7ee
+  Parameters: {"action"=>"search", "q"=>nil, "controller"=>"contents"}
+  [4;35;1mContent Load (0.000732)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.046846)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.09478 (10 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.04758 (50%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:36:25) [GET]
+  Session ID: 8665e75b3759ef5fbf1c9a63349733bb
+  Parameters: {"action"=>"search", "q"=>nil, "controller"=>"contents"}
+  [4;35;1mContent Load (0.000740)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.002323)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.01006 (99 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00306 (30%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:36:33) [GET]
+  Session ID: 0b44e4ca2da08f3d7032b6e840a5059f
+  Parameters: {"action"=>"search", "q"=>nil, "controller"=>"contents"}
+  [4;35;1mContent Load (0.000729)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.038014)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.04645 (21 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.03874 (83%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:36:39) [GET]
+  Session ID: b7c4f272c094032d0303f9bfd726efcf
+  Parameters: {"action"=>"search", "q"=>nil, "controller"=>"contents"}
+  [4;35;1mContent Load (0.000729)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.001886)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00950 (105 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00261 (27%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:36:43) [GET]
+  Session ID: 7ccb10c2c17acaf749ca578da5c271ef
+  Parameters: {"action"=>"search", "q"=>nil, "controller"=>"contents"}
+  [4;35;1mContent Load (0.000725)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.002218)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00986 (101 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00294 (29%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:36:51) [GET]
+  Session ID: c10ddda9bdc854e361917ce9e7446799
+  Parameters: {"action"=>"search", "q"=>nil, "controller"=>"contents"}
+  [4;35;1mContent Load (0.000732)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.002332)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.01020 (98 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00306 (30%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:37:45) [GET]
+  Session ID: 9c7c510efb799ede5ae3a2fe6a880fc1
+  Parameters: {"action"=>"search", "q"=>nil, "controller"=>"contents"}
+  [4;35;1mContent Load (0.000881)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%%') [0m
+  [4;36;1mContent Columns (0.004299)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.05144 (19 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.00518 (10%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:37:59) [GET]
+  Session ID: c1e9eba1eb5e37d9b6cb5e95c9e01b5a
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000661)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;36;1mContent Columns (0.002297)[0m   [0;1mSHOW FIELDS FROM contents[0m
+Completed in 0.00904 (110 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00296 (32%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:38:09) [GET]
+  Session ID: 7cfbc350a5ec2c6a48e5e5e38a35f1b0
+  Parameters: {"action"=>"search", "q"=>"george", "controller"=>"contents"}
+  [4;35;1mContent Load (0.001076)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%george%') [0m
+Completed in 0.00720 (138 reqs/sec) | Rendering: 0.00009 (1%) | DB: 0.00108 (14%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:38:25) [GET]
+  Session ID: 55d6e70e2aef074107aaaffeb23f81bf
+  Parameters: {"action"=>"search", "q"=>"george", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000642)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%george%') [0m
+Completed in 0.04456 (22 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00064 (1%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:38:33) [GET]
+  Session ID: 4eb0e6b51a640ee77d1418f75588517b
+  Parameters: {"action"=>"search", "q"=>"george", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000630)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%george%') [0m
+Completed in 0.00540 (185 reqs/sec) | Rendering: 0.00007 (1%) | DB: 0.00063 (11%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:38:53) [GET]
+  Session ID: de57ccebd34a95431f28ade6d5b88817
+  Parameters: {"action"=>"search", "q"=>"george", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000761)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%george%') [0m
+Completed in 0.00667 (149 reqs/sec) | Rendering: 0.00009 (1%) | DB: 0.00076 (11%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:39:05) [GET]
+  Session ID: 4c813eadf8480664a4fb930f682b9068
+  Parameters: {"action"=>"search", "q"=>"george", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000648)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%george%') [0m
+Completed in 0.00540 (185 reqs/sec) | Rendering: 0.00007 (1%) | DB: 0.00065 (11%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:39:11) [GET]
+  Session ID: 85514567e3d316604885c03a462f838d
+  Parameters: {"action"=>"search", "q"=>"bril", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000671)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%bril%') [0m
+  [4;35;1mContent Columns (0.002335)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.00942 (106 reqs/sec) | Rendering: 0.00010 (1%) | DB: 0.00301 (31%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:39:22) [GET]
+  Session ID: 4e513d0731ad653bb4ecc47c2038abd8
+  Parameters: {"action"=>"search", "q"=>"bri", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000672)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%bri%') [0m
+  [4;35;1mContent Columns (0.002302)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.00907 (110 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00297 (32%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:39:35) [GET]
+  Session ID: 0f38c4fae52551aeb73174bb990a4074
+  Parameters: {"action"=>"search", "q"=>"bri", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000699)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%bri%') [0m
+  [4;35;1mContent Columns (0.002453)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.04852 (20 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00315 (6%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:39:39) [GET]
+  Session ID: a1293597293e819242cb4ac6bd86e7fc
+  Parameters: {"action"=>"search", "q"=>"br1", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000633)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%br1%') [0m
+Completed in 0.00533 (187 reqs/sec) | Rendering: 0.00007 (1%) | DB: 0.00063 (11%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:40:14) [GET]
+  Session ID: bb0784e2e091ff8dd2d98a807f6021dc
+  Parameters: {"action"=>"search", "q"=>"br1", "controller"=>"contents"}
+  [4;35;1mContent Load (0.000624)[0m   [0mSELECT * FROM contents WHERE (title LIKE '%br1%') [0m
+Completed in 0.00524 (190 reqs/sec) | Rendering: 0.00007 (1%) | DB: 0.00062 (11%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:40:17) [GET]
+  Session ID: eab082acb8c24422dea6e65afd2b6842
+  Parameters: {"action"=>"search", "q"=>"bri", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000668)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%bri%') [0m
+  [4;35;1mContent Columns (0.002272)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.00927 (107 reqs/sec) | Rendering: 0.00010 (1%) | DB: 0.00294 (31%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:40:27) [GET]
+  Session ID: 2b1c09f6ca379dc305d3e5289b229af1
+  Parameters: {"action"=>"search", "q"=>"bri", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000661)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%bri%') [0m
+  [4;35;1mContent Columns (0.001866)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.00851 (117 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00253 (29%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-25 20:40:34) [GET]
+  Session ID: 67c7b4b043fced2b7b7572fc27f1b60a
+  Parameters: {"action"=>"show", "id"=>"21", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002477)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000654)[0m   [0mSELECT * FROM contents WHERE (contents.id = 21) [0m
+Completed in 0.01681 (59 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00313 (18%) | 200 OK [http://localhost/contents/21]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:42:21) [GET]
+  Session ID: 53a8633867f37371194a6eaade8904e5
+  Parameters: {"action"=>"search", "q"=>"a", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000827)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%a%') [0m
+  [4;35;1mContent Columns (0.028655)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.03758 (26 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.02948 (78%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#index (for 127.0.0.1 at 2007-01-25 20:42:33) [GET]
+  Session ID: 8332862d56144cc30fdf3670bc7c4626
+  Parameters: {"action"=>"index", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000705)[0m   [0;1mSELECT * FROM contents [0m
+Rendering layoutfalseactionindexcontent_typetext/html within layouts/contents
+Rendering contents/index
+  [4;35;1mContent Columns (0.072878)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.08176 (12 reqs/sec) | Rendering: 0.00349 (4%) | DB: 0.07358 (89%) | 200 OK [http://localhost/contents/]
+
+
+Processing ContentsController#search (for 127.0.0.1 at 2007-01-25 20:42:39) [GET]
+  Session ID: fb009d51f91dafc93d030bf5933e5eb5
+  Parameters: {"action"=>"search", "q"=>"cool", "controller"=>"contents"}
+  [4;36;1mContent Load (0.000682)[0m   [0;1mSELECT * FROM contents WHERE (title LIKE '%cool%') [0m
+  [4;35;1mContent Columns (0.002356)[0m   [0mSHOW FIELDS FROM contents[0m
+Completed in 0.00995 (100 reqs/sec) | Rendering: 0.00010 (1%) | DB: 0.00304 (30%) | 200 OK [http://localhost/contents/search]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-25 20:42:43) [GET]
+  Session ID: b4480ec57f7e23e19521eb807ce11363
+  Parameters: {"action"=>"show", "id"=>"18", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002663)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000664)[0m   [0mSELECT * FROM contents WHERE (contents.id = 18) [0m
+Completed in 0.01084 (92 reqs/sec) | Rendering: 0.00009 (0%) | DB: 0.00333 (30%) | 200 OK [http://localhost/contents/18]
+
+
+Processing ContentsController#show (for 127.0.0.1 at 2007-01-25 20:42:46) [GET]
+  Session ID: f4c23eb2b9385b47e3caf288d76327ff
+  Parameters: {"action"=>"show", "id"=>"19", "controller"=>"contents"}
+  [4;36;1mContent Columns (0.002424)[0m   [0;1mSHOW FIELDS FROM contents[0m
+  [4;35;1mContent Load (0.000538)[0m   [0mSELECT * FROM contents WHERE (contents.id = 19) [0m
+Completed in 0.00894 (111 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00296 (33%) | 200 OK [http://localhost/contents/19]
