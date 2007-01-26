@@ -23,7 +23,14 @@ class ContentsController < ApplicationController
   # GET /contents/1
   # GET /contents/1.xml
   def show
-    @content = Content.find(params[:id])
+    begin
+      @content = Content.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      respond_to do |format|
+        format.html { render(:file => "#{RAILS_ROOT}/public/404.html", :status => :not_found) and return }
+        format.xml  { head(:not_found) and return }
+      end
+    end
 
     respond_to do |format|
       format.html # show.rhtml
@@ -62,7 +69,14 @@ class ContentsController < ApplicationController
   # PUT /contents/1
   # PUT /contents/1.xml
   def update
-    @content = Content.find(params[:id])
+    begin
+      @content = Content.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      respond_to do |format|
+        format.html { render(:file => "#{RAILS_ROOT}/public/404.html", :status => :not_found) and return }
+        format.xml  { head(:not_found) and return }
+      end
+    end
 
     respond_to do |format|
       if @content.update_attributes(params[:content])
@@ -79,7 +93,15 @@ class ContentsController < ApplicationController
   # DELETE /contents/1
   # DELETE /contents/1.xml
   def destroy
-    @content = Content.find(params[:id])
+    begin
+      @content = Content.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      respond_to do |format|
+        format.html { render(:file => "#{RAILS_ROOT}/public/404.html", :status => :not_found) and return }
+        format.xml  { head(:not_found) and return }
+      end
+    end
+    
     @content.destroy
 
     respond_to do |format|

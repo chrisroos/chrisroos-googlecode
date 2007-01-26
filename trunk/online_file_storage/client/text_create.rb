@@ -22,7 +22,11 @@ xml = %Q[
 
 http = Net::HTTP.new('localhost', '3000')
 response = http.post('/contents', xml, 'Content-Type' => 'text/xml', 'Accept' => 'text/xml')
-unless response.code == '201'
-  puts "Unable to store your data, please try again."
+
+if response.code == '201'
+  location = response.header['Location']
+  puts "Your content was successfully stored (at #{location})."
+else
+  puts "Unable to store your data (http status #{response.code}), please try again."
   puts response if debug
 end
