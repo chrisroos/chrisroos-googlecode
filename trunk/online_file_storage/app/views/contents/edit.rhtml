@@ -1,0 +1,22 @@
+<h1>Editing content</h1>
+
+<%= error_messages_for :content %>
+
+<% form_for(:content, :url => content_path(@content), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <b>Body</b><br />
+    <%= f.text_area :body %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', content_path(@content) %> |
+<%= link_to 'Back', contents_path %>
