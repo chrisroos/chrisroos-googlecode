@@ -21,7 +21,10 @@ xml = %Q[
 ]
 
 http = Net::HTTP.new('localhost', '3000')
-response = http.post('/contents', xml, 'Content-Type' => 'text/xml', 'Accept' => 'text/xml')
+request = Net::HTTP::Post.new('/contents', 'Content-Type' => 'text/xml', 'Accept' => 'text/xml')
+request.body = xml
+request.basic_auth 'chris', 'password'
+response = http.request(request)
 
 if response.code == '201'
   location = response.header['Location']
