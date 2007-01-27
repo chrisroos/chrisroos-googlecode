@@ -7,7 +7,10 @@ q = ARGV.shift
 raise "Must supply search terms" unless q
 
 http = Net::HTTP.new('localhost', '3000')
-response = http.get("/contents/search?q=#{q}", 'Accept' => 'text/xml')
+request = Net::HTTP::Get.new("/contents/search?q=#{q}", 'Accept' => 'text/xml')
+request.basic_auth 'chris', 'password'
+response = http.request(request)
+
 document = REXML::Document.new(response.body)
 
 if document.root.elements.empty?

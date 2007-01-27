@@ -1,5 +1,7 @@
 class ContentsController < ApplicationController
   
+  before_filter :authenticate
+  
   def search
     @contents = Content.find_with_title_like(params[:q])
     
@@ -109,4 +111,12 @@ class ContentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+private
+  def authenticate
+    authenticate_or_request_with_http_basic do |user_name, password| 
+      user_name == HTTP_USERNAME && password == HTTP_PASSWORD
+    end
+  end
+    
 end

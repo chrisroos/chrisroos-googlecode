@@ -10,7 +10,9 @@ raise "Must supply id of text to get" unless content_id
 debug = ARGV.shift
 
 http = Net::HTTP.new('localhost', '3000')
-response = http.get("/contents/#{content_id}", 'Accept' => 'text/xml')
+request = Net::HTTP::Get.new("/contents/#{content_id}", 'Accept' => 'text/xml')
+request.basic_auth 'chris', 'password'
+response = http.request(request)
 
 if response.code == '200'
   # No informational message as we may wish to pipe straight into another program

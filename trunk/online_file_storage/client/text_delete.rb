@@ -7,7 +7,9 @@ raise "Must supply id of text to get" unless content_id
 debug = ARGV.shift
 
 http = Net::HTTP.new('localhost', '3000')
-response = http.delete("/contents/#{content_id}", 'Accept' => 'text/xml')
+request = Net::HTTP::Delete.new("/contents/#{content_id}", 'Accept' => 'text/xml')
+request.basic_auth 'chris', 'password'
+response = http.request(request)
 
 if response.code == '200'
   puts "Deleted resource with id of #{content_id}"

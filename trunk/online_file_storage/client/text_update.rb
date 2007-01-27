@@ -20,7 +20,10 @@ xml = %Q[
 ]
 
 http = Net::HTTP.new('localhost', '3000')
-response = http.put("/contents/#{content_id}", xml, 'Content-Type' => 'text/xml', 'Accept' => 'text/xml')
+request = Net::HTTP::Put.new("/contents/#{content_id}", 'Content-Type' => 'text/xml', 'Accept' => 'text/xml')
+request.body = xml
+request.basic_auth 'chris', 'password'
+response = http.request(request)
 
 if response.code == '404'
   puts "You are trying to update a resource that no longer exists.  Please find and enter the correct Id of the resource you wish to update."
