@@ -47,7 +47,7 @@ expected = '1JMstxYHYz'
 actual = apply_constraints(hash='MstxYHYzGq0jEjzfTbaFrQ', size=10, nonalphanumeric=false)
 raise("apply_constraints is broken!") unless expected == actual
 
-$: << 'ruby-hmac-0.3'
+$: << '~/dev/lib/ruby-hmac-0.3'
 require 'hmac-md5'
 require 'base64'
 
@@ -59,12 +59,8 @@ end
 
 def get_hashed_password(password, realm)
   hash = realm.base64_hmac_md5(password)
-  hash = hash.gsub(/=+$/, '') # remove = padding (not used by default in md5.js implementation)
+  hash = hash.gsub(/=+$/, '') # remove base64 pad character (=) - not used by default in md5.js implementation
   size = password.length + '@@'.length
   nonalphanumeric = !password.match(/\W/).nil?
   apply_constraints(hash, size, nonalphanumeric)
 end
-
-expected = '1JMstxYHYz'
-actual = get_hashed_password('password', 'realm')
-raise("get_hashed_password is broken!") unless expected == actual
