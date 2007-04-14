@@ -9,3 +9,5 @@
 <% unless @pages.item_count <= this_blog.limit_article_display %>
   <p id="pagination">Older posts: <%= pagination_links @pages, :params => { :action => @controller.action_name } %></p>
 <% end -%>
+
+<script src="http://feeds.feedburner.com/~s/DeferredUntilInspirationHits?i=<%= url_for(:only_path => false) %>" type="text/javascript" charset="utf-8"></script>
