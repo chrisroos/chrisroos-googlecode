@@ -1,7 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
   <title><%=h page_title %></title>
+  <link rel="openid.server" href="http://www.myopenid.com/server"/>
+<link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
   <%= page_header %>
   <%= stylesheet_link_tag "/stylesheets/theme/azure", :media => 'all' %>
   <%= stylesheet_link_tag "/stylesheets/user-styles", :media => 'all' %>
@@ -33,7 +36,9 @@
               <%= render_sidebars %>
             <% end %>
 
-            <%= link_to image_tag("powered.gif"),  "http://www.typosphere.org/", {:class => "powered" } %>
+            <p><%= link_to image_tag("powered.gif"),  "http://typo.leetsoft.com/", {:class => "powered"
+ } %></p>
+
             </div>
 
             <br clear="all" />
