@@ -25,6 +25,11 @@ RewriteRule ^([^.]+)$ $1.html [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
 
+# Redirect requests for existing feeds
+Redirect /xml/rss20/feed.xml http://feeds.feedburner.com/DeferredUntilInspirationHits
+Redirect /xml/atom10/feed.xml http://feeds.feedburner.com/DeferredUntilInspirationHits
+Redirect /xml/rss/feed.xml http://feeds.feedburner.com/DeferredUntilInspirationHits
+
 # In case Typo experiences terminal errors
 # Instead of displaying this message you can supply a file here which will be rendered instead
 # 
