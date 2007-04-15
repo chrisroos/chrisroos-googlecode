@@ -133,3 +133,4 @@ if RAILS_ENV != 'test'
 end
 
 FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
+NOTIFICATION_FROM_ADDRESS = 'blog@seagul.co.uk'

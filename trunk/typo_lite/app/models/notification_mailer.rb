@@ -26,7 +26,7 @@ class NotificationMailer < ActionMailer::Base
     @body[:user] = user
     @body[:controller] = controller
     @recipients  = user.email
-    @from        = content.blog.email_from
+    @from        = NOTIFICATION_FROM_ADDRESS
     @headers     = {'X-Mailer' => "Typo #{TYPO_VERSION}"}
     @blog_name   = content.blog.blog_name
   end
