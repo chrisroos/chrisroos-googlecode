@@ -175,7 +175,7 @@ class Article < Content
       self.permalink = self.stripped_title
     end
     if blog && self.allow_comments.nil?
-      self.allow_comments = blog.default_allow_comments
+      self.allow_comments = true
     end
 
     if blog && self.allow_pings.nil?

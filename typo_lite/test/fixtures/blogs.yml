@@ -12,7 +12,6 @@ default:
     default_allow_pings: false
     send_outbound_pings: true
     sp_global: true
-    default_allow_comments: true
     email_from: scott@sigkill.org
     theme: azure
     text_filter: textile
@@ -36,7 +35,6 @@ second:
     default_allow_pings: false
     send_outbound_pings: true
     sp_global: true
-    default_allow_comments: true
     email_from: scott@sigkill.org
     theme: azure
     text_filter: ""

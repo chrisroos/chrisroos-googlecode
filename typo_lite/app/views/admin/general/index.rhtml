@@ -25,11 +25,6 @@
       <input name="setting[canonical_server_url]" id="canonical_server_url" type="text" value="<%= this_blog.canonical_server_url %>" />
     </p>
     <p>
-      <input name="setting[default_allow_comments]" id="default_allow_comments" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_comments%> />
-      <input name="setting[default_allow_comments]" type="hidden" value="0"/>
-        <label for="default_allow_comments">Enable comments by default</label>
-    </p>
-    <p>
       <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_pings%> />
       <input name="setting[default_allow_pings]" type="hidden" value="0"/>
         <label for="default_allow_pings">Enable Trackbacks by default</label>
