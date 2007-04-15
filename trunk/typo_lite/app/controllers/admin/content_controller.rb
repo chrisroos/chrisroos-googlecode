@@ -39,24 +39,6 @@ class Admin::ContentController < Admin::BaseController
     render :layout => false
   end
 
-  def attachment_box_add
-    render :partial => 'admin/content/attachment', :locals => { :attachment_num => params[:id] }
-  end
-
-  def attachment_box_remove
-    render :inline => "<%= javascript_tag 'document.getElementById(\"attachments\").removeChild(document.getElementById(\"attachment_#{params[:id]}\")); return false;' -%>"
-  end
-
-  def attachment_save(attachment)
-    begin
-      Resource.create(:filename => attachment.original_filename,
-                      :mime => attachment.content_type.chomp, :created_at => Time.now).write_to_disk(attachment)
-    rescue => e
-      logger.info(e.message)
-      nil
-    end
-  end
-
   protected
 
   attr_accessor :resources, :resource, :category
