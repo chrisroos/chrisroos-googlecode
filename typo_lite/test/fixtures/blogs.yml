@@ -3,7 +3,6 @@ default:
   id: 1
   settings:
     jabber_password: ""
-    show_extended_on_rss: true
     itunes_owner: ""
     blog_name: test blog
     title_prefix: true
@@ -41,7 +40,6 @@ second:
   id: 2
   settings:
     jabber_password: ""
-    show_extended_on_rss: true
     itunes_owner: ""
     blog_name: second test blog
     title_prefix: false

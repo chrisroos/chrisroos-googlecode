@@ -232,38 +232,10 @@ class XmlControllerTest < Test::Unit::TestCase
     end
   end
 
-  def test_extended_rss20
-    set_extended_on_rss true
-    get :feed, :format => 'rss20', :type => 'feed'
-    assert_response :success
-    assert_match /extended content/, @response.body
-
-    set_extended_on_rss false
-    get :feed, :format => 'rss20', :type => 'feed'
-    assert_response :success
-    assert_no_match /extended content/, @response.body
-  end
-
   def test_atom03
     get :feed, :format => 'atom03', :type => 'feed'
     assert_response :redirect
     assert_redirected_to :format => 'atom'
-  end
-
-  def test_extended_atom10
-    set_extended_on_rss true
-    get :feed, :format => 'atom10', :type => 'feed'
-    assert_response :success
-    assert_match /extended content/, @response.body
-    assert_not_equal 0, get_xpath(%{//summary]}).size, "Extended feed has no summaries"
-    assert_not_equal 0, get_xpath(%{//content]}).size, "Extended feed has no content"
-
-    set_extended_on_rss false
-    get :feed, :format => 'atom10', :type => 'feed'
-    assert_response :success
-    assert_no_match /extended content/, @response.body
-    assert_not_equal 0, get_xpath(%{//summary]}).size, "Non-Extended feed has no summaries"
-    assert_equal 0, get_xpath(%{//content]}).size, "Non-extended feed has content"
   end
 
   def test_xml_atom10
@@ -322,9 +294,5 @@ class XmlControllerTest < Test::Unit::TestCase
 
   def assert_atom10(entries)
     assert_equal 1, get_xpath(%{/feed[@xmlns="http://www.w3.org/2005/Atom" and count(child::entry)=#{entries}]}).size, "Atom 1.0 feed has wrong number of feed/entry nodes"
-  end
-
-  def set_extended_on_rss(value)
-    this_blog.show_extended_on_rss = value
   end
 end

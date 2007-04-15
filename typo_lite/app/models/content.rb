@@ -142,7 +142,7 @@ class Content < ActiveRecord::Base
     populate_html_fields(controller)
 
     if what == :all
-      self[:body_html].to_s + (self[:extended_html].to_s rescue '')
+      self[:body_html].to_s rescue ''
     elsif self.class.html_map(what)
       self[html_map(what)]
     else

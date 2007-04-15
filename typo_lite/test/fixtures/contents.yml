@@ -6,7 +6,6 @@ article1:
   title: Article 1!
   body: body
   body_html: body
-  extended: extended content
   extended_html: extended content
   created_at: <%= (Time.now - 2.days).strftime("%Y-%m-%d") %>
   updated_at: <%= (Time.now - 2.days).strftime("%Y-%m-%d") %>
@@ -28,7 +27,6 @@ article2:
   title: Article 2!
   body: body
   body_html: body
-  extended: extended content
   extended_html: extended content
   created_at: <%= (Time.now - 1.days).strftime("%Y-%m-%d") %>
   updated_at: <%= (Time.now - 1.days).strftime("%Y-%m-%d") %>
@@ -50,7 +48,6 @@ article3:
   title: Article 3!
   body: body
   body_html: body
-  extended: extended content
   extended_html: extended content
   created_at: 2004-06-01 20:00:02
   updated_at: 2004-06-01 20:00:02
@@ -229,7 +226,6 @@ inactive_article:
   title: Inactive Article
   body: body
   body_html: body
-  extended: extended content
   extended_html: extended content
   created_at: 2004-05-01 20:00:02
   updated_at: 2004-05-01 20:00:02
@@ -266,7 +262,6 @@ second_blog_article:
   title: Second Blog Article
   body: body
   body_html: body
-  extended: extended content
   extended_html: extended content
   allow_comments: true
   allow_pings: true
@@ -287,7 +282,6 @@ search_target:
   title: Find me!
   body: search target
   body_html: body
-  extended: extended content
   extended_html: extended content
   allow_comments: true
   allow_pings: true
@@ -307,7 +301,6 @@ xmltest:
   id: 18
   title: Associations aren't :dependent => true anymore
   body: originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
-  extended: extended content
   extended_html: extended content
   allow_comments: true
   allow_pings: true

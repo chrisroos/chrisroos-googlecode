@@ -1,10 +1,6 @@
 xm.item do
   xm.title post_title(item)
-  if this_blog.show_extended_on_rss
-    content = item.full_html
-  else
-    content = item.body_html
-  end
+  content = item.body_html
   xm.description content
   xm.pubDate pub_date(item.published_at)
   xm.guid "urn:uuid:#{item.guid}", "isPermaLink" => "false"
