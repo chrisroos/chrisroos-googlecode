@@ -17,7 +17,6 @@ Rails::Initializer.run do |config|
     vendor/akismet
     vendor/redcloth/lib
     vendor/syntax/lib
-    vendor/sparklines/lib
     vendor/uuidtools/lib
     vendor/rails/railties
     vendor/rails/railties/lib

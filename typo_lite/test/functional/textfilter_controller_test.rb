@@ -36,14 +36,6 @@ class TextfilterControllerTest < Test::Unit::TestCase
     @whiteboard = nil
   end
 
-  def sparklines_available
-    begin
-      Plugins::Textfilters::SparklineController
-    rescue NameError
-      false
-    end
-  end
-
   def test_unknown
     text = filter_text('*foo*',[:unknowndoesnotexist])
     assert_equal '*foo*', text
