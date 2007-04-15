@@ -53,7 +53,6 @@ class Blog < ActiveRecord::Base
   setting :theme,                      :string, 'azure'
   setting :ping_urls,                  :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
-  setting :email_from,                 :string, 'typo@example.com'
 
   def find_already_published(content_type)
     self.send(content_type).find_already_published

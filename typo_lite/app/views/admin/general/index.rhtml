@@ -72,17 +72,6 @@
       <p class="r"><%= save("Save My Settings") %></p>
     </div>
 
-    <div id="notification" class="set">
-    <h3>Notification</h3>
-    <p>Typo can notify you when new articles or comments are posted</p>
-    <p>
-      <label for="email_from">Email address to use in From: field when Typo sends mail:</label>
-      <input name="setting[email_from]" size="20" id="email_from" type="text" value="<%= this_blog.email_from %>" />
-    </p>
-      <p class="r"><%= save("Save My Settings") %></p>
-    </div>
-
-
     <div id="spam" class="set">
         <h3>Spam Protection</h3>
         <p>Enabling spam protection will make typo compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots.</p>
