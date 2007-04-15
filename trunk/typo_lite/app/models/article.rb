@@ -179,7 +179,7 @@ class Article < Content
     end
 
     if blog && self.allow_pings.nil?
-      self.allow_pings = blog.default_allow_pings
+      self.allow_pings = true
     end
 
     true

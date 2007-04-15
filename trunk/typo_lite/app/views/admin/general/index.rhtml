@@ -25,11 +25,6 @@
       <input name="setting[canonical_server_url]" id="canonical_server_url" type="text" value="<%= this_blog.canonical_server_url %>" />
     </p>
     <p>
-      <input name="setting[default_allow_pings]" id="default_allow_pings" type="checkbox" value="1" <%= 'checked="checked"' if this_blog.default_allow_pings%> />
-      <input name="setting[default_allow_pings]" type="hidden" value="0"/>
-        <label for="default_allow_pings">Enable Trackbacks by default</label>
-    </p>
-    <p>
       <label for="limit_article_display">Display </label>
       <input name="setting[limit_article_display]" size="4" id="limit_article_display" type="text" value="<%= this_blog.limit_article_display %>" /> articles on my homepage by default.
     </p>

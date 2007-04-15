@@ -9,7 +9,6 @@ default:
     ping_urls: |-
       http://ping.example.com/ping
       http://alsoping.example.com/rpc/ping
-    default_allow_pings: false
     send_outbound_pings: true
     sp_global: true
     email_from: scott@sigkill.org
@@ -32,7 +31,6 @@ second:
       http://rpc.technorati.com/rpc/ping
       http://ping.blo.gs/
       http://rpc.weblogs.com/RPC2
-    default_allow_pings: false
     send_outbound_pings: true
     sp_global: true
     email_from: scott@sigkill.org

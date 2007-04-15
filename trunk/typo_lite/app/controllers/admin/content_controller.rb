@@ -90,7 +90,7 @@ class Admin::ContentController < Admin::BaseController
                when 'new'
                  art = this_blog.articles.build
                  art.allow_comments = true
-                 art.allow_pings    = this_blog.default_allow_pings
+                 art.allow_pings    = true
                  art.published      = true
                  art
                when 'edit'
