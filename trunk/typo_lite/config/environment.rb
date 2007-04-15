@@ -14,7 +14,6 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/app/services )
   config.load_paths += %W(
-    vendor/rubypants
     vendor/akismet
     vendor/redcloth/lib
     vendor/syntax/lib
@@ -70,7 +69,6 @@ end
 
 # Load included libraries.
 require 'redcloth'
-require 'rubypants'
 require 'uuidtools'
 
 require_dependency 'spam_protection'
