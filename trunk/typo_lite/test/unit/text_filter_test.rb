@@ -33,7 +33,6 @@ class TextFilterTest < Test::Unit::TestCase
   def test_available
     filters = TextFilter.available_filters
 
-    assert filters.include?(Plugins::Textfilters::SmartypantsController)
     assert filters.include?(Plugins::Textfilters::HtmlfilterController)
     assert filters.include?(Plugins::Textfilters::TextileController)
 
@@ -66,8 +65,6 @@ class TextFilterTest < Test::Unit::TestCase
 
     assert types['macropre'].include?(Plugins::Textfilters::CodeController)
 
-    assert types['postprocess'].include?(Plugins::Textfilters::SmartypantsController)
-
     assert types['other'].include?(Plugins::Textfilters::HtmlfilterController)
     assert types['other'].include?(Plugins::Textfilters::MacroPreController)
     assert types['other'].include?(Plugins::Textfilters::MacroPostController)
@@ -80,8 +77,6 @@ class TextFilterTest < Test::Unit::TestCase
   def test_map
     map = TextFilter.filters_map
 
-    assert_equal Plugins::Textfilters::SmartypantsController,
-          map['smartypants']
     assert_equal Plugins::Textfilters::HtmlfilterController,
           map['htmlfilter']
     assert_equal Plugins::Textfilters::TextileController,
