@@ -15,7 +15,6 @@ default:
     theme: azure
     text_filter: textile
     sp_article_auto_close: 300
-    link_to_author: false
     comment_text_filter: textile
     sp_allow_non_ajax_comments: true
     canonical_server_url: http://myblog.net/
@@ -37,6 +36,5 @@ second:
     theme: azure
     text_filter: ""
     sp_article_auto_close: 0
-    link_to_author: false
     comment_text_filter: ""
     sp_allow_non_ajax_comments: true
