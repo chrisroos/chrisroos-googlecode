@@ -50,7 +50,6 @@ class Blog < ActiveRecord::Base
   setting :comment_text_filter,        :string, ''
   setting :limit_article_display,      :integer, 10
   setting :limit_rss_display,          :integer, 10
-  setting :default_allow_pings,        :boolean, false
   setting :link_to_author,             :boolean, false
   setting :theme,                      :string, 'azure'
   setting :global_pings_disable,       :boolean, false

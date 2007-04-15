@@ -11,10 +11,6 @@ class BlogTest < Test::Unit::TestCase
     assert_equal "test blog", @blog.blog_name
   end
 
-  def test_default_allow_pings
-    assert ! @blog.default_allow_pings?
-  end
-
   def test_setting_booleans_with_integers
     @blog.sp_global = 1
     assert  @blog.sp_global
