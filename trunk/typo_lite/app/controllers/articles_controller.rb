@@ -153,10 +153,6 @@ class ArticlesController < ContentController
     end
   end
 
-  def markup_help
-    render :text => TextFilter.find(params[:id]).commenthelp
-  end
-
   private
 
   def add_to_cookies(name, value, path=nil, expires=nil)

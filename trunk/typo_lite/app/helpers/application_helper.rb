@@ -99,11 +99,4 @@ module ApplicationHelper
     text.strip_html
   end
 
-  def markup_help_popup(markup, text)
-    if markup and markup.commenthelp.size > 1
-      "<a href=\"#{url_for :controller => '/articles', :action => 'markup_help', :id => markup.id}\" onClick=\"return popup(this, 'Typo Markup Help')\">#{text}</a>"
-    else
-      ''
-    end
-  end
 end
