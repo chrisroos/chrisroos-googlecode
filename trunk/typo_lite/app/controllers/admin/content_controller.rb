@@ -89,7 +89,7 @@ class Admin::ContentController < Admin::BaseController
     @article = case params[:action]
                when 'new'
                  art = this_blog.articles.build
-                 art.allow_comments = this_blog.default_allow_comments
+                 art.allow_comments = true
                  art.allow_pings    = this_blog.default_allow_pings
                  art.published      = true
                  art
