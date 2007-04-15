@@ -13,8 +13,3 @@
     <p class="meta"><label>Last updated:</label> <%=h @article.updated_at.to_formatted_s(:long_weekday) %></p>
     <p class="meta"><label>Published:</label> <%=h (@article.published? ? "Yes" : "No") %></p>
   </div>
-
-  <h3>Attachments</h3>
-  <div id="resources" class="form">
-    <%= render :partial => 'show_resources' -%>
-  </div>
