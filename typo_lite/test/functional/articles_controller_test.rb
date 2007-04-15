@@ -163,11 +163,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
                  emails.collect { |each| each.to[0] }.sort
   end
 
-  def test_comment_spam_markdown_smarty
-    this_blog.comment_text_filter = "markdown smartypants"
-    test_comment_spam1
-  end
-
   def comment_template_test(expected_html, source_text,
                             art_id=1, author='bob', email='foo', args={})
     post :comment, {
@@ -405,10 +400,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://test.host/xml/rss20/feed.xml'}
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom/feed.xml'}
+        :href => 'http://feeds.feedburner.com/DeferredUntilInspirationHits'}
   end
 
 
@@ -417,10 +409,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://test.host/xml/rss20/article/1/feed.xml'}
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom/article/1/feed.xml'}
+        :href => 'http://feeds.feedburner.com/DeferredUntilInspirationHits'}
   end
 
   def test_autodiscovery_category
@@ -428,10 +417,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://test.host/xml/rss20/category/hardware/feed.xml'}
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom/category/hardware/feed.xml'}
+        :href => 'http://feeds.feedburner.com/DeferredUntilInspirationHits'}
   end
 
   def test_autodiscovery_tag
@@ -439,10 +425,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://test.host/xml/rss20/tag/hardware/feed.xml'}
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/atom+xml', :title => 'Atom',
-        :href => 'http://test.host/xml/atom/tag/hardware/feed.xml'}
+        :href => 'http://feeds.feedburner.com/DeferredUntilInspirationHits'}
   end
 
   def test_disabled_ajax_comments
