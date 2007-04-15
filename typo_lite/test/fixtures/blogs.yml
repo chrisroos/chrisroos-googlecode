@@ -15,7 +15,6 @@ default:
       http://ping.example.com/ping
       http://alsoping.example.com/rpc/ping
     itunes_name: ""
-    geourl_location: ""
     default_allow_pings: false
     itunes_author: ""
     send_outbound_pings: true
@@ -51,7 +50,6 @@ second:
       http://ping.blo.gs/
       http://rpc.weblogs.com/RPC2
     itunes_name: ""
-    geourl_location: ""
     default_allow_pings: false
     itunes_author: ""
     send_outbound_pings: true
