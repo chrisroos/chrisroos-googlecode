@@ -292,27 +292,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert ! assigns(:articles).include?(@article4), "Unpublished article displayed"
   end
 
-  def test_gravatar
-    assert ! this_blog.use_gravatar
-    get :read, :id => 1
-    assert_response :success
-    assert_template "read"
-    assert_no_tag :tag => "img",
-      :attributes => { :class => "gravatar" }
-
-    # Switch gravatar integration to on
-    this_blog.use_gravatar = true
-    assert this_blog.use_gravatar
-    get :read, :id => 1
-    assert_response :success
-    assert_template "read"
-    assert_tag :tag => "img",
-      :attributes => {
-        :class => "gravatar",
-        :src => "http://www.gravatar.com/avatar.php?gravatar_id=740618d2fe0450ec244d8b86ac1fe3f8&amp;size=60"
-      }
-  end
-
   def test_comment_preview
     get :comment_preview
     assert_response :success
