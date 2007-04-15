@@ -3,7 +3,6 @@ default:
   id: 1
   settings:
     blog_name: test blog
-    title_prefix: true
     limit_article_display: 10
     sp_url_limit: 3
     limit_rss_display: 10
@@ -27,7 +26,6 @@ second:
   id: 2
   settings:
     blog_name: second test blog
-    title_prefix: false
     limit_article_display: 10
     sp_url_limit: 0
     limit_rss_display: 10
