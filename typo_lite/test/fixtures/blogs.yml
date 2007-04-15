@@ -10,7 +10,6 @@ default:
     sp_url_limit: 3
     use_gravatar: false
     itunes_email: ""
-    blog_subtitle: test subtitle
     limit_rss_display: 10
     itunes_explicit: false
     ping_urls: |-
@@ -47,7 +46,6 @@ second:
     sp_url_limit: 0
     use_gravatar: false
     itunes_email: ""
-    blog_subtitle: ""
     limit_rss_display: 10
     itunes_explicit: false
     ping_urls: |-
