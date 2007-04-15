@@ -332,13 +332,6 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_not_xpath('/feed/entry[title="Article 3!"]/link[@rel="enclosure"]')
   end
 
-  def test_itunes
-    get :itunes
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :todo
-  end
-
   # TODO(laird): make this more robust
   def test_sitemap
     get :feed, :format => 'googlesitemap', :type => 'sitemap'
