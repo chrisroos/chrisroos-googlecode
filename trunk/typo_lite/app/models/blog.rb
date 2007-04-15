@@ -51,7 +51,6 @@ class Blog < ActiveRecord::Base
   setting :limit_article_display,      :integer, 10
   setting :limit_rss_display,          :integer, 10
   setting :theme,                      :string, 'azure'
-  setting :global_pings_disable,       :boolean, false
   setting :ping_urls,                  :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'typo@example.com'
