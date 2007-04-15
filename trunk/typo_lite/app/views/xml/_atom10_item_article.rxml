@@ -3,7 +3,6 @@ xm.entry do
     name = item.user.name rescue item.author
     email = item.user.email rescue nil
     xm.name name
-    xm.email email if this_blog.link_to_author unless email.blank?
   end
   xm.id "urn:uuid:#{item.guid}"
 
