@@ -49,11 +49,6 @@ class TextfilterControllerTest < Test::Unit::TestCase
     assert_equal '*foo*', text
   end
 
-  def test_smartypants
-    text = filter_text('"foo"',[:smartypants])
-    assert_equal '&#8220;foo&#8221;', text
-  end
-
   def test_filterchain
     assert_equal '<p>foo</p>',
       filter_text('<p>foo</p>',[],{},false)
