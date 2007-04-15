@@ -70,10 +70,6 @@ class Blog < ActiveRecord::Base
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'typo@example.com'
 
-  # Jabber config
-  setting :jabber_address,             :string, ''
-  setting :jabber_password,            :string, ''
-
   def find_already_published(content_type)
     self.send(content_type).find_already_published
   end

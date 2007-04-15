@@ -138,14 +138,6 @@ class Article < Content
     end
   end
 
-  def notify_user_via_jabber(controller, user)
-    if user.notify_via_jabber?
-      JabberNotify.send_message(user, "New post",
-                                "A new message was posted to #{blog.blog_name}",
-                                body_html)
-    end
-  end
-
   def comments_closed?
     if self.allow_comments?
       if !self.blog.sp_article_auto_close.zero? and self.created_at.to_i < self.blog.sp_article_auto_close.days.ago.to_i
