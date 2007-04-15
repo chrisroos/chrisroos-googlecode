@@ -17,7 +17,7 @@ class Content
 end
 
 class ArticlesControllerTest < Test::Unit::TestCase
-  fixtures :contents, :categories, :blogs, :users, :articles_categories, :text_filters, :articles_tags, :tags
+  fixtures :contents, :blogs, :users, :text_filters, :articles_tags, :tags
   include ArticlesHelper
 
   def setup

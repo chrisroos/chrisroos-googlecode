@@ -30,7 +30,7 @@ end
 class XmlController; def rescue_action(e) raise e end; end
 
 class XmlControllerTest < Test::Unit::TestCase
-  fixtures :contents, :categories, :articles_categories, :tags,
+  fixtures :contents, :tags,
     :articles_tags, :users, :blogs, :resources
 
   def setup
@@ -117,15 +117,6 @@ class XmlControllerTest < Test::Unit::TestCase
     assert_rss20(2)
   end
 
-  def test_feed_rss20_category
-    get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body, :todo
-
-    assert_rss20(3)
-  end
-
   def test_feed_rss20_tag
     get :feed, :format => 'rss20', :type => 'tag', :id => 'foo'
     assert_response :success
@@ -187,18 +178,6 @@ class XmlControllerTest < Test::Unit::TestCase
                  assigns(:items))
 
     assert_atom10(2)
-  end
-
-  def test_feed_atom10_category
-    get :feed, :format => 'atom10', :type => 'category', :id => 'personal'
-    assert_response :success
-    assert_xml @response.body
-    assert_feedvalidator @response.body
-
-    assert_equal(assigns(:items).sort { |a, b| b.created_at <=> a.created_at },
-                 assigns(:items))
-
-    assert_atom10(3)
   end
 
   def test_feed_atom10_tag
@@ -293,9 +272,6 @@ class XmlControllerTest < Test::Unit::TestCase
 
     # titles are escaped html
     assert_xpath('//entry/title[text()="Associations aren\'t :dependent =&amp;gt; true anymore" and @type="html"]')
-
-    # categories are well formed
-    assert_match /this &amp; that/, @response.body
   end
 
   def test_enclosure_rss20

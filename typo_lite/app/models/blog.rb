@@ -22,7 +22,7 @@ class Blog < ActiveRecord::Base
   has_many :pages, :order => "id DESC"
   has_many(:published_articles, :class_name => "Article",
            :conditions => ["published = ?", true],
-           :include => [:categories, :tags],
+           :include => [:tags],
            :order => "contents.created_at DESC") do
     def before(date = Time.now)
       find(:all, :conditions => ["contents.created_at < ?", date])

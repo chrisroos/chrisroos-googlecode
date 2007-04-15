@@ -70,18 +70,10 @@ module ArticlesHelper
 
   def article_links(article)
     returning code = [] do
-      code << category_links(article)   unless article.categories.empty?
       code << tag_links(article)        unless article.tags.empty?
       code << comments_link(article)    if article.allow_comments?
       code << trackbacks_link(article)  if article.allow_pings?
     end.join("&nbsp;<strong>|</strong>&nbsp;")
-  end
-
-  def category_links(article)
-    "Posted in " + article.categories.collect { |c| link_to h(c.name),
-    { :controller => "/articles", :action => "category", :id => c.permalink },
-      :rel => "tag"
-    }.join(", ")
   end
 
   def tag_links(article)
@@ -155,8 +147,6 @@ module ArticlesHelper
     case
     when grouping_class == Tag
       %{<ul id="taglist" class="tags">}
-    when grouping_class == Category
-      %{<ul class="categorylist">}
     else
       '<ul>'
     end

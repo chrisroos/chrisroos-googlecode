@@ -15,12 +15,6 @@
   <br/><%= markup_help_popup @article.text_filter, "Markup Help" %>
 </p>
 <p>
-  <label for="categories">Categories:</label><br />
-  <select id="categories" name="categories[]" multiple="multiple" size="10" style="width:250px;">
-  <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
-  </select>
-</p>
-<p>
   <label for="article_keywords">Tags:</label><br/>
   <%= text_field 'article', 'keywords'  %>
 </p>

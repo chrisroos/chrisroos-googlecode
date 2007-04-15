@@ -14,9 +14,6 @@
   <div class="archivepost">
   <%= article.published_at.mday %> -
   <%= article_link h(article.title), article %>
-  <% if !article.categories.empty? %> posted in
-  <%= article.categories.collect {|c| link_to c.name, :controller=>"articles", :action=>"category", :id=>c.name }.join(", ") -%>
-  <% end -%>
  </div>
 <% end
   end -%>

@@ -4,7 +4,7 @@ require 'http_mock'
 
 class ObserverTest < Test::Unit::TestCase
   fixtures :contents, :blogs, :articles_tags, :tags,
-           :resources, :categories, :articles_categories
+           :resources
 
   def reset_observer
     @informant = nil
