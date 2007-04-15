@@ -55,7 +55,6 @@ module ArticlesHelper
     (
     <<-HTML
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  #{ meta_tag 'ICBM', this_blog.geourl_location unless this_blog.geourl_location.empty? }
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="#{ server_url_for :controller => 'xml', :action => 'rsd' }" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
   #{ javascript_include_tag "cookies" }
