@@ -39,29 +39,4 @@ class Admin::ArticlePreviewTest < Test::Unit::TestCase
     assert_no_new_articles
   end
 
-  def test_only_extended
-    post :preview, :article => { :body => 'An extension' }
-
-    assert_tag :tag => 'p',
-      :child => 'An extension',
-      :after => { :tag => 'h4', :content => nil }
-
-    assert_no_new_articles
-  end
-
-  def test_full_post
-    post :preview, :article => {
-      :title => 'A title', :body => 'A body',
-      :extended => 'An extension' }
-
-    assert_tag \
-      :tag => 'p',
-      :child => 'An extension',
-      :after => {:tag => 'p', :child => 'A body',
-        :after => { :tag => 'h4', :content => nil }}
-
-    assert_no_new_articles
-  end
-
-
 end

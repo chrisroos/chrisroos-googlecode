@@ -4,7 +4,7 @@ require 'net/http'
 class Article < Content
   include TypoGuid
 
-  content_fields :body, :extended
+  content_fields :body
 
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
@@ -27,7 +27,7 @@ class Article < Content
 
   def html_urls
     urls = Array.new
-    (body_html.to_s + extended_html.to_s).gsub(/<a [^>]*>/) do |tag|
+    (body_html.to_s).gsub(/<a [^>]*>/) do |tag|
       if(tag =~ /href="([^"]+)"/)
         urls.push($1)
       end
@@ -115,7 +115,7 @@ class Article < Content
     if !query.to_s.strip.empty?
       tokens = query.split.collect {|c| "%#{c.downcase}%"}
       find_published(:all,
-                     :conditions => [(["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "), *tokens.collect { |token| [token] * 3 }.flatten])
+                     :conditions => [(["(LOWER(body) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "), *tokens.collect { |token| [token] * 2 }.flatten])
     else
       []
     end

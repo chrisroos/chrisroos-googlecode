@@ -32,5 +32,4 @@ xm.entry do
     end
   end
   xm.summary item.body_html, "type"=>"html"
-  xm.content item.full_html, "type"=>"html" if this_blog.show_extended_on_rss
 end

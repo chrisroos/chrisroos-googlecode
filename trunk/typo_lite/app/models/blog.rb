@@ -66,7 +66,6 @@ class Blog < ActiveRecord::Base
   setting :default_allow_pings,        :boolean, false
   setting :default_allow_comments,     :boolean, true
   setting :link_to_author,             :boolean, false
-  setting :show_extended_on_rss,       :boolean, true
   setting :theme,                      :string, 'azure'
   setting :use_gravatar,               :boolean, false
   setting :global_pings_disable,       :boolean, false

@@ -106,16 +106,13 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_create_filtered
     body = "body via *textile*"
-    extended="*foo*"
-    post :new, 'article' => { :title => "another test", :body => body, :extended => extended}
+    post :new, 'article' => { :title => "another test", :body => body }
     assert_redirected_to :action => 'show'
 
     new_article = Article.find(:first, :order => "created_at DESC")
     assert_equal body, new_article.body
-    assert_equal extended, new_article.extended
     assert_equal "textile", new_article.text_filter.name
     assert_equal "<p>body via <strong>textile</strong></p>", new_article.html(@controller, :body)
-    assert_equal "<p><strong>foo</strong></p>", new_article.html(@controller, :extended)
   end
 
   def test_edit
