@@ -63,41 +63,10 @@ class Admin::PagesControllerTest < Test::Unit::TestCase
     #assert_equal "Page was successfully created.", flash[:notice]
   end
 
-  def test_edit
-    get :edit, :id => contents(:markdown_page).id
-    assert_response :success
-    assert_template "edit"
-    assert_not_nil assigns(:page)
-
-    assert_equal contents(:markdown_page), assigns(:page)
-
-    post :edit, :id => contents(:markdown_page).id, :page => { :name => "markdown-page", :title => "Markdown Page",
-        :body => "Adding a [link](http://www.typosphere.org/) here" }
-
-
-    assert_equal "", contents(:markdown_page).reload.body_html.to_s
-
-    assert_redirected_to :action => "show", :id => contents(:markdown_page).id
-
-    # XXX: The flash is currently being made available improperly to tests (scoop)
-    #assert_equal "Page was successfully updated.", flash[:notice]
-  end
-
   def test_destroy
     post :destroy, :id => contents(:another_page).id
     assert_redirected_to :action => "list"
     assert_raise(ActiveRecord::RecordNotFound) { Page.find(contents(:another_page).id) }
   end
-
-  def test_preview
-    get :preview, :page => { :name => "preview-page", :title => "Preview Page",
-      :text_filter_id => text_filters(:markdown_filter).id,
-      :body => "testing the *preview*" }
-    assert_response :success
-    assert_not_nil assigns(:page)
-    assert_template "preview"
-
-    assert_dom_equal "<div><p>testing the <em>preview</em></p></div>\n",
-                     @response.body
-  end
+  
 end

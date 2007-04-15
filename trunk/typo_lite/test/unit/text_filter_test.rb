@@ -33,12 +33,9 @@ class TextFilterTest < Test::Unit::TestCase
   def test_available
     filters = TextFilter.available_filters
 
-    assert filters.include?(Plugins::Textfilters::MarkdownController)
     assert filters.include?(Plugins::Textfilters::SmartypantsController)
     assert filters.include?(Plugins::Textfilters::HtmlfilterController)
     assert filters.include?(Plugins::Textfilters::TextileController)
-    assert filters.include?(Plugins::Textfilters::AmazonController)
-    assert filters.include?(Plugins::Textfilters::FlickrController)
 
     assert !filters.include?(TextFilterPlugin::Markup)
     assert !filters.include?(TextFilterPlugin::Macro)
@@ -65,15 +62,11 @@ class TextFilterTest < Test::Unit::TestCase
     assert types['postprocess']
     assert types['other']
 
-    assert types['markup'].include?(Plugins::Textfilters::MarkdownController)
     assert types['markup'].include?(Plugins::Textfilters::TextileController)
-
-    assert types['macropost'].include?(Plugins::Textfilters::FlickrController)
 
     assert types['macropre'].include?(Plugins::Textfilters::CodeController)
 
     assert types['postprocess'].include?(Plugins::Textfilters::SmartypantsController)
-    assert types['postprocess'].include?(Plugins::Textfilters::AmazonController)
 
     assert types['other'].include?(Plugins::Textfilters::HtmlfilterController)
     assert types['other'].include?(Plugins::Textfilters::MacroPreController)
@@ -87,40 +80,12 @@ class TextFilterTest < Test::Unit::TestCase
   def test_map
     map = TextFilter.filters_map
 
-    assert_equal Plugins::Textfilters::MarkdownController,
-          map['markdown']
     assert_equal Plugins::Textfilters::SmartypantsController,
           map['smartypants']
     assert_equal Plugins::Textfilters::HtmlfilterController,
           map['htmlfilter']
     assert_equal Plugins::Textfilters::TextileController,
           map['textile']
-    assert_equal Plugins::Textfilters::AmazonController,
-          map['amazon']
-    assert_equal Plugins::Textfilters::FlickrController,
-          map['flickr']
   end
-
-  def test_help
-    filter = TextFilter.find_by_name('markdown')
-    help = filter.help.to_s
-
-    assert help
-    assert help.size > 100
-    assert help =~ /Flickr/
-    assert help =~ /Markdown/
-    assert help =~ /daringfireball/
-    assert help =~ /<em>/
-  end
-
-  def test_commenthelp
-    filter = TextFilter.find_by_name('markdown')
-    help = filter.commenthelp.to_s
-
-    assert help
-    assert help.size>100
-    assert help !~ /Flickr/
-    assert help !~ /<h.>/
-    assert help =~ /<em>/
-  end
+  
 end
