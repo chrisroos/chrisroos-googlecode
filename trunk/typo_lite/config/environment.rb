@@ -17,12 +17,9 @@ Rails::Initializer.run do |config|
     vendor/rubypants
     vendor/akismet
     vendor/redcloth/lib
-    vendor/bluecloth/lib
-    vendor/flickr
     vendor/syntax/lib
     vendor/sparklines/lib
     vendor/uuidtools/lib
-    vendor/jabber4r/lib
     vendor/rails/railties
     vendor/rails/railties/lib
     vendor/rails/actionpack/lib
@@ -73,9 +70,7 @@ end
 
 # Load included libraries.
 require 'redcloth'
-require 'bluecloth'
 require 'rubypants'
-require 'flickr'
 require 'uuidtools'
 
 require_dependency 'spam_protection'
