@@ -242,7 +242,6 @@ class Content < ActiveRecord::Base
 
   def send_notification_to_user(controller, user)
     notify_user_via_email(controller, user)
-    notify_user_via_jabber(controller, user)
   end
 
   def send_notifications(controller = nil)

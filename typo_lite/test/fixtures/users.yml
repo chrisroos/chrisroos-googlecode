@@ -7,7 +7,6 @@ tobi:
   name: Tobi
   email: tobi@example.com
   notify_via_email: true
-  notify_via_jabber: false
   notify_on_new_articles: false
   notify_on_comments: true
 
@@ -17,8 +16,6 @@ bob:
   password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
   name: Bob
   email: bob@example.com
-  notify_via_email: false
-  notify_via_jabber: false
   notify_on_new_articles: true
   notify_on_comments: false
 
@@ -29,7 +26,6 @@ existingbob:
   name: Also Bob
   email: alsobob@example.com
   notify_via_email: true
-  notify_via_jabber: false
   notify_on_new_articles: false
   notify_on_comments: false
   
@@ -40,7 +36,6 @@ longbob:
   name: More Bob
   email: longbob@example.com
   notify_via_email: false
-  notify_via_jabber: false
   notify_on_new_articles: false
   notify_on_comments: false
 
@@ -51,6 +46,5 @@ randomuser:
   name: Random User
   email: randomuser@example.com
   notify_via_email: true
-  notify_via_jabber: false
   notify_on_new_articles: true
   notify_on_comments: true

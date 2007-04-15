@@ -13,10 +13,6 @@
 <%= text_field 'user', 'email'  %>
 </p>
 <p>
-<label for="user_jabber">Jabber:</label> <small>(this can be blank)</small><br/>
-<%= text_field 'user', 'jabber'  %>
-</p>
-<p>
   <label for="user_password">Password:</label><br />
   <%= password_field_tag 'user[password]', '', :id => 'user_password', :size => 30 %>
 </p>
@@ -28,11 +24,6 @@
 <p>
   <label for="user_notify_via_email">Send notification messages via email?</label><br />
   <%= check_box 'user', 'notify_via_email'  %>
-</p>
-
-<p>
-  <label for="user_notify_via_jabber">Send notification messages via jabber?</label><br />
-  <%= check_box 'user', 'notify_via_jabber'  %>
 </p>
 
 <p>
