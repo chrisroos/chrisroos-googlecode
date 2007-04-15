@@ -77,10 +77,6 @@ class ArticlesController < ContentController
     render_grouping(User)
   end
 
-  def category
-    render_grouping(Category)
-  end
-
   def tag
     render_grouping(Tag)
   end

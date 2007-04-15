@@ -55,12 +55,6 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'articles', :action => 'permalink',
     :year => /\d{4}/, :day => /\d{1,2}/, :month => /\d{1,2}/
 
-  map.connect 'articles/category/:id',
-    :controller => 'articles', :action => 'category'
-  map.connect 'articles/category/:id/page/:page',
-    :controller => 'articles', :action => 'category',
-    :page => /\d+/
-
   map.connect 'articles/tag/:id',
     :controller => 'articles', :action => 'tag'
   map.connect 'articles/tag/:id/page/:page',

@@ -31,33 +31,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   end
 
-  # Category subpages
-  def test_category
-    get :category, :id => "software"
-
-    assert_response :success
-    assert_rendered_file "index"
-    assert_tag :tag => 'title', :content => 'test blog - category software'
-
-    # Check it works when permalink != name. Ticket #736
-    get :category, :id => "weird-permalink"
-
-    assert_response :success
-    assert_rendered_file "index"
-  end
-
-  def test_empty_category
-    get :category, :id => "life-on-mars"
-    assert_response :success
-    assert_rendered_file "error"
-  end
-
-  def test_nonexistent_category
-    get :category, :id => 'nonexistent-category'
-    assert_response :success
-    assert_rendered_file "error"
-  end
-
   def test_tag
     get :tag, :id => "foo"
 
@@ -406,14 +379,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
 
   def test_autodiscovery_article
     get :read, :id => 1
-    assert_response :success
-    assert_tag :tag => 'link', :attributes =>
-      { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
-        :href => 'http://feeds.feedburner.com/DeferredUntilInspirationHits'}
-  end
-
-  def test_autodiscovery_category
-    get :category, :id => 'hardware'
     assert_response :success
     assert_tag :tag => 'link', :attributes =>
       { :rel => 'alternate', :type => 'application/rss+xml', :title => 'RSS',
