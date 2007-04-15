@@ -7,7 +7,7 @@ require 'http_mock'
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ContentControllerTest < Test::Unit::TestCase
-  fixtures :contents, :users, :resources, :text_filters,
+  fixtures :contents, :users, :text_filters,
            :blogs
 
   def setup
@@ -34,7 +34,6 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_template_has 'article'
     assert_valid_record 'article'
     assert_not_nil assigns(:article)
-    assert_not_nil assigns(:resources)
   end
 
   def test_new

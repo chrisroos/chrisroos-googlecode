@@ -84,7 +84,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   %w{blacklist cache comments content feedback general pages
-     resources sidebar textfilters themes trackbacks users}.each do |i|
+      sidebar textfilters themes trackbacks users}.each do |i|
     map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end

@@ -7,7 +7,7 @@ require 'trackback'
 class Admin::FeedbackController; def rescue_action(e) raise e end; end
 
 class Admin::FeedbackControllerTest < Test::Unit::TestCase
-  fixtures :contents, :users, :resources, :text_filters,
+  fixtures :contents, :users, :text_filters,
            :blogs
 
   def setup
