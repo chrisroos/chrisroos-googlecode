@@ -88,14 +88,6 @@ class XmlController < ContentController
     @link = article_url(article, false)
   end
 
-  def prep_category
-    category = Category.find_by_permalink(params[:id])
-    fetch_items(category.articles)
-    @feed_title << ": Category #{category.name}"
-    @link = url_for({:controller => "articles", :action => "category", :id => category.permalink},
-                    {:only_path => false})
-  end
-
   def prep_tag
     tag = Tag.find_by_name(params[:id])
     fetch_items(tag.articles)
@@ -107,7 +99,6 @@ class XmlController < ContentController
   def prep_sitemap
     fetch_items(:articles, 'created_at DESC', 1000)
     fetch_items(:pages, 'created_at DESC', 1000)
-    @items += Category.find_all_with_article_counters(1000)
     @items += Tag.find_all_with_article_counters(1000)
   end
 

@@ -9,13 +9,11 @@ class Admin::ContentController < Admin::BaseController
       paginate(:article, :per_page => 15, :order_by => "created_at DESC",
                :parameter => 'id')
     end
-    setup_categories
     @article = this_blog.articles.build(params[:article])
   end
 
   def show
     @article = Article.find(params[:id])
-    setup_categories
     @resources = Resource.find(:all, :order => 'created_at DESC')
   end
 
@@ -61,7 +59,7 @@ class Admin::ContentController < Admin::BaseController
 
   protected
 
-  attr_accessor :resources, :categories, :resource, :category
+  attr_accessor :resources, :resource, :category
 
   def do_add_or_remove_fu
     attrib, action = params[:action].split('_')
@@ -80,13 +78,10 @@ class Admin::ContentController < Admin::BaseController
     params[:article] ||= {}
 
     @article.attributes = (params[:article])
-    setup_categories
-    @selected = @article.categories.collect { |c| c.id }
     if request.post?
       set_article_author
       save_attachments
       if @article.save
-        set_article_categories
         set_the_flash
         redirect_to :action => 'show', :id => @article.id
       end
@@ -118,12 +113,6 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  def set_article_categories
-    @article.categories.clear
-    @article.categories = Category.find(params[:categories]) if params[:categories]
-    @selected = params[:categories] || []
-  end
-
   def get_or_build_article
     @article = case params[:action]
                when 'new'
@@ -137,10 +126,6 @@ class Admin::ContentController < Admin::BaseController
                else
                  raise "Don't know how to get article for action: #{params[:action]}"
                end
-  end
-
-  def setup_categories
-    @categories = Category.find(:all, :order => 'UPPER(name)')
   end
 
   def setup_resources

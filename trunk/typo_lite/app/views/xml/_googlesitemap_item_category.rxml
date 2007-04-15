@@ -1,4 +1,0 @@
-xm.item do
-  xm.link category_link(item)
-  xm.lastmod collection_lastmod(item)
-end

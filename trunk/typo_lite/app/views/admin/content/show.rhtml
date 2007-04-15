@@ -14,11 +14,6 @@
     <p class="meta"><label>Published:</label> <%=h (@article.published? ? "Yes" : "No") %></p>
   </div>
 
-  <h3>Categories</h3>
-  <div id="categories" class="form">
-    <%= render :partial => 'show_categories' -%>
-  </div>
-
   <h3>Attachments</h3>
   <div id="resources" class="form">
     <%= render :partial => 'show_resources' -%>

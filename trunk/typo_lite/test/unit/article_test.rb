@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'http_mock'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :categories, :articles_categories, :users, :notifications
+  fixtures :blogs, :contents, :articles_tags, :tags, :resources, :users, :notifications
 
   def setup
     @articles = []
@@ -29,12 +29,6 @@ class ArticleTest < Test::Unit::TestCase
     a.body = "Foo"
     a.title = "Zzz"
     assert a.save
-
-    a.categories << Category.find(1)
-    assert_equal 1, a.categories.size
-
-    b = Article.find(a.id)
-    assert_equal 1, b.categories.size
   end
 
   def test_permalink
@@ -186,22 +180,6 @@ class ArticleTest < Test::Unit::TestCase
     Trigger.fire
     art.reload
     assert art.published
-  end
-
-  def test_find_published_by_category
-    Article.create!(:title      => "News from the future!",
-                    :body       => "The future is cool!",
-                    :keywords   => "future",
-                    :published_at => Time.now + 12.minutes)
-
-    @articles = Category.find_by_permalink('personal').published_articles
-    assert_results_are :article1, :article2, :article3
-
-    @articles = Category.find_by_permalink('foobar').published_articles
-    assert @articles.empty?
-
-    @articles = Category.find_by_permalink('software').published_articles
-    assert_results_are :article1
   end
 
   def test_destroy_file_upload_associations

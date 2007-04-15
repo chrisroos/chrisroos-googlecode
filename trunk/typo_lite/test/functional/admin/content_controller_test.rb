@@ -7,8 +7,8 @@ require 'http_mock'
 class Admin::ContentController; def rescue_action(e) raise e end; end
 
 class Admin::ContentControllerTest < Test::Unit::TestCase
-  fixtures :contents, :users, :categories, :resources, :text_filters,
-           :blogs, :articles_categories
+  fixtures :contents, :users, :resources, :text_filters,
+           :blogs
 
   def setup
     @controller = Admin::ContentController.new
@@ -34,7 +34,6 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_template_has 'article'
     assert_valid_record 'article'
     assert_not_nil assigns(:article)
-    assert_not_nil assigns(:categories)
     assert_not_nil assigns(:resources)
   end
 
@@ -76,8 +75,6 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
     new_article = Article.find(:first, :order => "id DESC")
     assert_equal users(:tobi), new_article.user
-    assert_equal 1, new_article.categories.size
-    assert_equal [1], new_article.categories.collect {|c| c.id}
     assert_equal 4, new_article.tags.size
 
     assert_equal(1, emails.size)
@@ -123,7 +120,6 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
 
   def test_edit
     get :edit, 'id' => 1
-    assert_equal assigns(:selected), Article.find(1).categories.collect {|c| c.id}
     assert_rendered_file 'edit'
     assert_template_has 'article'
     assert_valid_record 'article'
@@ -159,30 +155,6 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_raise(ActiveRecord::RecordNotFound) {
       article = Article.find(1)
     }
-  end
-
-  def test_category_add
-    get :category_add, :id => 1, :category_id => 1
-
-    assert_rendered_file '_show_categories'
-    assert_valid_record 'article'
-    assert_valid_record 'category'
-    assert Article.find(1).categories.include?(Category.find(1))
-    assert_not_nil assigns(:article)
-    assert_not_nil assigns(:category)
-    assert_not_nil assigns(:categories)
-  end
-
-  def test_category_remove
-    get :category_remove, :id => 1, :category_id => 1
-
-    assert_rendered_file '_show_categories'
-    assert_valid_record 'article'
-    assert_valid_record 'category'
-    assert !Article.find(1).categories.include?(Category.find(1))
-    assert_not_nil assigns(:article)
-    assert_not_nil assigns(:category)
-    assert_not_nil assigns(:categories)
   end
 
   def test_resource_add

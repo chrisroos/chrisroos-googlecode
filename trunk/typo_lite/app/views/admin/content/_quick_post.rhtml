@@ -5,12 +5,6 @@
 </p>
 <p>
 <p>
-  <label for="categories[]">Categories:</label><br />
-  <select name="categories[]" multiple="multiple" size="3" style="width:250px;">
-  <%= options_from_collection_for_select(@categories, "id", "name", @selected) %>
-  </select>
-</p>
-<p>
   <label for="articles_body">Article:</label><br />
   <%= text_area 'article', 'body', :rows => 10  %>
 </p>

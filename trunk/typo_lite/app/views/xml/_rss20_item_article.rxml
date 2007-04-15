@@ -13,9 +13,6 @@ xm.item do
   author = "#{email} (#{author})" if this_blog.link_to_author unless email.blank?
   xm.author author
   xm.link post_link(item)
-  for category in item.categories
-    xm.category category.name
-  end
   for tag in item.tags
     xm.category tag.display_name
   end
