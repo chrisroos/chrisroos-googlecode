@@ -14,7 +14,6 @@ class Admin::ContentController < Admin::BaseController
 
   def show
     @article = Article.find(params[:id])
-    @resources = Resource.find(:all, :order => 'created_at DESC')
   end
 
   def new; new_or_edit; end
@@ -41,7 +40,7 @@ class Admin::ContentController < Admin::BaseController
 
   protected
 
-  attr_accessor :resources, :resource, :category
+  attr_accessor :resource, :category
 
   def do_add_or_remove_fu
     attrib, action = params[:action].split('_')
@@ -62,7 +61,6 @@ class Admin::ContentController < Admin::BaseController
     @article.attributes = (params[:article])
     if request.post?
       set_article_author
-      save_attachments
       if @article.save
         set_the_flash
         redirect_to :action => 'show', :id => @article.id
@@ -87,14 +85,6 @@ class Admin::ContentController < Admin::BaseController
     @article.user   = session[:user]
   end
 
-  def save_attachments
-    return if params[:attachments].nil?
-    params[:attachments].each do |k,v|
-      a = attachment_save(v)
-      @article.resources << a unless a.nil?
-    end
-  end
-
   def get_or_build_article
     @article = case params[:action]
                when 'new'
@@ -110,7 +100,4 @@ class Admin::ContentController < Admin::BaseController
                end
   end
 
-  def setup_resources
-    @resources = Resource.find(:all, :order => 'created_at DESC')
-  end
 end

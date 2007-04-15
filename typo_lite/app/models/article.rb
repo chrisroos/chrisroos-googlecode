@@ -9,13 +9,9 @@ class Article < Content
   has_many :pings, :dependent => true, :order => "created_at ASC"
   has_many :comments, :dependent => true, :order => "created_at ASC"
   has_many :trackbacks, :dependent => true, :order => "created_at ASC"
-  has_many :resources, :order => "created_at DESC",
-           :class_name => "Resource", :foreign_key => 'article_id'
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
   belongs_to :user
   has_many :triggers, :as => :pending_item
-
-  after_destroy :fix_resources
 
   def stripped_title
     self.title.gsub(/<[^>]*>/,'').to_url
@@ -231,12 +227,4 @@ class Article < Content
   validates_uniqueness_of :guid
   validates_presence_of :title
 
-  private
-
-  def fix_resources
-    Resource.find(:all, :conditions => "article_id = #{id}").each do |fu|
-      fu.article_id = nil
-      fu.save
-    end
-  end
 end

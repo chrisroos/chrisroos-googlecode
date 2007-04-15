@@ -31,7 +31,7 @@ class XmlController; def rescue_action(e) raise e end; end
 
 class XmlControllerTest < Test::Unit::TestCase
   fixtures :contents, :tags,
-    :articles_tags, :users, :blogs, :resources
+    :articles_tags, :users, :blogs
 
   def setup
     @controller = XmlController.new
@@ -244,40 +244,6 @@ class XmlControllerTest < Test::Unit::TestCase
 
     # titles are escaped html
     assert_xpath('//entry/title[text()="Associations aren\'t :dependent =&amp;gt; true anymore" and @type="html"]')
-  end
-
-  def test_enclosure_rss20
-    get :feed, :format => 'rss20', :type => 'feed'
-    assert_response :success
-
-    # There's an enclosure in there somewhere
-    assert_xpath('/rss/channel/item/enclosure')
-
-    # There's an enclosure attached to the node with the title "Article 1!"
-    assert_xpath('/rss/channel/item[title="Article 1!"]/enclosure')
-    assert_xpath('/rss/channel/item[title="Article 2!"]/enclosure')
-
-    # Article 3 exists, but has no enclosure
-    assert_xpath('/rss/channel/item[title="Article 3!"]')
-    assert_not_xpath('/rss/channel/item[title="Article 3!"]/enclosure')
-  end
-
-  def test_enclosure_atom10
-    get :feed, :format => 'atom10', :type => 'feed'
-    assert_response :success
-
-    # There's an enclosure in there somewhere
-    assert_xpath('/feed/entry/link[@rel="enclosure"]')
-
-    # There's an enclosure attached to "Article 1!" with a length
-    assert_xpath('/feed/entry[title="Article 1!"]/link[@rel="enclosure" and @length]')
-
-    # There's an enclosure attached to "Article 2!" with no length
-    assert_xpath('/feed/entry[title="Article 2!"]/link[@rel="enclosure" and not(@length)]')
-
-    # Article 3 exists, but has no enclosure
-    assert_xpath('/feed/entry[title="Article 3!"]')
-    assert_not_xpath('/feed/entry[title="Article 3!"]/link[@rel="enclosure"]')
   end
 
   # TODO(laird): make this more robust
