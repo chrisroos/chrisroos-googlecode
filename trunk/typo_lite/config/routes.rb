@@ -63,16 +63,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'pages/*name',:controller => 'articles', :action => 'view_page'
 
-  map.connect 'stylesheets/theme/:filename',
-    :controller => 'theme', :action => 'stylesheets'
-  map.connect 'javascript/theme/:filename',
-    :controller => 'theme', :action => 'javascript'
-  map.connect 'images/theme/:filename',
-    :controller => 'theme', :action => 'images'
-
   # For the tests
-  map.connect 'theme/static_view_test', :controller => 'theme', :action => 'static_view_test'
-
   map.connect 'plugins/filters/:filter/:public_action',
     :controller => 'textfilter', :action => 'public_action'
 
@@ -84,7 +75,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   %w{blacklist cache comments content feedback general pages
-      sidebar textfilters themes trackbacks users}.each do |i|
+      sidebar textfilters trackbacks users}.each do |i|
     map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end

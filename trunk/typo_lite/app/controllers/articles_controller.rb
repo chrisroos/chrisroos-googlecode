@@ -1,8 +1,6 @@
 class ArticlesController < ContentController
   before_filter :verify_config
 
-  layout :theme_layout, :except => [:comment_preview, :trackback]
-
   cache_sweeper :blog_sweeper
 
   cached_pages = [:index, :read, :permalink, :category, :find_by_date, :archives, :view_page, :tag, :author]
@@ -49,6 +47,7 @@ class ArticlesController < ContentController
     set_headers
     @comment = this_blog.comments.build(params[:comment])
     @controller = self
+    render :layout => false
   end
 
   def archives
@@ -104,7 +103,6 @@ class ArticlesController < ContentController
         set_headers
         render :partial => "comment", :object => @comment
       rescue ActiveRecord::RecordInvalid
-        STDERR.puts @comment.errors.inspect
         render_error(@comment)
       end
     end
@@ -133,6 +131,7 @@ class ArticlesController < ContentController
       end
       nil
     end
+    render :layout => false
   end
 
   def nuke_comment

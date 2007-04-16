@@ -20,7 +20,6 @@ class ContentController < ApplicationController
 
   include LoginSystem
   model :user
-  helper :theme
   before_filter :auto_discovery_defaults
 
   def self.caches_action_with_params(*actions)
@@ -70,10 +69,6 @@ class ContentController < ApplicationController
 
     @auto_discovery_url_rss = url_for(({:format => 'rss20'}.merge options))
     @auto_discovery_url_atom = url_for(({:format => 'atom'}.merge options))
-  end
-
-  def theme_layout
-    this_blog.current_theme.layout
   end
 
   helper_method :contents

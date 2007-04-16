@@ -101,7 +101,6 @@ module Sidebars
 
   class Sidebars::Plugin < ApplicationController
     include ApplicationHelper
-    helper :theme
 
     @@subclasses = { }
 
