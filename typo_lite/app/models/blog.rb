@@ -50,7 +50,6 @@ class Blog < ActiveRecord::Base
   setting :comment_text_filter,        :string, ''
   setting :limit_article_display,      :integer, 10
   setting :limit_rss_display,          :integer, 10
-  setting :theme,                      :string, 'azure'
   setting :ping_urls,                  :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings,        :boolean, true
 
@@ -107,14 +106,6 @@ class Blog < ActiveRecord::Base
 
   def controller
     controller_stack.last
-  end
-
-  def current_theme_path
-    Theme.themes_root + "/" + theme
-  end
-
-  def current_theme
-    Theme.theme_from_path(current_theme_path)
   end
 
   def url_for(options = {}, *extra_params)

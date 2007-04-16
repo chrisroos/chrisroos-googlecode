@@ -87,7 +87,6 @@ class SerializeBlogAttributes < ActiveRecord::Migration
     setting :default_allow_comments,     :boolean, true
     setting :link_to_author,             :boolean, false
     setting :show_extended_on_rss,       :boolean, true
-    setting :theme,                      :string, 'azure'
     setting :use_gravatar,               :boolean, false
     setting :ping_urls,                  :string, "http://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
     setting :send_outbound_pings,        :boolean, true
