@@ -148,6 +148,7 @@ class ArticlesController < ContentController
   end
 
   def view_page
+    get_archives
     if(@page = Page.find_by_name(params[:name].to_a.join('/')))
       @page_title = @page.title
     else
