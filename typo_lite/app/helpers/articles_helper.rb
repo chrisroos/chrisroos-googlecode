@@ -99,16 +99,7 @@ module ArticlesHelper
     p = article.previous
     return p ? article_link("&laquo; #{p.title}", p) : ''
   end
-
-  def render_sidebars
-    # ugly ugly hack to fix the extremely verbose sidebar logging
-    options = { :controller => SidebarController,
-                :action => 'display_plugins',
-                :params => {:contents => contents,
-                            :request_params => params} }
-    render_component(options)
-  end
-
+  
   # Generate the image tag for a commenters gravatar based on their email address
   # Valid options are described at http://www.gravatar.com/implement.php
   def gravatar_tag(email, options={})

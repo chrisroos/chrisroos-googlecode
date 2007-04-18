@@ -68,14 +68,14 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'textfilter', :action => 'public_action'
 
   # Work around the Bad URI bug
-  %w{ accounts articles backend files live sidebar textfilter xml }.each do |i|
+  %w{ accounts articles backend files live textfilter xml }.each do |i|
     map.connect "#{i}", :controller => "#{i}", :action => 'index'
     map.connect "#{i}/:action", :controller => "#{i}"
     map.connect "#{i}/:action/:id", :controller => i, :id => nil
   end
 
   %w{blacklist cache comments content feedback general pages
-      sidebar textfilters trackbacks users}.each do |i|
+      textfilters trackbacks users}.each do |i|
     map.connect "/admin/#{i}", :controller => "admin/#{i}", :action => 'index'
     map.connect "/admin/#{i}/:action/:id", :controller => "admin/#{i}", :action => nil, :id => nil
   end
