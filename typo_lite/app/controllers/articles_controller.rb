@@ -31,20 +31,11 @@ class ArticlesController < ContentController
          ['published = ? AND contents.published_at < ? AND blog_id = ?',
           true, Time.now, this_blog.id]
     )
-    # Archives
-    date_func = "extract(year from published_at) as year,extract(month from published_at) as month"
-    article_counts = Content.find_by_sql(["select count(*) as count, #{date_func} from contents where type='Article' and published = ? and published_at < ? group by year,month order by year desc,month desc limit ?",true,Time.now,count.to_i])
-    @archives = article_counts.map do |entry|
-      {
-        :name => "#{Date::MONTHNAMES[entry.month.to_i]} #{entry.year}",
-        :month => entry.month.to_i,
-        :year => entry.year.to_i,
-        :article_count => entry.count
-      }
-    end
+    get_archives
   end
 
   def search
+    get_archives
     @articles = this_blog.published_articles.search(params[:q])
     render_paginated_index("No articles found...")
   end
@@ -74,6 +65,7 @@ class ArticlesController < ContentController
   end
 
   def find_by_date
+    get_archives
     @articles = this_blog.published_articles.find_all_by_date(params[:year], params[:month], params[:day])
     render_paginated_index
   end
@@ -181,6 +173,7 @@ class ArticlesController < ContentController
   end
 
   def display_article(article = nil)
+    get_archives
     begin
       @article      = block_given? ? yield : article
       @comment      = Comment.new
@@ -227,4 +220,20 @@ class ArticlesController < ContentController
     @articles = @articles.slice(start..stop)
     render :action => 'index'
   end
+  
+  def get_archives
+    # Archives
+    count = 10
+    date_func = "extract(year from published_at) as year,extract(month from published_at) as month"
+    article_counts = Content.find_by_sql(["select count(*) as count, #{date_func} from contents where type='Article' and published = ? and published_at < ? group by year,month order by year desc,month desc limit ?",true,Time.now,count.to_i])
+    @archives = article_counts.map do |entry|
+      {
+        :name => "#{Date::MONTHNAMES[entry.month.to_i]} #{entry.year}",
+        :month => entry.month.to_i,
+        :year => entry.year.to_i,
+        :article_count => entry.count
+      }
+    end
+  end
+  
 end
