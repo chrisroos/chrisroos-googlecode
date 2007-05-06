@@ -5,7 +5,7 @@ class Trackback < Feedback
 
   content_fields :excerpt
 
-  validates_presence_of :title, :excerpt, :url
+  validates_presence_of :title, :url
 
   def initialize(*args, &block)
     super(*args, &block)
@@ -18,7 +18,7 @@ class Trackback < Feedback
   def make_nofollow
     self.blog_name = blog_name.strip_html
     self.title     = title.strip_html
-    self.excerpt   = excerpt.strip_html
+    self.excerpt   = excerpt ? excerpt.strip_html : ''
   end
 
   def process_trackback
