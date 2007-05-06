@@ -1,5 +1,5 @@
 class BlogSweeper < ActionController::Caching::Sweeper
-  observe Article, Comment, Trackback, Page, Blog, Sidebar, User
+  observe Article, Comment, Trackback, Page, Blog, User
 
   def after_save(record)
     expire_for(record)
@@ -11,7 +11,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
 
   def expire_for(record)
     case record
-    when Blog, Sidebar, Comment, Trackback, Article, User
+    when Blog, Comment, Trackback, Article, User
       PageCache.sweep_all
       expire_fragment(/.*/)
     when Page
