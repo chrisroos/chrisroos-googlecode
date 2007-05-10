@@ -14,16 +14,7 @@ class ApplicationController < ActionController::Base
   def fire_triggers
     Trigger.fire
   end
-
-  def with_blog_scoped_classes(klasses=[Content, Article, Comment, Page, Trackback], &block)
-    default_id = this_blog.id
-    scope_hash = { :find => { :conditions => "blog_id = #{default_id}"},
-                   :create => { :blog_id => default_id } }
-    klasses.inject(block) do |blk, klass|
-      lambda { klass.with_scope(scope_hash, &blk) }
-    end.call
-  end
-
+  
   def article_url(article, only_path = true, anchor = nil)
     article.location(anchor, only_path)
   end
