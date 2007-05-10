@@ -15,9 +15,7 @@
 </rdf:RDF>
 -->
 
-<div class="post"<%= onhover_show_admin_tools(:article) %>>
-  <%= link_to("edit", { :controller => "admin/content", :action => "edit", :id => @article },
-        :class => "admintools", :style => "display: none", :id => "admin_article") %>
+<div class="post">
   <h2><%=h @article.title %></h2>
   <p class="auth">Posted by <%= author_link(@article) %>
   <%= js_distance_of_time_in_words_to_now @article.published_at.utc %></p>

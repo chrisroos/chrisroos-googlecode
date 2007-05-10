@@ -174,19 +174,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
 #     comment_template_test "<p>My web page is <a href='http://somewhere.com/~me/index.html' rel=\"nofollow\">http://somewhere.com/~me/index.html</a></p>", "My web page is http://somewhere.com/~me/index.html"
 #   end
 
-  def test_comment_nuking
-    num_comments = Comment.count
-    post :nuke_comment, { :id => 5 }, {}
-    assert_response 403
-
-    get :nuke_comment, { :id => 5 }, { :user => users(:bob)}
-    assert_response 403
-
-    post :nuke_comment, { :id => 5 }, { :user => users(:bob)}
-    assert_response :success
-    assert_equal num_comments -1, Comment.count
-  end
-
   def test_comment_user_blank
     post :comment, { :id => 2, :comment => {'body' => 'foo', 'author' => 'bob' }}
     assert_response :success
@@ -225,20 +212,6 @@ class ArticlesControllerTest < Test::Unit::TestCase
     assert_not_xpath(%{/response/error[text()="1"]}, "Error: " + get_xpath("/response/message/text()").first.to_s)
 
     assert_equal num_trackbacks+1, Article.find(2).trackbacks.count
-  end
-
-  def test_trackback_nuking
-    num_comments = Trackback.count
-
-    post :nuke_trackback, { :id => 7 }, {}
-    assert_response 403
-
-    get :nuke_trackback, { :id => 7 }, { :user => users(:bob)}
-    assert_response 403
-
-    post :nuke_trackback, { :id => 7 }, { :user => users(:bob)}
-    assert_response :success
-    assert_equal num_comments -1, Trackback.count
   end
 
   def test_no_settings
