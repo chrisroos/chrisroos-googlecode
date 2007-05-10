@@ -13,5 +13,11 @@
   <td class="field"><%=h truncate(item.body,80)%></td>
   <td class="field"><%=h item.ip %></td>
   <td class="field"><%=h distance_of_time_in_words_to_now(item.created_at) %> ago</td>
-  <td class="field"><%= link_to image_tag('delete'), {:action => 'delete', :id => item.id, :search => params[:search], :page => params[:page] },  :confirm => "Are you sure?", :post => true %></td>
+  <td class="field">
+    <% if item.class == Trackback %>
+      <%= link_to image_tag('go'), :controller => 'trackbacks', :article_id => item.article, :action => 'show', :id => item %>
+    <% else %>
+      <%= link_to image_tag('go'), :controller => 'comments', :article_id => item.article, :action => 'show', :id => item %>
+    <% end %>
+  </td>
 </tr>
