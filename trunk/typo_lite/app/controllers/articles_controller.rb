@@ -9,10 +9,6 @@ class ArticlesController < ContentController
   caches_action_with_params *cached_pages
   session :off, :only => cached_pages
 
-  verify(:only => [:nuke_comment, :nuke_trackback],
-         :session => :user, :method => :post,
-         :render => { :text => 'Forbidden', :status => 403 })
-
   def index
     # On Postgresql, paginate's default count is *SLOW*, because it does a join against
     # all of the eager-loaded tables.  I've seen it take up to 7 seconds on my test box.
@@ -135,16 +131,6 @@ class ArticlesController < ContentController
       nil
     end
     render :layout => false
-  end
-
-  def nuke_comment
-    Comment.find(params[:id]).destroy
-    render :nothing => true
-  end
-
-  def nuke_trackback
-    Trackback.find(params[:id]).destroy
-    render :nothing => true
   end
 
   def view_page
