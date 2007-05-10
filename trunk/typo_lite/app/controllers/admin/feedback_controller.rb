@@ -26,18 +26,6 @@ class Admin::FeedbackController < Admin::BaseController
     render_action 'list'
   end
 
-  def delete
-    if request.post?
-      begin
-        Feedback.destroy(params[:id])
-        flash[:notice] = "Deleted"
-      rescue ActiveRecord::RecordNotFound
-        flash[:notice] = "Not found"
-      end
-    end
-    redirect_to :action => 'index', :page => params[:page], :search => params[:search]
-  end
-
   def bulkops
     ids = (params[:feedback_check]||{}).keys.map(&:to_i)
 
