@@ -5,12 +5,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def list
-    # @articles_pages, @articles = with_blog_scoped_classes do
-    #       paginate(:article, :per_page => 15, :order_by => "created_at DESC",
-    #                :parameter => 'id')
-    #     end
     @articles = Article.find(:all, :order => "created_at DESC")
-    # @article = this_blog.articles.build(params[:article])
   end
 
   def show
