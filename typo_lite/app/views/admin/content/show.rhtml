@@ -1,6 +1,7 @@
   <% @page_heading = 'Articles' %>
 
   <% content_for('tasks') do %>
+    <%= task_new 'Create new article' %>
     <%= task_edit 'Edit this article', @article.id %>
     <li><%= link_to 'View article on your blog', article_url(@article) %></li>
   <% end %>
