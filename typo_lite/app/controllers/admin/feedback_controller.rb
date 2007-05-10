@@ -21,10 +21,7 @@ class Admin::FeedbackController < Admin::BaseController
       conditions.last.merge!(:status_confirmed => false)
     end
 
-    @pages, @feedback = paginate(:feedback,
-      :order => 'contents.created_at desc',
-      :conditions => conditions,
-      :per_page => 40)
+    @feedback = Feedback.find(:all, :order => 'contents.created_at desc', :conditions => conditions)
 
     render_action 'list'
   end
