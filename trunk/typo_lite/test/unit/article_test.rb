@@ -154,34 +154,6 @@ class ArticleTest < Test::Unit::TestCase
     assert ! art.just_published?
   end
 
-  def test_future_publishing
-    assert_sets_trigger(Article.create!(:title => 'title', :body => 'body',
-                                        :published => true,
-                                        :published_at => Time.now + 2.seconds))
-  end
-
-  def test_future_publishing_without_published_flag
-    assert_sets_trigger Article.create!(:title => 'title', :body => 'body',
-                                        :published_at => Time.now + 2.seconds)
-  end
-
-  def test_triggers_are_dependent
-    art = Article.create!(:title => 'title', :body => 'body',
-                          :published_at => Time.now + 1.hour)
-    assert_equal 1, Trigger.count
-    art.destroy
-    assert_equal 0, Trigger.count
-  end
-
-  def assert_sets_trigger(art)
-    assert_equal 1, Trigger.count
-    assert Trigger.find(:first, :conditions => ['pending_item_id = ?', art.id])
-    sleep 2
-    Trigger.fire
-    art.reload
-    assert art.published
-  end
-
   def test_notifications
     a = Article.new(:title => 'New Article', :body => 'Foo', :author => 'Tobi', :user => users(:tobi))
     assert a.save

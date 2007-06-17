@@ -4,16 +4,11 @@ class ApplicationController < ActionController::Base
   include LoginSystem
 
   before_filter :get_the_blog_object
-  before_filter :fire_triggers
   after_filter :flush_the_blog_object
 
   around_filter Blog
 
   protected
-
-  def fire_triggers
-    Trigger.fire
-  end
   
   def article_url(article, only_path = true, anchor = nil)
     article.location(anchor, only_path)
