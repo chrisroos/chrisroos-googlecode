@@ -57,13 +57,6 @@ class SpamProtection
       scan_uri(host)
     end
 
-    # Pattern scanning
-    BlacklistPattern.find_all.each do |pattern|
-      logger.info("[SP] Scanning for #{pattern.class} #{pattern.pattern}")
-
-      throw :hit, "#{pattern} matched" if pattern.matches?(string)
-    end
-
     return false
   end
 

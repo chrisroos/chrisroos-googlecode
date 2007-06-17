@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'dns_mock'
 
 class CommentTest < Test::Unit::TestCase
-  fixtures :contents, :blacklist_patterns, :text_filters, :blogs
+  fixtures :contents, :text_filters, :blogs
 
   def test_save_regular
     assert contents(:comment2).save
@@ -45,16 +45,6 @@ class CommentTest < Test::Unit::TestCase
       c.ip     = "10.10.10.10"
     end
     assert !cmt.spam?
-    assert !cmt.status_confirmed?
-  end
-
-  def test_reject_spam_pattern
-    cmt = Comment.new do |c|
-      c.author = "Another Spammer"
-      c.body = "Texas hold-em poker crap"
-      c.url = "http://texas.hold-em.us"
-    end
-    assert cmt.spam?
     assert !cmt.status_confirmed?
   end
 

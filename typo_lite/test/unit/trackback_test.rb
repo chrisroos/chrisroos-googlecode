@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'dns_mock'
 
 class TrackbackTest < Test::Unit::TestCase
-  fixtures :contents, :blacklist_patterns, :blogs
+  fixtures :contents, :blogs
 
   def test_incomplete
     tb = Trackback.new
@@ -33,12 +33,4 @@ class TrackbackTest < Test::Unit::TestCase
     assert tb.spam?
   end
 
-  def test_reject_spam_pattern
-    tb = Trackback.new do |tb|
-      tb.blog_name = "Another Spammer"
-      tb.title = "Spammy trackback"
-      tb.excerpt = "Texas hold-em poker crap"
-    end
-    assert tb.spam?
-  end
 end
