@@ -17,7 +17,6 @@ module ContentState
 
     def set_published_at(content, new_time)
       content[:published_at] = new_time
-      Trigger.remove(content, :trigger_method => 'publish!')
       if new_time.nil?
         content.state = Draft.instance
       elsif new_time <= Time.now
@@ -27,10 +26,6 @@ module ContentState
 
     def publication_pending?
       true
-    end
-
-    def post_trigger(content)
-      Trigger.post_action(content.published_at, content, 'publish!')
     end
 
     def withdraw(content)

@@ -89,18 +89,6 @@ class Admin::ContentControllerTest < Test::Unit::TestCase
     assert_redirected_to :action => 'show'
     assert ! assigns(:article).published?
     assert_equal num_articles, this_blog.published_articles.size
-    assert_equal 1, Trigger.count
-  end
-
-  def test_request_fires_triggers
-    art = this_blog.articles.create!(:title => 'future article',
-                                     :body => 'content',
-                                     :published_at => Time.now + 2.seconds,
-                                     :published => true)
-    assert !art.published?
-    sleep 3
-    get(:show, :id => art.id)
-    assert assigns(:article).published?
   end
 
   def test_create_filtered

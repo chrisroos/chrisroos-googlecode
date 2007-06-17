@@ -11,7 +11,6 @@ class Article < Content
   has_many :trackbacks, :dependent => true, :order => "created_at ASC"
   has_and_belongs_to_many :tags, :foreign_key => 'article_id'
   belongs_to :user
-  has_many :triggers, :as => :pending_item
 
   def stripped_title
     self.title.gsub(/<[^>]*>/,'').to_url

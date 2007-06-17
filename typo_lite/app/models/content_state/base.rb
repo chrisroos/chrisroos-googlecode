@@ -71,10 +71,6 @@ module ContentState
       true
     end
 
-    def post_trigger(content)
-      true
-    end
-
     def send_notifications(content, controller)
       true
     end
