@@ -1,5 +1,11 @@
 # *** Convert uk-postcodes.csv file to json
 #
+# 1. Delete the first, header, line from csv file
+# 2. Convert comma separated fields to json formatted data
+# 3. Output to file
+# 4. Remove the erroneous final comma.  The output of awk leaves us with ...key:value},]
+#    The ruby converts that to ...key:value}]
+#
 # cat uk-postcodes.csv | \
 # sed -e"1d" | \
 # awk -F"," 'BEGIN {print "["}; {print "{\"postcode\":\"" $1 "\",\"x\":\"" $2 "\",\"y\":\"" $3 "\",\"latitude\":\"" $4 "\",\"longitude\":\"" $4 "\"},"}; END {print "]"}' \
