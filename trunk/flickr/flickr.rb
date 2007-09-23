@@ -6,9 +6,11 @@ require 'uri'
 
 class Flickr; end
 
-auth_token_filename = File.dirname(__FILE__) + '/AUTH_TOKEN'
-if File.exist?(auth_token_filename)
-  File.open(auth_token_filename) { |file| Flickr::AUTH_TOKEN = file.read }
+auth_token_filename = File.join(File.dirname(__FILE__), '/AUTH_TOKEN')
+Flickr::AUTH_TOKEN = if File.exist?(auth_token_filename) then
+  File.open(auth_token_filename) { |file| file.read }
+else
+  nil
 end
 
 class Flickr
@@ -127,7 +129,8 @@ class Photo < Struct.new(:isprimary, :title, :farm, :id, :server, :secret)
     end
   end
   def original_image_url
-    "http://static.flickr.com/#{self.server}/#{self.id}_#{self.secret}_o_d.jpg"
+    flickr = Flickr.new('method' => 'flickr.photos.getSizes', 'photo_id' => self.id)
+    flickr.call['sizes']['size'].find { |size| size['label'] == 'Original' }['source']
   end
   def save_to_filesystem(path)
     photo_uri = URI.parse(original_image_url)
