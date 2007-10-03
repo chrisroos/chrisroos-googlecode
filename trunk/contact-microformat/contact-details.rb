@@ -22,7 +22,8 @@ class ContactParser
   end
 end
 
-html = File.open('/Users/chrisroos/Desktop/contact-details.html') { |f| f.read }
+contact_details_file = File.dirname(__FILE__) + '/contact-details.html'
+html = File.open(contact_details_file) { |f| f.read }
 parser = ContactParser.from_html(html)
 
 p parser.service_identifiers
