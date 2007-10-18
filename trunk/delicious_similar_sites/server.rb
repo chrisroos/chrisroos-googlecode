@@ -13,7 +13,21 @@ class DeliciousHandler < Mongrel::HttpHandler
         post = posts.first
         response.start do |head, out|
           head["Content-Type"] = "text/html"
-          list_items = post['t'].inject('') { |str, tag| str += %Q[<li><a href="http://del.icio.us/chrisjroos/#{tag}">#{tag}</a></li>] }
+          tags_html = ''
+          post['t'].each do |tag|
+            json_url = "http://del.icio.us/feeds/json/chrisjroos/#{tag}?raw&count=3"
+            posts = JSON.parse(open(json_url).read)
+            if posts.length > 0
+              tags_html += "<h2>#{tag}</h2>"
+              tags_html += '<ul>'
+              posts.each do |post|
+                tags_html += '<li>'
+                tags_html += %Q[<a href="#{post['u']}" title="#{post['n']}">#{post['d']}</a>]
+                tags_html += '</li>'
+              end
+              tags_html += '</ul>'
+            end
+          end
           html = <<-EndHtml
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
@@ -23,9 +37,7 @@ class DeliciousHandler < Mongrel::HttpHandler
   <body>
     <h1>#{post['d']}</h1>
     <p>#{post['n']}</p>
-    <ul>
-      #{list_items}
-    </ul>
+    #{tags_html}
   </body>
 </html>
           EndHtml
