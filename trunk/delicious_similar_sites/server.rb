@@ -21,7 +21,7 @@ class DeliciousHandler < Mongrel::HttpHandler
   end
 end
 
-config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4000' do
+config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4001' do
   listener do
     uri "/delicious", :handler => DeliciousHandler.new
   end
