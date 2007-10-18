@@ -17,6 +17,7 @@ class DeliciousHandler < Mongrel::HttpHandler
           head["Content-Type"] = "text/html"
           tags_html = ''
           post['t'].each do |tag|
+            next if tag =~ /^url\//
             json_url = "http://del.icio.us/feeds/json/chrisjroos/#{tag}?raw&count=3"
             posts = JSON.parse(open(json_url).read)
             if posts.length > 0
