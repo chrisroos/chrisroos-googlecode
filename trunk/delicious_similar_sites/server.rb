@@ -11,6 +11,8 @@ class DeliciousHandler < Mongrel::HttpHandler
       posts = JSON.parse(open(json_url).read)
       if posts.length == 1
         post = posts.first
+        title = post['d']
+        description = post['n']
         response.start do |head, out|
           head["Content-Type"] = "text/html"
           tags_html = ''
@@ -29,14 +31,17 @@ class DeliciousHandler < Mongrel::HttpHandler
             end
           end
           html = <<-EndHtml
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Del.icio.us tags</title>
   </head>
   <body>
-    <h1>#{post['d']}</h1>
-    <p>#{post['n']}</p>
+    <h1>#{title}</h1>
+    <p>#{description}</p>
     #{tags_html}
   </body>
 </html>
