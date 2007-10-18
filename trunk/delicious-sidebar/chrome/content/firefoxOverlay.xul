@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://emptysidebar/locale/emptysidebar.dtd">
+<overlay id="emptySidebarOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="http://s3.amazonaws.com/seagul/md5.js"></script>
+  <script type="application/x-javascript" src="http://s3.amazonaws.com/seagul/jquery.js"></script>
+  <script type="application/x-javascript" src="chrome://emptysidebar/content/delicious.js"></script>
+  <script type="application/x-javascript" src="chrome://emptysidebar/content/init.js"></script>
+  
+  <menupopup id="viewSidebarMenu">
+    <menuitem key="key_openEmptySidebar" observes="viewEmptySidebar"  />
+  </menupopup>
+  
+  <keyset id="mainKeyset">
+    <key id="key_openEmptySidebar" command="viewEmptySidebar"
+         key="&openEmptySidebar.commandkey;" 
+         modifiers="&openEmptySidebar.modifierskey;" />
+  </keyset>
+  
+  <broadcasterset id="mainBroadcasterSet"> 
+    <broadcaster id="viewEmptySidebar" 
+                 label="&emptysidebar.title;"
+                 autoCheck="false"
+                 type="checkbox"
+                 group="sidebar"
+                 sidebarurl="chrome://emptysidebar/content/emptysidebar.xul"
+                 sidebartitle="&emptysidebar.title;"
+                 oncommand="toggleSidebar('viewEmptySidebar');" />
+  </broadcasterset>
+</overlay>
