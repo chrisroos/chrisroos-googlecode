@@ -9,13 +9,36 @@ class DeliciousHandler < Mongrel::HttpHandler
     if url_hash
       json_url = "http://del.icio.us/feeds/json/chrisjroos/url/#{url_hash}?raw"
       posts = JSON.parse(open(json_url).read)
-      response.start do |head, out|
-        head["Content-Type"] = "text/plain"
-        out << posts.inspect
+      if posts.length == 1
+        post = posts.first
+        response.start do |head, out|
+          head["Content-Type"] = "text/html"
+          list_items = post['t'].inject('') { |str, tag| str += %Q[<li><a href="http://del.icio.us/chrisjroos/#{tag}">#{tag}</a></li>] }
+          html = <<-EndHtml
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <title>Del.icio.us tags</title>
+  </head>
+  <body>
+    <h1>#{post['d']}</h1>
+    <p>#{post['n']}</p>
+    <ul>
+      #{list_items}
+    </ul>
+  </body>
+</html>
+          EndHtml
+          out << html
+        end
+      else
+        response.start(404) do |head,out|
+          out << "You haven't bookmarked this url\n"
+        end
       end
     else
       response.start(404) do |head,out|
-        out << "Postcode not found\n"
+        out << "Please specify the md5 hash of the url you wish to find\n"
       end
     end
   end
