@@ -16,7 +16,7 @@
       <ul>
       <% bookmarks.each do |bookmark| %>
         <li>
-          <a href="<%= bookmark.url %>" title="<%= bookmark.title %>"><%= bookmark.title %></a>
+          <a href="<%= bookmark.url %>" title="<%= bookmark.title %>" target="_blank"><%= bookmark.title %></a>
           <span><%= bookmark.description %></span>
         </li>
       <% end %>
