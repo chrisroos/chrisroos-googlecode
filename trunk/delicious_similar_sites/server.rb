@@ -1,48 +1,39 @@
 require 'rubygems'
 require 'mongrel'
-require 'json'
-require 'open-uri'
+require 'delicious'
 
 class DeliciousHandler < Mongrel::HttpHandler
   def process(request, response)
-    url_hash = request.params['PATH_INFO'].sub(/^\//, '')
-    if url_hash
-      json_url = "http://del.icio.us/feeds/json/chrisjroos/url/#{url_hash}?raw"
-      posts = JSON.parse(open(json_url).read)
-      if posts.length == 1
-        post = posts.first
-        title = post['d']
-        description = post['n']
+    hash_of_url = request.params['PATH_INFO'].sub(/^\//, '')
+    if hash_of_url
+      site_bookmark = Delicious.bookmark_from_hash(hash_of_url)
+      if site_bookmark
+        rs = RelatedSites.new(site_bookmark)
         response.start do |head, out|
           head["Content-Type"] = "text/html"
           tags_html = ''
-          post['t'].each do |tag|
-            next if tag =~ /^url\//
-            json_url = "http://del.icio.us/feeds/json/chrisjroos/#{tag}?raw&count=3"
-            posts = JSON.parse(open(json_url).read)
-            if posts.length > 0
-              tags_html += "<h2>#{tag}</h2>"
-              tags_html += '<ul>'
-              posts.each do |post|
-                tags_html += '<li>'
-                tags_html += %Q[<a href="#{post['u']}" title="#{post['n']}">#{post['d']}</a>]
-                tags_html += '</li>'
-              end
-              tags_html += '</ul>'
+          rs.related_sites.each do |tag, bookmarks|
+            tags_html += "<h2>#{tag}</h2>"
+            tags_html += '<ul>'
+            bookmarks.each do |bookmark|
+              tags_html += '<li>'
+              tags_html += %Q[<a href="#{bookmark.url}" title="#{bookmark.title}">#{bookmark.description}</a>]
+              tags_html += '</li>'
             end
+            tags_html += '</ul>'
           end
           html = <<-EndHtml
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Del.icio.us tags</title>
   </head>
   <body>
-    <h1>#{title}</h1>
-    <p>#{description}</p>
+    <h1>#{site_bookmark.title}</h1>
+    <p>#{site_bookmark.description}</p>
     #{tags_html}
   </body>
 </html>
