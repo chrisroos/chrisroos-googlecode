@@ -13,6 +13,7 @@ class DeliciousHandler < Mongrel::HttpHandler
           head["Content-Type"] = "text/html"
           tags_html = ''
           rs.related_sites.each do |tag, bookmarks|
+            next if bookmarks.empty?
             tags_html += "<h2>#{tag}</h2>"
             tags_html += '<ul>'
             bookmarks.each do |bookmark|
