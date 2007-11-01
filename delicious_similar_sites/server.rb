@@ -53,7 +53,8 @@ class DeliciousHandler < Mongrel::HttpHandler
   end
 end
 
-config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4001' do
+config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4001', :pid_file => "#{File.dirname(__FILE__)}/mongrel.pid" do
+  daemonize :cwd => Dir.pwd, :log_file => "#{File.dirname(__FILE__)}/mongrel.log"
   listener do
     uri "/delicious", :handler => DeliciousHandler.new
   end
@@ -61,4 +62,5 @@ config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4001' do
   run
 end
 
+config.write_pid_file
 config.join
