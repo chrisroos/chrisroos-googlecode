@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'mongrel'
+require 'erb'
 require 'delicious'
 
 class DeliciousHandler < Mongrel::HttpHandler
@@ -11,35 +12,9 @@ class DeliciousHandler < Mongrel::HttpHandler
         rs = RelatedSites.new(site_bookmark)
         response.start do |head, out|
           head["Content-Type"] = "text/html"
-          tags_html = ''
-          rs.related_sites.each do |tag, bookmarks|
-            next if bookmarks.empty?
-            tags_html += "<h2>#{tag}</h2>"
-            tags_html += '<ul>'
-            bookmarks.each do |bookmark|
-              tags_html += '<li>'
-              tags_html += %Q[<a href="#{bookmark.url}" title="#{bookmark.title}">#{bookmark.description}</a>]
-              tags_html += '</li>'
-            end
-            tags_html += '</ul>'
-          end
-          html = <<-EndHtml
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Del.icio.us tags</title>
-  </head>
-  <body>
-    <h1>#{site_bookmark.title}</h1>
-    <p>#{site_bookmark.description}</p>
-    #{tags_html}
-  </body>
-</html>
-          EndHtml
-          out << html
+          template = File.open('related-sites.erb') { |f| f.read }
+          erb = ERB.new(template)
+          out << erb.result(rs.__send__(:binding))
         end
       else
         response.start(404) do |head,out|
