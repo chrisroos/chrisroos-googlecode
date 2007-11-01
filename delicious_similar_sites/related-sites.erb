@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Del.icio.us tags</title>
+  </head>
+  <body>
+    <h1><%= rs.bookmark.title %></h1>
+    <p><%= rs.bookmark.description %></p>
+    
+    <% rs.related_sites.each do |tag, bookmarks| %>
+      <% next if bookmarks.empty? %>
+      <h2><%= tag %></h2>
+      <ul>
+      <% bookmarks.each do |bookmark| %>
+        <li>
+          <a href="<%= bookmark.url %>" title="<%= bookmark.title %>"><%= bookmark.description %></a>
+        </li>
+      <% end %>
+      </ul>
+    <% end %>
+  </body>
+</html>
