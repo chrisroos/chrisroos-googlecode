@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1><%= rs.bookmark.title %></h1>
-    <p><%= rs.bookmark.description %></p>
+    <blockquote>&quot;<%= rs.bookmark.description %>&quot;</blockquote>
     
     <% rs.related_sites.each do |tag, bookmarks| %>
       <% next if bookmarks.empty? %>
