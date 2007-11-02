@@ -28,6 +28,9 @@ class Bookmark
     @tags = bookmark['t']
     @url = bookmark['u']
   end
+  def ==(bookmark)
+    @title == bookmark.title && @description == bookmark.description && @tags == bookmark.tags && @url == bookmark.url
+  end
 end
 
 class RelatedSites
