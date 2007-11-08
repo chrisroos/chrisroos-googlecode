@@ -50,17 +50,9 @@ class Bookmarks
     @current_site = current_site
     unique_bookmarks = []
     bookmarks.each { |bookmark| unique_bookmarks << bookmark unless bookmark == current_site || unique_bookmarks.include?(bookmark) }
-    tags_and_bookmarks = unique_bookmarks.collect { |bookmark| [current_site.tags_in_common(bookmark).sort, bookmark] }
-    number_of_tags_and_bookmarks = Hash.new { |hash, key| hash[key] = [] }
-    tags_and_bookmarks.each { |(tags, bookmark)| number_of_tags_and_bookmarks[tags.length] << bookmark }
-    @tags_and_bookmarks = number_of_tags_and_bookmarks.to_a.reverse
+    @tags_and_bookmarks = unique_bookmarks.sort_by { |bookmark| current_site.tags_in_common(bookmark).length }.reverse
   end
   def each
     @tags_and_bookmarks.each { |tag_and_bookmark| yield tag_and_bookmark }
   end
 end
-
-# bookmark = Delicious.bookmark_from_url("http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/")
-# Bookmarks.similar_to(bookmark).each do |(tags, bookmark)|
-#   p [tags, bookmark.url]
-# end

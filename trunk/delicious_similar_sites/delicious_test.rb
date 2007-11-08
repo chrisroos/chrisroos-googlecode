@@ -44,6 +44,7 @@ end
 class BookmarksTest < Test::Unit::TestCase
   
   def test_should_order_the_bookmarks_by_the_number_of_tags_that_they_have_in_common_with_the_current_site
+    # It'd probably be useful to deterministically order on the date of the post - we don't get this info in json feeds though
     current_site = Bookmark.new('u' => 'current_site', 't' => ['t1', 't2'])
     bookmark_1 = Bookmark.new('u' => 'bookmark_1', 't' => ['t1'])
     bookmark_2 = Bookmark.new('u' => 'bookmark_2', 't' => ['t1', 't2'])
@@ -51,7 +52,7 @@ class BookmarksTest < Test::Unit::TestCase
     bookmarks = Bookmarks.new(current_site, bookmark_1, bookmark_2, bookmark_3)
     
     yielded_bookmarks = []; bookmarks.each { |bookmark| yielded_bookmarks << bookmark }
-    assert_equal [ [2, [bookmark_2, bookmark_3]], [1, [bookmark_1]] ], yielded_bookmarks
+    assert_equal [bookmark_3, bookmark_2, bookmark_1], yielded_bookmarks
   end
   
   def test_should_ignore_the_current_site_if_it_appears_in_the_bookmarks
@@ -67,10 +68,9 @@ class BookmarksTest < Test::Unit::TestCase
     current_site = Bookmark.new('u' => 'current_site', 't' => ['t1'])
     bookmark_1 = Bookmark.new('u' => 'bookmark_1', 't' => ['t1'])
     bookmarks = Bookmarks.new(current_site, bookmark_1)
-    yielded_bookmarks = nil
-    bookmarks.each { |bookmark| yielded_bookmarks = bookmark }
     
-    assert_equal [1, [bookmark_1]], yielded_bookmarks
+    yielded_bookmarks = []; bookmarks.each { |bookmark| yielded_bookmarks << bookmark }
+    assert_equal [bookmark_1], yielded_bookmarks
   end
   
   def test_should_retain_a_reference_to_the_current_site_as_we_want_to_deal_with_it_as_a_special_case_in_the_template
@@ -87,7 +87,7 @@ class BookmarksTest < Test::Unit::TestCase
     bookmarks = Bookmarks.new(current_site, bookmark_1, bookmark_2)
     
     yielded_bookmarks = []; bookmarks.each { |bookmark| yielded_bookmarks << bookmark }
-    assert_equal [ [1, [bookmark_1]] ], yielded_bookmarks
+    assert_equal [bookmark_1], yielded_bookmarks
   end
   
 end
