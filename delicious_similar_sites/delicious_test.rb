@@ -27,6 +27,11 @@ class BookmarkTest < Test::Unit::TestCase
     bookmark_2 = Bookmark.new('d' => 'title_2', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
     assert_not_equal bookmark_1, bookmark_2
   end
+  def test_should_intersect_the_tags_to_find_the_tags_in_common
+    bookmark_1 = Bookmark.new('t' => [1, 2, 3])
+    bookmark_2 = Bookmark.new('t' => [2, 3, 4])
+    assert_equal [2, 3], bookmark_1.tags_in_common(bookmark_2)
+  end
 end
 
 class BookmarksTest < Test::Unit::TestCase
@@ -52,11 +57,13 @@ class BookmarksTest < Test::Unit::TestCase
     bookmarks = Bookmarks.new(current_site, bookmark_1)
     yielded_bookmarks = nil
     bookmarks.each { |bookmark| yielded_bookmarks = bookmark }
+    
     assert_equal [1, [bookmark_1]], yielded_bookmarks
   end
   def test_should_retain_a_reference_to_the_current_site_as_we_want_to_deal_with_it_as_a_special_case_in_the_template
     current_site = Bookmark.new('u' => 'current_site', 't' => ['t1'])
     bookmarks = Bookmarks.new(current_site)
+    
     assert_equal current_site, bookmarks.current_site
   end
   def test_should_ignore_duplicate_bookmarks
@@ -64,6 +71,7 @@ class BookmarksTest < Test::Unit::TestCase
     bookmark_1 = Bookmark.new('u' => 'bookmark', 't' => ['t1'])
     bookmark_2 = Bookmark.new('u' => 'bookmark', 't' => ['t1'])
     bookmarks = Bookmarks.new(current_site, bookmark_1, bookmark_2)
+    
     assert_equal [ [1, [bookmark_1]] ], bookmarks.to_a
   end
 end
