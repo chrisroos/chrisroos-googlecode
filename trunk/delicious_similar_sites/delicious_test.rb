@@ -1,29 +1,69 @@
+require 'test/unit'
 require 'delicious'
 
-# Want to test the intersection of tags
-
-current_site_json = %%[{"u":"http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/","n":"A comprehensive overview of the new Crowdstorm site by Mike Butcher at TCUK.  Mike mentions Reevoo, &quot;... is closer to a CRM app for retailers...&quot;  I actually quite like this description although it\'d be much better if we were a VRM app for consumers.","d":"TechCrunch UK » Blog Archive » Crowdstorm comes back, but can it cut it?","t":["url/3949ac3c7062b8a0b45b649f008b6856","vrm","crm","techcrunch","mike-butcher","crowdstorm","reevoo","reviews"]}]%
-current_site = Bookmark.new(JSON.parse(current_site_json).first)
-
-bookmarks = []
-
-[
-  %%[{"u":"http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/","n":"A comprehensive overview of the new Crowdstorm site by Mike Butcher at TCUK.  Mike mentions Reevoo, &quot;... is closer to a CRM app for retailers...&quot;  I actually quite like this description although it\'d be much better if we were a VRM app for consumers.","d":"TechCrunch UK » Blog Archive » Crowdstorm comes back, but can it cut it?","t":["url/3949ac3c7062b8a0b45b649f008b6856","vrm","crm","techcrunch","mike-butcher","crowdstorm","reevoo","reviews"]},{"u":"http://cyber.law.harvard.edu/projectvrm/Main_Page","n":"reverse the normal customer interaction with vendors - sounds like one of ben\'s ideas for reevoo","d":"Main Page - Project VRM","t":["vrm","vendor","crm","docsearles","url/a5e1fcd297945d807dfc5a47ddcc97d6"]}]%,
-  %%[{"u":"http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/","n":"A comprehensive overview of the new Crowdstorm site by Mike Butcher at TCUK.  Mike mentions Reevoo, &quot;... is closer to a CRM app for retailers...&quot;  I actually quite like this description although it\'d be much better if we were a VRM app for consumers.","d":"TechCrunch UK » Blog Archive » Crowdstorm comes back, but can it cut it?","t":["url/3949ac3c7062b8a0b45b649f008b6856","vrm","crm","techcrunch","mike-butcher","crowdstorm","reevoo","reviews"]},{"u":"http://getsatisfaction.com/crowdstorm/topics/limited_password_policy","n":"My question about the crowdstorm password policies.","d":"Limited password policy on Crowdstorm GetSatisfaction","t":["url/a9e76d694fde72965f7b68964942b2ed","crowdstorm","get-satisfaction","satisfaction","question","passwords"]},{"u":"http://beta.crowdstorm.com/","n":"I\'ve just signed up to the crowdstorm beta site to have a play.","d":"Crowdstorm","t":["url/1364f0a45ee1164148fd646517a4143e","crowdstorm","reevoo","beta","products","reviews"]},{"u":"http://getsatisfaction.com/crowdstorm","n":"Hey - Crowdstorm get the importance of having a meeting place for their users, why don\'t we?  Time to test out the crowdstorm satisfaction proposal as I complain about their password policy...","d":"People-powered customer service &amp; support for Crowdstorm","t":["url/8144a2c798d9769b4612698142b95ff7","reevoo","crowdstorm","get-satisfaction","forum","group"]},{"u":"http://blog.crowdstorm.com/?p=282","n":"Phil from Crowdstorm comments on the yahoo sale of kelkoo.  Simon Willison adds a useful comment on the 8th Oct, &quot;I don\'t trust the site to give me non-biased price comparisons&quot;.  How do we deal with this on reevoo.com","d":"Crowdstorm (blog) » Yahoo selling Kelkoo (or divesting as they call it)","t":["url/200e408824960bf95cdebd7b8a5b85d9","reevoo","reviews","crowdstorm","yahoo","kelkoo","simon-willison","philip-wilkinson"]},{"u":"http://www.techcrunch.com/2007/08/23/crowdstorm-revamps-seeks-wisdom-of-your-crowd/","n":"Techcrunch coverage of the new crowdstorm site.  Sounds interesting and also like there\'s overlap with what we\'ve been discussing at reevoo.  Waiting to see if I\'ll be invited into their beta.","d":"CrowdStorm Revamps, Seeks Wisdom Of Your Crowd","t":["crowdstorm","reviews","reevoo","techcrunch","blog","beta","trial","url/e8123915f88ba8d9bdf8533820f9d155"]}]%,
-  %%[{"u":"http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/","n":"A comprehensive overview of the new Crowdstorm site by Mike Butcher at TCUK.  Mike mentions Reevoo, &quot;... is closer to a CRM app for retailers...&quot;  I actually quite like this description although it\'d be much better if we were a VRM app for consumers.","d":"TechCrunch UK » Blog Archive » Crowdstorm comes back, but can it cut it?","t":["url/3949ac3c7062b8a0b45b649f008b6856","vrm","crm","techcrunch","mike-butcher","crowdstorm","reevoo","reviews"]}]%,
-  %%[{"u":"http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/","n":"A comprehensive overview of the new Crowdstorm site by Mike Butcher at TCUK.  Mike mentions Reevoo, &quot;... is closer to a CRM app for retailers...&quot;  I actually quite like this description although it\'d be much better if we were a VRM app for consumers.","d":"TechCrunch UK » Blog Archive » Crowdstorm comes back, but can it cut it?","t":["url/3949ac3c7062b8a0b45b649f008b6856","vrm","crm","techcrunch","mike-butcher","crowdstorm","reevoo","reviews"]},{"u":"http://www.mattcutts.com/blog/whitehat-seo-tips-for-bloggers/","n":"Matt Cutts article that mentions underscores and dashes &quot;But note that I also said if you’d already made your site with underscores, it probably wasn’t worth trying to migrate all your urls over to dashes. If you’re starting fresh, I’d still pick","d":"Whitehat SEO tips for bloggers","t":["url/ae306a6db57da7241032ae21a28d8351","matt-cutts","underscores","dashes","seo","google","reevoo"]},{"u":"http://beta.crowdstorm.com/","n":"I\'ve just signed up to the crowdstorm beta site to have a play.","d":"Crowdstorm","t":["url/1364f0a45ee1164148fd646517a4143e","crowdstorm","reevoo","beta","products","reviews"]},{"u":"http://www.techcrunch.com/2007/10/29/when-google-strikes-the-story-of-enjoyperthnet/","n":"Some coverage of the recent google ranking shuffles.","d":"When Google Strikes: The Story Of EnjoyPerth.net","t":["url/d100c1cf8819de6451654f7e0cc48cf3","reevoo","google","ranking","pagerank","seo"]},{"u":"http://www.marketingprofs.com/7/10-step-program-search-engine-fitness-geschickter.asp?adref=znnpbsc4a7","n":"This list (of \'SEO tips\') is essentially bollocks.  Nothing to see here.  Move on please.","d":"Marketing Article: A 10-Step Program for Search Engine Fitness by Marketing Profs","t":["url/09788d66a9bc82abfd84a9c862461e11","reevoo","seo","marketing","search","engine","optimisation","google"]}]%,
-  %%[{"u":"http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/","n":"A comprehensive overview of the new Crowdstorm site by Mike Butcher at TCUK.  Mike mentions Reevoo, &quot;... is closer to a CRM app for retailers...&quot;  I actually quite like this description although it\'d be much better if we were a VRM app for consumers.","d":"TechCrunch UK » Blog Archive » Crowdstorm comes back, but can it cut it?","t":["url/3949ac3c7062b8a0b45b649f008b6856","vrm","crm","techcrunch","mike-butcher","crowdstorm","reevoo","reviews"]},{"u":"http://beta.crowdstorm.com/","n":"I\'ve just signed up to the crowdstorm beta site to have a play.","d":"Crowdstorm","t":["url/1364f0a45ee1164148fd646517a4143e","crowdstorm","reevoo","beta","products","reviews"]},{"u":"http://blog.adaptiveblue.com/?p=674","n":"Interesting on two fronts.  1) It might solve some of the problem of finding a canonical representation of the subject you\'re talking about.  2) Similar (even in lightbox execution) of having reviews pop-up on any page.","d":"BlueBlog: AdaptiveBlue’s SmartLinks Automatically Make Links More Useful","t":["url/7dd2f97f593c291b3723353fb0dc2a0e","reviews","reevoo","canonical","wikipedia","adaptive-blue","referrer:jason-calacanis","lightbox","popup","smart-link","link","blog"]},{"u":"http://www.bazaarblog.com/2007/10/18/retailers-manufacturers-going-social-networking/","n":"Bazaarvoice now allow you to post a review to your &quot;flavour of the month&quot; social networking site.  I don\'t personally see how this will be useful - surely as long as every review has a permalink you\'re all set for everything.  No?","d":"Retailers &amp; Manufacturers &quot;Share&quot; with Social Networks | Bazaarblog","t":["url/a4d56fb5899235fb88b65487451cdfb2","reevoo","bazaarvoice","reviews","permalink","facebook","digg"]},{"u":"http://www.techcrunch.com/2007/10/16/should-hotornot-become-just-a-facebook-app/","n":"&quot;The concept of drawing traffic to a central Web destination is blowing up for all but the largest sites. A site today needs to be able to live everywhere on the Web&quot;.  Interesting article - I think there\'s stuff in there that applies to reevoo.","d":"Should HotorNot Become Just a Facebook App?","t":["url/a33a55e530026fe22fdf86e150e418ef","reevoo","techcrunch","facebook","hot-or-not","web","http","internet","reviews"]}]%,
-  %%[{"u":"http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/","n":"A comprehensive overview of the new Crowdstorm site by Mike Butcher at TCUK.  Mike mentions Reevoo, &quot;... is closer to a CRM app for retailers...&quot;  I actually quite like this description although it\'d be much better if we were a VRM app for consumers.","d":"TechCrunch UK » Blog Archive » Crowdstorm comes back, but can it cut it?","t":["url/3949ac3c7062b8a0b45b649f008b6856","vrm","crm","techcrunch","mike-butcher","crowdstorm","reevoo","reviews"]},{"u":"http://www.techcrunch.com/2007/10/27/epson-joins-sprint-they-suck-and-their-new-website-is-dumb/","n":"Made me smile.  I haven\'t looked at the site in question so can\'t comment but it still made me smile.","d":"Epson Joins Sprint: They Suck And Their New Website Is Stupid","t":["url/b0aaabe715dc1735640c665e8d8424a1","humour","techcrunch","blog","post","michael-arrington","smile","epson","printer"]},{"u":"http://www.techcrunch.com/2007/10/28/buggd-collaborative-search-and-bug-solutions/","n":"Sounds like quite a nice idea.  Although solutions can often be found in existing forum threads - that doesn\'t feel like the right place for them.  Moving them to their own database is probably the right thing to do.  Not sure how it\'ll work in practice.","d":"Bug.gd: Collaborative Search And Bug Solutions","t":["url/fe5da317745f9cd47c27f7448a01297f","bug","software","techcrunch","blog","post","bug.gd","website","database","microsoft","forum","thread","problem"]},{"u":"http://www.techcrunch.com/2007/10/19/yieldbuild-will-try-to-pay-you-more-than-adsense/","n":"We don\'t currently use adsense of reevoo.com (we used to) but I guess this could be of some use if we decide to go with them again in the future.","d":"YieldBuild Will Try To Optimize AdSense, Pay You More","t":["url/9adccca16061a0f455670ebfa7dc32bf","reevoo","cpm","google","adsense","advertising","marketing","techcrunch","blog","post"]},{"u":"http://www.techcrunch.com/2007/10/17/even-free-cant-compete-with-music-piracy/","n":"Although it seems that Radiohead\'s In Rainbows is expected to be downloaded more over bittorrent than their actual site (where you can still get it for free), it\'s made EMI\'s chairman realise that &quot;[the industry] has stuck its head in the sand&quot;.   Cool","d":"Even Free Can’t Compete With Music Piracy","t":["url/7f0df6c7cd958b92f120cf571b65c74e","music","emi","radiohead","in-rainbows","techcrunch","blog","post","album","record"]}]%,
-  %%[{"u":"http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/","n":"A comprehensive overview of the new Crowdstorm site by Mike Butcher at TCUK.  Mike mentions Reevoo, &quot;... is closer to a CRM app for retailers...&quot;  I actually quite like this description although it\'d be much better if we were a VRM app for consumers.","d":"TechCrunch UK » Blog Archive » Crowdstorm comes back, but can it cut it?","t":["url/3949ac3c7062b8a0b45b649f008b6856","vrm","crm","techcrunch","mike-butcher","crowdstorm","reevoo","reviews"]},{"u":"http://consumerist.com/consumer/insiders/22-confessions-of-a-former-dell-sales-manager-268831.php","n":"Useful info about Dell.  The sort of stuff that Dell would be wise to publish themselves - instead of issuing a takedown notice.  At least they saw the light in the end and said that they were wrong to issue the takedown.","d":"Insiders: 22 Confessions Of A Former Dell Sales Manager - Consumerist","t":["dell","computing","consumer","consumerist","vrm","shopping","url/f2f9990531f42e459fb42250aa5a89e5"]},{"u":"http://blogs.law.harvard.edu/vrm/2007/03/07/how-about-an-open-market-for-tech-support-requests/","n":"Reminds me of my experience trying to find which processor I needed for my broken laptop.  Intel answered incorrectly.  Sony didn\'t bother and Yahoo Answers yielded different opinions...","d":"ProjectVRM Blog » How about an open market for tech support requests?","t":["vrm","url/009df20b71476f57460a488fc80d65d0"]},{"u":"http://cyber.law.harvard.edu/projectvrm/Main_Page","n":"reverse the normal customer interaction with vendors - sounds like one of ben\'s ideas for reevoo","d":"Main Page - Project VRM","t":["vrm","vendor","crm","docsearles","url/a5e1fcd297945d807dfc5a47ddcc97d6"]}]%
-].each do |json|
-  JSON.parse(json).each do |bookmark_data|
-    bookmark = Bookmark.new(bookmark_data);
-    bookmarks << bookmark unless bookmark == current_site || bookmarks.include?(bookmark)
+class BookmarkTest < Test::Unit::TestCase
+  def test_should_be_equal_if_title_and_description_and_tags_and_url_are_all_the_same
+    bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
+    bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
+    assert_equal bookmark_1, bookmark_2
+  end
+  def test_should_not_be_equal_if_title_and_description_and_tags_and_equal_but_url_is_different
+    bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url_1')
+    bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url_2')
+    assert_not_equal bookmark_1, bookmark_2
+  end
+  def test_should_not_be_equal_if_title_and_description_and_url_are_equal_but_tags_are_different
+    bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags_1'], 'u' => 'url')
+    bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags_2'], 'u' => 'url')
+    assert_not_equal bookmark_1, bookmark_2
+  end
+  def test_should_not_be_equal_if_title_and_tags_and_url_and_equal_but_description_is_different
+    bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description_1', 't' => ['tags'], 'u' => 'url')
+    bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description_2', 't' => ['tags'], 'u' => 'url')
+    assert_not_equal bookmark_1, bookmark_2
+  end
+  def test_should_not_be_equal_if_description_and_tags_and_url_are_equal_but_title_is_different
+    bookmark_1 = Bookmark.new('d' => 'title_1', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
+    bookmark_2 = Bookmark.new('d' => 'title_2', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
+    assert_not_equal bookmark_1, bookmark_2
   end
 end
 
-tags_and_bookmarks = bookmarks.collect do |bookmark|
-  [(current_site.tags & bookmark.tags).sort, bookmark]
+class BookmarksTest < Test::Unit::TestCase
+  def test_should_order_the_bookmarks_by_the_number_of_tags_that_they_have_in_common_with_the_current_site
+    current_site = Bookmark.new('u' => 'current_site', 't' => ['t1', 't2'])
+    bookmark_1 = Bookmark.new('u' => 'bookmark_1', 't' => ['t1'])
+    bookmark_2 = Bookmark.new('u' => 'bookmark_2', 't' => ['t1', 't2'])
+    bookmark_3 = Bookmark.new('u' => 'bookmark_3', 't' => ['t1', 't2', 't3'])
+    bookmarks = Bookmarks.new(current_site, bookmark_1, bookmark_2, bookmark_3)
+    
+    assert_equal [ [2, [bookmark_2, bookmark_3]], [1, [bookmark_1]] ], bookmarks.to_a
+  end
+  def test_should_ignore_the_current_site_if_it_appears_in_the_bookmarks
+    current_site = Bookmark.new('u' => 'current_site', 't' => ['t1', 't2'])
+    bookmark_1 = Bookmark.new('u' => 'current_site', 't' => ['t1', 't2'])
+    bookmarks = Bookmarks.new(current_site, bookmark_1)
+   
+    assert_equal [], bookmarks.to_a
+  end
+  def test_should_yield_each_bookmark
+    current_site = Bookmark.new('u' => 'current_site', 't' => ['t1'])
+    bookmark_1 = Bookmark.new('u' => 'bookmark_1', 't' => ['t1'])
+    bookmarks = Bookmarks.new(current_site, bookmark_1)
+    yielded_bookmarks = nil
+    bookmarks.each { |bookmark| yielded_bookmarks = bookmark }
+    assert_equal [1, [bookmark_1]], yielded_bookmarks
+  end
+  def test_should_retain_a_reference_to_the_current_site_as_we_want_to_deal_with_it_as_a_special_case_in_the_template
+    current_site = Bookmark.new('u' => 'current_site', 't' => ['t1'])
+    bookmarks = Bookmarks.new(current_site)
+    assert_equal current_site, bookmarks.current_site
+  end
+  def test_should_ignore_duplicate_bookmarks
+    current_site = Bookmark.new('u' => 'current_site', 't' => ['t1'])
+    bookmark_1 = Bookmark.new('u' => 'bookmark', 't' => ['t1'])
+    bookmark_2 = Bookmark.new('u' => 'bookmark', 't' => ['t1'])
+    bookmarks = Bookmarks.new(current_site, bookmark_1, bookmark_2)
+    assert_equal [ [1, [bookmark_1]] ], bookmarks.to_a
+  end
 end
-
-tags_and_bookmarks.sort_by { |(tags, bookmark)| tags.length }.reverse.each { |tags, bookmark| p [tags.length, bookmark.url] }

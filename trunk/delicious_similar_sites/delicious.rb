@@ -33,22 +33,34 @@ class Bookmark
   end
 end
 
-class RelatedSites
-  attr_reader :bookmark
-  def initialize(bookmark)
-    @bookmark = bookmark
-    @bookmarks = [bookmark.url]
-  end
-  def related_sites
-    @related_sites ||= @bookmark.tags.inject({}) do |hash, tag|
-      unless tag =~ /^url\//
-        hash[tag] = Delicious.bookmarks(tag, 5).collect do |bookmark|
-          next if @bookmarks.include?(bookmark.url)
-          @bookmarks << bookmark.url
-          bookmark
-        end.compact
-      end
-      hash
+class Bookmarks
+  class << self
+    def similar_to(current_site)
+      similar_bookmarks = current_site.tags.collect do |tag|
+        Delicious.bookmarks(tag, 5)
+      end.flatten.uniq
+      new(current_site, *similar_bookmarks)
     end
   end
+  attr_reader :current_site
+  def initialize(current_site, *bookmarks)
+    @current_site = current_site
+    unique_bookmarks = []
+    bookmarks.each { |b| unique_bookmarks << b unless unique_bookmarks.include?(b) }
+    tags_and_bookmarks = unique_bookmarks.collect { |bookmark| [(current_site.tags & bookmark.tags).sort, bookmark] unless current_site == bookmark }.compact
+    number_of_tags_and_bookmarks = Hash.new { |hash, key| hash[key] = [] }
+    tags_and_bookmarks.each { |(tags, bookmark)| number_of_tags_and_bookmarks[tags.length] << bookmark }
+    @tags_and_bookmarks = number_of_tags_and_bookmarks.to_a.reverse
+  end
+  def each
+    @tags_and_bookmarks.each { |tag_and_bookmark| yield tag_and_bookmark }
+  end
+  def to_a
+    @tags_and_bookmarks
+  end
 end
+
+# bookmark = Delicious.bookmark_from_url("http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/")
+# Bookmarks.similar_to(bookmark).each do |(tags, bookmark)|
+#   p [tags, bookmark.url]
+# end
