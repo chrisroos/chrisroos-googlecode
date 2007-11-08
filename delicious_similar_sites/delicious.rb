@@ -58,9 +58,6 @@ class Bookmarks
   def each
     @tags_and_bookmarks.each { |tag_and_bookmark| yield tag_and_bookmark }
   end
-  def to_a
-    @tags_and_bookmarks
-  end
 end
 
 # bookmark = Delicious.bookmark_from_url("http://uk.techcrunch.com/2007/11/01/crowdstorm-comes-back-but-can-it-cut-it/")

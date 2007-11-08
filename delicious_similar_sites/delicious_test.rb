@@ -42,14 +42,16 @@ class BookmarksTest < Test::Unit::TestCase
     bookmark_3 = Bookmark.new('u' => 'bookmark_3', 't' => ['t1', 't2', 't3'])
     bookmarks = Bookmarks.new(current_site, bookmark_1, bookmark_2, bookmark_3)
     
-    assert_equal [ [2, [bookmark_2, bookmark_3]], [1, [bookmark_1]] ], bookmarks.to_a
+    yielded_bookmarks = []; bookmarks.each { |bookmark| yielded_bookmarks << bookmark }
+    assert_equal [ [2, [bookmark_2, bookmark_3]], [1, [bookmark_1]] ], yielded_bookmarks
   end
   def test_should_ignore_the_current_site_if_it_appears_in_the_bookmarks
     current_site = Bookmark.new('u' => 'current_site', 't' => ['t1', 't2'])
     bookmark_1 = Bookmark.new('u' => 'current_site', 't' => ['t1', 't2'])
     bookmarks = Bookmarks.new(current_site, bookmark_1)
    
-    assert_equal [], bookmarks.to_a
+    yielded_bookmarks = []; bookmarks.each { |bookmark| yielded_bookmarks << bookmark }
+    assert_equal [], yielded_bookmarks
   end
   def test_should_yield_each_bookmark
     current_site = Bookmark.new('u' => 'current_site', 't' => ['t1'])
@@ -72,6 +74,7 @@ class BookmarksTest < Test::Unit::TestCase
     bookmark_2 = Bookmark.new('u' => 'bookmark', 't' => ['t1'])
     bookmarks = Bookmarks.new(current_site, bookmark_1, bookmark_2)
     
-    assert_equal [ [1, [bookmark_1]] ], bookmarks.to_a
+    yielded_bookmarks = []; bookmarks.each { |bookmark| yielded_bookmarks << bookmark }
+    assert_equal [ [1, [bookmark_1]] ], yielded_bookmarks
   end
 end
