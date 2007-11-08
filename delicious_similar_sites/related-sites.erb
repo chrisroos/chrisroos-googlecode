@@ -11,11 +11,11 @@
     <blockquote>&quot;<%= rs.current_site.description %>&quot;</blockquote>
     
     <% rs.each do |number_of_tags, bookmarks| %>
-      <%# next if bookmarks.empty? %>
       <h2><%= number_of_tags %></h2>
       <ul>
       <% bookmarks.each do |bookmark| %>
         <li>
+          <span>(<%= current_site.tags_in_common(bookmark).join(', ') %>)</span>
           <a href="<%= bookmark.url %>" title="<%= bookmark.title %>" target="_blank"><%= bookmark.title %></a>
           <span><%= bookmark.description %></span>
         </li>
