@@ -7,18 +7,16 @@
     <title>Del.icio.us tags</title>
   </head>
   <body>
-    <h1><%= rs.current_site.title %></h1>
-    <blockquote>&quot;<%= rs.current_site.description %>&quot;</blockquote>
+    <h1><%= bookmarks.current_site.title %></h1>
+    <blockquote>&quot;<%= bookmarks.current_site.description %>&quot;</blockquote>
     
     <ul>
-      <% rs.each do |number_of_tags, bookmarks| %>
-        <% bookmarks.each do |bookmark| %>
-          <li>
-            <span>(<%= current_site.tags_in_common(bookmark).join(', ') %>)</span>
-            <a href="<%= bookmark.url %>" title="<%= bookmark.title %>" target="_blank"><%= bookmark.title %></a>
-            <span><%= bookmark.description %></span>
-          </li>
-        <% end %>
+      <% bookmarks.each do |bookmark| %>
+        <li>
+          <span>(<%= bookmarks.current_site.tags_in_common(bookmark).join(', ') %>)</span>
+          <a href="<%= bookmark.url %>" title="<%= bookmark.title %>" target="_blank"><%= bookmark.title %></a>
+          <span><%= bookmark.description %></span>
+        </li>
       <% end %>
     </ul>
   </body>

@@ -9,12 +9,12 @@ class DeliciousHandler < Mongrel::HttpHandler
     if hash_of_url
       site_bookmark = Delicious.bookmark_from_hash(hash_of_url)
       if site_bookmark
-        rs = Bookmarks.similar_to(site_bookmark)
+        bookmarks = Bookmarks.similar_to(site_bookmark)
         response.start do |head, out|
           head["Content-Type"] = "text/html"
           template = File.open('related-sites.erb') { |f| f.read }
           erb = ERB.new(template)
-          out << erb.result(rs.__send__(:binding))
+          out << erb.result(bookmarks.__send__(:binding))
         end
       else
         response.start(404) do |head,out|
