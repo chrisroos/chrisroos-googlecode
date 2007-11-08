@@ -7,12 +7,12 @@
     <title>Del.icio.us tags</title>
   </head>
   <body>
-    <h1><%= rs.bookmark.title %></h1>
-    <blockquote>&quot;<%= rs.bookmark.description %>&quot;</blockquote>
+    <h1><%= rs.current_site.title %></h1>
+    <blockquote>&quot;<%= rs.current_site.description %>&quot;</blockquote>
     
-    <% rs.related_sites.each do |tag, bookmarks| %>
-      <% next if bookmarks.empty? %>
-      <h2><%= tag %></h2>
+    <% rs.each do |number_of_tags, bookmarks| %>
+      <%# next if bookmarks.empty? %>
+      <h2><%= number_of_tags %></h2>
       <ul>
       <% bookmarks.each do |bookmark| %>
         <li>
