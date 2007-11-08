@@ -49,8 +49,8 @@ class Bookmarks
   def initialize(current_site, *bookmarks)
     @current_site = current_site
     unique_bookmarks = []
-    bookmarks.each { |b| unique_bookmarks << b unless unique_bookmarks.include?(b) }
-    tags_and_bookmarks = unique_bookmarks.collect { |bookmark| [current_site.tags_in_common(bookmark).sort, bookmark] unless current_site == bookmark }.compact
+    bookmarks.each { |bookmark| unique_bookmarks << bookmark unless bookmark == current_site || unique_bookmarks.include?(bookmark) }
+    tags_and_bookmarks = unique_bookmarks.collect { |bookmark| [current_site.tags_in_common(bookmark).sort, bookmark] }
     number_of_tags_and_bookmarks = Hash.new { |hash, key| hash[key] = [] }
     tags_and_bookmarks.each { |(tags, bookmark)| number_of_tags_and_bookmarks[tags.length] << bookmark }
     @tags_and_bookmarks = number_of_tags_and_bookmarks.to_a.reverse

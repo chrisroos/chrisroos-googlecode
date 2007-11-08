@@ -9,7 +9,7 @@ class DeliciousHandler < Mongrel::HttpHandler
     if hash_of_url
       site_bookmark = Delicious.bookmark_from_hash(hash_of_url)
       if site_bookmark
-        rs = RelatedSites.new(site_bookmark)
+        rs = Bookmarks.similar_to(site_bookmark)
         response.start do |head, out|
           head["Content-Type"] = "text/html"
           template = File.open('related-sites.erb') { |f| f.read }
@@ -30,7 +30,7 @@ class DeliciousHandler < Mongrel::HttpHandler
 end
 
 config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4001', :pid_file => "#{File.dirname(__FILE__)}/mongrel.pid" do
-  daemonize :cwd => Dir.pwd, :log_file => "#{File.dirname(__FILE__)}/mongrel.log"
+  # daemonize :cwd => Dir.pwd, :log_file => "#{File.dirname(__FILE__)}/mongrel.log"
   listener do
     uri "/delicious", :handler => DeliciousHandler.new
   end
