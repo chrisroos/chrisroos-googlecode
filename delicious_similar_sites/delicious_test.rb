@@ -3,7 +3,7 @@ require 'delicious'
 
 class BookmarkTest < Test::Unit::TestCase
   
-  def test_should_be_equal_if_title_and_description_and_tags_and_url_are_all_the_same
+  def test_should_be_equal_if_title_and_description_and_tags_and_url_are_all_the_same_so_that_we_can_easily_detect_duplicate_bookmarks
     bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
     bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
     assert_equal bookmark_1, bookmark_2
@@ -37,6 +37,25 @@ class BookmarkTest < Test::Unit::TestCase
     bookmark_1 = Bookmark.new('t' => [1, 2, 3])
     bookmark_2 = Bookmark.new('t' => [2, 3, 4])
     assert_equal [2, 3], bookmark_1.tags_in_common(bookmark_2)
+  end
+  
+  def test_should_have_equal_hashes_if_the_urls_are_equal_as_this_is_XXX
+    bookmark_1 = Bookmark.new('u' => 'url')
+    bookmark_2 = Bookmark.new('u' => 'url')
+    assert_equal bookmark_1.hash, bookmark_2.hash
+  end
+  
+  def test_should_not_have_equal_hashes_if_the_urls_are_not_equal
+    bookmark_1 = Bookmark.new('u' => 'url_1')
+    bookmark_2 = Bookmark.new('u' => 'url_2')
+    assert_not_equal bookmark_1.hash, bookmark_2.hash
+  end
+  
+  def test_should_have_equal_hashes_but_not_be_equal_if_urls_are_the_same_but_title_and_description_and_tags_are_different
+    bookmark_1 = Bookmark.new('u' => 'url', 'd' => 'title_1', 'n' => 'description_1', 't' => ['tags_1'])
+    bookmark_2 = Bookmark.new('u' => 'url', 'd' => 'title_2', 'n' => 'description_2', 't' => ['tags_2'])
+    assert_equal bookmark_1.hash, bookmark_2.hash
+    assert_not_equal bookmark_1, bookmark_2
   end
   
 end
