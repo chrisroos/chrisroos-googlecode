@@ -7,30 +7,35 @@ class BookmarkTest < Test::Unit::TestCase
     bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
     bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
     assert_equal bookmark_1, bookmark_2
+    assert bookmark_1.eql?(bookmark_2)
   end
   
   def test_should_not_be_equal_if_title_and_description_and_tags_and_equal_but_url_is_different
     bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url_1')
     bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags'], 'u' => 'url_2')
     assert_not_equal bookmark_1, bookmark_2
+    assert ! bookmark_1.eql?(bookmark_2)
   end
   
   def test_should_not_be_equal_if_title_and_description_and_url_are_equal_but_tags_are_different
     bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags_1'], 'u' => 'url')
     bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description', 't' => ['tags_2'], 'u' => 'url')
     assert_not_equal bookmark_1, bookmark_2
+    assert ! bookmark_1.eql?(bookmark_2)
   end
   
   def test_should_not_be_equal_if_title_and_tags_and_url_and_equal_but_description_is_different
     bookmark_1 = Bookmark.new('d' => 'title', 'n' => 'description_1', 't' => ['tags'], 'u' => 'url')
     bookmark_2 = Bookmark.new('d' => 'title', 'n' => 'description_2', 't' => ['tags'], 'u' => 'url')
     assert_not_equal bookmark_1, bookmark_2
+    assert ! bookmark_1.eql?(bookmark_2)
   end
   
   def test_should_not_be_equal_if_description_and_tags_and_url_are_equal_but_title_is_different
     bookmark_1 = Bookmark.new('d' => 'title_1', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
     bookmark_2 = Bookmark.new('d' => 'title_2', 'n' => 'description', 't' => ['tags'], 'u' => 'url')
     assert_not_equal bookmark_1, bookmark_2
+    assert ! bookmark_1.eql?(bookmark_2)
   end
   
   def test_should_intersect_the_tags_to_find_the_tags_in_common
@@ -56,6 +61,13 @@ class BookmarkTest < Test::Unit::TestCase
     bookmark_2 = Bookmark.new('u' => 'url', 'd' => 'title_2', 'n' => 'description_2', 't' => ['tags_2'])
     assert_equal bookmark_1.hash, bookmark_2.hash
     assert_not_equal bookmark_1, bookmark_2
+    assert ! bookmark_1.eql?(bookmark_2)
+  end
+  
+  def test_should_detect_duplicate_bookmarks_in_an_array
+    bookmark_1 = Bookmark.new('u' => 'url', 'd' => 'title', 'n' => 'description', 't' => ['tags'])
+    bookmark_2 = Bookmark.new('u' => 'url', 'd' => 'title', 'n' => 'description', 't' => ['tags'])
+    assert_equal [bookmark_1], [bookmark_1, bookmark_2].uniq
   end
   
 end
