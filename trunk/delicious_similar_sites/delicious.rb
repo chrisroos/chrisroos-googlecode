@@ -52,9 +52,9 @@ class Bookmarks
   attr_reader :current_site
   def initialize(current_site, *bookmarks)
     @current_site = current_site
-    unique_bookmarks = []
-    bookmarks.each { |bookmark| unique_bookmarks << bookmark unless bookmark == current_site || unique_bookmarks.include?(bookmark) }
-    @tags_and_bookmarks = unique_bookmarks.sort_by { |bookmark| current_site.tags_in_common(bookmark).length }.reverse
+    bookmarks.delete(current_site)
+    bookmarks.uniq!
+    @tags_and_bookmarks = bookmarks.sort_by { |bookmark| current_site.tags_in_common(bookmark).length }.reverse
   end
   def each
     @tags_and_bookmarks.each { |tag_and_bookmark| yield tag_and_bookmark }
