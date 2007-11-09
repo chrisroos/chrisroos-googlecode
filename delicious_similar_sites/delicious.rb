@@ -31,6 +31,7 @@ class Bookmark
   def ==(bookmark)
     @title == bookmark.title && @description == bookmark.description && @tags == bookmark.tags && @url == bookmark.url
   end
+  alias_method :eql?, :==
   def hash
     "url=#{self.url}".intern.to_i
   end
