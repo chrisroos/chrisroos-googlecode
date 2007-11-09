@@ -31,6 +31,9 @@ class Bookmark
   def ==(bookmark)
     @title == bookmark.title && @description == bookmark.description && @tags == bookmark.tags && @url == bookmark.url
   end
+  def hash
+    "url=#{self.url}".intern.to_i
+  end
   def tags_in_common(bookmark)
     @tags & bookmark.tags
   end
