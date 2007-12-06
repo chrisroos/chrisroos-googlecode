@@ -1,12 +1,14 @@
 require 'mongrel'
 
+port = ENV['REDIRECTION_PORT'] || '4000'
+
 HOST_AND_PATH_REDIRECTIONS = {
-  'foo.com' => {
-    '/amazon' => 'http://www.amazon.co.uk'
+  'chrisroos.co.uk' => {
+    '/amazonwishlist' => 'http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD'
   }
 }
 HOST_REDIRECTIONS = {
-  'www.foo.com' => 'foo.com'
+  'www.chrisroos.co.uk' => 'chrisroos.co.uk'
 }
 
 class SimpleHandler < Mongrel::HttpHandler
@@ -45,7 +47,7 @@ class SimpleHandler < Mongrel::HttpHandler
   end
 end
 
-config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4000' do
+config = Mongrel::Configurator.new :host => '127.0.0.1', :port => port do
   listener do
     uri "/", :handler => SimpleHandler.new
   end
