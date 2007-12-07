@@ -1,18 +1,14 @@
 require 'mongrel'
 require 'redirector'
+require 'configuration_loader'
 
 port = ENV['REDIRECTION_PORT'] || '4000'
 
-REDIRECTION_RULES = {
-  'www.chrisroos.co.uk' => 'chrisroos.co.uk',
-  'chrisroos.co.uk' => {
-    '/amazonwishlist' => 'http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD'
-  }
-}
-
 class SimpleHandler < Mongrel::HttpHandler
   def process(request, response)
-    redirector = Redirector.new(request, REDIRECTION_RULES)
+    configuration_loader = ConfigurationLoader.new(request)
+    rules = configuration_loader.load_rules
+    redirector = Redirector.new(request, rules)
     
     if redirect_to = redirector.redirect_to
       response.start(302) do |head,out|
