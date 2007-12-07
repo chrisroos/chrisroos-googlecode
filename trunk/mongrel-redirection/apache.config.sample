@@ -1,0 +1,9 @@
+# Change ServerName and ServerAlias to the domain names that you want to redirect
+# Change 4010 to whatever REDIRECTION_PORT you decide to start the server on
+
+<VirtualHost *:80>
+  ServerName www.chrisroos.co.uk
+  ServerAlias chrisroos.co.uk
+  RewriteEngine On
+  RewriteRule (.*) http://localhost:4010$1 [P]
+</VirtualHost>
