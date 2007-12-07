@@ -1,4 +1,5 @@
 require 'mongrel'
+require 'redirector'
 
 port = ENV['REDIRECTION_PORT'] || '4000'
 
@@ -13,27 +14,9 @@ HOST_REDIRECTIONS = {
 
 class SimpleHandler < Mongrel::HttpHandler
   def process(request, response)
-    # Collect http variables
-    host = request.params['HTTP_X_FORWARDED_HOST']
-    path = request.params['REQUEST_PATH']
-    uri = request.params['REQUEST_URI']
+    redirector = Redirector.new(request, HOST_REDIRECTIONS, HOST_AND_PATH_REDIRECTIONS)
     
-    # Remove trailing slash, unless we're at the root
-    redirect_to = path.gsub!(/\/$/, '') unless path == '/'
-    
-    # Match on host and path
-    unless redirect_to
-      redirect_to = HOST_AND_PATH_REDIRECTIONS[host][path] rescue nil
-    end
-    
-    # Match on host
-    unless redirect_to
-      if redirect_to = HOST_REDIRECTIONS[host]
-        redirect_to = "http://#{redirect_to}#{uri}"
-      end
-    end
-    
-    if redirect_to
+    if redirect_to = redirector.redirect_to
       response.start(302) do |head,out|
         head["Location"] = redirect_to
       end
