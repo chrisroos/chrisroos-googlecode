@@ -1,6 +1,7 @@
 * Web Interface
-* Export
+* Export rules
 * Backup rule files
 * Daemonize Mongrel properly
 * Specify the redirection status code in the rules
 * Append .conf to rule filenames so that I can place an invalid_domain_name.co.uk.conf.sample example ruleset in there and still svn ignore all the others.
+* Sort the directory structure out
