@@ -100,9 +100,18 @@ class RedirectorHostAndPathRedirectionTest < Test::Unit::TestCase
     params = {'HTTP_X_FORWARDED_HOST' => 'foo.com', 'REQUEST_PATH' => '/bar'}
     redirection_rules = {'foo.com' => {'/bar' => '/baz'}}
     request = stub('request', :params => params)
-    redirector = Redirector.new(request, {}, redirection_rules)
+    redirector = Redirector.new(request, redirection_rules)
     
     assert_equal '/baz', redirector.redirect_to
+  end
+  
+  def test_should_not_redirect_when_the_host_matches_but_none_of_the_paths_match
+    params = {'HTTP_X_FORWARDED_HOST' => 'foo.com', 'REQUEST_PATH' => '/'}
+    redirection_rules = {'foo.com' => {'/bar' => '/baz'}}
+    request = stub('request', :params => params)
+    redirector = Redirector.new(request, redirection_rules)
+    
+    assert_nil redirector.redirect_to
   end
   
 end
