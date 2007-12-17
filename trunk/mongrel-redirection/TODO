@@ -7,3 +7,14 @@
 * Sort the directory structure out
 * 404 page if redirection not found
 * Docs - suggest using, for example, url.example.com and www.url.example.com
+
+
+* PUT <redirection-xml> to url (e.g. chrisroos.co.uk/amazon-wishlist) 
+** e.g. <redirection><to>http://example.com</to><status>302</status></redirection>
+** Will require some authentication
+* GET /
+** With authentication = list of redirections
+** Without authentication, either redirect (if necessary rule is specified) or 404
+* Build simple AJAX client / Desktop widget to control redirections
+
+*** Future: POST redirection to create tiny-url type redirect where you don't care what URL you get
