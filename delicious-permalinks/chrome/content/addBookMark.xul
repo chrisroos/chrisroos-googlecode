@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<overlay id="deliciousPermalinksAddBookMarkOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script src="chrome://delicious-permalinks/content/md5.js" type="application/x-javascript" />
+  <script src="chrome://delicious-permalinks/content/deliciousPermalinks.js" type="application/x-javascript" />
+  
+  <window id="dlg_AddYBookMark" onload="yAddBookMark.init(); deliciousPermalinks.addPermalinkTag()" />
+  
+</overlay>

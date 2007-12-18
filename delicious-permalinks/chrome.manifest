@@ -1,0 +1,3 @@
+content delicious-permalinks chrome/content/
+
+overlay chrome://ybookmarks/content/yAddBookMark.xul chrome://delicious-permalinks/content/addBookMark.xul
