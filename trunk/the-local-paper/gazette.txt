@@ -1,0 +1,104 @@
+TODO
+----
+* download devguru html guide
+* use yahoo stylesheets
+* rss/atom
+* is dl/dd/dt correct?
+* meta rel=bookmark
+* meta keywords
+* meta description
+
+
+
+Thanet Gazette, Fri 2008-01-04
+** Ignored diary events
+** Ignored letters
+** Ignored organisations
+** Ignored leisure:coming up
+Page,Title,Author,Other
+1,Knives Mar New Year,Joel Dudley,
+2,Shelter to close its doors again,,
+2,New single lane road plans for Turner project,Rebecca Smith,
+2,Burst water main leaves roads flooded,,
+3,"Last of the old, first of the new",,
+4,Brabo provides a splash of colour,John Walters,section:Off the foreland
+4,Friendship has lasted a lifetime,,
+4,Free - an offer we can't ignore,Arthur Houston,section:Thought for the week - Holy Trinity Church
+5,Scooter gran shut out of restaurant,Thom Morris
+5,Teacher held in vice-girl raids
+5,Abductor jailed
+5,"Ezekiel's TV quiz"
+5,Told to hold on
+5,Teen thief's tears
+5,Spirits at the bar
+5,Ann's fancy shell ladies to show visitors the way
+6,How are we failing our young
+6,Gruelling charity trek,Thom Morris
+6,Chris faces Japan run
+7,Police treat hotel inferno as arson,Richard Spillet
+7,Family escapes blaze
+7,Casino trains staff for opening date
+7,Support for forces
+8,Council to improve delivery of its services
+8,Historic path will re-open to public,Joel Dudley
+8,Councils may have to respond to petitions
+8,Family mourns for a beloved grandmother
+9,Betrayed,Richard Spillett,Villager's fury at housing plans
+9,"No to hotel's car park but extension granted"
+9,Tightening up on smoking ban
+10,Sell unwanted gifts for charity
+10,Rape charge
+10,"Family follows Shay's dream",Richard Spillett
+10,Thanet scholar's on-line debut
+10,It's child's play
+10,Planning regulations controversy
+10,Awards celebrate pupil's successes
+11,Star cop honoured by Queen,Thom Morris,heading:Queen's New Year Honours
+11,Eat local for a fresher and greener diet
+11,Musical undertaking
+11,Salsa at Pavilion
+11,Cameras on the roads
+11,Blogging in the sky
+11,Rubbish warning
+11,Royal award for teacher
+11,Students dig in to provide new wildlife habitat
+14,Greeting the greeters,,section:business briefs
+14,Gearing up for 2020,,section:business briefs
+14,Energy monitoring,,section:business briefs
+14,Employment on the up,,section:business briefs
+14,Opportunities for growth,Bill Moses,section:business and money
+14,Refit for cycle shop
+16,Crime fighters receive awards,,Police awards
+16,Sergeant Sue wins praise as police open up for the public
+17,Do you know a hero of the NHS?
+17,Project problems
+17,Mayoral hopes
+18,Lottery boost for community centre will put plan on paper
+18,Hot prizes at holiday show
+18,Rock doc's talk on climate dangers,Thom Morris
+18,Pie and presents liven up Concord's Christmas party
+19,Spies beneath the bed sheets,plain jane
+19,Hotel will welcome travellers to airport
+19,Self help group
+19,Community grants
+21,Boost for air ambulance
+22,Mikal's village memories,Richard Spillett
+24,Mayoress's long life of charity,,section:Obituary
+29,Martin blows sax in hospice thank-you,,section:The Guide
+29,Disgraceful exhibition at the Harbour parade cafe!,,section:The Guide
+30,Preview,Lee Wilmot,section:The Guide
+30,Best of the blogs,Thom Morris,section:The Guide
+30,Thanet Film Society Presents... Sicko,,section:The Guide
+30,Crafty Corner,Eileen O'Brien,section:The Guide
+31,'Let public peek inside our world',,section:The Guide
+31,Review,Jenni Nuttall,Reviews:Elvington.  All Snap Tins and Sunshine; The story of a Kent Mining Village from 1906 to 1986,section:The Guide
+36,'Helping mum is very satisfying',,section:Jobs
+42,Reventon: aviation-inspired Lamborghini,,section:Motors
+43,Atom goes like a bomb,Matt Joy,section:Motors,About:Ariel Atom 300
+44,Margate score big in double,,section:Sport,Compiled:Craig Tucker
+45,Where your team will be in 2008,,section:Sport,Compiled:Craig Tucker
+46,Brutal Part ends Shep's title dream,,Ladbrokes.com World Darts Championship,section:Sport,Compiled:Craig Tucker
+46,Title race hots up as Rebels upset form-book,,section:Sport,Compiled:Craig Tucker
+47,Anybody out there who's fit,,subtitle:But there is good news for Blues as well,section:Sport,Compiled:Craig Tucker
+47,Burton set for one-off return,,subtitle:Rams latest,section:Sport,Compiled:Craig Tucker
+48,We're all so proud of you,,subtitle:Kirk challenge ends in final,section:Sport,Compiled:Craig Tucker
