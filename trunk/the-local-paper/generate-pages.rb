@@ -27,9 +27,9 @@ end
 
 class Article
   public :binding
-  attr_reader :paper, :title, :author, :page_number
-  def initialize(paper, title, author, page_number)
-    @paper, @title, @author, @page_number = paper, title, author, page_number
+  attr_reader :paper, :title, :author, :page_number, :other_attributes
+  def initialize(paper, title, author, page_number, other_attributes)
+    @paper, @title, @author, @page_number, @other_attributes = paper, title, author, page_number, other_attributes
     @paper.articles << self
   end
   def html_title
@@ -61,7 +61,7 @@ paper = Paper.new(paper_attributes[:title], paper_attributes[:date])
 File.open(File.join(File.dirname(__FILE__), filename)) do |file|
   article_parser = ArticleParser.new(file)
   article_parser.each do |article_attributes|
-    article = Article.new(paper, article_attributes[:title], article_attributes[:author], article_attributes[:page_number])
+    article = Article.new(paper, article_attributes[:title], article_attributes[:author], article_attributes[:page_number], article_attributes[:attributes])
   end
 end
 
