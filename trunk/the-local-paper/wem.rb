@@ -1,0 +1,97 @@
+class Date
+  def iso8601
+    Time.parse(self.to_s).iso8601
+  end
+end
+
+class Paper
+  public :binding
+  attr_reader :title, :date, :articles
+  def initialize(title, date)
+    @title, @date = title, date
+    @articles = []
+  end
+  def html_title
+    "#{self.title} on #{self.human_friendly_date}"
+  end
+  def human_friendly_date
+    self.date.strftime("%A %d %b %Y")
+  end
+  def iso8601_date
+    self.date.iso8601
+  end
+  def url_friendly_title
+    title.downcase.gsub(/ /, '-')
+  end
+end
+
+class Article
+  public :binding
+  attr_reader :paper, :title, :author, :page_number
+  def initialize(paper, title, author, page_number)
+    @paper, @title, @author, @page_number = paper, title, author, page_number
+    @paper.articles << self
+  end
+  def html_title
+    "#{self.title}, #{paper.html_title}"
+  end
+  def iso8601_published_date
+    paper.iso8601_date
+  end
+  def human_friendly_published_date
+    paper.human_friendly_date
+  end
+  def paper_name
+    paper.title
+  end
+  def url_friendly_title
+    title.downcase.gsub(/ /, '-').gsub(/[^a-zA-Z0-9-]/, '').squeeze('-')
+  end  
+end
+
+# Let's use the parser to extract some real data and construct our object graph
+require File.join(File.dirname(__FILE__), 'parser')
+
+filename = '2008-01-04-Isle-of-Thanet-Gazette.txt'
+
+paper_attributes = PaperParser.parse(filename)
+# paper = Paper.new('Isle of Thanet Gazette', Date.parse('2008-01-04'))
+# article = Article.new(paper, 'My Great Title', 'My Great Author', 99)
+paper = Paper.new(paper_attributes[:title], paper_attributes[:date])
+File.open(File.join(File.dirname(__FILE__), filename)) do |file|
+  article_parser = ArticleParser.new(file)
+  article_parser.each do |article_attributes|
+    article = Article.new(paper, article_attributes[:title], article_attributes[:author], article_attributes[:page_number])
+  end
+end
+
+# Let's use the object graph to create some html pages
+require 'erb'
+include ERB::Util
+
+article_template = File.open('article.erb.html') { |f| f.read }
+article_erb = ERB.new(article_template)
+paper_template = File.open('paper.erb.html') { |f| f.read }
+paper_erb = ERB.new(paper_template)
+
+def render_to_file(filename, string)
+  File.open(filename, 'w') do |f|
+    f.puts(string)
+  end
+end
+
+require 'fileutils'
+
+paper_year, paper_month, paper_day = paper.date.to_s.split('-')
+paper_directory = File.join(File.dirname(__FILE__), 'pages', paper.url_friendly_title, paper_year.to_s, paper_month.to_s, paper_day.to_s)
+FileUtils.mkdir_p(paper_directory)
+
+paper_filename = File.join(paper_directory, "index.html")
+paper_content = paper_erb.result(paper.binding)
+render_to_file(paper_filename, paper_content)
+
+paper.articles.each do |article|
+  article_filename = File.join(paper_directory, "#{article.url_friendly_title}.html")
+  article_content = article_erb.result(article.binding)
+  render_to_file(article_filename, article_content)
+end

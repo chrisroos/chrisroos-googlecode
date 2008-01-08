@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+  <head>
+    <title><%= h(article.html_title) %></title>
+  </head>
+  <body>
+    <h1><%= h(article.title) %></h1>
+    <dl>
+      <dt>Paper</dt>
+      <dd class="paper"><%= h(article.paper_name) %></dd>
+      <dt>Published Date</dt>
+      <dd class="publishedDate">
+        <abbr title="<%= article.iso8601_published_date %>"><%= article.human_friendly_published_date %></abbr>
+      </dd>
+      <% if article.author %>
+        <dt>Author</dt>
+        <dd class="author"><%= h(article.author) %></dd>
+      <% end %>
+      <dt>Page</dt>
+      <dd class="pageNumber"><%= h(article.page_number) %></dd>
+    </dl>
+  </body>
+</html>

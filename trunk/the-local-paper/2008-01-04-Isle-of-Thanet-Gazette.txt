@@ -1,33 +1,20 @@
-TODO
-----
-* download devguru html guide
-* use yahoo stylesheets
-* rss/atom
-* is dl/dd/dt correct?
-* meta rel=bookmark
-* meta keywords
-* meta description
-
-
-
-Thanet Gazette, Fri 2008-01-04
-** Ignored diary events
-** Ignored letters
-** Ignored organisations
-** Ignored leisure:coming up
-Page,Title,Author,Other
-1,Knives Mar New Year,Joel Dudley,
-2,Shelter to close its doors again,,
-2,New single lane road plans for Turner project,Rebecca Smith,
-2,Burst water main leaves roads flooded,,
-3,"Last of the old, first of the new",,
+# Ignored diary events
+# Ignored letters
+# Ignored organisations
+# Ignored leisure:coming up
+# Page,Title,Author,Other
+1,Knives Mar New Year,Joel Dudley
+2,Shelter to close its doors again
+2,New single lane road plans for Turner project,Rebecca Smith
+2,Burst water main leaves roads flooded
+3,"Last of the old, first of the new"
 4,Brabo provides a splash of colour,John Walters,section:Off the foreland
-4,Friendship has lasted a lifetime,,
+4,Friendship has lasted a lifetime
 4,Free - an offer we can't ignore,Arthur Houston,section:Thought for the week - Holy Trinity Church
 5,Scooter gran shut out of restaurant,Thom Morris
 5,Teacher held in vice-girl raids
 5,Abductor jailed
-5,"Ezekiel's TV quiz"
+5,Ezekiel's TV quiz
 5,Told to hold on
 5,Teen thief's tears
 5,Spirits at the bar
@@ -43,12 +30,12 @@ Page,Title,Author,Other
 8,Historic path will re-open to public,Joel Dudley
 8,Councils may have to respond to petitions
 8,Family mourns for a beloved grandmother
-9,Betrayed,Richard Spillett,Villager's fury at housing plans
-9,"No to hotel's car park but extension granted"
+9,Betrayed,Richard Spillett,subtitle:Villager's fury at housing plans
+9,No to hotel's car park but extension granted
 9,Tightening up on smoking ban
 10,Sell unwanted gifts for charity
 10,Rape charge
-10,"Family follows Shay's dream",Richard Spillett
+10,Family follows Shay's dream,Richard Spillett
 10,Thanet scholar's on-line debut
 10,It's child's play
 10,Planning regulations controversy
@@ -68,7 +55,7 @@ Page,Title,Author,Other
 14,Employment on the up,,section:business briefs
 14,Opportunities for growth,Bill Moses,section:business and money
 14,Refit for cycle shop
-16,Crime fighters receive awards,,Police awards
+16,Crime fighters receive awards,,section:Police awards
 16,Sergeant Sue wins praise as police open up for the public
 17,Do you know a hero of the NHS?
 17,Project problems
@@ -97,7 +84,7 @@ Page,Title,Author,Other
 43,Atom goes like a bomb,Matt Joy,section:Motors,About:Ariel Atom 300
 44,Margate score big in double,,section:Sport,Compiled:Craig Tucker
 45,Where your team will be in 2008,,section:Sport,Compiled:Craig Tucker
-46,Brutal Part ends Shep's title dream,,Ladbrokes.com World Darts Championship,section:Sport,Compiled:Craig Tucker
+46,Brutal Part ends Shep's title dream,,title:Ladbrokes.com World Darts Championship,section:Sport,Compiled:Craig Tucker
 46,Title race hots up as Rebels upset form-book,,section:Sport,Compiled:Craig Tucker
 47,Anybody out there who's fit,,subtitle:But there is good news for Blues as well,section:Sport,Compiled:Craig Tucker
 47,Burton set for one-off return,,subtitle:Rams latest,section:Sport,Compiled:Craig Tucker
