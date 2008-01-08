@@ -14,14 +14,17 @@
         <abbr title="<%= paper.iso8601_date %>"><%= paper.human_friendly_date %></abbr>
       </dd>
     </dl>
-    <ul class="articles">
-      <% paper.articles.each do |article| %>
-        <li class="article">
-          <a href="<%= article.url_friendly_title %>.html" rel="article">
-            <%= h(article.title) %>
-          </a>
-        </li>
-      <% end %>
-    </ul>
+    <% paper.each_page_with_articles do |page_number, articles| %>
+      <h2>Page <span class="pageNumber"><%= page_number %></span></h2>
+      <ul class="articles">
+        <% articles.each do |article| %>
+          <li class="article">
+            <a href="<%= article.url_friendly_title %>.html" rel="article">
+              <%= h(article.title) %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </body>
 </html>
