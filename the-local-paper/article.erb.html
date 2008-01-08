@@ -21,6 +21,10 @@
       <% end %>
       <dt>Page</dt>
       <dd class="pageNumber"><%= h(article.page_number) %></dd>
+      <% article.other_attributes.each do |key, value| %>
+        <dt><%= h(key) %></dt>
+        <dd><%= h(value) %></dd>
+      <% end %>
     </dl>
   </body>
 </html>
