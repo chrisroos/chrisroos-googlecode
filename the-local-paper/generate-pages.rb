@@ -12,6 +12,7 @@ class Paper
     @articles, @articles_by_page_number = [], {}
   end
   def add_article(article)
+    @articles << article
     @articles_by_page_number[article.page_number] ||= []
     @articles_by_page_number[article.page_number] << article
   end
@@ -59,7 +60,8 @@ end
 # Let's use the parser to extract some real data and construct our object graph
 require File.join(File.dirname(__FILE__), 'parser')
 
-filename = '2008-01-04-Isle-of-Thanet-Gazette.txt'
+# filename = '2008-01-04-Isle-of-Thanet-Gazette.txt'
+filename = '2008-01-08-Thanet-Times.txt'
 
 paper_attributes = PaperParser.parse(filename)
 # paper = Paper.new('Isle of Thanet Gazette', Date.parse('2008-01-04'))
