@@ -9,7 +9,14 @@ class Paper
   attr_reader :title, :date, :articles
   def initialize(title, date)
     @title, @date = title, date
-    @articles = []
+    @articles, @articles_by_page_number = [], {}
+  end
+  def add_article(article)
+    @articles_by_page_number[article.page_number] ||= []
+    @articles_by_page_number[article.page_number] << article
+  end
+  def each_page_with_articles
+    @articles_by_page_number.sort { |(p1, a1), (p2, a2)| p1 <=> p2 }.each { |page_number, articles| yield page_number, articles }
   end
   def html_title
     "#{self.title} on #{self.human_friendly_date}"
@@ -29,8 +36,8 @@ class Article
   public :binding
   attr_reader :paper, :title, :author, :page_number, :other_attributes
   def initialize(paper, title, author, page_number, other_attributes)
-    @paper, @title, @author, @page_number, @other_attributes = paper, title, author, page_number, other_attributes
-    @paper.articles << self
+    @paper, @title, @author, @page_number, @other_attributes = paper, title, author, Integer(page_number), other_attributes
+    @paper.add_article(self)
   end
   def html_title
     "#{self.title}, #{paper.html_title}"
