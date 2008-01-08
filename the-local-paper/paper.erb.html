@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+  <head>
+    <title><%= h(paper.html_title) %></title>
+  </head>
+  <body>
+    <h1><%= h(paper.title) %></h1>
+    <dl>
+      <dt>Published Date</dt>
+      <dd class="publishedDate">
+        <abbr title="<%= paper.iso8601_date %>"><%= paper.human_friendly_date %></abbr>
+      </dd>
+    </dl>
+    <ul class="articles">
+      <% paper.articles.each do |article| %>
+        <li class="article">
+          <a href="<%= article.url_friendly_title %>.html" rel="article">
+            <%= h(article.title) %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </body>
+</html>
