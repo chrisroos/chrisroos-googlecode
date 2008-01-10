@@ -67,8 +67,6 @@ RAW_DATA_FOLDER = File.join(SITE_FOLDER, 'raw-data')
 filename = File.join(RAW_DATA_FOLDER, '2008-01-08-Thanet-Times.txt')
 
 paper_attributes = PaperParser.parse(filename)
-# paper = Paper.new('Isle of Thanet Gazette', Date.parse('2008-01-04'))
-# article = Article.new(paper, 'My Great Title', 'My Great Author', 99)
 paper = Paper.new(paper_attributes[:title], paper_attributes[:date])
 File.open(filename) do |file|
   article_parser = ArticleParser.new(file)
