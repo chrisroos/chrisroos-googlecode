@@ -5,7 +5,7 @@ class PaperParser
     new(filename).parse
   end
   def initialize(filename)
-    filename =~ /^(\d{4}-\d{2}-\d{2})-(.*)\.txt$/
+    File.basename(filename) =~ /^(\d{4}-\d{2}-\d{2})-(.*)\.txt$/
     @date, @title = $1, $2
   end
   def parse

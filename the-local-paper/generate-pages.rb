@@ -60,14 +60,17 @@ end
 # Let's use the parser to extract some real data and construct our object graph
 require File.join(File.dirname(__FILE__), 'parser')
 
-# filename = '2008-01-04-Isle-of-Thanet-Gazette.txt'
-filename = '2008-01-08-Thanet-Times.txt'
+SITE_FOLDER = File.join(File.dirname(__FILE__), 'Site')
+RAW_DATA_FOLDER = File.join(SITE_FOLDER, 'raw-data')
+
+# filename = File.join(RAW_DATA_FOLDER, '2008-01-04-Isle-of-Thanet-Gazette.txt')
+filename = File.join(RAW_DATA_FOLDER, '2008-01-08-Thanet-Times.txt')
 
 paper_attributes = PaperParser.parse(filename)
 # paper = Paper.new('Isle of Thanet Gazette', Date.parse('2008-01-04'))
 # article = Article.new(paper, 'My Great Title', 'My Great Author', 99)
 paper = Paper.new(paper_attributes[:title], paper_attributes[:date])
-File.open(File.join(File.dirname(__FILE__), filename)) do |file|
+File.open(filename) do |file|
   article_parser = ArticleParser.new(file)
   article_parser.each do |article_attributes|
     article = Article.new(paper, article_attributes[:title], article_attributes[:author], article_attributes[:page_number], article_attributes[:attributes])
@@ -92,7 +95,7 @@ end
 require 'fileutils'
 
 paper_year, paper_month, paper_day = paper.date.to_s.split('-')
-paper_directory = File.join(File.dirname(__FILE__), 'Site', paper.url_friendly_title, paper_year.to_s, paper_month.to_s, paper_day.to_s)
+paper_directory = File.join(SITE_FOLDER, paper.url_friendly_title, paper_year.to_s, paper_month.to_s, paper_day.to_s)
 FileUtils.mkdir_p(paper_directory)
 
 paper_filename = File.join(paper_directory, "index.html")
