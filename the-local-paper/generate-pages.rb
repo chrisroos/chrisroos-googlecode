@@ -92,7 +92,7 @@ end
 require 'fileutils'
 
 paper_year, paper_month, paper_day = paper.date.to_s.split('-')
-paper_directory = File.join(File.dirname(__FILE__), 'pages', paper.url_friendly_title, paper_year.to_s, paper_month.to_s, paper_day.to_s)
+paper_directory = File.join(File.dirname(__FILE__), 'Site', paper.url_friendly_title, paper_year.to_s, paper_month.to_s, paper_day.to_s)
 FileUtils.mkdir_p(paper_directory)
 
 paper_filename = File.join(paper_directory, "index.html")
