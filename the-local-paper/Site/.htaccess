@@ -4,5 +4,6 @@ RewriteEngine On
 # Need to deal with trailing slash / no trailing slash
 # Need to deal with www. vs .
 # Need to redirect index.html to /
+# Need to hide .svn directories
 #RewriteRule (.*)([^html])$ $1$2.html [L,NC] # Render anthing.html when anything.<not html (ignoring case)> is requested
 #RewriteRule ^(.*)\.html$ /$1 [R=301,L,NC] # Redirect anything.html to anything, ignoring case
