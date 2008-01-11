@@ -1,0 +1,8 @@
+#Options Indexes
+RewriteEngine On
+# Would like case insensitive urls, or at least 301 redirect to lower case version
+# Need to deal with trailing slash / no trailing slash
+# Need to deal with www. vs .
+# Need to redirect index.html to /
+#RewriteRule (.*)([^html])$ $1$2.html [L,NC] # Render anthing.html when anything.<not html (ignoring case)> is requested
+#RewriteRule ^(.*)\.html$ /$1 [R=301,L,NC] # Redirect anything.html to anything, ignoring case
