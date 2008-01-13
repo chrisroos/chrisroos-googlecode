@@ -1,5 +1,8 @@
 #Options Indexes
 RewriteEngine On
+# Permanently (301) remove www.
+RewriteCond %{HTTP_HOST} ^www.the-local-paper.co.uk$ [NC]
+RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
 # Would like case insensitive urls, or at least 301 redirect to lower case version
 # Need to deal with trailing slash / no trailing slash
 # Need to deal with www. vs .
