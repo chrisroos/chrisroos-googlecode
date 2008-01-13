@@ -80,7 +80,7 @@
 32,Review,Lee Wilmot,Reviews:I Am Legend,Section:Leisure
 32,Best of the blogs,Thom Morris,Section:Leisure
 32,Thanet Film Society presents,,Film:Day Watch 15,Section:Leisure
-32,Crafty corner,Bryony Harrison,,Section:Leisure
+32,Crafty corner,Bryony Harrison,Section:Leisure
 33,Great chance to see play of Alexander,,Section:Leisure
 33,R&B pair's date at the frigate,,Section:Leisure
 33,Journey in steps,,Section:Leisure
@@ -99,7 +99,7 @@
 54,Cyprus success for Roadrunners stars,Jackie Lee,Sport:Athletics,Compiled By:Craig Tucker,Section:Sport
 54,Weale deal keeps title hopes alive,Bill Hammond,Compiled By:Craig Tucker,Section:Sport,Sport:Junior cricket
 54,Ville gear up for the New Year,,Compiled By:Craig Tucker,Section:Sport,Sport:Hockey
-54,Division 1 duo down,,,Compiled By:Craig Tucker,Section:Sport,Sport:Thanet Indoor Cricket League
+54,Division 1 duo down,,Compiled By:Craig Tucker,Section:Sport,Sport:Thanet Indoor Cricket League
 55,Fifth Dan John hopes to inspire club youngsters,,Compiled By:Craig Tucker,Section:Sport,Sport:Karate
 55,Scotty working on the knockout blow,,Compiled By:Craig Tucker,Section:Sport
 55,More glory for ace Shep,,Compiled By:Craig Tucker,Section:Sport,Sport:Darts
