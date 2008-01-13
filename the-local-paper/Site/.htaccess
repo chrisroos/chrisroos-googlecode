@@ -1,5 +1,9 @@
 #Options Indexes
 RewriteEngine On
+RewriteBase /
+# Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
+RewriteRule ^(.*)index\.html$ $1 [R=301,L]
 # Permanently (301) remove www.
 RewriteCond %{HTTP_HOST} ^www.the-local-paper.co.uk$ [NC]
 RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
