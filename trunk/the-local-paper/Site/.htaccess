@@ -1,12 +1,26 @@
 #Options Indexes
 RewriteEngine On
 RewriteBase /
+
+#RewriteRule .* http://localhost?request_uri=%{REQUEST_URI}&the_request=%{THE_REQUEST}
+
 # Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
 RewriteRule ^(.*)index\.html$ $1 [R=301,L]
+
+# Permanently (301) redirect /<article>.html to /<article>, ensuring that we don't try to redirect index.html to index
+RewriteCond %{THE_REQUEST} .+/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+\.html\ HTTP/
+RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
+RewriteRule ^(.*)\.html$ $1 [R=301,L]
+
+# If we receive a request for an article without a .html extension then let's rewrite internally to render the file with the .html extension
+RewriteCond %{REQUEST_URI} .+/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+[^\.html]$
+RewriteRule ^(.*)([^\.html])$ $1$2.html [L]
+
 # Permanently (301) remove www.
 RewriteCond %{HTTP_HOST} ^www.the-local-paper.co.uk$ [NC]
 RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
+
 # Provide a custom (and probably less helpful than the default) 404 error page
 ErrorDocument 404 /404.html
 
