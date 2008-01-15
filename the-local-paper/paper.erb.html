@@ -19,7 +19,7 @@
       <ul class="articles">
         <% articles.each do |article| %>
           <li class="article">
-            <a href="<%= article.url_friendly_title %>.html" rel="article">
+            <a href="<%= article.url_friendly_title %>" rel="article">
               <%= h(article.title) %>
             </a>
           </li>
