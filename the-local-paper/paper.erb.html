@@ -4,10 +4,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><%= h(paper.html_title) %></title>
+    <title>Articles from the <%= h(paper.html_title) %></title>
   </head>
   <body>
-    <h1><%= h(paper.title) %></h1>
+    <h1>
+      Articles from the <%= h(paper.title) %> on 
+      <abbr class="publishedDate" title="<%= paper.iso8601_date %>">
+        <%= paper.human_friendly_date %>
+      </abbr>
+    </h1>
+    
     <dl>
       <dt>Published Date</dt>
       <dd class="publishedDate">
