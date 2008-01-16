@@ -1,14 +1,5 @@
 require 'net/http'
 
-# request_url = 'http://the-local-paper.co.uk/isle-of-thanet-gazette'
-# url = URI.parse(request_url)
-# 
-# request = Net::HTTP::Get.new(url.path)
-# response = Net::HTTP.start(url.host, url.port) do |http|
-#   http.request(request)
-# end
-# p response['Location']
-
 expectations = {
   'http://www.the-local-paper.co.uk/' => {
     :url => 'http://the-local-paper.co.uk/', :code => '301'
