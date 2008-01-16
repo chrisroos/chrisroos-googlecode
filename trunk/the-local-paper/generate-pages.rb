@@ -41,7 +41,7 @@ class Article
     @paper.add_article(self)
   end
   def html_title
-    "#{self.title}, #{paper.html_title}"
+    "#{self.title} - #{paper.html_title}"
   end
   def iso8601_published_date
     paper.iso8601_date
