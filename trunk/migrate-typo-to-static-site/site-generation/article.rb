@@ -9,7 +9,7 @@ class Article < ActiveRecord::Base
   
   has_many :comments, :dependent => :destroy, :order => 'created_at ASC', :conditions => 'published = TRUE'
   has_many :trackbacks, :dependent => :destroy, :order => 'created_at ASC'
-  has_and_belongs_to_many :tags, :foreign_key => 'article_id'
+  has_and_belongs_to_many :tags, :foreign_key => 'article_id', :order => 'name'
   
   def formatted_published_date
     published_at.strftime("%a, %d %b %Y %H:%M:%S")
