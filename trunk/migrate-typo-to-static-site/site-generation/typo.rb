@@ -14,17 +14,15 @@ require File.join(MIGRATOR_ROOT, 'article')
 
 Article.find(:all).each do |article|
   
-  year, month, day = article.created_at.to_date.to_s.split('-')
-  article_path = File.join(ARTICLES_ROOT, year, month, day)
   require 'fileutils'
-  FileUtils.mkdir_p(article_path)
+  FileUtils.mkdir_p(article.path)
 
   require 'erb'
   include ERB::Util
 
   article_template = File.open('article.erb.html') { |f| f.read }
   article_erb = ERB.new(article_template)
-  File.open(File.join(article_path, "#{article.permalink}.html"), 'w') do |file|
+  File.open(File.join(article.path, "#{article.permalink}.html"), 'w') do |file|
     file.puts article_erb.result(article.binding)
   end
   
