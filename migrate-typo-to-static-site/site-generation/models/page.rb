@@ -1,5 +1,3 @@
-require File.join(MIGRATOR_ROOT, 'environment')
-
 class Page < ActiveRecord::Base
   
   def formatted_created_date

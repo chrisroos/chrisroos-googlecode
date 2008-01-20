@@ -1,4 +1,3 @@
-require File.join(MIGRATOR_ROOT, 'environment')
 require 'redcloth'
 
 class Comment < ActiveRecord::Base
