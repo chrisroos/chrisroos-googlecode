@@ -34,8 +34,9 @@ ALTER TABLE contents DROP COLUMN keywords;
 ALTER TABLE contents DROP COLUMN permalink;
 
 -- Split pages out from the contents table and remove some now unecessary columns
-CREATE TABLE pages (id INTEGER, title VARCHAR(255), body TEXT, created_at DATETIME, updated_at DATETIME, name VARCHAR(255), published TINYINT(1), published_at DATETIME);
-INSERT INTO pages SELECT id, title, body, created_at, updated_at, name, published, published_at FROM contents WHERE type = 'page';
+-- Although all (five) of my pages are accessible on the web, only one was published (and therefore had a published_at value) - hence me ignoring the published* columns
+CREATE TABLE pages (id INTEGER, title VARCHAR(255), body TEXT, created_at DATETIME, updated_at DATETIME, name VARCHAR(255));
+INSERT INTO pages SELECT id, title, body, created_at, updated_at, name FROM contents WHERE type = 'page';
 DELETE FROM contents WHERE type = 'page';
 ALTER TABLE contents DROP COLUMN name;
 
