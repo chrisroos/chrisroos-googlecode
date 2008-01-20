@@ -16,7 +16,7 @@ class Page < ActiveRecord::Base
   end
   
   def path
-    PAGES_ROOT
+    PAGES_URL_ROOT
   end
   
   def url
