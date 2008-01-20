@@ -15,7 +15,7 @@ require File.join(MIGRATOR_ROOT, 'article')
 Article.find(:all).each do |article|
   
   year, month, day = article.created_at.to_date.to_s.split('-')
-  article_path = File.join(SITE_ROOT, 'articles', year, month, day)
+  article_path = File.join(ARTICLES_ROOT, year, month, day)
   require 'fileutils'
   FileUtils.mkdir_p(article_path)
 
@@ -31,7 +31,7 @@ Article.find(:all).each do |article|
 end
 
 Tag.find(:all).each do |tag|
-  tag_path = File.join(SITE_ROOT, 'articles', 'tag')
+  tag_path = File.join(ARTICLES_ROOT, 'tag')
   require 'fileutils'
   FileUtils.mkdir_p(tag_path)
   

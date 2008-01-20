@@ -9,3 +9,4 @@ ActiveRecord::Base.establish_connection({
 
 MIGRATOR_ROOT = File.expand_path(File.dirname(__FILE__))
 SITE_ROOT = File.expand_path(File.join('..', 'Site'))
+ARTICLES_ROOT = File.expand_path(SITE_ROOT, 'articles')
