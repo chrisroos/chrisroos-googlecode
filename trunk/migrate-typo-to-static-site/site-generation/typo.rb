@@ -15,10 +15,14 @@ require File.join(MIGRATOR_ROOT, 'erb_renderer')
 
 Article.find(:all).each do |article|
   FileUtils.mkdir_p(article.path)
-  ErbRenderer.new('article.erb.html', File.join(article.path, "#{article.permalink}.html"), article.binding).render
+  
+  renderer = ErbRenderer.new('article.erb.html', article.binding)
+  File.open(File.join(article.path, "#{article.permalink}.html"), 'w') { |io| renderer.render(io) }
 end
 
 Tag.find(:all).each do |tag|
   FileUtils.mkdir_p(tag.path)
-  ErbRenderer.new('tag.erb.html', File.join(tag.path, "#{tag.name}.html"), tag.binding).render
+  
+  renderer = ErbRenderer.new('tag.erb.html', tag.binding)
+  File.open(File.join(tag.path, "#{tag.name}.html"), 'w') { |io| renderer.render(io) }
 end
