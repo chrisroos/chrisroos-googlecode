@@ -14,26 +14,50 @@ require File.join(MIGRATOR_ROOT, 'article')
 require File.join(MIGRATOR_ROOT, 'page')
 require File.join(MIGRATOR_ROOT, 'erb_renderer')
 
-Article.find(:all, :limit => 1).each do |article|
-  FileUtils.mkdir_p(File.join(SITE_ROOT, article.path))
+class PageGenerator
   
-  template = File.join(TEMPLATE_ROOT, 'article.erb.html')
-  renderer = ErbRenderer.new(template, article.binding)
-  File.open(File.join(SITE_ROOT, "#{article.url}.html"), 'w') { |io| renderer.render(io) }
+  # Previously we were sending the binding of an article, tag, or page to their respective template.
+  # The erb templates still expect to be able to access these variables.
+  # This template object allows us to magically define methods on it.  So, for example, we can define an article
+  # method that returns an instance of an article.  By instantiating a template for each object in our collection
+  # and setting the variable required by the erb template we can remove some duplication.
+  # Example.
+  # Instead of rendering the article erb template in the context of an article (article.binding)
+  # We instantiate a template passing it :article and an article instance.  This gives us an article method on the template
+  # that returns our article instance.  We can then render the article erb template in the context of this template
+  # object.
+  class Template
+    def metaclass
+      class << self; self; end
+    end
+    def initialize(object_name, object)
+      metaclass.__send__(:define_method, object_name) { object }
+    end
+    public :binding
+  end
+      
+  def initialize(collection, object_name)
+    @collection, @object_name = collection, object_name
+  end
+  
+  def generate
+    @collection.each do |object|
+      FileUtils.mkdir_p(File.join(SITE_ROOT, object.path))
+
+      erb_template = File.join(TEMPLATE_ROOT, "#{@object_name}.erb.html")
+      template = Template.new(@object_name, object)
+      
+      renderer = ErbRenderer.new(erb_template, template.binding)
+      File.open(File.join(SITE_ROOT, "#{object.url}.html"), 'w') { |io| renderer.render(io) }
+    end
+  end
+  
 end
 
-Tag.find(:all, :limit => 1).each do |tag|
-  FileUtils.mkdir_p(File.join(SITE_ROOT, tag.path))
-  
-  template = File.join(TEMPLATE_ROOT, 'tag.erb.html')
-  renderer = ErbRenderer.new(template, tag.binding)
-  File.open(File.join(SITE_ROOT, "#{tag.url}.html"), 'w') { |io| renderer.render(io) }
-end
+articles = Article.find(:all)
+tags = Tag.find(:all)
+pages = Page.find(:all)
 
-Page.find(:all, :limit => 1).each do |page|
-  FileUtils.mkdir_p(File.join(SITE_ROOT, page.path))
-  
-  template = File.join(TEMPLATE_ROOT, 'page.erb.html')
-  renderer = ErbRenderer.new(template, page.binding)
-  File.open(File.join(SITE_ROOT, "#{page.url}.html"), 'w') { |io| renderer.render(io) }
-end
+PageGenerator.new(articles, :article).generate
+PageGenerator.new(tags, :tag).generate
+PageGenerator.new(pages, :page).generate
