@@ -32,3 +32,5 @@ RewriteRule ^(.*)\.html$ $1 [R=301,L]
 RewriteCond %{REQUEST_URI} /articles/tag/.+$
 RewriteCond %{REQUEST_URI} !\.html$
 RewriteRule ^(.*)$ $1.html [L]
+
+# /articles should redirect to /
