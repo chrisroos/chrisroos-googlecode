@@ -12,29 +12,28 @@
 require File.join(File.dirname(__FILE__), 'environment')
 require File.join(MIGRATOR_ROOT, 'article')
 
+require 'erb'
+include ERB::Util
+
+class ErbRenderer
+  def initialize(template_file, output_file, binding)
+    @template_file, @output_file, @binding = template_file, output_file, binding
+  end
+  def render
+    template = File.open(@template_file) { |f| f.read }
+    erb = ERB.new(template)
+    File.open(File.join(@output_file), 'w') do |file|
+      file.puts erb.result(@binding)
+    end
+  end
+end
+
 Article.find(:all).each do |article|
   FileUtils.mkdir_p(article.path)
-
-  require 'erb'
-  include ERB::Util
-
-  article_template = File.open('article.erb.html') { |f| f.read }
-  article_erb = ERB.new(article_template)
-  File.open(File.join(article.path, "#{article.permalink}.html"), 'w') do |file|
-    file.puts article_erb.result(article.binding)
-  end
-  
+  ErbRenderer.new('article.erb.html', File.join(article.path, "#{article.permalink}.html"), article.binding).render
 end
 
 Tag.find(:all).each do |tag|
   FileUtils.mkdir_p(tag.path)
-  
-  require 'erb'
-  include ERB::Util
-
-  tag_template = File.open('tag.erb.html') { |f| f.read }
-  tag_erb = ERB.new(tag_template)
-  File.open(File.join(tag.path, "#{tag.name}.html"), 'w') do |file|
-    file.puts tag_erb.result(tag.binding)
-  end
+  ErbRenderer.new('tag.erb.html', File.join(tag.path, "#{tag.name}.html"), tag.binding).render
 end
