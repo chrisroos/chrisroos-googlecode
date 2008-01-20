@@ -1,1 +1,3 @@
 * Add number of comments to bottom of posts when in 'list' view, i.e. when shown as part of a tag (or on homepage etc)
+* Redirect /index.html to /
+* In currently deployed typo /articles is exactly the same as / - it should redirect
