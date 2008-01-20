@@ -49,24 +49,26 @@
             <% end %>
           </p>
 
-          <a name="comments"></a>
-          <h4 class="blueblk">Comments</h4>
-          <ol class="comment-list" id="commentList">
-            <% article.comments.each do |comment| %>
-            <li>
-              <cite>
-                <strong>
-                  <% if comment.url && comment.url != '' %>
-                    <a href="<%= comment.url %>"><%= h(comment.author) %></a>
-                  <% else %>
-                    <%= h(comment.author) %>
-                  <% end %>
-                </strong>
-              </cite> said on <%= comment.formatted_created_date %>:<br />
-              <%= comment.body_html %>
-            </li>
-            <% end %>
-          </ol>
+          <% unless article.comments.empty? %>
+            <a name="comments"></a>
+            <h4 class="blueblk">Comments</h4>
+            <ol class="comment-list" id="commentList">
+              <% article.comments.each do |comment| %>
+              <li>
+                <cite>
+                  <strong>
+                    <% if comment.url && comment.url != '' %>
+                      <a href="<%= comment.url %>"><%= h(comment.author) %></a>
+                    <% else %>
+                      <%= h(comment.author) %>
+                    <% end %>
+                  </strong>
+                </cite> said on <%= comment.formatted_created_date %>:<br />
+                <%= comment.body_html %>
+              </li>
+              <% end %>
+            </ol>
+          <% end %>
 
           <script src="http://feeds.feedburner.com/~s/DeferredUntilInspirationHits?i=http://blog.seagul.co.uk/articles/2006/07/14/textmate-command-to-display-active-record-column-attributes" type="text/javascript" charset="utf-8"></script>
 
