@@ -1,5 +1,5 @@
 require File.join(MIGRATOR_ROOT, 'environment')
-require File.join(MIGRATOR_ROOT, 'erb_renderer')
+require 'erb_renderer'
 
 class PageGenerator
   
