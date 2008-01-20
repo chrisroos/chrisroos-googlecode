@@ -29,16 +29,15 @@ Article.find(:all).each do |article|
 end
 
 Tag.find(:all).each do |tag|
-  tag_path = File.join(ARTICLES_ROOT, 'tag')
   require 'fileutils'
-  FileUtils.mkdir_p(tag_path)
+  FileUtils.mkdir_p(tag.path)
   
   require 'erb'
   include ERB::Util
 
   tag_template = File.open('tag.erb.html') { |f| f.read }
   tag_erb = ERB.new(tag_template)
-  File.open(File.join(tag_path, "#{tag.name}.html"), 'w') do |file|
+  File.open(File.join(tag.path, "#{tag.name}.html"), 'w') do |file|
     file.puts tag_erb.result(tag.binding)
   end
 end
