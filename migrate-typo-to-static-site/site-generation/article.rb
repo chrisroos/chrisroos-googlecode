@@ -29,6 +29,11 @@ class Article < ActiveRecord::Base
     File.join(ARTICLES_ROOT, year, month, day)
   end
   
+  def url
+    # Representation agnostic (i.e. doesn't specify .html, .xml)
+    File.join(path, permalink)
+  end
+  
   public :binding
   
 end
