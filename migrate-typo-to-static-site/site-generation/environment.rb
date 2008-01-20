@@ -15,3 +15,5 @@ SITE_ROOT = File.expand_path(File.join('..', 'Site'))
 ARTICLES_URL_ROOT = File.join('/', 'articles')
 TAGS_URL_ROOT = File.join(ARTICLES_URL_ROOT, 'tag')
 PAGES_URL_ROOT = File.join('/', 'pages')
+
+$: << File.join(MIGRATOR_ROOT, 'models')
