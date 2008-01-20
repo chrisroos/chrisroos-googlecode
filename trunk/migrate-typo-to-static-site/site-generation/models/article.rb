@@ -1,8 +1,8 @@
 require File.join(MIGRATOR_ROOT, 'environment')
-require File.join(MIGRATOR_ROOT, 'comment')
-require File.join(MIGRATOR_ROOT, 'trackback')
-require File.join(MIGRATOR_ROOT, 'tag')
-require File.join(MIGRATOR_ROOT, 'syntax_highlighter')
+require 'comment'
+require 'trackback'
+require 'tag'
+require 'syntax_highlighter'
 require 'redcloth'
 
 class Article < ActiveRecord::Base

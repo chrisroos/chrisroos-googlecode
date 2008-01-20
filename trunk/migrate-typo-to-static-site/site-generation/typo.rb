@@ -10,9 +10,9 @@
 # </a>
 
 require File.join(File.dirname(__FILE__), 'environment')
-require File.join(MIGRATOR_ROOT, 'article')
-require File.join(MIGRATOR_ROOT, 'page')
-require File.join(MIGRATOR_ROOT, 'page_generator')
+require 'article'
+require 'page'
+require 'page_generator'
 
 find_options = {:limit => 1}
 
