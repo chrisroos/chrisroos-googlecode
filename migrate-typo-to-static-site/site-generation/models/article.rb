@@ -12,7 +12,7 @@ class Article < ActiveRecord::Base
   
   class << self
     def years_published
-      connection.select_values "SELECT YEAR(published_at) AS year FROM articles GROUP BY year"
+      find(:all, :select => "YEAR(published_at) AS year", :group => 'year').collect { |article| article.year }
     end
   
     def find_all_published_during(year)
