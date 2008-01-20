@@ -1,3 +1,4 @@
 require File.join(MIGRATOR_ROOT, 'environment')
 
-class Page < ActiveRecord::Base; end
+class Page < ActiveRecord::Base
+end
