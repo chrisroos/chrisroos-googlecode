@@ -11,22 +11,7 @@
 
 require File.join(File.dirname(__FILE__), 'environment')
 require File.join(MIGRATOR_ROOT, 'article')
-
-require 'erb'
-include ERB::Util
-
-class ErbRenderer
-  def initialize(template_file, output_file, binding)
-    @template_file, @output_file, @binding = template_file, output_file, binding
-  end
-  def render
-    template = File.open(@template_file) { |f| f.read }
-    erb = ERB.new(template)
-    File.open(File.join(@output_file), 'w') do |file|
-      file.puts erb.result(@binding)
-    end
-  end
-end
+require File.join(MIGRATOR_ROOT, 'erb_renderer')
 
 Article.find(:all).each do |article|
   FileUtils.mkdir_p(article.path)
