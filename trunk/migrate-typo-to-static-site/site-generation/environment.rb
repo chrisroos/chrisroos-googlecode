@@ -1,4 +1,5 @@
 require 'active_record'
+require 'fileutils'
 
 ActiveRecord::Base.establish_connection({
   :adapter => 'mysql',

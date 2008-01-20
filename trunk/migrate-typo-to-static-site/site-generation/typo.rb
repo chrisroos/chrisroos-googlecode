@@ -13,8 +13,6 @@ require File.join(File.dirname(__FILE__), 'environment')
 require File.join(MIGRATOR_ROOT, 'article')
 
 Article.find(:all).each do |article|
-  
-  require 'fileutils'
   FileUtils.mkdir_p(article.path)
 
   require 'erb'
@@ -29,7 +27,6 @@ Article.find(:all).each do |article|
 end
 
 Tag.find(:all).each do |tag|
-  require 'fileutils'
   FileUtils.mkdir_p(tag.path)
   
   require 'erb'
