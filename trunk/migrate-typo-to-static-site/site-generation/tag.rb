@@ -8,6 +8,11 @@ class Tag < ActiveRecord::Base
     File.join(ARTICLES_ROOT, 'tag')
   end
   
+  def url
+    # Representation agnostic (i.e. doesn't specify .html, .xml)
+    File.join(path, name)
+  end
+  
   public :binding
   
 end

@@ -17,12 +17,12 @@ Article.find(:all).each do |article|
   FileUtils.mkdir_p(article.path)
   
   renderer = ErbRenderer.new('article.erb.html', article.binding)
-  File.open(File.join(article.path, "#{article.permalink}.html"), 'w') { |io| renderer.render(io) }
+  File.open("#{article.url}.html", 'w') { |io| renderer.render(io) }
 end
 
 Tag.find(:all).each do |tag|
   FileUtils.mkdir_p(tag.path)
   
   renderer = ErbRenderer.new('tag.erb.html', tag.binding)
-  File.open(File.join(tag.path, "#{tag.name}.html"), 'w') { |io| renderer.render(io) }
+  File.open("#{tag.url}.html", 'w') { |io| renderer.render(io) }
 end
