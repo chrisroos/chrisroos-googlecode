@@ -17,3 +17,4 @@ TAGS_URL_ROOT = File.join(ARTICLES_URL_ROOT, 'tag')
 PAGES_URL_ROOT = File.join('/', 'pages')
 
 $: << File.join(MIGRATOR_ROOT, 'models')
+$: << File.join(MIGRATOR_ROOT, 'lib')
