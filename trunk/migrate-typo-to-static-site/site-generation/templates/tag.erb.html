@@ -32,7 +32,9 @@
 
           <% tag.articles.each do |article| %>
             <div class="post">
-              <h2><%= h(article.title) %></h2>
+              <h2>
+                <a href="<%= h(article.url) %>"><%= h(article.title) %></a>
+              </h2>
               <p class="auth">
                 Posted by Chris Roos
                 <span class="typo_date" title="<%= article.formatted_published_date %>">
