@@ -90,17 +90,20 @@ class Comment < ActiveRecord::Base
 end
 class Page < ActiveRecord::Base; end
 
-article = Article.find_by_permalink('textmate-command-to-display-active-record-column-attributes')
-year, month, day = article.created_at.to_date.to_s.split('-')
-article_path = File.join('Site', 'articles', year, month, day)
-require 'fileutils'
-FileUtils.mkdir_p(article_path)
+Article.find(:all).each do |article|
+  
+  year, month, day = article.created_at.to_date.to_s.split('-')
+  article_path = File.join('Site', 'articles', year, month, day)
+  require 'fileutils'
+  FileUtils.mkdir_p(article_path)
 
-require 'erb'
-include ERB::Util
+  require 'erb'
+  include ERB::Util
 
-article_template = File.open('article.erb.html') { |f| f.read }
-article_erb = ERB.new(article_template)
-File.open(File.join(article_path, "#{article.permalink}.html"), 'w') do |file|
-  file.puts article_erb.result(article.binding)
+  article_template = File.open('article.erb.html') { |f| f.read }
+  article_erb = ERB.new(article_template)
+  File.open(File.join(article_path, "#{article.permalink}.html"), 'w') do |file|
+    file.puts article_erb.result(article.binding)
+  end
+  
 end
