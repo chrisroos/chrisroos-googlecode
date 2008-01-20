@@ -20,6 +20,25 @@ articles = Article.find(:all, find_options)
 tags = Tag.find(:all, find_options)
 pages = Page.find(:all, find_options)
 
-PageGenerator.new(articles, :article).generate
-PageGenerator.new(tags, :tag).generate
-PageGenerator.new(pages, :page).generate
+# PageGenerator.new(articles, :article).generate
+# PageGenerator.new(tags, :tag).generate
+# PageGenerator.new(pages, :page).generate
+
+class Year
+  attr_reader :year, :articles
+  def initialize(year, articles)
+    @year, @articles = year, articles
+  end
+  def path
+    File.join(ARTICLES_URL_ROOT, @year)
+  end
+  def url
+    File.join(path, 'index')
+  end
+end
+
+Article.years_published.each do |year|
+  articles = Article.find_all_published_during(year)
+  year = Year.new(year, articles)
+  PageGenerator.new([year], :year).generate
+end

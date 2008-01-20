@@ -10,6 +10,16 @@ class Article < ActiveRecord::Base
   has_many :trackbacks, :dependent => :destroy, :order => 'created_at ASC'
   has_and_belongs_to_many :tags, :foreign_key => 'article_id', :order => 'name'
   
+  class << self
+    def years_published
+      connection.select_values "SELECT YEAR(published_at) AS year FROM articles GROUP BY year"
+    end
+  
+    def find_all_published_during(year)
+      find(:all, :conditions => "YEAR(published_at) = '#{year}'", :order => 'published_at DESC')
+    end
+  end
+  
   def formatted_published_date
     published_at.strftime("%a, %d %b %Y %H:%M:%S")
   end
