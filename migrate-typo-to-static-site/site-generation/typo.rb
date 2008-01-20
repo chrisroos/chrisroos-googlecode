@@ -14,7 +14,7 @@ require 'article'
 require 'page'
 require 'page_generator'
 
-find_options = {:limit => 1}
+find_options = {}
 
 articles = Article.find(:all, find_options)
 tags = Tag.find(:all, find_options)

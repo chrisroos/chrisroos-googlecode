@@ -24,7 +24,7 @@ class Article < ActiveRecord::Base
   end
   
   def path
-    year, month, day = created_at.to_date.to_s.split('-')
+    year, month, day = published_at.to_date.to_s.split('-')
     File.join(ARTICLES_URL_ROOT, year, month, day)
   end
   
