@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteBase /
+
+# Permanently (301) redirect /<article>.html to /<article>, ensuring that we don't try to redirect index.html to index
+RewriteCond %{THE_REQUEST} .+/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+\.html\ HTTP/
+RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
+RewriteRule ^(.*)\.html$ $1 [R=301,L]
+
+# If we receive a request for an article without a .html extension then let's rewrite internally to render the file with the .html extension
+RewriteCond %{REQUEST_URI} .+/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+$
+RewriteCond %{REQUEST_URI} !\.html$
+RewriteRule ^(.*)$ $1.html [L]
