@@ -75,6 +75,7 @@ class Article < ActiveRecord::Base
 end
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many :articles, :order => 'created_at DESC'
+  public :binding
 end
 class Trackback < ActiveRecord::Base
   belongs_to :article
@@ -90,20 +91,35 @@ class Comment < ActiveRecord::Base
 end
 class Page < ActiveRecord::Base; end
 
-Article.find(:all).each do |article|
-  
-  year, month, day = article.created_at.to_date.to_s.split('-')
-  article_path = File.join('Site', 'articles', year, month, day)
-  require 'fileutils'
-  FileUtils.mkdir_p(article_path)
+# Article.find(:all).each do |article|
+#   
+#   year, month, day = article.created_at.to_date.to_s.split('-')
+#   article_path = File.join('Site', 'articles', year, month, day)
+#   require 'fileutils'
+#   FileUtils.mkdir_p(article_path)
+# 
+#   require 'erb'
+#   include ERB::Util
+# 
+#   article_template = File.open('article.erb.html') { |f| f.read }
+#   article_erb = ERB.new(article_template)
+#   File.open(File.join(article_path, "#{article.permalink}.html"), 'w') do |file|
+#     file.puts article_erb.result(article.binding)
+#   end
+#   
+# end
 
+Tag.find(:all).each do |tag|
+  tag_path = File.join('Site', 'articles', 'tag')
+  require 'fileutils'
+  FileUtils.mkdir_p(tag_path)
+  
   require 'erb'
   include ERB::Util
 
-  article_template = File.open('article.erb.html') { |f| f.read }
-  article_erb = ERB.new(article_template)
-  File.open(File.join(article_path, "#{article.permalink}.html"), 'w') do |file|
-    file.puts article_erb.result(article.binding)
+  tag_template = File.open('tag.erb.html') { |f| f.read }
+  tag_erb = ERB.new(tag_template)
+  File.open(File.join(tag_path, "#{tag.name}.html"), 'w') do |file|
+    file.puts tag_erb.result(tag.binding)
   end
-  
 end
