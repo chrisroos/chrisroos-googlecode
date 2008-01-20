@@ -10,7 +10,8 @@ ActiveRecord::Base.establish_connection({
 
 MIGRATOR_ROOT = File.expand_path(File.dirname(__FILE__))
 TEMPLATE_ROOT = File.expand_path(File.join(MIGRATOR_ROOT, 'templates'))
-
 SITE_ROOT = File.expand_path(File.join('..', 'Site'))
-ARTICLES_ROOT = File.expand_path(File.join(SITE_ROOT, 'articles'))
-PAGES_ROOT = File.expand_path(File.join(SITE_ROOT, 'pages'))
+
+ARTICLES_URL_ROOT = File.join('/', 'articles')
+TAGS_URL_ROOT = File.join(ARTICLES_URL_ROOT, 'tag')
+PAGES_URL_ROOT = File.join('/', 'pages')

@@ -14,26 +14,26 @@ require File.join(MIGRATOR_ROOT, 'article')
 require File.join(MIGRATOR_ROOT, 'page')
 require File.join(MIGRATOR_ROOT, 'erb_renderer')
 
-Article.find(:all).each do |article|
-  FileUtils.mkdir_p(article.path)
+Article.find(:all, :limit => 1).each do |article|
+  FileUtils.mkdir_p(File.join(SITE_ROOT, article.path))
   
   template = File.join(TEMPLATE_ROOT, 'article.erb.html')
   renderer = ErbRenderer.new(template, article.binding)
-  File.open("#{article.url}.html", 'w') { |io| renderer.render(io) }
+  File.open(File.join(SITE_ROOT, "#{article.url}.html"), 'w') { |io| renderer.render(io) }
 end
 
-Tag.find(:all).each do |tag|
-  FileUtils.mkdir_p(tag.path)
+Tag.find(:all, :limit => 1).each do |tag|
+  FileUtils.mkdir_p(File.join(SITE_ROOT, tag.path))
   
   template = File.join(TEMPLATE_ROOT, 'tag.erb.html')
   renderer = ErbRenderer.new(template, tag.binding)
-  File.open("#{tag.url}.html", 'w') { |io| renderer.render(io) }
+  File.open(File.join(SITE_ROOT, "#{tag.url}.html"), 'w') { |io| renderer.render(io) }
 end
 
-Page.find(:all).each do |page|
-  FileUtils.mkdir_p(page.path)
+Page.find(:all, :limit => 1).each do |page|
+  FileUtils.mkdir_p(File.join(SITE_ROOT, page.path))
   
   template = File.join(TEMPLATE_ROOT, 'page.erb.html')
   renderer = ErbRenderer.new(template, page.binding)
-  File.open("#{page.url}.html", 'w') { |io| renderer.render(io) }
+  File.open(File.join(SITE_ROOT, "#{page.url}.html"), 'w') { |io| renderer.render(io) }
 end
