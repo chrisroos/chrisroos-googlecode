@@ -23,6 +23,10 @@ RewriteCond %{REQUEST_URI} /pages/.+$
 RewriteCond %{REQUEST_URI} !\.html$
 RewriteRule ^(.*)$ $1.html [L]
 
+# Permanently (301) redirect articles/tag/<tag>/page to articles/tag/<tag>
+RewriteCond %{THE_REQUEST} /articles/tag/.+/page.*\ HTTP/
+RewriteRule ^(.*)/page.*$ $1 [R=301,L]
+
 # Permanently (301) redirect articles/tag/<tag>.html to articles/tag/<tag>, ensuring that we don't try to redirect index.html to index
 RewriteCond %{THE_REQUEST} /articles/tag/.+\.html\ HTTP/
 RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
