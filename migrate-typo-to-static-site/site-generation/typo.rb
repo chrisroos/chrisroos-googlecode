@@ -11,6 +11,7 @@
 
 require File.join(File.dirname(__FILE__), 'environment')
 require File.join(MIGRATOR_ROOT, 'article')
+require File.join(MIGRATOR_ROOT, 'page')
 require File.join(MIGRATOR_ROOT, 'erb_renderer')
 
 Article.find(:all).each do |article|
@@ -27,4 +28,12 @@ Tag.find(:all).each do |tag|
   template = File.join(TEMPLATE_ROOT, 'tag.erb.html')
   renderer = ErbRenderer.new(template, tag.binding)
   File.open("#{tag.url}.html", 'w') { |io| renderer.render(io) }
+end
+
+Page.find(:all).each do |page|
+  FileUtils.mkdir_p(page.path)
+  
+  template = File.join(TEMPLATE_ROOT, 'page.erb.html')
+  renderer = ErbRenderer.new(template, page.binding)
+  File.open("#{page.url}.html", 'w') { |io| renderer.render(io) }
 end
