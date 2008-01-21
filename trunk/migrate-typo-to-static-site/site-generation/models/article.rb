@@ -12,11 +12,26 @@ class Article < ActiveRecord::Base
   
   class << self
     def years_published
-      find(:all, :select => "YEAR(published_at) AS year", :group => 'year').collect { |article| article.year }
+      articles = find(:all, :select => "YEAR(published_at) AS year", 
+                            :group => 'year')
+      articles.collect { |article| article.year }
     end
-  
-    def find_all_published_during(year)
-      find(:all, :conditions => "YEAR(published_at) = '#{year}'", :order => 'published_at DESC')
+    def months_and_years_published
+      articles = find(:all, :select => 'YEAR(published_at) AS year, MONTH(published_at) AS month', 
+                            :group => 'year, month')
+      articles.collect { |article| [article.month, article.year] }
+    end
+    def days_months_and_years_published
+      articles = find(:all, :select => 'YEAR(published_at) AS year, MONTH(published_at) AS month, DAY(published_at) AS day', 
+                            :group => 'year, month, day')
+      articles.collect { |article| [article.day, article.month, article.year] }
+    end
+    def find_all_published_during(year, month = nil, day = nil)
+      # Naughty Chris - leaving us open to sql injection attacks
+      conditions = "YEAR(published_at) = '#{year}'"
+      conditions += " AND MONTH(published_at) = '#{month}'" if month
+      conditions += " AND DAY(published_at) = '#{day}'" if day
+      find(:all, :conditions => conditions, :order => 'published_at DESC')
     end
   end
   
