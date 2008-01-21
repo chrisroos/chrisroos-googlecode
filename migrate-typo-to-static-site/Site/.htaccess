@@ -49,6 +49,10 @@ RewriteRule ^(.*)/page.*$ $1 [R=301,L]
 RewriteCond %{THE_REQUEST} /articles/[0-9]{4}/[0-9]{2}/page.*\ HTTP/
 RewriteRule ^(.*)/page.*$ $1 [R=301,L]
 
+# Permanently (301) redirect articles/<year>/<one-digit-month> to articles/<year>/<two-digit-month>
+RewriteCond %{THE_REQUEST} /articles/[0-9]{4}/[0-9]{1}\ HTTP/
+RewriteRule ^(.*)/([0-9]{1})$ $1/0$2 [R=301,L]
+
 # Permanently (301) redirect articles/<year>/<month>/<day>/page to articles/<year>/<month>/<day>
 RewriteCond %{THE_REQUEST} /articles/[0-9]{4}/[0-9]{2}/[0-9]{2}/page.*\ HTTP/
 RewriteRule ^(.*)/page.*$ $1 [R=301,L]

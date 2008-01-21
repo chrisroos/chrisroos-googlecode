@@ -65,6 +65,12 @@ rules = [
     :expected_code => '301'
   },
   {
+    :description => "Year/month resources with a one digit month should redirect to the same resource with a two digit month",
+    :pattern => /articles\/(\d{4})\/(\d{1})$/,
+    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}/0#{$2}"},
+    :expected_code => '301'
+  },
+  {
     :description => "Year/month resources should render OK",
     :pattern => /articles\/\d{4}\/\d{2}\/$/,
     :expected_code => '200'
@@ -83,12 +89,13 @@ rules = [
 
 if false # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index = []
-  blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/10'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tag/ruby/page/2'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tags/irb'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/page/1'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/01/page/1'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/01/01/page/1'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/10'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2006/3'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/pages/cyrus-imap'
 end
 
