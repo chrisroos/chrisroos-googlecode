@@ -17,6 +17,3 @@
 * Employ compression for html pages
 
 * Feed icon needs to be copied over from typo r1219
-
-* Does this url work in current deployment?
--- http://blog.seagul.co.uk/articles/2006/6 - if it's 200 then it should be redirected to 2006/06
