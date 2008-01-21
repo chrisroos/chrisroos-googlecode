@@ -37,15 +37,15 @@ rules = [
     :expected_code => '301'
   },
   {
-    :description => "Paged year resources should be redirected to the non-paged year resource.",
+    :description => "Paged year resources should be redirected to the non-paged year/ resource.",
     :pattern => /^\/articles\/(\d{4})\/page.*/,
-    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}" },
+    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}/" },
     :expected_code => '301'
   },
   {
-    :description => "Paged year/month resources should be redirected to the non-paged year/month resource.",
+    :description => "Paged year/month resources should be redirected to the non-paged year/month/ resource.",
     :pattern => /^\/articles\/(\d{4})\/(\d{2})\/page.*/,
-    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}/#{$2}" },
+    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}/#{$2}/" },
     :expected_code => '301'
   },
   {
@@ -55,9 +55,9 @@ rules = [
     :expected_code => '301'
   },
   {
-    :description => "Paged year/month/day resources should be redirected to the non-paged year/month/day resource.",
+    :description => "Paged year/month/day resources should be redirected to the non-paged year/month/day/ resource.",
     :pattern => /^\/articles\/(\d{4})\/(\d{2})\/(\d{2})\/page.*/,
-    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}/#{$2}/#{$3}" },
+    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}/#{$2}/#{$3}/" },
     :expected_code => '301'
   },
   {
@@ -90,13 +90,13 @@ rules = [
   {
     :description => "Year/month resources with a one digit month should redirect to the same resource with a two digit month",
     :pattern => /^\/articles\/(\d{4})\/(\d{1})$/,
-    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}/0#{$2}" },
+    :expected_location => proc { "http://blog1.seagul.co.uk/articles/#{$1}/0#{$2}/" },
     :expected_code => '301'
   },
   {
     :description => "Paged year/one-digit-month resources should be redirected to the non-paged year/two-digit-month resource.",
     :pattern => /^\/articles\/(\d{4})\/(\d{1})\/page.*/,
-    :expected_location => proc {"http://blog1.seagul.co.uk/articles/#{$1}/0#{$2}"},
+    :expected_location => proc {"http://blog1.seagul.co.uk/articles/#{$1}/0#{$2}/"},
     :expected_code => '301'
   },
   {
