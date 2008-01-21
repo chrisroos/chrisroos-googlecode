@@ -13,6 +13,12 @@ rules = [
     :expected_code => '200'
   },
   {
+    :description => "The root index resource should redirect to the root resource.",
+    :pattern => /^\/index.html$/,
+    :expected_location => proc { "http://blog1.seagul.co.uk/" },
+    :expected_code => '301'
+  },
+  {
     :description => "The articles resource should be redirected to the root resource (they are, afterall, the same thing).",
     :pattern => /articles\/$/,
     :expected_location => proc {"http://blog1.seagul.co.uk/"},
@@ -113,6 +119,7 @@ rules = [
 if true # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index = []
   blog_urls_in_index << 'http://blog1.seagul.co.uk/'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/index.html'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tag/ruby/page/2'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tags/irb'
