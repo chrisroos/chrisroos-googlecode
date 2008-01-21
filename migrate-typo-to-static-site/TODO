@@ -2,8 +2,6 @@
 
 * Redirect /index.html to /
 
-* In currently deployed typo /articles is exactly the same as / - it should redirect
-
 * IDEA - add a little description to each description that i can use when displaying a long list of articles (e.g. /articles/2007)
 
 * Add meta description
