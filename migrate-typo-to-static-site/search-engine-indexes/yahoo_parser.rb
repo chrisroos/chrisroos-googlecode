@@ -143,46 +143,4 @@ blog_urls_in_index.compact.sort.each do |url|
       puts msg.join(' ... ')
     end
   end
-  
-  # if response.code == '200'
-  #   # All fine - don't report anything
-  # elsif response.code == '301'
-  #   if request_url =~ /articles\/tag\/(.+?)\/page/
-  #     # A request for a paged tag resource.  Should be redirected to the resource with the paging part removed.
-  #     expected_redirection = "http://blog1.seagul.co.uk/articles/tag/#{$1}"
-  #     unless expected_redirection == response['Location']
-  #       print "Requested: #{request_url}  ...  incorrectly redirected (301) to #{response['Location']}"
-  #     end
-  #   elsif request_url =~ /articles\/tags\/(.+)/
-  #     # A request for an old tags resource.  Should be redirected to the corresponding tag resource.
-  #     expected_redirection = "http://blog1.seagul.co.uk/articles/tag/#{$1}"
-  #     unless expected_redirection == response['Location']
-  #       print "Requested: #{request_url}  ...  incorrectly redirected (301) to #{response['Location']}"
-  #     end
-  #   elsif request_url =~ /articles\/(\d{4})\/page.*/
-  #     # A request for a paged year resource.  Should be redirected to the resource with the paging part removed.
-  #     expected_redirection = "http://blog1.seagul.co.uk/articles/#{$1}"
-  #     unless expected_redirection == response['Location']
-  #       print "Requested: #{request_url} ... incorrectly redirected (301) to #{response['Location']}"
-  #     end
-  #   elsif request_url =~ /articles\/(\d{4})\/(\d{2})\/page.*/
-  #     # A request for a paged year/month resource.  Should be redirected to the resource with the paging part removed.
-  #     expected_redirection = "http://blog1.seagul.co.uk/articles/#{$1}/#{$2}"
-  #     unless expected_redirection == response['Location']
-  #       print "Requested: #{request_url} ... incorrectly redirected (301) to #{response['Location']}"
-  #     end
-  #   elsif request_url =~ /articles\/(\d{4})\/(\d{2})\/(\d{2})\/page.*/
-  #     # A request for a paged year/month/day resource.  Should be redirected to the resource with the paging part removed.
-  #     expected_redirection = "http://blog1.seagul.co.uk/articles/#{$1}/#{$2}/#{$3}"
-  #     unless expected_redirection == response['Location']
-  #       print "Requested: #{request_url} ... incorrectly redirected (301) to #{response['Location']}"
-  #     end
-  #   else
-  #     print "Requested: #{request_url}  ...  "
-  #     puts "Redirected to #{response['Location']}"
-  #   end
-  # else
-  #   print "Requested: #{request_url}  ...  "
-  #   puts "(#{response.code})"
-  # end
 end
