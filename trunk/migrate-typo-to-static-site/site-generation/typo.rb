@@ -13,6 +13,8 @@ require File.join(File.dirname(__FILE__), 'environment')
 require 'article'
 require 'page'
 require 'year'
+require 'month'
+require 'day'
 require 'page_generator'
 
 find_options = {}
@@ -21,8 +23,12 @@ articles = Article.find(:all, find_options)
 tags = Tag.find(:all, find_options)
 pages = Page.find(:all, find_options)
 years = Year.find_all
+months = Month.find_all
+days = Day.find_all
 
 PageGenerator.new(articles, :article).generate
 PageGenerator.new(tags, :tag).generate
 PageGenerator.new(pages, :page).generate
 PageGenerator.new(years, :year).generate
+PageGenerator.new(months, :month).generate
+PageGenerator.new(days, :day).generate
