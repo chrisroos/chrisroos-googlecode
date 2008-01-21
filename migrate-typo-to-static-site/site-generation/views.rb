@@ -1,0 +1,1 @@
+Dir[File.join(File.dirname(__FILE__), 'views', '*.rb')].each { |file| require file }
