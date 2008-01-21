@@ -8,6 +8,12 @@ end
 
 rules = [
   {
+    :description => "The articles resource should be redirected to the root resource (they are, afterall, the same thing).",
+    :pattern => /articles\/$/,
+    :expected_location => proc {"http://blog1.seagul.co.uk/"},
+    :expected_code => '301'
+  },
+  {
     :description => "Paged tag resources should be redirected to the non-paged tag resource.",
     :pattern => /articles\/tag\/(.+?)\/page/,
     :expected_location => proc {"http://blog1.seagul.co.uk/articles/tag/#{$1}"},
@@ -93,8 +99,9 @@ rules = [
   }
 ]
 
-if false # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
+if true # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index = []
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tag/ruby/page/2'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tags/irb'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/page/1'
