@@ -1,13 +1,14 @@
 class Year
   
   def self.find_all
-    Article.years_published.collect { |year| Year.new(year) }
+    Article.years_published.collect { |year| new(year) }
   end
   
   attr_reader :year
   
   def initialize(year)
     @year = year
+    @published_date = Date.new(year.to_i, 1, 1)
   end
   
   def articles
@@ -20,6 +21,10 @@ class Year
   
   def url
     File.join(path, 'index')
+  end
+  
+  def page_title
+    "Posts published in #{@published_date.strftime("%Y")}"
   end
   
 end
