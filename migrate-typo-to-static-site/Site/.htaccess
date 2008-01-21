@@ -64,3 +64,7 @@ RewriteRule ^(.*)/([0-9]{1})/page.*$ $1/0$2 [R=301,L]
 # Permanently (301) redirect articles/<year>/<month>/<day>/page to articles/<year>/<month>/<day>
 RewriteCond %{THE_REQUEST} /articles/[0-9]{4}/[0-9]{2}/[0-9]{2}/page.*\ HTTP/
 RewriteRule ^(.*)/page.*$ $1 [R=301,L]
+
+# Permanently (301) redirect /articles/markup_help/5 to http://hobix.com/textile/
+RewriteCond %{THE_REQUEST} /articles/markup_help/5\ HTTP/
+RewriteRule ^.*$ http://hobix.com/textile/ [R=301,L]
