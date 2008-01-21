@@ -27,6 +27,10 @@ RewriteRule ^(.*)$ $1.html [L]
 RewriteCond %{THE_REQUEST} /articles/\ HTTP/
 RewriteRule ^.*$ / [R=301,L]
 
+# Permanently (301) redirect /index.html to /
+RewriteCond %{THE_REQUEST} \ /index\.html\ HTTP/
+RewriteRule ^.*$ / [R=301,L]
+
 # Permanently (301) redirect articles/tags/<tag> to articles/tag/<tag>
 RewriteCond %{THE_REQUEST} /articles/tags/.*\ HTTP/
 RewriteRule ^(.*)/tags/(.*)$ $1/tag/$2 [R=301,L]
