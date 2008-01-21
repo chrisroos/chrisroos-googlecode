@@ -71,6 +71,12 @@ rules = [
     :expected_code => '301'
   },
   {
+    :description => "Paged year/one-digit-month resources should be redirected to the non-paged year/two-digit-month resource.",
+    :pattern => /articles\/(\d{4})\/(\d{1})\/page.*/,
+    :expected_location => proc {"http://blog1.seagul.co.uk/articles/#{$1}/0#{$2}"},
+    :expected_code => '301'
+  },
+  {
     :description => "Year/month resources should render OK",
     :pattern => /articles\/\d{4}\/\d{2}\/$/,
     :expected_code => '200'
@@ -96,6 +102,7 @@ if false # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/01/01/page/1'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/10'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2006/3'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2006/3/page/1'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/pages/cyrus-imap'
 end
 
