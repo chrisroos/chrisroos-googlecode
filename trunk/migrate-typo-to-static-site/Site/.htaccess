@@ -57,6 +57,10 @@ RewriteRule ^(.*)$ $1.html [L]
 RewriteCond %{THE_REQUEST} \ /articles/[0-9]{4}/page.*\ HTTP/
 RewriteRule ^(.*)/page.*$ $1/ [R=301,L]
 
+# Redirect /articles/<year>/index.html to /articles/<year>/
+RewriteCond %{THE_REQUEST} \ /articles/[0-9]{4}/index.html\ HTTP/
+RewriteRule ^(.*)/index.html$ $1/ [R=301,L]
+
 # Redirect /articles/<year>/<month>/page to /articles/<year>/<month>/
 RewriteCond %{THE_REQUEST} \ /articles/[0-9]{4}/[0-9]{2}/page.*\ HTTP/
 RewriteRule ^(.*)/page.*$ $1/ [R=301,L]
