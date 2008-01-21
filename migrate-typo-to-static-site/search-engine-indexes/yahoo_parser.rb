@@ -49,6 +49,12 @@ rules = [
     :expected_code => '301'
   },
   {
+    :description => "Year/month/day/index.html resource should be redirected to the root year/month/day/ resource.",
+    :pattern => /articles\/(\d{4})\/(\d{2})\/(\d{2})\/index\.html/,
+    :expected_location => proc {"http://blog1.seagul.co.uk/articles/#{$1}/#{$2}/#{$3}/"},
+    :expected_code => '301'
+  },
+  {
     :description => "Paged year/month/day resources should be redirected to the non-paged year/month/day resource.",
     :pattern => /articles\/(\d{4})\/(\d{2})\/(\d{2})\/page.*/,
     :expected_location => proc {"http://blog1.seagul.co.uk/articles/#{$1}/#{$2}/#{$3}"},
@@ -126,6 +132,7 @@ if true # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/page/1'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/01/page/1'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/01/01/page/1'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/09/06/index.html'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/10'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2006/3'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2006/3/page/1'
