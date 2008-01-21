@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
     <link rel="openid.server" href="http://www.myopenid.com/server"/>
     <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
-    <title><%= h(article.title) %></title>
+    <title><%= h(page_title) %> - deferred until inspiration hits</title>
   </head>
 
   <body>
@@ -31,31 +31,31 @@
         <div id="main">
 
           <div class="post">
-            <h2><%= h(article.title) %></h2>
+            <h2><%= h(page_title) %></h2>
             <p class="auth">
               Posted by Chris Roos
-              <span class="typo_date" title="<%= article.formatted_published_date %>">
-                <%= article.formatted_published_date %>
+              <span class="typo_date" title="<%= formatted_published_date %>">
+                <%= formatted_published_date %>
               </span>
             </p>
           
-            <%= article.body_html %>
+            <%= body_html %>
           </div>
         
           <p class="meta">
-            <% unless article.tags.empty? %>
+            <% unless tags.empty? %>
               Tags 
-              <% article.tags.each do |tag| %>
+              <% tags.each do |tag| %>
                 <a href="/articles/tag/<%= tag.name %>" rel="tag"><%= tag.display_name %></a>, 
               <% end %>
             <% end %>
           </p>
 
-          <% unless article.comments.empty? %>
+          <% unless comments.empty? %>
             <a name="comments"></a>
             <h4 class="blueblk">Comments</h4>
             <ol class="comment-list" id="commentList">
-              <% article.comments.each do |comment| %>
+              <% comments.each do |comment| %>
               <li>
                 <cite>
                   <strong>

@@ -4,7 +4,7 @@ class Month
     Article.months_and_years_published.collect { |month, year| new(month, year) }
   end
   
-  attr_reader :month, :year
+  attr_reader :month, :year, :published_date
   
   def initialize(month, year)
     @month, @year = format("%02d", month), year
@@ -21,10 +21,6 @@ class Month
   
   def url
     File.join(path, 'index')
-  end
-  
-  def page_title
-    "Posts published in #{@published_date.strftime("%B %Y")}"
   end
   
 end
