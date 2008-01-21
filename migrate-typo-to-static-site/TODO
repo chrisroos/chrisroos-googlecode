@@ -10,4 +10,13 @@
 
 * The use of fn1 breaks xhtml (multiple ids with same value) when multiple articles are shown on one page
 
-* Year#months or Month as first class object???
+* What to do for the main articles resource?  i can't sensibly display all articles so i guess i'll need to add some paging.  unless the main articles resource only shows the last X posts.  You must then navigate/search for any older posts.
+** Or, maybe I can display all posts if only a snippet is shown..
+** Or, a contents page with a list of all articles
+
+* Employ compression for html pages
+
+* Feed icon needs to be copied over from typo r1219
+
+* Does this url work in current deployment?
+-- http://blog.seagul.co.uk/articles/2006/6 - if it's 200 then it should be redirected to 2006/06
