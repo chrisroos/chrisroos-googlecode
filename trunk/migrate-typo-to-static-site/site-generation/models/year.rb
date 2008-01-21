@@ -4,7 +4,7 @@ class Year
     Article.years_published.collect { |year| new(year) }
   end
   
-  attr_reader :year
+  attr_reader :year, :published_date
   
   def initialize(year)
     @year = year
@@ -21,10 +21,6 @@ class Year
   
   def url
     File.join(path, 'index')
-  end
-  
-  def page_title
-    "Posts published in #{@published_date.strftime("%Y")}"
   end
   
 end

@@ -17,18 +17,145 @@ require 'month'
 require 'day'
 require 'page_generator'
 
-find_options = {}
+class ArticlesView
+  def initialize(articles_container)
+    @articles_container = articles_container
+  end
+  def path
+    @articles_container.path
+  end
+  def url
+    @articles_container.url
+  end
+  def articles
+    @articles_container.articles
+  end
+  public :binding
+end
 
-articles = Article.find(:all, find_options)
-tags = Tag.find(:all, find_options)
-pages = Page.find(:all, find_options)
-years = Year.find_all
-months = Month.find_all
-days = Day.find_all
+class DayView < ArticlesView
+  def page_title
+    "Posts published on #{@articles_container.published_date.strftime("%a, %d %B %Y")}"
+  end
+end
 
-PageGenerator.new(articles, :article).generate
-PageGenerator.new(tags, :tag).generate
-PageGenerator.new(pages, :page).generate
-PageGenerator.new(years, :year).generate
-PageGenerator.new(months, :month).generate
-PageGenerator.new(days, :day).generate
+class MonthView < ArticlesView
+  def page_title
+    "Posts published in #{@articles_container.published_date.strftime("%B %Y")}"
+  end
+end
+
+class YearView < ArticlesView
+  def page_title
+    "Posts published in #{@articles_container.published_date.strftime("%Y")}"
+  end
+end
+
+class TagView < ArticlesView
+  def page_title
+    "Posts tagged #{@articles_container.display_name}"
+  end
+end
+
+class LatestArticlesView
+  def initialize(latest_articles)
+    @latest_articles = latest_articles
+  end
+  def path
+    "/"
+  end
+  def url
+    File.join(path, 'index')
+  end
+  def articles
+    @latest_articles
+  end
+  def page_title
+    "Most recent posts"
+  end
+  public :binding
+end
+
+class PageView
+  def initialize(page)
+    @page = page
+  end
+  def path
+    @page.path
+  end
+  def url
+    @page.url
+  end
+  def page_title
+    @page.title
+  end
+  def formatted_created_date
+    @page.formatted_created_date
+  end
+  def body_html
+    @page.body_html
+  end
+  public :binding
+end
+
+class ArticleView
+  def initialize(article)
+    @article = article
+  end
+  def path
+    @article.path
+  end
+  def url
+    @article.url
+  end
+  def page_title
+    @article.title
+  end
+  def formatted_published_date
+    @article.formatted_published_date
+  end
+  def body_html
+    @article.body_html
+  end
+  def tags
+    @article.tags
+  end
+  def comments
+    @article.comments
+  end
+  public :binding
+end
+
+Day.find_all.each do |day|
+  view = DayView.new(day)
+  PageGenerator.new(view, 'articles').generate
+end
+
+Month.find_all.each do |month|
+  view = MonthView.new(month)
+  PageGenerator.new(view, 'articles').generate
+end
+
+Year.find_all.each do |year|
+  view = YearView.new(year)
+  PageGenerator.new(view, 'articles').generate
+end
+
+Tag.find(:all).each do |tag|
+  view = TagView.new(tag)
+  PageGenerator.new(view, 'articles').generate
+end
+
+articles = Article.find(:all, :order => 'published_at DESC', :limit => 10)
+latest_articles_view = LatestArticlesView.new(articles)
+PageGenerator.new(latest_articles_view, 'articles').generate
+
+Page.find(:all).each do |page|
+  view = PageView.new(page)
+  PageGenerator.new(view, 'page').generate
+end
+
+Article.find(:all).each do |article|
+  view = ArticleView.new(article)
+  PageGenerator.new(view, 'article').generate
+end
