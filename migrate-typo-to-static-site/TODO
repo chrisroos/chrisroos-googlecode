@@ -14,3 +14,5 @@
 * Employ compression for html pages
 
 * Feed icon needs to be copied over from typo r1219
+
+* Permanently redirect latest articles rss feed to atom feed - does that mean I can get rid of guids?
