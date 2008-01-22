@@ -22,7 +22,7 @@ RewriteCond %{THE_REQUEST} \ /pages/.+\.html\ HTTP/
 RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
 RewriteRule ^(.*)\.html$ $1 [R=301,L]
 
-# If we receive a request for an page without a .html extension then let's rewrite internally to render the file with the .html extension
+# If we receive a request for a page without a .html extension then let's rewrite internally to render the file with the .html extension
 RewriteCond %{REQUEST_URI} ^/pages/.+$
 RewriteCond %{REQUEST_URI} !\.html$
 RewriteRule ^(.*)$ $1.html [L]
@@ -34,6 +34,14 @@ RewriteRule ^.*$ / [R=301,L]
 # Redirect /index.html to /
 RewriteCond %{THE_REQUEST} \ /index\.html\ HTTP/
 RewriteRule ^.*$ / [R=301,L]
+
+# Redirect /contents.html to /contents
+RewriteCond %{THE_REQUEST} \ /contents\.html\ HTTP/
+RewriteRule ^.*$ /contents [R=301,L]
+
+# If we receive a request for the contents page without a .html extension then let's rewrite internally to render the file with the .html extension
+RewriteCond %{REQUEST_URI} ^/contents$
+RewriteRule ^(.*)$ $1.html [L]
 
 # Redirect /articles/tags/<tag> to /articles/tag/<tag>
 RewriteCond %{THE_REQUEST} \ /articles/tags/.*\ HTTP/
