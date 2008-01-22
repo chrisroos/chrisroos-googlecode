@@ -43,6 +43,10 @@ RewriteRule ^.*$ /contents [R=301,L]
 RewriteCond %{REQUEST_URI} ^/contents$
 RewriteRule ^(.*)$ $1.html [L]
 
+# Redirect /articles/page/<anything> to /articles/contents
+RewriteCond %{THE_REQUEST} \ /articles/page/.*\ HTTP/
+RewriteRule ^.*$ /contents [R=301,L]
+
 # Redirect /articles/tags/<tag> to /articles/tag/<tag>
 RewriteCond %{THE_REQUEST} \ /articles/tags/.*\ HTTP/
 RewriteRule ^(.*)/tags/(.*)$ $1/tag/$2 [R=301,L]
