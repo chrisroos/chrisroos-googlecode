@@ -36,6 +36,12 @@ rules = [
     :expected_code => '301'
   },
   {
+    :description => "Paged article resources should be redirected to the table of contents.",
+    :pattern => /^\/articles\/page.+$/,
+    :expected_location => proc { "http://blog1.seagul.co.uk/contents" },
+    :expected_code => '301'
+  },
+  {
     :description => "Paged tag resources should be redirected to the non-paged tag resource.",
     :pattern => /^\/articles\/tag\/(.+?)\/page/,
     :expected_location => proc { "http://blog1.seagul.co.uk/articles/tag/#{$1}" },
@@ -152,6 +158,7 @@ if true # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index << 'http://blog1.seagul.co.uk/contents.html'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/contents'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/page/1'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tag/ruby/page/2'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tags/irb'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2005/page/1'
