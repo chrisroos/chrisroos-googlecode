@@ -51,3 +51,7 @@ Article.find(:all).each do |article|
   view = ArticleView.new(article)
   PageGenerator.new(view, 'article').generate
 end
+
+articles = Article.find(:all, :order => 'published_at DESC')
+articles_view = ContentsView.new(articles)
+PageGenerator.new(articles_view, 'contents').generate
