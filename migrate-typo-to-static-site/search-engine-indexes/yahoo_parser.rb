@@ -19,6 +19,17 @@ rules = [
     :expected_code => '301'
   },
   {
+    :description => "The contents.html resource should redirect to the contents resource.",
+    :pattern => /^\/contents.html$/,
+    :expected_location => proc { "http://blog1.seagul.co.uk/contents" },
+    :expected_code => '301'
+  },
+  {
+    :description => "The contents resource should render correctly.",
+    :pattern => /^\/contents$/,
+    :expected_code => '200'
+  },
+  {
     :description => "The articles resource should be redirected to the root resource (they are, afterall, the same thing).",
     :pattern => /^\/articles\/$/,
     :expected_location => proc { "http://blog1.seagul.co.uk/" },
@@ -138,6 +149,8 @@ if true # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index = []
   blog_urls_in_index << 'http://blog1.seagul.co.uk/'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/index.html'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/contents.html'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/contents'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tag/ruby/page/2'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/tags/irb'
