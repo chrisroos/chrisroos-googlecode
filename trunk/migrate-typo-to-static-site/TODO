@@ -1,7 +1,5 @@
 * Add number of comments to bottom of posts when in 'list' view, i.e. when shown as part of a tag (or on homepage etc)
 
-* Redirect /index.html to /
-
 * IDEA - add a little description to each description that i can use when displaying a long list of articles (e.g. /articles/2007)
 
 * Add meta description
