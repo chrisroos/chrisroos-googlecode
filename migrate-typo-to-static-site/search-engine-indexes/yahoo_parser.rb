@@ -160,7 +160,12 @@ rules = [
     :pattern => /^\/articles\/markup_help\/5$/,
     :expected_location => proc { "http://hobix.com/textile/" },
     :expected_code => '301'
-  }
+  },
+  {
+    :description => "RSS feed of latest articles should render OK",
+    :pattern => /^\/xml\/rss$/,
+    :expected_code => '200'
+  },
 ]
 
 if true # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
@@ -186,6 +191,7 @@ if true # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/2006/3/page/1'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/pages/cyrus-imap'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/articles/markup_help/5'
+  blog_urls_in_index << 'http://blog1.seagul.co.uk/xml/rss'
 end
 
 require 'net/http'
