@@ -55,9 +55,8 @@ RewriteRule ^(.*)/tags/(.*)$ $1/tag/$2 [R=301,L]
 RewriteCond %{THE_REQUEST} \ /articles/tag/.+/page.*\ HTTP/
 RewriteRule ^(.*)/page.*$ $1 [R=301,L]
 
-# Redirect /articles/tag/<tag>.html to /articles/tag/<tag>, ensuring that we don't try to redirect index.html to index
+# Redirect /articles/tag/<tag>.html to /articles/tag/<tag>
 RewriteCond %{THE_REQUEST} \ /articles/tag/.+\.html\ HTTP/
-RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
 RewriteRule ^(.*)\.html$ $1 [R=301,L]
 
 # If we receive a request for a tag without a .html extension then let's rewrite internally to render the file with the .html extension
