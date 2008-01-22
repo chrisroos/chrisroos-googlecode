@@ -151,7 +151,7 @@ rules = [
   }
 ]
 
-if true # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
+if false # SET TO TRUE TO TEST OUT THE RULES ON A SMALLER SET OF DATA
   blog_urls_in_index = []
   blog_urls_in_index << 'http://blog1.seagul.co.uk/'
   blog_urls_in_index << 'http://blog1.seagul.co.uk/index.html'
