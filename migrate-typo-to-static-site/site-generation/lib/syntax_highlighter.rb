@@ -1,7 +1,8 @@
 require 'syntax/convertors/html'
 
 class SyntaxHighlighter
-  def self.markup_code(code = '', lang = 'default')
+  def self.markup_code(code, lang)
+    lang = 'default' unless lang
     code = code.to_s.gsub(/\r/,'').gsub(/\A\n/,'').chomp
 
     convertor = Syntax::Convertors::HTML.for_syntax lang
