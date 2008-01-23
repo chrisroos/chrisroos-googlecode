@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged microid - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/06/25/generating-a-microid-with-ruby">Generating a MicroId with Ruby</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sun, 25 Jun 2006 13:18:00">
+                  Sun, 25 Jun 2006 13:18:00
+                </span>
+              </p>
+          
+              <p>Very naive Ruby method to create a <a href="http://www.microid.org">MicroId</a> for a given email and url.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">digest/sha1</span><span class="punct">'</span>
+
+<span class="keyword">def </span><span class="method">micro_id</span><span class="punct">(</span><span class="ident">email</span><span class="punct">,</span> <span class="ident">url</span><span class="punct">)</span>
+  <span class="ident">email_digest</span> <span class="punct">=</span> <span class="constant">Digest</span><span class="punct">::</span><span class="constant">SHA1</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">email</span><span class="punct">).</span><span class="ident">to_s</span>
+  <span class="ident">url_digest</span> <span class="punct">=</span> <span class="constant">Digest</span><span class="punct">::</span><span class="constant">SHA1</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">url</span><span class="punct">).</span><span class="ident">to_s</span>
+  <span class="constant">Digest</span><span class="punct">::</span><span class="constant">SHA1</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">email_digest</span> <span class="punct">+</span> <span class="ident">url_digest</span><span class="punct">).</span><span class="ident">to_s</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Note that there is no validation of the MicroId in this code at all.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/microid" rel="tag">microid</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

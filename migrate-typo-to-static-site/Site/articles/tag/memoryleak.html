@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged memory leak - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/22/rails-leaking-some-strings-in-development">Rails leaking some strings in development</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 22 Aug 2006 10:47:00">
+                  Tue, 22 Aug 2006 10:47:00
+                </span>
+              </p>
+          
+              <p>I spent some time this morning checking out <a href="http://scottstuff.net/blog/">Scott Laird&#8217;s</a> <a href="http://scottstuff.net/blog/articles/2006/08/17/memory-leak-profiling-with-rails">memory profiler</a> against a fresh rails app.</p>
+
+
+	<p>I was suprised to see that around 110 strings were being leaked on each request.  I was incredibly surprised when I used the string_debug option (to the memory profiler) to generate logs of strings living in ObjectSpace.  There were strings appearing that I <em>knew</em> were not in my new rails app anywhere.</p>
+
+
+	<p>After grepping my working directory for some of these strings (and not coming up with anything), <a href="http://blog.floehopper.org">James</a> suggested that the strings could be in my irb history.  Although it wasn&#8217;t immediately obvious how they were appearing, the strings were indeed in my history (just over 100 lines worth.)</p>
+
+
+	<p>A little inspection and the culprit was found.  The <a href="http://api.rubyonrails.com/classes/Breakpoint.html">rails breakpoint library</a> requires irb, which loads the irb_history.</p>
+
+
+	<p>In summary: the contents of irb_history are loaded into object space on each request made to your rails app, while in development.  These strings do not appear to get garbage collected.  The problem does not affect apps running in production as the breakpoint library is not loaded in that environment.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/memoryleak" rel="tag">memory leak</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

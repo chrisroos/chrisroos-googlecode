@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Fri, 07 December 2007 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/12/07/testing-actionmailer-base-server_settings">Testing ActionMailer::Base.server_settings</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 07 Dec 2007 17:23:00">
+                  Fri, 07 Dec 2007 17:23:00
+                </span>
+              </p>
+          
+              <p>I needed to use an external <span class="caps">SMTP</span> server to get mail through to certain providers (notably, hotmail).</p>
+
+
+	<p>I was sending my <a href="http://api.rubyonrails.org/classes/ActionMailer/Base.html">action mailer</a> email but couldn&#8217;t be sure that I&#8217;d configured the settings correctly as I didn&#8217;t get any detailed log output (or at least not where I was looking).</p>
+
+
+	<p>I dug into the code and found the lines that were responsible for sending the email.  Replaying that code in the console allowed me to identify the problem immediately (a missing domain in my case).  I thought I&#8217;d paste those few lines here in case they&#8217;re of some use to someone else.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">message</span><span class="punct">,</span> <span class="ident">from</span><span class="punct">,</span> <span class="ident">to</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">test message</span><span class="punct">',</span> <span class="punct">'</span><span class="string">sender-email</span><span class="punct">',</span> <span class="punct">'</span><span class="string">recipient-email</span><span class="punct">'</span>
+<span class="ident">s</span> <span class="punct">=</span> <span class="constant">ActionMailer</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">.</span><span class="ident">server_settings</span>
+<span class="constant">Net</span><span class="punct">::</span><span class="constant">SMTP</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span><span class="ident">s</span><span class="punct">[</span><span class="symbol">:address</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:port</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:domain</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:user_name</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:password</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:authentication</span><span class="punct">])</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">smtp</span><span class="punct">|</span> 
+  <span class="ident">smtp</span><span class="punct">.</span><span class="ident">sendmail</span><span class="punct">(</span><span class="ident">message</span><span class="punct">,</span> <span class="ident">from</span><span class="punct">,</span> <span class="ident">to</span><span class="punct">)</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/action" rel="tag">action</a>, 
+                
+                  <a href="/articles/tag/mailer" rel="tag">mailer</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/12/07/more-on-those-friendly-urls">More on those friendly URLs</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 07 Dec 2007 07:26:00">
+                  Fri, 07 Dec 2007 07:26:00
+                </span>
+              </p>
+          
+              <p>So, <a href="http://twitter.com/chrisroos/statuses/477052802">not being able to sleep</a> does have some benefits.  I managed to get started on my latest little <a href="http://blog.seagul.co.uk/articles/2007/11/27/short-human-friendly-permalinks">pet project</a>.</p>
+
+
+	<p>I had been using <a href="http://httpd.apache.org/">apache</a> and <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a> to redirect &#8220;chrisroos.co.uk/amazonwishlist&#8221; to my actual wishlist.  I had something like this in my apache config.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;VirtualHost *:80&gt;
+  ServerAdmin webmaster@seagul.co.uk
+  ServerName chrisroos.co.uk
+  ServerAlias www.chrisroos.co.uk
+  RewriteEngine On
+  # &lt;anything&gt;.chrisroos.co.uk -&gt; chrisroos.co.uk
+  RewriteCond %{HTTP_HOST} !^chrisroos.co.uk$ [NC]
+  RewriteRule ^/(.*)$ http://chrisroos.co.uk/$1 [R=301,L] 
+  # Amazon Wishlist
+  RewriteRule ^/amazonwishlist http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD [R]
+&lt;/VirtualHost&gt;</code></pre></div>
+
+	<p>I&#8217;ve replaced that with a much simpler apache config that proxies requests to my new <a href="http://mongrel.rubyforge.org/">mongrel</a> redirection handler thing (<a href="http://chrisroos.co.uk/code/mongrel-redirection">source</a> &#8211; hey, even that <span class="caps">URL</span> passes through my redirection service).</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;VirtualHost *:80&gt;
+  ServerName www.chrisroos.co.uk
+  ServerAlias chrisroos.co.uk
+  RewriteEngine On
+  RewriteRule (.*) http://localhost:4010$1 [P]
+&lt;/VirtualHost&gt;</code></pre></div>
+
+	<p>Feel free to go run this on your own server if you&#8217;re so inclined.  At the moment you&#8217;ll have to generate the redirection rules by hand.  In irb, you can do something like:</p>
+
+
+<div class="typocode"><pre><code class="typocode_default"># require 'yaml'
+# # For www.example.com
+# rules = { 'www.example.com' =&gt; 'example.com' }
+# File.open('PATH_TO_RULES_FOLDER' + '/www.example.com', 'w') { |file| file.puts(rules.to_yaml) }
+# # For example.com
+# rules = { '/google' =&gt; 'www.google.com' }
+# File.open('PATH_TO_RULES_FOLDER' + '/example.com', 'w') { |file| file.puts(rules.to_yaml) }</code></pre></div>
+
+	<p>Start the redirection server.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">$ REDIRECTION_PORT=XXXX ruby mongrel-redir.rb &amp;
+$# Leaving out REDIRECTION_PORT will mean that the server starts on port 4000
+$# Leaving out the final ampersand (&amp;) will mean that server runs in the foreground</code></pre></div>
+
+	<p>Visit www.example.com/google<sup><a href="#fn1">1</a></sup> and watch<sup><a href="#fn2">2</a></sup> as you&#8217;re redirected first to example.com/google and then onto www.google.com.  Cool huh.</p>
+
+
+	<p>Lots to do &#8211; notably a user interface for managing rules but it&#8217;s not a bad start.</p>
+
+
+	<p>Oh, and this is specifically so that you can redirect from your own domain.  If you don&#8217;t care about the domain then you could try <a href="http://tinyurl.com">tinyurl</a> or, for human friendly URLs, <a href="http://decenturl.com">decent url</a>.</p>
+
+
+	<p>[1] Assuming, of course, that www.example.com and example.com both point to the server that this redirection server is running on.</p>
+
+
+	<p>[2] You probably won&#8217;t be able to watch as it&#8217;ll redirect too quickly in the browser &#8211; your best bet is to use <a href="http://curl.haxx.se/">curl</a> or the <a href="http://livehttpheaders.mozdev.org/">Live <span class="caps">HTTP</span> Headers</a> <a href="http://www.mozilla.com/en-US/firefox/">firefox</a> extension so see what&#8217;s actually going on.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/apache" rel="tag">apache</a>, 
+                
+                  <a href="/articles/tag/decenturl" rel="tag">decenturl</a>, 
+                
+                  <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
+                
+                  <a href="/articles/tag/mongrel" rel="tag">mongrel</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/tinyurl" rel="tag">tinyurl</a>, 
+                
+                  <a href="/articles/tag/url" rel="tag">url</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

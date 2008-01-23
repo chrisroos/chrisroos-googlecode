@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Some realisations about testing - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Some realisations about testing</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Mon, 17 Jul 2006 09:19:00">
+                Mon, 17 Jul 2006 09:19:00
+              </span>
+            </p>
+          
+            <p>Having been predominantly involved in <a href="http://www.rubyonrails.com">Rails</a> development just recently, <a href="http://api.rubyonrails.com/classes/Fixtures.html">fixtures</a> have taken on a slightly different meaning to what I now believe to be the original understanding.  Having recently re-read <a href="http://www.amazon.co.uk/gp/product/0321146530/202-8808398-1811851?v=glance&#38;n=266239">Test Driven Development: By Example</a> I re-discovered the &#8216;original&#8217; meaning of the word (essentially shared objects used by all tests in a test case).</p>
+
+
+	<p>This has made me think about the way that I&#8217;ve been structuring my tests (or not structuring them as the case may be).  I have never been a fan of the setup and teardown methods provided to us in <a href="http://en.wikipedia.org/wiki/XUnit">xUnit</a> and I now believe this to be due to my misunderstanding of the term fixture and therefore their intention.  This has led to my test cases growing very large and containing many disparate tests.  If there was any separation of the testcase then it was usually based on functionality of a particular method (which separately leads me to believe that they may have been better expressed in a new object).  I now understand that test cases should be split to contain tests that rely on a common test fixture.  As soon as I started to do this, the setup and (to a lesser degree) teardown methods have become much more useful.</p>
+
+
+	<p>I&#8217;ve also started to create my test cases as anonymous classes derived from Test::Unit::TestCase.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+  <span class="keyword">def </span><span class="method">test_</span>
+    <span class="ident">assert</span> <span class="constant">true</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>I find that this helps when trying to determine where a new test should be placed.  If the class has a name I&#8217;m tempted to scan that and make a decision as to whether a new test belongs in this case.  By keeping them anonymous, I have to inspect the test fixture in order to understand whether a new test belongs here.</p>
+
+
+	<p><strong>Note</strong> I may also add a comment right below Class.new to explicitly specify the fixture for this testcase.  This may seem to go against not naming the classes in the first place but I think part of the problem with class names is the lack of punctuation and therefore the difficulty in clearly expressing the test fixture.</p>
+
+
+	<p>I&#8217;ve chosen a somewhat contrived example to demonstrate my new found test structure.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+  <span class="comment"># An empty stack</span>
+
+  <span class="keyword">def </span><span class="method">setup</span>
+    <span class="attribute">@stack</span> <span class="punct">=</span> <span class="constant">Stack</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_accept_an_item_when_sent_push</span>
+    <span class="ident">assert_nothing_raised</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">push</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_complain_when_sent_top</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">StackUnderflowError</span><span class="punct">)</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">top</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_complain_when_sent_pop</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">StackUnderflowError</span><span class="punct">)</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">pop</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>The fixture for this test is an empty stack.  The individual tests prod and query the empty stack to ensure that it behaves as expected.  Although the example above is incredibly simple, I have consistently found that my individual test methods become much smaller.</p>
+
+
+	<p>Notice that the names of the tests all start &#8216;test_should&#8217;.  Not only does this help us think about the responsibilities of the object; but it enables us to maintain living system specifications based on the tests.  I believe this idea first came from <a href="http://agiledox.sourceforge.net/index.html">testdox for Java</a> but was introduced to me by <a href="http://www.reevoo.com/blogs/bengriffiths/">Ben</a> at <a href="http://www.reevoo.com">work</a>.  In fact Ben has written a cool <a href="http://www.reevoo.com/blogs/bengriffiths/2006/04/05/rails-agiledox-browser/">Agiledox server</a> that displays the system specifications for your rails project.</p>
+
+
+	<p>The realisations set out above have come at around the same time as my taking more of an interest in <a href="http://rspec.rubyforge.org/">rSpec</a> (the stack test above has been adapted directly from one of the rSpec examples); a <a href="http://behaviour-driven.org/">behaviour driven development</a> framework for <a href="http://www.ruby-lang.org">ruby</a>.  I haven&#8217;t done any real work with rSpec yet but am hoping it might improve the way I think of both testing and OO design in general.</p>
+          </div>
+        
+          <p class="meta">
+            
+              Tags 
+              
+                <a href="/articles/tag/agiledox" rel="tag">agiledox</a>, 
+              
+                <a href="/articles/tag/bdd" rel="tag">bdd</a>, 
+              
+                <a href="/articles/tag/rails" rel="tag">rails</a>, 
+              
+                <a href="/articles/tag/rspec" rel="tag">rspec</a>, 
+              
+                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+              
+                <a href="/articles/tag/tdd" rel="tag">tdd</a>, 
+              
+            
+          </p>
+
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

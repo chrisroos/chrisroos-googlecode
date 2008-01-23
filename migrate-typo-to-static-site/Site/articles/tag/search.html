@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged search - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2008/01/14/searching-subversion-history">Searching subversion history</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 14 Jan 2008 09:59:00">
+                  Mon, 14 Jan 2008 09:59:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve often felt the need to search through our <a href="http://subversion.tigris.org/">subversion</a> repository to find, for example, when a method was removed/renamed.  As far as I&#8217;m aware there&#8217;s no easy way to do this using the standard subversion, or <a href="http://trac.edgewall.org/">trac</a>, tools.  A few days ago the need arose once more: I wanted to know when a particular class had stopped being used within our codebase.  It struck me that if I had a <a href="http://en.wikipedia.org/wiki/Diff">diff</a> file for each changeset that I&#8217;d be able to <a href="http://en.wikipedia.org/wiki/Grep">grep</a> for the change I was looking for.  I hacked together a script to produce a diff of each changeset (actually, as I knew when the class was added, I only produced a diff for a subset of the changesets) and was able to find the information I needed.  The script is pasted below and on <a href="http://chrisroos.googlecode.com/svn/trunk/svn_changesets/">google code</a>.  It assumes that you are running it from within an svn working direction.  It took a while to produce the diff files (I&#8217;m afraid I don&#8217;t have any stats) but the result was a really fast way of finding, otherwise hard to find, information.  I guess it&#8217;d be quite easy to automate the diff creation process so that you had an always up-to-date bunch of diff fies&#8230;</p>
+
+
+	<p>Is this useful, or have I missed something obvious in Subversion or Trac that does exactly this?</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">fileutils</span><span class="punct">'</span>
+
+<span class="ident">stop_at_revision</span> <span class="punct">=</span> <span class="constant">ARGV</span><span class="punct">[</span><span class="number">0</span><span class="punct">]</span>
+<span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Please specify the revision that you wish to go back to as the only argument to this script.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">stop_at_revision</span>
+<span class="ident">stop_at_revision</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">stop_at_revision</span><span class="punct">)</span>
+
+<span class="keyword">class </span><span class="class">Time</span>
+  <span class="keyword">def </span><span class="method">friendly_format</span>
+    <span class="ident">strftime</span><span class="punct">(&quot;</span><span class="string">%Y-%m-%d %H:%M:%S</span><span class="punct">&quot;)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">def </span><span class="method">msg</span><span class="punct">(</span><span class="ident">message</span><span class="punct">)</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{Time.now.friendly_format}</span> - <span class="expr">#{message}</span></span><span class="punct">&quot;</span>
+<span class="keyword">end</span>
+
+<span class="keyword">def </span><span class="method">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">,</span> <span class="ident">earlier_revision</span> <span class="punct">=</span> <span class="constant">nil</span><span class="punct">)</span>
+  <span class="keyword">if</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">empty?</span>
+    <span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">All finished.</span><span class="punct">&quot;</span>
+    <span class="ident">exit</span>
+  <span class="keyword">end</span>
+
+  <span class="ident">later_revision</span> <span class="punct">=</span> <span class="ident">earlier_revision</span> <span class="punct">?</span> <span class="ident">earlier_revision</span> <span class="punct">:</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">shift</span>
+  <span class="ident">earlier_revision</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">shift</span>
+
+  <span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">Creating diff from revision <span class="expr">#{earlier_revision}</span> to <span class="expr">#{later_revision}</span>.</span><span class="punct">&quot;</span>
+  `<span class="ident">svn</span> <span class="ident">diff</span> <span class="punct">-</span><span class="ident">r</span><span class="comment">#{earlier_revision}:#{later_revision} &gt; patches/#{later_revision}.patch`</span>
+  <span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">,</span> <span class="ident">earlier_revision</span><span class="punct">)</span>
+<span class="keyword">end</span>
+
+<span class="constant">FileUtils</span><span class="punct">.</span><span class="ident">mkdir_p</span> <span class="punct">'</span><span class="string">patches</span><span class="punct">'</span>
+
+<span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">Scanning output of svn log to find all revisions that we care about...</span><span class="punct">&quot;</span>
+<span class="ident">log</span> <span class="punct">=</span> `<span class="ident">svn</span> <span class="ident">log</span> <span class="punct">-</span><span class="ident">rHEAD</span><span class="punct">:</span><span class="comment">#{stop_at_revision} -q`</span>
+<span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">log</span><span class="punct">.</span><span class="ident">scan</span><span class="punct">(/</span><span class="regex">^r(<span class="escape">\d</span>+)</span><span class="punct">/)</span>
+<span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">flatten</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">revision</span><span class="punct">|</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">revision</span><span class="punct">)</span> <span class="punct">}</span>
+
+<span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">)</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/script" rel="tag">script</a>, 
+                
+                  <a href="/articles/tag/search" rel="tag">search</a>, 
+                
+                  <a href="/articles/tag/subversion" rel="tag">subversion</a>, 
+                
+                  <a href="/articles/tag/svn" rel="tag">svn</a>, 
+                
+                  <a href="/articles/tag/trac" rel="tag">trac</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/20/wow-google-must-really-love-chris">Wow.  Google must really love Chris.</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 20 Nov 2007 22:51:00">
+                  Tue, 20 Nov 2007 22:51:00
+                </span>
+              </p>
+          
+              <p>I&#8217;d read <a href="http://www.scripting.com/stories/2007/07/17/instantIndexing.html">previously</a> about <a href="http://www.google.com">Google</a> indexing pages in almost real-time.  I only experienced it myself for the first time this evening.  I was continuing to search for answers to my <a href="http://blog.seagul.co.uk/articles/2007/11/20/can-anyone-recommend-a-good-simple-web-hosting-solution">recent question</a> when my own question popped up at number three in the <a href="http://www.google.co.uk/search?hl=en&#38;q=static+simple+web+hosting">search results</a>.</p>
+
+
+	<p><a href="http://flickr.com/photos/chrisjroos/2050547123/"><img src="http://farm3.static.flickr.com/2310/2050547123_31a16714ec.jpg" alt="" /></a></p>
+
+
+	<p>I assume this might be to do with Google&#8217;s <a href="http://googlewebmastercentral.blogspot.com/2007/05/taking-advantage-of-universal-search.html">Universal Search</a> that blends lots of different sources into their main search results.  Or, they really do just love me.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/google" rel="tag">google</a>, 
+                
+                  <a href="/articles/tag/index" rel="tag">index</a>, 
+                
+                  <a href="/articles/tag/search" rel="tag">search</a>, 
+                
+                  <a href="/articles/tag/universal" rel="tag">universal</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/12/13/reevoo-com-dips-its-toes-into-the-opensearch-water">Reevoo.com dips its toes into the opensearch water</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 13 Dec 2006 21:37:00">
+                  Wed, 13 Dec 2006 21:37:00
+                </span>
+              </p>
+          
+              <p>So.  What does that mean exactly?  Well, right at the moment, not a great deal.  It pretty much means that you can add the ability to search reevoo.com to the Firefox 2 and <span class="caps">IE7</span> browsers very easily.  Visiting <a href="http://www.reevoo.com">reevoo.com</a> with either of these browsers will highlight part of the &#8216;search box&#8217;.</p>
+
+
+	<p><img src="http://static.flickr.com/126/321626445_dfe00b4e0e.jpg?v=0" alt="" /></p>
+
+
+	<p><span class="caps">IE 7</span> changes the little arrow to a goldy, orangey, yellowy type colour to indicate the presence of an opensearch enabled search engine.</p>
+
+
+	<p><img src="http://static.flickr.com/132/321626424_d6ec54a53b.jpg?v=0" alt="" /></p>
+
+
+	<p>While Firefox 2 opts for a blue surround and additionally chooses to add our logo.  Woot.</p>
+
+
+	<h3>I appreciate that I can now easily search reevoo from anywhere but was it really worth a blog post?</h3>
+
+
+	<p>Hmm, interesting question (that wasn&#8217;t an actual question, I just made it up).</p>
+
+
+	<p>Actually, I think that <a href="http://www.opensearch.org">opensearch</a> is pretty cool.  At the moment, we are just exposing our search results in their html form.  Just imagine, for a second, that we were instead, exposing our results as <a href="http://en.wikipedia.org/wiki/Atom_%28standard%29">atom</a> or <a href="http://en.wikipedia.org/wiki/RSS_%28file_format%29">rss</a> feeds.  Now, also imagine<sup><a href="#fn1">1</a></sup> that retailers felt like being a little more open; and, as such, were offering an opensearch description of their search capabilities, along with search results in atom or rss feeds.  All we&#8217;d need then was an <a href="http://a9.com">aggregator</a> that would allow us to search for products across our chosen retailers and reevoo in one go.  The result would be a page containing both product reviews and pricing and stock availability from each retailer.  That, I think, would be pretty damn cool.</p>
+
+
+	<p id="fn1"><sup>1</sup> Currently, this requires a lot of imagination.  A quick browse this afternoon found four big retailers that don&#8217;t even have working search without javascript enabled.  At least they&#8217;ve got <a href="http://www.w3.org/Provider/Style/URI">well</a> <a href="http://wiki.welldesignedurls.org/Main_Page">designed</a> urls.  Oh, hang on&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/atom" rel="tag">atom</a>, 
+                
+                  <a href="/articles/tag/opensearch" rel="tag">opensearch</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/search" rel="tag">search</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

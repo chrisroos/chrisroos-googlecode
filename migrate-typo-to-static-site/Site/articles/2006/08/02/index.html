@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Wed, 02 August 2006 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/02/helpful-error-messages-when-active-record-objects-fail-validation-in-tests">Helpful error messages when active record objects fail validation (in tests)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 02 Aug 2006 13:47:00">
+                  Wed, 02 Aug 2006 13:47:00
+                </span>
+              </p>
+          
+              <p>I <a href="http://blog.seagul.co.uk/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">posted</a> a while back about displaying the reasons for an active record model failing validation.</p>
+
+
+	<p>I knew the code was hacky and nasty but didn&#8217;t realise quite how bad until I noticed how <a href="http://dev.rubyonrails.org/browser/tags/rel_1-1-0/activerecord/lib/active_record/validations.rb">simply</a>  (1 line) the same thing was implemented in <a href="http://weblog.rubyonrails.com/2006/3/28/rails-1-1-rjs-active-record-respond_to-integration-tests-and-500-other-things">Rails 1.1</a> (and above).</p>
+
+
+	<p>Although it&#8217;s only useful for people still on Rails 1.0, I made a quick plugin that backports this change.  I don&#8217;t really want to put it in my subversion repository, so have just pasted the necessary code below.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># File init.rb</span>
+<span class="ident">require</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/lib/record_invalid</span><span class="punct">'</span></code></pre></div>
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># File record_invalid.rb</span>
+<span class="keyword">module </span><span class="module">ActiveRecord</span>
+
+  <span class="keyword">class </span><span class="class">RecordInvalid</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecordError</span>
+    <span class="keyword">def </span><span class="method">initialize</span><span class="punct">(</span><span class="ident">record</span><span class="punct">)</span>
+      <span class="attribute">@record</span> <span class="punct">=</span> <span class="ident">record</span>
+      <span class="keyword">super</span><span class="punct">(&quot;</span><span class="string">Validation failed: <span class="expr">#{@record.errors.full_messages.join(&quot;, &quot;)}</span></span><span class="punct">&quot;)</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>To create a plugin from this, create the following structure in your rails_app/vendor/plugins directory.</p>
+
+
+<pre>
+active_record_validation_error/
+|
+|--init.rb (copy contents of code above)
+|
+|--lib/
+   |
+   |--record_invalid.rb (copy content of code above)
+</pre>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/activerecord" rel="tag">active record</a>, 
+                
+                  <a href="/articles/tag/plugin" rel="tag">plugin</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/validation" rel="tag">validation</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

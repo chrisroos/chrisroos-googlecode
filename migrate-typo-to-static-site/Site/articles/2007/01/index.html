@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published in January 2007 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/29/visualising-the-changing-responsibilities-of-objects">Visualising the changing responsibilities of objects</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 29 Jan 2007 21:17:00">
+                  Mon, 29 Jan 2007 21:17:00
+                </span>
+              </p>
+          
+              <p>By parsing the output of svn diff, we can concisely display the responsibilities that have been added/removed to various objects.  It is based on the assumption that our tests capture these changes.</p>
+
+
+	<p>Taking a very simple (and partially made up) diff:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Index</span><span class="punct">:</span> <span class="ident">test</span><span class="punct">/</span><span class="ident">amount_test</span><span class="punct">.</span><span class="ident">rb</span>
+<span class="punct">===================================================================</span>
+<span class="punct">---</span> <span class="ident">test</span><span class="punct">/</span><span class="ident">amount_test</span><span class="punct">.</span><span class="ident">rb</span> <span class="punct">(</span><span class="ident">revision</span> <span class="number">2</span><span class="punct">)</span>
+<span class="punct">+++</span> <span class="ident">test</span><span class="punct">/</span><span class="ident">amount_test</span><span class="punct">.</span><span class="ident">rb</span> <span class="punct">(</span><span class="ident">working</span> <span class="ident">copy</span><span class="punct">)</span>
+<span class="attribute">@@</span> <span class="punct">-</span><span class="number">2</span><span class="punct">,</span><span class="number">9</span> <span class="punct">+</span><span class="number">2</span><span class="punct">,</span><span class="number">8</span> <span class="attribute">@@</span>
+
+ <span class="keyword">class </span><span class="class">AmountTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+
+<span class="punct">-</span>  <span class="keyword">def </span><span class="method">test_should_format_amount</span>
+<span class="punct">-</span>    <span class="ident">formatted_amount</span> <span class="punct">=</span> <span class="constant">Amount</span><span class="punct">.</span><span class="ident">format</span><span class="punct">(</span><span class="number">5</span><span class="punct">,</span> <span class="punct">'</span><span class="string">$</span><span class="punct">')</span>
+<span class="punct">-</span>    <span class="ident">assert_equal</span> <span class="punct">'</span><span class="string">$5.00</span><span class="punct">',</span> <span class="ident">formatted_amount</span>
+<span class="punct">+</span>  <span class="keyword">def </span><span class="method">test_should_flunk</span>
+<span class="punct">+</span>    <span class="ident">flunk</span>
+   <span class="keyword">end</span></code></pre></div>
+
+	<p>And piping it through the diff_parser, we get:</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">--- Amount
++ should flunk
+- should format amount</code></pre></div>
+
+	<p>The output is in a diff-like format so that we can pipe it straight into <a href="http://www.macromates.com">TextMate</a> and benefit from the colour formatting therein.</p>
+
+
+	<h3>diff_parser.rb</h3>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#!/usr/bin/env ruby</span>
+
+<span class="keyword">class </span><span class="class">Test</span>
+  <span class="keyword">def </span><span class="method">initialize</span>
+    <span class="attribute">@added</span><span class="punct">,</span> <span class="attribute">@removed</span> <span class="punct">=</span> <span class="punct">[],</span> <span class="punct">[]</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">add_responsibility</span><span class="punct">(</span><span class="ident">responsibility</span><span class="punct">)</span>
+    <span class="attribute">@added</span> <span class="punct">&lt;&lt;</span> <span class="ident">responsibility</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">remove_responsibility</span><span class="punct">(</span><span class="ident">responsibility</span><span class="punct">)</span>
+    <span class="attribute">@removed</span> <span class="punct">&lt;&lt;</span> <span class="ident">responsibility</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">added_responsibilities</span>
+    <span class="punct">(</span><span class="attribute">@added</span> <span class="punct">-</span> <span class="attribute">@removed</span><span class="punct">).</span><span class="ident">sort</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">removed_responsibilities</span>
+    <span class="punct">(</span><span class="attribute">@removed</span> <span class="punct">-</span> <span class="attribute">@added</span><span class="punct">).</span><span class="ident">sort</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">added_responsibilities?</span>
+    <span class="punct">!</span><span class="ident">added_responsibilities</span><span class="punct">.</span><span class="ident">empty?</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">removed_responsibilities?</span>
+    <span class="punct">!</span><span class="ident">removed_responsibilities</span><span class="punct">.</span><span class="ident">empty?</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">changed_responsibilities?</span>
+    <span class="ident">added_responsibilities?</span> <span class="punct">||</span> <span class="ident">removed_responsibilities?</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="ident">tests</span> <span class="punct">=</span> <span class="punct">{}</span>
+<span class="ident">class_under_test</span> <span class="punct">=</span> <span class="punct">'</span><span class="string"></span><span class="punct">'</span>
+
+<span class="keyword">while</span> <span class="ident">line</span> <span class="punct">=</span> <span class="ident">gets</span>
+  <span class="keyword">if</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">Index: (.*)</span><span class="punct">/</span>
+    <span class="keyword">if</span> <span class="punct">(</span><span class="ident">test_name</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">basename</span><span class="punct">(</span><span class="global">$1</span><span class="punct">,</span> <span class="punct">'</span><span class="string">.rb</span><span class="punct">'))</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">_test$</span><span class="punct">/</span>
+      <span class="ident">name_of_class_under_test</span> <span class="punct">=</span> <span class="ident">test_name</span><span class="punct">.</span><span class="ident">sub</span><span class="punct">(/</span><span class="regex">_test</span><span class="punct">/,</span> <span class="punct">'</span><span class="string"></span><span class="punct">')</span>
+      <span class="ident">class_under_test</span> <span class="punct">=</span> <span class="ident">name_of_class_under_test</span><span class="punct">.</span><span class="ident">capitalize</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(/</span><span class="regex">_(<span class="escape">\w</span>)</span><span class="punct">/)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">m</span><span class="punct">|</span> <span class="global">$1</span><span class="punct">.</span><span class="ident">capitalize</span> <span class="punct">}</span>
+      <span class="ident">tests</span><span class="punct">[</span><span class="ident">class_under_test</span><span class="punct">]</span> <span class="punct">=</span> <span class="constant">Test</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="keyword">end</span>
+  <span class="keyword">else</span>
+    <span class="keyword">if</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">-<span class="escape">\s</span>*def test_(.*)</span><span class="punct">/</span>
+      <span class="ident">responsibility</span> <span class="punct">=</span> <span class="global">$1</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(/</span><span class="regex">_</span><span class="punct">/,</span> <span class="punct">'</span><span class="string"> </span><span class="punct">')</span>
+      <span class="ident">tests</span><span class="punct">[</span><span class="ident">class_under_test</span><span class="punct">].</span><span class="ident">remove_responsibility</span><span class="punct">(</span><span class="ident">responsibility</span><span class="punct">)</span>
+    <span class="keyword">elsif</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex"><span class="escape">\+\s</span>*def test_(.*)</span><span class="punct">/</span>
+      <span class="ident">responsibility</span> <span class="punct">=</span> <span class="global">$1</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(/</span><span class="regex">_</span><span class="punct">/,</span> <span class="punct">'</span><span class="string"> </span><span class="punct">')</span>
+      <span class="ident">tests</span><span class="punct">[</span><span class="ident">class_under_test</span><span class="punct">].</span><span class="ident">add_responsibility</span><span class="punct">(</span><span class="ident">responsibility</span><span class="punct">)</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="ident">tests</span><span class="punct">.</span><span class="ident">sort</span><span class="punct">.</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">test_name</span><span class="punct">,</span> <span class="ident">test</span><span class="punct">|</span>
+  <span class="keyword">if</span> <span class="ident">test</span><span class="punct">.</span><span class="ident">changed_responsibilities?</span>
+    <span class="ident">puts</span> <span class="punct">'</span><span class="string">--- </span><span class="punct">'</span> <span class="punct">+</span> <span class="ident">test_name</span>
+    <span class="ident">test</span><span class="punct">.</span><span class="ident">added_responsibilities</span><span class="punct">.</span><span class="ident">each</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">responsibility</span><span class="punct">|</span> <span class="ident">puts</span> <span class="punct">'</span><span class="string">+ </span><span class="punct">'</span> <span class="punct">+</span> <span class="ident">responsibility</span> <span class="punct">}</span> <span class="keyword">if</span> <span class="ident">test</span><span class="punct">.</span><span class="ident">added_responsibilities?</span>
+    <span class="ident">test</span><span class="punct">.</span><span class="ident">removed_responsibilities</span><span class="punct">.</span><span class="ident">each</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">responsibility</span><span class="punct">|</span> <span class="ident">puts</span> <span class="punct">'</span><span class="string">- </span><span class="punct">'</span> <span class="punct">+</span> <span class="ident">responsibility</span> <span class="punct">}</span> <span class="keyword">if</span> <span class="ident">test</span><span class="punct">.</span><span class="ident">removed_responsibilities?</span>
+    <span class="ident">puts</span> <span class="punct">'</span><span class="string"></span><span class="punct">'</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/diff" rel="tag">diff</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/12/combining-distributed-small-tools-as-an-alternative-to-backpack-et-al">Combining distributed small tools as an alternative to Backpack et al</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 12 Jan 2007 11:53:00">
+                  Fri, 12 Jan 2007 11:53:00
+                </span>
+              </p>
+          
+              <p>For a while now, I&#8217;ve been thinking/dreaming of having a number of very specific, distributed services.  These would be no more than additions to the single purpose services we already use (notably, in my case, <a href="http://flickr.com">flickr</a> for photos, this blog for articulating thought and <a href="http://del.icio.us">del.icio.us</a> for storing bookmarks).  Some additions I&#8217;d like to see<sup><a href="#fn1">1</a></sup> are:</p>
+
+
+	<ul>
+	<li>A way to record and tag financial transactions
+
+	<p>Although I want to be able to record the transactions in some kind of accounting app, I also want each transaction to be a resource on the web that I can link to and bookmark (a RESTful accounts app if you like)</p></li>
+	</ul>
+
+
+	<ul>
+	<li>A way to record and tag any text (i.e. thoughts and ideas that are not quite blog posts)
+
+	<p>To be fair, a secondary blog could be set-up to do this.</p></li>
+	</ul>
+
+
+	<ul>
+	<li>A way to add multiple comments to any resource on the web
+
+	<p>Think &#8211; being able to bookmark the same uri multiple times in del.icio.us with different notes against each bookmark.  Actually, I wonder why these sort of distributed comment systems are not more prevalent &#8211; it seems kinda odd that every blogging engine re-implements something that could be done once, and done well.</p></li>
+	</ul>
+
+
+	<ul>
+	<li>A way to expose an email or an email conversation at a given uri (a permailink maybe? he he)
+
+	<p>I think one immediate benefit of this is the ability to share emails with people in the same organisation/group as you without having to forward them all on.</p></li>
+	</ul>
+
+
+	<p>So, how would having these types of services help us re-create a backpack type page at present?</p>
+
+
+	<p>Well, I&#8217;m not sure how good this example is, but let&#8217;s think of selling an item on <a href="http://www.ebay.co.uk">ebay</a>.  At the moment, I end up with lots of distributed information about a single sale:</p>
+
+
+	<ul>
+	<li>invoices from ebay</li>
+		<li>transactions on a statement (from my bank and paypal)</li>
+		<li>emails from ebay and buyers</li>
+		<li>a page that represents the item on ebay</li>
+		<li>pictures of the item on flickr</li>
+		<li>physical receipts for posting the item</li>
+	</ul>
+
+
+	<p>This is fine until you want to interrogate the data.  Try finding out how much money you made/lost, when it was sent, who it was sent to, and the problems are obvious.</p>
+
+
+	<p>One solution would be to record all the information for a given item in a page in backpack (or any similar service &#8211; a simple wiki would do).  But now try to query the data for two items sold, or partially query one item and the problems become evident again.</p>
+
+
+	<p>I think this is where our funky new distributed system can help.  Following the same ebay selling process as above:</p>
+
+
+	<ul>
+	<li>We create a text snippet that provides us with a placeholder uri for this item.  This would be something like &#8216;sale of computer&#8217;</li>
+		<li>We upload photos of the item to flickr, tagged with our placeholder</li>
+		<li>We list the item in ebay, tagged with our placeholder</li>
+		<li>We record a financial transaction that represents the cost of listing the item, tagged with our placeholder</li>
+		<li>We upload any relevant emails from ebay about the listing/sale of our item, tagged with our placeholder</li>
+		<li>We record a financial transaction that represents our income from the sale of the item, tagged with our placeholder</li>
+		<li>We record a note that states when and how we sent the item, tagged with our placeholder</li>
+		<li>We record a financial transaction that represents our cost for sending the item, tagged with our placeholder</li>
+	</ul>
+
+
+	<p>The important thing is that all of these resources are tagged with a common uri.  The uri that represents our item for sale.  At the simplest level, this makes auto-generating a backpack type page very simple &#8211; we just aggregate<sup><a href="#fn2">2</a></sup> all of the data tagged with our item uri.  Tagging these items with a higher level tag, such as &#8216;ebay&#8217;, will allow us to search across multiple sales/purchase.</p>
+
+
+	<p>Going even further, using opensearch with a simple custom front-end (basically just a parser) gives us even greater querying capabilities.  I could imagine searching for something like &#8220;ebay finance:expenditure&#8221; to get a list of all items (descriptions, notes, pictures etc) we&#8217;ve sold on ebay along with our expenditure.  Our simple search engine would know to search for all items tagged with ebay, but only those transactions that are tagged with expenditure (i.e. costs to us).</p>
+
+
+	<p>Does this make sense/sound feasible to anyone else?  Indeed, has someone else already presented these ideas in a more legible/understandable way?  It all seems to make great sense to me but I&#8217;ve spent quite a while thinking about it (and what seems like ages just writing this post), meaning there&#8217;s every chance I&#8217;ve missed something obvious.  I&#8217;d appreciate any thoughts.</p>
+
+
+	<p id="fn1"><sup>1</sup> I did had every intention of developing these things as a proof of concept, but, on the basis that I&#8217;m unlikely to get around to it, and that I do actually think something like this is a good idea, I thought I&#8217;d jot my thoughts here.</p>
+
+
+	<p id="fn2"><sup>2</sup> I started out thinking that the tags would be stored against the resource itself &#8211; the same way that the tag for a photo in flickr is stored against that photo.  I was also assuming that these services would be <a href="http://opensearch.org">opensearch</a> enabled to allow searching of the tags.  As I&#8217;ve been writing the post I&#8217;ve realised that, providing everything has a uri, we can use del.icio.us as our tagging mechanism and as our search engine.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/cool" rel="tag">cool</a>, 
+                
+                  <a href="/articles/tag/distributed" rel="tag">distributed</a>, 
+                
+                  <a href="/articles/tag/opensearch" rel="tag">opensearch</a>, 
+                
+                  <a href="/articles/tag/rest" rel="tag">rest</a>, 
+                
+                  <a href="/articles/tag/software" rel="tag">software</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/12/encapsulation-in-active-record-objects">Encapsulation in Active Record objects</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 12 Jan 2007 01:37:00">
+                  Fri, 12 Jan 2007 01:37:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve been meaning to finish a post on this subject for ages.  As I probably won&#8217;t finish it in its current incarnation, I thought I&#8217;d at least get something up here.</p>
+
+
+	<p><a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Base.html">Active Record</a> <a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Associations/ClassMethods.html">associations</a> are brilliant for quickly putting together an object graph.  They&#8217;re not so brilliant for testing, or keeping the code particularly tidy.  They quickly lead to (and even encourage) train-wreck expressions in your code.  Diving straight into an example:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">Hobby</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Because the hobbies object is publicly accessible from a person object, it allows us to reach in and touch things we shouldn&#8217;t.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">cycling</span> <span class="punct">=</span> <span class="constant">Hobby</span><span class="punct">.</span><span class="ident">new</span>
+
+<span class="comment"># We shouldn't manipulate the hobbies object directly...</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Uh oh - touching things we shouldn't</span>
+
+<span class="comment"># ...rather, it'd be better to add a wrapper method for the functionality we actually need</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="keyword">def </span><span class="method">add_hobby</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">add_hobby</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Ahh, that's much better</span></code></pre></div>
+
+	<p>The revised Person class above follows the <a href="http://en.wikipedia.org/wiki/Law_of_Demeter">law of demeter</a>.  As well as making the code look a little neater (no train-wrecks to see here), it makes it easier to test.  To illustrate the testing point, I&#8217;m going to <a href="http://weblog.jamisbuck.org/2007/1/9/extending-activerecord-associations">extend</a> the <a href="http://ryandaigle.com/articles/2006/12/03/extend-your-activerecord-association-methods">association</a> in this example.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># We end up with a large and not very clear test</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span> <span class="keyword">do</span>
+    <span class="keyword">def </span><span class="method">find_favourite</span>
+      <span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
+    <span class="ident">hobbies</span> <span class="punct">=</span> <span class="ident">mock</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_favourite</span><span class="punct">)</span>
+    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">stub</span><span class="punct">(</span><span class="symbol">:hobbies</span> <span class="punct">=&gt;</span> <span class="ident">hobbies</span><span class="punct">)</span>
+    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment"># This way, we end up with a slightly cleaner looking class (imo) and a smaller, cleaner test</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
+  <span class="keyword">def </span><span class="method">find_my_favourite_hobby</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
+    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">mock</span>
+    <span class="ident">person</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_my_favourite_hobby</span><span class="punct">)</span>
+    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Interestingly enough, if we had <a href="http://en.wikipedia.org/wiki/Test_driven_development">test driven</a> the development of the above code, we would almost certainly have ended up with something similar (interface-wise) to the example that has a wrapper around the association proxy.</p>
+
+
+	<p>So, with all of this in mind, I&#8217;ve hacked together a real quick <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/private_associations/">plugin</a> that adds a corresponding _private method for each of the four (has_one, has_many, belongs_to and has_and_belongs_to_many) associations.  Using the _private alternative will do exactly the same as the original method but it will make all of the dynamically created methods private.  So.  It&#8217;ll still be possible to write the wrapper around the association (as we did in the test above) but it won&#8217;t be possible to reach in and touch things that we shouldn&#8217;t.[1]</p>
+
+
+	<p>There is at least one problem (there may be many more I&#8217;m not aware of) with using the _private association methods.  If you have validation set-up for one of the associations (e.g. validates_associated) it will fail.  This is because validation happens from outside the instance of the object and therefore needs to access the association.  Although I haven&#8217;t thought this through fully, I&#8217;m actually wondering if validation (in its current form) takes a bit of a back seat under this new world order.  I think that one of the reasons validation is on the object itself is because there are many many ways to create the said object.  However, using these private associations and disabling the persistence methods (create, save, update etc) on an associated object may allow us to have a single point of object creation and persistence.  If we had that, then we wouldn&#8217;t need the Active Record validations anyway.  Just a thought&#8230;</p>
+
+
+	<p>Just one final note.  <a href="http://www.daveastels.com/">Dave Astels</a> has a good <a href="http://blog.daveastels.com/articles/2006/10/24/encapsulation-in-action">article</a> about encapsulation in rails, as <a href="http://www.reevoo.com/blogs/bengriffiths/2006/10/24/rails-like-or-oo/">referred to</a> by <a href="http://www.reevoo.com/blogs/bengriffiths">Ben</a></p>
+
+
+	<p id="fn1"><sup>1</sup>  Ok.  That is, of course, a blatant lie &#8211; we can still access the private association &#8211; this is <a href="http://www.ruby-lang.org">ruby</a> remember.  The important point is that we&#8217;ve made our intentions more explicit.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/encapsulation" rel="tag">encapsulation</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/12/move-over-seetickets-com-youve-got-nothing-on-orange-co-uk">Move over seetickets.com - you've got nothing on orange.co.uk</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 12 Jan 2007 00:03:00">
+                  Fri, 12 Jan 2007 00:03:00
+                </span>
+              </p>
+          
+              <p><img src="http://farm1.static.flickr.com/160/353838276_1b4a5b6ecf_o.jpg" alt="" /></p>
+
+
+	<p><strong>&#8220;The unsubscribe process may take up to 28 working days&#8221;</strong></p>
+
+
+	<p>Hmmm.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/crap" rel="tag">crap</a>, 
+                
+                  <a href="/articles/tag/email" rel="tag">email</a>, 
+                
+                  <a href="/articles/tag/naughty" rel="tag">naughty</a>, 
+                
+                  <a href="/articles/tag/unsubscribe" rel="tag">unsubscribe</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/05/bad-seetickets-com">Bad seetickets.com</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 05 Jan 2007 17:54:00">
+                  Fri, 05 Jan 2007 17:54:00
+                </span>
+              </p>
+          
+              <p>Ah, a seetickets.com email has fallen into my spam bucket.  I don&#8217;t really read them anyway, I might as well unsubscribe.  Not so fast though it seems&#8230;</p>
+
+
+	<p>First of all, what&#8217;s the deal with the email confirmation box?</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/151/346810590_00bbd1598c_o.jpg" alt="" /></p>
+
+
+	<p>Oh well, might as well fill it in and submit.  But wait.  What&#8217;s this?</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/126/346810700_29ff72c5a4_o.jpg" alt="" /></p>
+
+
+	<p>Wow, an email server that takes upto 60 seconds to:</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">DELETE FROM newsletters WHERE email = 'MY_EMAIL';</code></pre></div>
+
+	<p>Oh well, I best click OK and wait.  Oh.</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/149/346810630_2311d30035_o.jpg" alt="" /></p>
+
+
+	<p>Naughty naughty seetickets.com</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/crap" rel="tag">crap</a>, 
+                
+                  <a href="/articles/tag/naughty" rel="tag">naughty</a>, 
+                
+                  <a href="/articles/tag/seetickets" rel="tag">seetickets</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/04/homegrown-gooogie">Homegrown gooogie</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 04 Jan 2007 14:37:00">
+                  Thu, 04 Jan 2007 14:37:00
+                </span>
+              </p>
+          
+              <p>So, I just saw a <a href="http://blog.outer-court.com/archive/2007-01-04.html#n31">post</a> about <a href="http://www.gooogie.co.uk">gooogie</a>, and it reminded me of my <a href="http://blog.seagul.co.uk/articles/2006/12/15/might-as-well-aim-high">own</a>, &#8216;did you mean&#8217;, page<sup><a href="#fn1">1</a></sup>.</p>
+
+
+	<p>You can achieve the same effect as gooogie by using the excellent <a href="https://addons.mozilla.org/firefox/1843/">firebug</a> firefox extension to execute javascript in the context of the page you are viewing.</p>
+
+
+	<p>To achieve the effect:</p>
+
+
+	<ul>
+	<li>Open up <a href="http://www.google.co.uk">google</a></li>
+	</ul>
+
+
+	<ul>
+	<li>Type something into the search box that will generate a &#8216;did you mean&#8217; response (tip. use any <a href="http://www.google.co.uk/search?hl=en&#38;q=mispeled&#38;btnG=Google+Search">misspelled</a> word)</li>
+	</ul>
+
+
+	<ul>
+	<li>Use the handy <a href="https://addons.mozilla.org/firefox/1192/">XPather</a> firefox extension to find the XPath expression of the suggested word (in italics).  At this time, the relevant xpath seems to be &#8217;/html/body/p<sup><a href="#fn1">1</a></sup>/a/b/i&#8217;</li>
+	</ul>
+
+
+	<ul>
+	<li>Fire up firebug and execute the following line in the console, substituting your desired suggestion first (the text on the page should change immediately)</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_default">document.evaluate('/html/body/p[1]/a/b/i', document, null, XPathResult.ANY_TYPE, null).iterateNext().textContent = 'THE_WORD_YOU_WANT_TO_SUGGEST'</code></pre></div>
+
+	<ul>
+	<li>Finish by typing a new word into the search box and taking a screenshot to impress your friends (or not, as the case may be).</li>
+	</ul>
+
+
+	<p>On second thoughts, just use gooogie, it&#8217;s much quicker and cross-browser compatible.</p>
+
+
+	<p id="fn1"><sup>1</sup> A handful of people have stated that they don&#8217;t get the &#8216;did you mean reevoo&#8217; message when typing &#8216;review&#8217; into google.  Well, no, they wouldn&#8217;t.  It&#8217;s completely made up.  He he.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/cool" rel="tag">cool</a>, 
+                
+                  <a href="/articles/tag/google" rel="tag">google</a>, 
+                
+                  <a href="/articles/tag/gooogie" rel="tag">gooogie</a>, 
+                
+                  <a href="/articles/tag/hack" rel="tag">hack</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

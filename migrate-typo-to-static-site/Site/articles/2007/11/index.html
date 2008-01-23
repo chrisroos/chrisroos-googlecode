@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published in November 2007 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/27/fun-with-selenium">Fun with Selenium</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 27 Nov 2007 09:36:00">
+                  Tue, 27 Nov 2007 09:36:00
+                </span>
+              </p>
+          
+              <p><a href="http://interblah.net/">James</a> and I spent a frustrating, but rewarding, day last Tuesday trying to fix what, for at least four hours, seemed to be a non-reproducible error.  <a href="http://www.reevoo.com">We&#8217;ve</a> used <a href="http://www.openqa.org/selenium/">selenium</a> for a while to test that our reevoomark application is working as expected.  Every so often, some of these reevoomark tests would fail, with either of the following two messages:</p>
+
+
+<pre>
+Message: SeleniumCommandError: Timed out after 30000ms
+Message: SeleniumCommandError: ERROR: Element xpath=//iframe/ not found
+</pre>
+
+	<p>To my knowledge it was never possible to get these tests to fail on any machine apart from our <a href="http://en.wikipedia.org/wiki/Continuous_Integration">continuous integration</a> box.  And even then the failures were intermittent.  Because these failures were so intermittent no-one had invested any real time in trying to find their cause.  Tuesday seemed a bit different though: the tests were failing almost all the time and we decided to do something about it.</p>
+
+
+	<p>I&#8217;ll leave out all of the dead-ends we found and, instead, home-in on the patterns we started to see that led to the eventual resolution.</p>
+
+
+	<p>One of the reevoomarks we offer opens the reviews up in a <a href="http://en.wikipedia.org/wiki/Lightbox_%28JavaScript%29">lightbox</a>.  However, if the screen isn&#8217;t quite large enough for our content we open it in a standard pop-up window instead.  I&#8217;ll pop an example reevoomark at the bottom of this post so you can see exactly what I mean (you&#8217;ll obviously have to resize your browser to see the effect).  We noticed that our tests would fail when another copy of firefox was already open on our continuous integration box.  Toggling this on and off gave us some confidence that this was, at least one of, the causes of the failures.  We were still unable to reproduce this locally though.</p>
+
+
+	<p>It was around this time that James noticed that we were seeing a pop-up window more than we should have been, i.e. we were seeing a pop-up window when we were expecting to see a lightbox.  This discovery made me happy as up until this stage I&#8217;d been blaming selenium for throwing out useless error messages.  In actual fact selenium was reporting the errors correctly: it really couldn&#8217;t find the element we were looking for (the iframe in the error above) and was therefore timing out.  OK, so if the pop-up was showing in place of the lightbox then it meant that the browser window couldn&#8217;t be big enough for the lightbox.  Yet we explicitly resize the browser in our test to ensure that the lightbox will fit.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">get_eval(&quot;this.browserbot.getCurrentWindow().resizeTo(800,800)&quot;)</code></pre></div>
+
+	<p>We used the one and only javascript debugging technique (<code>alert(msg)</code>) to determine that the window was indeed too small for our lightbox.  But hang on, if there wasn&#8217;t another Firefox instance open then the browser <strong>was</strong> big enough.  So somehow, the presence of another Firefox browser was affecting the maximum size that we could resize our browser to.  It turns out it&#8217;s all to do with the maximum height that Firefox thinks it can expand to.  On a Mac with a hidden dock (or with the dock positioned to the side) the maximum height will be from the status bar at the top of the screen to the bottom of the screen.  With a dock visible at the bottom of the screen the maximum height will be from the status bar at the top of the screen to the top of the dock.  It&#8217;s not quite this simple though: Firefox appears to look at the height of the oldest open firefox window to make its decision too.  Although we had the dock at the bottom of the screen our tests were actually passing on some occasions.  This was due to selenium opening its browser at almost full screen, allowing subsequent windows to be resized to these same dimensions which happen to be plenty big enough for our lightbox.  If we already had another firefox instance open (which by default would open at a maximum height of status bar to top of dock) then our selenium browser could only resize to this height, which wasn&#8217;t big enough for our lightbox to appear.  Phew.</p>
+
+
+	<p>So, the result of this entire day&#8217;s work?  Moving the dock to the right hand side of the screen.  Excellent.</p>
+
+
+	<h3>Sample lightbox reevoomark</h3>
+
+
+
+<script type="text/javascript" charset="utf-8">
+  rvo_format='image_horizontal250x40';
+  rvo_product_id='1'
+  rvo_retailer_ref='rev';
+  rvo_version = 2;
+</script>
+<script type="text/javascript" src='http://www.revieworld.com/javascripts/reevoomark.js'></script>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/selenium" rel="tag">selenium</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/27/short-human-friendly-permalinks">Short, Human Friendly, Permalinks</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 27 Nov 2007 09:31:00">
+                  Tue, 27 Nov 2007 09:31:00
+                </span>
+              </p>
+          
+              <p>I was recently asked for my Amazon wishlist.  I wasn&#8217;t able to use email and was expected to write down the <span class="caps">URL</span>.  I had a look and found that the <span class="caps">URL</span> (<a href="http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD">http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD</a>) wasn&#8217;t paper or speech friendly.  Instead of attempting to convey this <span class="caps">URL</span>, I used the opportunity to create my own human friendly permalink for my wishlist (<a href="http://chrisroos.co.uk/amazonwishlist">chrisroos.co.uk/amazonwishlist</a>).  I actually started with a hyphenated variant (amazon-wishlist) but realised that the non-hyphenated version would be easier for someone to understand in conversation.</p>
+
+
+	<p>This seems to tie in with what <a href="http://www.scripting.com">Dave Winer</a> has been talking about <a href="http://www.scripting.com/stories/2007/11/20/solvingTheTinyurlCentraliz.html">recently</a>.</p>
+
+
+	<p>I think this&#8217;d be quite a neat, and fairly easy, little webapp to build.  It would need a simple interface for managing permalinks and the ability to work with multiple domains.  Hmm, I&#8217;m tempted to give this a shot unless anyone knows of anything similar already out there?</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/permalink" rel="tag">permalink</a>, 
+                
+                  <a href="/articles/tag/tinyurl" rel="tag">tinyurl</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/26/vrm-vs-affiliate-marketing">VRM vs Affiliate Marketing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 26 Nov 2007 22:23:00">
+                  Mon, 26 Nov 2007 22:23:00
+                </span>
+              </p>
+          
+              <p>I just read <a href="http://blogs.law.harvard.edu/vrm/2007/11/16/can-vrm-fix-drm/">this</a> article over on the <a href="http://blogs.law.harvard.edu/vrm/">Project <span class="caps">VRM</span></a> blog.  There was a fragment of a sentence that really resonated with me &#8211; highlighted in the quote below.</p>
+
+
+<blockquote>
+For copyrighted works, <span class="caps">VRM</span> could involve agreements made on an individual basis — ones that could involve actual relationships between copyright holders and their customers. For example, if I buy an open (non-DRM’d) copy of an album by Mike Marshall (my favorite mandolin player), it might involve letting him know who I am, the fact that I like his work, a commitment not to duplicate it beyond fair uses, and the option to do any number of things, <strong>including re-distributing it for pay that would get us both a slice of the take</strong>. The options are wide open. What matters is that there would means for a real reslationship based on mutual interest, trust and control.
+</blockquote>
+
+	<p>If I like something enough to want to recommend it to people why shouldn&#8217;t I take a small amount of money from any resulting transaction?  If I was to become an <a href="http://affiliate-program.amazon.co.uk/gp/associates/join/">Amazon affiliate</a> I could already get paid for recommending this album: except that I&#8217;d actually be getting paid for recommending this album <strong>at</strong> Amazon.  That just makes me feel a little less comfortable than if I was able to get paid for recommending the artist alone.</p>
+
+
+	<p>Having spent about 30 minutes writing and re-writing to come up with that <strong>one</strong> paragraph above I&#8217;ve realised that I can&#8217;t quite put my finger on why I find the idea so powerful.</p>
+
+
+	<p>Maybe one of the things I like is the decentralisation that the model would imply.  Rather than having one large distributor (Amazon) you have lots of smaller distributors (fans of Mike Marshall&#8217;s music).  Hmm, food for thought.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/affiliate" rel="tag">affiliate</a>, 
+                
+                  <a href="/articles/tag/amazon" rel="tag">amazon</a>, 
+                
+                  <a href="/articles/tag/marketing" rel="tag">marketing</a>, 
+                
+                  <a href="/articles/tag/vrm" rel="tag">vrm</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/20/wow-google-must-really-love-chris">Wow.  Google must really love Chris.</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 20 Nov 2007 22:51:00">
+                  Tue, 20 Nov 2007 22:51:00
+                </span>
+              </p>
+          
+              <p>I&#8217;d read <a href="http://www.scripting.com/stories/2007/07/17/instantIndexing.html">previously</a> about <a href="http://www.google.com">Google</a> indexing pages in almost real-time.  I only experienced it myself for the first time this evening.  I was continuing to search for answers to my <a href="http://blog.seagul.co.uk/articles/2007/11/20/can-anyone-recommend-a-good-simple-web-hosting-solution">recent question</a> when my own question popped up at number three in the <a href="http://www.google.co.uk/search?hl=en&#38;q=static+simple+web+hosting">search results</a>.</p>
+
+
+	<p><a href="http://flickr.com/photos/chrisjroos/2050547123/"><img src="http://farm3.static.flickr.com/2310/2050547123_31a16714ec.jpg" alt="" /></a></p>
+
+
+	<p>I assume this might be to do with Google&#8217;s <a href="http://googlewebmastercentral.blogspot.com/2007/05/taking-advantage-of-universal-search.html">Universal Search</a> that blends lots of different sources into their main search results.  Or, they really do just love me.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/google" rel="tag">google</a>, 
+                
+                  <a href="/articles/tag/index" rel="tag">index</a>, 
+                
+                  <a href="/articles/tag/search" rel="tag">search</a>, 
+                
+                  <a href="/articles/tag/universal" rel="tag">universal</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/20/can-anyone-recommend-a-good-simple-web-hosting-solution">Can anyone recommend a good simple web hosting solution?</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 20 Nov 2007 22:07:00">
+                  Tue, 20 Nov 2007 22:07:00
+                </span>
+              </p>
+          
+              <p>I&#8217;m keen to move some domains over to <a href="http://www.google.com/a">google apps</a> but I need more than the included Page Creator.  Ideally, I want a very basic, reliable webhost that allows me to host static files.  Anyone have any recommendations?</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/email" rel="tag">email</a>, 
+                
+                  <a href="/articles/tag/google" rel="tag">google</a>, 
+                
+                  <a href="/articles/tag/hosting" rel="tag">hosting</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/18/the-skypephone-so-far">The Skypephone so far</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sun, 18 Nov 2007 19:15:00">
+                  Sun, 18 Nov 2007 19:15:00
+                </span>
+              </p>
+          
+              <p>I bought the <a href="http://www.skype.com/intl/en/allfeatures/3skypephone/">Skypephone</a> from <a href="http://three.co.uk">three</a> about a week ago.  I haven&#8217;t managed to get my number transfered yet and as such I haven&#8217;t really used it in anger, but thought I&#8217;d write some random notes anyway.</p>
+
+
+	<p>I didn&#8217;t get off too a good start with <a href="http://www.skype.com">Skype</a> <a href="http://3skypephone.com/forum/viewtopic.php?t=154">not working</a> on the phone for two or three days after purchase.  Although Skype now works fine, it doesn&#8217;t seem to remember my password, which makes it a bit of a pain each time you want to log in.  I&#8217;ve used skype for text chatting but haven&#8217;t actually used it for voice yet so can&#8217;t comment on the quality.</p>
+
+
+	<p>The phone is an <a href="http://www.amoi.com"><span class="caps">AMOI</span></a> (I&#8217;m not 100% sure that&#8217;s the correct site as this phone doesn&#8217;t appear there) WP-S1.  It feels remarkably similar to <a href="http://www.nokia.com">Nokia</a> phones I&#8217;ve used in the past.  In fact, the only difference I&#8217;ve found so far is the keys you press to lock the keypad (star then top-left button, rather than top-left button then start).</p>
+
+
+	<p>If you try to visit a website beginning with www then a popup appears telling you that you&#8217;ll be charged for data used.  If you visit a website that doesn&#8217;t start www (e.g. <a href="http://m.twitter.com">m.twitter.com</a>) then you don&#8217;t get this message.  This made me wonder whether I was still being charged for the data I was using &#8211; I guess I must be, right?</p>
+
+
+	<p>I&#8217;ve connected the phone to my computer successfully using bluetooth and used it to transfer some <a href="http://flickr.com/photos/chrisjroos/sets/72157603224666780/">photos</a> I took yesterday with the 2 megapixel camera.</p>
+
+
+	<p>I think I should be able to use the phone as a modem but the supplied CD contains Windows only software.</p>
+
+
+	<p>Hmm, that&#8217;s about all for now I think.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/skype" rel="tag">skype</a>, 
+                
+                  <a href="/articles/tag/skypephone" rel="tag">skypephone</a>, 
+                
+                  <a href="/articles/tag/three" rel="tag">three</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/16/newnet-and-bt-broadband-problems">NewNet and BT Broadband problems</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 16 Nov 2007 13:38:00">
+                  Fri, 16 Nov 2007 13:38:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve been having broadband problems for about 6 weeks now.  My connection continually drops in and out and when it does connect, it does so at about 100Kbps.  I held off getting a <a href="http://www.bt.com">BT</a> engineer involved because I didn&#8217;t want to have to pay the £200 if it turned out to be my fault.  Having satisfied myself that I hadn&#8217;t done anything stoopid, I called <a href="http://www.newnet.co.uk/">NewNet</a> and arranged for the BT engineer to come round this morning.  He was able to confirm that my line was capable of connecting at around 5Mbps (I&#8217;m on the upto 8Mbps service) but noticed that there was a high <a href="http://en.wikipedia.org/wiki/Signal-to-noise_ratio">Signal to Noise</a> ratio on the line (around 19dB I think).  He mentioned that the <span class="caps">SNR</span> should be around 10dB and that this might be the cause of my connectivity problems.  He then went to the local junction box to test the line between my house and the junction box and the junction box and the exchange.  The line between the house and the junction box was OK but he changed the line between the junction box and the exchange to rule out any problems at that end.  Even with these changes, he was still seeing a high <span class="caps">SNR</span>.  He then mentioned that he&#8217;d spoken to the helpdesk and they informed him that my line had been limited at 135Kbps.  This explained the poor performance once I was actually connected.  It also explains (I think) why I would see downstream connections of around 5Mbps in my router status but only actually download at around 100Kbps according to the <a href="http://www.thinkbroadband.com/">thinkbroadband</a> <a href="http://www.thinkbroadband.com/speedtest.html">speedtest</a>.  I guess that my <a href="http://www.netgear.co.uk/wireless_adslrouter_dg834g.php">Netgear <span class="caps">DG834G</span></a> actually reports the potential line speed rather than the actual speed of the connection.  In theory, the fact that my line is limited should sort itself out but I&#8217;ve been informed to call NewNet if it&#8217;s no better within the next couple of days.</p>
+
+
+	<p>Fun and games eh.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/adsl" rel="tag">adsl</a>, 
+                
+                  <a href="/articles/tag/broadband" rel="tag">broadband</a>, 
+                
+                  <a href="/articles/tag/bt" rel="tag">bt</a>, 
+                
+                  <a href="/articles/tag/newnet" rel="tag">newnet</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/15/hsbc-conclusion">HSBC Conclusion</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 15 Nov 2007 17:14:00">
+                  Thu, 15 Nov 2007 17:14:00
+                </span>
+              </p>
+          
+              <p>I finally received a reply from <span class="caps">HSBC</span> to my constant nagging about a possible bug in their Internet Banking software.</p>
+
+
+<blockquote>
+Our reference : 5629320
+
+	<p>Dear Mr Roos</p>
+
+
+	<p>Thank you for your e-mail.</p>
+
+
+	<p>As previously advised, this has been fed back to our Development Team however, we do not offer technical support for any financial packages.</p>
+
+
+	<p>Our Internet Banking terms and conditions state that 
+we will not be held responsible for any financial management software which you choose to use in connection with the Internet Banking service.</p>
+
+
+	<p>Please be assured that all customer feedback is taken seriously, however we do receive many change requests for our electronic banking services every day.</p>
+
+
+	<p>Each request is recorded to enable us to monitor the number received, these are then assessed for suitability and prioritised accordingly.</p>
+
+
+	<p>Although your suggestion cannot be implemented immediately it will be held on our database.  We do advise our customers, via an online message, when upgrades have been made to our electronic banking services.</p>
+
+
+I trust that this matter is now closed but would like to thank you for bringing this to our attention.
+</blockquote>
+
+	<p>So I replied in order to explain my persistence.</p>
+
+
+<blockquote>
+Hey,
+
+	<p>I appreciate you getting back to me.</p>
+
+
+	<p>To start with, although this causes me some problems, it&#8217;s not big deal.  The reason for my originally getting in touch was that I thought I might be able to help you guys.  I found what I believed to be a bug in your <span class="caps">OFX</span> export and thought that by reporting it with some fairly relevant context (i.e. the section of the <span class="caps">OFX</span> spec that explains what the <span class="caps">OFX</span> export should look like) that it might help you to get it prioritised.</p>
+
+
+	<p>Your response of &#8220;we do not offer technical support for any financial packages&#8221; makes me think that you&#8217;re trying to shrug me off (I appreciate that this may not be the case).  You don&#8217;t need to offer support for financial packages but I would expect that when you boast of downloads in <span class="caps">OFX</span> format that they would actually follow the specification.</p>
+
+
+	<p>I don&#8217;t know whether my approach is the normal approach people would take when reporting problems but I come from an open-source background where people generally help each other out.  Actually, out of interest, how do you &#8220;receive many change requests for our electronic banking services every day&#8221;?  Do other people submit their problems in the same way or was there a more obvious route that I missed?</p>
+
+
+	<p>I guess I feel a little unsatisfied.  Because of the problems I&#8217;ve had getting in contact with anyone from the beginning I find myself not necessarily believing what you are telling me.  However, I do accept that this might not be fair and that you have indeed logged my bug report into your database.</p>
+
+
+	<p>Feel completely free to ignore this suggestion but&#8230;  I think you would get a lot of unexpected benefits by making it easier to give feedback about your Internet Banking site.  I can&#8217;t believe that it&#8217;s just me that feels compelled to help out when they see a problem &#8211; I think you&#8217;d get an awful lot of useful feedback from others too.</p>
+
+
+	<p>Anyway, I guess that&#8217;s it for now.  If there&#8217;s anything I can possibly help with then drop me an email &#8211; I&#8217;ll help out where I can.</p>
+
+
+	<p>I&#8217;m going to post this letter to my blog too<sup><a href="#fn1">1</a></sup>.</p>
+
+
+	<p>Cheers,</p>
+
+
+	<p>Chris</p>
+
+
+[1] http://blog.seagul.co.uk 
+</blockquote>
+
+	<p>I&#8217;m sure that at some point in the future, <span class="caps">HSBC</span> will hire some consultants.  Those consultants will tell <span class="caps">HSBC</span> how to utilise the open source community to make the world a better place.  <span class="caps">HSBC</span> will listen because any advice you pay for has to be true&#8230;. Right?</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/crap" rel="tag">crap</a>, 
+                
+                  <a href="/articles/tag/hsbc" rel="tag">hsbc</a>, 
+                
+                  <a href="/articles/tag/ofx" rel="tag">ofx</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Wed, 16 January 2008 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2008/01/16/testing-my-mod_rewrite-configuration-with-ruby">Testing my mod_rewrite configuration with ruby</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 16 Jan 2008 09:31:00">
+                  Wed, 16 Jan 2008 09:31:00
+                </span>
+              </p>
+          
+              <p>In order to ensure that I didn&#8217;t break anything while setting up my <a href="http://blog.seagul.co.uk/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha">mod_rewrite rules</a> I created a little <a href="http://chrisroos.googlecode.com/svn/trunk/the-local-paper/apache_test.rb">ruby script</a> to test my expectations.  I&#8217;ve cut down the rules in the example below but you should get the idea.  It&#8217;d be quite cool to create a little dsl to better express the intentions of the code.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">net/http</span><span class="punct">'</span>
+
+<span class="ident">expectations</span> <span class="punct">=</span> <span class="punct">{</span>
+  <span class="comment"># Redirect www. to .</span>
+  <span class="punct">'</span><span class="string">http://www.the-local-paper.co.uk/</span><span class="punct">'</span> <span class="punct">=&gt;</span> <span class="punct">{</span>
+    <span class="symbol">:url</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">http://the-local-paper.co.uk/</span><span class="punct">',</span> <span class="symbol">:code</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">301</span><span class="punct">'</span>
+  <span class="punct">},</span>
+  <span class="comment"># Requests for the-local-paper.co.uk should return a 200 (OK) response</span>
+  <span class="punct">'</span><span class="string">http://the-local-paper.co.uk/</span><span class="punct">'</span> <span class="punct">=&gt;</span> <span class="punct">{</span>
+    <span class="symbol">:code</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">200</span><span class="punct">'</span>
+  <span class="punct">}</span>
+<span class="punct">}</span>
+
+<span class="ident">expectations</span><span class="punct">.</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">request_url</span><span class="punct">,</span> <span class="ident">expected_attributes</span><span class="punct">|</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">Requesting: <span class="expr">#{request_url}</span></span><span class="punct">&quot;</span>
+
+  <span class="ident">url</span> <span class="punct">=</span> <span class="constant">URI</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(</span><span class="ident">request_url</span><span class="punct">)</span>
+  <span class="ident">request</span> <span class="punct">=</span> <span class="constant">Net</span><span class="punct">::</span><span class="constant">HTTP</span><span class="punct">::</span><span class="constant">Get</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">url</span><span class="punct">.</span><span class="ident">path</span><span class="punct">)</span>
+  <span class="ident">response</span> <span class="punct">=</span> <span class="constant">Net</span><span class="punct">::</span><span class="constant">HTTP</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span><span class="ident">url</span><span class="punct">.</span><span class="ident">host</span><span class="punct">,</span> <span class="ident">url</span><span class="punct">.</span><span class="ident">port</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">http</span><span class="punct">|</span>
+    <span class="ident">http</span><span class="punct">.</span><span class="ident">request</span><span class="punct">(</span><span class="ident">request</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">if</span> <span class="ident">redirection_url</span> <span class="punct">=</span> <span class="ident">expected_attributes</span><span class="punct">[</span><span class="symbol">:url</span><span class="punct">]</span>
+    <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Expected '<span class="expr">#{redirection_url}</span>' in the Location header but got '<span class="expr">#{response['Location']}</span>'.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">redirection_url</span> <span class="punct">==</span> <span class="ident">response</span><span class="punct">['</span><span class="string">Location</span><span class="punct">']</span>
+  <span class="keyword">end</span>
+  <span class="keyword">if</span> <span class="ident">status_code</span> <span class="punct">=</span> <span class="ident">expected_attributes</span><span class="punct">[</span><span class="symbol">:code</span><span class="punct">]</span>
+    <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Expected status code of (<span class="expr">#{status_code}</span>) but got (<span class="expr">#{response.code}</span>).</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">status_code</span> <span class="punct">==</span> <span class="ident">response</span><span class="punct">.</span><span class="ident">code</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/apache" rel="tag">apache</a>, 
+                
+                  <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/test" rel="tag">test</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha">Chris 1, mod_rewrite 0 (muhahahaha)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 16 Jan 2008 09:08:00">
+                  Wed, 16 Jan 2008 09:08:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve now spent quite a considerable amount of time trying to get <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a> to do my bidding and I think I might just have cracked it<sup><a href="#fn1">1</a></sup>.</p>
+
+
+	<h3>The requirements</h3>
+
+
+	<ul>
+	<li>Permanently redirect (301) and requests for www.the-local-paper.co.uk to the-local-paper.co.uk</li>
+		<li>Permanently redirect any requests for <code>/index.html</code> to <code>/</code></li>
+		<li>Permanently redirect any requests for <code>/&lt;article&gt;.html</code> to <code>/&lt;article&gt;</code></li>
+		<li>Render the corresponding <code>/&lt;article&gt;.html</code> for any requests for <code>/&lt;article&gt;</code></li>
+		<li>Hide .svn directories as the entire site is checked out from <a href="http://subversion.tigris.org/">subversion</a></li>
+	</ul>
+
+
+	<h3>The mod_rewrite rules</h3>
+
+
+<div class="typocode"><pre><code class="typocode_default"># Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
+RewriteRule ^(.*)index\.html$ $1 [R=301,L]
+
+# Permanently (301) redirect /&lt;article&gt;.html to /&lt;article&gt;, ensuring that we don't try to redirect index.html to index
+RewriteCond %{THE_REQUEST} .+/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+\.html\ HTTP/
+RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
+RewriteRule ^(.*)\.html$ $1 [R=301,L]
+
+# If we receive a request for an article without a .html extension then let's rewrite internally to render the file with the .html extension
+RewriteCond %{REQUEST_URI} .+/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+$
+RewriteCond %{REQUEST_URI} !\.html$
+RewriteRule ^(.*)$ $1.html [L]
+
+# Permanently (301) remove www.
+RewriteCond %{HTTP_HOST} ^www.the-local-paper.co.uk$ [NC]
+RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
+
+# Block access to the .svn directories
+&lt;DirectoryMatch &quot;^/.*/\.svn/&quot;&gt;
+  ErrorDocument 403 /404.html
+  Order allow,deny
+  Deny from all
+  Satisfy All
+&lt;/DirectoryMatch&gt;</code></pre></div>
+
+	<p>I figured that there&#8217;s a chance some of these rules might come in useful to someone else.</p>
+
+
+	<p id="fn1"><sup>1</sup> This has all been for the <a href="http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers">local paper idea</a> I mentioned a while back.  I&#8217;ve actually <a href="http://twitter.com/chrisroos/statuses/570937102">started</a> to get some content up on <a href="http://the-local-paper.co.uk">the-local-paper.co.uk</a> if you want to play along and see how it&#8217;s shaping up..</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/apache" rel="tag">apache</a>, 
+                
+                  <a href="/articles/tag/local" rel="tag">local</a>, 
+                
+                  <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
+                
+                  <a href="/articles/tag/paper.co.uk" rel="tag">paper.co.uk</a>, 
+                
+                  <a href="/articles/tag/the" rel="tag">the</a>, 
+                
+                  <a href="/articles/tag/tlpa" rel="tag">tlpa</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged assertions - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/10/14/some-useful-assertions-maybe">Some useful assertions, maybe</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 14 Oct 2006 10:27:00">
+                  Sat, 14 Oct 2006 10:27:00
+                </span>
+              </p>
+          
+              <p>The first is to ensure two arrays contain the same elements not necessarily in the same order.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+
+<span class="ident">require</span> <span class="punct">'</span><span class="string">set</span><span class="punct">'</span>
+<span class="keyword">module </span><span class="module">AssertEqualArray</span>
+
+  <span class="keyword">def </span><span class="method">assert_equal_array</span><span class="punct">(</span><span class="ident">array_1</span><span class="punct">,</span> <span class="ident">array_2</span><span class="punct">)</span>
+    <span class="ident">assert_equal</span> <span class="ident">array_1</span><span class="punct">.</span><span class="ident">size</span><span class="punct">,</span> <span class="ident">array_2</span><span class="punct">.</span><span class="ident">size</span><span class="punct">,</span> <span class="punct">&quot;</span><span class="string">Arrays must be of the same size to be equal</span><span class="punct">&quot;</span>
+    <span class="ident">assert_equal</span> <span class="ident">array_1</span><span class="punct">.</span><span class="ident">to_set</span><span class="punct">,</span> <span class="ident">array_2</span><span class="punct">.</span><span class="ident">to_set</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">Test::Unit::TestCase</span>
+  <span class="ident">include</span> <span class="constant">AssertEqualArray</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+
+  <span class="keyword">def </span><span class="method">test_should_assert_equal_arrays</span>
+    <span class="ident">assert_equal_array</span> <span class="punct">[</span><span class="number">1</span><span class="punct">,</span> <span class="number">2</span><span class="punct">,</span> <span class="number">3</span><span class="punct">],</span> <span class="punct">[</span><span class="number">2</span><span class="punct">,</span> <span class="number">1</span><span class="punct">,</span> <span class="number">3</span><span class="punct">]</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>The second is to test for generated warnings.  In my <a href="http://blog.seagul.co.uk/articles/2006/10/06/recording-daily-spending-with-a-ruby-dsl">current project</a> app, I use method_missing and wanted to warn the user if the unknown message looks like it&#8217;s supposed to be a payment mechanism&#8230;</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">day</span> <span class="punct">'</span><span class="string">25-oct-2006</span><span class="punct">'</span> <span class="keyword">do</span>
+  <span class="ident">cash</span> <span class="number">30.29</span><span class="punct">,</span> <span class="ident">beer</span>
+<span class="keyword">end</span>
+
+<span class="comment"># Results in NoMethodError and, more importantly, this friendly warning..</span>
+<span class="comment"># Maybe you expected 'cash' to be a payment mechanism?</span>
+<span class="comment"># Cool huh?</span></code></pre></div>
+
+	<p>Anyway, I wanted a way to test that the warning was being generated and came up with another assertion&#8230;</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+
+<span class="ident">require</span> <span class="punct">'</span><span class="string">stringio</span><span class="punct">'</span>
+<span class="keyword">module </span><span class="module">AssertWarning</span>
+
+  <span class="keyword">def </span><span class="method">assert_warning</span><span class="punct">(</span><span class="ident">expected_warning</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">blk</span><span class="punct">)</span>
+    <span class="ident">original_stderr</span> <span class="punct">=</span> <span class="global">$stderr</span>
+    <span class="global">$stderr</span> <span class="punct">=</span> <span class="ident">stderr</span> <span class="punct">=</span> <span class="constant">StringIO</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="keyword">yield</span>
+    <span class="ident">assert_equal</span> <span class="ident">expected_warning</span><span class="punct">,</span> <span class="ident">stderr</span><span class="punct">.</span><span class="ident">string</span><span class="punct">.</span><span class="ident">chomp</span>
+  <span class="keyword">ensure</span>
+    <span class="global">$stderr</span> <span class="punct">=</span> <span class="ident">original_stderr</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">Test::Unit::TestCase</span>
+  <span class="ident">include</span> <span class="constant">AssertWarning</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+
+  <span class="keyword">def </span><span class="method">test_should_assert_warning</span>
+    <span class="ident">assert_warning</span><span class="punct">('</span><span class="string">this is a warning</span><span class="punct">')</span> <span class="punct">{</span> <span class="constant">Kernel</span><span class="punct">::</span><span class="ident">warn</span><span class="punct">('</span><span class="string">this is a warning</span><span class="punct">')</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/assertions" rel="tag">assertions</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/test" rel="tag">test</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

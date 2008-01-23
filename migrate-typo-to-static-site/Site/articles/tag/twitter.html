@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged twitter - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/10/03/a-microformat-for-my-contact-details-instant-messaging-twitter-et-al">A microformat for my contact details (instant messaging, twitter et al)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 03 Oct 2007 23:52:00">
+                  Wed, 03 Oct 2007 23:52:00
+                </span>
+              </p>
+          
+              <p>I haven&#8217;t done any research on this so it may have already been proposed over at the <a href="http://microformats.org/">microformats</a> site.</p>
+
+
+	<h3>The problem</h3>
+
+
+	<p>Sometimes I want to communicate with the author of a webpage.  I don&#8217;t want to have to hunt around to find contact details and I probably don&#8217;t want to fill in a form.</p>
+
+
+	<h3>A proposal to fix part of the problem</h3>
+
+
+	<p>If the author&#8217;s contact details were semantically marked up, either on the page I was looking at or linked to elsewhere on the web, then I could use a simple parser to extract those details and select the best communication tool to use manually.</p>
+
+
+	<p>Maybe some code can help explain what I mean.</p>
+
+
+	<h4>A semantically marked up contact page.</h4>
+
+
+<div class="typocode"><pre><code class="typocode_html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;
+
+&lt;html&gt;
+
+  &lt;head&gt;
+    &lt;title&gt;Contact Details&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;dl class=&quot;contactDetails&quot;&gt;
+      &lt;dt&gt;Skype&lt;/dt&gt;
+      &lt;dd class=&quot;skype identifier&quot;&gt;skype-username&lt;/dd&gt;
+      &lt;dt&gt;MSN&lt;/dt&gt;
+      &lt;dd class=&quot;msn identifier&quot;&gt;msn-username&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div>
+
+	<h4>A parser in <a href="http://www.ruby-lang.org/">ruby</a></h4>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+
+<span class="keyword">class </span><span class="class">ContactParser</span>
+  <span class="keyword">def </span><span class="method">self.from_html</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
+    <span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
+    <span class="ident">new</span><span class="punct">(</span><span class="ident">doc</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">initialize</span><span class="punct">(</span><span class="ident">hpricot_doc</span><span class="punct">)</span>
+    <span class="attribute">@hpricot_doc</span> <span class="punct">=</span> <span class="ident">hpricot_doc</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">service_identifiers</span>
+    <span class="punct">(</span><span class="attribute">@hpricot_doc</span><span class="punct">/'</span><span class="string">.contactDetails .identifier</span><span class="punct">').</span><span class="ident">inject</span><span class="punct">({})</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">hash</span><span class="punct">,</span> <span class="ident">e</span><span class="punct">|</span>
+       <span class="ident">service</span> <span class="punct">=</span> <span class="punct">(</span><span class="ident">e</span><span class="punct">.</span><span class="ident">classes</span> <span class="punct">-</span> <span class="punct">['</span><span class="string">identifier</span><span class="punct">']).</span><span class="ident">first</span>
+       <span class="ident">identifier</span> <span class="punct">=</span> <span class="ident">e</span><span class="punct">.</span><span class="ident">inner_text</span>
+       <span class="ident">hash</span><span class="punct">[</span><span class="ident">service</span><span class="punct">]</span> <span class="punct">=</span> <span class="ident">identifier</span>
+       <span class="ident">hash</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">identifier</span><span class="punct">(</span><span class="ident">service</span><span class="punct">)</span>
+    <span class="punct">(</span><span class="attribute">@hpricot_doc</span><span class="punct">/&quot;</span><span class="string">.contactDetails .<span class="expr">#{service}</span>.identifier</span><span class="punct">&quot;).</span><span class="ident">inner_text</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="ident">contact_details_file</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/contact-details.html</span><span class="punct">'</span>
+<span class="ident">html</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">(</span><span class="ident">contact_details_file</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">}</span>
+<span class="ident">parser</span> <span class="punct">=</span> <span class="constant">ContactParser</span><span class="punct">.</span><span class="ident">from_html</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
+
+<span class="ident">p</span> <span class="ident">parser</span><span class="punct">.</span><span class="ident">service_identifiers</span>
+<span class="comment"># =&gt; {&quot;skype&quot;=&gt;&quot;skype-username&quot;, &quot;msn&quot;=&gt;&quot;msn-username&quot;}</span>
+<span class="ident">p</span> <span class="ident">parser</span><span class="punct">.</span><span class="ident">identifier</span><span class="punct">('</span><span class="string">skype</span><span class="punct">')</span>
+<span class="comment"># =&gt; 'skype-username'</span>
+<span class="ident">p</span> <span class="ident">parser</span><span class="punct">.</span><span class="ident">identifier</span><span class="punct">('</span><span class="string">blurgh</span><span class="punct">')</span>
+<span class="comment"># =&gt; ''</span></code></pre></div>
+
+	<h3>Further considerations</h3>
+
+
+	<ul>
+	<li>If existing communication tools<sup><a href="#fn1">1</a></sup> were to integrate this parser then it would be easy to add a contact by giving the url of, for example, their blog.</li>
+		<li>Author&#8217;s should be able to specify the order of the tools that they wish to use for communication.  We could just assume that the list of contact details is in the author&#8217;s preferred order.</li>
+		<li>This would be open to spam.  Err, not too sure what to do about this.</li>
+		<li>Ultimately, I&#8217;d like to hit a &#8216;communicate&#8217; button in <a href="http://www.mozilla.com/en-US/firefox/">firefox</a> that automatically decides which communication protocols we have in common and allows me to get my message through.</li>
+	</ul>
+
+
+	<p>Anyone have any thoughts?</p>
+
+
+	<p>Code is all over on <a href="http://chrisroos.googlecode.com/svn/trunk/contact-microformat/">google code</a>.</p>
+
+
+	<p id="fn1"><sup>1</sup> I&#8217;m thinking of multi protocol tools, like <a href="http://www.adiumx.com/">adium</a>, in particular.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/aim" rel="tag">aim</a>, 
+                
+                  <a href="/articles/tag/contact" rel="tag">contact</a>, 
+                
+                  <a href="/articles/tag/email" rel="tag">email</a>, 
+                
+                  <a href="/articles/tag/im" rel="tag">im</a>, 
+                
+                  <a href="/articles/tag/messaging" rel="tag">messaging</a>, 
+                
+                  <a href="/articles/tag/microformat" rel="tag">microformat</a>, 
+                
+                  <a href="/articles/tag/msn" rel="tag">msn</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/skype" rel="tag">skype</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+                  <a href="/articles/tag/yim" rel="tag">yim</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries">Train times by SMS (or, improving national rail enquiries)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 24 Jul 2007 14:40:00">
+                  Tue, 24 Jul 2007 14:40:00
+                </span>
+              </p>
+          
+              <p>I was in need of finding some train times at the weekend.  I usually use the <a href="http://www.nationalrail.co.uk">national rail enquiries</a> website but was without Internet access at the time.  Instead, I found myself waiting for about 10 minutes in a telephone queue just to spend about 30 seconds getting the information I was after.  This played on my mind a bit so last night I started <a href="http://twitter.com/chrisroos/statuses/164273922">playing around</a> with automating the national rail timetable search.  That was relatively painless so I moved on to integrating with <a href="http://www.twitter.com">twitter</a> in order to provide an <span class="caps">SMS</span> interface to the service.  Within a couple of hours I had a twitterbot that receives timetable requests, looks up the times and sends them back to you.</p>
+
+
+	<p>It&#8217;s actually currently all up and running.  Just follow <a href="http://twitter.com/natrailenq">natrailenq</a> on twitter and I&#8217;ll follow you right back<sup><a href="#fn1">1</a></sup> (this seems to be necessary in order to send direct messages between each other).  A timetable request must be of the format &#8216;origin_station (3 letter short code) destination_station (3 letter short code) depart_date (dd-mmmm) depart_time (hh:mm)&#8217;.  So, if we wanted to get times of trains from London Victoria (VIC) to Clapham Junction (CLJ) tomorrow midday, we&#8217;d send a message like so:</p>
+
+
+<code>d natrailenq vic clj 25-july 12:00</code>
+
+	<p>In this instance, we get the following response back.</p>
+
+
+<code>natrailenq  11:55-&gt;12:02, 12:02-&gt;12:07, 12:03-&gt;12:09, 12:05-&gt;12:11, 12:06-&gt;12:11</code>
+
+	<p>Cool huh.</p>
+
+
+	<p>The code is <strong>nasty</strong>.  You can see just how nasty it in the <a href="http://chrisroos.googlecode.com/svn/trunk/nat-rail-enq/">repository</a>.  It feels as though this could go somewhere &#8211; unless I&#8217;m violating some terms and conditions that I haven&#8217;t read&#8230;  I make no guarantees as to how long the service will stay live, and I will certainly (probably) remove it if asked to.</p>
+
+
+	<p id="fn1"><sup>1</sup> Well, just as soon as I can at least &#8211; it&#8217;s not automated at the moment.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/cool" rel="tag">cool</a>, 
+                
+                  <a href="/articles/tag/nationalrail" rel="tag">nationalrail</a>, 
+                
+                  <a href="/articles/tag/sms" rel="tag">sms</a>, 
+                
+                  <a href="/articles/tag/timetable" rel="tag">timetable</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+                  <a href="/articles/tag/twitterbot" rel="tag">twitterbot</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/26/a-great-day-at-work-and-reevoovision-twittervision-for-reviews">A great day at work and reevoovision (twittervision for reviews)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 26 Jun 2007 09:20:00">
+                  Tue, 26 Jun 2007 09:20:00
+                </span>
+              </p>
+          
+              <p>A few of days ago I <a href="http://twitter.com/chrisroos/statuses/114202552">came across</a> <a href="http://twittervision.com/">twittervision</a>.  Just ten hours later I had checked some code into <a href="http://www.reevoo.com">our</a> repository that allows us to do the same thing (as twittervision) but for our reviews.  Yup, it was a very good day indeed.  Although the initial code was complete within a few hours, it needed a bit of polishing (kudos to <a href="http://po-ru.com">Paul</a>) which meant that we only got it deployed yesterday.  I guess one working day between proof of concept and deployment isn&#8217;t that bad&#8230;  Anyway, go check it out &#8211; <a href="http://www.reevoo.com/vision.html">reevoovision</a>.</p>
+
+
+	<h3>The days events</h3>
+
+
+	<p>I started the morning by creating an <a href="http://en.wikipedia.org/wiki/Xml">xml</a> feed of the ten most recently published reviews.  On filling a review, the reviewer is asked to enter their town, which needed to be converted to latitude/longitude to allow us to plot a point on the map.  Luckily, a little googling revealed the <a href="http://www.geonames.org/">geonames</a> web service that did exactly what I wanted.  So, using a combination of <a href="http://www.ruby-lang.org/en/">ruby</a>, <a href="http://rubyonrails.com/">rails</a>, <a href="http://curl.haxx.se/">curl</a>, <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> and <a href="http://mongrel.rubyforge.org/">mongrel</a> I had a simple web server that downloaded and parsed the reviews, converted place name to lat/long, and plotted the results on a google map (with help from the <a href="http://pragmaticprogrammer.com/fridays.html">fridays</a> <a href="http://pragmaticprogrammer.com/titles/sdgmapi2/index.html">google map book</a>).  A good proof of concept but not quite right.</p>
+
+
+	<p>I was reminded that we collect the purchaser&#8217;s postcode from our retailers.  This, in combination with a <a href="http://www.easypeasy.com/guides/article.php?article=64">free list</a> of UK <a href="http://en.wikipedia.org/wiki/UK_postcodes">outcodes</a> (the first bit of the postcode) against latitude/longitude, allowed for much greater accuracy (well, to within about 2km) in plotting the location of the reviewer.</p>
+
+
+	<p>The next step was to polish up the rough demo.  Instead of the previous server side hackery, I used the excellent <a href="http://jquery.com">jquery</a> javascript library to perform an &#8220;Ajax&#8221; request of the reviews and parse the xml to build a simple hash of the required data.  Using the twittervision source as reference, I got a &#8216;proper&#8217; (i.e. reviews popping up in sequence) demo running.</p>
+
+
+	<p>From here, it was a basic case of tidying up some rough edges.  Instead of returning the reviews data as xml, I converted it to <a href="http://json.org/">json</a> to make for trivial parsing in javascript.  I also added the jquery <a href="http://jquery.com/plugins/project/dimensions">dimensions</a> plugin to resize the containing div, and in turn the map, to the size of the page.  The final touch was attempting to keep the UK centered in the window.</p>
+
+
+	<p>Reevoovision currently selects and displays published reviews at random to provide a constantly updating map, although maybe it&#8217;d be cool to get it to display submitted/published reviews in real-time.</p>
+
+
+	<p>I can&#8217;t get over how addictive it is to watch the reviews pop-up all over the country, it really emphasises the fact that these are actually real people writing about their experiences.  Hmm, that sounds a bit sales &#38; marketing.  I do mean it though, honest.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/reevoovision" rel="tag">reevoovision</a>, 
+                
+                  <a href="/articles/tag/reviews" rel="tag">reviews</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+                  <a href="/articles/tag/twittervision" rel="tag">twittervision</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/12/14/addicted-to-twitter-com">Addicted to twitter.com</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 14 Dec 2006 14:42:00">
+                  Thu, 14 Dec 2006 14:42:00
+                </span>
+              </p>
+          
+              <p>But not because of a craving to be loved.  Honest.  For a long time I&#8217;ve wanted to be able to interact with a computer/remote process via sms.  Just this morning I was struck with what I thought was an amazing idea.  I&#8217;d heard of <a href="http://www.twitter.com">twitter</a> and wondered if I might be able to use it as a type of sms gateway.  Turns out that I could.  Yay.</p>
+
+
+	<p>To play along, you will need:</p>
+
+
+	<ul>
+	<li>One twitter account with a registered mobile</li>
+		<li>One twitter account that is a friend of the first account (with the mobile)</li>
+		<li>A tiny bit of ruby script</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">json</span><span class="punct">'</span>
+
+<span class="constant">RECEIVER_USERNAME</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">USERNAME_OF_MOBILE_ACCOUNT</span><span class="punct">'</span>
+<span class="constant">RECEIVER_PASSWORD</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">PASSWORD_OF_MOBILE_ACCOUNT</span><span class="punct">'</span>
+<span class="ident">js</span> <span class="punct">=</span> `<span class="ident">curl</span> <span class="punct">-</span><span class="ident">u</span><span class="punct">&quot;</span><span class="string"><span class="expr">#{RECEIVER_USERNAME}</span>:<span class="expr">#{RECEIVER_PASSWORD}</span></span><span class="punct">&quot;</span> <span class="ident">http</span><span class="punct">:/</span><span class="regex"></span><span class="punct">/</span><span class="ident">twitter</span><span class="punct">.</span><span class="ident">com</span><span class="punct">/</span><span class="ident">statuses</span><span class="punct">/</span><span class="ident">friends_timeline</span><span class="punct">.</span><span class="ident">json`</span>
+
+<span class="ident">text</span> <span class="punct">=</span> <span class="constant">JSON</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(</span><span class="ident">js</span><span class="punct">).</span><span class="ident">first</span><span class="punct">['</span><span class="string">text</span><span class="punct">']</span>
+
+<span class="constant">SENDER_USERNAME</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">USERNAME_OF_FRIEND</span><span class="punct">'</span>
+<span class="constant">SENDER_PASSWORD</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">PASSWORD_OF_FRIEND</span><span class="punct">'</span>
+
+`<span class="ident">curl</span> <span class="punct">-</span><span class="ident">u</span><span class="punct">&quot;</span><span class="string"><span class="expr">#{SENDER_USERNAME}</span>:<span class="expr">#{SENDER_PASSWORD}</span></span><span class="punct">&quot;</span> <span class="punct">-</span><span class="ident">d</span><span class="punct">&quot;</span><span class="string">status=<span class="expr">#{text.reverse}</span></span><span class="punct">&quot;</span> <span class="ident">http</span><span class="punct">:/</span><span class="regex"></span><span class="punct">/</span><span class="ident">twitter</span><span class="punct">.</span><span class="ident">com</span><span class="punct">/</span><span class="ident">statuses</span><span class="punct">/</span><span class="ident">update</span><span class="punct">.</span><span class="ident">xml`</span></code></pre></div>
+
+	<p>The script just reads the most recent message sent to your mobile twitter account, reverses the text and sends it back to your mobile.</p>
+
+
+	<p>This is all free stuff, and although the twitter terms of service don&#8217;t appear to explicitly disallow us doing this, I think you should probably be nice if you&#8217;re going to use it in this way.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/sms" rel="tag">sms</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

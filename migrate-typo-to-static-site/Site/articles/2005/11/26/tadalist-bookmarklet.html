@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Tadalist bookmarklet - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Tadalist bookmarklet</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Sat, 26 Nov 2005 20:30:00">
+                Sat, 26 Nov 2005 20:30:00
+              </span>
+            </p>
+          
+            <p>I&#8217;ve been aware of, and used periodically, <a href="http://www.tadalists.com">tadalist</a> from <a href="http://www.37signals.com">37 signals</a>.</p>
+
+
+	<p>Over about the last week I&#8217;ve started to use tadalist far more.  It&#8217;s great but I really want a way to add items without having to use tada each time.  Apparently there <a href="http://www.keeganjones.com/widgets/tada/">used to be</a> a <a href="http://www.apple.com/uk/downloads/dashboard/">dashboard</a> widget (which would be handy as I use mac&#8217;s at work) but it&#8217;s been long lost.</p>
+
+
+	<p>I&#8217;d eventually like to develop a dashboard widget myself but until I get there I wondered about developing a <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklet</a> to achieve similar effect.</p>
+
+
+	<p>I played around for a bit and came up with the following.</p>
+
+
+<div class="typocode">
+<pre>
+var new_item=prompt('Add Item');
+location.href='http://USERNAME.tadalist.com/item/add?list_id=LISTID&#38;content='+encodeURIComponent(new_item);
+alert('Added');
+location.href='http://USERNAME.tadalist.com/lists/show/LISTID';
+</pre>
+</div>
+
+	<p>It even kinda works, although if you press cancel when it prompts for the list text, it will add a new item of null, obviously&#8230;</p>
+
+
+	<p>If you really feel the need to try this, just copy this <a href="javascript:var new_item=prompt('Add Item'); location.href = 'http://USERNAME.tadalist.com/item/add?list_id=LIST_ID&#38;content='+encodeURIComponent(new_item); alert('Added'); location.href='http://USERNAME.tadalist.com/lists/show/LIST_ID';">link</a> to your bookmarks.  You will need to replace <span class="caps">USERNAME</span> with your username and <span class="caps">LISTID</span> with the id of the list that you want items to be added to.  To find the id (I&#8217;d suggest creating a new list like &#8216;added from browser&#8217;) click on the relevant list in tada and copy the number from the url after lists/show.</p>
+
+
+	<p>Oh yeah, you will also need to be logged into tada for this to work, otherwise you get a nasty looking <a href="http://www.tadalist.com/no_page_here">error page</a>.</p>
+          </div>
+        
+          <p class="meta">
+            
+              Tags 
+              
+                <a href="/articles/tag/bookmarklet" rel="tag">bookmarklet</a>, 
+              
+                <a href="/articles/tag/development" rel="tag">development</a>, 
+              
+                <a href="/articles/tag/tadalist" rel="tag">tadalist</a>, 
+              
+                <a href="/articles/tag/widget" rel="tag">widget</a>, 
+              
+            
+          </p>
+
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

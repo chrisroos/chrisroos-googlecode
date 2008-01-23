@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged web - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/07/13/web-service-to-convert-uk-postcodes-outcode-to-latitude-and-longitude">Web service to convert UK Postcodes (outcode) to Latitude and Longitude</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 13 Jul 2007 14:41:00">
+                  Fri, 13 Jul 2007 14:41:00
+                </span>
+              </p>
+          
+              <p>Using the data supplied in this <a href="http://postcodes.easypeasy.com">article</a>, by <a href="http://www.niksargent.com">Nik Sargent</a>, I&#8217;ve created a simple web service that returns <a href="http://www.json.org"><span class="caps">JSON</span></a> formatted data about UK Outcodes (the first bit of the postcode).</p>
+
+
+	<p>The idea is that you can request, for example, /postcodes/se1 and get some json in return.  For se1, we receive the following data.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">{&quot;latitude&quot;:&quot;51.498&quot;,&quot;x&quot;:&quot;532600&quot;,&quot;postcode&quot;:&quot;SE1&quot;,&quot;y&quot;:&quot;179500&quot;,&quot;longitude&quot;:&quot;51.498&quot;}</code></pre></div>
+
+	<p>The service is currently running at <a href="http://seagul.co.uk/postcodes">http://seagul.co.uk/postcodes</a> (<a href="http://seagul.co.uk/postcodes/se1">se1</a>) but I make no guarantees as to its reliability.  I&#8217;d suggest that if anyone actually finds this useful that they go host it somewhere for themselves in order to control the availability.</p>
+
+
+	<p>The code is, as always, on <a href="http://chrisroos.googlecode.com/svn/trunk/uk-postcodes/">google code</a> and pasted below.</p>
+
+
+	<p>I&#8217;ve created it as a proof of concept but I figure that, given a little love, it may prove useful to some folks.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">mongrel</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">json</span><span class="punct">'</span>
+
+<span class="ident">postcodes_file</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/uk-postcodes.json</span><span class="punct">'</span>
+<span class="constant">Postcodes</span> <span class="punct">=</span> <span class="constant">JSON</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(</span><span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">(</span><span class="ident">postcodes_file</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">})</span>
+<span class="constant">Index</span> <span class="punct">=</span> <span class="constant">Postcodes</span><span class="punct">.</span><span class="ident">inject</span><span class="punct">([])</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">index</span><span class="punct">,</span> <span class="ident">postcode</span><span class="punct">|</span> <span class="ident">index</span> <span class="punct">&lt;&lt;</span> <span class="ident">postcode</span><span class="punct">['</span><span class="string">postcode</span><span class="punct">'].</span><span class="ident">downcase</span> <span class="punct">}</span>
+
+<span class="keyword">class </span><span class="class">PostcodeHandler</span> <span class="punct">&lt;</span> <span class="constant">Mongrel</span><span class="punct">::</span><span class="constant">HttpHandler</span>
+  <span class="keyword">def </span><span class="method">process</span><span class="punct">(</span><span class="ident">request</span><span class="punct">,</span> <span class="ident">response</span><span class="punct">)</span>
+    <span class="ident">outcode</span> <span class="punct">=</span> <span class="ident">request</span><span class="punct">.</span><span class="ident">params</span><span class="punct">['</span><span class="string">PATH_INFO</span><span class="punct">'].</span><span class="ident">sub</span><span class="punct">(/</span><span class="regex">^<span class="escape">\/</span></span><span class="punct">/,</span> <span class="punct">'</span><span class="string"></span><span class="punct">').</span><span class="ident">downcase</span>
+    <span class="ident">postcode_index</span> <span class="punct">=</span> <span class="constant">Index</span><span class="punct">.</span><span class="ident">index</span><span class="punct">(</span><span class="ident">outcode</span><span class="punct">)</span>
+    <span class="keyword">if</span> <span class="ident">postcode_index</span>
+      <span class="ident">response</span><span class="punct">.</span><span class="ident">start</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">head</span><span class="punct">,</span> <span class="ident">out</span><span class="punct">|</span>
+        <span class="ident">head</span><span class="punct">[&quot;</span><span class="string">Content-Type</span><span class="punct">&quot;]</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">text/plain</span><span class="punct">&quot;</span>
+        <span class="ident">out</span> <span class="punct">&lt;&lt;</span> <span class="constant">Postcodes</span><span class="punct">[</span><span class="ident">postcode_index</span><span class="punct">].</span><span class="ident">to_json</span>
+      <span class="keyword">end</span>
+    <span class="keyword">else</span>
+      <span class="ident">response</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span><span class="number">404</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">head</span><span class="punct">,</span><span class="ident">out</span><span class="punct">|</span>
+        <span class="ident">out</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">Postcode not found<span class="escape">\n</span></span><span class="punct">&quot;</span>
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="ident">config</span> <span class="punct">=</span> <span class="constant">Mongrel</span><span class="punct">::</span><span class="constant">Configurator</span><span class="punct">.</span><span class="ident">new</span> <span class="symbol">:host</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">localhost</span><span class="punct">',</span> <span class="symbol">:port</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">4000</span><span class="punct">'</span> <span class="keyword">do</span>
+  <span class="ident">listener</span> <span class="keyword">do</span>
+    <span class="ident">uri</span> <span class="punct">&quot;</span><span class="string">/postcodes</span><span class="punct">&quot;,</span> <span class="symbol">:handler</span> <span class="punct">=&gt;</span> <span class="constant">PostcodeHandler</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="keyword">end</span>
+  <span class="ident">trap</span><span class="punct">(&quot;</span><span class="string">INT</span><span class="punct">&quot;)</span> <span class="punct">{</span> <span class="ident">stop</span> <span class="punct">}</span>
+  <span class="ident">run</span>
+<span class="keyword">end</span>
+
+<span class="ident">config</span><span class="punct">.</span><span class="ident">join</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/mongrel" rel="tag">mongrel</a>, 
+                
+                  <a href="/articles/tag/outcodes" rel="tag">outcodes</a>, 
+                
+                  <a href="/articles/tag/postcodes" rel="tag">postcodes</a>, 
+                
+                  <a href="/articles/tag/rest" rel="tag">rest</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/service" rel="tag">service</a>, 
+                
+                  <a href="/articles/tag/web" rel="tag">web</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/04/14/small-specific-mongrel-web-servers">Small, specific mongrel web servers</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 14 Apr 2007 00:44:00">
+                  Sat, 14 Apr 2007 00:44:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve created a simple <a href="http://mongrel.rubyforge.org/">mongrel</a> server that allows you to upload text files for subsequent deletion and retrieval.  If it sounds pretty pointless, that&#8217;s because it is&#8230;currently.  I wonder though, if the basic premise couldn&#8217;t be used to create some text-transformation tools.  I&#8217;m thinking of really simple tools that might spell-check a text file, or convert text from <a href="http://www.textism.com/tools/textile/">textile</a> to html.  My end goal would be to have lots of super simple tools that I can chain together to use as a blogging platform, removing my current dependence on <a href="http://trac.typosphere.org/">typo</a>.</p>
+
+
+	<p>I&#8217;ve made the <a href="http://chrisroos.googlecode.com/svn/trunk/text_file_server/server.rb">server</a> slightly more complex than it needs to be by imposing some artificial constraints (<a href="http://chrisroos.googlecode.com/svn/trunk/text_file_server/server-test.rb">examples</a>).  The basic premise is that you <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.5">post</a> a text file, between 1 and 5000 bytes in size, with a <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">content-type</a> of <a href="http://www.iana.org/assignments/media-types/text/">plain/text</a>.  All being well, the server responds with <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> and the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.30">location</a> of the new resource.  The resource is actually retrieved by <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.7">deleting</a> it &#8211; the contents of the file are returned in the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.3">body</a> with a &#8220;200 OK&#8221; response.  I&#8217;ve tried to use the relevant <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4"><span class="caps">HTTP</span> error</a> when resource creation fails.  The whole &#8216;post&#8217; and &#8216;delete&#8217; pattern for these transformations feels kinda <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">restful</a>, but I may be way off the mark.</p>
+
+
+	<p>I&#8217;m wondering how much of <a href="http://pipes.yahoo.com/pipes/">yahoo pipes</a> could be replicated with lots of small, specific web servers.</p>
+
+
+	<p>Anyone have any thoughts on any of this?</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/http" rel="tag">http</a>, 
+                
+                  <a href="/articles/tag/mongrel" rel="tag">mongrel</a>, 
+                
+                  <a href="/articles/tag/rest" rel="tag">rest</a>, 
+                
+                  <a href="/articles/tag/restful" rel="tag">restful</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/servers" rel="tag">servers</a>, 
+                
+                  <a href="/articles/tag/web" rel="tag">web</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2005/11/26/transparency-in-business">Transparency in business</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 26 Nov 2005 22:55:00">
+                  Sat, 26 Nov 2005 22:55:00
+                </span>
+              </p>
+          
+              <p>This started out as a few paragraphs at the end of the <a href="http://blog.seagul.co.uk/articles/2005/11/26/it-should-be-easy-to-cancel-online-accounts">previous post</a> but I thought it better suited on it&#8217;s own.</p>
+
+
+	<p>In my current thinking, I basically equate transparency with confidence.  Traditionally, people don&#8217;t tell you how much things cost (a sweeping statement I know).  They may have example prices that can be negotiated on, advertised prices with small print (that alters the same) or just try very hard to hide the pricing altogether<sup><a href="#fn1">1</a></sup>.  I believe that if you&#8217;re confident in your product/service you will have no reason to obfuscate the price (in these and other ways).  If you don&#8217;t have to disguise your price then you are able to place it very prominently on your site.  It turns out to be the same folks prominently <a href="http://www.strongspace.com/plans">displaying</a> <a href="http://www.basecamphq.com/signup">their</a> <a href="http://www.dropsend.com/pricingsignup.php">pricing</a> also making it very easy to cancel your account (see now how it links to the previous post?).</p>
+
+
+	<p>I&#8217;m thinking that you have to be pretty confident to offer this level of transparency in your product/service; hence my initial statement.  As a slight aside/addition, most of the services that are following this style (is it coincidence they seem to be web 2.0/agile folks?) also offer free versions of their services which again indicates their confidence.</p>
+
+
+	<p>Transparency as a buzzword seems to increasing in popularity with the folks at <a href="http://www.riffs.com">riffs</a> even using it to describe their <a href="http://www.riffs.com/doc.cgi?section=privacy">privacy policy</a>.</p>
+
+
+	<p>I&#8217;m sure there&#8217;s probably meaning somewhere in this disjointed ramble but having just re-read it I&#8217;m not so sure.  Maybe I&#8217;ll revisit it at some point, but then again, maybe I wont; we&#8217;ll see.</p>
+
+
+	<p id="fn1"><sup>1</sup> This was particularly annoying just recently when I was looking for a new broadband provider.  Of all the websites I visited, I don&#8217;t recall being able to find conclusive pricing on any of them.  Some would quote a monthly price but actually expect a year up front while other&#8217;s might quote a genuine monthly cost but then make it very difficult to find minimum contract terms, and even more difficult to find the cost of breaking those terms.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/2.0" rel="tag">2.0</a>, 
+                
+                  <a href="/articles/tag/transparency" rel="tag">transparency</a>, 
+                
+                  <a href="/articles/tag/web" rel="tag">web</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

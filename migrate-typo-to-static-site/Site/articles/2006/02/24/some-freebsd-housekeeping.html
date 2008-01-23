@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Some Freebsd housekeeping - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Some Freebsd housekeeping</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Fri, 24 Feb 2006 15:17:00">
+                Fri, 24 Feb 2006 15:17:00
+              </span>
+            </p>
+          
+            <p>I use <a href="http://www.exonetric.com/">exonetric</a> to host this <a href="http://www.typosphere.org">typo</a> instance.  It&#8217;s on a <a href="http://www.freebsd.org">freebsd</a> virtual server so I have to maintain everything.  For a long time, I&#8217;ve been using <a href="http://www.mysql.org">mysql</a> 4.  This is fine apart from a problem during initial installation causing it not to start automatically on machine restart.  This meant that whenever the virtual machine was rebooted I had to manually restart mysql, which basically wouldn&#8217;t happen until I actually noticed it &#8211; not cool.</p>
+
+
+	<p>I spent the time today to upgrade to mysql 5.  Luckily this solved the auto start problem and mysql now comes up with the machine.</p>
+
+
+	<p>Although incredibly interesting (hmm) that wasn&#8217;t really the point of the post.  This is&#8230;  Since using freebsd I&#8217;ve always relied on <a href="http://www.freebsd.org/ports/">ports</a> (instructions for compilation of software) for the installation of software.  When installing mysql today, I used the pre-compiled package binary instead.  I&#8217;m amazed at how much faster it is; and now really can&#8217;t believe I&#8217;ve been bothering with the ports all this time.  I guess it was some kind of anal retentive control I thought I was getting by compiling the software myself; when infact I was only ever compiling with the default options and just wasting time&#8230;  Ho hum.</p>
+
+
+	<p>Two moral&#8217;s here me thinks.  Use packages if you don&#8217;t know what you&#8217;re doing (I don&#8217;t).  Don&#8217;t mess around with things you don&#8217;t understand (manually deleting ports dir before un-installing ports and then expecting packages to just overwrite them.  Oh well, it seems ok).</p>
+          </div>
+        
+          <p class="meta">
+            
+          </p>
+
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

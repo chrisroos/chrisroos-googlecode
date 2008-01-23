@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged twittervision - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/26/a-great-day-at-work-and-reevoovision-twittervision-for-reviews">A great day at work and reevoovision (twittervision for reviews)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 26 Jun 2007 09:20:00">
+                  Tue, 26 Jun 2007 09:20:00
+                </span>
+              </p>
+          
+              <p>A few of days ago I <a href="http://twitter.com/chrisroos/statuses/114202552">came across</a> <a href="http://twittervision.com/">twittervision</a>.  Just ten hours later I had checked some code into <a href="http://www.reevoo.com">our</a> repository that allows us to do the same thing (as twittervision) but for our reviews.  Yup, it was a very good day indeed.  Although the initial code was complete within a few hours, it needed a bit of polishing (kudos to <a href="http://po-ru.com">Paul</a>) which meant that we only got it deployed yesterday.  I guess one working day between proof of concept and deployment isn&#8217;t that bad&#8230;  Anyway, go check it out &#8211; <a href="http://www.reevoo.com/vision.html">reevoovision</a>.</p>
+
+
+	<h3>The days events</h3>
+
+
+	<p>I started the morning by creating an <a href="http://en.wikipedia.org/wiki/Xml">xml</a> feed of the ten most recently published reviews.  On filling a review, the reviewer is asked to enter their town, which needed to be converted to latitude/longitude to allow us to plot a point on the map.  Luckily, a little googling revealed the <a href="http://www.geonames.org/">geonames</a> web service that did exactly what I wanted.  So, using a combination of <a href="http://www.ruby-lang.org/en/">ruby</a>, <a href="http://rubyonrails.com/">rails</a>, <a href="http://curl.haxx.se/">curl</a>, <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> and <a href="http://mongrel.rubyforge.org/">mongrel</a> I had a simple web server that downloaded and parsed the reviews, converted place name to lat/long, and plotted the results on a google map (with help from the <a href="http://pragmaticprogrammer.com/fridays.html">fridays</a> <a href="http://pragmaticprogrammer.com/titles/sdgmapi2/index.html">google map book</a>).  A good proof of concept but not quite right.</p>
+
+
+	<p>I was reminded that we collect the purchaser&#8217;s postcode from our retailers.  This, in combination with a <a href="http://www.easypeasy.com/guides/article.php?article=64">free list</a> of UK <a href="http://en.wikipedia.org/wiki/UK_postcodes">outcodes</a> (the first bit of the postcode) against latitude/longitude, allowed for much greater accuracy (well, to within about 2km) in plotting the location of the reviewer.</p>
+
+
+	<p>The next step was to polish up the rough demo.  Instead of the previous server side hackery, I used the excellent <a href="http://jquery.com">jquery</a> javascript library to perform an &#8220;Ajax&#8221; request of the reviews and parse the xml to build a simple hash of the required data.  Using the twittervision source as reference, I got a &#8216;proper&#8217; (i.e. reviews popping up in sequence) demo running.</p>
+
+
+	<p>From here, it was a basic case of tidying up some rough edges.  Instead of returning the reviews data as xml, I converted it to <a href="http://json.org/">json</a> to make for trivial parsing in javascript.  I also added the jquery <a href="http://jquery.com/plugins/project/dimensions">dimensions</a> plugin to resize the containing div, and in turn the map, to the size of the page.  The final touch was attempting to keep the UK centered in the window.</p>
+
+
+	<p>Reevoovision currently selects and displays published reviews at random to provide a constantly updating map, although maybe it&#8217;d be cool to get it to display submitted/published reviews in real-time.</p>
+
+
+	<p>I can&#8217;t get over how addictive it is to watch the reviews pop-up all over the country, it really emphasises the fact that these are actually real people writing about their experiences.  Hmm, that sounds a bit sales &#38; marketing.  I do mean it though, honest.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/reevoovision" rel="tag">reevoovision</a>, 
+                
+                  <a href="/articles/tag/reviews" rel="tag">reviews</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+                  <a href="/articles/tag/twittervision" rel="tag">twittervision</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

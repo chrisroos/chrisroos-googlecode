@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Addicted to twitter.com - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Addicted to twitter.com</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Thu, 14 Dec 2006 14:42:00">
+                Thu, 14 Dec 2006 14:42:00
+              </span>
+            </p>
+          
+            <p>But not because of a craving to be loved.  Honest.  For a long time I&#8217;ve wanted to be able to interact with a computer/remote process via sms.  Just this morning I was struck with what I thought was an amazing idea.  I&#8217;d heard of <a href="http://www.twitter.com">twitter</a> and wondered if I might be able to use it as a type of sms gateway.  Turns out that I could.  Yay.</p>
+
+
+	<p>To play along, you will need:</p>
+
+
+	<ul>
+	<li>One twitter account with a registered mobile</li>
+		<li>One twitter account that is a friend of the first account (with the mobile)</li>
+		<li>A tiny bit of ruby script</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">json</span><span class="punct">'</span>
+
+<span class="constant">RECEIVER_USERNAME</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">USERNAME_OF_MOBILE_ACCOUNT</span><span class="punct">'</span>
+<span class="constant">RECEIVER_PASSWORD</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">PASSWORD_OF_MOBILE_ACCOUNT</span><span class="punct">'</span>
+<span class="ident">js</span> <span class="punct">=</span> `<span class="ident">curl</span> <span class="punct">-</span><span class="ident">u</span><span class="punct">&quot;</span><span class="string"><span class="expr">#{RECEIVER_USERNAME}</span>:<span class="expr">#{RECEIVER_PASSWORD}</span></span><span class="punct">&quot;</span> <span class="ident">http</span><span class="punct">:/</span><span class="regex"></span><span class="punct">/</span><span class="ident">twitter</span><span class="punct">.</span><span class="ident">com</span><span class="punct">/</span><span class="ident">statuses</span><span class="punct">/</span><span class="ident">friends_timeline</span><span class="punct">.</span><span class="ident">json`</span>
+
+<span class="ident">text</span> <span class="punct">=</span> <span class="constant">JSON</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(</span><span class="ident">js</span><span class="punct">).</span><span class="ident">first</span><span class="punct">['</span><span class="string">text</span><span class="punct">']</span>
+
+<span class="constant">SENDER_USERNAME</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">USERNAME_OF_FRIEND</span><span class="punct">'</span>
+<span class="constant">SENDER_PASSWORD</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">PASSWORD_OF_FRIEND</span><span class="punct">'</span>
+
+`<span class="ident">curl</span> <span class="punct">-</span><span class="ident">u</span><span class="punct">&quot;</span><span class="string"><span class="expr">#{SENDER_USERNAME}</span>:<span class="expr">#{SENDER_PASSWORD}</span></span><span class="punct">&quot;</span> <span class="punct">-</span><span class="ident">d</span><span class="punct">&quot;</span><span class="string">status=<span class="expr">#{text.reverse}</span></span><span class="punct">&quot;</span> <span class="ident">http</span><span class="punct">:/</span><span class="regex"></span><span class="punct">/</span><span class="ident">twitter</span><span class="punct">.</span><span class="ident">com</span><span class="punct">/</span><span class="ident">statuses</span><span class="punct">/</span><span class="ident">update</span><span class="punct">.</span><span class="ident">xml`</span></code></pre></div>
+
+	<p>The script just reads the most recent message sent to your mobile twitter account, reverses the text and sends it back to your mobile.</p>
+
+
+	<p>This is all free stuff, and although the twitter terms of service don&#8217;t appear to explicitly disallow us doing this, I think you should probably be nice if you&#8217;re going to use it in this way.</p>
+          </div>
+        
+          <p class="meta">
+            
+              Tags 
+              
+                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+              
+                <a href="/articles/tag/sms" rel="tag">sms</a>, 
+              
+                <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+              
+            
+          </p>
+
+          
+            <a name="comments"></a>
+            <h4 class="blueblk">Comments</h4>
+            <ol class="comment-list" id="commentList">
+              
+              <li>
+                <cite>
+                  <strong>
+                    
+                      <a href="http://blogstop.us/body/woman-body-builders.html ">Cymnappom</a>
+                    
+                  </strong>
+                </cite> said on Thu, 29 Nov 2007 20:27:35:<br />
+                <p>For some reason, the majority of people out there believe that in order to lose body fat, they must completely eliminate fat from their diets.</p>
+              </li>
+              
+            </ol>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Wed, 13 June 2007 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/13/i-really-dont-know-whether-this-is-spam-or-not">I really don't know whether this is spam or not...</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 13 Jun 2007 22:18:00">
+                  Wed, 13 Jun 2007 22:18:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve received another innocent looking comment, &#8220;Hey man, thanks for article!&#8221;, this time from gribitonline.com.</p>
+
+
+	<p>I followed the same procedure as <a href="http://blog.seagul.co.uk/articles/2007/06/06/a-little-further-investigation-into-those-pesky-scammers">last time</a>  and found that this site contains  the same style porn links at the bottom of the page.  The site looks more genuine than all the others, hence the title &#8211; I&#8217;m really not sure whether this is intentional spam or whether it&#8217;s been hijacked.</p>
+
+
+	<p>I did some investigation to see if I could find the provider of the porn links.  Unfortunately I&#8217;ve not found anything obvious, although I have noticed some patterns.</p>
+
+
+	<ul>
+	<li>The porn links are embedded within the body of the page and then moved to the bottom with the help of javascript.  I assume that this is an <a href="http://www.wikipedia.org/wiki/SEO"><span class="caps">SEO</span></a> trick, based on the understanding that links in content are granted higher ratings than links just for navigation.</li>
+	</ul>
+
+
+	<h3>Site without javascript enabled</h3>
+
+
+	<p><img src="http://farm2.static.flickr.com/1208/544423293_cdf567e9a2_o.jpg" alt="" /></p>
+
+
+	<h3>Site with javascript enabled</h3>
+
+
+	<p><img src="http://farm2.static.flickr.com/1040/544325496_41bc3cb742_o.jpg" alt="" /></p>
+
+
+	<ul>
+	<li>The javascript used to move the links always looks like this.</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_default">var el, el2;
+el = document.getElementById('cbceddfd');
+el2 = document.getElementById('cceedfda');
+if (el &amp;&amp; el2)
+el2.appendChild(el);
+el = document.getElementById('bfabedba');
+el2 = // ... and repeat</code></pre></div>
+
+	<ul>
+	<li>Each link is inserted into its own empty span at the bottom of the page.  The spans seem to have the same ids on each of the sites that have these type of links.  The first span is always cceedfda, the second is cecfaabe, with subsequent ids also being the same across different sites.  There doesn&#8217;t appear to be any other pattern to the ids.</li>
+	</ul>
+
+
+	<ul>
+	<li>Sites from previous experiment that follow this pattern
+	<ul>
+	<li>timesofsooz.com</li>
+		<li>pinkyspaperhause.com</li>
+		<li>moradblog.com</li>
+		<li>fromgreghead.com</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>I&#8217;m really quite intrigued by these sites.  Sad, I know.</li>
+	</ul>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/sad" rel="tag">sad</a>, 
+                
+                  <a href="/articles/tag/spam" rel="tag">spam</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

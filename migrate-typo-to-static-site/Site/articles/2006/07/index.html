@@ -1,0 +1,618 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published in July 2006 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/28/textmate-and-env-ruby-no-such-file-or-directory">TextMate and &quot;env: ruby: No such file or directory&quot;</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 28 Jul 2006 23:06:00">
+                  Fri, 28 Jul 2006 23:06:00
+                </span>
+              </p>
+          
+              <p>So, I was coming up against this problem in TextMate just recently.</p>
+
+
+	<p>It&#8217;s a bit of a strange error in that you get seemingly conflicting output from TextMate.</p>
+
+
+	<p>In a new TextMate document, I could run (by using the well handy, and very new to me, Ctrl-r key combo)..</p>
+
+
+<pre>
+/usr/bin/env ruby --version
+=&gt; ruby 1.8.4 (2005-12-24) [i686-darwin8.7.1]
+
+/usr/bin/which ruby
+=&gt; /usr/local/bin/ruby
+
+#!/usr/local/bin/ruby
+
+puts "hello world" 
+=&gt; hello world
+</pre>
+
+	<p>However, if I ran..</p>
+
+
+<pre>
+#!/usr/bin/env ruby
+
+puts "hello world again" 
+=&gt; env: ruby: No such file or directory
+</pre>
+
+	<p>Hmm, so <code>/usr/bin/env ruby --version</code> works, but when using the very same as the shebang interpreter we get an error.  Odd huh.</p>
+
+
+	<p>Well, apparently not; if we read the textmate docs about <a href="http://macromates.com/textmate/manual/shell_commands#search_path">shell commands</a>.</p>
+
+
+	<p>Although I, in no way, understand this completely; I blindly followed the instructions on that page and got TextMate back to health.</p>
+
+
+	<p>In summary for those that don&#8217;t wish to read the docs..</p>
+
+
+<pre>
+# mkdir ~/.MacOSX/
+# cat &gt;&gt; ~/.MacOSX/environment.plist
+{ PATH = "/usr/local/bin"; }
+</pre>
+
+	<p><strong>Note</strong> You&#8217;ll want to change the path to the location of the binaries you want found.</p>
+
+
+	<p>Then a quick log out and back in, and all is well with TextMate.  Yay.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/textmate" rel="tag">textmate</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/17/test-unit-abstract-test-case">Test::Unit abstract test case</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 17 Jul 2006 09:22:00">
+                  Mon, 17 Jul 2006 09:22:00
+                </span>
+              </p>
+          
+              <p>Having found a <a href="http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing">new way to structure my tests</a>, the need for some common setup shared by multiple test cases became apparent.</p>
+
+
+	<p>I think the traditional way to do this was to create a subclass of TestCase to contain the common setup code and then subclass that for your individual test cases.  This is fine, but in <a href="http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html">test/unit</a>, a TestCase with no tests causes an error.</p>
+
+
+	<p>One solution would be to use a module to contain the common setup and include that in your test case.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">module </span><span class="module">CommonSetup</span>
+  <span class="keyword">def </span><span class="method">setup</span>
+    <span class="attribute">@stack</span> <span class="punct">=</span> <span class="constant">Stack</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">MyTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="ident">include</span> <span class="constant">CommonSetup</span>
+  <span class="keyword">def </span><span class="method">test_should_accept_an_item_when_sent_push</span>
+    <span class="ident">assert_nothing_raised</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">push</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Although this is fine, I spent a short while creating an AbstractTestCase that doesn&#8217;t complain if no tests are specified.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+<span class="keyword">class </span><span class="class">Test::Unit::AbstractTestCase</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">default_test</span>
+    <span class="ident">klass</span> <span class="punct">=</span> <span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">.</span><span class="ident">to_s</span>
+    <span class="ident">ancestors</span> <span class="punct">=</span> <span class="punct">(</span><span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">.</span><span class="ident">ancestors</span> <span class="punct">-</span> <span class="punct">[</span><span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">]).</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">ancestor</span><span class="punct">|</span> <span class="ident">ancestor</span><span class="punct">.</span><span class="ident">to_s</span> <span class="punct">}</span>
+    <span class="keyword">super</span> <span class="keyword">unless</span> <span class="ident">klass</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">AbstractTestCase</span><span class="punct">/</span> <span class="keyword">or</span> <span class="ident">ancestors</span><span class="punct">.</span><span class="ident">first</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">AbstractTestCase</span><span class="punct">/</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Any test case (TestBase in this example) that inherits from AbstractTestCase can now contain setup and teardown methods but not have to worry about missing tests.  In order to maintain expected behaviour, any test case subclassed from TestBase will still complain if tests are missing.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">TestBase</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">AbstractTestCase</span>
+  <span class="comment"># 'No test were specified' error is not thrown</span>
+  <span class="keyword">def </span><span class="method">setup</span>
+    <span class="attribute">@bar</span> <span class="punct">=</span> <span class="punct">{</span> <span class="symbol">:foo</span> <span class="punct">=&gt;</span> <span class="number">123</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">RealTest</span> <span class="punct">&lt;</span> <span class="constant">TestBase</span>
+  <span class="comment"># Utilises TestBase#setup</span>
+  <span class="keyword">def </span><span class="method">test_example</span>
+    <span class="ident">assert_equal</span> <span class="number">123</span><span class="punct">,</span> <span class="attribute">@bar</span><span class="punct">[</span><span class="symbol">:foo</span><span class="punct">]</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">ShouldErrorTest</span> <span class="punct">&lt;</span> <span class="constant">TestBase</span>
+  <span class="comment"># 'No tests were specified' error</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>I then figured that you may want more than one level of abstract test case, i.e. be able to define at the TestCase class level whether or not a test case was abstract.  This isn&#8217;t properly tested but it seems to work ok.</p>
+
+
+	<p><strong>Note</strong> This isn&#8217;t doing exactly what I thought (the default test case is default_test, not test_default).  This works because it just creates an empty test in your test case.  This breaks behaviour in test cases that subclass your abstract test case as they too will already have at least one test defined.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+<span class="keyword">class </span><span class="class">Test::Unit::TestCase</span>
+  <span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">self</span>
+    <span class="keyword">def </span><span class="method">abstract</span>
+      <span class="constant">self</span><span class="punct">.</span><span class="ident">class_eval</span> <span class="keyword">do</span>
+        <span class="keyword">def </span><span class="method">test_default</span>
+        <span class="keyword">end</span>
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>By sending the abstract message to any TestCase class, no errors will be reported when no tests are specified.  It does this by overriding the test_default method; which is the method that raises the error if no other tests are specified.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">AbstractTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="ident">abstract</span>
+  <span class="comment"># 'No test were specified' error is not thrown</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">NormalTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="comment"># 'No test were specified' error</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+                  <a href="/articles/tag/xunit" rel="tag">xunit</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/17/some-realisations-about-testing">Some realisations about testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 17 Jul 2006 09:19:00">
+                  Mon, 17 Jul 2006 09:19:00
+                </span>
+              </p>
+          
+              <p>Having been predominantly involved in <a href="http://www.rubyonrails.com">Rails</a> development just recently, <a href="http://api.rubyonrails.com/classes/Fixtures.html">fixtures</a> have taken on a slightly different meaning to what I now believe to be the original understanding.  Having recently re-read <a href="http://www.amazon.co.uk/gp/product/0321146530/202-8808398-1811851?v=glance&#38;n=266239">Test Driven Development: By Example</a> I re-discovered the &#8216;original&#8217; meaning of the word (essentially shared objects used by all tests in a test case).</p>
+
+
+	<p>This has made me think about the way that I&#8217;ve been structuring my tests (or not structuring them as the case may be).  I have never been a fan of the setup and teardown methods provided to us in <a href="http://en.wikipedia.org/wiki/XUnit">xUnit</a> and I now believe this to be due to my misunderstanding of the term fixture and therefore their intention.  This has led to my test cases growing very large and containing many disparate tests.  If there was any separation of the testcase then it was usually based on functionality of a particular method (which separately leads me to believe that they may have been better expressed in a new object).  I now understand that test cases should be split to contain tests that rely on a common test fixture.  As soon as I started to do this, the setup and (to a lesser degree) teardown methods have become much more useful.</p>
+
+
+	<p>I&#8217;ve also started to create my test cases as anonymous classes derived from Test::Unit::TestCase.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+  <span class="keyword">def </span><span class="method">test_</span>
+    <span class="ident">assert</span> <span class="constant">true</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>I find that this helps when trying to determine where a new test should be placed.  If the class has a name I&#8217;m tempted to scan that and make a decision as to whether a new test belongs in this case.  By keeping them anonymous, I have to inspect the test fixture in order to understand whether a new test belongs here.</p>
+
+
+	<p><strong>Note</strong> I may also add a comment right below Class.new to explicitly specify the fixture for this testcase.  This may seem to go against not naming the classes in the first place but I think part of the problem with class names is the lack of punctuation and therefore the difficulty in clearly expressing the test fixture.</p>
+
+
+	<p>I&#8217;ve chosen a somewhat contrived example to demonstrate my new found test structure.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+  <span class="comment"># An empty stack</span>
+
+  <span class="keyword">def </span><span class="method">setup</span>
+    <span class="attribute">@stack</span> <span class="punct">=</span> <span class="constant">Stack</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_accept_an_item_when_sent_push</span>
+    <span class="ident">assert_nothing_raised</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">push</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_complain_when_sent_top</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">StackUnderflowError</span><span class="punct">)</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">top</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_complain_when_sent_pop</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">StackUnderflowError</span><span class="punct">)</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">pop</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>The fixture for this test is an empty stack.  The individual tests prod and query the empty stack to ensure that it behaves as expected.  Although the example above is incredibly simple, I have consistently found that my individual test methods become much smaller.</p>
+
+
+	<p>Notice that the names of the tests all start &#8216;test_should&#8217;.  Not only does this help us think about the responsibilities of the object; but it enables us to maintain living system specifications based on the tests.  I believe this idea first came from <a href="http://agiledox.sourceforge.net/index.html">testdox for Java</a> but was introduced to me by <a href="http://www.reevoo.com/blogs/bengriffiths/">Ben</a> at <a href="http://www.reevoo.com">work</a>.  In fact Ben has written a cool <a href="http://www.reevoo.com/blogs/bengriffiths/2006/04/05/rails-agiledox-browser/">Agiledox server</a> that displays the system specifications for your rails project.</p>
+
+
+	<p>The realisations set out above have come at around the same time as my taking more of an interest in <a href="http://rspec.rubyforge.org/">rSpec</a> (the stack test above has been adapted directly from one of the rSpec examples); a <a href="http://behaviour-driven.org/">behaviour driven development</a> framework for <a href="http://www.ruby-lang.org">ruby</a>.  I haven&#8217;t done any real work with rSpec yet but am hoping it might improve the way I think of both testing and OO design in general.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/agiledox" rel="tag">agiledox</a>, 
+                
+                  <a href="/articles/tag/bdd" rel="tag">bdd</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/rspec" rel="tag">rspec</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/tdd" rel="tag">tdd</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/14/textmate-command-to-display-active-record-column-attributes">Textmate command to display Active Record column attributes</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 14 Jul 2006 08:18:00">
+                  Fri, 14 Jul 2006 08:18:00
+                </span>
+              </p>
+          
+              <p>I find myself constantly visiting either the console or the mysql command line to check out the attributes (columns) of <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">active record</a> objects.</p>
+
+
+	<p>I know there is a <a href="http://blogs.pragprog.com/cgi-bin/pragdave.cgi/Tech/Ruby/AnnotateModels.rdoc">plugin</a> by <a href="http://blogs.pragprog.com/cgi-bin/pragdave.cgi">Dave Thomas</a> that places the table structure within the model code itself.  To be honest I&#8217;ve never tried this and it might well suffice (although I&#8217;m not 100% convinced I like the idea).</p>
+
+
+	<p>Anyhoo, I just spent some time whilst on the train hacking together a basic <a href="http://macromates.com/">textmate</a> command that displays a tooltip containing the table structure.  It&#8217;s very basic (though you wouldn&#8217;t have thought it based on the amount of time it took me together<sup><a href="#fn1">1</a></sup>); but seems to work ok.</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/236/460082493_49ff4cd1ed_o.png" alt="" /></p>
+
+
+	<p>The code is below.  You&#8217;ll need to add a ruby command in the ruby textmate bundle, setting the intput to &#8216;selected text&#8217; or &#8216;nothing&#8217;, the output to &#8216;show as tooltip&#8217; and preferably a hotkey that isn&#8217;t one of the ones you use every day (however tempting that is).</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#! /usr/local/bin/ruby</span>
+
+<span class="ident">project</span> <span class="punct">=</span> <span class="constant">ENV</span><span class="punct">['</span><span class="string">TM_PROJECT_DIRECTORY</span><span class="punct">']</span>
+<span class="ident">word</span> <span class="punct">=</span> <span class="constant">ENV</span><span class="punct">['</span><span class="string">TM_CURRENT_WORD</span><span class="punct">']</span>
+
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{project}</span>/config/boot</span><span class="punct">&quot;</span>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{project}</span>/config/environment</span><span class="punct">&quot;</span>
+
+<span class="ident">klass</span> <span class="punct">=</span> <span class="constant">Object</span><span class="punct">.</span><span class="ident">const_get</span><span class="punct">(</span><span class="ident">word</span><span class="punct">)</span> <span class="keyword">rescue</span> <span class="constant">nil</span>
+<span class="keyword">if</span> <span class="ident">klass</span> <span class="keyword">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="keyword">class </span><span class="class">==</span> <span class="ident">Class</span> <span class="ident">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">ancestors</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">)</span>
+  <span class="ident">columns</span> <span class="punct">=</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">columns_hash</span>
+
+  <span class="ident">data</span> <span class="punct">=</span> <span class="punct">[]</span>
+  <span class="ident">data</span> <span class="punct">+=</span> <span class="punct">[%w[</span><span class="string">column primary sql_type default</span><span class="punct">]]</span>
+  <span class="ident">data</span> <span class="punct">+=</span> <span class="punct">[%w[</span><span class="string">------ ------- -------- -------</span><span class="punct">]]</span>
+  <span class="ident">data</span> <span class="punct">+=</span> <span class="ident">columns</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">col</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">|</span> <span class="punct">[</span><span class="ident">col</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">primary</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">sql_type</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">default</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">]</span> <span class="punct">}</span>
+
+  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="ident">data</span><span class="punct">.</span><span class="ident">inject</span><span class="punct">('</span><span class="string"></span><span class="punct">')</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">output</span><span class="punct">,</span> <span class="ident">array</span><span class="punct">|</span> 
+    <span class="ident">output</span> <span class="punct">+</span> <span class="ident">array</span><span class="punct">.</span><span class="ident">inject</span><span class="punct">('</span><span class="string"></span><span class="punct">')</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">row_str</span><span class="punct">,</span> <span class="ident">value</span><span class="punct">|</span> <span class="ident">row_str</span> <span class="punct">+</span> <span class="ident">value</span><span class="punct">.</span><span class="ident">ljust</span><span class="punct">(</span><span class="number">20</span><span class="punct">)</span> <span class="punct">}</span> <span class="punct">+</span> <span class="punct">&quot;</span><span class="string"><span class="escape">\n</span></span><span class="punct">&quot;</span>
+  <span class="keyword">end</span>
+<span class="keyword">elsif</span> <span class="ident">klass</span> <span class="keyword">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="keyword">class </span><span class="class">==</span> <span class="ident">Class</span> <span class="ident">and</span> <span class="keyword">not</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">ancestors</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">)</span>
+  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{word}</span> is not an Active Record derived class</span><span class="punct">&quot;</span>
+<span class="keyword">else</span>
+  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{word}</span> was not recognised as a class</span><span class="punct">&quot;</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>It relies on you having your entire rails project (the folder right above app, config, script etc) open in textmate (in order to find the config files).  With that, just click on the name of an active record class (it has to be the actual class name at present, it&#8217;d be cool if it also worked based on the class definition you are currently in too) and hit your hotkey of choice (best to use the one you assigned to this command).  Hey presto, a tooltip containing your table structure.</p>
+
+
+	<p>One odd thing I&#8217;ve noticed is that it never recognises standard class constants.  It should display &#8216;this is not an active record derived class&#8217; but instead always displays &#8216;was not recognised as a class&#8217;.  Oh well.</p>
+
+
+	<p>Anyone find this remotely useful or want to finish off what I&#8217;ve started?</p>
+
+
+	<p>[1] I spent ages trying to develop within the textmate bundle editor before realising it&#8217;d be a helluva lot quicker and easier to develop in textmate proper.  Hmmm.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/activerecord" rel="tag">active record</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/textmate" rel="tag">textmate</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">Using in memory Active Record objects with associations for testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 12 Jul 2006 01:23:00">
+                  Wed, 12 Jul 2006 01:23:00
+                </span>
+              </p>
+          
+              <p>Hitting the database in testing is bad.</p>
+
+
+	<p>Something that I&#8217;ve found relatively useful at <a href="http://www.reevoo.com">work</a> is to use real <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> objects without any persistence (basically use AR#new and not AR#save[!] or AR#create[!]).  When using standard techniques to create the association objects in memory you only get one side of the association at a time.  Consider the following.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:addresses</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">Address</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
+<span class="keyword">end</span>
+
+<span class="comment"># One sided relationship with parent getting access to child</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">build</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="constant">nil</span>
+
+<span class="comment"># One sided relationship with child getting access to parent</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="constant">Address</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="ident">home</span><span class="punct">.</span><span class="ident">build_person</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+
+<span class="comment"># The example above that creates the address first could also have been written as.</span>
+<span class="comment"># chris = Person.new</span>
+<span class="comment"># home = Address.new(:person =&gt; chris)</span></code></pre></div>
+
+	<p>You can see that in each case, only one side of the relationship has access to the other.  If we were persisting the objects then the relationship would be two way via a database lookup.  We can get a two way relationship in memory; although it has a certain duplication smell about it.  Assuming the same models as above, we can amend the above examples like so.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># First example</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">build</span><span class="punct">(</span><span class="symbol">:person</span> <span class="punct">=&gt;</span> <span class="ident">chris</span><span class="punct">)</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+
+<span class="comment"># Second example</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="constant">Address</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="ident">home</span><span class="punct">.</span><span class="ident">build_person</span><span class="punct">(</span><span class="symbol">:addresses</span> <span class="punct">=&gt;</span> <span class="punct">[</span><span class="ident">home</span><span class="punct">])</span>
+
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span></code></pre></div>
+
+	<p>I&#8217;ve occasionally used this in place of stubbing methods but am still not 100% convinced of the definite benefits one way or another.  I do have some definite disadvantages of stubbing methods (nothing exciting, they&#8217;ve almost certainly been noted by many others in the past) which I&#8217;ll note down at a later date.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/activerecord" rel="tag">active record</a>, 
+                
+                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/12/ruby-hashes-with-default-values">Ruby hashes with default values</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 12 Jul 2006 01:17:00">
+                  Wed, 12 Jul 2006 01:17:00
+                </span>
+              </p>
+          
+              <p>I found that on several occasions I&#8217;ve wanted to create a hash that increments the number of instances of a given key.  We could do something manual like.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span>
+<span class="keyword">def </span><span class="method">increment_count</span><span class="punct">(</span><span class="ident">hash</span><span class="punct">,</span> <span class="ident">key</span><span class="punct">)</span>
+  <span class="ident">hash</span><span class="punct">[</span><span class="ident">key</span><span class="punct">]</span> <span class="punct">||=</span> <span class="number">0</span> <span class="comment"># Sets any new keys to 0.</span>
+  <span class="ident">hash</span><span class="punct">[</span><span class="ident">key</span><span class="punct">]</span> <span class="punct">+=</span> <span class="number">1</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>This is fine; but can be written more concisely.  If we supply an object to Hash::new then that object becomes the default value for all missing keys in the hash.  The above example is shortened by one line.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="number">0</span><span class="punct">)</span>
+<span class="keyword">def </span><span class="method">increment_count</span><span class="punct">(</span><span class="ident">hash</span><span class="punct">,</span> <span class="ident">key</span><span class="punct">)</span>
+  <span class="ident">hash</span><span class="punct">[</span><span class="ident">key</span><span class="punct">]</span> <span class="punct">+=</span> <span class="number">1</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>A problem arises when we want to use an object that isn&#8217;t immutable (in this case, basically anything other than a Fixnum) as the default value.  The example that I came across a couple of times today was using an empty array as the default value.  If we try to use the same method as above, we experience problems.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Array</span><span class="punct">.</span><span class="ident">new</span><span class="punct">)</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_one</span><span class="punct">]</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_two</span><span class="punct">]</span> <span class="punct">&lt;&lt;</span> <span class="number">99</span>
+<span class="punct">=&gt;</span> <span class="punct">[</span><span class="number">99</span><span class="punct">]</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_one</span><span class="punct">]</span>
+<span class="punct">=&gt;</span> <span class="punct">[</span><span class="number">99</span><span class="punct">]</span> <span class="comment"># is actually the same array amended in the step above</span></code></pre></div>
+
+	<p>I&#8217;ve known that there was a way around this for a long time but have never bothered to look it up.  I finally got round to looking at it today, and it is, unsurprisingly, very simple.  We supply the hash constructor with a block.  This block is called for any missing key and supplied with the hash and said key.  The example above becomes.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">hash</span><span class="punct">,</span> <span class="ident">key</span><span class="punct">|</span> <span class="ident">hash</span><span class="punct">[</span><span class="ident">key</span><span class="punct">]</span> <span class="punct">=</span> <span class="constant">Array</span><span class="punct">.</span><span class="ident">new</span> <span class="punct">}</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_one</span><span class="punct">]</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_two</span><span class="punct">]</span> <span class="punct">&lt;&lt;</span> <span class="number">99</span>
+<span class="punct">=&gt;</span> <span class="punct">[</span><span class="number">99</span><span class="punct">]</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_one</span><span class="punct">]</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span></code></pre></div>
+
+	<p>I say I looked it up today but to be fair there&#8217;s every chance that I was well aware of this at some point in the past&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/12/trying-to-learn">Trying to learn</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 12 Jul 2006 01:15:00">
+                  Wed, 12 Jul 2006 01:15:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve decided I&#8217;m going to attempt to write down some things that I learn about ruby.  I &#8216;learn&#8217; the same stuff all the time due to the nature of my very bad memory.  In an attempt to learn some things just the once I&#8217;m going to try write them down.  It probably wont help.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/05/very-simple-micro-id-verifier">Very simple Micro Id Verifier</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 05 Jul 2006 23:22:00">
+                  Wed, 05 Jul 2006 23:22:00
+                </span>
+              </p>
+          
+              <p>I just finished up the initial copy of a Ruby implementation of <a href="http://chimprawk.blogspot.com/">Fred Stutzman&#8217;s</a> <a href="http://www.microid.org/">Micro Id</a> <a href="http://chimprawk.blogspot.com/2006/06/simple-microid-verifier.html">Verifier</a>.</p>
+
+
+	<p>View the source <a href="http://dev.seagul.co.uk/repository/browse/micro_id_verifier">on-line</a> or checkout from anonymous subversion.</p>
+
+
+<div class="typocode">
+<pre>
+# svn co svn://dev.seagul.co.uk/micro_id_verifier
+</pre>
+</div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/id" rel="tag">id</a>, 
+                
+                  <a href="/articles/tag/micro" rel="tag">micro</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

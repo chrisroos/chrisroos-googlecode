@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged routing - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/19/monkey-patching-rails-routing">Monkey patching rails routing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 19 Mar 2007 22:16:00">
+                  Mon, 19 Mar 2007 22:16:00
+                </span>
+              </p>
+          
+              <p>This <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/routing_redirection/">plugin</a> offers the following two features.</p>
+
+
+	<ol>
+	<li>Permanently redirecting requests for urls that end in a slash to the equivalent url with no slash, helping disambiguate urls, as <a href="http://simonwillison.net/2007/Feb/4/urls/">explained</a> by <a href="http://simonwillison.net/">Simon Willison</a>.</li>
+		<li>The addition of ActionController::Routing::RouteSet::Mapper#permanently_redirect, allowing us to declare permanent redirections within our <a href="http://api.rubyonrails.com/classes/ActionController/Routing.html">route config</a>.</li>
+	</ol>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">ActionController</span><span class="punct">::</span><span class="constant">Routing</span><span class="symbol">:Routes</span><span class="punct">.</span><span class="ident">draw</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">map</span><span class="punct">|</span>
+  <span class="ident">map</span><span class="punct">.</span><span class="ident">permanently_redirect</span> <span class="punct">'</span><span class="string">legacy/view/:id</span><span class="punct">',</span> <span class="symbol">:controller</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">current</span><span class="punct">',</span> <span class="symbol">:action</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">show</span><span class="punct">'</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>A quick <a href="http://www.google.co.uk/search?hl=en&#38;q=rails+disambiguated+urls&#38;btnG=Search">google</a> reveals that <a href="http://fleetingideas.com/">Rob McKinnon</a> has an <a href="http://fleetingideas.com/2007/2/6/disambiguated-urls-with-ruby-on-rails">alternative suggestion</a> for removing the trailing slashes.</p>
+
+
+	<p>The plugin is known to work with Rails 1.1.6.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/routing" rel="tag">routing</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

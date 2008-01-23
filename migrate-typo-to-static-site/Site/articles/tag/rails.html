@@ -1,0 +1,1269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged rails - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/12/07/testing-actionmailer-base-server_settings">Testing ActionMailer::Base.server_settings</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 07 Dec 2007 17:23:00">
+                  Fri, 07 Dec 2007 17:23:00
+                </span>
+              </p>
+          
+              <p>I needed to use an external <span class="caps">SMTP</span> server to get mail through to certain providers (notably, hotmail).</p>
+
+
+	<p>I was sending my <a href="http://api.rubyonrails.org/classes/ActionMailer/Base.html">action mailer</a> email but couldn&#8217;t be sure that I&#8217;d configured the settings correctly as I didn&#8217;t get any detailed log output (or at least not where I was looking).</p>
+
+
+	<p>I dug into the code and found the lines that were responsible for sending the email.  Replaying that code in the console allowed me to identify the problem immediately (a missing domain in my case).  I thought I&#8217;d paste those few lines here in case they&#8217;re of some use to someone else.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">message</span><span class="punct">,</span> <span class="ident">from</span><span class="punct">,</span> <span class="ident">to</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">test message</span><span class="punct">',</span> <span class="punct">'</span><span class="string">sender-email</span><span class="punct">',</span> <span class="punct">'</span><span class="string">recipient-email</span><span class="punct">'</span>
+<span class="ident">s</span> <span class="punct">=</span> <span class="constant">ActionMailer</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">.</span><span class="ident">server_settings</span>
+<span class="constant">Net</span><span class="punct">::</span><span class="constant">SMTP</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span><span class="ident">s</span><span class="punct">[</span><span class="symbol">:address</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:port</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:domain</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:user_name</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:password</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:authentication</span><span class="punct">])</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">smtp</span><span class="punct">|</span> 
+  <span class="ident">smtp</span><span class="punct">.</span><span class="ident">sendmail</span><span class="punct">(</span><span class="ident">message</span><span class="punct">,</span> <span class="ident">from</span><span class="punct">,</span> <span class="ident">to</span><span class="punct">)</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/action" rel="tag">action</a>, 
+                
+                  <a href="/articles/tag/mailer" rel="tag">mailer</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/19/monkey-patching-rails-routing">Monkey patching rails routing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 19 Mar 2007 22:16:00">
+                  Mon, 19 Mar 2007 22:16:00
+                </span>
+              </p>
+          
+              <p>This <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/routing_redirection/">plugin</a> offers the following two features.</p>
+
+
+	<ol>
+	<li>Permanently redirecting requests for urls that end in a slash to the equivalent url with no slash, helping disambiguate urls, as <a href="http://simonwillison.net/2007/Feb/4/urls/">explained</a> by <a href="http://simonwillison.net/">Simon Willison</a>.</li>
+		<li>The addition of ActionController::Routing::RouteSet::Mapper#permanently_redirect, allowing us to declare permanent redirections within our <a href="http://api.rubyonrails.com/classes/ActionController/Routing.html">route config</a>.</li>
+	</ol>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">ActionController</span><span class="punct">::</span><span class="constant">Routing</span><span class="symbol">:Routes</span><span class="punct">.</span><span class="ident">draw</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">map</span><span class="punct">|</span>
+  <span class="ident">map</span><span class="punct">.</span><span class="ident">permanently_redirect</span> <span class="punct">'</span><span class="string">legacy/view/:id</span><span class="punct">',</span> <span class="symbol">:controller</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">current</span><span class="punct">',</span> <span class="symbol">:action</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">show</span><span class="punct">'</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>A quick <a href="http://www.google.co.uk/search?hl=en&#38;q=rails+disambiguated+urls&#38;btnG=Search">google</a> reveals that <a href="http://fleetingideas.com/">Rob McKinnon</a> has an <a href="http://fleetingideas.com/2007/2/6/disambiguated-urls-with-ruby-on-rails">alternative suggestion</a> for removing the trailing slashes.</p>
+
+
+	<p>The plugin is known to work with Rails 1.1.6.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/routing" rel="tag">routing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/12/encapsulation-in-active-record-objects">Encapsulation in Active Record objects</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 12 Jan 2007 01:37:00">
+                  Fri, 12 Jan 2007 01:37:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve been meaning to finish a post on this subject for ages.  As I probably won&#8217;t finish it in its current incarnation, I thought I&#8217;d at least get something up here.</p>
+
+
+	<p><a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Base.html">Active Record</a> <a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Associations/ClassMethods.html">associations</a> are brilliant for quickly putting together an object graph.  They&#8217;re not so brilliant for testing, or keeping the code particularly tidy.  They quickly lead to (and even encourage) train-wreck expressions in your code.  Diving straight into an example:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">Hobby</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Because the hobbies object is publicly accessible from a person object, it allows us to reach in and touch things we shouldn&#8217;t.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">cycling</span> <span class="punct">=</span> <span class="constant">Hobby</span><span class="punct">.</span><span class="ident">new</span>
+
+<span class="comment"># We shouldn't manipulate the hobbies object directly...</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Uh oh - touching things we shouldn't</span>
+
+<span class="comment"># ...rather, it'd be better to add a wrapper method for the functionality we actually need</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="keyword">def </span><span class="method">add_hobby</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">add_hobby</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Ahh, that's much better</span></code></pre></div>
+
+	<p>The revised Person class above follows the <a href="http://en.wikipedia.org/wiki/Law_of_Demeter">law of demeter</a>.  As well as making the code look a little neater (no train-wrecks to see here), it makes it easier to test.  To illustrate the testing point, I&#8217;m going to <a href="http://weblog.jamisbuck.org/2007/1/9/extending-activerecord-associations">extend</a> the <a href="http://ryandaigle.com/articles/2006/12/03/extend-your-activerecord-association-methods">association</a> in this example.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># We end up with a large and not very clear test</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span> <span class="keyword">do</span>
+    <span class="keyword">def </span><span class="method">find_favourite</span>
+      <span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
+    <span class="ident">hobbies</span> <span class="punct">=</span> <span class="ident">mock</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_favourite</span><span class="punct">)</span>
+    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">stub</span><span class="punct">(</span><span class="symbol">:hobbies</span> <span class="punct">=&gt;</span> <span class="ident">hobbies</span><span class="punct">)</span>
+    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment"># This way, we end up with a slightly cleaner looking class (imo) and a smaller, cleaner test</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
+  <span class="keyword">def </span><span class="method">find_my_favourite_hobby</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
+    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">mock</span>
+    <span class="ident">person</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_my_favourite_hobby</span><span class="punct">)</span>
+    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Interestingly enough, if we had <a href="http://en.wikipedia.org/wiki/Test_driven_development">test driven</a> the development of the above code, we would almost certainly have ended up with something similar (interface-wise) to the example that has a wrapper around the association proxy.</p>
+
+
+	<p>So, with all of this in mind, I&#8217;ve hacked together a real quick <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/private_associations/">plugin</a> that adds a corresponding _private method for each of the four (has_one, has_many, belongs_to and has_and_belongs_to_many) associations.  Using the _private alternative will do exactly the same as the original method but it will make all of the dynamically created methods private.  So.  It&#8217;ll still be possible to write the wrapper around the association (as we did in the test above) but it won&#8217;t be possible to reach in and touch things that we shouldn&#8217;t.[1]</p>
+
+
+	<p>There is at least one problem (there may be many more I&#8217;m not aware of) with using the _private association methods.  If you have validation set-up for one of the associations (e.g. validates_associated) it will fail.  This is because validation happens from outside the instance of the object and therefore needs to access the association.  Although I haven&#8217;t thought this through fully, I&#8217;m actually wondering if validation (in its current form) takes a bit of a back seat under this new world order.  I think that one of the reasons validation is on the object itself is because there are many many ways to create the said object.  However, using these private associations and disabling the persistence methods (create, save, update etc) on an associated object may allow us to have a single point of object creation and persistence.  If we had that, then we wouldn&#8217;t need the Active Record validations anyway.  Just a thought&#8230;</p>
+
+
+	<p>Just one final note.  <a href="http://www.daveastels.com/">Dave Astels</a> has a good <a href="http://blog.daveastels.com/articles/2006/10/24/encapsulation-in-action">article</a> about encapsulation in rails, as <a href="http://www.reevoo.com/blogs/bengriffiths/2006/10/24/rails-like-or-oo/">referred to</a> by <a href="http://www.reevoo.com/blogs/bengriffiths">Ben</a></p>
+
+
+	<p id="fn1"><sup>1</sup>  Ok.  That is, of course, a blatant lie &#8211; we can still access the private association &#8211; this is <a href="http://www.ruby-lang.org">ruby</a> remember.  The important point is that we&#8217;ve made our intentions more explicit.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/encapsulation" rel="tag">encapsulation</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/10/24/connecting-to-gmail-with-ruby-or-connecting-to-pop3-servers-over-ssl-with-ruby">Connecting to gmail with Ruby (or Connecting to POP3 servers over SSL with Ruby)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 24 Oct 2006 22:42:00">
+                  Tue, 24 Oct 2006 22:42:00
+                </span>
+              </p>
+          
+              <h3>Short version (or, &#8220;I want to connect to gmail <span class="caps">NOW</span>&#8221;)</h3>
+
+
+	<ul>
+	<li>Download the <a href="http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/index.html">pop3 library</a> from <a href="http://www.ruby-lang.org/cgi-bin/cvsweb.cgi//?only_with_tag=HEAD">Ruby <span class="caps">HEAD</span></a> (Ruby 1.9) (<a href="http://www.ruby-lang.org/cgi-bin/cvsweb.cgi/~checkout~/ruby/lib/net/pop.rb?rev=1.73;content-type=application%2Fx-ruby;only_with_tag=HEAD">download file</a>)</li>
+		<li>Use the following script to get started (making sure that you explicitly reference the downloaded pop3 file)...</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">pop_ssl</span><span class="punct">'</span> <span class="comment"># I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version</span>
+
+<span class="ident">username</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_GMAIL_USERNAME@gmail.com</span><span class="punct">'</span>
+<span class="ident">password</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_GMAIL_PASSWORD</span><span class="punct">'</span>
+
+<span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">enable_ssl</span><span class="punct">(</span><span class="constant">OpenSSL</span><span class="punct">::</span><span class="constant">SSL</span><span class="punct">::</span><span class="constant">VERIFY_NONE</span><span class="punct">)</span>
+<span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">start</span><span class="punct">('</span><span class="string">pop.gmail.com</span><span class="punct">',</span> <span class="number">995</span><span class="punct">,</span> <span class="ident">username</span><span class="punct">,</span> <span class="ident">password</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">pop</span><span class="punct">|</span>
+  <span class="keyword">if</span> <span class="ident">pop</span><span class="punct">.</span><span class="ident">mails</span><span class="punct">.</span><span class="ident">empty?</span>
+    <span class="ident">puts</span> <span class="punct">'</span><span class="string">No mail.</span><span class="punct">'</span>
+  <span class="keyword">else</span>
+    <span class="ident">pop</span><span class="punct">.</span><span class="ident">each_mail</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">mail</span><span class="punct">|</span>
+      <span class="ident">p</span> <span class="ident">mail</span><span class="punct">.</span><span class="ident">header</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<h3>Medium version (or, &#8220;Let me know I&#8217;m connecting to the correct site, Dammit&#8221;)</h3>
+
+
+	<p>This is identical to the short version except that we verify the ssl certificate this time round.</p>
+
+
+	<ul>
+	<li>Follow the first step above (i.e. download new version of pop3 lib).</li>
+		<li>Download the CA Root Certificates bundle from <a href="http://curl.haxx.se/">cURL site</a> (<a href="http://curl.haxx.se/ca/cacert.pem">download file</a>)</li>
+		<li>Copy the code above but change the Net::POP3.enable_ssl line to read&#8230;</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">enable_ssl</span><span class="punct">(</span><span class="constant">OpenSSL</span><span class="punct">::</span><span class="constant">SSL</span><span class="punct">::</span><span class="constant">VERIFY_PEER</span><span class="punct">,</span> <span class="punct">'</span><span class="string">/PATH/TO/DOWNLOADED/cacert.pem</span><span class="punct">')</span></code></pre></div>
+
+	<h3>Longer version (or, &#8220;Pray tell, how did you find this information sir&#8221;)</h3>
+
+
+	<p>An explanation of how I got here.  Feel free to ignore.</p>
+
+
+	<p>For a while I&#8217;ve wanted to play around with receiving emails within a <a href="http://www.rubyonrails.org">rails</a> app (with <a href="http://am.rubyonrails.org/files/README.html">action mailer</a>).  I had an hour or two free the other evening and so started to play.  First step was to take a look at the <a href="http://wiki.rubyonrails.org">rails wiki</a> and see that there&#8217;s already a <a href="http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer">page</a> detailing exactly what I wanted to do.  As I started reading, I was getting put off by the thought of configuring <a href="http://www.sendmail.org">sendmail</a> or some other &#8216;heavyweight&#8217; solution.  Luckily, someone has added a much better suggestion at the bottom of the page &#8211; using <a href="http://ruby-doc.org/stdlib/libdoc/net/pop/rdoc/index.html">net/pop</a> (or <a href="http://ruby-doc.org/stdlib/libdoc/net/imap/rdoc/index.html">net/imap</a>) to collect emails from a pre-configured mail server.  Although I use <a href="http://www.fastmail.co.uk">imap</a> for my own email provision, I wanted a pop server for testing.  Aha, I thought, I&#8217;ll just set-up another <a href="http://www.gmail.com">gmail</a> account and use that&#8230;  And that&#8217;s where the problems started.</p>
+
+
+	<p>You see, gmail only accepts <a href="http://en.wikipedia.org/wiki/POP3"><span class="caps">POP3</span></a> connections over <a href="http://en.wikipedia.org/wiki/SSL"><span class="caps">SSL</span></a> (on port 995), a feature not found in our beloved net/pop library.  Hmm.  Time for some help from google.  The first page I <a href="http://involution.com/2006/07/20/access-gmail-from-ruby-using-netpop3-and-stunnel/">came across</a> described using <a href="http://www.stunnel.org">stunnel</a> to create an ssl tunnel to route standard net/pop traffic through.  This sounded great, except that I couldn&#8217;t get stunnel (v4.16) to compile on mac os x, although I didn&#8217;t try too hard&#8230;  The other point of interest in that original article was that the pop3 with ssl support was in development.  The next step was to track down some mailing list threads that talked about the ssl support and hope for a patch.  We&#8217;re in luck, the <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2703">first patch</a> was actually submitted in March 2004, with the second, accepted and committed, <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2745">patch</a> coming in April 2004.  As per the <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2780">last message</a> in the second thread, the patch was accepted into core, and is now available in the 1.9 release.  So, we don&#8217;t even need to patch our existing copy of net/pop, we can just download the newer version.  I named this downloaded version as pop_ssl, to avoid confusion, and placed it in my ruby load path.</p>
+
+
+	<p>Next step was to follow the example on the <a href="http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/classes/Net/POP3.html">net/pop3 page</a>, and, with the addition of the Net::POP3::enable_ssl directive, try to connect.  Hmm, things still weren&#8217;t working quite right.  I was getting the following error.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">OpenSSL::SSL::SSLError: certificate verify failed</code></pre></div>
+
+	<p>Some more googling led me to <a href="http://ghouston.blogspot.com/2006/03/using-ssl-with-ruby-http-access2.html">this post</a> by <a href="http://ghouston.blogspot.com/">Greg Houston</a>.  It turns out that the error is actually raised in the <a href="http://www.openssl.org">OpenSSL</a> layer.  It is caused by us trying to verify the server certificate without having the correct trusted root certificate.  It turns out that we can either disable the verification (by using <code>Net::POP3::enable_ssl(OpenSSL::SSL::VERIFY_NONE)</code>), or we can verify against a trusted root certificate bundle, like the one <a href="http://curl.haxx.se/docs/caextract.html">supplied</a> by cURL.  To verify using the certificate bundle from cURL (or similar), we would amend the above line of code to <code>Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, File.dirname(__FILE__) + '/PATH/TO/DOWNLOADED/cacert.pem')</code>.</p>
+
+
+	<p>I can finally now get on with my rails app to retrieve emails from gmail.</p>
+
+
+	<h3>Conclusion</h3>
+
+
+	<ul>
+	<li>I&#8217;ve spent a lot more than the intended couple of hours investigating this stuff, yet still have no rails app receiving emails (although I&#8217;m a lot closer now&#8230;)</li>
+		<li>There&#8217;s very little information on the ssl enabled libraries (net/https, net/pop, http-access2 to name but a few) in ruby.  Maybe everybody else just knows about this stuff already, but I&#8217;m certainly pretty unclear.</li>
+		<li>I have a feeling that it should be possible to use net/https to connect (unverified) to a site that uses ssl and obtain the certificate for use in subsequent verified connections.  Indeed, another <a href="http://curl.haxx.se/docs/sslcerts.html">document</a> hosted on curl.haxx.se seems to indicate that this is possible.</li>
+		<li>I still know very little about ssl and certificates.</li>
+		<li>I hope that what little information is here can help someone else in a similar situation.</li>
+	</ul>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/gmail" rel="tag">gmail</a>, 
+                
+                  <a href="/articles/tag/pop" rel="tag">pop</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/09/09/in-memory-ar-object-for-testing">In memory AR object for testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 09 Sep 2006 12:03:00">
+                  Sat, 09 Sep 2006 12:03:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve <a href="http://blog.seagul.co.uk/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">previously written</a> about using in memory active record objects for testing.</p>
+
+
+	<p>In doing so recently, I&#8217;ve found it necessary to define the id of the in memory object.  By default this is obviously nil as it has not been persisted.  In addition, it is not possible to set it during normal object construction.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">person</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="symbol">:id</span> <span class="punct">=&gt;</span> <span class="number">1</span><span class="punct">)</span>
+<span class="ident">p</span> <span class="ident">person</span><span class="punct">.</span><span class="ident">id</span>
+<span class="comment">#=&gt; nil</span></code></pre></div>
+
+	<p>However, we can give the person constructor a block, setting the id just after creation.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">person</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">p</span><span class="punct">|</span> <span class="ident">p</span><span class="punct">.</span><span class="ident">id</span> <span class="punct">=</span> <span class="number">1</span> <span class="punct">}</span>
+<span class="ident">p</span> <span class="ident">person</span><span class="punct">.</span><span class="ident">id</span>
+<span class="comment">#=&gt; 1</span></code></pre></div>
+
+	<p>Cool.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/22/rails-leaking-some-strings-in-development">Rails leaking some strings in development</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 22 Aug 2006 10:47:00">
+                  Tue, 22 Aug 2006 10:47:00
+                </span>
+              </p>
+          
+              <p>I spent some time this morning checking out <a href="http://scottstuff.net/blog/">Scott Laird&#8217;s</a> <a href="http://scottstuff.net/blog/articles/2006/08/17/memory-leak-profiling-with-rails">memory profiler</a> against a fresh rails app.</p>
+
+
+	<p>I was suprised to see that around 110 strings were being leaked on each request.  I was incredibly surprised when I used the string_debug option (to the memory profiler) to generate logs of strings living in ObjectSpace.  There were strings appearing that I <em>knew</em> were not in my new rails app anywhere.</p>
+
+
+	<p>After grepping my working directory for some of these strings (and not coming up with anything), <a href="http://blog.floehopper.org">James</a> suggested that the strings could be in my irb history.  Although it wasn&#8217;t immediately obvious how they were appearing, the strings were indeed in my history (just over 100 lines worth.)</p>
+
+
+	<p>A little inspection and the culprit was found.  The <a href="http://api.rubyonrails.com/classes/Breakpoint.html">rails breakpoint library</a> requires irb, which loads the irb_history.</p>
+
+
+	<p>In summary: the contents of irb_history are loaded into object space on each request made to your rails app, while in development.  These strings do not appear to get garbage collected.  The problem does not affect apps running in production as the breakpoint library is not loaded in that environment.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/memoryleak" rel="tag">memory leak</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/17/i-guess-thats-one-way-to-do-it">I guess that's one way to do it...</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 17 Aug 2006 08:08:00">
+                  Thu, 17 Aug 2006 08:08:00
+                </span>
+              </p>
+          
+              <p>We&#8217;re not <em>quite</em> at this stage yet&#8230;</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ActiveRecord::ConnectionAdapters::MysqlAdapter</span>
+  <span class="keyword">alias</span> <span class="symbol">:execute_before_test_hijack</span> <span class="symbol">:execute</span>
+  <span class="keyword">def </span><span class="method">execute</span><span class="punct">(*</span><span class="ident">args</span><span class="punct">)</span>
+    <span class="keyword">unless</span> <span class="ident">args</span><span class="punct">.</span><span class="ident">first</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^SHOW FIELDS FROM</span><span class="punct">/</span> <span class="punct">||</span> <span class="punct">%w[</span><span class="string">BEGIN COMMIT ROLLBACK END</span><span class="punct">].</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">args</span><span class="punct">.</span><span class="ident">first</span><span class="punct">)</span>
+      <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">You know you're not allowed to use the database in your tests...</span><span class="punct">&quot;</span> <span class="comment"># We could be more gentle with a warn</span>
+    <span class="keyword">end</span>
+    <span class="ident">execute_before_unit_test_hijack</span><span class="punct">(*</span><span class="ident">args</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/database" rel="tag">database</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/14/tickling-link_to-into-submission">Tickling link_to into submission</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 14 Aug 2006 23:10:00">
+                  Mon, 14 Aug 2006 23:10:00
+                </span>
+              </p>
+          
+              <p>What a crappy title.  Ho hum.</p>
+
+
+	<p>This bit explains the itch I had.  Skip over it if you like.</p>
+
+
+	<p>I recently finished re-structuring some of the code at <a href="http://www.reevoo.com">work</a>, in which I namespaced all of the admin type controllers.  At the same time, I attempted to split some of the larger, confused (about their responsibilities) controllers into smaller chunks.  This all seems to have worked quite well, but we&#8217;ve ended up with some naff (I haven&#8217;t used that word in ages) action names.</p>
+
+
+	<p>I like, where possible, to follow the scaffold naming convention (list, show, new, create, edit, update and destroy); and so went ahead and started changing things.  I was writing my tests like mum always said I should<sup><a href="#fn1">1</a></sup> when I realised that there was a bit missing (uh oh).  You see, I was ensuring that my controllers responded to certain actions; and I was also ensuring that my views had links to certain controllers and actions.  The missing link was a check as to whether the links in my views went to valid controller actions.  I could, for example, have been testing for a link to /foo/edit in my view but for an edit_foo action in my foo_controller test.  Both tests would pass, but the application would still be broken.  Not cool.  We do actually have <a href="http://openqa.org/selenium">something</a> in place to perform these tests but I&#8217;m still a bit scared of selenium and don&#8217;t use it as much as I should.</p>
+
+
+	<p>Anyway, i started thinking about bending the <a href="http://api.rubyonrails.com/classes/ActionView/Helpers/UrlHelper.html#M000378">link_to</a> helper to my will.  I figured that the little fella was a good candidate to not only give me a perfectly formed chunk of html goodness; but to also tell me whether the said chunk of html goodness was actually going to work (i.e. whether my app responded to the generated url).  Cool idea huh.</p>
+
+
+	<p>I&#8217;m getting tired and a little bored now so I&#8217;ll wrap this post up.  I&#8217;ve created a <a href="http://dev.seagul.co.uk/repository/browse/plugins/action_view_helper_url_helper">plugin</a> (svn co svn://dev.seagul.co.uk/plugins/action_view_helper_url_helper) that replaces the link_to method to add a class attribute (invalid_href_target or valid_href_target) to the generated anchor tag.  You could then use the assert_no_broken_links assertion to ensure there are no anchors with a class of invalid_href_target in your views; and/or you could style it (see resource/style.css as an example) so that you can see any broken links at a glance whilst in development (as shown in the image below).</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/192/460075342_987c127e66_o.jpg" alt="" /></p>
+
+
+	<p>The code is pretty poor/naive, works with rails 1.0.0 (hence my trying to <a href="http://blog.seagul.co.uk/articles/2006/08/14/create-rails-projects-using-a-specific-rails-gem-version">set-up a rails 1.0.0 app</a> earlier), doesn&#8217;t work with rails 1.1.6 (not sure about versions in between) and may or may not work for you.  I kinda think it&#8217;s a good idea but there&#8217;s every chance that a) it&#8217;s not or b) there&#8217;s already a simple solution to this problem.</p>
+
+
+	<p>Let me know how you get on if you decide to risk the health of your project by trying this plugin.</p>
+
+
+	<p id="fn1"><sup>1</sup> She didn&#8217;t say that.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/plugin" rel="tag">plugin</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/14/create-rails-projects-using-a-specific-rails-gem-version">Create rails projects using a specific rails gem version</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 14 Aug 2006 22:06:00">
+                  Mon, 14 Aug 2006 22:06:00
+                </span>
+              </p>
+          
+              <p>I just found this when trying to create a rails project using rails 1.0.0 (having both 1.0.0 and 1.1.6 installed as gems).</p>
+
+
+	<p>If the first argument to the rails command is a valid (i.e. installed) version number and surrounded by underscores then that version of the gem is used to create the rails application structure.</p>
+
+
+	<p>So (with 1.0.0 and 1.1.6 gems installed)..</p>
+
+
+<pre>
+$ rails _1.0.0_ my-rails-proj
+#-&gt; uses rails version 1
+
+$ rails my-rails-proj
+#-&gt; uses latest rails version (1.1.6)
+</pre>
+
+	<p>Although you can normally place the rails libraries into the vendor directory of a given rails app (to use that specific rails version); I had problems when placing rails 1.0.0 into a rails 1.1.6 generated app.  An error is encountered when trying to boot webrick..</p>
+
+
+<code>
+./script/../config/../vendor/rails/railties/lib/initializer.rb:256:in `send': undefined method `cache_template_extensions=' for ActionView::Base:Class (NoMethodError)
+</code>
+
+	<p>By passing the version argument to the rails command and then placing rails 1.0.0 into the vendor directory, everything works as expected.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/05/new-rails-weblob">New rails weblob</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 05 Aug 2006 00:47:00">
+                  Sat, 05 Aug 2006 00:47:00
+                </span>
+              </p>
+          
+              <p><a href="http://railsblob.blogspot.com/">he he he</a></p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/blog" rel="tag">blog</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/02/helpful-error-messages-when-active-record-objects-fail-validation-in-tests">Helpful error messages when active record objects fail validation (in tests)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 02 Aug 2006 13:47:00">
+                  Wed, 02 Aug 2006 13:47:00
+                </span>
+              </p>
+          
+              <p>I <a href="http://blog.seagul.co.uk/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">posted</a> a while back about displaying the reasons for an active record model failing validation.</p>
+
+
+	<p>I knew the code was hacky and nasty but didn&#8217;t realise quite how bad until I noticed how <a href="http://dev.rubyonrails.org/browser/tags/rel_1-1-0/activerecord/lib/active_record/validations.rb">simply</a>  (1 line) the same thing was implemented in <a href="http://weblog.rubyonrails.com/2006/3/28/rails-1-1-rjs-active-record-respond_to-integration-tests-and-500-other-things">Rails 1.1</a> (and above).</p>
+
+
+	<p>Although it&#8217;s only useful for people still on Rails 1.0, I made a quick plugin that backports this change.  I don&#8217;t really want to put it in my subversion repository, so have just pasted the necessary code below.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># File init.rb</span>
+<span class="ident">require</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/lib/record_invalid</span><span class="punct">'</span></code></pre></div>
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># File record_invalid.rb</span>
+<span class="keyword">module </span><span class="module">ActiveRecord</span>
+
+  <span class="keyword">class </span><span class="class">RecordInvalid</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecordError</span>
+    <span class="keyword">def </span><span class="method">initialize</span><span class="punct">(</span><span class="ident">record</span><span class="punct">)</span>
+      <span class="attribute">@record</span> <span class="punct">=</span> <span class="ident">record</span>
+      <span class="keyword">super</span><span class="punct">(&quot;</span><span class="string">Validation failed: <span class="expr">#{@record.errors.full_messages.join(&quot;, &quot;)}</span></span><span class="punct">&quot;)</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>To create a plugin from this, create the following structure in your rails_app/vendor/plugins directory.</p>
+
+
+<pre>
+active_record_validation_error/
+|
+|--init.rb (copy contents of code above)
+|
+|--lib/
+   |
+   |--record_invalid.rb (copy content of code above)
+</pre>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/activerecord" rel="tag">active record</a>, 
+                
+                  <a href="/articles/tag/plugin" rel="tag">plugin</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/validation" rel="tag">validation</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/17/some-realisations-about-testing">Some realisations about testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 17 Jul 2006 09:19:00">
+                  Mon, 17 Jul 2006 09:19:00
+                </span>
+              </p>
+          
+              <p>Having been predominantly involved in <a href="http://www.rubyonrails.com">Rails</a> development just recently, <a href="http://api.rubyonrails.com/classes/Fixtures.html">fixtures</a> have taken on a slightly different meaning to what I now believe to be the original understanding.  Having recently re-read <a href="http://www.amazon.co.uk/gp/product/0321146530/202-8808398-1811851?v=glance&#38;n=266239">Test Driven Development: By Example</a> I re-discovered the &#8216;original&#8217; meaning of the word (essentially shared objects used by all tests in a test case).</p>
+
+
+	<p>This has made me think about the way that I&#8217;ve been structuring my tests (or not structuring them as the case may be).  I have never been a fan of the setup and teardown methods provided to us in <a href="http://en.wikipedia.org/wiki/XUnit">xUnit</a> and I now believe this to be due to my misunderstanding of the term fixture and therefore their intention.  This has led to my test cases growing very large and containing many disparate tests.  If there was any separation of the testcase then it was usually based on functionality of a particular method (which separately leads me to believe that they may have been better expressed in a new object).  I now understand that test cases should be split to contain tests that rely on a common test fixture.  As soon as I started to do this, the setup and (to a lesser degree) teardown methods have become much more useful.</p>
+
+
+	<p>I&#8217;ve also started to create my test cases as anonymous classes derived from Test::Unit::TestCase.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+  <span class="keyword">def </span><span class="method">test_</span>
+    <span class="ident">assert</span> <span class="constant">true</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>I find that this helps when trying to determine where a new test should be placed.  If the class has a name I&#8217;m tempted to scan that and make a decision as to whether a new test belongs in this case.  By keeping them anonymous, I have to inspect the test fixture in order to understand whether a new test belongs here.</p>
+
+
+	<p><strong>Note</strong> I may also add a comment right below Class.new to explicitly specify the fixture for this testcase.  This may seem to go against not naming the classes in the first place but I think part of the problem with class names is the lack of punctuation and therefore the difficulty in clearly expressing the test fixture.</p>
+
+
+	<p>I&#8217;ve chosen a somewhat contrived example to demonstrate my new found test structure.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+  <span class="comment"># An empty stack</span>
+
+  <span class="keyword">def </span><span class="method">setup</span>
+    <span class="attribute">@stack</span> <span class="punct">=</span> <span class="constant">Stack</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_accept_an_item_when_sent_push</span>
+    <span class="ident">assert_nothing_raised</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">push</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_complain_when_sent_top</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">StackUnderflowError</span><span class="punct">)</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">top</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_complain_when_sent_pop</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">StackUnderflowError</span><span class="punct">)</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">pop</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>The fixture for this test is an empty stack.  The individual tests prod and query the empty stack to ensure that it behaves as expected.  Although the example above is incredibly simple, I have consistently found that my individual test methods become much smaller.</p>
+
+
+	<p>Notice that the names of the tests all start &#8216;test_should&#8217;.  Not only does this help us think about the responsibilities of the object; but it enables us to maintain living system specifications based on the tests.  I believe this idea first came from <a href="http://agiledox.sourceforge.net/index.html">testdox for Java</a> but was introduced to me by <a href="http://www.reevoo.com/blogs/bengriffiths/">Ben</a> at <a href="http://www.reevoo.com">work</a>.  In fact Ben has written a cool <a href="http://www.reevoo.com/blogs/bengriffiths/2006/04/05/rails-agiledox-browser/">Agiledox server</a> that displays the system specifications for your rails project.</p>
+
+
+	<p>The realisations set out above have come at around the same time as my taking more of an interest in <a href="http://rspec.rubyforge.org/">rSpec</a> (the stack test above has been adapted directly from one of the rSpec examples); a <a href="http://behaviour-driven.org/">behaviour driven development</a> framework for <a href="http://www.ruby-lang.org">ruby</a>.  I haven&#8217;t done any real work with rSpec yet but am hoping it might improve the way I think of both testing and OO design in general.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/agiledox" rel="tag">agiledox</a>, 
+                
+                  <a href="/articles/tag/bdd" rel="tag">bdd</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/rspec" rel="tag">rspec</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/tdd" rel="tag">tdd</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/14/textmate-command-to-display-active-record-column-attributes">Textmate command to display Active Record column attributes</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 14 Jul 2006 08:18:00">
+                  Fri, 14 Jul 2006 08:18:00
+                </span>
+              </p>
+          
+              <p>I find myself constantly visiting either the console or the mysql command line to check out the attributes (columns) of <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">active record</a> objects.</p>
+
+
+	<p>I know there is a <a href="http://blogs.pragprog.com/cgi-bin/pragdave.cgi/Tech/Ruby/AnnotateModels.rdoc">plugin</a> by <a href="http://blogs.pragprog.com/cgi-bin/pragdave.cgi">Dave Thomas</a> that places the table structure within the model code itself.  To be honest I&#8217;ve never tried this and it might well suffice (although I&#8217;m not 100% convinced I like the idea).</p>
+
+
+	<p>Anyhoo, I just spent some time whilst on the train hacking together a basic <a href="http://macromates.com/">textmate</a> command that displays a tooltip containing the table structure.  It&#8217;s very basic (though you wouldn&#8217;t have thought it based on the amount of time it took me together<sup><a href="#fn1">1</a></sup>); but seems to work ok.</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/236/460082493_49ff4cd1ed_o.png" alt="" /></p>
+
+
+	<p>The code is below.  You&#8217;ll need to add a ruby command in the ruby textmate bundle, setting the intput to &#8216;selected text&#8217; or &#8216;nothing&#8217;, the output to &#8216;show as tooltip&#8217; and preferably a hotkey that isn&#8217;t one of the ones you use every day (however tempting that is).</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#! /usr/local/bin/ruby</span>
+
+<span class="ident">project</span> <span class="punct">=</span> <span class="constant">ENV</span><span class="punct">['</span><span class="string">TM_PROJECT_DIRECTORY</span><span class="punct">']</span>
+<span class="ident">word</span> <span class="punct">=</span> <span class="constant">ENV</span><span class="punct">['</span><span class="string">TM_CURRENT_WORD</span><span class="punct">']</span>
+
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{project}</span>/config/boot</span><span class="punct">&quot;</span>
+<span class="ident">require</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{project}</span>/config/environment</span><span class="punct">&quot;</span>
+
+<span class="ident">klass</span> <span class="punct">=</span> <span class="constant">Object</span><span class="punct">.</span><span class="ident">const_get</span><span class="punct">(</span><span class="ident">word</span><span class="punct">)</span> <span class="keyword">rescue</span> <span class="constant">nil</span>
+<span class="keyword">if</span> <span class="ident">klass</span> <span class="keyword">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="keyword">class </span><span class="class">==</span> <span class="ident">Class</span> <span class="ident">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">ancestors</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">)</span>
+  <span class="ident">columns</span> <span class="punct">=</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">columns_hash</span>
+
+  <span class="ident">data</span> <span class="punct">=</span> <span class="punct">[]</span>
+  <span class="ident">data</span> <span class="punct">+=</span> <span class="punct">[%w[</span><span class="string">column primary sql_type default</span><span class="punct">]]</span>
+  <span class="ident">data</span> <span class="punct">+=</span> <span class="punct">[%w[</span><span class="string">------ ------- -------- -------</span><span class="punct">]]</span>
+  <span class="ident">data</span> <span class="punct">+=</span> <span class="ident">columns</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">col</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">|</span> <span class="punct">[</span><span class="ident">col</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">primary</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">sql_type</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">default</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">]</span> <span class="punct">}</span>
+
+  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="ident">data</span><span class="punct">.</span><span class="ident">inject</span><span class="punct">('</span><span class="string"></span><span class="punct">')</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">output</span><span class="punct">,</span> <span class="ident">array</span><span class="punct">|</span> 
+    <span class="ident">output</span> <span class="punct">+</span> <span class="ident">array</span><span class="punct">.</span><span class="ident">inject</span><span class="punct">('</span><span class="string"></span><span class="punct">')</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">row_str</span><span class="punct">,</span> <span class="ident">value</span><span class="punct">|</span> <span class="ident">row_str</span> <span class="punct">+</span> <span class="ident">value</span><span class="punct">.</span><span class="ident">ljust</span><span class="punct">(</span><span class="number">20</span><span class="punct">)</span> <span class="punct">}</span> <span class="punct">+</span> <span class="punct">&quot;</span><span class="string"><span class="escape">\n</span></span><span class="punct">&quot;</span>
+  <span class="keyword">end</span>
+<span class="keyword">elsif</span> <span class="ident">klass</span> <span class="keyword">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="keyword">class </span><span class="class">==</span> <span class="ident">Class</span> <span class="ident">and</span> <span class="keyword">not</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">ancestors</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">)</span>
+  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{word}</span> is not an Active Record derived class</span><span class="punct">&quot;</span>
+<span class="keyword">else</span>
+  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{word}</span> was not recognised as a class</span><span class="punct">&quot;</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>It relies on you having your entire rails project (the folder right above app, config, script etc) open in textmate (in order to find the config files).  With that, just click on the name of an active record class (it has to be the actual class name at present, it&#8217;d be cool if it also worked based on the class definition you are currently in too) and hit your hotkey of choice (best to use the one you assigned to this command).  Hey presto, a tooltip containing your table structure.</p>
+
+
+	<p>One odd thing I&#8217;ve noticed is that it never recognises standard class constants.  It should display &#8216;this is not an active record derived class&#8217; but instead always displays &#8216;was not recognised as a class&#8217;.  Oh well.</p>
+
+
+	<p>Anyone find this remotely useful or want to finish off what I&#8217;ve started?</p>
+
+
+	<p>[1] I spent ages trying to develop within the textmate bundle editor before realising it&#8217;d be a helluva lot quicker and easier to develop in textmate proper.  Hmmm.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/activerecord" rel="tag">active record</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/textmate" rel="tag">textmate</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">Using in memory Active Record objects with associations for testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 12 Jul 2006 01:23:00">
+                  Wed, 12 Jul 2006 01:23:00
+                </span>
+              </p>
+          
+              <p>Hitting the database in testing is bad.</p>
+
+
+	<p>Something that I&#8217;ve found relatively useful at <a href="http://www.reevoo.com">work</a> is to use real <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> objects without any persistence (basically use AR#new and not AR#save[!] or AR#create[!]).  When using standard techniques to create the association objects in memory you only get one side of the association at a time.  Consider the following.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:addresses</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">Address</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
+<span class="keyword">end</span>
+
+<span class="comment"># One sided relationship with parent getting access to child</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">build</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="constant">nil</span>
+
+<span class="comment"># One sided relationship with child getting access to parent</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="constant">Address</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="ident">home</span><span class="punct">.</span><span class="ident">build_person</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+
+<span class="comment"># The example above that creates the address first could also have been written as.</span>
+<span class="comment"># chris = Person.new</span>
+<span class="comment"># home = Address.new(:person =&gt; chris)</span></code></pre></div>
+
+	<p>You can see that in each case, only one side of the relationship has access to the other.  If we were persisting the objects then the relationship would be two way via a database lookup.  We can get a two way relationship in memory; although it has a certain duplication smell about it.  Assuming the same models as above, we can amend the above examples like so.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># First example</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">build</span><span class="punct">(</span><span class="symbol">:person</span> <span class="punct">=&gt;</span> <span class="ident">chris</span><span class="punct">)</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+
+<span class="comment"># Second example</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="constant">Address</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="ident">home</span><span class="punct">.</span><span class="ident">build_person</span><span class="punct">(</span><span class="symbol">:addresses</span> <span class="punct">=&gt;</span> <span class="punct">[</span><span class="ident">home</span><span class="punct">])</span>
+
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span></code></pre></div>
+
+	<p>I&#8217;ve occasionally used this in place of stubbing methods but am still not 100% convinced of the definite benefits one way or another.  I do have some definite disadvantages of stubbing methods (nothing exciting, they&#8217;ve almost certainly been noted by many others in the past) which I&#8217;ll note down at a later date.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/activerecord" rel="tag">active record</a>, 
+                
+                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">More helpful messages for Active Record validation errors in Rails testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 21 Jun 2006 08:10:00">
+                  Wed, 21 Jun 2006 08:10:00
+                </span>
+              </p>
+          
+              <p>In testing (and production code) <a href="http://www.reevoo.com">we</a> always try to persist <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> models with the bang variants (save! and create!).  This allows us to <a href="http://www.martinfowler.com/ieeeSoftware/failFast.pdf">fail fast</a> if any of our models fail our  <a href="http://api.rubyonrails.com/classes/ActiveRecord/Validations/ClassMethods.html">validation</a> rules.</p>
+
+
+	<p>The problem is that the standard <a href="http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html">test/unit</a> reporting framework displays the exception without any details of why the validation failed.</p>
+
+
+<div class="typocode">
+<pre>
+ 1) Error:​
+test_should_fail_validation(AardvarkTest):​
+ActiveRecord::RecordInvalid:​ActiveRecord::RecordInvalid
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in 'save!'
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in 'create!'
+   /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in 'test_should_fail_validation'
+
+1 tests, 0 assertions, 0 failures, 1 errors
+</pre>
+</div>
+
+	<p><strong>Note.</strong> This isn&#8217;t the fault of test/unit.  It has to deal with generic exceptions and so cannot &#8216;know&#8217; that Active Record Exceptions can be used to find the reason for the failure.</p>
+
+
+	<p>At this point, it would be very easy to jump into the code of the Active Record model, check out the validations and satisfy them within your code.  However, it&#8217;d be much cooler if we could just add the reason for the failures to the error message that is displayed.</p>
+
+
+	<p>I initially played around with a method that took a block and would wrap the block with a begin/rescue clause to explicitly catch RecordInvalid exceptions, displaying the reason for failure.</p>
+
+
+	<p>Then I thought it&#8217;d be cool if we could integrate slightly more with both test/unit and <a href="http://www.rubyonrails.com">rails</a>.  The result is a <a href="http://wiki.rubyonrails.org/rails/pages/Plugins">plugin</a> (<a href="http://dev.seagul.co.uk/repository/browse/plugins/test_unit_active_record_errors">source</a>) that can be installed as follows.</p>
+
+
+<div class="typocode">
+<pre>
+script/plugin install svn://dev.seagul.co.uk/plugins/test_unit_active_record_errors
+</pre>
+</div>
+
+	<p>The output from a failed validation now includes the validation errors.  Yay.</p>
+
+
+<div class="typocode">
+<pre>
+ 1) Error:​
+test_should_fail_validation(AardvarkTest):​
+ActiveRecord::RecordInvalid: ActiveRecord::RecordInvalid
+   /opt/local/lib//gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in `save!'
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in `create!'
+   /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in `__test_should_fail_validation_without_custom_error_handling'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `__send__'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `test_should_fail_validation'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:27:in `test_should_fail_validation'
+ActiveRecord Errors:​Surname can't be blank, Email can't be blank
+
+1 tests, 0 assertions, 0 failures, 1 errors
+</pre>
+</div>
+
+	<p>The code is pretty hacky and includes no tests.  It&#8217;s only been tested on Mac Os <span class="caps">X 10</span>.4.6 with Ruby 1.8.2 and Rails 1.0.0 but please feel free to do what you will with it if you think it might be of some use to you.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/active" rel="tag">active</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/record" rel="tag">record</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+                  <a href="/articles/tag/validations" rel="tag">validations</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/06/02/rails-plugin-to-utilise-sqlite-for-testing">Rails plugin to utilise Sqlite for testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 02 Jun 2006 16:41:00">
+                  Fri, 02 Jun 2006 16:41:00
+                </span>
+              </p>
+          
+              <p>I feel pretty honoured that <a href="http://nubyonrails.com/">Geoffrey Grosenbach</a>, of <a href="http://podcast.rubyonrails.com/">Rails podcast</a> fame (plus so much more) has <a href="http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids">used</a> the stuff <a href="http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing">I wrote</a> a while back to create a <a href="http://wiki.rubyonrails.com/rails/pages/Plugins">rails plugin</a>, enabling the easy use of sqlite for testing.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/05/12/using-active-record-models-in-rails-migrations">Using active record models in rails migrations</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 12 May 2006 16:32:00">
+                  Fri, 12 May 2006 16:32:00
+                </span>
+              </p>
+          
+              <p>I seem to remember that <a href="http://www.reevoo.com">we</a> first came across the &#8220;migrations out of sync with code&#8221; problems around the time that Scott Laird <a href="http://scottstuff.net/blog/articles/2005/10/31/migrating-in-two-dimensions">posted</a> about it regarding <a href="http://www.typosphere.org">typo</a>.</p>
+
+
+	<p>Having just read <a href="http://www.reevoo.com/blogs/bengriffiths">Ben&#8217;s</a> <a href="http://www.reevoo.com/blogs/bengriffiths/2006/05/10/misrepresenting-rails-reliability/">post</a> about rails reliability, I was reminded again about the pitfalls of using model code in migrations.</p>
+
+
+	<blockquote>
+		<p>&#8220;Migrations can be problematic if the code under which the migration was written changes before the migration is deployed and released.&#8221;</p>
+	</blockquote>
+
+
+	<p>We&#8217;re a small team working on the same codebase, yet we still get bitten relatively frequently.  A while back we started to re-define our AR classes within our migrations to ensure that we weren&#8217;t relying on model code.  This has been <a href="http://rails.techno-weenie.net/tip/2006/2/23/safely_using_models_in_migrations">documented</a> <a href="http://wrath.rubyonrails.org/pipermail/rails-core/2006-February/000830.html">elsewhere</a>.  The typo codebase has gone slightly further and created a <a href="http://www.typosphere.org/trac/browser/trunk/lib/bare_migration.rb">BareMigration module</a> that takes care of some magic for you.  To be fair, I haven&#8217;t looked in detail so am not entirely sure what it does..</p>
+
+
+	<p>The problem with re-defining models in the migrations is that it relies on you remembering to re-define them (I&#8217;m good at &#8216;forgetting&#8217; to do things unless I really have to).  There is nothing to stop you using the real models; that is, until someone complains that the migrations are broken and you have to fix it.</p>
+
+
+	<p>We are currently using a slightly more robust (I think) solution that forces you to re-define any AR models that you wish to use in migrations.  It does this by hijacking the &#8216;zero&#8217; migration (a migration starting with 0 that gets loaded along with all other migrations but doesn&#8217;t interfere in any other way) to ensure any AR derived classes are defined in a module.  It&#8217;s naive but seems to work ok.</p>
+
+
+	<p>If you don&#8217;t already have a zero migration, then create one.  The name is important as you will need to create an empty class of the same name in the file itself (for migrations to be happy).  Ours is called 000_rails_ext.rb.  The code is below.  Our code isn&#8217;t identical (yet) as I just realised that we had an ineffective call to super in the inherited method, now replaced with alias_method.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby">  <span class="keyword">class </span><span class="class">RailsExt</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">class </span><span class="class">ActiveRecord::Base</span>
+    <span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">self</span>
+      <span class="ident">alias_method</span> <span class="symbol">:__original__inherited</span><span class="punct">,</span> <span class="symbol">:inherited</span>
+      <span class="keyword">def </span><span class="method">inherited</span><span class="punct">(</span><span class="ident">base</span><span class="punct">)</span>
+        <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">You're trying to use an ActiveRecord::Base derived class (--<span class="expr">#{base}</span>--) that is not defined in this migration.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">base</span><span class="punct">.</span><span class="ident">to_s</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^Migration.*</span><span class="punct">/</span>
+        <span class="ident">__original__inherited</span><span class="punct">(</span><span class="ident">base</span><span class="punct">)</span>
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+  <span class="constant">Dispatcher</span><span class="punct">.</span><span class="ident">reset_application!</span></code></pre></div>
+
+	<p>The inherited callback is triggered everytime we define a class that inherits from ActiveRecord::Base.  All we do is check that its name starts with Migration and raise an error if not (failing fast is good).  The name is the fully qualified name and so includes namespaces.  This is good as it allows us to place all re-defined classes in a module named Migration&lt;number&gt;.  This module can then be included in the migration class itself.  Although I can&#8217;t remember exactly now, I think the reason we need to reset_application! is because we have some calls to our models in environment.rb.  These models would already be loaded and therefore any future references to them (in the migrations) would bypass our custom inherited method.  By resetting the app, we are sure that we have no AR models loaded.</p>
+
+
+	<p>To re-define the models in the migration, we use something like..</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby">  <span class="keyword">class </span><span class="class">MyFirstMigration</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Migration</span>
+    <span class="keyword">def </span><span class="method">self.up</span>
+    <span class="keyword">end</span>
+    <span class="keyword">def </span><span class="method">self.down</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">module </span><span class="module">Migration001</span>
+    <span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+  <span class="constant">MyFirstMigration</span><span class="punct">.</span><span class="ident">send</span><span class="punct">(</span><span class="symbol">:include</span><span class="punct">,</span> <span class="constant">Migration001</span><span class="punct">)</span></code></pre></div>
+
+	<p>Although sending the migration class the include message with the module isn&#8217;t great, we use it as it allows us to re-define all our classes below the actual migration.  If we were to place the module at the top then this wouldn&#8217;t be required but I feel that it gets in the way of being able to read the migration clearly.</p>
+
+
+	<h3>A problem with this method and re-defining classes directly in the migration</h3>
+
+
+	<p>Both methods create AR derived classes in a namespace that isn&#8217;t the root namespace.  We came across a problem where we were serializing the contents of one of these re-defined classes to the database from within our migration.  When we came to read the serialized data in our code, it didn&#8217;t &#8216;know&#8217; what a Migration001::Person was and so raised an exception.  Without thinking about it too much, I think this might cause problems with <span class="caps">STI</span> too (I&#8217;ve seen notes to this effect from the Typo migration solution).</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/migrations" rel="tag">migrations</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing">In memory sqlite database for rails testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 08 Feb 2006 08:54:00">
+                  Wed, 08 Feb 2006 08:54:00
+                </span>
+              </p>
+          
+              <p><strong>Update 12th June 2006</strong></p>
+
+
+	<p>There is now a <a href="http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids">plugin</a> from <a href="http://nubyonrails.com/">Geoffrey Grosenbach</a> that encapsulates this hack.</p>
+
+
+	<p><del>-</del></p>
+
+
+	<p>I finally took some time to get the <a href="http://www.sqlite.org">sqlite</a> in memory database working correctly for testing <a href="http://www.rubyonrails.com">Rails</a> apps.</p>
+
+
+	<p>It appears to be available by default (appearing in the example database.yml file) as</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">sqlite3_in_memory_example:
+  adapter: sqlite3
+  database: &quot;:memory:&quot;</code></pre></div>
+
+	<p>Unfortunately, it doesn&#8217;t appear to be quite as easy as just replacing sqlite3_in_memory_example with test&#8230;  The main problem being that in-memory databases have a tendency not to hang around (odd that).</p>
+
+
+	<p>My solution (which has every chance of being bad or downright incorrect) is to force the creation of the database in memory at the beginning of the tests.</p>
+
+
+	<p>The current implementation relies on either schema.rb being present or comprehensive migrations (i.e. you can use migrations to get a database from zero to your current development status).</p>
+
+
+	<p>If you wish to use the schema.rb approach then uncomment the following line in your environment.rb file.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">config</span><span class="punct">.</span><span class="ident">active_record</span><span class="punct">.</span><span class="ident">schema_format</span> <span class="punct">=</span> <span class="symbol">:ruby</span></code></pre></div>
+
+	<p>Un-commenting this option ensures that the database schema is exported to schema.rb rather than adapter specific sql (ENV_database.sql).</p>
+
+
+	<p>Add the following code right below the &#8221;# Include your application configuration below&#8221; line in environment.rb.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">in_memory_database?</span>
+  <span class="constant">ENV</span><span class="punct">[&quot;</span><span class="string">RAILS_ENV</span><span class="punct">&quot;]</span> <span class="punct">==</span> <span class="punct">&quot;</span><span class="string">test</span><span class="punct">&quot;</span> <span class="keyword">and</span> 
+  <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">.</span><span class="ident">connection</span><span class="punct">.</span><span class="keyword">class </span><span class="class">==</span> <span class="ident">ActiveRecord</span><span class="punct">::</span><span class="ident">ConnectionAdapters</span><span class="punct">::</span><span class="ident">SQLiteAdapter</span> <span class="ident">and</span>
+  <span class="constant">Rails</span><span class="punct">::</span><span class="constant">Configuration</span><span class="punct">.</span><span class="ident">new</span><span class="punct">.</span><span class="ident">database_configuration</span><span class="punct">['</span><span class="string">test</span><span class="punct">']['</span><span class="string">database</span><span class="punct">']</span> <span class="punct">==</span> <span class="punct">'</span><span class="string">:memory:</span><span class="punct">'</span>
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> <span class="ident">in_memory_database?</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">creating sqlite in memory database</span><span class="punct">&quot;</span>
+  <span class="ident">load</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{RAILS_ROOT}</span>/db/schema.rb</span><span class="punct">&quot;</span> <span class="comment"># use db agnostic schema by default</span>
+<span class="comment">#  ActiveRecord::Migrator.up('db/migrate') # use migrations</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>The reason for adding this code at this point and not just at the end of the environment file is that you may have further logic in environment that actually relies on the database being present.</p>
+
+
+	<p>If you are running your tests using rake then it shouldn&#8217;t matter whether you use the schema or migrations to create the database.  This is because the rake test tasks rely on the test database being set-up, which involves exporting the development db schema to file.</p>
+
+
+	<p>If you wish to run tests individually (which, of course, you do) and you choose to use the schema to create your test scructure, you must make sure that it first exists.  The easiest way is to run the following rake task.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">rake db_schema_dump</code></pre></div>
+
+	<p>That should be all there is to it; although I must confess that I&#8217;ve seen additional strange problems when running certain tests against the sqlite in-memory database.  In certain cases I think these may be fixture related.  Where, in <a href="http://www.mysql.org">MySql</a>, you seem to be able to omit required fields (not null) from a fixtures file, sqlite requires their presence.  In other cases; who knows&#8230;</p>
+
+
+	<h3>Testing your sqlite installation</h3>
+
+
+	<p>One final note that may be of interest.  When I first started playing with sqlite3 with Ruby it seems that I didn&#8217;t have it installed correctly (relying on pre-installed sqlite and the sqlite3-ruby gem).  As per <a href="http://wiki.rubyonrails.org/rails/pages/HowtoUseSQLite">this article</a> I had to un-install sqlite3-ruby gem and first install the swig port before re-installing sqlite3-ruby gem.  You can test for the correct installation by running the <a href="http://wiki.rubyonrails.com/rails/pages/ActiveRecord">Active Record</a> tests against sqlite by following these steps.</p>
+
+
+	<ul>
+	<li>Change directory to Active Record tests (rails/activerecord/test)</li>
+	</ul>
+
+
+	<ul>
+	<li>Run base_test.rb, supplying the location of the sqlite3 connection to the load path.</li>
+	</ul>
+
+
+	<ul>
+	<li><code>ruby -I "connections/native_sqlite3/" base_test.rb</code></li>
+	</ul>
+
+
+	<p>You can also run the tests using the sqlite3 in memory connection.  To do so, perform these actions before running the tests as above.</p>
+
+
+	<ul>
+	<li>Remove the standard sqlite3 connection</li>
+	</ul>
+
+
+	<ul>
+	<li><code>rm connections/native_sqlite3/connection.rb</code></li>
+	</ul>
+
+
+	<ul>
+	<li>Rename in_memory_connection.rb as connection.rb</li>
+	</ul>
+
+
+	<ul>
+	<li><code>mv connections/in_memory_connection.rb connections/connection.rb</code></li>
+	</ul>
+
+
+	<p>I&#8217;d suggest doing this against an svn checked out copy of rails, purely due to the these at which the changes can be reverted.</p>
+
+
+	<h3>Useless stats</h3>
+
+
+	<p>Changing to in-memory testing shaved about 33% off the running time of our unit tests.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
+                
+                  <a href="/articles/tag/test" rel="tag">test</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

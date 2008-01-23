@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published in February 2006 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/02/27/claiming-my-blog-on-technorati">Claiming my blog on technorati</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 27 Feb 2006 14:40:00">
+                  Mon, 27 Feb 2006 14:40:00
+                </span>
+              </p>
+          
+              <p>Not entirely sure what this does&#8230;</p>
+
+
+	<p><a href="http://technorati.com/claim/yvtpcjveej">Technorati Profile</a></p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/02/24/some-freebsd-housekeeping">Some Freebsd housekeeping</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 24 Feb 2006 15:17:00">
+                  Fri, 24 Feb 2006 15:17:00
+                </span>
+              </p>
+          
+              <p>I use <a href="http://www.exonetric.com/">exonetric</a> to host this <a href="http://www.typosphere.org">typo</a> instance.  It&#8217;s on a <a href="http://www.freebsd.org">freebsd</a> virtual server so I have to maintain everything.  For a long time, I&#8217;ve been using <a href="http://www.mysql.org">mysql</a> 4.  This is fine apart from a problem during initial installation causing it not to start automatically on machine restart.  This meant that whenever the virtual machine was rebooted I had to manually restart mysql, which basically wouldn&#8217;t happen until I actually noticed it &#8211; not cool.</p>
+
+
+	<p>I spent the time today to upgrade to mysql 5.  Luckily this solved the auto start problem and mysql now comes up with the machine.</p>
+
+
+	<p>Although incredibly interesting (hmm) that wasn&#8217;t really the point of the post.  This is&#8230;  Since using freebsd I&#8217;ve always relied on <a href="http://www.freebsd.org/ports/">ports</a> (instructions for compilation of software) for the installation of software.  When installing mysql today, I used the pre-compiled package binary instead.  I&#8217;m amazed at how much faster it is; and now really can&#8217;t believe I&#8217;ve been bothering with the ports all this time.  I guess it was some kind of anal retentive control I thought I was getting by compiling the software myself; when infact I was only ever compiling with the default options and just wasting time&#8230;  Ho hum.</p>
+
+
+	<p>Two moral&#8217;s here me thinks.  Use packages if you don&#8217;t know what you&#8217;re doing (I don&#8217;t).  Don&#8217;t mess around with things you don&#8217;t understand (manually deleting ports dir before un-installing ports and then expecting packages to just overwrite them.  Oh well, it seems ok).</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/02/23/rails-rake-testing-without-database">Rails rake testing without database</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 23 Feb 2006 16:46:00">
+                  Thu, 23 Feb 2006 16:46:00
+                </span>
+              </p>
+          
+              <p>Continuing from the <a href="http://blog.seagul.co.uk/articles/2006/02/23/rails-testing-without-database">previous post</a>, it appears that the rake testing tasks are also tightly coupled to active record.</p>
+
+
+	<p>This feels quite dirty, but I&#8217;ve managed to get round it by manipulating the tasks from the outside (they are buried in the rails libs).</p>
+
+
+	<p>To replicate, create a new file called &#8216;default.rake&#8217; in the lib/tasks/ directory within your rails project, and paste in the following code.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">::</span><span class="constant">TASKS</span><span class="punct">.</span><span class="ident">delete</span><span class="punct">('</span><span class="string">default</span><span class="punct">')</span>
+<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
+<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
+
+<span class="ident">task</span> <span class="symbol">:default</span> <span class="keyword">do</span>
+  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">invoke</span>      <span class="keyword">rescue</span> <span class="ident">got_error</span> <span class="punct">=</span> <span class="constant">true</span>
+  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">invoke</span> <span class="keyword">rescue</span> <span class="ident">got_error</span> <span class="punct">=</span> <span class="constant">true</span>
+  <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Test failures</span><span class="punct">&quot;</span> <span class="keyword">if</span> <span class="ident">got_error</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Because this relies on the internal implementation of rake (instance variable names and <span class="caps">TASKS</span> constant) it might well do very bad things to versions that aren&#8217;t 0.6.2.</p>
+
+
+	<p><strong>Update 17:20</strong></p>
+
+
+	<p>Just realised that I don&#8217;t need most of the code above.  All you actually need in default.rake is as follows.  Stoopid Chris.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
+<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/02/23/rails-testing-without-database">Rails testing without database</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 23 Feb 2006 08:16:00">
+                  Thu, 23 Feb 2006 08:16:00
+                </span>
+              </p>
+          
+              <p>Just yesterday I wanted to create a very quick rails app that didn&#8217;t rely on a database.</p>
+
+
+	<p>I removed :active_record from the frameworks loaded in evironment, but apparently this wasn&#8217;t quite enough.  The setup and teardown methods in Test::Unit::TestCase were still attempting to load fixtures (which implies that active record is still present somewhere), which require the presence of a database.  This was causing tests not to run.  Having had a quick look at how active record intercepts the setup and teardown methods, it was relatively simple to stop it from doing so.</p>
+
+
+	<p>Just add the code below within the Test::Unit::TestCase declaration in test_helper.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">self.dont_use_fixtures</span>
+  <span class="ident">class_eval</span> <span class="keyword">do</span>
+    <span class="keyword">def </span><span class="method">self.method_added</span><span class="punct">(</span><span class="ident">method</span><span class="punct">);</span> <span class="keyword">end</span>
+    <span class="keyword">def </span><span class="method">setup</span><span class="punct">;</span> <span class="keyword">end</span>
+    <span class="keyword">def </span><span class="method">teardown</span><span class="punct">;</span> <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>This still requires that you add dont_use_fixtures into each test class definition.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">MyTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="ident">dont_use_fixtures</span>
+  <span class="keyword">def </span><span class="method">test_</span>
+    <span class="comment"># my first test</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Having just written this it&#8217;s obvious now that it would make more sense to not require the declaration in each test class (as we supposedly don&#8217;t even have access to active record).  We should probably also play fair and pass messages back to our parent if method_added isn&#8217;t being called with either setup or teardown.</p>
+
+
+	<p>The new code becomes (again, in Test::Unit::TestCase definition in test_helper).</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">self.method_added</span><span class="punct">(</span><span class="ident">method</span><span class="punct">)</span>
+  <span class="keyword">super</span> <span class="keyword">unless</span> <span class="punct">[</span><span class="symbol">:setup</span><span class="punct">,</span> <span class="symbol">:teardown</span><span class="punct">].</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method</span><span class="punct">.</span><span class="ident">to_sym</span><span class="punct">)</span>
+<span class="keyword">end</span>
+<span class="keyword">def </span><span class="method">setup</span><span class="punct">;</span> <span class="keyword">end</span>
+<span class="keyword">def </span><span class="method">teardown</span><span class="punct">;</span> <span class="keyword">end</span></code></pre></div>
+
+	<p>This appears to work ok&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/02/18/alternative-to-putty-ssh-on-windows">Alternative to Putty Ssh on Windows</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 18 Feb 2006 12:36:00">
+                  Sat, 18 Feb 2006 12:36:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve used <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">putty</a> for all my ssh needs on windows for a long time now.  It&#8217;s great but certainly lacks a little polish in some areas.</p>
+
+
+	<p>The one feature I really wanted was tabbed sessions.  After a little searching I came across a comment on this <a href="http://www.jroller.com/page/thuss?entry=tabbed_terminals_for_windows_redux">post</a> that mentioned an open source alternative called <a href="http://en.poderosa.org/">poderosa</a>.  I just got round to downloading and I must say that so far it looks great.</p>
+
+
+	<p>The only potential downside is that it relies on the .net framework (which I&#8217;d so far managed without) so it&#8217;s not quite as light weight as putty but good none-the-less.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/02/09/reviews-reevoos-reviews">Reviews Reevoos Reviews</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 09 Feb 2006 07:49:00">
+                  Thu, 09 Feb 2006 07:49:00
+                </span>
+              </p>
+          
+              <p>We&#8217;ve just recently started poking our head above the radar at <a href="http://www.reevoo.com">work</a> regarding our &#8216;new&#8217; (been around for a while but just undergone a re-design) review site &#8211; <a href="http://www.reevoo.com">Reevoo</a>.</p>
+
+
+	<p>Take a look, why not.</p>
+
+
+	<p>The main point of interest (for me) is that we are now aggregating reviews from blog entries.  I&#8217;ve been commuting a lot recently and have had plenty of time to read (check my <a href="http://allconsuming.net/person/chrisjroos">recent consumption</a>).  I&#8217;m more than happy to write reviews of these books but I really cannot be bothered to go over the <a href="http://www.amazon.co.uk">Amazon</a>, or anywhere else for that matter, to do so.  Now I don&#8217;t have to; I can write the review right here and have it appear on any site that I can <a href="http://www.reevoo.com/web_services/manual_ping">notify</a>.</p>
+
+
+	<p>Cool huh.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing">In memory sqlite database for rails testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 08 Feb 2006 08:54:00">
+                  Wed, 08 Feb 2006 08:54:00
+                </span>
+              </p>
+          
+              <p><strong>Update 12th June 2006</strong></p>
+
+
+	<p>There is now a <a href="http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids">plugin</a> from <a href="http://nubyonrails.com/">Geoffrey Grosenbach</a> that encapsulates this hack.</p>
+
+
+	<p><del>-</del></p>
+
+
+	<p>I finally took some time to get the <a href="http://www.sqlite.org">sqlite</a> in memory database working correctly for testing <a href="http://www.rubyonrails.com">Rails</a> apps.</p>
+
+
+	<p>It appears to be available by default (appearing in the example database.yml file) as</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">sqlite3_in_memory_example:
+  adapter: sqlite3
+  database: &quot;:memory:&quot;</code></pre></div>
+
+	<p>Unfortunately, it doesn&#8217;t appear to be quite as easy as just replacing sqlite3_in_memory_example with test&#8230;  The main problem being that in-memory databases have a tendency not to hang around (odd that).</p>
+
+
+	<p>My solution (which has every chance of being bad or downright incorrect) is to force the creation of the database in memory at the beginning of the tests.</p>
+
+
+	<p>The current implementation relies on either schema.rb being present or comprehensive migrations (i.e. you can use migrations to get a database from zero to your current development status).</p>
+
+
+	<p>If you wish to use the schema.rb approach then uncomment the following line in your environment.rb file.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">config</span><span class="punct">.</span><span class="ident">active_record</span><span class="punct">.</span><span class="ident">schema_format</span> <span class="punct">=</span> <span class="symbol">:ruby</span></code></pre></div>
+
+	<p>Un-commenting this option ensures that the database schema is exported to schema.rb rather than adapter specific sql (ENV_database.sql).</p>
+
+
+	<p>Add the following code right below the &#8221;# Include your application configuration below&#8221; line in environment.rb.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">in_memory_database?</span>
+  <span class="constant">ENV</span><span class="punct">[&quot;</span><span class="string">RAILS_ENV</span><span class="punct">&quot;]</span> <span class="punct">==</span> <span class="punct">&quot;</span><span class="string">test</span><span class="punct">&quot;</span> <span class="keyword">and</span> 
+  <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">.</span><span class="ident">connection</span><span class="punct">.</span><span class="keyword">class </span><span class="class">==</span> <span class="ident">ActiveRecord</span><span class="punct">::</span><span class="ident">ConnectionAdapters</span><span class="punct">::</span><span class="ident">SQLiteAdapter</span> <span class="ident">and</span>
+  <span class="constant">Rails</span><span class="punct">::</span><span class="constant">Configuration</span><span class="punct">.</span><span class="ident">new</span><span class="punct">.</span><span class="ident">database_configuration</span><span class="punct">['</span><span class="string">test</span><span class="punct">']['</span><span class="string">database</span><span class="punct">']</span> <span class="punct">==</span> <span class="punct">'</span><span class="string">:memory:</span><span class="punct">'</span>
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> <span class="ident">in_memory_database?</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">creating sqlite in memory database</span><span class="punct">&quot;</span>
+  <span class="ident">load</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{RAILS_ROOT}</span>/db/schema.rb</span><span class="punct">&quot;</span> <span class="comment"># use db agnostic schema by default</span>
+<span class="comment">#  ActiveRecord::Migrator.up('db/migrate') # use migrations</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>The reason for adding this code at this point and not just at the end of the environment file is that you may have further logic in environment that actually relies on the database being present.</p>
+
+
+	<p>If you are running your tests using rake then it shouldn&#8217;t matter whether you use the schema or migrations to create the database.  This is because the rake test tasks rely on the test database being set-up, which involves exporting the development db schema to file.</p>
+
+
+	<p>If you wish to run tests individually (which, of course, you do) and you choose to use the schema to create your test scructure, you must make sure that it first exists.  The easiest way is to run the following rake task.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">rake db_schema_dump</code></pre></div>
+
+	<p>That should be all there is to it; although I must confess that I&#8217;ve seen additional strange problems when running certain tests against the sqlite in-memory database.  In certain cases I think these may be fixture related.  Where, in <a href="http://www.mysql.org">MySql</a>, you seem to be able to omit required fields (not null) from a fixtures file, sqlite requires their presence.  In other cases; who knows&#8230;</p>
+
+
+	<h3>Testing your sqlite installation</h3>
+
+
+	<p>One final note that may be of interest.  When I first started playing with sqlite3 with Ruby it seems that I didn&#8217;t have it installed correctly (relying on pre-installed sqlite and the sqlite3-ruby gem).  As per <a href="http://wiki.rubyonrails.org/rails/pages/HowtoUseSQLite">this article</a> I had to un-install sqlite3-ruby gem and first install the swig port before re-installing sqlite3-ruby gem.  You can test for the correct installation by running the <a href="http://wiki.rubyonrails.com/rails/pages/ActiveRecord">Active Record</a> tests against sqlite by following these steps.</p>
+
+
+	<ul>
+	<li>Change directory to Active Record tests (rails/activerecord/test)</li>
+	</ul>
+
+
+	<ul>
+	<li>Run base_test.rb, supplying the location of the sqlite3 connection to the load path.</li>
+	</ul>
+
+
+	<ul>
+	<li><code>ruby -I "connections/native_sqlite3/" base_test.rb</code></li>
+	</ul>
+
+
+	<p>You can also run the tests using the sqlite3 in memory connection.  To do so, perform these actions before running the tests as above.</p>
+
+
+	<ul>
+	<li>Remove the standard sqlite3 connection</li>
+	</ul>
+
+
+	<ul>
+	<li><code>rm connections/native_sqlite3/connection.rb</code></li>
+	</ul>
+
+
+	<ul>
+	<li>Rename in_memory_connection.rb as connection.rb</li>
+	</ul>
+
+
+	<ul>
+	<li><code>mv connections/in_memory_connection.rb connections/connection.rb</code></li>
+	</ul>
+
+
+	<p>I&#8217;d suggest doing this against an svn checked out copy of rails, purely due to the these at which the changes can be reverted.</p>
+
+
+	<h3>Useless stats</h3>
+
+
+	<p>Changing to in-memory testing shaved about 33% off the running time of our unit tests.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
+                
+                  <a href="/articles/tag/test" rel="tag">test</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

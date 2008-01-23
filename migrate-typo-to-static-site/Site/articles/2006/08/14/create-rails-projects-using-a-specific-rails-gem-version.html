@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Create rails projects using a specific rails gem version - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Create rails projects using a specific rails gem version</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Mon, 14 Aug 2006 22:06:00">
+                Mon, 14 Aug 2006 22:06:00
+              </span>
+            </p>
+          
+            <p>I just found this when trying to create a rails project using rails 1.0.0 (having both 1.0.0 and 1.1.6 installed as gems).</p>
+
+
+	<p>If the first argument to the rails command is a valid (i.e. installed) version number and surrounded by underscores then that version of the gem is used to create the rails application structure.</p>
+
+
+	<p>So (with 1.0.0 and 1.1.6 gems installed)..</p>
+
+
+<pre>
+$ rails _1.0.0_ my-rails-proj
+#-&gt; uses rails version 1
+
+$ rails my-rails-proj
+#-&gt; uses latest rails version (1.1.6)
+</pre>
+
+	<p>Although you can normally place the rails libraries into the vendor directory of a given rails app (to use that specific rails version); I had problems when placing rails 1.0.0 into a rails 1.1.6 generated app.  An error is encountered when trying to boot webrick..</p>
+
+
+<code>
+./script/../config/../vendor/rails/railties/lib/initializer.rb:256:in `send': undefined method `cache_template_extensions=' for ActionView::Base:Class (NoMethodError)
+</code>
+
+	<p>By passing the version argument to the rails command and then placing rails 1.0.0 into the vendor directory, everything works as expected.</p>
+          </div>
+        
+          <p class="meta">
+            
+              Tags 
+              
+                <a href="/articles/tag/rails" rel="tag">rails</a>, 
+              
+                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+              
+            
+          </p>
+
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

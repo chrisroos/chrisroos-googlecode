@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Fri, 18 November 2005 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2005/11/18/i-dont-know-how-to-use-the-debugger">I don't know how to use the debugger</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 18 Nov 2005 11:08:00">
+                  Fri, 18 Nov 2005 11:08:00
+                </span>
+              </p>
+          
+              <p>I currently use <a href="http://www.ruby-lang.org">Ruby</a> and <a href="http://www.rubyonrails.com">Rails</a> all day, every day, at <a href="http://www.revieworld.com">work</a>.  It&#8217;s great.</p>
+
+
+	<p>Now, I don&#8217;t actually know how to use the Ruby debugger; I&#8217;ve taken a look at it in the past and am sure I could use it; it&#8217;s just that I&#8217;ve never had the need.</p>
+
+
+	<p>As with lots of things, I&#8217;ve been meaning to take a more detailed look for a while; mainly so that I could say &#8216;I know how to use that&#8217;.  Then, this morning, I realised that maybe it wasn&#8217;t such a bad thing not to know.  If I can develop software that works<sup><a href="#fn1">1</a></sup> without the help of the debugger<sup><a href="#fn2">2</a></sup> then, unless the need arises, why bother?</p>
+
+
+	<p id="fn1"><sup>1</sup> It works when the tests pass.</p>
+
+
+	<p id="fn2"><sup>2</sup> But very much with the help of unit tests.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/development" rel="tag">development</a>, 
+                
+                  <a href="/articles/tag/driven" rel="tag">driven</a>, 
+                
+                  <a href="/articles/tag/programming" rel="tag">programming</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/test" rel="tag">test</a>, 
+                
+                  <a href="/articles/tag/unit" rel="tag">unit</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2005/11/18/pwdhash">PwdHash</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 18 Nov 2005 00:34:00">
+                  Fri, 18 Nov 2005 00:34:00
+                </span>
+              </p>
+          
+              <p>I read about this <a href="https://www.pwdhash.com">concept</a> and associated <a href="https://addons.mozilla.org/extensions/moreinfo.php?id=1033">firefox plugin</a> a while back but then promptly forgot about it.  I came across it again recently and decided to take a more detailed look.</p>
+
+
+	<p>Currently, you probably either have&#8230;</p>
+
+
+	<ol>
+	<li>a different password for each website to which you have membership.</li>
+		<li>a handful of passwords, some more secure than others depending on the type of websites they are for.</li>
+		<li>one password for all of the websites that you are a member of.</li>
+	</ol>
+
+
+	<p>In the first and second instance, purely due to the volume, there&#8217;s a good chance that these passwords are written down somewhere.  This is bad.</p>
+
+
+	<p>In the third instance, you are opening yourself up to lots of problems if your single password is compromised.</p>
+
+
+	<p>PwdHash is a solution that allows you to have a different password for each of the websites that you are subscribed to, whilst allowing you to remember just one.  It does this by creating a hash based on your &#8216;password&#8217; and the url of the site you are visiting.</p>
+
+
+	<p>It is perfectly possible to do this manually and use a desktop app or command line tool to generate the hashed password for a given site.  However, this would be a real pain if you are constantly visiting different sites that require authentication.  The firefox plugin with this service basically takes the pain out of this manual process.  Once installed, just press F2 or enter @@ in a password field and the hashed password will be created before submitting to the site.</p>
+
+
+	<p>If the plugin doesn&#8217;t work or you are on a shared computer, you can always just use the javascript utility on the pwdhash.com site to generate the same hashed password.</p>
+
+
+	<p>To summarise, I&#8217;ve installed the plugin and have started changing some of my passwords over to their hashed counterpart.  I&#8217;ve only changed a couple of passwords and haven&#8217;t yet had to use the javascript util but so far it seems pretty good.</p>
+
+
+	<p>I&#8217;m just going to grab a copy of the javascript source and place it <a href="http://www.strongspace.com">some place safe</a> just in case&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2005/11/18/dabble-db-initial-thoughts">dabble db initial thoughts</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 18 Nov 2005 00:03:00">
+                  Fri, 18 Nov 2005 00:03:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve been following the <a href="http://www.smallthought/blog">blog</a> for <a href="http://dabbledb.com/about/">dabbledb</a> from <a href="http://www.smallthought.com/">smallthought</a>.  I was initially excited about the promise of this software having read about it in a <a href="http://chadfowler.com/index.cgi/Computing/LongTailTriesToWagTheDog">post</a> by <a href="http://www.chadfowler.com">Chad Fowler</a>.  It intends to replace those custom Excel/Access &#8216;applications&#8217; that are so pervasive in organisations of all sizes.</p>
+
+
+	<p>Today I saw a <a href="http://smallthought.com/blog/?p=13">post</a> on the dabbledb blog containing a link to a movie of the software being used.  Completely initial impression with no real knowledge behind it is that it looks far too complicated to take the market for which it is intended.</p>
+
+
+	<p>Having said that, I&#8217;ll wait to see more movies and maybe be lucky enough to get to try it in beta before commenting further.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

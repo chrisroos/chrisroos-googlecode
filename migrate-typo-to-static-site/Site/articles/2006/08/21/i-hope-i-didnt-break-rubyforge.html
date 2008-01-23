@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>I hope I didn't break rubyforge... - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>I hope I didn't break rubyforge...</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Mon, 21 Aug 2006 23:30:00">
+                Mon, 21 Aug 2006 23:30:00
+              </span>
+            </p>
+          
+            <p>A couple of days ago I was playing around with <a href="http://search.cpan.org/~clkao/SVN-Mirror-0.68/lib/SVN/Mirror.pm"><span class="caps">SVN</span>::Mirror</a>, trying to remove some <a href="http://wiki.rubyonrails.org/rails/pages/Plugins">dependencies</a> on third party repositories not in our control.</p>
+
+
+	<p>All was going well until I tried to mirror a <a href="http://rubyforge.org/projects/mocha/">project</a> hosted on rubyforge.  On initialising the mirror, I kept receiving the error &#8220;source url not under source root&#8221; from line 72 in Ra.pm.</p>
+
+
+	<p>After some very careful debugging (yeah, like I know anything about perl &#8211; <code>print "1";</code> was about the extent of it) of that perl file; I noticed that the $source_root variable didn&#8217;t contain the double slash<sup><a href="#fn1">1</a></sup>.  This causes a problem for the line <code>if substr($path, 0, length($source_root), '') ne $source_root;</code> as at this point, $path does contain the double slash.</p>
+
+
+	<p>The value of $source_root is returned from a call to RA-&gt;get_repos_root (Subversion Repository Access code).  So; it would seem that the url was being normalised somewhere in the bowels of <a href="http://subversion.tigris.org">Subversion</a>.</p>
+
+
+	<p>This was kinda confirmed by testing the svn client (which uses the code in the RA module just like <span class="caps">SVN</span>::Mirror) with urls containing additional slashes.  The url was always resolved and svn info would always show the normalised variant.  It was additionally(ish) tested by using the <a href="http://www.ruby-lang.org">Ruby</a> <a href="http://svn.collab.net/viewvc/svn/trunk/subversion/bindings/swig/ruby/">bindings</a> (which, as an aside, contain just about the most difficult to read Ruby code I&#8217;ve ever come across!)</p>
+
+
+	<p>I would love to have followed the actual subversion c code to find the normalisation routine but I&#8217;m sadly not clever enough; so my findings had to suffice.</p>
+
+
+	<p>Anyhoo, the outcome of the story is that I emailed Tom Copeland of rubyforge fame to ask about the deal with the double slashes.  Turns out that it was probably just a <a href="http://gforge.org/">gforge</a> default thing and Tom went ahead and promptly changed it.  I suddenly got very nervous that lots of arms would be thrown up with cries of &#8220;Who broke rubyforge?&#8221;, but so far it would appears to be ok.  Phew.</p>
+
+
+	<p id="fn1"><sup>1</sup> Not sure if anyone else had really noticed but the svn repositories on rubyforge used to contain a double slash between the domain and var path (i.e. rubyforge.org//var).</p>
+          </div>
+        
+          <p class="meta">
+            
+              Tags 
+              
+                <a href="/articles/tag/perl" rel="tag">perl</a>, 
+              
+                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+              
+                <a href="/articles/tag/rubyforge" rel="tag">rubyforge</a>, 
+              
+                <a href="/articles/tag/svm" rel="tag">svm</a>, 
+              
+                <a href="/articles/tag/svn" rel="tag">svn</a>, 
+              
+            
+          </p>
+
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged url - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2008/01/14/fun-with-mod_rewrite-and-its-special-variables-request_uri-is_subreq-and-the_request">Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 14 Jan 2008 10:14:00">
+                  Mon, 14 Jan 2008 10:14:00
+                </span>
+              </p>
+          
+              <p>I wasted a few hours of my life, over the weekend, playing with <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a>.  I had, what I thought to be, a fairly simple problem to solve: I wanted requests for index.html within any subdirectory of my site to be <a href="http://en.wikipedia.org/wiki/URL_redirection">redirected</a> to the root of that subdirectory.  So, a request for example.com/subdir/index.html would be (301) redirected to example.com/subdir/.</p>
+
+
+	<p>I thought I could do this without using <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html#RewriteCond">RewriteCond</a>.  I tried something like this.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">RewriteRule ^(.*)index\.html$ $1 [R=301]</code></pre></div>
+
+	<p>I would expect this to match requests for URLs that end with index.html and redirect them to the <span class="caps">URL</span> minus index.html.  Although this correctly redirected /subdir/index.html to /subdir/ it would also attempt to redirect /subdir/ to /subdir/ resulting in an infinite loop.  It took me a very long time to work out, what I believe, is going on.  If I understand correctly, <a href="http://httpd.apache.org/">apache</a> will send every request (i.e. not just the request you issue from the browser) through mod_rewrite.  When we request /subdir/, apache will try, and fail, to match that <span class="caps">URL</span> with our regex (/subdir/ doesn&#8217;t end with index.html).  Internally, apache then &#8216;requests&#8217; index.html (since index.html is the <a href="http://httpd.apache.org/docs/1.3/mod/mod_dir.html#directoryindex">DirectoryIndex</a>).  This request matches our regex which results in apache sending the 301 redirect and us ending up with an infinite loop.  If I mis-understand what&#8217;s going on please feel free to correct me.</p>
+
+
+	<p>Based on this assumption, I figured I&#8217;d need to use RewriteCond to somehow ignore the internal request for index.html.  I initially added a condition that checked for the <span class="caps">REQUEST</span>_URI ending in index.html (<code>RewriteCond %{REQUEST_URI} index\.html$</code>).  This suffered the same problem as my initial attempt.  A little more reading led me to the IS_SUBREQ special variable.  I thought this might allow me to ignore the &#8216;internal request&#8217; for index.html (<code>RewriteCond %{IS_SUBREQ} false</code>) but I couldn&#8217;t get it to have any effect.</p>
+
+
+	<p>In searching for answers to this problem I kept seeing <span class="caps">THE</span>_REQUEST special variable used in the solution, although never an explanation as to why it&#8217;s used (specifically in preference to <span class="caps">REQUEST</span>_URI).  I ended up using <span class="caps">THE</span>_REQUEST in my solution (not technically my solution as I stole it from a site that I failed to bookmark) and it seems to work OK.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
+RewriteRule ^(.*)index\.html$ $1 [R=301,L]</code></pre></div>
+
+	<p>I&#8217;m guessing that this is because <span class="caps">THE</span>_REQUEST contains the full details (the stuff that appears in the log file) of the request from the client (browser) and will therefore be empty for any &#8216;internal requests&#8217;.  Anyone know if my assumptions are correct?</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/apache" rel="tag">apache</a>, 
+                
+                  <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
+                
+                  <a href="/articles/tag/url" rel="tag">url</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7">Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 14 Dec 2007 08:46:00">
+                  Fri, 14 Dec 2007 08:46:00
+                </span>
+              </p>
+          
+              <p>I wasted quite a bit of time over the last couple of days trying to get a <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklet</a> (or favelet) working in Internet Explorer 6.  It worked perfectly in Firefox and Safari but wasn&#8217;t doing anything at all in IE.  Through lots of trial and error, I came to the conclusion that it was because of the length of the bookmarklet: it seems that Microsoft <a href="http://www.squarefree.com/2005/01/12/internet-explorer-drops-support-for-bookmarklets/">reduced the maximum length of a bookmarklet in <span class="caps">IE 6</span></a></p>
+
+
+	<p>Although my original bookmarklet wasn&#8217;t all that long, I had it spread over multiple lines for readability.  The fix in my case was to remove all the spaces and place the bookmarklet on one line.</p>
+
+
+	<p>I started to think that it might be nice to have a bookmarklet <a href="http://www.rubyonrails.com">rails</a> helper.  The bookmarklet helper would allow you to format your javascript for readability but shorten it all in the resulting html (it could even warn if the bookmarklet is too long for IE).  I couldn&#8217;t find anything similar, and I probably won&#8217;t get around to doing it myself, but I did decide to investigate the limit in IE (which could form the basis of such a helper).</p>
+
+
+	<p>I used the html page below to test the limits of Internet Explorer.  This is the longest bookmarklet that I could get to work: one more character (a 2 on the end of those numbers, for example) and the bookmarklet won&#8217;t work (it still works if you click the link in the page &#8211; it only fails when used as an actual bookmarklet).</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;a href=&quot;javascript:
+      var msg = 'hello world, this is my message.  i\'m trying to see how long i can be until internet explorer blows up in my face.';
+      var msg = msg + '\n';
+      var msg = msg + 'this is the second line of my long message';
+      var msg = msg + '\n';
+      var msg = msg + '12345679012345678901';
+      alert(msg);&quot;&gt;bookmarklet&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+
+	<p>I noticed that, once added to Internet Explorer, the bookmarklet appeared to be <a href="http://www.blooberry.com/indexdot/html/topics/urlencoding.htm"><span class="caps">URL</span> encoded</a> (my assumption was based on the conversion of spaces to %20.)</p>
+
+
+	<p><a href="http://www.flickr.com/photos/chrisjroos/2109757023/"><img src="http://farm3.static.flickr.com/2321/2109757023_0f69015c44.jpg" alt="" /></a></p>
+
+
+	<p>I tried to replicate this encoded string in <a href="http://www.ruby-lang.org">ruby</a> but failed:  A simple <span class="caps">URI</span>.escape in ruby was escaping too much.  Inspecting the bookmarklet again seemed to suggest that the only encoding performed is to remove newlines and convert spaces to %20.  Replicating this in irb gave me the same string that Internet Explorer had in its favourites.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">irb</span><span class="punct">)</span> <span class="ident">str</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">javascript:
+  var msg = 'hello world, this is my message.  i<span class="escape">\'</span>m trying to see how long i can be until internet explorer blows up in my face.';
+  var msg = msg + '<span class="escape">\n</span>';
+  var msg = msg + 'this is the second line of my long message';
+  var msg = msg + '<span class="escape">\n</span>';
+  var msg = msg + '12345679012345678901';
+  alert(msg);</span><span class="punct">&quot;</span>
+<span class="ident">irb</span><span class="punct">)</span> <span class="ident">p</span> <span class="ident">str</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(&quot;</span><span class="string">'<span class="escape">\n</span>'</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">'--NEW-LINE--'</span><span class="punct">&quot;).</span><span class="ident">gsub</span><span class="punct">(&quot;</span><span class="string"><span class="escape">\n</span></span><span class="punct">&quot;,</span> <span class="punct">'</span><span class="string"></span><span class="punct">').</span><span class="ident">gsub</span><span class="punct">(&quot;</span><span class="string">'--NEW-LINE--'</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">'<span class="escape">\n</span>'</span><span class="punct">&quot;).</span><span class="ident">gsub</span><span class="punct">('</span><span class="string"> </span><span class="punct">',</span> <span class="punct">&quot;</span><span class="string">%20</span><span class="punct">&quot;).</span><span class="ident">length</span>
+<span class="punct">=&gt;</span> <span class="number">505</span></code></pre></div>
+
+	<p>Everything I&#8217;d read about these bookmarklets in Internet Explorer suggested that the limit was 508 characters: the length of the bookmarklet above (once encoded) is only 505 characters.  Adding one more character makes it fail as a bookmarklet.  Hmm, maybe I&#8217;m doing something dumb?</p>
+
+
+	<p>I&#8217;ve cheated a bit in the &#8216;encoding&#8217; above.  IE removes all newlines (I wonder if this happens in the <span class="caps">DOM</span> or just when you add it as a favourite?) so that the bookmarklet appears on one line.  I needed to do the same but also needed those newlines in the msg to remain (hence the <span class="caps">NEW</span>-LINE replacement stuff).  This is a very naive imlpementation: if you have &#8217;\n\n&#8217;, for example, then it breaks.  The &#8216;encoding&#8217; would need to be a little more intelligent in an actual helper (but only if you wanted to report on the size of the bookmarklet).</p>
+
+
+	<p>I couldn&#8217;t find any reference to source of this 508 character limit in Internet Explorer: all the blog articles just state it as fact.  So, maybe it&#8217;s not 508.  Maybe it&#8217;s actually 505&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/bookmarklet" rel="tag">bookmarklet</a>, 
+                
+                  <a href="/articles/tag/browser" rel="tag">browser</a>, 
+                
+                  <a href="/articles/tag/explorer" rel="tag">explorer</a>, 
+                
+                  <a href="/articles/tag/internet" rel="tag">internet</a>, 
+                
+                  <a href="/articles/tag/javascript" rel="tag">javascript</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/url" rel="tag">url</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/12/07/more-on-those-friendly-urls">More on those friendly URLs</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 07 Dec 2007 07:26:00">
+                  Fri, 07 Dec 2007 07:26:00
+                </span>
+              </p>
+          
+              <p>So, <a href="http://twitter.com/chrisroos/statuses/477052802">not being able to sleep</a> does have some benefits.  I managed to get started on my latest little <a href="http://blog.seagul.co.uk/articles/2007/11/27/short-human-friendly-permalinks">pet project</a>.</p>
+
+
+	<p>I had been using <a href="http://httpd.apache.org/">apache</a> and <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a> to redirect &#8220;chrisroos.co.uk/amazonwishlist&#8221; to my actual wishlist.  I had something like this in my apache config.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;VirtualHost *:80&gt;
+  ServerAdmin webmaster@seagul.co.uk
+  ServerName chrisroos.co.uk
+  ServerAlias www.chrisroos.co.uk
+  RewriteEngine On
+  # &lt;anything&gt;.chrisroos.co.uk -&gt; chrisroos.co.uk
+  RewriteCond %{HTTP_HOST} !^chrisroos.co.uk$ [NC]
+  RewriteRule ^/(.*)$ http://chrisroos.co.uk/$1 [R=301,L] 
+  # Amazon Wishlist
+  RewriteRule ^/amazonwishlist http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD [R]
+&lt;/VirtualHost&gt;</code></pre></div>
+
+	<p>I&#8217;ve replaced that with a much simpler apache config that proxies requests to my new <a href="http://mongrel.rubyforge.org/">mongrel</a> redirection handler thing (<a href="http://chrisroos.co.uk/code/mongrel-redirection">source</a> &#8211; hey, even that <span class="caps">URL</span> passes through my redirection service).</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;VirtualHost *:80&gt;
+  ServerName www.chrisroos.co.uk
+  ServerAlias chrisroos.co.uk
+  RewriteEngine On
+  RewriteRule (.*) http://localhost:4010$1 [P]
+&lt;/VirtualHost&gt;</code></pre></div>
+
+	<p>Feel free to go run this on your own server if you&#8217;re so inclined.  At the moment you&#8217;ll have to generate the redirection rules by hand.  In irb, you can do something like:</p>
+
+
+<div class="typocode"><pre><code class="typocode_default"># require 'yaml'
+# # For www.example.com
+# rules = { 'www.example.com' =&gt; 'example.com' }
+# File.open('PATH_TO_RULES_FOLDER' + '/www.example.com', 'w') { |file| file.puts(rules.to_yaml) }
+# # For example.com
+# rules = { '/google' =&gt; 'www.google.com' }
+# File.open('PATH_TO_RULES_FOLDER' + '/example.com', 'w') { |file| file.puts(rules.to_yaml) }</code></pre></div>
+
+	<p>Start the redirection server.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">$ REDIRECTION_PORT=XXXX ruby mongrel-redir.rb &amp;
+$# Leaving out REDIRECTION_PORT will mean that the server starts on port 4000
+$# Leaving out the final ampersand (&amp;) will mean that server runs in the foreground</code></pre></div>
+
+	<p>Visit www.example.com/google<sup><a href="#fn1">1</a></sup> and watch<sup><a href="#fn2">2</a></sup> as you&#8217;re redirected first to example.com/google and then onto www.google.com.  Cool huh.</p>
+
+
+	<p>Lots to do &#8211; notably a user interface for managing rules but it&#8217;s not a bad start.</p>
+
+
+	<p>Oh, and this is specifically so that you can redirect from your own domain.  If you don&#8217;t care about the domain then you could try <a href="http://tinyurl.com">tinyurl</a> or, for human friendly URLs, <a href="http://decenturl.com">decent url</a>.</p>
+
+
+	<p>[1] Assuming, of course, that www.example.com and example.com both point to the server that this redirection server is running on.</p>
+
+
+	<p>[2] You probably won&#8217;t be able to watch as it&#8217;ll redirect too quickly in the browser &#8211; your best bet is to use <a href="http://curl.haxx.se/">curl</a> or the <a href="http://livehttpheaders.mozdev.org/">Live <span class="caps">HTTP</span> Headers</a> <a href="http://www.mozilla.com/en-US/firefox/">firefox</a> extension so see what&#8217;s actually going on.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/apache" rel="tag">apache</a>, 
+                
+                  <a href="/articles/tag/decenturl" rel="tag">decenturl</a>, 
+                
+                  <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
+                
+                  <a href="/articles/tag/mongrel" rel="tag">mongrel</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/tinyurl" rel="tag">tinyurl</a>, 
+                
+                  <a href="/articles/tag/url" rel="tag">url</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

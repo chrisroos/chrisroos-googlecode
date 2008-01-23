@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged opensearch - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/12/combining-distributed-small-tools-as-an-alternative-to-backpack-et-al">Combining distributed small tools as an alternative to Backpack et al</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 12 Jan 2007 11:53:00">
+                  Fri, 12 Jan 2007 11:53:00
+                </span>
+              </p>
+          
+              <p>For a while now, I&#8217;ve been thinking/dreaming of having a number of very specific, distributed services.  These would be no more than additions to the single purpose services we already use (notably, in my case, <a href="http://flickr.com">flickr</a> for photos, this blog for articulating thought and <a href="http://del.icio.us">del.icio.us</a> for storing bookmarks).  Some additions I&#8217;d like to see<sup><a href="#fn1">1</a></sup> are:</p>
+
+
+	<ul>
+	<li>A way to record and tag financial transactions
+
+	<p>Although I want to be able to record the transactions in some kind of accounting app, I also want each transaction to be a resource on the web that I can link to and bookmark (a RESTful accounts app if you like)</p></li>
+	</ul>
+
+
+	<ul>
+	<li>A way to record and tag any text (i.e. thoughts and ideas that are not quite blog posts)
+
+	<p>To be fair, a secondary blog could be set-up to do this.</p></li>
+	</ul>
+
+
+	<ul>
+	<li>A way to add multiple comments to any resource on the web
+
+	<p>Think &#8211; being able to bookmark the same uri multiple times in del.icio.us with different notes against each bookmark.  Actually, I wonder why these sort of distributed comment systems are not more prevalent &#8211; it seems kinda odd that every blogging engine re-implements something that could be done once, and done well.</p></li>
+	</ul>
+
+
+	<ul>
+	<li>A way to expose an email or an email conversation at a given uri (a permailink maybe? he he)
+
+	<p>I think one immediate benefit of this is the ability to share emails with people in the same organisation/group as you without having to forward them all on.</p></li>
+	</ul>
+
+
+	<p>So, how would having these types of services help us re-create a backpack type page at present?</p>
+
+
+	<p>Well, I&#8217;m not sure how good this example is, but let&#8217;s think of selling an item on <a href="http://www.ebay.co.uk">ebay</a>.  At the moment, I end up with lots of distributed information about a single sale:</p>
+
+
+	<ul>
+	<li>invoices from ebay</li>
+		<li>transactions on a statement (from my bank and paypal)</li>
+		<li>emails from ebay and buyers</li>
+		<li>a page that represents the item on ebay</li>
+		<li>pictures of the item on flickr</li>
+		<li>physical receipts for posting the item</li>
+	</ul>
+
+
+	<p>This is fine until you want to interrogate the data.  Try finding out how much money you made/lost, when it was sent, who it was sent to, and the problems are obvious.</p>
+
+
+	<p>One solution would be to record all the information for a given item in a page in backpack (or any similar service &#8211; a simple wiki would do).  But now try to query the data for two items sold, or partially query one item and the problems become evident again.</p>
+
+
+	<p>I think this is where our funky new distributed system can help.  Following the same ebay selling process as above:</p>
+
+
+	<ul>
+	<li>We create a text snippet that provides us with a placeholder uri for this item.  This would be something like &#8216;sale of computer&#8217;</li>
+		<li>We upload photos of the item to flickr, tagged with our placeholder</li>
+		<li>We list the item in ebay, tagged with our placeholder</li>
+		<li>We record a financial transaction that represents the cost of listing the item, tagged with our placeholder</li>
+		<li>We upload any relevant emails from ebay about the listing/sale of our item, tagged with our placeholder</li>
+		<li>We record a financial transaction that represents our income from the sale of the item, tagged with our placeholder</li>
+		<li>We record a note that states when and how we sent the item, tagged with our placeholder</li>
+		<li>We record a financial transaction that represents our cost for sending the item, tagged with our placeholder</li>
+	</ul>
+
+
+	<p>The important thing is that all of these resources are tagged with a common uri.  The uri that represents our item for sale.  At the simplest level, this makes auto-generating a backpack type page very simple &#8211; we just aggregate<sup><a href="#fn2">2</a></sup> all of the data tagged with our item uri.  Tagging these items with a higher level tag, such as &#8216;ebay&#8217;, will allow us to search across multiple sales/purchase.</p>
+
+
+	<p>Going even further, using opensearch with a simple custom front-end (basically just a parser) gives us even greater querying capabilities.  I could imagine searching for something like &#8220;ebay finance:expenditure&#8221; to get a list of all items (descriptions, notes, pictures etc) we&#8217;ve sold on ebay along with our expenditure.  Our simple search engine would know to search for all items tagged with ebay, but only those transactions that are tagged with expenditure (i.e. costs to us).</p>
+
+
+	<p>Does this make sense/sound feasible to anyone else?  Indeed, has someone else already presented these ideas in a more legible/understandable way?  It all seems to make great sense to me but I&#8217;ve spent quite a while thinking about it (and what seems like ages just writing this post), meaning there&#8217;s every chance I&#8217;ve missed something obvious.  I&#8217;d appreciate any thoughts.</p>
+
+
+	<p id="fn1"><sup>1</sup> I did had every intention of developing these things as a proof of concept, but, on the basis that I&#8217;m unlikely to get around to it, and that I do actually think something like this is a good idea, I thought I&#8217;d jot my thoughts here.</p>
+
+
+	<p id="fn2"><sup>2</sup> I started out thinking that the tags would be stored against the resource itself &#8211; the same way that the tag for a photo in flickr is stored against that photo.  I was also assuming that these services would be <a href="http://opensearch.org">opensearch</a> enabled to allow searching of the tags.  As I&#8217;ve been writing the post I&#8217;ve realised that, providing everything has a uri, we can use del.icio.us as our tagging mechanism and as our search engine.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/cool" rel="tag">cool</a>, 
+                
+                  <a href="/articles/tag/distributed" rel="tag">distributed</a>, 
+                
+                  <a href="/articles/tag/opensearch" rel="tag">opensearch</a>, 
+                
+                  <a href="/articles/tag/rest" rel="tag">rest</a>, 
+                
+                  <a href="/articles/tag/software" rel="tag">software</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/12/13/reevoo-com-dips-its-toes-into-the-opensearch-water">Reevoo.com dips its toes into the opensearch water</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 13 Dec 2006 21:37:00">
+                  Wed, 13 Dec 2006 21:37:00
+                </span>
+              </p>
+          
+              <p>So.  What does that mean exactly?  Well, right at the moment, not a great deal.  It pretty much means that you can add the ability to search reevoo.com to the Firefox 2 and <span class="caps">IE7</span> browsers very easily.  Visiting <a href="http://www.reevoo.com">reevoo.com</a> with either of these browsers will highlight part of the &#8216;search box&#8217;.</p>
+
+
+	<p><img src="http://static.flickr.com/126/321626445_dfe00b4e0e.jpg?v=0" alt="" /></p>
+
+
+	<p><span class="caps">IE 7</span> changes the little arrow to a goldy, orangey, yellowy type colour to indicate the presence of an opensearch enabled search engine.</p>
+
+
+	<p><img src="http://static.flickr.com/132/321626424_d6ec54a53b.jpg?v=0" alt="" /></p>
+
+
+	<p>While Firefox 2 opts for a blue surround and additionally chooses to add our logo.  Woot.</p>
+
+
+	<h3>I appreciate that I can now easily search reevoo from anywhere but was it really worth a blog post?</h3>
+
+
+	<p>Hmm, interesting question (that wasn&#8217;t an actual question, I just made it up).</p>
+
+
+	<p>Actually, I think that <a href="http://www.opensearch.org">opensearch</a> is pretty cool.  At the moment, we are just exposing our search results in their html form.  Just imagine, for a second, that we were instead, exposing our results as <a href="http://en.wikipedia.org/wiki/Atom_%28standard%29">atom</a> or <a href="http://en.wikipedia.org/wiki/RSS_%28file_format%29">rss</a> feeds.  Now, also imagine<sup><a href="#fn1">1</a></sup> that retailers felt like being a little more open; and, as such, were offering an opensearch description of their search capabilities, along with search results in atom or rss feeds.  All we&#8217;d need then was an <a href="http://a9.com">aggregator</a> that would allow us to search for products across our chosen retailers and reevoo in one go.  The result would be a page containing both product reviews and pricing and stock availability from each retailer.  That, I think, would be pretty damn cool.</p>
+
+
+	<p id="fn1"><sup>1</sup> Currently, this requires a lot of imagination.  A quick browse this afternoon found four big retailers that don&#8217;t even have working search without javascript enabled.  At least they&#8217;ve got <a href="http://www.w3.org/Provider/Style/URI">well</a> <a href="http://wiki.welldesignedurls.org/Main_Page">designed</a> urls.  Oh, hang on&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/atom" rel="tag">atom</a>, 
+                
+                  <a href="/articles/tag/opensearch" rel="tag">opensearch</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/search" rel="tag">search</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>
