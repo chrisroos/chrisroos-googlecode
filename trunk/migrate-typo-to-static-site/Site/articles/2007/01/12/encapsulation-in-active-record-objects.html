@@ -138,62 +138,17 @@
               
             
           </p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+          <noscript>
+            <a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a>
+          </noscript>
 
           
             <a name="comments"></a>
-            <h4 class="blueblk">Comments</h4>
+            <h4 class="blueblk">Legacy Comments</h4>
             <ol class="comment-list" id="commentList">
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Jamis
-                    
-                  </strong>
-                </cite> said on Fri, 12 Jan 2007 20:11:45:<br />
-                <p>Chris, I&#8217;m not sure why you feel that &#8220;touching&#8221; the hobbies method is a bad thing. It&#8217;s a public method, not a public instance variable. The method provides the abstraction, and you could ultimately replace that implementation with something else, so there is no violation of encapsulation.</p>
-
-
-	<p>Am I misunderstanding your concern? Personally, I find &#8220;my.hobbies &lt;&lt; biking&#8221; more esthetically appealing then &#8220;my.add_hobby(biking)&#8221;.</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Chris
-                    
-                  </strong>
-                </cite> said on Sat, 13 Jan 2007 13:21:47:<br />
-                <p>Hi Jamis,</p>
-
-
-	<p>I think the problem is that we&#8217;re asking a person for their hobbies object in order to manipulate it directly.  What we really want to do is tell the person to add their own hobby &#8211; we don&#8217;t care how they go about it.</p>
-
-
-	<p>Apologies for the short answer &#8211; I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I&#8217;ll try a follow-up post with more exploration of the issue.</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Jamis
-                    
-                  </strong>
-                </cite> said on Sat, 13 Jan 2007 15:35:24:<br />
-                <p>Chris, actually, you&#8217;re not getting the hobbies object back. The &#8220;hobbies&#8221; method returns a proxy object, not the array of hobbies directly. When you invoke a method on what is returned, it is hitting the proxy, not the array.</p>
-
-
-	<p>It&#8217;s all nicely encapsulated. Ruby makes it so clean and neat to do these things. The problem is, so many of us are coming from languages like Java, where it is <em>not</em> so easy to do things like that transparently, and since we&#8217;re taught that manipulating the internal object directly is bad, we feel like we have to jump through all kinds of hoops in order to avoid even the <em>appearance</em> of that kind of access.</p>
-
-
-	<p>The fact is, though, that encapsulation is the goal, and what it is attained, there are no more hoops to jump through. And ActiveRecord correctly and safely encapsulates your data, via the association proxy classes.</p>
-
-
-	<p>There&#8217;s no need for Javaisms like &#8220;add_hobby&#8221;, unless you, personally, prefer it that way. Myself, I think Java has taught programmers a lot of very bad habits, and Ruby (and Rails) gives us the chance to unlearn some of those.</p>
-              </li>
               
               <li>
                 <cite>
@@ -236,37 +191,6 @@ post :add_hobby, :id =&gt; 99, &#8216;MY_NEW_HOBBY&#8217;
 </typo:code>
 
 	<p>Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it&#8217;s probably all irrelevant?</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      David Chelimsky
-                    
-                  </strong>
-                </cite> said on Tue, 06 Feb 2007 15:51:21:<br />
-                <p>It&#8217;s not just a matter of making your tests cleaner. It&#8217;s also a matter of protecting the consumers of your model from changes to the model over time.</p>
-
-
-	<p>Imagine a project management app in which you have Project &gt; Iterations &gt; Stories. All through your controllers and views you have calls like this:</p>
-
-
-	<p>@project.iterations.stories</p>
-
-
-	<p>Later on, you decide that your model is wrong and that it should really be Project &gt; Stories &gt; Iterations. Now you have to change every call to stories or iterations. If, however, you started off with this in Project:</p>
-
-
-	<p>def stories
-  iterations.stories
-end</p>
-
-
-	<p>all you would have to do now is change the Project model.</p>
-
-
-	<p>To me, <span class="caps">THAT</span> is the whole point of Demeter. It&#8217;s about managing dependencies to isolate change.</p>
               </li>
               
               <li>
