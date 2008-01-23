@@ -156,6 +156,12 @@ rules = [
     :expected_code => '301'
   },
   {
+    :description => "RSS feed with .xml extension should redirect to file without extension",
+    :pattern => /^\/xml\/rss\.xml$/,
+    :expected_location => proc { "http://blog.seagul.co.uk/xml/rss" },
+    :expected_code => '301'
+  },
+  {
     :description => "RSS feed of latest articles should render OK",
     :pattern => /^\/xml\/rss$/,
     :expected_code => '200'
