@@ -1,5 +1,6 @@
 #! /usr/bin/env ruby
 
 while line = gets
-  puts line[/(http:\/\/.*?)\t/, 1]
+  url = line[/(http:\/\/.*?)\t/, 1]
+  puts url if url
 end
