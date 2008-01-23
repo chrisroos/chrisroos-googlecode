@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Fri, 23 December 2005 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2005/12/23/print-to-pdf-in-windows-without-acrobat-writer">Print to Pdf in Windows without Acrobat Writer</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 23 Dec 2005 10:57:00">
+                  Fri, 23 Dec 2005 10:57:00
+                </span>
+              </p>
+          
+              <p>(Probably) the standard way to print to <a href="http://en.wikipedia.org/wiki/PDF">Pdf</a> in Windows is to buy <a href="http://www.adobe.com/products/acrobat/main.html">Adobe Acrobat</a> or use one of the alternatives (which come with various different licences and are of varying quality; from experience over the last couple of years).</p>
+
+
+	<p>There is, however, a completely free alternative, providing you don&#8217;t mind going through a couple of steps to implement it (which I don&#8217;t).</p>
+
+
+	<p>The basic premise is that you print to <a href="http://en.wikipedia.org/wiki/PostScript">PostScript</a> using a PostScript compatible printer driver and then use <a href="http://www.cs.wisc.edu/~ghost/">Ghostscript</a> to convert from PostScript to Pdf.</p>
+
+
+	<p>These instructions work in Windows XP but should be very similar in all versions of Windows.</p>
+
+
+	<h3>Install PostScript compatible printer.</h3>
+
+
+	<ol>
+	<li>Add a Printer.</li>
+		<li>Choose &#8216;Local printer&#8217; and do not &#8216;automatically detect&#8217;.</li>
+		<li>Select &#8216;FILE: (Print to File)&#8217; in the list next to &#8216;Use the following port&#8217;.</li>
+		<li>Choose a PS printer.  I&#8217;m currently using HP Color LaserJet PS.</li>
+		<li>Select whether you want to use this as your default printer and choose no to printing a test page.</li>
+	</ol>
+
+
+	<h3>Download and install <span class="caps">AFPL</span> Ghostscript</h3>
+
+
+	<ol>
+	<li>Visit the <a href="http://www.cs.wisc.edu/~ghost/">Ghostscript site</a> and follow the &#8216;Obtaining <span class="caps">AFPL</span> Ghostscript <version>&#8217; link.</li>
+		<li>Download the version for Windows, which at the time of writing is called  gs853w32.exe.</li>
+		<li>Double click the downloaded file to install.  Use the defaults during installation.</li>
+	</ol>
+
+
+	<h3>Download and install GSview</h3>
+
+
+	<ol>
+	<li>Visit the <a href="http://www.cs.wisc.edu/~ghost/gsview/index.htm">GSview site</a> and follow the &#8216;Obtaining GSview 4.7 link&#8217;.</li>
+		<li>Download the version for Windows, which at the time of writing is called  gsv47w32.exe.</li>
+		<li>Double click the downloaded file to install.  Use the defaults during installation.</li>
+	</ol>
+
+
+	<h3>Print something</h3>
+
+
+	<ol>
+	<li>Open a file and choose to print to your PostScript printer.</li>
+		<li>On clicking the Print button, you will be prompted to specify a filename to save the PostScript document to.  Supply the full path to the file here, for example &#8216;c:\page.ps&#8217;.  Although the .ps extension is optional it makes it easier to open directly in GSview if this is supplied.</li>
+	</ol>
+
+
+	<h3>Convert the PostScript file to Pdf</h3>
+
+
+	<ol>
+	<li>Double click on the &#8216;c:\page.ps&#8217; file to open it in GSview.</li>
+		<li>Click OK to close the software registration prompt and you will see the PostScript interpretation of your file on the screen.</li>
+		<li>Click File &gt; Convert and choose &#8216;pdfwrite&#8217; as the device, a suitable resolution (default of 600 should be fine) and click OK.  You will be prompted to save the converted Pdf file somewhere</li>
+		<li>Enter the filename to save the file with, noting that .pdf doesn&#8217;t get added automatically, e.g. specify page.pdf.</li>
+		<li>Open the new .pdf file in either <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Reader</a> or <a href="http://blog.seagul.co.uk/articles/2005/11/13/windows-adobe-acrobat-reader-alternative">an alternative</a></li>
+	</ol>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

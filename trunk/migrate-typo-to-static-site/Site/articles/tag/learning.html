@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged learning - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">Using in memory Active Record objects with associations for testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 12 Jul 2006 01:23:00">
+                  Wed, 12 Jul 2006 01:23:00
+                </span>
+              </p>
+          
+              <p>Hitting the database in testing is bad.</p>
+
+
+	<p>Something that I&#8217;ve found relatively useful at <a href="http://www.reevoo.com">work</a> is to use real <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> objects without any persistence (basically use AR#new and not AR#save[!] or AR#create[!]).  When using standard techniques to create the association objects in memory you only get one side of the association at a time.  Consider the following.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:addresses</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">Address</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
+<span class="keyword">end</span>
+
+<span class="comment"># One sided relationship with parent getting access to child</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">build</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="constant">nil</span>
+
+<span class="comment"># One sided relationship with child getting access to parent</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="constant">Address</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="ident">home</span><span class="punct">.</span><span class="ident">build_person</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+
+<span class="comment"># The example above that creates the address first could also have been written as.</span>
+<span class="comment"># chris = Person.new</span>
+<span class="comment"># home = Address.new(:person =&gt; chris)</span></code></pre></div>
+
+	<p>You can see that in each case, only one side of the relationship has access to the other.  If we were persisting the objects then the relationship would be two way via a database lookup.  We can get a two way relationship in memory; although it has a certain duplication smell about it.  Assuming the same models as above, we can amend the above examples like so.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># First example</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">build</span><span class="punct">(</span><span class="symbol">:person</span> <span class="punct">=&gt;</span> <span class="ident">chris</span><span class="punct">)</span>
+
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span>
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+
+<span class="comment"># Second example</span>
+<span class="ident">home</span> <span class="punct">=</span> <span class="constant">Address</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="ident">home</span><span class="punct">.</span><span class="ident">build_person</span><span class="punct">(</span><span class="symbol">:addresses</span> <span class="punct">=&gt;</span> <span class="punct">[</span><span class="ident">home</span><span class="punct">])</span>
+
+<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
+<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span></code></pre></div>
+
+	<p>I&#8217;ve occasionally used this in place of stubbing methods but am still not 100% convinced of the definite benefits one way or another.  I do have some definite disadvantages of stubbing methods (nothing exciting, they&#8217;ve almost certainly been noted by many others in the past) which I&#8217;ll note down at a later date.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/activerecord" rel="tag">active record</a>, 
+                
+                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/12/ruby-hashes-with-default-values">Ruby hashes with default values</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 12 Jul 2006 01:17:00">
+                  Wed, 12 Jul 2006 01:17:00
+                </span>
+              </p>
+          
+              <p>I found that on several occasions I&#8217;ve wanted to create a hash that increments the number of instances of a given key.  We could do something manual like.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span>
+<span class="keyword">def </span><span class="method">increment_count</span><span class="punct">(</span><span class="ident">hash</span><span class="punct">,</span> <span class="ident">key</span><span class="punct">)</span>
+  <span class="ident">hash</span><span class="punct">[</span><span class="ident">key</span><span class="punct">]</span> <span class="punct">||=</span> <span class="number">0</span> <span class="comment"># Sets any new keys to 0.</span>
+  <span class="ident">hash</span><span class="punct">[</span><span class="ident">key</span><span class="punct">]</span> <span class="punct">+=</span> <span class="number">1</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>This is fine; but can be written more concisely.  If we supply an object to Hash::new then that object becomes the default value for all missing keys in the hash.  The above example is shortened by one line.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="number">0</span><span class="punct">)</span>
+<span class="keyword">def </span><span class="method">increment_count</span><span class="punct">(</span><span class="ident">hash</span><span class="punct">,</span> <span class="ident">key</span><span class="punct">)</span>
+  <span class="ident">hash</span><span class="punct">[</span><span class="ident">key</span><span class="punct">]</span> <span class="punct">+=</span> <span class="number">1</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>A problem arises when we want to use an object that isn&#8217;t immutable (in this case, basically anything other than a Fixnum) as the default value.  The example that I came across a couple of times today was using an empty array as the default value.  If we try to use the same method as above, we experience problems.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Array</span><span class="punct">.</span><span class="ident">new</span><span class="punct">)</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_one</span><span class="punct">]</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_two</span><span class="punct">]</span> <span class="punct">&lt;&lt;</span> <span class="number">99</span>
+<span class="punct">=&gt;</span> <span class="punct">[</span><span class="number">99</span><span class="punct">]</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_one</span><span class="punct">]</span>
+<span class="punct">=&gt;</span> <span class="punct">[</span><span class="number">99</span><span class="punct">]</span> <span class="comment"># is actually the same array amended in the step above</span></code></pre></div>
+
+	<p>I&#8217;ve known that there was a way around this for a long time but have never bothered to look it up.  I finally got round to looking at it today, and it is, unsurprisingly, very simple.  We supply the hash constructor with a block.  This block is called for any missing key and supplied with the hash and said key.  The example above becomes.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">hash</span><span class="punct">,</span> <span class="ident">key</span><span class="punct">|</span> <span class="ident">hash</span><span class="punct">[</span><span class="ident">key</span><span class="punct">]</span> <span class="punct">=</span> <span class="constant">Array</span><span class="punct">.</span><span class="ident">new</span> <span class="punct">}</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_one</span><span class="punct">]</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_two</span><span class="punct">]</span> <span class="punct">&lt;&lt;</span> <span class="number">99</span>
+<span class="punct">=&gt;</span> <span class="punct">[</span><span class="number">99</span><span class="punct">]</span>
+<span class="ident">hash</span><span class="punct">[</span><span class="symbol">:key_one</span><span class="punct">]</span>
+<span class="punct">=&gt;</span> <span class="punct">[]</span></code></pre></div>
+
+	<p>I say I looked it up today but to be fair there&#8217;s every chance that I was well aware of this at some point in the past&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/12/trying-to-learn">Trying to learn</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 12 Jul 2006 01:15:00">
+                  Wed, 12 Jul 2006 01:15:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve decided I&#8217;m going to attempt to write down some things that I learn about ruby.  I &#8216;learn&#8217; the same stuff all the time due to the nature of my very bad memory.  In an attempt to learn some things just the once I&#8217;m going to try write them down.  It probably wont help.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

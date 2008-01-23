@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged gmail - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/10/24/connecting-to-gmail-with-ruby-or-connecting-to-pop3-servers-over-ssl-with-ruby">Connecting to gmail with Ruby (or Connecting to POP3 servers over SSL with Ruby)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 24 Oct 2006 22:42:00">
+                  Tue, 24 Oct 2006 22:42:00
+                </span>
+              </p>
+          
+              <h3>Short version (or, &#8220;I want to connect to gmail <span class="caps">NOW</span>&#8221;)</h3>
+
+
+	<ul>
+	<li>Download the <a href="http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/index.html">pop3 library</a> from <a href="http://www.ruby-lang.org/cgi-bin/cvsweb.cgi//?only_with_tag=HEAD">Ruby <span class="caps">HEAD</span></a> (Ruby 1.9) (<a href="http://www.ruby-lang.org/cgi-bin/cvsweb.cgi/~checkout~/ruby/lib/net/pop.rb?rev=1.73;content-type=application%2Fx-ruby;only_with_tag=HEAD">download file</a>)</li>
+		<li>Use the following script to get started (making sure that you explicitly reference the downloaded pop3 file)...</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">pop_ssl</span><span class="punct">'</span> <span class="comment"># I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version</span>
+
+<span class="ident">username</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_GMAIL_USERNAME@gmail.com</span><span class="punct">'</span>
+<span class="ident">password</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_GMAIL_PASSWORD</span><span class="punct">'</span>
+
+<span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">enable_ssl</span><span class="punct">(</span><span class="constant">OpenSSL</span><span class="punct">::</span><span class="constant">SSL</span><span class="punct">::</span><span class="constant">VERIFY_NONE</span><span class="punct">)</span>
+<span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">start</span><span class="punct">('</span><span class="string">pop.gmail.com</span><span class="punct">',</span> <span class="number">995</span><span class="punct">,</span> <span class="ident">username</span><span class="punct">,</span> <span class="ident">password</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">pop</span><span class="punct">|</span>
+  <span class="keyword">if</span> <span class="ident">pop</span><span class="punct">.</span><span class="ident">mails</span><span class="punct">.</span><span class="ident">empty?</span>
+    <span class="ident">puts</span> <span class="punct">'</span><span class="string">No mail.</span><span class="punct">'</span>
+  <span class="keyword">else</span>
+    <span class="ident">pop</span><span class="punct">.</span><span class="ident">each_mail</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">mail</span><span class="punct">|</span>
+      <span class="ident">p</span> <span class="ident">mail</span><span class="punct">.</span><span class="ident">header</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<h3>Medium version (or, &#8220;Let me know I&#8217;m connecting to the correct site, Dammit&#8221;)</h3>
+
+
+	<p>This is identical to the short version except that we verify the ssl certificate this time round.</p>
+
+
+	<ul>
+	<li>Follow the first step above (i.e. download new version of pop3 lib).</li>
+		<li>Download the CA Root Certificates bundle from <a href="http://curl.haxx.se/">cURL site</a> (<a href="http://curl.haxx.se/ca/cacert.pem">download file</a>)</li>
+		<li>Copy the code above but change the Net::POP3.enable_ssl line to read&#8230;</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">enable_ssl</span><span class="punct">(</span><span class="constant">OpenSSL</span><span class="punct">::</span><span class="constant">SSL</span><span class="punct">::</span><span class="constant">VERIFY_PEER</span><span class="punct">,</span> <span class="punct">'</span><span class="string">/PATH/TO/DOWNLOADED/cacert.pem</span><span class="punct">')</span></code></pre></div>
+
+	<h3>Longer version (or, &#8220;Pray tell, how did you find this information sir&#8221;)</h3>
+
+
+	<p>An explanation of how I got here.  Feel free to ignore.</p>
+
+
+	<p>For a while I&#8217;ve wanted to play around with receiving emails within a <a href="http://www.rubyonrails.org">rails</a> app (with <a href="http://am.rubyonrails.org/files/README.html">action mailer</a>).  I had an hour or two free the other evening and so started to play.  First step was to take a look at the <a href="http://wiki.rubyonrails.org">rails wiki</a> and see that there&#8217;s already a <a href="http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer">page</a> detailing exactly what I wanted to do.  As I started reading, I was getting put off by the thought of configuring <a href="http://www.sendmail.org">sendmail</a> or some other &#8216;heavyweight&#8217; solution.  Luckily, someone has added a much better suggestion at the bottom of the page &#8211; using <a href="http://ruby-doc.org/stdlib/libdoc/net/pop/rdoc/index.html">net/pop</a> (or <a href="http://ruby-doc.org/stdlib/libdoc/net/imap/rdoc/index.html">net/imap</a>) to collect emails from a pre-configured mail server.  Although I use <a href="http://www.fastmail.co.uk">imap</a> for my own email provision, I wanted a pop server for testing.  Aha, I thought, I&#8217;ll just set-up another <a href="http://www.gmail.com">gmail</a> account and use that&#8230;  And that&#8217;s where the problems started.</p>
+
+
+	<p>You see, gmail only accepts <a href="http://en.wikipedia.org/wiki/POP3"><span class="caps">POP3</span></a> connections over <a href="http://en.wikipedia.org/wiki/SSL"><span class="caps">SSL</span></a> (on port 995), a feature not found in our beloved net/pop library.  Hmm.  Time for some help from google.  The first page I <a href="http://involution.com/2006/07/20/access-gmail-from-ruby-using-netpop3-and-stunnel/">came across</a> described using <a href="http://www.stunnel.org">stunnel</a> to create an ssl tunnel to route standard net/pop traffic through.  This sounded great, except that I couldn&#8217;t get stunnel (v4.16) to compile on mac os x, although I didn&#8217;t try too hard&#8230;  The other point of interest in that original article was that the pop3 with ssl support was in development.  The next step was to track down some mailing list threads that talked about the ssl support and hope for a patch.  We&#8217;re in luck, the <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2703">first patch</a> was actually submitted in March 2004, with the second, accepted and committed, <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2745">patch</a> coming in April 2004.  As per the <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2780">last message</a> in the second thread, the patch was accepted into core, and is now available in the 1.9 release.  So, we don&#8217;t even need to patch our existing copy of net/pop, we can just download the newer version.  I named this downloaded version as pop_ssl, to avoid confusion, and placed it in my ruby load path.</p>
+
+
+	<p>Next step was to follow the example on the <a href="http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/classes/Net/POP3.html">net/pop3 page</a>, and, with the addition of the Net::POP3::enable_ssl directive, try to connect.  Hmm, things still weren&#8217;t working quite right.  I was getting the following error.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">OpenSSL::SSL::SSLError: certificate verify failed</code></pre></div>
+
+	<p>Some more googling led me to <a href="http://ghouston.blogspot.com/2006/03/using-ssl-with-ruby-http-access2.html">this post</a> by <a href="http://ghouston.blogspot.com/">Greg Houston</a>.  It turns out that the error is actually raised in the <a href="http://www.openssl.org">OpenSSL</a> layer.  It is caused by us trying to verify the server certificate without having the correct trusted root certificate.  It turns out that we can either disable the verification (by using <code>Net::POP3::enable_ssl(OpenSSL::SSL::VERIFY_NONE)</code>), or we can verify against a trusted root certificate bundle, like the one <a href="http://curl.haxx.se/docs/caextract.html">supplied</a> by cURL.  To verify using the certificate bundle from cURL (or similar), we would amend the above line of code to <code>Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, File.dirname(__FILE__) + '/PATH/TO/DOWNLOADED/cacert.pem')</code>.</p>
+
+
+	<p>I can finally now get on with my rails app to retrieve emails from gmail.</p>
+
+
+	<h3>Conclusion</h3>
+
+
+	<ul>
+	<li>I&#8217;ve spent a lot more than the intended couple of hours investigating this stuff, yet still have no rails app receiving emails (although I&#8217;m a lot closer now&#8230;)</li>
+		<li>There&#8217;s very little information on the ssl enabled libraries (net/https, net/pop, http-access2 to name but a few) in ruby.  Maybe everybody else just knows about this stuff already, but I&#8217;m certainly pretty unclear.</li>
+		<li>I have a feeling that it should be possible to use net/https to connect (unverified) to a site that uses ssl and obtain the certificate for use in subsequent verified connections.  Indeed, another <a href="http://curl.haxx.se/docs/sslcerts.html">document</a> hosted on curl.haxx.se seems to indicate that this is possible.</li>
+		<li>I still know very little about ssl and certificates.</li>
+		<li>I hope that what little information is here can help someone else in a similar situation.</li>
+	</ul>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/gmail" rel="tag">gmail</a>, 
+                
+                  <a href="/articles/tag/pop" rel="tag">pop</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

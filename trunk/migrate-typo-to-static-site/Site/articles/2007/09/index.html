@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published in September 2007 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/09/29/commenting-on-my-del-icio-us-bookmarks">Commenting on my del.icio.us bookmarks</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 29 Sep 2007 09:32:00">
+                  Sat, 29 Sep 2007 09:32:00
+                </span>
+              </p>
+          
+              <p>A side effect of my <a href="http://del.icio.us">del.icio.us</a> <a href="http://del.icio.us/chrisjroos">bookmarks</a> having <a href="http://blog.seagul.co.uk/articles/2007/09/05/patching-the-del-icio-us-firefox-extension-to-add-permalinks">permalinks</a> is that you can, if you really really want, &#8216;comment&#8217; on them.  You just need to bookmark (in del.icio.us) my permalinked bookmark, write a comment in the notes field and tag it for:chrisjroos.  One small step to people being able to comment on anything they see (just an idea I&#8217;ve had bubbling for a while).</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/bookmark" rel="tag">bookmark</a>, 
+                
+                  <a href="/articles/tag/comments" rel="tag">comments</a>, 
+                
+                  <a href="/articles/tag/conversation" rel="tag">conversation</a>, 
+                
+                  <a href="/articles/tag/del.icio.us" rel="tag">del.icio.us</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/09/29/monitoring-the-mac-osx-filesystem-with-ruby">Monitoring the Mac OSX Filesystem with ruby</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 29 Sep 2007 09:11:00">
+                  Sat, 29 Sep 2007 09:11:00
+                </span>
+              </p>
+          
+              <p>On Thursday, <a href="http://blog.floehopper.org/">James</a> and I spent some time investigating remote pairing options.  One tiny part of that investigation was finding a way to keep two remote filesystems in sync.  I initially thought of using <a href="http://en.wikipedia.org/wiki/Rsync">rsync</a> at regular intervals with <a href="http://en.wikipedia.org/wiki/Cron">cron</a>.  Unless I&#8217;ve missed something, the smallest interval between cron jobs is one minute which is potentially too long.  We wanted a way to rsync (or sync in general) whenever the filesystem changed.  A little searching brought this <a href="http://www.kernelthread.com/software/fslogger/">fslogger</a> tool to my attention.  It simply writes some event details to <span class="caps">STDOUT</span> every time something changes on the filesystem.  I figured that we could use this, with a little bit of ruby glue, to trigger rsync.  Our glue script continuously reads from <span class="caps">STDIN</span>, tries to match some pre-defined patterns and triggers rsync if those patterns are matched.  It&#8217;s very brittle but it gets the job done.  Well, actually, it only partially gets the job done: I&#8217;m very unfamiliar with rsync but it seemed to take between 10 and 30 seconds to sync even if only one file had changed.  I suspect that I may have been doing something wrong though.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#!/usr/bin/env ruby</span>
+
+<span class="constant">REMOTE_SERVER</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_REMOTE_SERVER</span><span class="punct">'</span>
+<span class="constant">REMOTE_PATH</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_REMOTE_PATH</span><span class="punct">'</span>
+
+<span class="constant">DIRECTORY_PATTERN</span> <span class="punct">=</span> <span class="constant">ARGV</span><span class="punct">.</span><span class="ident">delete_at</span><span class="punct">(</span><span class="number">0</span><span class="punct">)</span>
+<span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">You must specify a directory_pattern</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="constant">DIRECTORY_PATTERN</span>
+
+<span class="keyword">def </span><span class="method">rsync!</span>
+  `<span class="ident">rsync</span> <span class="punct">-</span><span class="ident">rz</span> <span class="comment">#{File.join(DIRECTORY_PATTERN, '*')} #{REMOTE_SERVER}:#{REMOTE_PATH}`</span>
+<span class="keyword">end</span>
+
+<span class="keyword">while</span> <span class="ident">line</span><span class="punct">=</span><span class="ident">gets</span>
+  <span class="keyword">if</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">FSE_ARG_VNODE</span><span class="punct">/</span> <span class="comment"># CREATE FILE OR DIR</span>
+    <span class="ident">rsync!</span> <span class="keyword">if</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">path<span class="escape">\s</span>+=(.*)</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">].</span><span class="ident">strip</span> <span class="punct">=~</span> <span class="constant">Regexp</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">DIRECTORY_PATTERN</span><span class="punct">)</span>
+  <span class="keyword">elsif</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">FSE_ARG_STRING</span><span class="punct">/</span> <span class="comment"># REMOVE FILE OR DIR</span>
+    <span class="ident">rsync!</span> <span class="keyword">if</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">string<span class="escape">\s</span>+=(.*)</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">].</span><span class="ident">strip</span> <span class="punct">=~</span> <span class="constant">Regexp</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">DIRECTORY_PATTERN</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/cron" rel="tag">cron</a>, 
+                
+                  <a href="/articles/tag/file" rel="tag">file</a>, 
+                
+                  <a href="/articles/tag/fslogger" rel="tag">fslogger</a>, 
+                
+                  <a href="/articles/tag/rsync" rel="tag">rsync</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/script" rel="tag">script</a>, 
+                
+                  <a href="/articles/tag/sync" rel="tag">sync</a>, 
+                
+                  <a href="/articles/tag/system" rel="tag">system</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/09/27/why-should-it-do-that">Why should it do that?</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 27 Sep 2007 07:36:00">
+                  Thu, 27 Sep 2007 07:36:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve started looking into my *cough* promise *cough* to do that <a href="http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers">local paper</a> site I mentioned sometime ago.  The code is all in me <a href="http://chrisroos.googlecode.com">google code</a> <a href="http://chrisroos.googlecode.com/svn/trunk/the-local-paper/">repository</a> if you want to see how it&#8217;s going (or finish it when I inevitably get bored again&#8230;).</p>
+
+
+	<p>Anyway, the point of this post is that I realised something about testing that I feel I may have missed in the past.  I&#8217;ve got used to stating the <a href="http://behaviour-driven.org/">behavior</a> of the objects in my system through tests.  So, when I wanted to ensure that an article couldn&#8217;t be created without a title, I added a test like so:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ArticleTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_validate_presence_of_title</span>
+    <span class="punct">...</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>In fact, for an article comprised of a title, an edition, a page number and an author, I wanted to ensure that all were there apart from the author.  It was only once I&#8217;d added tests to <a href="http://api.rubyonrails.org/classes/ActiveRecord/Validations.html">validate</a> the presence of the other three attributes that I realised it was probably important to prove that an author wasn&#8217;t required.  So, I added the relevant test.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ArticleTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_not_validate_presence_of_author</span>
+    <span class="punct">...</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>That&#8217;s all well and good, but I&#8217;ve lost some information: <span class="caps">WHY</span> it shouldn&#8217;t validate the presence of an author.  I know at the moment why it shouldn&#8217;t (because short articles don&#8217;t have an author listed), but will I know at some point the future?  I suspect not.  The same obviously applies for the things that I do want to ensure are present.  Why do I care that an article has a title, edition and page number?  At the moment I care because I&#8217;m planning on making them part of the <span class="caps">URL</span>, but what if I decide not to go down that route, yet leave the tests there?  There&#8217;ll be no easy way for someone in the future to determine whether those things are actually important or not.</p>
+
+
+	<p>I wonder if this issue was highlighted because of my lack of <a href="http://subversion.tigris.org/"><span class="caps">SVN</span></a> access.  I generally like really small checkins to my <a href="http://en.wikipedia.org/wiki/Revision_control">version control software</a> which would&#8217;ve allowed me to have added and committed those validation additions one at a time, and with messages that would have stated the reasons for that change<sup><a href="#fn1">1</a></sup>.  Being disconnected means that I end up with bigger checkins that inevitably lose some information.  Actually, the more I think about it, the more I think that the repository isn&#8217;t the right place for this information anyway &#8211; it&#8217;s too far away from the code that&#8217;s solving the problems.</p>
+
+
+	<p>How do other people solve this potential loss of knowledge?  Am I missing something obvious, or have I really just not noticed this before?</p>
+
+
+	<p>P.S. I spent a few minutes chatting with <a href="http://interblah.net/">James</a> about it today and he had some interesting suggestions, although I&#8217;ll leave it up to him to share those if he wants (no pressure James, I&#8217;m just running out of time right now I&#8217;m afraid).</p>
+
+
+	<p id="fn1"><sup>1</sup> <a href="http://po-ru.com">Paul</a> suggested a while back that we use the commit note to explain the problem that we&#8217;ve solved, rather than just describing the changeset.  Unfortunately, I can&#8217;t find the source of that suggestion so no link I&#8217;m afraid.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/agiledox" rel="tag">agiledox</a>, 
+                
+                  <a href="/articles/tag/bdd" rel="tag">bdd</a>, 
+                
+                  <a href="/articles/tag/development" rel="tag">development</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/tdd" rel="tag">tdd</a>, 
+                
+                  <a href="/articles/tag/test" rel="tag">test</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/09/21/companies-you-must-make-it-simple-for-me-to-unsubscribe-from-your-marketing-shite">Companies.  You must make it simple for me to unsubscribe from your marketing shite.</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 21 Sep 2007 07:40:00">
+                  Fri, 21 Sep 2007 07:40:00
+                </span>
+              </p>
+          
+              <p>Over the past few months I&#8217;ve been actively trying to unsubscribe from things that I&#8217;m no longer interested in.  Both electronic and traditional mail.</p>
+
+
+	<p>I&#8217;ve started to keep a little <a href="http://chrisjroos.stikipad.com/unsubscriptions/show/HomePage">record</a> of when I receive said shite and when I unsubscribe.</p>
+
+
+	<p>Something I&#8217;ve learned over this short time.  The majority of companies make it very easy for you to signup to receive their shite.  It is almost always harder (if only by one step) to unsubscribe from the same material.  Why?  If I&#8217;m trying to unsubscribe it&#8217;s probably because I&#8217;m not interested in what you&#8217;re doing.  Why would you possibly want to make it hard for me to go.  Why not just add a second button to the form that makes it easy for me to subscribe.  This button would say &#8216;unsubscribe&#8217; and would do exactly that.  Easy huh.  Now, go do it The Companies.</p>
+
+
+	<p>This reminds me that I think my contract is now up with <a href="http://blog.seagul.co.uk/articles/2007/03/16/orange-orange-orange">Orange</a>.  Time to get myself a new provider me thinks.</p>
+
+
+	<p>A nice positive blog post to start the day :-)</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/marketing" rel="tag">marketing</a>, 
+                
+                  <a href="/articles/tag/shite" rel="tag">shite</a>, 
+                
+                  <a href="/articles/tag/spam" rel="tag">spam</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/09/05/patching-the-del-icio-us-firefox-extension-to-add-permalinks">Patching the del.icio.us firefox extension to add permalinks</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 05 Sep 2007 22:41:00">
+                  Wed, 05 Sep 2007 22:41:00
+                </span>
+              </p>
+          
+              <p>I spent some of my train time today hacking around with the <a href="http://del.icio.us">del.icio.us</a> <a href="http://www.mozilla.com/en-US/firefox/">firefox</a> <a href="https://addons.mozilla.org/en-US/firefox/addon/3615">extension</a>.  Although I&#8217;m sure it&#8217;s bad in many, many ways, I&#8217;ve managed to add the <a href="http://en.wikipedia.org/wiki/Permalink">permalink</a> functionality I <a href="http://blog.seagul.co.uk/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts">mentioned</a> yesterday.  You can either apply the patch yourself, or download the patched jar file.</p>
+
+
+	<h3>To apply the patch.</h3>
+
+
+<div class="typocode"><pre><code class="typocode_default"># Install Firefox extension 1.5.43
+$ cd MY_FIREFOX_PROFILE_DIRECTORY # ~/Library/Application Support/Firefox/Profiles/RAND_CHARS.default for me
+$ cd extensions/{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}/chrome
+$ svn export http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags/delicious-extension-url-tag.patch
+$ unzip deliciousBookmarks.jar
+$ rm deliciousBookmarks.jar
+$ patch -p1 &lt; delicious-extension-url-tag.patch
+$ zip -r deliciousBookmarks.jar content/ locale/ skin/ 
+$ rm -rf content/ locale/ skin/
+# Restart Firefox</code></pre></div>
+
+	<h3>To use the patched compressed file</h3>
+
+
+<div class="typocode"><pre><code class="typocode_default"># Install Firefox extension 1.5.43
+$ cd MY_FIREFOX_PROFILE_DIRECTORY # ~/Library/Application Support/Firefox/Profiles/RAND_CHARS.default for me
+$ cd extensions/{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}/chrome
+$ rm deliciousBookmarks.jar
+$ svn export http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags/deliciousBookmarks.jar 
+# Restart Firefox</code></pre></div>
+
+	<p>Now, anytime you bookmark a site, the tags field will be pre-populated with a url-tag (&#8220;url/MD5_OF_URL&#8221;).  Cool huh.  Oh, and the patched extension uses this javascript <a href="http://pajhome.org.uk/crypt/md5/">md5</a> library.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/bookmarks" rel="tag">bookmarks</a>, 
+                
+                  <a href="/articles/tag/del.icio.us" rel="tag">del.icio.us</a>, 
+                
+                  <a href="/articles/tag/extension" rel="tag">extension</a>, 
+                
+                  <a href="/articles/tag/firefox" rel="tag">firefox</a>, 
+                
+                  <a href="/articles/tag/permalinks" rel="tag">permalinks</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts">Permalinks for del.icio.us bookmarks (posts)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 04 Sep 2007 23:23:00">
+                  Tue, 04 Sep 2007 23:23:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve wondered in the <a href="http://tech.groups.yahoo.com/group/ydn-delicious/message/1447">past</a> about sending <a href="http://en.wikipedia.org/wiki/Trackback">trackbacks</a> (or <a href="http://en.wikipedia.org/wiki/Pingback">pingbacks</a>) to bookmarked resources on <a href="http://del.icio.us">del.icio.us</a>.  As with most things, you can either wait for someone to do it for you, or you can do it yourself&#8230;  I started to investigate last Thursday afternoon and soon got sucked into the much more interesting issue of the missing <a href="http://en.wikipedia.org/wiki/Permalink">permalinks</a> for bookmarks.  You see, every time you bookmark something on del.icio.us, you are creating a new <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer#REST.27s_Central_Principle:_Resources">resource</a>.  Unfortunately, it&#8217;s a very sad :-( resource.  Sad because it doesn&#8217;t have a <a href="http://www.wikipedia.org/wiki/URL"><span class="caps">URL</span></a> and so can&#8217;t be linked to.  An anonymous resource floating around the world wide web looking for love.  Boo hoo.  Anyway, enough of that.  I figured that if we could assign a unique tag to each of these resources then they would, as a side effect, get a permalink (you can already get your bookmarks containing a given tag by using http://del.icio.us/USERNAME/MY_TAG).  I experimented with using the url as a tag.  Although there seem to be some limits on what you can use, I found that if you strip the protocol and trailing slash from a url you are generally OK.  So, if we bookmark <a href="http://news.bbc.co.uk"><span class="caps">BBC</span> News</a> and tag it with news.bbc.co.uk then we can access that individual bookmark at <a href="http://del.icio.us/chrisjroos/news.bbc.co.uk">http://del.icio.us/chrisjroos/news.bbc.co.uk</a>.</p>
+
+
+	<p><a href="http://flickr.com/photos/chrisjroos/1293075032/"><img src="http://farm2.static.flickr.com/1140/1293075032_372cce286d_m.jpg" alt="" /></a></p>
+
+
+	<p>As you can only bookmark the same <span class="caps">URL</span> once, it should guarantee that the url-tag is unique.  I can, however, see a problem with the trailing slash.  Although it&#8217;s possible to bookmark URLs that differ only in the trailing slash (http://example.com/article1 and http://example.com/article1/ for example), it doesn&#8217;t seem possible to create a tag that contains that same trailing slash.  OK, so we could always ensure that we remove the trailing slashes from the URLs we bookmark but that doesn&#8217;t seem like a very robust solution.</p>
+
+
+	<p>While experimenting, I found that I could use forward slashes within my tags, www.foo.com/bar/baz for example.  So, I started prepending url/ to my url-tag so that I could easily recognise posts that already had permalinks.  It was at this time that I noticed the similarity between the del.icio.us url history page del.icio.us/url/MD5_OF_URL (e.g. <a href="http://del.icio.us/url/4961e08b5118fbfddec7fb18fa303151"><span class="caps">BBC</span> News</a>) and my permalinked bookmark, del.icio.us/chrisjroos/url/URL.  If I was to <a href="http://en.wikipedia.org/wiki/MD5">hash</a> the bookmarked url in the same way as del.icio.us then I would end up with a url like del.icio.us/chrisjroos/url/MD5_OF_URL.  You can see the similarity in the URLs below.</p>
+
+
+	<ul>
+	<li><a href="http://del.icio.us/chrisjroos/url/4961e08b5118fbfddec7fb18fa303151">http://del.icio.us/chrisjroos/url/4961e08b5118fbfddec7fb18fa303151</a></li>
+		<li><a href="http://del.icio.us/url/4961e08b5118fbfddec7fb18fa303151">http://del.icio.us/url/4961e08b5118fbfddec7fb18fa303151</a></li>
+	</ul>
+
+
+	<p>It looks as though it&#8217;s part of del.icio.us itself doesn&#8217;t it?  Cool huh.  It&#8217;d be really cool to extend the del.icio.us <a href="http://www.mozilla.com/en-US/firefox/">firefox</a> <a href="https://addons.mozilla.org/en-US/firefox/addon/1532">extension</a> to automatically add this tag when bookmarking a site.</p>
+
+
+	<p>I&#8217;ve created a crappy script that will add this url/MD5_OF_URL tag to each of your posts.  It&#8217;s hosted on <a href="http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags">google code</a> and pasted below.  Err, use at your own risk by the way.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">USERNAME</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_USERNAME</span><span class="punct">'</span>
+<span class="constant">PASSWORD</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_PASSWORD</span><span class="punct">'</span>
+<span class="constant">POSTS_CACHE</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">FILE_TO_STORE_YOUR_EXISTING_DELICIOUS_POSTS_IN</span><span class="punct">'</span>
+
+<span class="comment"># GET ALL POSTS</span>
+<span class="keyword">unless</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">exists?</span><span class="punct">(</span><span class="constant">POSTS_CACHE</span><span class="punct">)</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">Downloading all posts...</span><span class="punct">&quot;</span>
+  <span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">&lt;&lt;-</span><span class="constant">EndCurl</span><span class="string">
+curl &quot;https://api.del.icio.us/v1/posts/all&quot; <span class="escape">\
+</span>-u&quot;<span class="expr">#{USERNAME}</span>:<span class="expr">#{PASSWORD}</span>&quot; <span class="escape">\
+</span>-s
+&gt; <span class="expr">#{POSTS_CACHE}</span></span><span class="constant">
+  EndCurl</span>
+  `<span class="comment">#{curl_cmd}`</span>
+<span class="keyword">end</span>
+
+<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">md5</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">cgi</span><span class="punct">'</span>
+
+<span class="keyword">def </span><span class="method">add_url_hash_to_post</span><span class="punct">(</span><span class="ident">post</span><span class="punct">)</span>
+  <span class="ident">url</span> <span class="punct">=</span> <span class="constant">CGI</span><span class="punct">.</span><span class="ident">unescapeHTML</span><span class="punct">(</span><span class="ident">post</span><span class="punct">['</span><span class="string">href</span><span class="punct">'])</span>
+  <span class="ident">url_hash</span> <span class="punct">=</span> <span class="constant">MD5</span><span class="punct">.</span><span class="ident">md5</span><span class="punct">(</span><span class="ident">url</span><span class="punct">)</span>
+  <span class="ident">url</span> <span class="punct">=</span> <span class="constant">CGI</span><span class="punct">.</span><span class="ident">escape</span><span class="punct">(</span><span class="ident">url</span><span class="punct">)</span>
+
+  <span class="ident">tags</span> <span class="punct">=</span> <span class="ident">post</span><span class="punct">['</span><span class="string">tag</span><span class="punct">'].</span><span class="ident">split</span><span class="punct">('</span><span class="string"> </span><span class="punct">').</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">tag</span><span class="punct">|</span> <span class="constant">CGI</span><span class="punct">.</span><span class="ident">unescapeHTML</span><span class="punct">(</span><span class="ident">tag</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="ident">tags</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">url/<span class="expr">#{url_hash}</span></span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">tags</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(&quot;</span><span class="string">url/<span class="expr">#{url_hash}</span></span><span class="punct">&quot;)</span>
+  <span class="ident">tags</span> <span class="punct">=</span> <span class="ident">tags</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">tag</span><span class="punct">|</span> <span class="constant">CGI</span><span class="punct">.</span><span class="ident">escape</span><span class="punct">(</span><span class="ident">tag</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="ident">tags</span> <span class="punct">=</span> <span class="ident">tags</span><span class="punct">.</span><span class="ident">join</span><span class="punct">('</span><span class="string"> </span><span class="punct">')</span>
+
+  <span class="ident">shared</span> <span class="punct">=</span> <span class="ident">post</span><span class="punct">['</span><span class="string">shared</span><span class="punct">']</span>
+  <span class="ident">description</span> <span class="punct">=</span> <span class="constant">CGI</span><span class="punct">.</span><span class="ident">escape</span><span class="punct">(</span><span class="constant">CGI</span><span class="punct">.</span><span class="ident">unescapeHTML</span><span class="punct">(</span><span class="ident">post</span><span class="punct">['</span><span class="string">description</span><span class="punct">']))</span>
+  <span class="ident">extended</span> <span class="punct">=</span> <span class="constant">CGI</span><span class="punct">.</span><span class="ident">escape</span><span class="punct">(</span><span class="constant">CGI</span><span class="punct">.</span><span class="ident">unescapeHTML</span><span class="punct">(</span><span class="ident">post</span><span class="punct">['</span><span class="string">extended</span><span class="punct">']))</span>
+
+  <span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">&lt;&lt;-</span><span class="constant">EndCurl</span><span class="string">
+curl &quot;https://api.del.icio.us/v1/posts/add&quot; <span class="escape">\
+</span>-u&quot;<span class="expr">#{USERNAME}</span>:<span class="expr">#{PASSWORD}</span>&quot; <span class="escape">\
+</span>-d&quot;url=<span class="expr">#{url}</span>&quot; <span class="escape">\
+</span>-d&quot;description=<span class="expr">#{description}</span>&quot; <span class="escape">\
+</span>-d&quot;extended=<span class="expr">#{extended}</span>&quot; <span class="escape">\
+</span>-d&quot;tags=<span class="expr">#{tags}</span>&quot; <span class="escape">\
+</span>-d&quot;shared=<span class="expr">#{shared}</span>&quot; <span class="escape">\
+</span>-s
+</span><span class="constant">  EndCurl</span>
+  `<span class="comment">#{curl_cmd}`</span>
+<span class="keyword">end</span>
+
+<span class="comment"># ADD THE URL/&lt;md5_hash&gt; TAG TO EACH POST</span>
+<span class="ident">posts_xml</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">(</span><span class="constant">POSTS_CACHE</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">}</span>
+<span class="ident">posts_doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">posts_xml</span><span class="punct">)</span>
+<span class="ident">count</span> <span class="punct">=</span> <span class="number">1</span>
+<span class="punct">(</span><span class="ident">posts_doc</span><span class="punct">/'</span><span class="string">posts</span><span class="punct">'/'</span><span class="string">post</span><span class="punct">').</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">post_xml</span><span class="punct">|</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">Bookmark: <span class="expr">#{count}</span></span><span class="punct">&quot;</span> <span class="keyword">if</span> <span class="punct">(</span><span class="ident">count</span> <span class="punct">%</span> <span class="number">5</span><span class="punct">)</span> <span class="punct">==</span> <span class="number">0</span>
+  <span class="ident">add_url_hash_to_post</span><span class="punct">(</span><span class="ident">post_xml</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">)</span>
+  <span class="ident">count</span> <span class="punct">+=</span> <span class="number">1</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/bookmark" rel="tag">bookmark</a>, 
+                
+                  <a href="/articles/tag/cool" rel="tag">cool</a>, 
+                
+                  <a href="/articles/tag/curl" rel="tag">curl</a>, 
+                
+                  <a href="/articles/tag/del.icio.us" rel="tag">del.icio.us</a>, 
+                
+                  <a href="/articles/tag/permalink" rel="tag">permalink</a>, 
+                
+                  <a href="/articles/tag/pingback" rel="tag">pingback</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/trackback" rel="tag">trackback</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

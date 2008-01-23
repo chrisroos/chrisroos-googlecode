@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Tickling link_to into submission - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Tickling link_to into submission</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Mon, 14 Aug 2006 23:10:00">
+                Mon, 14 Aug 2006 23:10:00
+              </span>
+            </p>
+          
+            <p>What a crappy title.  Ho hum.</p>
+
+
+	<p>This bit explains the itch I had.  Skip over it if you like.</p>
+
+
+	<p>I recently finished re-structuring some of the code at <a href="http://www.reevoo.com">work</a>, in which I namespaced all of the admin type controllers.  At the same time, I attempted to split some of the larger, confused (about their responsibilities) controllers into smaller chunks.  This all seems to have worked quite well, but we&#8217;ve ended up with some naff (I haven&#8217;t used that word in ages) action names.</p>
+
+
+	<p>I like, where possible, to follow the scaffold naming convention (list, show, new, create, edit, update and destroy); and so went ahead and started changing things.  I was writing my tests like mum always said I should<sup><a href="#fn1">1</a></sup> when I realised that there was a bit missing (uh oh).  You see, I was ensuring that my controllers responded to certain actions; and I was also ensuring that my views had links to certain controllers and actions.  The missing link was a check as to whether the links in my views went to valid controller actions.  I could, for example, have been testing for a link to /foo/edit in my view but for an edit_foo action in my foo_controller test.  Both tests would pass, but the application would still be broken.  Not cool.  We do actually have <a href="http://openqa.org/selenium">something</a> in place to perform these tests but I&#8217;m still a bit scared of selenium and don&#8217;t use it as much as I should.</p>
+
+
+	<p>Anyway, i started thinking about bending the <a href="http://api.rubyonrails.com/classes/ActionView/Helpers/UrlHelper.html#M000378">link_to</a> helper to my will.  I figured that the little fella was a good candidate to not only give me a perfectly formed chunk of html goodness; but to also tell me whether the said chunk of html goodness was actually going to work (i.e. whether my app responded to the generated url).  Cool idea huh.</p>
+
+
+	<p>I&#8217;m getting tired and a little bored now so I&#8217;ll wrap this post up.  I&#8217;ve created a <a href="http://dev.seagul.co.uk/repository/browse/plugins/action_view_helper_url_helper">plugin</a> (svn co svn://dev.seagul.co.uk/plugins/action_view_helper_url_helper) that replaces the link_to method to add a class attribute (invalid_href_target or valid_href_target) to the generated anchor tag.  You could then use the assert_no_broken_links assertion to ensure there are no anchors with a class of invalid_href_target in your views; and/or you could style it (see resource/style.css as an example) so that you can see any broken links at a glance whilst in development (as shown in the image below).</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/192/460075342_987c127e66_o.jpg" alt="" /></p>
+
+
+	<p>The code is pretty poor/naive, works with rails 1.0.0 (hence my trying to <a href="http://blog.seagul.co.uk/articles/2006/08/14/create-rails-projects-using-a-specific-rails-gem-version">set-up a rails 1.0.0 app</a> earlier), doesn&#8217;t work with rails 1.1.6 (not sure about versions in between) and may or may not work for you.  I kinda think it&#8217;s a good idea but there&#8217;s every chance that a) it&#8217;s not or b) there&#8217;s already a simple solution to this problem.</p>
+
+
+	<p>Let me know how you get on if you decide to risk the health of your project by trying this plugin.</p>
+
+
+	<p id="fn1"><sup>1</sup> She didn&#8217;t say that.</p>
+          </div>
+        
+          <p class="meta">
+            
+              Tags 
+              
+                <a href="/articles/tag/plugin" rel="tag">plugin</a>, 
+              
+                <a href="/articles/tag/rails" rel="tag">rails</a>, 
+              
+                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+              
+            
+          </p>
+
+          
+            <a name="comments"></a>
+            <h4 class="blueblk">Comments</h4>
+            <ol class="comment-list" id="commentList">
+              
+              <li>
+                <cite>
+                  <strong>
+                    
+                      <a href="http://iamrice.org">Damien Tanner</a>
+                    
+                  </strong>
+                </cite> said on Tue, 15 Aug 2006 19:20:49:<br />
+                <p>Nice idea and looks useful. I&#8217;m more for having assertions which check for the correct links in your functional tests.</p>
+              </li>
+              
+              <li>
+                <cite>
+                  <strong>
+                    
+                      Chris
+                    
+                  </strong>
+                </cite> said on Wed, 16 Aug 2006 09:00:10:<br />
+                <p>Damien,</p>
+
+
+	<p>The intention is not to replace assertions in functional tests but rather aid in the discovery of any invalid assertions.</p>
+              </li>
+              
+            </ol>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

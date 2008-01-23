@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published in March 2007 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/19/monkey-patching-rails-routing">Monkey patching rails routing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 19 Mar 2007 22:16:00">
+                  Mon, 19 Mar 2007 22:16:00
+                </span>
+              </p>
+          
+              <p>This <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/routing_redirection/">plugin</a> offers the following two features.</p>
+
+
+	<ol>
+	<li>Permanently redirecting requests for urls that end in a slash to the equivalent url with no slash, helping disambiguate urls, as <a href="http://simonwillison.net/2007/Feb/4/urls/">explained</a> by <a href="http://simonwillison.net/">Simon Willison</a>.</li>
+		<li>The addition of ActionController::Routing::RouteSet::Mapper#permanently_redirect, allowing us to declare permanent redirections within our <a href="http://api.rubyonrails.com/classes/ActionController/Routing.html">route config</a>.</li>
+	</ol>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">ActionController</span><span class="punct">::</span><span class="constant">Routing</span><span class="symbol">:Routes</span><span class="punct">.</span><span class="ident">draw</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">map</span><span class="punct">|</span>
+  <span class="ident">map</span><span class="punct">.</span><span class="ident">permanently_redirect</span> <span class="punct">'</span><span class="string">legacy/view/:id</span><span class="punct">',</span> <span class="symbol">:controller</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">current</span><span class="punct">',</span> <span class="symbol">:action</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">show</span><span class="punct">'</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>A quick <a href="http://www.google.co.uk/search?hl=en&#38;q=rails+disambiguated+urls&#38;btnG=Search">google</a> reveals that <a href="http://fleetingideas.com/">Rob McKinnon</a> has an <a href="http://fleetingideas.com/2007/2/6/disambiguated-urls-with-ruby-on-rails">alternative suggestion</a> for removing the trailing slashes.</p>
+
+
+	<p>The plugin is known to work with Rails 1.1.6.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/routing" rel="tag">routing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/18/repairing-an-hp-pavilion-n5241-laptop">Repairing an Hp Pavilion N5241 laptop</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sun, 18 Mar 2007 20:22:00">
+                  Sun, 18 Mar 2007 20:22:00
+                </span>
+              </p>
+          
+              <p>A mate&#8217;s laptop was making very strange noises.  I wondered if dust could be causing the &#8216;interference&#8217; and so took the laptop apart to clean.  Although it didn&#8217;t look too dirty, it seems to have done the trick.  Photos of the re-assembly are on <a href="http://www.flickr.com/photos/chrisjroos/sets/72157600007191066/">flickr</a>.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/16/orange-orange-orange">Orange, orange, orange</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 16 Mar 2007 19:58:00">
+                  Fri, 16 Mar 2007 19:58:00
+                </span>
+              </p>
+          
+              <p>Tuttety tut tut tut.  I unsubscribed from you guys, don&#8217;t you <a href="http://blog.seagul.co.uk/articles/2007/01/12/move-over-seetickets-com-youve-got-nothing-on-orange-co-uk">remember</a>?  Obviously not, as you&#8217;ve just emailed me again.  Oh well, might as well hit that unsubscribe link one more time&#8230;</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/157/423345893_fa4f1d707b_o.jpg" alt="" /></p>
+
+
+	<p>Unless I&#8217;m very much mistaken, there have been about two months between the 12th January and now, one month more than the, err, very reasonable<sup><a href="#fn1">1</a></sup>, 28 days they say it should take.</p>
+
+
+	<p id="fn1"><sup>1</sup> It&#8217;s not reasonable.  In fact, I may go as far as to say it&#8217;s unjustifiable.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/crap" rel="tag">crap</a>, 
+                
+                  <a href="/articles/tag/naughty" rel="tag">naughty</a>, 
+                
+                  <a href="/articles/tag/orange" rel="tag">orange</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/12/frustrating-user-experience-with-hsbc-online-banking">Frustrating user experience with Hsbc online banking</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 12 Mar 2007 23:13:00">
+                  Mon, 12 Mar 2007 23:13:00
+                </span>
+              </p>
+          
+              <p>I needed to pay some money to <a href="http://www.hmrc.gov.uk"><span class="caps">HMRC</span></a> to cover my tax.  <span class="caps">HMRC</span> kindly supply me with their sort code and account number so that I could transfer the money directly from my bank account.  Logged into <a href="http://www.hsbc.co.uk">Hsbc</a>, I entered the relevant details and tried to make the payment.  Instead of going through like a good payment should, I was presented with this useless error message.</p>
+
+
+	<p><a href="http://www.flickr.com/photos/chrisjroos/419309333/"><img src="http://farm1.static.flickr.com/130/419309333_f03474b3c8_m.jpg" alt="" /></a></p>
+
+
+	<p>&#8220;We are unable to deal with your request. Please call us on 0845 600 2290 quoting reference 841, and we will be happy to help.  Select an option from the left-hand menu to continue.&#8221;</p>
+
+
+	<p>I happen to know that, in English, this means, &#8220;You have tried to make a payment to a known bank account using the Friends and Family option.  You&#8217;re a dumbass.  It&#8217;s obvious that instead of blindly typing in the sort code and account number, you should select from this helpful list of accounts that we already know about.&#8221;</p>
+
+
+	<p><a href="http://www.flickr.com/photos/chrisjroos/419309488/"><img src="http://farm1.static.flickr.com/176/419309488_df2ab0fb53_m.jpg" alt="" /></a></p>
+
+
+	<p>Hmm, now if only I knew which of 12 cryptic names to choose I&#8217;d be away&#8230;  Anyway.  A short phone call later, filled with such insights as &#8220;lots of people seem to phone up about this&#8221;, and, &#8220;we can&#8217;t give out the list of names vs sort codes as it&#8217;s against data protection&#8221;, I was all set.  For anyone that cares, the sort code and account number I had (10-50-41 and 23456000) match to the incredibly obvious &#8216;HMRC <span class="caps">CORP TAX SHIP</span>&#8217;.  Actually, I&#8217;ve just come across a <a href="http://www.hmrc.gov.uk/howtopay/bank-account-checker.htm">page</a> detailing all the different <span class="caps">HMRC</span> accounts and what they&#8217;re for.  A quick scan suggests that you can probably derive the cryptic Hsbc name from the more human friendly name on that page.</p>
+
+
+	<p>If anyone happens to come across this page while searching for the error above, maybe you could leave details in the comments of the sort code, account number and Hsbc cryptic name, in order to help out any future visitors.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/crap" rel="tag">crap</a>, 
+                
+                  <a href="/articles/tag/hsbc" rel="tag">hsbc</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/09/the-worst-word-in-the-world-ever">The worst word in the world... ever</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 09 Mar 2007 10:28:00">
+                  Fri, 09 Mar 2007 10:28:00
+                </span>
+              </p>
+          
+              <p>I don&#8217;t know why, but I really don&#8217;t like the word &#8216;texted&#8217;.  It hurts my ears when I hear it, and my eyes when I see it.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/made" rel="tag">made</a>, 
+                
+                  <a href="/articles/tag/neologism" rel="tag">neologism</a>, 
+                
+                  <a href="/articles/tag/up" rel="tag">up</a>, 
+                
+                  <a href="/articles/tag/words" rel="tag">words</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/05/itll-grow-back-right">It'll grow back, right?</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 05 Mar 2007 22:16:00">
+                  Mon, 05 Mar 2007 22:16:00
+                </span>
+              </p>
+          
+              <p>Hmm.  I need to remove this, very firmly attached, processor from the heatsink and fan assembly.</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/174/411792179_f302416633.jpg?v=0" alt="" /></p>
+
+
+	<p>I&#8217;m sure if I just apply a little pressure<sup><a href="#fn2">2</a></sup>...</p>
+
+
+	<p><img src="http://farm1.static.flickr.com/147/411792926_f61db3d103.jpg?v=0" alt="" /></p>
+
+
+	<p>Bugger.</p>
+
+
+	<p>In an effort to take something positive from the experience, I&#8217;ve created a <a href="http://flickr.com/photos/chrisjroos/sets/72157594571965120/">photoset</a> on <a href="http://www.flickr.com">flickr</a> that describes the re-assembly process of the Sony Vaio <span class="caps">K315B</span>.</p>
+
+
+	<p id="fn1"><sup>1</sup>  More like a combination of pressure (on the processor, not me), lessening patience and a knife (resulting in two cut fingers.)  Ho hum.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/oops" rel="tag">oops</a>, 
+                
+                  <a href="/articles/tag/sony" rel="tag">sony</a>, 
+                
+                  <a href="/articles/tag/vaio" rel="tag">vaio</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/03/04/digital-photo-prints-from-photobox">Digital Photo Prints from PhotoBox</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sun, 04 Mar 2007 08:13:00">
+                  Sun, 04 Mar 2007 08:13:00
+                </span>
+              </p>
+          
+              <p>I just wanted to write a short note to recommend <a href="http://www.photobox.co.uk">PhotoBox</a>.  I&#8217;ve been meaning to get some of my <a href="http://www.flickr.com/photos/chrisjroos">photos</a> printed for a while, but was put off by having to pay for a service that I knew nothing about.  A short while ago, a friend <a href="http://ademblog.blogspot.com/2007/02/is-that-where-it-ends-with-your-life.html">mentioned</a> photobox.  Not only do I trust Adem&#8217;s opinion, but photobox were (and still are, having just checked their homepage) offering 30 free prints when you sign-up.  I signed up at around midday on Friday (23rd Feb 2007), selected 30 photos that I&#8217;d like printed, and uploaded them to photobox.  I paid my £1.50 postage and duly received my confirmation email at 16:27 that day.  The best thing was that 56 minutes later (17:23) I received an email to say that the photos had been dispatched.  That&#8217;s pretty cool.  They were sent First Class with <a href="http://www.royalmail.co.uk">Royal Mail</a> and I received them the next morning.</p>
+
+
+	<p>I know that Adem has already used their service again, and I can only imagine that I will too.  Would I have used them without Adem&#8217;s advocacy?  Probably if they had the free offer (I&#8217;d have nothing to lose after all), almost certainly not if they didn&#8217;t.</p>
+
+
+	<p>After all that praise, I&#8217;d like to suggest a couple of improvements.</p>
+
+
+	<ol>
+	<li>I already have all of my photos on <a href="http://www.flickr.com">flickr</a>.  I should have been able to supply photobox with the location of these photos rather than having to painstakingly download and re-upload.</li>
+		<li>I found the interface a little clumsy.  At the checkout, it looked like some of my photos were going to be cropped, even though I didn&#8217;t ask for it, or see why they would be (they were &#8216;photo-size&#8217; already.)  This resulted in a bit of back and forth, on my part, through the interface, to ensure I hadn&#8217;t selected some option by mistake (I hadn&#8217;t and my photos weren&#8217;t cropped.)  I feel that it could be made easier for the &#8216;just upload and print&#8217; crowd.</li>
+	</ol>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/flickr" rel="tag">flickr</a>, 
+                
+                  <a href="/articles/tag/photo" rel="tag">photo</a>, 
+                
+                  <a href="/articles/tag/photobox" rel="tag">photobox</a>, 
+                
+                  <a href="/articles/tag/printing" rel="tag">printing</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

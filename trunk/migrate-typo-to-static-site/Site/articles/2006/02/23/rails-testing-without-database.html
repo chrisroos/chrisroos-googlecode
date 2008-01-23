@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Rails testing without database - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Rails testing without database</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Thu, 23 Feb 2006 08:16:00">
+                Thu, 23 Feb 2006 08:16:00
+              </span>
+            </p>
+          
+            <p>Just yesterday I wanted to create a very quick rails app that didn&#8217;t rely on a database.</p>
+
+
+	<p>I removed :active_record from the frameworks loaded in evironment, but apparently this wasn&#8217;t quite enough.  The setup and teardown methods in Test::Unit::TestCase were still attempting to load fixtures (which implies that active record is still present somewhere), which require the presence of a database.  This was causing tests not to run.  Having had a quick look at how active record intercepts the setup and teardown methods, it was relatively simple to stop it from doing so.</p>
+
+
+	<p>Just add the code below within the Test::Unit::TestCase declaration in test_helper.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">self.dont_use_fixtures</span>
+  <span class="ident">class_eval</span> <span class="keyword">do</span>
+    <span class="keyword">def </span><span class="method">self.method_added</span><span class="punct">(</span><span class="ident">method</span><span class="punct">);</span> <span class="keyword">end</span>
+    <span class="keyword">def </span><span class="method">setup</span><span class="punct">;</span> <span class="keyword">end</span>
+    <span class="keyword">def </span><span class="method">teardown</span><span class="punct">;</span> <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>This still requires that you add dont_use_fixtures into each test class definition.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">MyTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="ident">dont_use_fixtures</span>
+  <span class="keyword">def </span><span class="method">test_</span>
+    <span class="comment"># my first test</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Having just written this it&#8217;s obvious now that it would make more sense to not require the declaration in each test class (as we supposedly don&#8217;t even have access to active record).  We should probably also play fair and pass messages back to our parent if method_added isn&#8217;t being called with either setup or teardown.</p>
+
+
+	<p>The new code becomes (again, in Test::Unit::TestCase definition in test_helper).</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">self.method_added</span><span class="punct">(</span><span class="ident">method</span><span class="punct">)</span>
+  <span class="keyword">super</span> <span class="keyword">unless</span> <span class="punct">[</span><span class="symbol">:setup</span><span class="punct">,</span> <span class="symbol">:teardown</span><span class="punct">].</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method</span><span class="punct">.</span><span class="ident">to_sym</span><span class="punct">)</span>
+<span class="keyword">end</span>
+<span class="keyword">def </span><span class="method">setup</span><span class="punct">;</span> <span class="keyword">end</span>
+<span class="keyword">def </span><span class="method">teardown</span><span class="punct">;</span> <span class="keyword">end</span></code></pre></div>
+
+	<p>This appears to work ok&#8230;</p>
+          </div>
+        
+          <p class="meta">
+            
+          </p>
+
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

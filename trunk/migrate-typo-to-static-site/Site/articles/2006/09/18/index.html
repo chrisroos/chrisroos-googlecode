@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Mon, 18 September 2006 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/09/18/unified-method_exists-method-for-ruby">Unified method_exists method for ruby</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 18 Sep 2006 22:59:00">
+                  Mon, 18 Sep 2006 22:59:00
+                </span>
+              </p>
+          
+              <p>There are loads of different ways to check whether an object (class or instance) contains a given method.</p>
+
+
+	<p>In fact, there are so many different ways that I spent some time working out what was what.</p>
+
+
+	<p>I started out testing each of the relevant Module methods on both a class and instance.  This was followed up by testing each of the relevant Object methods on both a class and instance.  The full test suite is <a href="http://blog.seagul.co.uk/pages/20060918_testing_method_responses_full">here</a>.</p>
+
+
+	<p>I summarised the results into a more compact test suite <a href="http://blog.seagul.co.uk/pages/20060918_testing_method_responses_compact">here</a>.</p>
+
+
+	<p>I think I&#8217;m correct in stating that there&#8217;s no one way to check for the existence of a method (be it public, protected or private) on a class.  However, the test results make it slightly easier to scan and create such a method &#8211; <a href="http://blog.seagul.co.uk/pages/20060918_testing_class_method_exists">three variants</a> none-the-less.</p>
+
+
+	<p>The same statement goes for uniformly determining the existence of a method on an instance.  Once again the tests helped derive the three implementations <a href="http://blog.seagul.co.uk/pages/20060918_testing_instance_method_exists">here</a>.</p>
+
+
+	<p>Combining these two imlpementations provides us with a uniform method to determine whether the receiver contains a method represented by <em>method_sym</em>.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Object</span>
+  <span class="keyword">def </span><span class="method">method_exists?</span><span class="punct">(</span><span class="ident">method_sym</span><span class="punct">)</span>
+    <span class="ident">methods</span> <span class="punct">=</span> <span class="ident">public_methods</span> <span class="punct">+</span> <span class="ident">protected_methods</span> <span class="punct">+</span> <span class="ident">private_methods</span>
+    <span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_sym</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">Class</span>
+  <span class="keyword">def </span><span class="method">method_exists?</span><span class="punct">(</span><span class="ident">method_sym</span><span class="punct">)</span>
+    <span class="ident">methods</span> <span class="punct">=</span> <span class="ident">public_instance_methods</span> <span class="punct">+</span> <span class="ident">protected_instance_methods</span> <span class="punct">+</span> <span class="ident">private_instance_methods</span>
+    <span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_sym</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">Foo</span>
+  <span class="keyword">def </span><span class="method">foo</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">public</span> <span class="symbol">:foo</span>
+  <span class="keyword">def </span><span class="method">bar</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">protected</span> <span class="symbol">:bar</span>
+  <span class="keyword">def </span><span class="method">baz</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">private</span> <span class="symbol">:baz</span>
+<span class="keyword">end</span>
+
+<span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+
+<span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+
+  <span class="keyword">def </span><span class="method">assert_not</span><span class="punct">(</span><span class="ident">expr</span><span class="punct">)</span>
+    <span class="ident">assert</span> <span class="punct">!</span> <span class="ident">expr</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">assert_method_exists_is_working</span><span class="punct">(</span><span class="ident">receiver</span><span class="punct">)</span>
+    <span class="punct">[</span><span class="symbol">:foo</span><span class="punct">,</span> <span class="symbol">:bar</span><span class="punct">,</span> <span class="symbol">:baz</span><span class="punct">].</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">sym</span><span class="punct">|</span>
+      <span class="ident">assert</span> <span class="ident">receiver</span><span class="punct">.</span><span class="ident">method_exists?</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">)</span>
+      <span class="ident">assert</span> <span class="ident">receiver</span><span class="punct">.</span><span class="ident">method_exists?</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">)</span>
+    <span class="keyword">end</span>
+    <span class="ident">assert_not</span> <span class="ident">receiver</span><span class="punct">.</span><span class="ident">method_exists?</span><span class="punct">(</span><span class="symbol">:made_up_method</span><span class="punct">)</span>
+    <span class="ident">assert_not</span> <span class="ident">receiver</span><span class="punct">.</span><span class="ident">method_exists?</span><span class="punct">('</span><span class="string">made_up_method</span><span class="punct">')</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_class</span>
+    <span class="ident">assert_method_exists_is_working</span><span class="punct">(</span><span class="constant">Foo</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_instance</span>
+    <span class="ident">assert_method_exists_is_working</span><span class="punct">(</span><span class="constant">Foo</span><span class="punct">.</span><span class="ident">new</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>What&#8217;s the point you ask?  I genuinely have no idea.  I&#8217;m sure there was one when I started but then my compulsiveness took over and I had to finish for no other reason than to finish.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/09/18/gdisk-very-cheap-free-online-storage">gDisk - very cheap (free) online storage</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 18 Sep 2006 20:17:00">
+                  Mon, 18 Sep 2006 20:17:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve used <a href="http://gdisk.sourceforge.net/">this</a> for a while but haven&#8217;t got round to mentioning it.</p>
+
+
+	<p>Basically, it uses a <a href="http://mail.google.com">gmail</a> account (curently offering around 2.7GB space) as online storage, accessed seamlessly from this app.  Mac Os X only I&#8217;m afraid although I&#8217;m sure I&#8217;ve heard of Windows alternatives.</p>
+
+
+	<p>I&#8217;m not sure if gmail is still invite only, but if it is, and if someone reading doesn&#8217;t have a gmail account, let me know as I have plenty of invites.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/software" rel="tag">software</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Setting up Typo from SVN Trunk - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Setting up Typo from SVN Trunk</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Fri, 07 Oct 2005 17:26:00">
+                Fri, 07 Oct 2005 17:26:00
+              </span>
+            </p>
+          
+            <p>This is for <a href="http://httpd.apache.org">Apache</a> 1.3 with <a href="http://www.fastcgi.com">FastCgi</a>, <a href="http://www.ruby-lang.org">Ruby</a>, <a href="http://www.mysql.org">MySql</a> 4 and <a href="http://subversion.tigris.org">Subversion</a> already installed on <a href="http://www.freebsd.org">FreeBsd</a> 4.11 Stable.</p>
+
+
+<pre>
+# svn checkout svn://leetsoft.com/typo/trunk typo
+</pre>
+
+	<p>In the public directory, within the newly created typo directory, edit the dispatch.fcgi file, changing the #! (shebang) line to /usr/local/bin/ruby.</p>
+
+
+	<p>Create a database for the typo install.</p>
+
+
+<pre>
+# mysql
+mysql&gt; create database typo;
+mysql&gt; quit
+</pre>
+
+	<p>Copy the default database.yml.example file in config directory to database.yml.  Edit the file with the mysql credentials for your server.  Ignore (possibly remove) the development and test sections of the config file as these are not required in &#8216;production&#8217;.</p>
+
+
+	<p>Use the mysql script in the db directory to create database tables.</p>
+
+
+<pre>
+# mysql -Dtypo &lt; db/schema.mysql.sql
+</pre>
+
+	<p><strong>NB.</strong> There is a mysql-v3 script as well.  As far as I can tell the only difference is the database engine (InnoDb by default and MyIsam in v3).</p>
+
+
+	<p>Add a new FastCgiServer to the Apache config (httpd.conf).</p>
+
+
+<pre>
+FastCgiServer /home/web/typo/public/dispatch.fcgi -initial-env RAILS_ENV=production
+</pre>
+
+	<p>Add a virtual host for this new site.</p>
+
+
+	<p><em>To do</em></p>
+
+
+	<p>Restart apache.</p>
+
+
+<pre>
+# apachectl graceful
+</pre>
+
+	<p>That&#8217;s it.</p>
+          </div>
+        
+          <p class="meta">
+            
+          </p>
+
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

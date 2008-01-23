@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged nationalrail - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries">Train times by SMS (or, improving national rail enquiries)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 24 Jul 2007 14:40:00">
+                  Tue, 24 Jul 2007 14:40:00
+                </span>
+              </p>
+          
+              <p>I was in need of finding some train times at the weekend.  I usually use the <a href="http://www.nationalrail.co.uk">national rail enquiries</a> website but was without Internet access at the time.  Instead, I found myself waiting for about 10 minutes in a telephone queue just to spend about 30 seconds getting the information I was after.  This played on my mind a bit so last night I started <a href="http://twitter.com/chrisroos/statuses/164273922">playing around</a> with automating the national rail timetable search.  That was relatively painless so I moved on to integrating with <a href="http://www.twitter.com">twitter</a> in order to provide an <span class="caps">SMS</span> interface to the service.  Within a couple of hours I had a twitterbot that receives timetable requests, looks up the times and sends them back to you.</p>
+
+
+	<p>It&#8217;s actually currently all up and running.  Just follow <a href="http://twitter.com/natrailenq">natrailenq</a> on twitter and I&#8217;ll follow you right back<sup><a href="#fn1">1</a></sup> (this seems to be necessary in order to send direct messages between each other).  A timetable request must be of the format &#8216;origin_station (3 letter short code) destination_station (3 letter short code) depart_date (dd-mmmm) depart_time (hh:mm)&#8217;.  So, if we wanted to get times of trains from London Victoria (VIC) to Clapham Junction (CLJ) tomorrow midday, we&#8217;d send a message like so:</p>
+
+
+<code>d natrailenq vic clj 25-july 12:00</code>
+
+	<p>In this instance, we get the following response back.</p>
+
+
+<code>natrailenq  11:55-&gt;12:02, 12:02-&gt;12:07, 12:03-&gt;12:09, 12:05-&gt;12:11, 12:06-&gt;12:11</code>
+
+	<p>Cool huh.</p>
+
+
+	<p>The code is <strong>nasty</strong>.  You can see just how nasty it in the <a href="http://chrisroos.googlecode.com/svn/trunk/nat-rail-enq/">repository</a>.  It feels as though this could go somewhere &#8211; unless I&#8217;m violating some terms and conditions that I haven&#8217;t read&#8230;  I make no guarantees as to how long the service will stay live, and I will certainly (probably) remove it if asked to.</p>
+
+
+	<p id="fn1"><sup>1</sup> Well, just as soon as I can at least &#8211; it&#8217;s not automated at the moment.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/cool" rel="tag">cool</a>, 
+                
+                  <a href="/articles/tag/nationalrail" rel="tag">nationalrail</a>, 
+                
+                  <a href="/articles/tag/sms" rel="tag">sms</a>, 
+                
+                  <a href="/articles/tag/timetable" rel="tag">timetable</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+                  <a href="/articles/tag/twitterbot" rel="tag">twitterbot</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

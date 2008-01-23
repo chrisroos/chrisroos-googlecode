@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Testing against the (Garbage Collection) Clock, or, Don't create your Test Cases as anonymous classes - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Testing against the (Garbage Collection) Clock, or, Don't create your Test Cases as anonymous classes</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Fri, 22 Sep 2006 10:43:00">
+                Fri, 22 Sep 2006 10:43:00
+              </span>
+            </p>
+          
+            <p>I <a href="http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing">wrote</a> a while ago about how I&#8217;d started creating my test cases as anonymous classes.</p>
+
+
+	<p>I continued this practice until I was slapped in the face by my own stoopidity yesterday.  We were seeing a problem where tests were failing individually but appearing to run fine in rake.</p>
+
+
+	<p><a href="http://blog.floehopper.org">James</a> was looking into it&#8230;</p>
+
+
+<pre>
+James: it seems like the ones defined by Class.new(Test::Unit::TestCase) aren't always being found in the ObjectSpace
+James: but I can't quite work out why
+James: i'm tempted to name them all as defined classes
+Chris: oh ok
+Chris: go for it
+James: i'm pretty sure that works ok
+Chris: interesting
+James: only difference i can think of is that if the file is loaded twice you will create two instances of the anonymous class
+James: whereas with the named class it will just reopen same class
+Chris: why would that be a problem?
+James: but it doens't look like its being loaded twice anyway
+James: dunno
+James: its the only difference i can think of, but it doesn't explain anything
+James: can you think of any other differences
+Chris: so if you create named classes for the testcases in p_l_i_test does it then fail in rake?
+James: yup - and i've seen the problem in other tests where anonymous tests are defined
+James: so there are quite a few tests that haven't been running in rake
+Chris: bugger
+Chris: i think ben just explained the problem
+James: yeah?
+Chris: as the classes aren't assigned to constants they can be garbage collected
+Chris: oops
+James: aha
+Chris: no more anonymous test classes for christopher
+James: that explains - why they were in the ObjectSpace one minute and not the next
+</pre>
+
+	<p>Note that p_l_i_test mentioned above is just a shorthand for one of our tests that was failing individually but &#8216;running&#8217; (or as we now know, not running) from rake.</p>
+
+
+	<p>So, although you get a little added excitement to your testing (&#8220;Will this test class run before it gets garbage collected???&#8221;), it&#8217;s probably a lot safer to not use anonymous classes when testing.</p>
+
+
+	<p>James has just informed me that we gained about 230 tests in rake by naming all of our test cases&#8230;</p>
+          </div>
+        
+          <p class="meta">
+            
+              Tags 
+              
+                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+              
+                <a href="/articles/tag/testing" rel="tag">testing</a>, 
+              
+            
+          </p>
+
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

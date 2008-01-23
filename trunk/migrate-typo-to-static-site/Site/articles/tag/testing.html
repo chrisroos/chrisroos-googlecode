@@ -1,0 +1,877 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged testing - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/27/fun-with-selenium">Fun with Selenium</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 27 Nov 2007 09:36:00">
+                  Tue, 27 Nov 2007 09:36:00
+                </span>
+              </p>
+          
+              <p><a href="http://interblah.net/">James</a> and I spent a frustrating, but rewarding, day last Tuesday trying to fix what, for at least four hours, seemed to be a non-reproducible error.  <a href="http://www.reevoo.com">We&#8217;ve</a> used <a href="http://www.openqa.org/selenium/">selenium</a> for a while to test that our reevoomark application is working as expected.  Every so often, some of these reevoomark tests would fail, with either of the following two messages:</p>
+
+
+<pre>
+Message: SeleniumCommandError: Timed out after 30000ms
+Message: SeleniumCommandError: ERROR: Element xpath=//iframe/ not found
+</pre>
+
+	<p>To my knowledge it was never possible to get these tests to fail on any machine apart from our <a href="http://en.wikipedia.org/wiki/Continuous_Integration">continuous integration</a> box.  And even then the failures were intermittent.  Because these failures were so intermittent no-one had invested any real time in trying to find their cause.  Tuesday seemed a bit different though: the tests were failing almost all the time and we decided to do something about it.</p>
+
+
+	<p>I&#8217;ll leave out all of the dead-ends we found and, instead, home-in on the patterns we started to see that led to the eventual resolution.</p>
+
+
+	<p>One of the reevoomarks we offer opens the reviews up in a <a href="http://en.wikipedia.org/wiki/Lightbox_%28JavaScript%29">lightbox</a>.  However, if the screen isn&#8217;t quite large enough for our content we open it in a standard pop-up window instead.  I&#8217;ll pop an example reevoomark at the bottom of this post so you can see exactly what I mean (you&#8217;ll obviously have to resize your browser to see the effect).  We noticed that our tests would fail when another copy of firefox was already open on our continuous integration box.  Toggling this on and off gave us some confidence that this was, at least one of, the causes of the failures.  We were still unable to reproduce this locally though.</p>
+
+
+	<p>It was around this time that James noticed that we were seeing a pop-up window more than we should have been, i.e. we were seeing a pop-up window when we were expecting to see a lightbox.  This discovery made me happy as up until this stage I&#8217;d been blaming selenium for throwing out useless error messages.  In actual fact selenium was reporting the errors correctly: it really couldn&#8217;t find the element we were looking for (the iframe in the error above) and was therefore timing out.  OK, so if the pop-up was showing in place of the lightbox then it meant that the browser window couldn&#8217;t be big enough for the lightbox.  Yet we explicitly resize the browser in our test to ensure that the lightbox will fit.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">get_eval(&quot;this.browserbot.getCurrentWindow().resizeTo(800,800)&quot;)</code></pre></div>
+
+	<p>We used the one and only javascript debugging technique (<code>alert(msg)</code>) to determine that the window was indeed too small for our lightbox.  But hang on, if there wasn&#8217;t another Firefox instance open then the browser <strong>was</strong> big enough.  So somehow, the presence of another Firefox browser was affecting the maximum size that we could resize our browser to.  It turns out it&#8217;s all to do with the maximum height that Firefox thinks it can expand to.  On a Mac with a hidden dock (or with the dock positioned to the side) the maximum height will be from the status bar at the top of the screen to the bottom of the screen.  With a dock visible at the bottom of the screen the maximum height will be from the status bar at the top of the screen to the top of the dock.  It&#8217;s not quite this simple though: Firefox appears to look at the height of the oldest open firefox window to make its decision too.  Although we had the dock at the bottom of the screen our tests were actually passing on some occasions.  This was due to selenium opening its browser at almost full screen, allowing subsequent windows to be resized to these same dimensions which happen to be plenty big enough for our lightbox.  If we already had another firefox instance open (which by default would open at a maximum height of status bar to top of dock) then our selenium browser could only resize to this height, which wasn&#8217;t big enough for our lightbox to appear.  Phew.</p>
+
+
+	<p>So, the result of this entire day&#8217;s work?  Moving the dock to the right hand side of the screen.  Excellent.</p>
+
+
+	<h3>Sample lightbox reevoomark</h3>
+
+
+
+<script type="text/javascript" charset="utf-8">
+  rvo_format='image_horizontal250x40';
+  rvo_product_id='1'
+  rvo_retailer_ref='rev';
+  rvo_version = 2;
+</script>
+<script type="text/javascript" src='http://www.revieworld.com/javascripts/reevoomark.js'></script>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/selenium" rel="tag">selenium</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/09/27/why-should-it-do-that">Why should it do that?</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 27 Sep 2007 07:36:00">
+                  Thu, 27 Sep 2007 07:36:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve started looking into my *cough* promise *cough* to do that <a href="http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers">local paper</a> site I mentioned sometime ago.  The code is all in me <a href="http://chrisroos.googlecode.com">google code</a> <a href="http://chrisroos.googlecode.com/svn/trunk/the-local-paper/">repository</a> if you want to see how it&#8217;s going (or finish it when I inevitably get bored again&#8230;).</p>
+
+
+	<p>Anyway, the point of this post is that I realised something about testing that I feel I may have missed in the past.  I&#8217;ve got used to stating the <a href="http://behaviour-driven.org/">behavior</a> of the objects in my system through tests.  So, when I wanted to ensure that an article couldn&#8217;t be created without a title, I added a test like so:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ArticleTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_validate_presence_of_title</span>
+    <span class="punct">...</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>In fact, for an article comprised of a title, an edition, a page number and an author, I wanted to ensure that all were there apart from the author.  It was only once I&#8217;d added tests to <a href="http://api.rubyonrails.org/classes/ActiveRecord/Validations.html">validate</a> the presence of the other three attributes that I realised it was probably important to prove that an author wasn&#8217;t required.  So, I added the relevant test.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ArticleTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_not_validate_presence_of_author</span>
+    <span class="punct">...</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>That&#8217;s all well and good, but I&#8217;ve lost some information: <span class="caps">WHY</span> it shouldn&#8217;t validate the presence of an author.  I know at the moment why it shouldn&#8217;t (because short articles don&#8217;t have an author listed), but will I know at some point the future?  I suspect not.  The same obviously applies for the things that I do want to ensure are present.  Why do I care that an article has a title, edition and page number?  At the moment I care because I&#8217;m planning on making them part of the <span class="caps">URL</span>, but what if I decide not to go down that route, yet leave the tests there?  There&#8217;ll be no easy way for someone in the future to determine whether those things are actually important or not.</p>
+
+
+	<p>I wonder if this issue was highlighted because of my lack of <a href="http://subversion.tigris.org/"><span class="caps">SVN</span></a> access.  I generally like really small checkins to my <a href="http://en.wikipedia.org/wiki/Revision_control">version control software</a> which would&#8217;ve allowed me to have added and committed those validation additions one at a time, and with messages that would have stated the reasons for that change<sup><a href="#fn1">1</a></sup>.  Being disconnected means that I end up with bigger checkins that inevitably lose some information.  Actually, the more I think about it, the more I think that the repository isn&#8217;t the right place for this information anyway &#8211; it&#8217;s too far away from the code that&#8217;s solving the problems.</p>
+
+
+	<p>How do other people solve this potential loss of knowledge?  Am I missing something obvious, or have I really just not noticed this before?</p>
+
+
+	<p>P.S. I spent a few minutes chatting with <a href="http://interblah.net/">James</a> about it today and he had some interesting suggestions, although I&#8217;ll leave it up to him to share those if he wants (no pressure James, I&#8217;m just running out of time right now I&#8217;m afraid).</p>
+
+
+	<p id="fn1"><sup>1</sup> <a href="http://po-ru.com">Paul</a> suggested a while back that we use the commit note to explain the problem that we&#8217;ve solved, rather than just describing the changeset.  Unfortunately, I can&#8217;t find the source of that suggestion so no link I&#8217;m afraid.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/agiledox" rel="tag">agiledox</a>, 
+                
+                  <a href="/articles/tag/bdd" rel="tag">bdd</a>, 
+                
+                  <a href="/articles/tag/development" rel="tag">development</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/tdd" rel="tag">tdd</a>, 
+                
+                  <a href="/articles/tag/test" rel="tag">test</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/29/visualising-the-changing-responsibilities-of-objects">Visualising the changing responsibilities of objects</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 29 Jan 2007 21:17:00">
+                  Mon, 29 Jan 2007 21:17:00
+                </span>
+              </p>
+          
+              <p>By parsing the output of svn diff, we can concisely display the responsibilities that have been added/removed to various objects.  It is based on the assumption that our tests capture these changes.</p>
+
+
+	<p>Taking a very simple (and partially made up) diff:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Index</span><span class="punct">:</span> <span class="ident">test</span><span class="punct">/</span><span class="ident">amount_test</span><span class="punct">.</span><span class="ident">rb</span>
+<span class="punct">===================================================================</span>
+<span class="punct">---</span> <span class="ident">test</span><span class="punct">/</span><span class="ident">amount_test</span><span class="punct">.</span><span class="ident">rb</span> <span class="punct">(</span><span class="ident">revision</span> <span class="number">2</span><span class="punct">)</span>
+<span class="punct">+++</span> <span class="ident">test</span><span class="punct">/</span><span class="ident">amount_test</span><span class="punct">.</span><span class="ident">rb</span> <span class="punct">(</span><span class="ident">working</span> <span class="ident">copy</span><span class="punct">)</span>
+<span class="attribute">@@</span> <span class="punct">-</span><span class="number">2</span><span class="punct">,</span><span class="number">9</span> <span class="punct">+</span><span class="number">2</span><span class="punct">,</span><span class="number">8</span> <span class="attribute">@@</span>
+
+ <span class="keyword">class </span><span class="class">AmountTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+
+<span class="punct">-</span>  <span class="keyword">def </span><span class="method">test_should_format_amount</span>
+<span class="punct">-</span>    <span class="ident">formatted_amount</span> <span class="punct">=</span> <span class="constant">Amount</span><span class="punct">.</span><span class="ident">format</span><span class="punct">(</span><span class="number">5</span><span class="punct">,</span> <span class="punct">'</span><span class="string">$</span><span class="punct">')</span>
+<span class="punct">-</span>    <span class="ident">assert_equal</span> <span class="punct">'</span><span class="string">$5.00</span><span class="punct">',</span> <span class="ident">formatted_amount</span>
+<span class="punct">+</span>  <span class="keyword">def </span><span class="method">test_should_flunk</span>
+<span class="punct">+</span>    <span class="ident">flunk</span>
+   <span class="keyword">end</span></code></pre></div>
+
+	<p>And piping it through the diff_parser, we get:</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">--- Amount
++ should flunk
+- should format amount</code></pre></div>
+
+	<p>The output is in a diff-like format so that we can pipe it straight into <a href="http://www.macromates.com">TextMate</a> and benefit from the colour formatting therein.</p>
+
+
+	<h3>diff_parser.rb</h3>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#!/usr/bin/env ruby</span>
+
+<span class="keyword">class </span><span class="class">Test</span>
+  <span class="keyword">def </span><span class="method">initialize</span>
+    <span class="attribute">@added</span><span class="punct">,</span> <span class="attribute">@removed</span> <span class="punct">=</span> <span class="punct">[],</span> <span class="punct">[]</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">add_responsibility</span><span class="punct">(</span><span class="ident">responsibility</span><span class="punct">)</span>
+    <span class="attribute">@added</span> <span class="punct">&lt;&lt;</span> <span class="ident">responsibility</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">remove_responsibility</span><span class="punct">(</span><span class="ident">responsibility</span><span class="punct">)</span>
+    <span class="attribute">@removed</span> <span class="punct">&lt;&lt;</span> <span class="ident">responsibility</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">added_responsibilities</span>
+    <span class="punct">(</span><span class="attribute">@added</span> <span class="punct">-</span> <span class="attribute">@removed</span><span class="punct">).</span><span class="ident">sort</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">removed_responsibilities</span>
+    <span class="punct">(</span><span class="attribute">@removed</span> <span class="punct">-</span> <span class="attribute">@added</span><span class="punct">).</span><span class="ident">sort</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">added_responsibilities?</span>
+    <span class="punct">!</span><span class="ident">added_responsibilities</span><span class="punct">.</span><span class="ident">empty?</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">removed_responsibilities?</span>
+    <span class="punct">!</span><span class="ident">removed_responsibilities</span><span class="punct">.</span><span class="ident">empty?</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">changed_responsibilities?</span>
+    <span class="ident">added_responsibilities?</span> <span class="punct">||</span> <span class="ident">removed_responsibilities?</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="ident">tests</span> <span class="punct">=</span> <span class="punct">{}</span>
+<span class="ident">class_under_test</span> <span class="punct">=</span> <span class="punct">'</span><span class="string"></span><span class="punct">'</span>
+
+<span class="keyword">while</span> <span class="ident">line</span> <span class="punct">=</span> <span class="ident">gets</span>
+  <span class="keyword">if</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">Index: (.*)</span><span class="punct">/</span>
+    <span class="keyword">if</span> <span class="punct">(</span><span class="ident">test_name</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">basename</span><span class="punct">(</span><span class="global">$1</span><span class="punct">,</span> <span class="punct">'</span><span class="string">.rb</span><span class="punct">'))</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">_test$</span><span class="punct">/</span>
+      <span class="ident">name_of_class_under_test</span> <span class="punct">=</span> <span class="ident">test_name</span><span class="punct">.</span><span class="ident">sub</span><span class="punct">(/</span><span class="regex">_test</span><span class="punct">/,</span> <span class="punct">'</span><span class="string"></span><span class="punct">')</span>
+      <span class="ident">class_under_test</span> <span class="punct">=</span> <span class="ident">name_of_class_under_test</span><span class="punct">.</span><span class="ident">capitalize</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(/</span><span class="regex">_(<span class="escape">\w</span>)</span><span class="punct">/)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">m</span><span class="punct">|</span> <span class="global">$1</span><span class="punct">.</span><span class="ident">capitalize</span> <span class="punct">}</span>
+      <span class="ident">tests</span><span class="punct">[</span><span class="ident">class_under_test</span><span class="punct">]</span> <span class="punct">=</span> <span class="constant">Test</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="keyword">end</span>
+  <span class="keyword">else</span>
+    <span class="keyword">if</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">-<span class="escape">\s</span>*def test_(.*)</span><span class="punct">/</span>
+      <span class="ident">responsibility</span> <span class="punct">=</span> <span class="global">$1</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(/</span><span class="regex">_</span><span class="punct">/,</span> <span class="punct">'</span><span class="string"> </span><span class="punct">')</span>
+      <span class="ident">tests</span><span class="punct">[</span><span class="ident">class_under_test</span><span class="punct">].</span><span class="ident">remove_responsibility</span><span class="punct">(</span><span class="ident">responsibility</span><span class="punct">)</span>
+    <span class="keyword">elsif</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex"><span class="escape">\+\s</span>*def test_(.*)</span><span class="punct">/</span>
+      <span class="ident">responsibility</span> <span class="punct">=</span> <span class="global">$1</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(/</span><span class="regex">_</span><span class="punct">/,</span> <span class="punct">'</span><span class="string"> </span><span class="punct">')</span>
+      <span class="ident">tests</span><span class="punct">[</span><span class="ident">class_under_test</span><span class="punct">].</span><span class="ident">add_responsibility</span><span class="punct">(</span><span class="ident">responsibility</span><span class="punct">)</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="ident">tests</span><span class="punct">.</span><span class="ident">sort</span><span class="punct">.</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">test_name</span><span class="punct">,</span> <span class="ident">test</span><span class="punct">|</span>
+  <span class="keyword">if</span> <span class="ident">test</span><span class="punct">.</span><span class="ident">changed_responsibilities?</span>
+    <span class="ident">puts</span> <span class="punct">'</span><span class="string">--- </span><span class="punct">'</span> <span class="punct">+</span> <span class="ident">test_name</span>
+    <span class="ident">test</span><span class="punct">.</span><span class="ident">added_responsibilities</span><span class="punct">.</span><span class="ident">each</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">responsibility</span><span class="punct">|</span> <span class="ident">puts</span> <span class="punct">'</span><span class="string">+ </span><span class="punct">'</span> <span class="punct">+</span> <span class="ident">responsibility</span> <span class="punct">}</span> <span class="keyword">if</span> <span class="ident">test</span><span class="punct">.</span><span class="ident">added_responsibilities?</span>
+    <span class="ident">test</span><span class="punct">.</span><span class="ident">removed_responsibilities</span><span class="punct">.</span><span class="ident">each</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">responsibility</span><span class="punct">|</span> <span class="ident">puts</span> <span class="punct">'</span><span class="string">- </span><span class="punct">'</span> <span class="punct">+</span> <span class="ident">responsibility</span> <span class="punct">}</span> <span class="keyword">if</span> <span class="ident">test</span><span class="punct">.</span><span class="ident">removed_responsibilities?</span>
+    <span class="ident">puts</span> <span class="punct">'</span><span class="string"></span><span class="punct">'</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/diff" rel="tag">diff</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/01/12/encapsulation-in-active-record-objects">Encapsulation in Active Record objects</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 12 Jan 2007 01:37:00">
+                  Fri, 12 Jan 2007 01:37:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve been meaning to finish a post on this subject for ages.  As I probably won&#8217;t finish it in its current incarnation, I thought I&#8217;d at least get something up here.</p>
+
+
+	<p><a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Base.html">Active Record</a> <a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Associations/ClassMethods.html">associations</a> are brilliant for quickly putting together an object graph.  They&#8217;re not so brilliant for testing, or keeping the code particularly tidy.  They quickly lead to (and even encourage) train-wreck expressions in your code.  Diving straight into an example:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">Hobby</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Because the hobbies object is publicly accessible from a person object, it allows us to reach in and touch things we shouldn&#8217;t.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">cycling</span> <span class="punct">=</span> <span class="constant">Hobby</span><span class="punct">.</span><span class="ident">new</span>
+
+<span class="comment"># We shouldn't manipulate the hobbies object directly...</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Uh oh - touching things we shouldn't</span>
+
+<span class="comment"># ...rather, it'd be better to add a wrapper method for the functionality we actually need</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="keyword">def </span><span class="method">add_hobby</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">add_hobby</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Ahh, that's much better</span></code></pre></div>
+
+	<p>The revised Person class above follows the <a href="http://en.wikipedia.org/wiki/Law_of_Demeter">law of demeter</a>.  As well as making the code look a little neater (no train-wrecks to see here), it makes it easier to test.  To illustrate the testing point, I&#8217;m going to <a href="http://weblog.jamisbuck.org/2007/1/9/extending-activerecord-associations">extend</a> the <a href="http://ryandaigle.com/articles/2006/12/03/extend-your-activerecord-association-methods">association</a> in this example.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># We end up with a large and not very clear test</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span> <span class="keyword">do</span>
+    <span class="keyword">def </span><span class="method">find_favourite</span>
+      <span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
+    <span class="ident">hobbies</span> <span class="punct">=</span> <span class="ident">mock</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_favourite</span><span class="punct">)</span>
+    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">stub</span><span class="punct">(</span><span class="symbol">:hobbies</span> <span class="punct">=&gt;</span> <span class="ident">hobbies</span><span class="punct">)</span>
+    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment"># This way, we end up with a slightly cleaner looking class (imo) and a smaller, cleaner test</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
+  <span class="keyword">def </span><span class="method">find_my_favourite_hobby</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
+    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">mock</span>
+    <span class="ident">person</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_my_favourite_hobby</span><span class="punct">)</span>
+    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Interestingly enough, if we had <a href="http://en.wikipedia.org/wiki/Test_driven_development">test driven</a> the development of the above code, we would almost certainly have ended up with something similar (interface-wise) to the example that has a wrapper around the association proxy.</p>
+
+
+	<p>So, with all of this in mind, I&#8217;ve hacked together a real quick <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/private_associations/">plugin</a> that adds a corresponding _private method for each of the four (has_one, has_many, belongs_to and has_and_belongs_to_many) associations.  Using the _private alternative will do exactly the same as the original method but it will make all of the dynamically created methods private.  So.  It&#8217;ll still be possible to write the wrapper around the association (as we did in the test above) but it won&#8217;t be possible to reach in and touch things that we shouldn&#8217;t.[1]</p>
+
+
+	<p>There is at least one problem (there may be many more I&#8217;m not aware of) with using the _private association methods.  If you have validation set-up for one of the associations (e.g. validates_associated) it will fail.  This is because validation happens from outside the instance of the object and therefore needs to access the association.  Although I haven&#8217;t thought this through fully, I&#8217;m actually wondering if validation (in its current form) takes a bit of a back seat under this new world order.  I think that one of the reasons validation is on the object itself is because there are many many ways to create the said object.  However, using these private associations and disabling the persistence methods (create, save, update etc) on an associated object may allow us to have a single point of object creation and persistence.  If we had that, then we wouldn&#8217;t need the Active Record validations anyway.  Just a thought&#8230;</p>
+
+
+	<p>Just one final note.  <a href="http://www.daveastels.com/">Dave Astels</a> has a good <a href="http://blog.daveastels.com/articles/2006/10/24/encapsulation-in-action">article</a> about encapsulation in rails, as <a href="http://www.reevoo.com/blogs/bengriffiths/2006/10/24/rails-like-or-oo/">referred to</a> by <a href="http://www.reevoo.com/blogs/bengriffiths">Ben</a></p>
+
+
+	<p id="fn1"><sup>1</sup>  Ok.  That is, of course, a blatant lie &#8211; we can still access the private association &#8211; this is <a href="http://www.ruby-lang.org">ruby</a> remember.  The important point is that we&#8217;ve made our intentions more explicit.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/encapsulation" rel="tag">encapsulation</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/09/22/testing-against-the-garbage-collection-clock-or-dont-create-your-test-cases-as-anonymous-classes">Testing against the (Garbage Collection) Clock, or, Don't create your Test Cases as anonymous classes</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 22 Sep 2006 10:43:00">
+                  Fri, 22 Sep 2006 10:43:00
+                </span>
+              </p>
+          
+              <p>I <a href="http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing">wrote</a> a while ago about how I&#8217;d started creating my test cases as anonymous classes.</p>
+
+
+	<p>I continued this practice until I was slapped in the face by my own stoopidity yesterday.  We were seeing a problem where tests were failing individually but appearing to run fine in rake.</p>
+
+
+	<p><a href="http://blog.floehopper.org">James</a> was looking into it&#8230;</p>
+
+
+<pre>
+James: it seems like the ones defined by Class.new(Test::Unit::TestCase) aren't always being found in the ObjectSpace
+James: but I can't quite work out why
+James: i'm tempted to name them all as defined classes
+Chris: oh ok
+Chris: go for it
+James: i'm pretty sure that works ok
+Chris: interesting
+James: only difference i can think of is that if the file is loaded twice you will create two instances of the anonymous class
+James: whereas with the named class it will just reopen same class
+Chris: why would that be a problem?
+James: but it doens't look like its being loaded twice anyway
+James: dunno
+James: its the only difference i can think of, but it doesn't explain anything
+James: can you think of any other differences
+Chris: so if you create named classes for the testcases in p_l_i_test does it then fail in rake?
+James: yup - and i've seen the problem in other tests where anonymous tests are defined
+James: so there are quite a few tests that haven't been running in rake
+Chris: bugger
+Chris: i think ben just explained the problem
+James: yeah?
+Chris: as the classes aren't assigned to constants they can be garbage collected
+Chris: oops
+James: aha
+Chris: no more anonymous test classes for christopher
+James: that explains - why they were in the ObjectSpace one minute and not the next
+</pre>
+
+	<p>Note that p_l_i_test mentioned above is just a shorthand for one of our tests that was failing individually but &#8216;running&#8217; (or as we now know, not running) from rake.</p>
+
+
+	<p>So, although you get a little added excitement to your testing (&#8220;Will this test class run before it gets garbage collected???&#8221;), it&#8217;s probably a lot safer to not use anonymous classes when testing.</p>
+
+
+	<p>James has just informed me that we gained about 230 tests in rake by naming all of our test cases&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/09/09/in-memory-ar-object-for-testing">In memory AR object for testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 09 Sep 2006 12:03:00">
+                  Sat, 09 Sep 2006 12:03:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve <a href="http://blog.seagul.co.uk/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">previously written</a> about using in memory active record objects for testing.</p>
+
+
+	<p>In doing so recently, I&#8217;ve found it necessary to define the id of the in memory object.  By default this is obviously nil as it has not been persisted.  In addition, it is not possible to set it during normal object construction.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">person</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="symbol">:id</span> <span class="punct">=&gt;</span> <span class="number">1</span><span class="punct">)</span>
+<span class="ident">p</span> <span class="ident">person</span><span class="punct">.</span><span class="ident">id</span>
+<span class="comment">#=&gt; nil</span></code></pre></div>
+
+	<p>However, we can give the person constructor a block, setting the id just after creation.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">person</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">p</span><span class="punct">|</span> <span class="ident">p</span><span class="punct">.</span><span class="ident">id</span> <span class="punct">=</span> <span class="number">1</span> <span class="punct">}</span>
+<span class="ident">p</span> <span class="ident">person</span><span class="punct">.</span><span class="ident">id</span>
+<span class="comment">#=&gt; 1</span></code></pre></div>
+
+	<p>Cool.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/08/17/i-guess-thats-one-way-to-do-it">I guess that's one way to do it...</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 17 Aug 2006 08:08:00">
+                  Thu, 17 Aug 2006 08:08:00
+                </span>
+              </p>
+          
+              <p>We&#8217;re not <em>quite</em> at this stage yet&#8230;</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ActiveRecord::ConnectionAdapters::MysqlAdapter</span>
+  <span class="keyword">alias</span> <span class="symbol">:execute_before_test_hijack</span> <span class="symbol">:execute</span>
+  <span class="keyword">def </span><span class="method">execute</span><span class="punct">(*</span><span class="ident">args</span><span class="punct">)</span>
+    <span class="keyword">unless</span> <span class="ident">args</span><span class="punct">.</span><span class="ident">first</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^SHOW FIELDS FROM</span><span class="punct">/</span> <span class="punct">||</span> <span class="punct">%w[</span><span class="string">BEGIN COMMIT ROLLBACK END</span><span class="punct">].</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">args</span><span class="punct">.</span><span class="ident">first</span><span class="punct">)</span>
+      <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">You know you're not allowed to use the database in your tests...</span><span class="punct">&quot;</span> <span class="comment"># We could be more gentle with a warn</span>
+    <span class="keyword">end</span>
+    <span class="ident">execute_before_unit_test_hijack</span><span class="punct">(*</span><span class="ident">args</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/database" rel="tag">database</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/17/test-unit-abstract-test-case">Test::Unit abstract test case</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 17 Jul 2006 09:22:00">
+                  Mon, 17 Jul 2006 09:22:00
+                </span>
+              </p>
+          
+              <p>Having found a <a href="http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing">new way to structure my tests</a>, the need for some common setup shared by multiple test cases became apparent.</p>
+
+
+	<p>I think the traditional way to do this was to create a subclass of TestCase to contain the common setup code and then subclass that for your individual test cases.  This is fine, but in <a href="http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html">test/unit</a>, a TestCase with no tests causes an error.</p>
+
+
+	<p>One solution would be to use a module to contain the common setup and include that in your test case.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">module </span><span class="module">CommonSetup</span>
+  <span class="keyword">def </span><span class="method">setup</span>
+    <span class="attribute">@stack</span> <span class="punct">=</span> <span class="constant">Stack</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">MyTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="ident">include</span> <span class="constant">CommonSetup</span>
+  <span class="keyword">def </span><span class="method">test_should_accept_an_item_when_sent_push</span>
+    <span class="ident">assert_nothing_raised</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">push</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Although this is fine, I spent a short while creating an AbstractTestCase that doesn&#8217;t complain if no tests are specified.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+<span class="keyword">class </span><span class="class">Test::Unit::AbstractTestCase</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">default_test</span>
+    <span class="ident">klass</span> <span class="punct">=</span> <span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">.</span><span class="ident">to_s</span>
+    <span class="ident">ancestors</span> <span class="punct">=</span> <span class="punct">(</span><span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">.</span><span class="ident">ancestors</span> <span class="punct">-</span> <span class="punct">[</span><span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">]).</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">ancestor</span><span class="punct">|</span> <span class="ident">ancestor</span><span class="punct">.</span><span class="ident">to_s</span> <span class="punct">}</span>
+    <span class="keyword">super</span> <span class="keyword">unless</span> <span class="ident">klass</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">AbstractTestCase</span><span class="punct">/</span> <span class="keyword">or</span> <span class="ident">ancestors</span><span class="punct">.</span><span class="ident">first</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">AbstractTestCase</span><span class="punct">/</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Any test case (TestBase in this example) that inherits from AbstractTestCase can now contain setup and teardown methods but not have to worry about missing tests.  In order to maintain expected behaviour, any test case subclassed from TestBase will still complain if tests are missing.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">TestBase</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">AbstractTestCase</span>
+  <span class="comment"># 'No test were specified' error is not thrown</span>
+  <span class="keyword">def </span><span class="method">setup</span>
+    <span class="attribute">@bar</span> <span class="punct">=</span> <span class="punct">{</span> <span class="symbol">:foo</span> <span class="punct">=&gt;</span> <span class="number">123</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">RealTest</span> <span class="punct">&lt;</span> <span class="constant">TestBase</span>
+  <span class="comment"># Utilises TestBase#setup</span>
+  <span class="keyword">def </span><span class="method">test_example</span>
+    <span class="ident">assert_equal</span> <span class="number">123</span><span class="punct">,</span> <span class="attribute">@bar</span><span class="punct">[</span><span class="symbol">:foo</span><span class="punct">]</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">ShouldErrorTest</span> <span class="punct">&lt;</span> <span class="constant">TestBase</span>
+  <span class="comment"># 'No tests were specified' error</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>I then figured that you may want more than one level of abstract test case, i.e. be able to define at the TestCase class level whether or not a test case was abstract.  This isn&#8217;t properly tested but it seems to work ok.</p>
+
+
+	<p><strong>Note</strong> This isn&#8217;t doing exactly what I thought (the default test case is default_test, not test_default).  This works because it just creates an empty test in your test case.  This breaks behaviour in test cases that subclass your abstract test case as they too will already have at least one test defined.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+<span class="keyword">class </span><span class="class">Test::Unit::TestCase</span>
+  <span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">self</span>
+    <span class="keyword">def </span><span class="method">abstract</span>
+      <span class="constant">self</span><span class="punct">.</span><span class="ident">class_eval</span> <span class="keyword">do</span>
+        <span class="keyword">def </span><span class="method">test_default</span>
+        <span class="keyword">end</span>
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>By sending the abstract message to any TestCase class, no errors will be reported when no tests are specified.  It does this by overriding the test_default method; which is the method that raises the error if no other tests are specified.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">AbstractTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="ident">abstract</span>
+  <span class="comment"># 'No test were specified' error is not thrown</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">NormalTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="comment"># 'No test were specified' error</span>
+<span class="keyword">end</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+                  <a href="/articles/tag/xunit" rel="tag">xunit</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/06/30/very-very-lightweight-mocking-ish">Very very lightweight mocking(ish)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 30 Jun 2006 12:08:00">
+                  Fri, 30 Jun 2006 12:08:00
+                </span>
+              </p>
+          
+              <p><a href="http://www.floehopper.org/">James</a> has been developing a great <a href="http://www.martinfowler.com/articles/mocksArentStubs.html">mocking</a> framework at <a href="http://www.reevoo.com">work</a> which makes life real easy when it comes to testing interaction between objects.</p>
+
+
+	<p>I&#8217;ve spent a couple of hours this week re-implementing <a href="http://chimprawk.blogspot.com">Fred Stutzmans</a> <a href="http://chimprawk.blogspot.com/2006/06/simple-microid-verifier.html">Micro Id Verifier</a> in ruby (I&#8217;ll post it soon, just some database persistence to add).  The job of the validator is to connect to a given url and compare any <a href="http://microid.org/">micro_id</a> found on that page with an expected micro_id supplied by the user.  All of my development has been off-line yet I needed a way to test that my objects were doing their job (i.e. connecting to the Internet).  It&#8217;s actually irrelevant that I was off-line at the time, I&#8217;d still need a repeatable way of ensuring my objects are doing their jobs.</p>
+
+
+	<p>I&#8217;m using <a href="http://ruby-doc.org/stdlib/libdoc/net/http/rdoc/index.html">Net::HTTP</a> to look after grabbing the html for a given page and am certainly not worried about testing the workings of that library.  What I wanted to know, however, was that my client was utilising Net::HTTP in the way expected.  I didn&#8217;t have access to the mocking framework used at work so I fell back to a very lightweight method that we&#8217;ve used previously.</p>
+
+
+	<p>The idea is to override the methods of an object that you expect to be called.  When the overridden method is called, we add the message to a log for later inspection.</p>
+
+
+	<p>The implementation I have at the moment comprises four methods, although we could quite easily do away with &#8216;stub_instance_method&#8217; (it just adds some safety checking to &#8216;define_instance_method&#8217;).</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Object</span>
+
+  <span class="keyword">def </span><span class="method">metaclass</span>
+    <span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">self</span><span class="punct">;</span> <span class="constant">self</span><span class="punct">;</span> <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">define_instance_method</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">block</span><span class="punct">)</span>
+    <span class="ident">metaclass</span><span class="punct">.</span><span class="ident">__send__</span><span class="punct">(</span><span class="symbol">:define_method</span><span class="punct">,</span> <span class="ident">sym</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">block</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">stub_instance_method</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">block</span><span class="punct">)</span>
+    <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{self}</span> does not respond to &lt;<span class="expr">#{sym}</span>&gt; and therefore cannot be stubbed</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="constant">self</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">)</span>
+    <span class="ident">define_instance_method</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">block</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">__log__</span>
+    <span class="attribute">@__log__</span> <span class="punct">||=</span> <span class="punct">[]</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>A (partially adapted and potentially non-working) example of this code being used in my tests is as follows.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">test_should_use_net_http_to_get_html_content</span>
+  <span class="ident">url</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">http://localhost/page.htm</span><span class="punct">'</span>
+  <span class="ident">net_http</span> <span class="punct">=</span> <span class="constant">Object</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="ident">net_http</span><span class="punct">.</span><span class="ident">define_instance_method</span><span class="punct">(</span><span class="symbol">:get</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">path</span><span class="punct">|</span> <span class="ident">__log__</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">get(<span class="expr">#{path}</span>)</span><span class="punct">&quot;</span> <span class="punct">}</span>
+  <span class="ident">http_client</span> <span class="punct">=</span> <span class="constant">HttpClient</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="ident">http_client</span><span class="punct">.</span><span class="ident">get_html</span><span class="punct">(</span><span class="ident">url</span><span class="punct">,</span> <span class="ident">net_http</span><span class="punct">)</span>
+
+  <span class="ident">assert_equal</span> <span class="punct">['</span><span class="string">get(/page.htm)</span><span class="punct">'],</span> <span class="ident">net_http</span><span class="punct">.</span><span class="ident">__log__</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>I define a &#8216;mock&#8217; Net::HTTP object (net_http) that records a message when it gets sent the &#8216;get&#8217; message.  I can then check the log to ensure that the expected method was called; and be (hopefully) safe in the knowledge that when I supply an actual Net::HTTP object the code does what I expect.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/mock" rel="tag">mock</a>, 
+                
+                  <a href="/articles/tag/mocking" rel="tag">mocking</a>, 
+                
+                  <a href="/articles/tag/objects" rel="tag">objects</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">More helpful messages for Active Record validation errors in Rails testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 21 Jun 2006 08:10:00">
+                  Wed, 21 Jun 2006 08:10:00
+                </span>
+              </p>
+          
+              <p>In testing (and production code) <a href="http://www.reevoo.com">we</a> always try to persist <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> models with the bang variants (save! and create!).  This allows us to <a href="http://www.martinfowler.com/ieeeSoftware/failFast.pdf">fail fast</a> if any of our models fail our  <a href="http://api.rubyonrails.com/classes/ActiveRecord/Validations/ClassMethods.html">validation</a> rules.</p>
+
+
+	<p>The problem is that the standard <a href="http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html">test/unit</a> reporting framework displays the exception without any details of why the validation failed.</p>
+
+
+<div class="typocode">
+<pre>
+ 1) Error:​
+test_should_fail_validation(AardvarkTest):​
+ActiveRecord::RecordInvalid:​ActiveRecord::RecordInvalid
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in 'save!'
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in 'create!'
+   /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in 'test_should_fail_validation'
+
+1 tests, 0 assertions, 0 failures, 1 errors
+</pre>
+</div>
+
+	<p><strong>Note.</strong> This isn&#8217;t the fault of test/unit.  It has to deal with generic exceptions and so cannot &#8216;know&#8217; that Active Record Exceptions can be used to find the reason for the failure.</p>
+
+
+	<p>At this point, it would be very easy to jump into the code of the Active Record model, check out the validations and satisfy them within your code.  However, it&#8217;d be much cooler if we could just add the reason for the failures to the error message that is displayed.</p>
+
+
+	<p>I initially played around with a method that took a block and would wrap the block with a begin/rescue clause to explicitly catch RecordInvalid exceptions, displaying the reason for failure.</p>
+
+
+	<p>Then I thought it&#8217;d be cool if we could integrate slightly more with both test/unit and <a href="http://www.rubyonrails.com">rails</a>.  The result is a <a href="http://wiki.rubyonrails.org/rails/pages/Plugins">plugin</a> (<a href="http://dev.seagul.co.uk/repository/browse/plugins/test_unit_active_record_errors">source</a>) that can be installed as follows.</p>
+
+
+<div class="typocode">
+<pre>
+script/plugin install svn://dev.seagul.co.uk/plugins/test_unit_active_record_errors
+</pre>
+</div>
+
+	<p>The output from a failed validation now includes the validation errors.  Yay.</p>
+
+
+<div class="typocode">
+<pre>
+ 1) Error:​
+test_should_fail_validation(AardvarkTest):​
+ActiveRecord::RecordInvalid: ActiveRecord::RecordInvalid
+   /opt/local/lib//gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in `save!'
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in `create!'
+   /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in `__test_should_fail_validation_without_custom_error_handling'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `__send__'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `test_should_fail_validation'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:27:in `test_should_fail_validation'
+ActiveRecord Errors:​Surname can't be blank, Email can't be blank
+
+1 tests, 0 assertions, 0 failures, 1 errors
+</pre>
+</div>
+
+	<p>The code is pretty hacky and includes no tests.  It&#8217;s only been tested on Mac Os <span class="caps">X 10</span>.4.6 with Ruby 1.8.2 and Rails 1.0.0 but please feel free to do what you will with it if you think it might be of some use to you.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/active" rel="tag">active</a>, 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/record" rel="tag">record</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+                  <a href="/articles/tag/validations" rel="tag">validations</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/06/02/rails-plugin-to-utilise-sqlite-for-testing">Rails plugin to utilise Sqlite for testing</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 02 Jun 2006 16:41:00">
+                  Fri, 02 Jun 2006 16:41:00
+                </span>
+              </p>
+          
+              <p>I feel pretty honoured that <a href="http://nubyonrails.com/">Geoffrey Grosenbach</a>, of <a href="http://podcast.rubyonrails.com/">Rails podcast</a> fame (plus so much more) has <a href="http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids">used</a> the stuff <a href="http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing">I wrote</a> a while back to create a <a href="http://wiki.rubyonrails.com/rails/pages/Plugins">rails plugin</a>, enabling the easy use of sqlite for testing.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

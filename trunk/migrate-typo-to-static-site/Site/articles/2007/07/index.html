@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published in July 2007 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries">Train times by SMS (or, improving national rail enquiries)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 24 Jul 2007 14:40:00">
+                  Tue, 24 Jul 2007 14:40:00
+                </span>
+              </p>
+          
+              <p>I was in need of finding some train times at the weekend.  I usually use the <a href="http://www.nationalrail.co.uk">national rail enquiries</a> website but was without Internet access at the time.  Instead, I found myself waiting for about 10 minutes in a telephone queue just to spend about 30 seconds getting the information I was after.  This played on my mind a bit so last night I started <a href="http://twitter.com/chrisroos/statuses/164273922">playing around</a> with automating the national rail timetable search.  That was relatively painless so I moved on to integrating with <a href="http://www.twitter.com">twitter</a> in order to provide an <span class="caps">SMS</span> interface to the service.  Within a couple of hours I had a twitterbot that receives timetable requests, looks up the times and sends them back to you.</p>
+
+
+	<p>It&#8217;s actually currently all up and running.  Just follow <a href="http://twitter.com/natrailenq">natrailenq</a> on twitter and I&#8217;ll follow you right back<sup><a href="#fn1">1</a></sup> (this seems to be necessary in order to send direct messages between each other).  A timetable request must be of the format &#8216;origin_station (3 letter short code) destination_station (3 letter short code) depart_date (dd-mmmm) depart_time (hh:mm)&#8217;.  So, if we wanted to get times of trains from London Victoria (VIC) to Clapham Junction (CLJ) tomorrow midday, we&#8217;d send a message like so:</p>
+
+
+<code>d natrailenq vic clj 25-july 12:00</code>
+
+	<p>In this instance, we get the following response back.</p>
+
+
+<code>natrailenq  11:55-&gt;12:02, 12:02-&gt;12:07, 12:03-&gt;12:09, 12:05-&gt;12:11, 12:06-&gt;12:11</code>
+
+	<p>Cool huh.</p>
+
+
+	<p>The code is <strong>nasty</strong>.  You can see just how nasty it in the <a href="http://chrisroos.googlecode.com/svn/trunk/nat-rail-enq/">repository</a>.  It feels as though this could go somewhere &#8211; unless I&#8217;m violating some terms and conditions that I haven&#8217;t read&#8230;  I make no guarantees as to how long the service will stay live, and I will certainly (probably) remove it if asked to.</p>
+
+
+	<p id="fn1"><sup>1</sup> Well, just as soon as I can at least &#8211; it&#8217;s not automated at the moment.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/cool" rel="tag">cool</a>, 
+                
+                  <a href="/articles/tag/nationalrail" rel="tag">nationalrail</a>, 
+                
+                  <a href="/articles/tag/sms" rel="tag">sms</a>, 
+                
+                  <a href="/articles/tag/timetable" rel="tag">timetable</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+                  <a href="/articles/tag/twitterbot" rel="tag">twitterbot</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/07/17/free-google-website-optimizer-isnt-actually-free">Free google website optimizer isn't actually free</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 17 Jul 2007 22:36:00">
+                  Tue, 17 Jul 2007 22:36:00
+                </span>
+              </p>
+          
+              <p>Nup, it cost me £5.00.  That&#8217;s not free is it.</p>
+
+
+	<p>OK, so I&#8217;m being intentionally blunt, but that&#8217;s because <a href="http://www.google.com">google</a> annoyed me by being misleading and incompetent.  Although I have no intention of using <a href="http://adwords.google.com">adwords</a>, I had to sign-up in order to use their <a href="http://services.google.com/websiteoptimizer">website optimizer</a> service.  I signed up but chose not to enter any billing information; I wasn&#8217;t going to buy any ads, and website optimizer is free (hmmm), so I didn&#8217;t see the point.  I went on to set-up my optimizer experiments and waited.  The docs suggest that you may have to wait up to an hour before seeing impressions, but 24 hours without impressions, that I knew should be there, seemed a little excessive.  I guessed it may have had something to do with not entering my billing information but in order to be sure I sent the folks at google an email.</p>
+
+
+	<blockquote>
+		<p><strong>Chris</strong> I&#8217;ve set-up my website optimizer campaigns and all seems correct.  Unfortunately, they are not showing any impressions or clickthrus.  I wonder if this is because I haven&#8217;t activated (i.e. set-up my payment information) in my adwords account.  As I don&#8217;t intend to use adwords, I didn&#8217;t really want to have to do it.  Could this be the reason?</p>
+	</blockquote>
+
+
+	<p>I thought I was being fairly clear in my questioning, but apparently not.</p>
+
+
+	<blockquote>
+		<p><strong>Adwords</strong> Thank you for your email regarding why you are not accruing any clicks or impression for your ad. I noticed that you have not entered your billing information. Below, I address this in detail.
+I have reviewed your AdWords account and found that your ad is not appearing on Google because you have not yet entered your billing information. Entering valid billing information is required to activate your Google AdWords account and begin running your ads.</p>
+	</blockquote>
+
+
+	<p>Surely it should be common practice to read the email before replying.  Obviously not.  Oh well, I&#8217;ll get back to them (in an admittedly sarcastic tone).</p>
+
+
+	<blockquote>
+		<p><strong>Chris</strong> Any chance you can re-read my original query and answer that, rather than essentially ignoring it?</p>
+	</blockquote>
+
+
+	<p>Surely they&#8217;ll read it this time&#8230;</p>
+
+
+	<blockquote>
+		<p><strong>Adwords</strong> Thank you for your email. I understand you would like to know why your ads are not receiving any clicks and impressions. Upon reviewing your account, I found that this is because your account has not been activated. To activate your account and to receive clicks and impressions you will have to enter your billing details</p>
+	</blockquote>
+
+
+	<p>Nope.  Let&#8217;s try one more time.</p>
+
+
+	<blockquote>
+		<p><strong>Chris</strong> I haven&#8217;t mentioned anything about adwords ads.  My problem is, in fact with Website Optimizer.  Do I need to enter billing information just to use website optimizer, or is there another reason that I&#8217;m not recording any hits?</p>
+	</blockquote>
+
+
+	<p>Woot, we get an answer.</p>
+
+
+	<blockquote>
+		<p><strong>Adwords</strong> The Website Optimizer is integrated into your AdWords account, you will need to enter your billing information to use it. In order to use Website Optimizer, you&#8217;ll need a Standard AdWords account.</p>
+	</blockquote>
+
+
+	<p>Right, so we finally have a sensible answer.  In fact, I think this is probably covered in <a href="https://adwords.google.com/support/bin/index.py?fulldump=1#55902">this</a> answer, assuming that &#8220;active&#8221; means &#8220;with correct billing information&#8221;.  What about the £5.00 I had to pay to get set-up, of which there is no mention until the very last stage of sign-up?  Well, it actually seems that this is covered too, in <a href="http://adwords.google.com/support/bin/answer.py?hl=en&#38;answer=31756">this</a> answer, mentioning a &#8220;nominal setup fee&#8221; to create an adwords account.</p>
+
+
+	<p>In all fairness, the big G (not His Dad, the other one) has probably not done anything wrong, but it&#8217;s certainly not very transparent.  You have to pay to activate an adwords account and you need an adwords account in order to use website optimizer.  Or, website optimizer costs a fiver.  There, much easier to understand.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/adwords" rel="tag">adwords</a>, 
+                
+                  <a href="/articles/tag/google" rel="tag">google</a>, 
+                
+                  <a href="/articles/tag/naughty" rel="tag">naughty</a>, 
+                
+                  <a href="/articles/tag/optimizer" rel="tag">optimizer</a>, 
+                
+                  <a href="/articles/tag/website" rel="tag">website</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/07/13/web-service-to-convert-uk-postcodes-outcode-to-latitude-and-longitude">Web service to convert UK Postcodes (outcode) to Latitude and Longitude</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 13 Jul 2007 14:41:00">
+                  Fri, 13 Jul 2007 14:41:00
+                </span>
+              </p>
+          
+              <p>Using the data supplied in this <a href="http://postcodes.easypeasy.com">article</a>, by <a href="http://www.niksargent.com">Nik Sargent</a>, I&#8217;ve created a simple web service that returns <a href="http://www.json.org"><span class="caps">JSON</span></a> formatted data about UK Outcodes (the first bit of the postcode).</p>
+
+
+	<p>The idea is that you can request, for example, /postcodes/se1 and get some json in return.  For se1, we receive the following data.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">{&quot;latitude&quot;:&quot;51.498&quot;,&quot;x&quot;:&quot;532600&quot;,&quot;postcode&quot;:&quot;SE1&quot;,&quot;y&quot;:&quot;179500&quot;,&quot;longitude&quot;:&quot;51.498&quot;}</code></pre></div>
+
+	<p>The service is currently running at <a href="http://seagul.co.uk/postcodes">http://seagul.co.uk/postcodes</a> (<a href="http://seagul.co.uk/postcodes/se1">se1</a>) but I make no guarantees as to its reliability.  I&#8217;d suggest that if anyone actually finds this useful that they go host it somewhere for themselves in order to control the availability.</p>
+
+
+	<p>The code is, as always, on <a href="http://chrisroos.googlecode.com/svn/trunk/uk-postcodes/">google code</a> and pasted below.</p>
+
+
+	<p>I&#8217;ve created it as a proof of concept but I figure that, given a little love, it may prove useful to some folks.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">mongrel</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">json</span><span class="punct">'</span>
+
+<span class="ident">postcodes_file</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/uk-postcodes.json</span><span class="punct">'</span>
+<span class="constant">Postcodes</span> <span class="punct">=</span> <span class="constant">JSON</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(</span><span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">(</span><span class="ident">postcodes_file</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">})</span>
+<span class="constant">Index</span> <span class="punct">=</span> <span class="constant">Postcodes</span><span class="punct">.</span><span class="ident">inject</span><span class="punct">([])</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">index</span><span class="punct">,</span> <span class="ident">postcode</span><span class="punct">|</span> <span class="ident">index</span> <span class="punct">&lt;&lt;</span> <span class="ident">postcode</span><span class="punct">['</span><span class="string">postcode</span><span class="punct">'].</span><span class="ident">downcase</span> <span class="punct">}</span>
+
+<span class="keyword">class </span><span class="class">PostcodeHandler</span> <span class="punct">&lt;</span> <span class="constant">Mongrel</span><span class="punct">::</span><span class="constant">HttpHandler</span>
+  <span class="keyword">def </span><span class="method">process</span><span class="punct">(</span><span class="ident">request</span><span class="punct">,</span> <span class="ident">response</span><span class="punct">)</span>
+    <span class="ident">outcode</span> <span class="punct">=</span> <span class="ident">request</span><span class="punct">.</span><span class="ident">params</span><span class="punct">['</span><span class="string">PATH_INFO</span><span class="punct">'].</span><span class="ident">sub</span><span class="punct">(/</span><span class="regex">^<span class="escape">\/</span></span><span class="punct">/,</span> <span class="punct">'</span><span class="string"></span><span class="punct">').</span><span class="ident">downcase</span>
+    <span class="ident">postcode_index</span> <span class="punct">=</span> <span class="constant">Index</span><span class="punct">.</span><span class="ident">index</span><span class="punct">(</span><span class="ident">outcode</span><span class="punct">)</span>
+    <span class="keyword">if</span> <span class="ident">postcode_index</span>
+      <span class="ident">response</span><span class="punct">.</span><span class="ident">start</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">head</span><span class="punct">,</span> <span class="ident">out</span><span class="punct">|</span>
+        <span class="ident">head</span><span class="punct">[&quot;</span><span class="string">Content-Type</span><span class="punct">&quot;]</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">text/plain</span><span class="punct">&quot;</span>
+        <span class="ident">out</span> <span class="punct">&lt;&lt;</span> <span class="constant">Postcodes</span><span class="punct">[</span><span class="ident">postcode_index</span><span class="punct">].</span><span class="ident">to_json</span>
+      <span class="keyword">end</span>
+    <span class="keyword">else</span>
+      <span class="ident">response</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span><span class="number">404</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">head</span><span class="punct">,</span><span class="ident">out</span><span class="punct">|</span>
+        <span class="ident">out</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">Postcode not found<span class="escape">\n</span></span><span class="punct">&quot;</span>
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="ident">config</span> <span class="punct">=</span> <span class="constant">Mongrel</span><span class="punct">::</span><span class="constant">Configurator</span><span class="punct">.</span><span class="ident">new</span> <span class="symbol">:host</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">localhost</span><span class="punct">',</span> <span class="symbol">:port</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">4000</span><span class="punct">'</span> <span class="keyword">do</span>
+  <span class="ident">listener</span> <span class="keyword">do</span>
+    <span class="ident">uri</span> <span class="punct">&quot;</span><span class="string">/postcodes</span><span class="punct">&quot;,</span> <span class="symbol">:handler</span> <span class="punct">=&gt;</span> <span class="constant">PostcodeHandler</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="keyword">end</span>
+  <span class="ident">trap</span><span class="punct">(&quot;</span><span class="string">INT</span><span class="punct">&quot;)</span> <span class="punct">{</span> <span class="ident">stop</span> <span class="punct">}</span>
+  <span class="ident">run</span>
+<span class="keyword">end</span>
+
+<span class="ident">config</span><span class="punct">.</span><span class="ident">join</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/mongrel" rel="tag">mongrel</a>, 
+                
+                  <a href="/articles/tag/outcodes" rel="tag">outcodes</a>, 
+                
+                  <a href="/articles/tag/postcodes" rel="tag">postcodes</a>, 
+                
+                  <a href="/articles/tag/rest" rel="tag">rest</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/service" rel="tag">service</a>, 
+                
+                  <a href="/articles/tag/web" rel="tag">web</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/07/12/wesabe-open-up-their-api-and-ask-me-to-help-write-their-press-release">Wesabe open up their API and ask me to help write their press release...</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 12 Jul 2007 23:49:00">
+                  Thu, 12 Jul 2007 23:49:00
+                </span>
+              </p>
+          
+              <p>Ok, so that second bit isn&#8217;t strictly true ;-)  I was, however, flattered to be contacted by Debbie from <a href="http://www.wesabe.com">Wesabe</a> to answer a few questions and maybe provide a quote for their press release.  They have just improved their service by <a href="http://blog.wesabe.com/index.php/2007/07/12/your-bank-has-a-rest-api-now-shhh-dont-tell-them/">offering</a> an <a href="http://www.wikipedia.org/wiki/API"><span class="caps">API</span></a> after all.</p>
+
+
+	<p>They asked, and I answered by rambling quite a bit.  In the preview of the press release I&#8217;ve seen, my ramblings have been summarized in three words :-)  Hey, I&#8217;m just honoured they asked.  I also asked if I could post their questions and my reply here, so, in all its glory, here it be.</p>
+
+
+	<p><strong>Debbie Pfeifer</strong></p>
+
+
+	<p>Hey, Chris.</p>
+
+
+	<p>I work with Marc Hedlund at Wesabe.  I know he gave you a heads up that we&#8217;re working on releasing an <span class="caps">API</span>.  We&#8217;re getting close &#8211; we plan to get it out either late this week or early next week &#8211; and I was writing to ask for a favor.</p>
+
+
+	<p>I&#8217;m putting together a press release announcing the <span class="caps">API</span> and we thought it would be cool to get a quote from a developer who has done some hacks.  If you&#8217;d rather not participate, no worries whatsoever.  If you&#8217;d be willing, following is a quick list of questions:</p>
+
+
+	<p><strong>Chris Roos</strong></p>
+
+
+	<p>Cool, I appreciate being considered.</p>
+
+
+	<p><strong>Debbie Pfeifer</strong></p>
+
+
+	<p>Why do you use Wesabe?</p>
+
+
+	<p><strong>Chris Roos</strong></p>
+
+
+	<p>Because it&#8217;s a great application :-)   No, seriously it&#8217;s because tagging makes sense to me.  It makes sense that, if I buy an apple, I should be able to categorise it as an apple, fruit, lunch, food, groceries and others that I can&#8217;t think of right now.  It&#8217;s a bit looser than traditional finance applications which I find perfect.  I must admit that I don&#8217;t currently use the social side of wesabe, helping others out with tips and advice, but that in no way detracts from the usefulness of the service to me.  I also love the fact that I&#8217;m able to interact with you guys, it means a lot to know that you&#8217;re listening.</p>
+
+
+	<p><strong>Debbie Pfeifer</strong></p>
+
+
+	<p>From your blog, I saw the projects you&#8217;ve already done (automating downloads).  Are there other things you&#8217;d like to do with Wesabe once you have the <span class="caps">API</span>?</p>
+
+
+	<p><strong>Chris Roos</strong></p>
+
+
+	<p>Hmm, let&#8217;s see.  I&#8217;m a big fan of the command line.  I&#8217;ve already been thinking about tidying up some of the previous work I&#8217;ve done so that it effectively provides a command line interface to my banking websites.  I can see that a command line interface to Wesabe might be quite appealing to me too.  I&#8217;m just wondering about some potential mapping mashups too.  I try to tag my transactions with the place they were purchased. Assuming I tagged every purchase with at least a town or city it&#8217;d be cool to see the distribution geographically.  Actually, I have a feeling I could do this with what&#8217;s available right now so maybe scrap that thought.</p>
+
+
+	<p><strong>Debbie Pfeifer</strong></p>
+
+
+	<p>Anything else you&#8217;d like to add?</p>
+
+
+	<p><strong>Chris Roos</strong></p>
+
+
+	<p>I originally had this bit under the question of why I like Wesabe, but felt it best here.  To be fair, it probably doesn&#8217;t matter too much. Anyway, I like the fact that Wesabe is developing the software that my greedy, super-rich banks should be developing ;-)   I love the fact that you are, in a small way, changing the world.  Sticking two fingers up at traditional finance applications and banking web apps themselves, because, I assume, you know that you&#8217;re doing it right.</p>
+
+
+	<p>One other idea I&#8217;ve been thinking about is uploading my mobile phone statements to Wesabe.  I currently have access to a pdf representation of my itemised bill.  I&#8217;m thinking that if I can parse the pdf, or even just copy the content into a text file that I can parse, I could upload and use all the features of Wesabe to analyse my bills.  I think this&#8217;d be great as I&#8217;ve personally never come across a phone company that allows ready, easy access to itemised call data in a useful format.  I guess this is because they don&#8217;t want to make it to easy for us to work out that they&#8217;re screwing us over in some way (cynical huh?).  Anyway, just a thought and I&#8217;m obviously not sure how that&#8217;d sit with you guys&#8230;?</p>
+
+
+	<p><strong>Debbie Pfeifer</strong></p>
+
+
+	<p>Again, if you&#8217;d rather not do this, I totally understand.  If you&#8217;re game, could we use your name?  Also, how would you describe yourself&#8230; a (your job) from (city)?</p>
+
+
+	<p><strong>Chris Roos</strong></p>
+
+
+	<p>Feel free to use my name.  Although not really one for titles, I guess I&#8217;d be classed as a software developer working in London, but from Ramsgate.</p>
+
+
+	<p><strong>Debbie Pfeifer</strong></p>
+
+
+	<p>Thanks, Chris.  Please let me know if you have any questions.</p>
+
+
+	<p><strong>Chris Roos</strong></p>
+
+
+	<p>One quick question.  Am I able to publish this email to my blog?  If not, I&#8217;ll probably just published my answers to your questions, which I could paraphrase to offer context.</p>
+
+
+	<p>Cheers, and hope there&#8217;s at least something useful in these ramblings.</p>
+
+
+	<p>Chris</p>
+
+
+	<p><strong>Debbie Pfeifer</strong></p>
+
+
+	<p>Best,
+Debbie Pfeifer
+Wesabe</p>
+
+
+	<p><strong>Update 17:10 &#8211; made the email legible. Thanks Paul.</strong></p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/api" rel="tag">api</a>, 
+                
+                  <a href="/articles/tag/cool" rel="tag">cool</a>, 
+                
+                  <a href="/articles/tag/pr" rel="tag">pr</a>, 
+                
+                  <a href="/articles/tag/praise" rel="tag">praise</a>, 
+                
+                  <a href="/articles/tag/ramble" rel="tag">ramble</a>, 
+                
+                  <a href="/articles/tag/wesabe" rel="tag">wesabe</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

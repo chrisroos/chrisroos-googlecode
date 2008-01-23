@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Wed, 08 March 2006 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/03/08/my-first-reevoo">My first reevoo!</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 08 Mar 2006 09:20:00">
+                  Wed, 08 Mar 2006 09:20:00
+                </span>
+              </p>
+          
+              <div class='hreview'>
+  <span class='version' style='display:none'>0.2</span>
+  <span class='type' style='display:none'>product</span>
+  <div class='item'>
+    <span class='fn'>Apple Ipod Shuffle 1 Gb</span>
+    <ul class='identifiers' style='display: none'>
+      <li><a class='url' href='http://www.reevoo.com/pages/apple_ipodshuffle1gb'>http://www.reevoo.com/pages/apple_ipodshuffle1gb</a></li><li><a class='url' href='urn:ean.ucc:718908929278'>urn:ean.ucc:718908929278</a></li>
+    </ul>
+  </div>
+  <div class='description'>
+
+	<p>I bought this recently to wile away the large amount of time I spend on trains.  I bought it just after Apple released the 1gb nano and therefore benefitted from the price drop to £69.</p>
+
+
+	<p>Overall, it&#8217;s pretty good.  Although not the largest mp3 device on the market, there&#8217;s more than enough storage for my current needs.  I like the ability to resume playing from the last stopped position.  This is useful for spoken word audio as it would be difficult to get back to the exact same position without a display showing how far through you are.  One thing I didn&#8217;t know for certain until purchasing the unit was that there are two modes, shuffle and ordered play.  Again, the ordered play can come in useful for spoken word (podcast) content.</p>
+
+
+	<p>Although I&#8217;m generally quite pleased I do have a few niggles with it.</p>
+
+
+	<ul>
+	<li>The itunes software doesn&#8217;t allow you to copy tracks from multiple pc&#8217;s (apparently all other ipod&#8217;s allow this).  If you have copied tracks from one pc and wish to then copy from another you first have to remove all tracks on the ipod.  You can actually copy the tracks directly from the ipod filesystem and play them on a different pc but I&#8217;m guessing that if they&#8217;ve been purchased through itunes and therefore drm&#8217;d up this might not work (I only tried it with downloaded podcasts).</li>
+	</ul>
+
+
+	<ul>
+	<li>The cord used to place the shuffle round your neck is too short.  It hangs at about chest high making it difficult to get access to the shuffle if under clothing (which I&#8217;m guessing is pretty likely).</li>
+	</ul>
+
+
+	<ul>
+	<li>I have a feeling it caused problems with my work mac (unconfirmed) when it was charging in the keyboard usb port.</li>
+	</ul>
+
+
+	<ul>
+	<li>As someone that gets annoyed by hearing other peoples music, I try to ensure that I have the volume at a level that can&#8217;t be heard outside of my headphones.  This isn&#8217;t always easy with the supplied set (although I&#8217;d suggest this is more a problem of in-ear headphones rather than the apple specific ones).</li>
+	</ul>
+
+
+</div>
+
+Rated <span class='rating'>3</span> by <span class='reviewer fn'>Chris</span>
+  on <abbr class='dtreviewed' title='2006-03-08T08:53:00+00:00'>Mar 08, 2006</abbr>
+</div>
+
+<p>Find more real-world reviews or create your own at <a href='http://www.reevoo.com/'>Reevoo</a>.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/03/08/rails-table-pluralization">Rails table pluralization</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 08 Mar 2006 07:48:00">
+                  Wed, 08 Mar 2006 07:48:00
+                </span>
+              </p>
+          
+              <p>I was talking to someone recently about the pluralisation of table names in <a href="http://www.rubyonrails.org">rails</a>.  It was grating him because some hand built queries no longer read very naturally.</p>
+
+
+<div class="typocode"><pre><code class="typocode_sql">-- (in rails) requesting the forename of the 'first' person
+SELECT forename FROM people WHERE people.id = 1;
+
+-- would read better as
+SELECT forename FROM person WHERE person.id = 1;</code></pre></div>
+
+	<p><a href="http://po-ru.com/">Paul</a> (a colleague at <a href="http://www.reevoo.com">reevoo</a>) pointed out that there are two sides to the singular/plural table name debate.  You will always have some queries (as above) that will work better when the table is singular; and others (as below) that will work better when the table is plural.</p>
+
+
+<div class="typocode"><pre><code class="typocode_sql">-- requesting all people having a country of 'uk'
+SELECT * FROM person WHERE country = 'UK';
+
+-- (in rails) would read better as
+SELECT * FROM people WHERE country = 'UK';</code></pre></div>
+
+	<p>Personally, because of the very small amount of hand written sql I&#8217;ve had to use with Rails this has never been an issue to me.  However, it did make me think about a slight adaptation to Active Record&#8230;</p>
+
+
+	<p>By default (in Rails), you create a singular (active record) model (person) that maps to the plural table (people).  Although very convenient (it&#8217;s the reason I&#8217;ve rarely had to touch sql), it too suffers from the same problems outlined in the queries above.  I think the two statements below show the same sort of natural vs unnatural language that appears in the sql above.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># good english (acting on a single person)</span>
+<span class="constant">Person</span><span class="punct">.</span><span class="ident">name</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">chris</span><span class="punct">'</span>
+<span class="constant">Person</span><span class="punct">.</span><span class="ident">save</span>
+
+<span class="comment"># bad english (we are asking for multiple people)</span>
+<span class="constant">Person</span><span class="punct">.</span><span class="ident">find</span><span class="punct">(</span><span class="symbol">:all</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">&quot;</span><span class="string">country = 'uk'</span><span class="punct">&quot;)</span></code></pre></div>
+
+	<p>The adaptation to active record I was thinking about would allow you to operate on both a Person and People, using the variant that made the code read more naturally.  That is, we could leave the Person.name example above as is, but change the Person.find to People.find<sup><a href="#fn1">1</a></sup>.  There are different ways to go about this but to get some of the way there with a little code (i.e. not having to manually create both singular and plural classes for each table); I came up with the following simple hack.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ActiveRecord::Base</span>
+  <span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">self</span>
+    <span class="ident">alias_method</span> <span class="symbol">:__existing_inherited</span><span class="punct">,</span> <span class="symbol">:inherited</span>
+    <span class="keyword">def </span><span class="method">inherited</span><span class="punct">(</span><span class="ident">child</span><span class="punct">)</span>
+      <span class="ident">__existing_inherited</span><span class="punct">(</span><span class="ident">child</span><span class="punct">)</span>
+      <span class="ident">plural_class</span> <span class="punct">=</span> <span class="ident">child</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">.</span><span class="ident">pluralize</span>
+      <span class="keyword">unless</span> <span class="ident">plural_class</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">#&lt;Class:.</span><span class="punct">/</span> <span class="keyword">or</span> <span class="constant">Object</span><span class="punct">.</span><span class="ident">constants</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">plural_class</span><span class="punct">)</span>
+        <span class="constant">Object</span><span class="punct">.</span><span class="ident">const_set</span><span class="punct">(</span><span class="ident">plural_class</span><span class="punct">,</span> <span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">child</span><span class="punct">))</span>
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Just add it to the bottom of your environment.rb file and when you first reference one of your singular classes it will automatically descend a plural class from it.</p>
+
+
+	<p>There are lots of things wrong with this code and many better ways for it to be implemented but it was really just for me to see if I could do it.</p>
+
+
+	<p id="fn1"><sup>1</sup> Boring and sad.  I was going to start that sentence with i.e. but wasn&#8217;t sure whether that was grammatically correct (I&#8217;m not very good at English).  I did a quick search and found that it translates as &#8216;that is&#8217; from the Latin which is much better.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged trac - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2008/01/14/searching-subversion-history">Searching subversion history</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 14 Jan 2008 09:59:00">
+                  Mon, 14 Jan 2008 09:59:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve often felt the need to search through our <a href="http://subversion.tigris.org/">subversion</a> repository to find, for example, when a method was removed/renamed.  As far as I&#8217;m aware there&#8217;s no easy way to do this using the standard subversion, or <a href="http://trac.edgewall.org/">trac</a>, tools.  A few days ago the need arose once more: I wanted to know when a particular class had stopped being used within our codebase.  It struck me that if I had a <a href="http://en.wikipedia.org/wiki/Diff">diff</a> file for each changeset that I&#8217;d be able to <a href="http://en.wikipedia.org/wiki/Grep">grep</a> for the change I was looking for.  I hacked together a script to produce a diff of each changeset (actually, as I knew when the class was added, I only produced a diff for a subset of the changesets) and was able to find the information I needed.  The script is pasted below and on <a href="http://chrisroos.googlecode.com/svn/trunk/svn_changesets/">google code</a>.  It assumes that you are running it from within an svn working direction.  It took a while to produce the diff files (I&#8217;m afraid I don&#8217;t have any stats) but the result was a really fast way of finding, otherwise hard to find, information.  I guess it&#8217;d be quite easy to automate the diff creation process so that you had an always up-to-date bunch of diff fies&#8230;</p>
+
+
+	<p>Is this useful, or have I missed something obvious in Subversion or Trac that does exactly this?</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">fileutils</span><span class="punct">'</span>
+
+<span class="ident">stop_at_revision</span> <span class="punct">=</span> <span class="constant">ARGV</span><span class="punct">[</span><span class="number">0</span><span class="punct">]</span>
+<span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Please specify the revision that you wish to go back to as the only argument to this script.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">stop_at_revision</span>
+<span class="ident">stop_at_revision</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">stop_at_revision</span><span class="punct">)</span>
+
+<span class="keyword">class </span><span class="class">Time</span>
+  <span class="keyword">def </span><span class="method">friendly_format</span>
+    <span class="ident">strftime</span><span class="punct">(&quot;</span><span class="string">%Y-%m-%d %H:%M:%S</span><span class="punct">&quot;)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">def </span><span class="method">msg</span><span class="punct">(</span><span class="ident">message</span><span class="punct">)</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{Time.now.friendly_format}</span> - <span class="expr">#{message}</span></span><span class="punct">&quot;</span>
+<span class="keyword">end</span>
+
+<span class="keyword">def </span><span class="method">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">,</span> <span class="ident">earlier_revision</span> <span class="punct">=</span> <span class="constant">nil</span><span class="punct">)</span>
+  <span class="keyword">if</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">empty?</span>
+    <span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">All finished.</span><span class="punct">&quot;</span>
+    <span class="ident">exit</span>
+  <span class="keyword">end</span>
+
+  <span class="ident">later_revision</span> <span class="punct">=</span> <span class="ident">earlier_revision</span> <span class="punct">?</span> <span class="ident">earlier_revision</span> <span class="punct">:</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">shift</span>
+  <span class="ident">earlier_revision</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">shift</span>
+
+  <span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">Creating diff from revision <span class="expr">#{earlier_revision}</span> to <span class="expr">#{later_revision}</span>.</span><span class="punct">&quot;</span>
+  `<span class="ident">svn</span> <span class="ident">diff</span> <span class="punct">-</span><span class="ident">r</span><span class="comment">#{earlier_revision}:#{later_revision} &gt; patches/#{later_revision}.patch`</span>
+  <span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">,</span> <span class="ident">earlier_revision</span><span class="punct">)</span>
+<span class="keyword">end</span>
+
+<span class="constant">FileUtils</span><span class="punct">.</span><span class="ident">mkdir_p</span> <span class="punct">'</span><span class="string">patches</span><span class="punct">'</span>
+
+<span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">Scanning output of svn log to find all revisions that we care about...</span><span class="punct">&quot;</span>
+<span class="ident">log</span> <span class="punct">=</span> `<span class="ident">svn</span> <span class="ident">log</span> <span class="punct">-</span><span class="ident">rHEAD</span><span class="punct">:</span><span class="comment">#{stop_at_revision} -q`</span>
+<span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">log</span><span class="punct">.</span><span class="ident">scan</span><span class="punct">(/</span><span class="regex">^r(<span class="escape">\d</span>+)</span><span class="punct">/)</span>
+<span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">flatten</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">revision</span><span class="punct">|</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">revision</span><span class="punct">)</span> <span class="punct">}</span>
+
+<span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">)</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/script" rel="tag">script</a>, 
+                
+                  <a href="/articles/tag/search" rel="tag">search</a>, 
+                
+                  <a href="/articles/tag/subversion" rel="tag">subversion</a>, 
+                
+                  <a href="/articles/tag/svn" rel="tag">svn</a>, 
+                
+                  <a href="/articles/tag/trac" rel="tag">trac</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

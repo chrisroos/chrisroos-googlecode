@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Boolean method in Ruby (sibling of Array, Float, Integer and String)  - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Boolean method in Ruby (sibling of Array, Float, Integer and String) </h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Fri, 20 Oct 2006 00:19:00">
+                Fri, 20 Oct 2006 00:19:00
+              </span>
+            </p>
+          
+            <p>I was reading in data from a file and expected one particular column to contain either &#8216;true&#8217; or &#8216;false&#8217;.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada&#8230;</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">module </span><span class="module">Kernel</span>
+
+  <span class="keyword">def </span><span class="method">Boolean</span><span class="punct">(</span><span class="ident">string</span><span class="punct">)</span>
+    <span class="keyword">return</span> <span class="constant">true</span> <span class="keyword">if</span> <span class="ident">string</span> <span class="punct">==</span> <span class="constant">true</span> <span class="punct">||</span> <span class="ident">string</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^true$</span><span class="punct">/</span><span class="ident">i</span>
+    <span class="keyword">return</span> <span class="constant">false</span> <span class="keyword">if</span> <span class="ident">string</span> <span class="punct">==</span> <span class="constant">false</span> <span class="punct">||</span> <span class="ident">string</span><span class="punct">.</span><span class="ident">nil?</span> <span class="punct">||</span> <span class="ident">string</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^false$</span><span class="punct">/</span><span class="ident">i</span>
+    <span class="keyword">raise</span> <span class="constant">ArgumentError</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(&quot;</span><span class="string">invalid value for Boolean: <span class="escape">\&quot;</span><span class="expr">#{string}</span><span class="escape">\&quot;</span></span><span class="punct">&quot;)</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span>
+
+<span class="ident">require</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/../test_helper</span><span class="punct">'</span>
+
+<span class="keyword">class </span><span class="class">KernelTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+
+  <span class="keyword">def </span><span class="method">test_should_return_true</span>
+    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">true</span><span class="punct">')</span>
+    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">TrUe</span><span class="punct">')</span>
+    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">true</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_return_false</span>
+    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">nil</span><span class="punct">)</span>
+    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">false</span><span class="punct">')</span>
+    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">FaLsE</span><span class="punct">')</span>
+    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">false</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_raise_exception</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">true </span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> true</span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> true </span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">false </span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> false</span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> false </span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">BLAH</span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+          </div>
+        
+          <p class="meta">
+            
+              Tags 
+              
+                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+              
+            
+          </p>
+
+          
+            <a name="comments"></a>
+            <h4 class="blueblk">Comments</h4>
+            <ol class="comment-list" id="commentList">
+              
+              <li>
+                <cite>
+                  <strong>
+                    
+                      <a href="http://remkade.ambitiouslemon.com">Kyle</a>
+                    
+                  </strong>
+                </cite> said on Sat, 08 Dec 2007 22:52:48:<br />
+                <p>This is an old post, but how about doing this?:</p>
+
+
+<pre>
+<code>
+Class String
+        def self.to_bool
+                return true if string == true || string =~ /^true$/i
+                return false if string == false || string.nil? || string =~ /^false$/i
+                raise ArgumentError.new("invalid value for to_bool: \"#{string}\"")
+        end
+end
+</code>
+</pre>
+
+	<p>That allows you to just use string.to_bool</p>
+              </li>
+              
+              <li>
+                <cite>
+                  <strong>
+                    
+                      <a href="http://remkade.ambitiouslemon.com">Kyle</a>
+                    
+                  </strong>
+                </cite> said on Sat, 08 Dec 2007 22:55:15:<br />
+                <p>each <code>string</code> item actually should be converted to <code>self</code> instead. Like this:</p>
+
+
+<pre>
+<code>
+Class String
+        def self.to_bool
+                return true if self == true || self =~ /^true$/i
+                return false if self == false || self.nil? || self =~ /^false$/i
+                raise ArgumentError.new("invalid value for to_bool: \"#{self}\"")
+        end
+end
+</code>
+</pre>
+              </li>
+              
+              <li>
+                <cite>
+                  <strong>
+                    
+                      Chris
+                    
+                  </strong>
+                </cite> said on Fri, 14 Dec 2007 09:11:06:<br />
+                <p>Hey Kyle,</p>
+
+
+	<p>I guess to follow the conventions within ruby (Integer() and to_i, Float() and to_f etc) we should allow both.</p>
+
+
+	<p>Assuming my original Kernel#Boolean method, we could have something like:</p>
+
+
+<typo:code lang="ruby">
+class Object
+  def to_bool
+    Boolean(self)
+  end
+end
+
+	<p>Object.new.to_bool
+=&gt; ArgumentError: invalid value for Boolean: &#8221;#<Object:0x10b0e68>&#8220;</p>
+
+
+	<p>&#8216;true&#8217;.to_bool
+=&gt; true</p>
+
+
+	<p>&#8216;false&#8217;.to_bool
+=&gt; false</p>
+
+
+nil.to_bool
+=&gt; false
+</typo:code>
+              </li>
+              
+            </ol>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

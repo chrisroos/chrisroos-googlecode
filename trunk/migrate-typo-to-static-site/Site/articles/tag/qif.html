@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged qif - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb">Automatically downloading my recent transactions from Lloyds Tsb</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 14 May 2007 22:39:00">
+                  Mon, 14 May 2007 22:39:00
+                </span>
+              </p>
+          
+              <p>In my continuing quest to cut down my use of banking websites (and increase my use of <a href="http://www.wesabe.com">wesabe</a>), I&#8217;ve hacked together a script to download my recent transactions from <a href="http://www.lloydstsb.com">Lloyds Tsb</a>.  Sadly, the transactions are in <a href="http://en.wikipedia.org/wiki/QIF"><span class="caps">QIF</span></a> format, as only <span class="caps">QIF</span> and <a href="http://en.wikipedia.org/wiki/Comma-separated_values"><span class="caps">CSV</span></a> formats are offered.  Maybe I&#8217;ll get round to exporting the data in <a href="http://www.ofx.net"><span class="caps">OFX</span></a> format sometime in the future.</p>
+
+
+	<p>Code is hosted on <a href="http://chrisroos.googlecode.com/svn/trunk/lloydstsb/">google code</a>, and pasted in all its syntax-highlighted glory below.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">lloydstsb_credentials</span><span class="punct">'</span>
+
+<span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+
+<span class="keyword">def </span><span class="method">execute_curl</span><span class="punct">(</span><span class="ident">cmd</span><span class="punct">)</span>
+  `<span class="comment">#{cmd}`</span>
+<span class="keyword">end</span>
+
+<span class="constant">COOKIE_LOCATION</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/lloydstsb_cookie</span><span class="punct">'</span>
+<span class="constant">DOWNLOADED_STATEMENT_LOCATION</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/Desktop/lloyds.qif</span><span class="punct">'</span>
+
+<span class="comment"># Store some cookies for later</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -c&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/customer.ibc&quot;</span><span class="punct">]</span>
+<span class="ident">html</span> <span class="punct">=</span> <span class="ident">execute_curl</span><span class="punct">(</span><span class="ident">curl_cmd</span><span class="punct">)</span>
+
+<span class="comment"># Obtain the key that we need to POST along with our Username and Password</span>
+<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
+<span class="ident">key</span> <span class="punct">=</span> <span class="punct">(</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">input[@name=Key]</span><span class="punct">').</span><span class="ident">first</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">']</span>
+
+<span class="comment"># POST the key, userid and password</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/logon.ibc&quot; -d&quot;Java=Off&quot; -d&quot;Key=<span class="expr">#{key}</span>&quot; -d&quot;UserId1=<span class="expr">#{USERID}</span>&quot; -d&quot;Password=<span class="expr">#{PASSWORD}</span>&quot;</span><span class="punct">]</span>
+<span class="ident">html</span> <span class="punct">=</span> <span class="ident">execute_curl</span><span class="punct">(</span><span class="ident">curl_cmd</span><span class="punct">)</span>
+
+<span class="comment"># Obtain the three characters from our memorable info that we need to POST</span>
+<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
+<span class="ident">position_of_char1</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">((</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">input[@name=ResponseKey0]</span><span class="punct">').</span><span class="ident">first</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">'])</span>
+<span class="ident">position_of_char2</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">((</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">input[@name=ResponseKey1]</span><span class="punct">').</span><span class="ident">first</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">'])</span>
+<span class="ident">position_of_char3</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">((</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">input[@name=ResponseKey2]</span><span class="punct">').</span><span class="ident">first</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">'])</span>
+<span class="ident">char1</span> <span class="punct">=</span> <span class="constant">MEMORABLE</span><span class="punct">.</span><span class="ident">split</span><span class="punct">('</span><span class="string"></span><span class="punct">')[</span><span class="ident">position_of_char1</span> <span class="punct">-</span> <span class="number">1</span><span class="punct">]</span>
+<span class="ident">char2</span> <span class="punct">=</span> <span class="constant">MEMORABLE</span><span class="punct">.</span><span class="ident">split</span><span class="punct">('</span><span class="string"></span><span class="punct">')[</span><span class="ident">position_of_char2</span> <span class="punct">-</span> <span class="number">1</span><span class="punct">]</span>
+<span class="ident">char3</span> <span class="punct">=</span> <span class="constant">MEMORABLE</span><span class="punct">.</span><span class="ident">split</span><span class="punct">('</span><span class="string"></span><span class="punct">')[</span><span class="ident">position_of_char3</span> <span class="punct">-</span> <span class="number">1</span><span class="punct">]</span>
+
+<span class="comment"># POST our memorable info</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -L -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/miheld.ibc&quot; -d&quot;ResponseKey0=<span class="expr">#{position_of_char1}</span>&quot; -d&quot;ResponseValue0=<span class="expr">#{char1}</span>&quot; -d&quot;ResponseKey1=<span class="expr">#{position_of_char2}</span>&quot; -d&quot;ResponseValue1=<span class="expr">#{char2}</span>&quot; -d&quot;ResponseKey2=<span class="expr">#{position_of_char3}</span>&quot; -d&quot;ResponseValue2=<span class="expr">#{char3}</span>&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+<span class="comment"># SELECT OUR ACCOUNT</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/account.ibc?Account=<span class="expr">#{SORT_CODE_AND_ACCOUNT_NUMBER}</span>&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+<span class="comment"># GET OUR MOST RECENT TRANSACTIONS</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/statement.ibc?Account=<span class="expr">#{SORT_CODE_AND_ACCOUNT_NUMBER}</span>&amp;PageRequired=MostRecent&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+<span class="comment"># GET THE DOWNLOAD STATEMENT FORM</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/statement.ibc?Account=<span class="expr">#{SORT_CODE_AND_ACCOUNT_NUMBER}</span>&amp;selectbox=6&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+<span class="comment"># DOWNLOAD THE MOST RECENT TRANSACTIONS IN QIF FORMAT</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -L -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/statementdownload.ibc?Account=<span class="expr">#{SORT_CODE_AND_ACCOUNT_NUMBER}</span>&amp;Download=DownloadLatest&amp;Format=104&quot; -o&quot;<span class="expr">#{DOWNLOADED_STATEMENT_LOCATION}</span>&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+<span class="comment"># Remove the cookie</span>
+`<span class="ident">rm</span> <span class="comment">#{COOKIE_LOCATION}`</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/banking" rel="tag">banking</a>, 
+                
+                  <a href="/articles/tag/lloyds" rel="tag">lloyds</a>, 
+                
+                  <a href="/articles/tag/qif" rel="tag">qif</a>, 
+                
+                  <a href="/articles/tag/tsb" rel="tag">tsb</a>, 
+                
+                  <a href="/articles/tag/wesabe" rel="tag">wesabe</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

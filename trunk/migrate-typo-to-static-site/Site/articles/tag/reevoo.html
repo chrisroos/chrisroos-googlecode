@@ -1,0 +1,998 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged reevoo - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/11/27/fun-with-selenium">Fun with Selenium</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 27 Nov 2007 09:36:00">
+                  Tue, 27 Nov 2007 09:36:00
+                </span>
+              </p>
+          
+              <p><a href="http://interblah.net/">James</a> and I spent a frustrating, but rewarding, day last Tuesday trying to fix what, for at least four hours, seemed to be a non-reproducible error.  <a href="http://www.reevoo.com">We&#8217;ve</a> used <a href="http://www.openqa.org/selenium/">selenium</a> for a while to test that our reevoomark application is working as expected.  Every so often, some of these reevoomark tests would fail, with either of the following two messages:</p>
+
+
+<pre>
+Message: SeleniumCommandError: Timed out after 30000ms
+Message: SeleniumCommandError: ERROR: Element xpath=//iframe/ not found
+</pre>
+
+	<p>To my knowledge it was never possible to get these tests to fail on any machine apart from our <a href="http://en.wikipedia.org/wiki/Continuous_Integration">continuous integration</a> box.  And even then the failures were intermittent.  Because these failures were so intermittent no-one had invested any real time in trying to find their cause.  Tuesday seemed a bit different though: the tests were failing almost all the time and we decided to do something about it.</p>
+
+
+	<p>I&#8217;ll leave out all of the dead-ends we found and, instead, home-in on the patterns we started to see that led to the eventual resolution.</p>
+
+
+	<p>One of the reevoomarks we offer opens the reviews up in a <a href="http://en.wikipedia.org/wiki/Lightbox_%28JavaScript%29">lightbox</a>.  However, if the screen isn&#8217;t quite large enough for our content we open it in a standard pop-up window instead.  I&#8217;ll pop an example reevoomark at the bottom of this post so you can see exactly what I mean (you&#8217;ll obviously have to resize your browser to see the effect).  We noticed that our tests would fail when another copy of firefox was already open on our continuous integration box.  Toggling this on and off gave us some confidence that this was, at least one of, the causes of the failures.  We were still unable to reproduce this locally though.</p>
+
+
+	<p>It was around this time that James noticed that we were seeing a pop-up window more than we should have been, i.e. we were seeing a pop-up window when we were expecting to see a lightbox.  This discovery made me happy as up until this stage I&#8217;d been blaming selenium for throwing out useless error messages.  In actual fact selenium was reporting the errors correctly: it really couldn&#8217;t find the element we were looking for (the iframe in the error above) and was therefore timing out.  OK, so if the pop-up was showing in place of the lightbox then it meant that the browser window couldn&#8217;t be big enough for the lightbox.  Yet we explicitly resize the browser in our test to ensure that the lightbox will fit.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">get_eval(&quot;this.browserbot.getCurrentWindow().resizeTo(800,800)&quot;)</code></pre></div>
+
+	<p>We used the one and only javascript debugging technique (<code>alert(msg)</code>) to determine that the window was indeed too small for our lightbox.  But hang on, if there wasn&#8217;t another Firefox instance open then the browser <strong>was</strong> big enough.  So somehow, the presence of another Firefox browser was affecting the maximum size that we could resize our browser to.  It turns out it&#8217;s all to do with the maximum height that Firefox thinks it can expand to.  On a Mac with a hidden dock (or with the dock positioned to the side) the maximum height will be from the status bar at the top of the screen to the bottom of the screen.  With a dock visible at the bottom of the screen the maximum height will be from the status bar at the top of the screen to the top of the dock.  It&#8217;s not quite this simple though: Firefox appears to look at the height of the oldest open firefox window to make its decision too.  Although we had the dock at the bottom of the screen our tests were actually passing on some occasions.  This was due to selenium opening its browser at almost full screen, allowing subsequent windows to be resized to these same dimensions which happen to be plenty big enough for our lightbox.  If we already had another firefox instance open (which by default would open at a maximum height of status bar to top of dock) then our selenium browser could only resize to this height, which wasn&#8217;t big enough for our lightbox to appear.  Phew.</p>
+
+
+	<p>So, the result of this entire day&#8217;s work?  Moving the dock to the right hand side of the screen.  Excellent.</p>
+
+
+	<h3>Sample lightbox reevoomark</h3>
+
+
+
+<script type="text/javascript" charset="utf-8">
+  rvo_format='image_horizontal250x40';
+  rvo_product_id='1'
+  rvo_retailer_ref='rev';
+  rvo_version = 2;
+</script>
+<script type="text/javascript" src='http://www.revieworld.com/javascripts/reevoomark.js'></script>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/selenium" rel="tag">selenium</a>, 
+                
+                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/08/31/blue-card-user-stories-coming-out-of-the-reevoo-com-feedback">Blue card user stories coming out of the reevoo.com feedback</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 31 Aug 2007 15:13:00">
+                  Fri, 31 Aug 2007 15:13:00
+                </span>
+              </p>
+          
+              <p>It took me a while, but I&#8217;ve come up with some <a href="http://en.wikipedia.org/wiki/User_story">stories</a> to represent the feature requests from the <a href="http://www.reevoo.com">reevoo.com</a> <a href="http://blog.seagul.co.uk/articles/2007/08/23/responses-to-reevoo-com-feedback">feedback</a>.</p>
+
+
+	<p>I (well <a href="http://www.po-ru.com">Paul</a> actually) even took a photo to prove it.</p>
+
+
+	<p><a href="http://flickr.com/photos/chrisjroos/1284248507"><img src="http://farm2.static.flickr.com/1175/1284248507_c7d8653554_m.jpg" alt="" /></a></p>
+
+
+	<p>We have a <a href="http://en.wikipedia.org/wiki/Extreme_Programming_Practices#Planning_game">planning game</a> next Tuesday (4th Sep) so we&#8217;ll have to wait to see if any of them get in.</p>
+
+
+	<p>I&#8217;ve written the cards out in full below.  If anyone recognises one of their requests and thinks I&#8217;ve misrepresented it then feel free to let me know.</p>
+
+
+	<h3>Remove search filters</h3>
+
+
+	<p>As a user of reevoo.com, I want to be able to remove filters in the same way that I can add them, so that I don&#8217;t have to start my search again if I want to change my search criteria.</p>
+
+
+	<h3>Display scores of related products</h3>
+
+
+	<p>As a user of reevoo.com, I want to see the scores of &#8216;related products&#8217;, so that I can instantly decide whether those products might be of interest to me.</p>
+
+
+	<h3>Display usefulness of reviews</h3>
+
+
+	<p>As a user of reevoo.com, I want to know how useful the reviews are, so that I can get a feel for the &#8216;importance&#8217; of a review.</p>
+
+
+	<h3>Favicon</h3>
+
+
+	<p>As a user of reevoo.com, I want to immediately identify your favicon with reevoo branding, so that I can immediately pick it out in my search history and browser tabs.</p>
+
+
+	<h3>Recently viewed products</h3>
+
+
+	<p>As a user of reevoo.com, I want to see a list of my recently viewed products, so that I can easily find my way back to the products I&#8217;m interested in.</p>
+
+
+	<h3>Scores obviously out of 10</h3>
+
+
+	<p>As a user of reevoo.com, I want it to be obvious that the review scores are out of 10, so that I don&#8217;t waste time trying to work it out and can, instead, find the products that I&#8217;m interested in.</p>
+
+
+	<h3>Product count on supercategory pages</h3>
+
+
+	<p>As a user of reevoo.com, I always want to see the number of products appear next to the product category, so that I can easily scan down the list of categories.</p>
+
+
+	<h3>General comments</h3>
+
+
+	<p>As a user of reevoo.com, I want to be able to immediately identify that the general comments are indeed general comments, so that I don&#8217;t waste time trying to work out what they are and whether they&#8217;re important.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/08/23/responses-to-reevoo-com-feedback">Responses to reevoo.com feedback</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 23 Aug 2007 15:14:00">
+                  Thu, 23 Aug 2007 15:14:00
+                </span>
+              </p>
+          
+              <p>First of all I&#8217;d like to thank the 18 people that left feedback about the new <a href="http://www.reevoo.com">reevoo.com</a>, either in the comments on my <a href="http://blog.seagul.co.uk/articles/2007/08/01/a-new-reevoo-com">post</a> or in replies to emails sent out by various people in the company.  I&#8217;ve tried to collate the feedback (paraphrasing the points) and provide answers to each point in turn.</p>
+
+
+	<p>Moving forward, we&#8217;ve created a public <a href="http://groups.google.com/group/reevoo-website">google group</a> to discuss <a href="http://www.reevoo.com">reevoo.com</a>.  Membership is open to all so feel free to sign-up.  <a href="http://www.reevoo.com/pages/about_us#Richard">Richard</a> has a few reservations about exposing ourselves to the potential problems that an open forum can bring, so this is kinda-like a private invite that the <a href="http://www.techcrunch.com">techcrunch</a> crowd love so much.  I really appreciate Richard giving us the freedom to experiment with the group and would love to see people joining up to discuss how we can make reevoo.com a better place.</p>
+
+
+	<p>Anyway, on with the feedback&#8230;</p>
+
+
+	<h3>Points raised by four different people</h3>
+
+
+	<h4>I want it to be obvious when you couldn&#8217;t find any products for my search query.  Currently, as no message is displayed, it&#8217;s unclear whether my search didn&#8217;t work or the site is broken.</h4>
+
+
+	<p>This has been fixed and is now live on <a href="http://www.reevoo.com/search?q=blurgh">reevoo.com</a>.</p>
+
+
+	<h4>I question whether the google map, on the homepage, is useful.</h4>
+
+
+	<p>Hmm, this is obviously a bit subjective.  While four people have questioned its usefulness (including one person that wanted to kill the individual that came up with it &#8211; err, yeah, sorry about that), three people have said that it really helps to understand where the reviews come from.  I&#8217;m open-minded but think we&#8217;ll probably keep it there for now and possibly remove it in the future if the bounce rate (from the homepage) becomes something that we care about.</p>
+
+
+	<h3>Points raised by three different people</h3>
+
+
+	<h4>I like the google map.</h4>
+
+
+	<p>Yay.  Actually, you should probably see the point above.</p>
+
+
+	<h4>I don&#8217;t always have enough time to read the reviews that flash up as part of the google map.</h4>
+
+
+	<p>Agreed.  Each review is now displayed for 10 seconds, rather than the previous 5.  The development is complete, we&#8217;re just waiting for a deployment.</p>
+
+
+	<h4>I find the supercategory pages (linked from the tabs at the top) hard to navigate as the categories on the left of the screen don&#8217;t appear in any useful order.</h4>
+
+
+	<p>The categories are now in alphabetic order.  We also only display the five most popular (as decided by the reevoo gods) categories when you first visit the page, giving you the option to show all if you wish.</p>
+
+
+	<h4>I want to be able to click the review on the homepage to see all reviews of that product.</h4>
+
+
+	<p>I felt quite strongly about this too.  It didn&#8217;t seem right that a product page (with the reviews on) was a minimum of two clicks away from the homepage.  We&#8217;ve fixed this up and it&#8217;s now live.  If any of the reviews that pop-up on the homepage take your fancy then click the name of product (in the review box on the right hand side) to visit that page.</p>
+
+
+	<h4>I want to know what order the products appear in on the search results and category pages.</h4>
+
+
+	<p>They appear in the top-secret reevoo ranking order.  Muhahaha.  Actually, it&#8217;s not that top secret.  It&#8217;s a combination of the review score over time (how &#8216;good&#8217; it is), the number of times people see the reevoomark for that product on our partner sites (how &#8216;popular&#8217; it is) and the number of prices we get from <a href="http://www.shopping.com">shopping.com</a> (how &#8216;current&#8217; it is).</p>
+
+
+	<h3>Points raised by two different people</h3>
+
+
+	<h4>I want to understand the relationship between the overall score and the score breakdown for a product.  For example, the <a href="http://www.reevoo.com/reviews/mpn/ericsson/k800i">Ericsson K800i</a> is rated 9/10 yet it only scored above average in one category (&#8216;features&#8217;).</h4>
+
+
+	<p>A bit of an explanation is required I feel.  The overall review score you see (9/10 in this instance) is made up of some averaged averages (hmmm, that&#8217;s not too helpful).  OK, so a reviewer will be asked a series of questions about their purchase.  Some of these questions will require text answers, while some will require a score out of ten.  For each review, we calculate the <a href="http://en.wikipedia.org/wiki/Mean#Arithmetic_mean">average</a> of all of these scores out of ten.  We then calculate the average score for a product based on each of these average review scores.  This is what will give us the 9/10 for the k800i.
+The score breakdown is based on an average per question for this product versus the average per question for every product the same category as this one (hmmm, again, that&#8217;s not very clear either).  As a contrived example, let&#8217;s assume that we have two mobile phones, each with one review.  The first mobile phone (a very basic model) is awarded 6/10 for &#8216;features&#8217;.  The second mobile (a newer, all singing, all dancing model) is awarded 10/10 for &#8216;features&#8217;.  We calculate the average &#8216;features&#8217; score for mobile phones as 8/10 (6 + 10 / 2).  We use this data to state that the first mobile is &#8216;below average&#8217;, while the second mobile is &#8216;above average&#8217;, in the &#8216;features&#8217; department.  Does that make sense?</p>
+
+
+	<h4>I don&#8217;t really understand the score breakdown.</h4>
+
+
+	<p>See the above explanation and the one in the <a href="http://www.reevoo.com/pages/faqs#scores">Faq</a>.  If this is still unclear to folks then we should flesh it out a little further.</p>
+
+
+	<h4>I&#8217;d like to see ratings against similar products in the &#8216;Other products like this&#8217; section.</h4>
+
+
+	<p>I&#8217;ve added a <a href="http://en.wikipedia.org/wiki/User_story">story</a> to our development schedule that should hopefully see this feature added in the near future.</p>
+
+
+	<h4>I&#8217;m having problems navigating the <a href="http://www.reevoo.com/pages/faqs">Faq</a></h4>
+
+
+	<p>Unfortunately I&#8217;ve never been able to replicate this problem.  Are people still experiencing it?</p>
+
+
+	<h4>I want to be able to filter the search results so that I&#8217;m not too overwhelmed when I search for a relatively generic term (e.g. <a href="http://www.reevoo.com/search?q=phone">phone</a>)</h4>
+
+
+	<p>We&#8217;ve added the ability to filter your search results by product category.  Having just searched for &#8216;phone&#8217;, I get the option to filter by &#8216;Cordless phone&#8217;, &#8216;Cordless phone with answering machine&#8217;, &#8216;landline phones&#8217;, &#8216;mobile phone accessories&#8217;, &#8216;mobile phones&#8217; and a further 24 categories.</p>
+
+
+	<h4>I don&#8217;t understand what the quartile link is that appears on the left hand side of a category page.</h4>
+
+
+	<p>And neither do I :-)  Don&#8217;t worry though, because we&#8217;ve removed it.</p>
+
+
+	<h4>I want to know why the comments on the google map don&#8217;t always appear where they should.</h4>
+
+
+	<p>This&#8217;ll be because the description of the location is completely separate from the location itself.  The description of the location is entered by the reviewer when they complete the review.  Although we ask for the town, they could actually enter anything they wish.  As we didn&#8217;t think this data would be reliable enough to plot points on the map, we use the first bit of the delivery postcode instead.</p>
+
+
+	<h4>I want products to have a human friendly name, Canon 4000 <span class="caps">SLR</span> instead of Canon <span class="caps">EOS 400D</span>, for example.</h4>
+
+
+	<p>I&#8217;m a bit confused by this as the <span class="caps">EOS 400D</span> seems to be how <a href="http://www.canon.co.uk/eos400d">Canon</a> (it&#8217;s sad but that&#8217;s a great url) refer to it.  I&#8217;m also slightly confused as it seems we label this particular product as a Canon 4000 <span class="caps">SLR</span> when it appears on the homepage, but as the <span class="caps">EOS 400D</span> on the <a href="http://www.reevoo.com/reviews/mpn/canon/eos_4000_slr">product page</a>.  Does anyone else have any examples of misnamed products?</p>
+
+
+	<h4>I want it to be obvious that the scores are out of ten.</h4>
+
+
+	<p>This has been raised a couple of times internally and I personally agree that it&#8217;s not very clear.  I&#8217;m not sure that we&#8217;ve come to any decisions yet though.</p>
+
+
+	<h4>I want to be able to buy a product from your site.</h4>
+
+
+	<p>You can!  Well, in some cases.  We use <a href="http://www.shopping.com">shopping.com</a> to provide us with links to retailer sites that you can purchase the product from.  Just click on the shopping basket at the top of the product page, select the retailer you&#8217;re interested in and go buy it.</p>
+
+
+	<p><strong><span class="caps">NB1</span>.</strong> This is how we make money on reevoo.com.</p>
+
+
+	<p><strong><span class="caps">NB2</span>.</strong> As much as I think this sounds like one of the made up entries you see in some Faqs (&#8220;I love your site/product and want to give you some money, please tell me how&#8221;), I can assure you that it&#8217;s not.</p>
+
+
+	<h4>I&#8217;m not sure about the language of some of the commentary on the site.</h4>
+
+
+	<p>Hmm, this isn&#8217;t too specific so I&#8217;m not sure there&#8217;s much I can say really&#8230;</p>
+
+
+	<h4>I prefer the selected tabs (no underline) to the unselected tabs (with an underline).</h4>
+
+
+	<p>I agree that there is some inconsistency but I think we really wanted to make it obvious that the tabs were indeed links.  I believe there may also be some accessibility issues with using images as links.</p>
+
+
+	<h4>I find it difficult to navigate the super category pages due to the long list of links down the left hand side.</h4>
+
+
+	<p>As mentioned in one of the responses above, we now only display the five most popular categories (as decided by the reevoo gods) when you first visit the page, giving you the option to show all if you wish.  This should hopefully make it a little more manageable.</p>
+
+
+	<h3>Points raised by individuals</h3>
+
+
+	<h4>I don&#8217;t like the spelling errors in the reviews.</h4>
+
+
+	<p>I&#8217;m afraid there&#8217;s absolutely nothing we can do about this.  Apart from <a href="http://www.reevoo.com/pages/faqs#not_published">rejecting</a> some reviews we don&#8217;t touch them.  Although, maybe we could do our bit for north/south relations and see if one is more literate than the other :-)</p>
+
+
+	<h4>I don&#8217;t immediately relate your <a href="http://www.reevoo.com/images/favicon.ico">favicon</a> to your branding.</h4>
+
+
+	<p>That&#8217;s probably a fair point.  I think that that little logo used to be one of our strong identifiers but I&#8217;m wondering if it&#8217;s now the orange colour instead.  I&#8217;ll pass the point on and see what others think.</p>
+
+
+	<h4>I want all of the same type of product to appear in the same category, e.g. <a href="http://www.reevoo.com/browse/product_type/In+Ear">in-ear headphones</a> and <a href="http://www.reevoo.com/browse/product_type/Headphones">&#8216;normal&#8217; headphones</a> should appear together.</h4>
+
+
+	<p>I agree that this isn&#8217;t currently very good.  We use a company called <a href="http://www.encodex.com">Encodex</a> for our product data.  Although we try to sanitize that data (removing useless facets like &#8216;quartile&#8217; for example) we still have someway to go.  We were actually discussing this yesterday and a <a href="http://en.wikipedia.org/wiki/User_story">story</a> should be on its way into the development schedule pretty soon.</p>
+
+
+	<h4>I couldn&#8217;t find any Sony mobile phones.</h4>
+
+
+	<p>I&#8217;m not sure why as they are certainly <a href="http://www.reevoo.com/search?q=sony+mobile+phone">there</a> now.</p>
+
+
+	<h4>I&#8217;m not sure that the <a href="http://www.reevoo.com/pages/about_revieworld">about us</a> page is professional enough.</h4>
+
+
+	<p>It looks OK to me but then I have a feeling that it may have been changed since this suggestion was made.  Do people still have concerns about it?</p>
+
+
+	<h4>I find it hard to differentiate between the light blue text and the darker blue hyperlinks on certain pages, e.g. the <a href="http://www.reevoo.com/pages/faqs">Faq</a></h4>
+
+
+	<p>I understand the concern but I&#8217;m not sure whether it&#8217;s something we&#8217;re currently worried about.  Maybe we need to look at whether people ever click on the links from the Faq page.  If they don&#8217;t then it either suggests that they are not interested in the content or that they can&#8217;t see the links.</p>
+
+
+	<h4>I can&#8217;t easily get back to the home page.  There&#8217;s a little &#8216;home&#8217; link in the breadcrumbs but nothing more obvious.</h4>
+
+
+	<p>You can always click on the reevoo logo that appears on the top left to get back to the homepage.</p>
+
+
+	<h4>I want to see at a glance whether a score is an average for the product or from just one review.</h4>
+
+
+	<p>The actual suggestion was to make the product scores a different colour.  Although we could do it, I&#8217;m not sure about the benefits.  After all, even the scores from the individual reviews are actually an average of all the scores from that review (explained in more detail above).</p>
+
+
+	<h4>I want to know whether you round up or down and whether you use decimal points in your scores.</h4>
+
+
+	<p>Good question (read &#8211; I don&#8217;t know the answer off the top of my head).  There&#8217;s probably a moderate amount of work to get the definitive answer so I&#8217;ll look into this separately and maybe add it to the <a href="http://www.reevoo.com/pages/faqs">Faq</a> or to a page in the <a href="http://groups.google.com/group/reevoo-website">group</a>.</p>
+
+
+	<h4>I searched for something and got five pages of results.  Only four of those pages had any content.</h4>
+
+
+	<p>This was a <a href="http://www.urbandictionary.com/define.php?term=Schoolboy+Error">schoolboy error</a> on our part.  The paging was calculated on 10 products per page yet we were displaying 12.  Oops.  All fixed now.</p>
+
+
+	<h4>I&#8217;d like to be able to remove a filter independently of the rest.</h4>
+
+
+	<p>Interesting suggestion and definitely something that has been discussed in the past.  I&#8217;ll get it raised as a <a href="http://wikipedia.org/wiki/user_story">story</a> and see if it gets prioritised.</p>
+
+
+	<h4>I&#8217;m able to close the balloons on the google map.</h4>
+
+
+	<p>Hmm, so you are.  Although I think we&#8217;ve removed the functionality to close a balloon by clicking anywhere on the map, I don&#8217;t believe we can remove the ability to close them altogether.</p>
+
+
+	<h4>I&#8217;d like to have a list of recently viewed products.</h4>
+
+
+	<p>Can&#8217;t you use the back button?  Sorry :-)  This has been discussed in the past.  The best I can do right now is get it raised as a <a href="http://wikipedia.org/wiki/user_story">story</a> and see if it gets prioritised.</p>
+
+
+	<h4>I searched for <a href="http://www.reevoo.com/search?q=orange">orange</a> and got a <a href="http://www.reevoo.com/reviews/ean/5390660094286">Creative Zen Micro</a> in my search results but couldn&#8217;t understand why.</h4>
+
+
+	<p>That&#8217;ll be because we have some top-secret (read, legacy) content that is searched but not displayed.  There&#8217;s a <a href="http://wikipedia.org/wiki/user_story">story</a> for this that&#8217;s waiting to be prioritised.</p>
+
+
+	<h4>I want people to be able to leave a review for a product.  This would be especially useful for products that currently don&#8217;t have reviews.</h4>
+
+
+	<p>We used to offer this functionality but <a href="http://www.reevoo.com/blogs/reevooblog/2006/12/21/add-a-review-its-been-removed">withdrew it</a> in December 2006.  I&#8217;m pretty certain that it&#8217;s not something that we&#8217;re considering re-implementing.</p>
+
+
+	<h4>I want to see the list of categories (currently appearing under the search box) higher up the homepage.</h4>
+
+
+	<p>I agree that it isn&#8217;t immediately obvious (especially with a lower screen resolution) how you might navigate into the site from the homepage.  As with assessing whether or not the google map should stay on the homepage, I think we&#8217;ll need to look at how many people disappear straight from the homepage and decide whether we want to play around with the layout in order to reduce it.</p>
+
+
+	<h4>I want it to be made very clear that I can&#8217;t leave a review on the site.</h4>
+
+
+	<p>The three step diagram at the bottom of the homepage was intended to convey this idea.  Maybe people don&#8217;t look at it because it&#8217;s too low down the page (it appears &#8216;below the fold&#8217; for the 45% of our visitors that have their screen resolution set to 1024&#215;768), or maybe it just isn&#8217;t very clear?</p>
+
+
+	<h4>I was confused by the separation of the review content from the google map, on the homepage.</h4>
+
+
+	<p>I agree and actually think I may have made it slightly more confusing, as there is now a small delay between the balloon appearing on the map and the review showing on the right hand side of the homepage&#8230;  I guess we&#8217;ll look into this as part of the slightly bigger issue of the homepage in general.</p>
+
+
+	<h4>I&#8217;m not sure the plus and minus icons will be clear enough for people that need textual signposts to help them.</h4>
+
+
+	<p>I assume you are referring to the accessibility of the site to visually impaired users.  If so, is our use of the <a href="http://www.w3.org/TR/html401/struct/objects.html#adef-alt">alt tag</a> not sufficient?  We currently have the alternative text of the <a href="http://www.reevoo.com/images/plus.gif">plus</a> image as &#8216;good points&#8217;, and the alternative text of the <a href="http://www.reevoo.com/images/minus.gif">minus</a> image as &#8216;bad points&#8217;.</p>
+
+
+	<h4>I struggled to find the paging on a supercategory page, as it was hidden right at the very bottom of the page.</h4>
+
+
+	<p>Two things should help this situation.  The first is that the long list of categories on the left side of the page now default to be only five long, and the second is that we&#8217;ve removed the paging :-)</p>
+
+
+	<h4>I want to know how many times a review has been voted useful or useless when ordering reviews by &#8216;useful&#8217;.</h4>
+
+
+	<p>I&#8217;ll add a <a href="http://wikipedia.org/wiki/user_story">story</a> to the development schedule and see whether it gets prioritised.</p>
+
+
+	<h4>I don&#8217;t understand what &#8216;elsewhere on the web&#8217; means and why it sometimes displays with nothing below it.</h4>
+
+
+	<p>This has been added in an attempt to make reevoo.com one of the first places to come to when you want product information.  We currently use the <a href="http://developer.yahoo.com/search">yahoo search api</a> to search a preset list of domains (e.g. <a href="http://www.bbc.co.uk">bbc.co.uk</a>, <a href="http://www.t3.co.uk">t3.co.uk</a> and <a href="http://www.engadget.com">engadget</a>) for information related to the product you are looking at.  We also currently search <a href="http://answers.yahoo.com">Yahoo answers</a> and are planning to add many more in the near future.</p>
+
+
+	<h4>I only seem to be able to filter by one facet at a time.</h4>
+
+
+	<p>Um, you can definitely filter by multiple facets.  Take <a href="http://www.reevoo.com/browse/product_type/mobile_phones/product_brand/Nokia/Connectivity/Bluetooth/Design/Slider/MP3%252FATRAC%2BPlayback/Yes">All bluetooth and Mp3 enabled Nokia mobile phones that have a sliding front</a> as an example.</p>
+
+
+	<h4>I sometimes get strange results in the pricing table.  Take this <a href="http://www.reevoo.com/reviews/mpn/hp/psc1610">HP Cartridge</a>, that lists ten entries for &#8216;Cartridge <span class="caps">SAVE</span>&#8217; all at £23.00, as an example.</h4>
+
+
+	<p>I believe this is to do with the data that we are receiving from <a href="http://www.shopping.com">shopping.com</a> (our pricing provider).  Every link in that list has a different <a href="http://en.wikipedia.org/wiki/URL">Url</a> but they all end up at the same page, maybe suggesting that cartridgesave.co.uk have that link registered multiple times with shopping.com.</p>
+
+
+	<h4>I find that the high number of anonymous reviews lessens my trust in the promise that all reviews are from genuine customers.</h4>
+
+
+	<p>Fair point.  I guess all I can do is assure you that we will only invite confirmed purchasers of a product to review said product.  Honest.  We want to allow people to leave anonymous reviews in the hope that we&#8217;ll get more coverage than if people were forced to enter their details.  Having said that I&#8217;m not sure we&#8217;ve ever measured the difference between the two approaches (i.e. requiring some personal details versus allowing people to remain anonymous).</p>
+
+
+	<h4>I don&#8217;t know for sure what the bold statements at the bottom of a review represent.  I guess they are general comments but I&#8217;m not 100% sure.</h4>
+
+
+	<p>They are indeed general comments although I agree that it&#8217;s not immediately obvious.  Maybe we need a little icon, like the plus and minus icons, that people can immediately identify.  I&#8217;ll raise it as a <a href="http://wikipedia.org/wiki/user_story">story</a> and we&#8217;ll see if it gets prioritised.</p>
+
+
+	<h4>I have to scroll down to see all of the homepage.</h4>
+
+
+	<p>Hmm, I&#8217;ve noticed this too.  With a resolution of 1024&#215;768 (which is the resolution of choice for 45% of our visitors) the three panel display at the bottom of the home page is completely cut off.  Maybe we should at least try to fit the homepage within this resolution.  I&#8217;ll float the idea and see if it generates a <a href="http://wikipedia.org/wiki/user_story">story</a>.</p>
+
+
+	<h4>I can&#8217;t see the beginning of each link under the <a href="http://www.reevoo.com/categories">browse all categories</a> heading on the homepage.</h4>
+
+
+	<p>This was identified as problem with Internet Explorer 6 and has since been fixed</p>
+
+
+	<h4>I always want the number of search results to appear next to the name of the product category on the supercategory page.  If the product category is too long then the number of results drops to the next line (e.g. Audio Home Systems in the <a href="http://www.reevoo.com/browse/group/Phones+%26+Computing">Phones and Computing</a> supercategory)</h4>
+
+
+	<p>I agree that this doesn&#8217;t look great, although I&#8217;m not sure it impacts the user experience too much.  I&#8217;ll get a <a href="http://wikipedia.org/wiki/user_story">story</a> written up for it.</p>
+
+
+	<h4>I see the product specification panel appear below all of the reviews on some product pages.</h4>
+
+
+	<p>This was found to be a problem on pages where the <a href="http://answers.yahoo.com">yahoo answers</a> that we received were too long for their container.  The problem only occurred in Internet Explorer 6 and has now been fixed.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/feedback" rel="tag">feedback</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/08/01/a-new-reevoo-com">A new reevoo.com</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 01 Aug 2007 08:32:00">
+                  Wed, 01 Aug 2007 08:32:00
+                </span>
+              </p>
+          
+              <p>This is obviously completely optional but if anyone stumbles across this post, I&#8217;d really appreciate it if you&#8217;d spend a few minutes checking out the revised <a href="http://www.reevoo.com">reevoo.com</a>.</p>
+
+
+	<p>I don&#8217;t want to say too much as I want to influence any judgement.  Just check it out and let me know what you think, either in the comments here or by <a href="mailto:chrisroos@reevoo.com">email</a>.  Oh, and really don&#8217;t be scared to slag it off, praise it up or just sit on the fence &#8211; any opinion is welcome.</p>
+
+
+	<p>Oh, and in case it&#8217;s not obvious, I work at Reevoo.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/comments" rel="tag">comments</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/request" rel="tag">request</a>, 
+                
+                  <a href="/articles/tag/reviews" rel="tag">reviews</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/26/a-great-day-at-work-and-reevoovision-twittervision-for-reviews">A great day at work and reevoovision (twittervision for reviews)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 26 Jun 2007 09:20:00">
+                  Tue, 26 Jun 2007 09:20:00
+                </span>
+              </p>
+          
+              <p>A few of days ago I <a href="http://twitter.com/chrisroos/statuses/114202552">came across</a> <a href="http://twittervision.com/">twittervision</a>.  Just ten hours later I had checked some code into <a href="http://www.reevoo.com">our</a> repository that allows us to do the same thing (as twittervision) but for our reviews.  Yup, it was a very good day indeed.  Although the initial code was complete within a few hours, it needed a bit of polishing (kudos to <a href="http://po-ru.com">Paul</a>) which meant that we only got it deployed yesterday.  I guess one working day between proof of concept and deployment isn&#8217;t that bad&#8230;  Anyway, go check it out &#8211; <a href="http://www.reevoo.com/vision.html">reevoovision</a>.</p>
+
+
+	<h3>The days events</h3>
+
+
+	<p>I started the morning by creating an <a href="http://en.wikipedia.org/wiki/Xml">xml</a> feed of the ten most recently published reviews.  On filling a review, the reviewer is asked to enter their town, which needed to be converted to latitude/longitude to allow us to plot a point on the map.  Luckily, a little googling revealed the <a href="http://www.geonames.org/">geonames</a> web service that did exactly what I wanted.  So, using a combination of <a href="http://www.ruby-lang.org/en/">ruby</a>, <a href="http://rubyonrails.com/">rails</a>, <a href="http://curl.haxx.se/">curl</a>, <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> and <a href="http://mongrel.rubyforge.org/">mongrel</a> I had a simple web server that downloaded and parsed the reviews, converted place name to lat/long, and plotted the results on a google map (with help from the <a href="http://pragmaticprogrammer.com/fridays.html">fridays</a> <a href="http://pragmaticprogrammer.com/titles/sdgmapi2/index.html">google map book</a>).  A good proof of concept but not quite right.</p>
+
+
+	<p>I was reminded that we collect the purchaser&#8217;s postcode from our retailers.  This, in combination with a <a href="http://www.easypeasy.com/guides/article.php?article=64">free list</a> of UK <a href="http://en.wikipedia.org/wiki/UK_postcodes">outcodes</a> (the first bit of the postcode) against latitude/longitude, allowed for much greater accuracy (well, to within about 2km) in plotting the location of the reviewer.</p>
+
+
+	<p>The next step was to polish up the rough demo.  Instead of the previous server side hackery, I used the excellent <a href="http://jquery.com">jquery</a> javascript library to perform an &#8220;Ajax&#8221; request of the reviews and parse the xml to build a simple hash of the required data.  Using the twittervision source as reference, I got a &#8216;proper&#8217; (i.e. reviews popping up in sequence) demo running.</p>
+
+
+	<p>From here, it was a basic case of tidying up some rough edges.  Instead of returning the reviews data as xml, I converted it to <a href="http://json.org/">json</a> to make for trivial parsing in javascript.  I also added the jquery <a href="http://jquery.com/plugins/project/dimensions">dimensions</a> plugin to resize the containing div, and in turn the map, to the size of the page.  The final touch was attempting to keep the UK centered in the window.</p>
+
+
+	<p>Reevoovision currently selects and displays published reviews at random to provide a constantly updating map, although maybe it&#8217;d be cool to get it to display submitted/published reviews in real-time.</p>
+
+
+	<p>I can&#8217;t get over how addictive it is to watch the reviews pop-up all over the country, it really emphasises the fact that these are actually real people writing about their experiences.  Hmm, that sounds a bit sales &#38; marketing.  I do mean it though, honest.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/reevoovision" rel="tag">reevoovision</a>, 
+                
+                  <a href="/articles/tag/reviews" rel="tag">reviews</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+                  <a href="/articles/tag/twittervision" rel="tag">twittervision</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/07/reevoo-com-and-seo">Reevoo.com and Seo</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 07 Jun 2007 08:30:00">
+                  Thu, 07 Jun 2007 08:30:00
+                </span>
+              </p>
+          
+              <p><a href="http://www.reevoo.com">We</a> had an <a href="http://en.wikipedia.org/wiki/Search_engine_optimization">Seo</a> consultant in yesterday.  Although a lot of what was suggested was common sense there were a few interesting snippets of information.</p>
+
+
+	<ul>
+	<li>Seo is only just starting to become a viable marketing option in the Uk.  Are we really that far behind the states?</li>
+		<li>Google are working really hard on getting their bots to &#8216;see&#8217; the page exactly the same as a user.  This allows them to give a higher rating to content appearing in the top left hand corner of the page (the bit a user looks at first), regardless of where it is in the document.</li>
+		<li>Google accounts for about 97% of search in the Uk, so although we talk about search engine optimisation, we really mean google optimisation.</li>
+		<li><a href="http://www.sitemaps.org">Xml sitemaps</a> have little or no effect.  The majority of reevoo.com may soon be made up of pages with little or no review content.  The suggestion is that we keep these pages hidden from google, but by using <a href="http://microformats.org/wiki/rel-nofollow">rel=&#8217;nofollow&#8217;</a> when linking to these pages from within the site, not by removing them from the sitemap.</li>
+		<li>Having an unbalanced number of links-out vs links-in is bad.  This is related to the above point.  The reason we may well end up with lots of pages with little content is that we have a relatively long lead time between a product being released and us collecting reviews for it.  We would like to be able to present some useful info for these products even if we don&#8217;t have reviews &#8211; links to relevant material elsewhere on the net seems like one way of reaching that goal.</li>
+		<li>Google still recognises dial-up as the lowest common denominator when taking into account page download size and time.  It was suggested that each page be no larger than 100KB.  Hmm, <a href="http://www.prototypejs.org">prototype</a> alone seems to weigh in at around 97KB, and we are sending 225KB of javascript for any given product page (<a href="http://www.reevoo.com/reviews/mpn/nikon/d70">example</a>).</li>
+		<li>Title attributes on anchors carry a lot of weighting.</li>
+		<li>Links in content are more valuable than a bunch of stand-alone links.</li>
+		<li>People aren&#8217;t particular interested in searching/filtering by price.  Really?</li>
+	</ul>
+
+
+	<p>A lot of the advice boils down to having a site that people actually find useful.  I think that if we can work on that in combination with the basic principles of well formed documents, clean separation of <a href="http://en.wikipedia.org/wiki/CSS">presentation</a> from content and of <a href="http://en.wikipedia.org/wiki/Unobtrusive_JavaScript">behaviour from markup</a>, we&#8217;ll have a solid base on which to apply the tips above.</p>
+
+
+	<p>Oh, and the reason for the Seo chap coming in was in an attempt to find out why we fell off the google radar a few months back.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/seo" rel="tag">seo</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/04/30/a-fun-and-crappy-monday-morning-quiz">A fun (and crappy) Monday morning quiz</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 30 Apr 2007 09:08:00">
+                  Mon, 30 Apr 2007 09:08:00
+                </span>
+              </p>
+          
+              <div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+
+<span class="keyword">class </span><span class="class">CandidateTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">setup</span>
+    <span class="attribute">@candidate</span> <span class="punct">=</span> <span class="constant">Candidate</span><span class="punct">.</span><span class="ident">new</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">test_should_love_learning</span>
+    <span class="ident">assert</span> <span class="attribute">@candidate</span><span class="punct">.</span><span class="ident">loves_learning?</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">test_should_love_ruby</span>
+    <span class="ident">assert</span> <span class="attribute">@candidate</span><span class="punct">.</span><span class="ident">loves_ruby?</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">test_should_love_problem_solving</span>
+    <span class="ident">assert</span> <span class="attribute">@candidate</span><span class="punct">.</span><span class="ident">loves_problem_solving?</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">test_should_not_be_a_job_agency</span>
+    <span class="ident">assert</span> <span class="punct">!</span><span class="attribute">@candidate</span><span class="punct">.</span><span class="ident">is_a_job_agency?</span>
+  <span class="keyword">end</span>
+  <span class="keyword">def </span><span class="method">test_should_know_the_secret_password</span>
+    <span class="ident">secret_password</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">hmm, so you think you know the secret password huh?</span><span class="punct">'</span>
+    <span class="ident">candidate</span> <span class="punct">=</span> <span class="constant">Candidate</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">secret_password</span><span class="punct">)</span>
+    <span class="ident">i_know_it_so_please_show_me_the_money</span><span class="punct">(</span><span class="ident">candidate</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">__END__
+Y2xhc3MgQ2FuZGlkYXRlCiAgZGVmIGluaXRpYWxpemUodG9wX3NlY3JldF9w
+YXNzd29yZCA9IG5pbCkKICAgIEBzZWNyZXRfbWVzc2FnZSA9IG5pbAogICAg
+aWYgdG9wX3NlY3JldF9wYXNzd29yZCA9PSAncnVieSBpcyBjb29sJwogICAg
+ICBAc2VjcmV0X21lc3NhZ2UgPSAiQ2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9x
+S2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9xCktpb3FLaW9x
+S2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9xS2lvcUtpb3FL
+aW9xQ2xkdgpiMmh2Ynl3Z2VXOTFJR1p2ZFc1a0lIUm9hWE1nZG1WeWVTQndi
+Mjl5YkhrZ2FHbGtaR1Z1TENCdFpXZGgKTFhObFkzSmxkQ3dnYldWemMyRm5a
+UzRLQ2trZ2MyRjVJRzFsWjJFdGMyVmpjbVYwTENCaWRYUWdkRzhnClltVWdh
+Rzl1WlhOMExDQjBhR2x6SUdseklHcDFjM1FnWVNCMGFHbHViSGtnZG1WcGJH
+VmtJR3B2WWlCaApaSFpsY25RZ1ptOXlDbkpsWlhadmJ5NWpiMjB1SUNCVGIz
+SnllU3dnWW5WMElFa2dkMkZ6SUdKdmNtVmsKSUc5dUlIUm9aU0IwY21GcGJp
+NHVMZ29LUVc1NWFHOXZMQ0JwWmlCNWIzVWdabUZ1WTNrZ2QyOXlhMmx1Clp5
+QjNhWFJvSUhWeklIUm9aVzRnWTJobFkyc2dRbVZ1SjNNZ2NHOXpkRnN4WFNC
+aGJtUWdZWEJ3YkhrcwpJR0Z3Y0d4NUxDQmhjSEJzZVM0S0Nsc3hYU0JvZEhS
+d09pOHZkM2QzTG5KbFpYWnZieTVqYjIwdllteHYKWjNNdlltVnVaM0pwWm1a
+cGRHaHpMekl3TURjdk1EUXZNRE12Y21GcGJITXRaR1YyWld4dmNHVnlMV3B2
+CllpOEtLaW9xS2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9x
+S2lvcUtpb3FLaW9xS2lvcQpLaW9xS2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9x
+S2lvcUtpb3FLaW9xS2lvcUtpb3FLaW9xS2lvcUtpb0sKQ2c9PQoiCiAgICBl
+bmQKICBlbmQKICBkZWYga25vd3NfdGhlX3NlY3JldF9wYXNzd29yZD8KICAg
+IEBzZWNyZXRfbWVzc2FnZQogIGVuZAogIGRlZiBsb3Zlc19sZWFybmluZz8K
+ICAgIHRydWUKICBlbmQKICBkZWYgbG92ZXNfcnVieT8KICAgIHRydWUKICBl
+bmQKICBkZWYgbG92ZXNfcHJvYmxlbV9zb2x2aW5nPwogICAgdHJ1ZQogIGVu
+ZAogIGRlZiBpc19hX2pvYl9hZ2VuY3k/CiAgICBmYWxzZQogIGVuZAogIGRl
+ZiBzZWNyZXRfbWVzc2FnZQogICAgcmFpc2UgIlVoIG9oLCBsb29rcyBsaWtl
+IHlvdSBoYXZlIG9uZSBvdGhlciBsaXR0bGUgbWV0aG9kIHRvIGltcGxlbWVu
+dC4uLiIKICBlbmQKZW5kCgpjbGFzcyBUZXN0OjpVbml0OjpUZXN0Q2FzZQog
+IGRlZiBpX2tub3dfaXRfc29fcGxlYXNlX3Nob3dfbWVfdGhlX21vbmV5KGNh
+bmRpZGF0ZSkKICAgIHJhaXNlICJVaCBvaCwgdGhhdCdzIG5vdCB0aGUgcmln
+aHQgcGFzc3dvcmQiIHVubGVzcyBjYW5kaWRhdGUua25vd3NfdGhlX3NlY3Jl
+dF9wYXNzd29yZD8KICAgIHB1dHMgQ2FuZGlkYXRlLm5ldygncnVieSBpcyBj
+b29sJykuc2VjcmV0X21lc3NhZ2UKICBlbmQKZW5kCg==</span></code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/job" rel="tag">job</a>, 
+                
+                  <a href="/articles/tag/quiz" rel="tag">quiz</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/02/15/crashing-ie-6-with-style-sheets">Crashing IE 6 with style(sheets)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 15 Feb 2007 22:49:00">
+                  Thu, 15 Feb 2007 22:49:00
+                </span>
+              </p>
+          
+              <p>Over about the last day and a half, if you used <a href="http://en.wikipedia.org/wiki/Internet_Explorer_6">Internet Explorer 6</a> to browse any of the reviews on <a href="http://www.reevoo.com">reevoo.com</a>, then we should apologise.  It seems that, apart from breaking the layout somewhat, we&#8217;d actually managed to cause <span class="caps">IE 6</span> to crash.  Not cool.  A concerted effort this morning got the problem sorted, but it took longer than it should&#8217;ve done, especially when you consider that about 75% of our traffic is from users of <span class="caps">IE 6</span>&#8230;</p>
+
+
+	<p>Anyway, with the embarrassment out of the way, I thought I&#8217;d share the remotely interesting<sup><a href="#fn1">1</a></sup> findings of the investigation into the browser crash.  It turns out that a combination of these three little lines of <a href="http://en.wikipedia.org/wiki/CSS">css</a>, and any <a href="http://en.wikipedia.org/wiki/Doctype">doctype</a> declaration<sup><a href="#fn2">2</a></sup>, will cause <span class="caps">IE 6</span> to hang while waiting for the magic <a href="http://en.wikipedia.org/wiki/Control-Alt-Delete#Windows_NT">Windows kiss of life</a>.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">margin-left: 240px;
+margin-right: 10%;
+width: expression(document.body.offsetWidth - 256);</code></pre></div>
+
+	<p>It is not the specific values (240px, 10% and 256) in the lines above that are of interest &#8211; I was able to express and suppress the problem by altering those.  Unfortunately, I didn&#8217;t spend any time trying to find the threshold of the problem, and am therefore unsure as to the reason for this behaviour.</p>
+
+
+	<p>The offending, nasty, IE hack has now been removed.  In addition, the day has been spent working with the <a href="http://daftpixel.wordpress.com">designer monkey</a> (ahh, you can call him Adam if you like) to start tidying up the, still somewhat cumbersome, stylesheets.</p>
+
+
+	<p>For the curious, the simplest html page I could come up with that exhibits the crash behaviour in <span class="caps">IE 6</span> is below.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;!-- &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt; --&gt;
+&lt;!-- &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt; --&gt;
+&lt;!-- &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt; --&gt;
+&lt;!-- &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt; --&gt;
+&lt;!-- ANY OF THE ABOVE DOCTYPES CAUSE THE PROBLEM.  NO DOCTYPE = NO PROBLEM --&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+      #content {
+        margin-left: 240px;
+        margin-right: 10%;
+        width: expression(document.body.offsetWidth - 256);
+      }
+    &lt;/style&gt;
+    &lt;title&gt;testing ie6&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;content&quot;&gt;blurgh&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+
+	<p>[1] They&#8217;re really not interesting.</p>
+
+
+	<p>[2] If there is no doctype declaration, the browser doesn&#8217;t crash (something to do with standards mode I believe).</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ie" rel="tag">ie</a>, 
+                
+                  <a href="/articles/tag/internetexplorer" rel="tag">internetexplorer</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/12/15/might-as-well-aim-high">Might as well aim high...</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 15 Dec 2006 17:07:00">
+                  Fri, 15 Dec 2006 17:07:00
+                </span>
+              </p>
+          
+              <p><img src="http://static.flickr.com/130/323149762_31ae107670_o.png" alt="" /></p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/google" rel="tag">google</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/review" rel="tag">review</a>, 
+                
+                  <a href="/articles/tag/worlddomination" rel="tag">worlddomination</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/12/13/reevoo-com-dips-its-toes-into-the-opensearch-water">Reevoo.com dips its toes into the opensearch water</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 13 Dec 2006 21:37:00">
+                  Wed, 13 Dec 2006 21:37:00
+                </span>
+              </p>
+          
+              <p>So.  What does that mean exactly?  Well, right at the moment, not a great deal.  It pretty much means that you can add the ability to search reevoo.com to the Firefox 2 and <span class="caps">IE7</span> browsers very easily.  Visiting <a href="http://www.reevoo.com">reevoo.com</a> with either of these browsers will highlight part of the &#8216;search box&#8217;.</p>
+
+
+	<p><img src="http://static.flickr.com/126/321626445_dfe00b4e0e.jpg?v=0" alt="" /></p>
+
+
+	<p><span class="caps">IE 7</span> changes the little arrow to a goldy, orangey, yellowy type colour to indicate the presence of an opensearch enabled search engine.</p>
+
+
+	<p><img src="http://static.flickr.com/132/321626424_d6ec54a53b.jpg?v=0" alt="" /></p>
+
+
+	<p>While Firefox 2 opts for a blue surround and additionally chooses to add our logo.  Woot.</p>
+
+
+	<h3>I appreciate that I can now easily search reevoo from anywhere but was it really worth a blog post?</h3>
+
+
+	<p>Hmm, interesting question (that wasn&#8217;t an actual question, I just made it up).</p>
+
+
+	<p>Actually, I think that <a href="http://www.opensearch.org">opensearch</a> is pretty cool.  At the moment, we are just exposing our search results in their html form.  Just imagine, for a second, that we were instead, exposing our results as <a href="http://en.wikipedia.org/wiki/Atom_%28standard%29">atom</a> or <a href="http://en.wikipedia.org/wiki/RSS_%28file_format%29">rss</a> feeds.  Now, also imagine<sup><a href="#fn1">1</a></sup> that retailers felt like being a little more open; and, as such, were offering an opensearch description of their search capabilities, along with search results in atom or rss feeds.  All we&#8217;d need then was an <a href="http://a9.com">aggregator</a> that would allow us to search for products across our chosen retailers and reevoo in one go.  The result would be a page containing both product reviews and pricing and stock availability from each retailer.  That, I think, would be pretty damn cool.</p>
+
+
+	<p id="fn1"><sup>1</sup> Currently, this requires a lot of imagination.  A quick browse this afternoon found four big retailers that don&#8217;t even have working search without javascript enabled.  At least they&#8217;ve got <a href="http://www.w3.org/Provider/Style/URI">well</a> <a href="http://wiki.welldesignedurls.org/Main_Page">designed</a> urls.  Oh, hang on&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/atom" rel="tag">atom</a>, 
+                
+                  <a href="/articles/tag/opensearch" rel="tag">opensearch</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/search" rel="tag">search</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/11/28/amazing-non-customer-service">Amazing non-customer service</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 28 Nov 2006 23:55:00">
+                  Tue, 28 Nov 2006 23:55:00
+                </span>
+              </p>
+          
+              <p>I heard (well, read) about <a href="http://www.wesabe.com">wesabe</a> this morning and thought I&#8217;d sign-up to find out what it was all about.  During the sign-up process I was asked for <em>two</em> security questions and answers &#8211; to be used in the event of me forgetting my password.  Although I was unable<sup><a href="#fn1">1</a></sup> to sign-up and use the service, I still got an amazing &#8216;non-customer experience&#8217;.  I was curious as to why they wanted me to answer two security questions in order to sign-up, and emailed them to that affect.</p>
+
+
+	<blockquote>
+		<p>I was about to signup to wesabe but I&#8217;ve been rejected by not entering my security questions.  I&#8217;m genuinely interested in your decision to require two security questions as well as an email address.  I get the impression that the current trend is to ask for an email address and provide a &#8216;reset password&#8217; type link that mails out a new password &#8211; maybe you are more aware of this due to the type of data being stored?</p>
+	</blockquote>
+
+
+	<p>That was sent at 08:14.  This reply was received at 08:19.</p>
+
+
+	<blockquote>
+		<p>Yes, your guess is spot on.  During our preview/beta period, one of the most common requests we had was for password resets.  It was easy enough to verify the source of those requests when we knew all of our users, but as the preview group grew, we weren&#8217;t able to confirm that we were actually resetting a password for the right person.  When we talked it over, we decided to use the model set by PayPal, since that seemed like the closest analog to our service in web applications.  Using a combination of security questions and access to a set email address provides two levels of authentication, and that&#8217;s what we wanted.</p>
+	</blockquote>
+
+
+	<blockquote>
+		<p>I really want signup to be easier and faster, and yet still have people be able to get back to their data &#8211; and only their data &#8211; whenever they want.  I&#8217;m not happy with the length of the signup form, but it seems better than other options I&#8217;ve found so far.</p>
+	</blockquote>
+
+
+	<blockquote>
+		<p>If you have suggestions or comments on this, I&#8217;d be very interested.</p>
+	</blockquote>
+
+
+	<p>Whoah.  That&#8217;s pretty cool.  Right!?  I&#8217;ve actually had a very similar experience with <a href="http://www.claimid.com">claimid</a>.  I asked them to <a href="http://blog.claimid.com/2006/05/tips-and-tricks-your-name-in-the-url/">change my username</a> and the response confirming their action was through within ten minutes.</p>
+
+
+	<p>In a &#8220;we wanna be that cool too&#8221; stylee, I&#8217;m opening myself up to spam galore<sup><a href="#fn2">2</a></sup> by offering my email address for your delectation:</p>
+
+
+	<p><a href="mailto:chrisroos@reevoo.com">chrisroos@reevoo.com</a></p>
+
+
+	<p>Feel free to email me, why not.</p>
+
+
+	<p>[1] There&#8217;s a little white lie there to be fair.  Of course I <em>could&#8217;ve</em> signed up.  They didn&#8217;t put a spell on me (although that&#8217;d be cool) or anything.  It&#8217;s just that I feel uncomfortable giving out the answers to real questions (mother&#8217;s maiden name) and there&#8217;s zero chance of me remembering the answer to made up questions (favourite colour/day/smell).</p>
+
+
+	<p>[2] I was going to cleverly protect my email addresses from prying robot eyes&#8230;  but really can&#8217;t be bothered.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/claimid" rel="tag">claimid</a>, 
+                
+                  <a href="/articles/tag/open" rel="tag">open</a>, 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/wesabe" rel="tag">wesabe</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

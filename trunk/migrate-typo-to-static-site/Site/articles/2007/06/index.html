@@ -1,0 +1,838 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published in June 2007 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/26/a-great-day-at-work-and-reevoovision-twittervision-for-reviews">A great day at work and reevoovision (twittervision for reviews)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 26 Jun 2007 09:20:00">
+                  Tue, 26 Jun 2007 09:20:00
+                </span>
+              </p>
+          
+              <p>A few of days ago I <a href="http://twitter.com/chrisroos/statuses/114202552">came across</a> <a href="http://twittervision.com/">twittervision</a>.  Just ten hours later I had checked some code into <a href="http://www.reevoo.com">our</a> repository that allows us to do the same thing (as twittervision) but for our reviews.  Yup, it was a very good day indeed.  Although the initial code was complete within a few hours, it needed a bit of polishing (kudos to <a href="http://po-ru.com">Paul</a>) which meant that we only got it deployed yesterday.  I guess one working day between proof of concept and deployment isn&#8217;t that bad&#8230;  Anyway, go check it out &#8211; <a href="http://www.reevoo.com/vision.html">reevoovision</a>.</p>
+
+
+	<h3>The days events</h3>
+
+
+	<p>I started the morning by creating an <a href="http://en.wikipedia.org/wiki/Xml">xml</a> feed of the ten most recently published reviews.  On filling a review, the reviewer is asked to enter their town, which needed to be converted to latitude/longitude to allow us to plot a point on the map.  Luckily, a little googling revealed the <a href="http://www.geonames.org/">geonames</a> web service that did exactly what I wanted.  So, using a combination of <a href="http://www.ruby-lang.org/en/">ruby</a>, <a href="http://rubyonrails.com/">rails</a>, <a href="http://curl.haxx.se/">curl</a>, <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> and <a href="http://mongrel.rubyforge.org/">mongrel</a> I had a simple web server that downloaded and parsed the reviews, converted place name to lat/long, and plotted the results on a google map (with help from the <a href="http://pragmaticprogrammer.com/fridays.html">fridays</a> <a href="http://pragmaticprogrammer.com/titles/sdgmapi2/index.html">google map book</a>).  A good proof of concept but not quite right.</p>
+
+
+	<p>I was reminded that we collect the purchaser&#8217;s postcode from our retailers.  This, in combination with a <a href="http://www.easypeasy.com/guides/article.php?article=64">free list</a> of UK <a href="http://en.wikipedia.org/wiki/UK_postcodes">outcodes</a> (the first bit of the postcode) against latitude/longitude, allowed for much greater accuracy (well, to within about 2km) in plotting the location of the reviewer.</p>
+
+
+	<p>The next step was to polish up the rough demo.  Instead of the previous server side hackery, I used the excellent <a href="http://jquery.com">jquery</a> javascript library to perform an &#8220;Ajax&#8221; request of the reviews and parse the xml to build a simple hash of the required data.  Using the twittervision source as reference, I got a &#8216;proper&#8217; (i.e. reviews popping up in sequence) demo running.</p>
+
+
+	<p>From here, it was a basic case of tidying up some rough edges.  Instead of returning the reviews data as xml, I converted it to <a href="http://json.org/">json</a> to make for trivial parsing in javascript.  I also added the jquery <a href="http://jquery.com/plugins/project/dimensions">dimensions</a> plugin to resize the containing div, and in turn the map, to the size of the page.  The final touch was attempting to keep the UK centered in the window.</p>
+
+
+	<p>Reevoovision currently selects and displays published reviews at random to provide a constantly updating map, although maybe it&#8217;d be cool to get it to display submitted/published reviews in real-time.</p>
+
+
+	<p>I can&#8217;t get over how addictive it is to watch the reviews pop-up all over the country, it really emphasises the fact that these are actually real people writing about their experiences.  Hmm, that sounds a bit sales &#38; marketing.  I do mean it though, honest.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/reevoovision" rel="tag">reevoovision</a>, 
+                
+                  <a href="/articles/tag/reviews" rel="tag">reviews</a>, 
+                
+                  <a href="/articles/tag/twitter" rel="tag">twitter</a>, 
+                
+                  <a href="/articles/tag/twittervision" rel="tag">twittervision</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/23/automatically-downloading-my-ing-direct-transactions">Automatically downloading my Ing Direct transactions</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 23 Jun 2007 18:00:00">
+                  Sat, 23 Jun 2007 18:00:00
+                </span>
+              </p>
+          
+              <p>I wanted to <a href="http://blog.seagul.co.uk/articles/2007/06/23/automatically-download-egg-credit-card-transactions">automate</a> the <a href="http://blog.seagul.co.uk/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb">download</a> of <a href="http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions">transaction</a> data for my <a href="http://www.ingdirect.co.uk">ing direct</a> account.  Instead of just pasting up the finished result, I&#8217;ve tried to capture the process I went through, on the off chance it&#8217;s of interest to anyone&#8230;</p>
+
+
+	<h3>Earlier</h3>
+
+
+	<p>Open the <a href="http://www.ingdirect.co.uk">homepage</a></p>
+
+
+	<p>Click the login link. (goes to https://secure.ingdirect.co.uk/InitialINGDirect.html?command=displayLogin&#38;device=web&#38;locale=en_GB)</p>
+
+
+	<p><a href="http://www.flickr.com/photos/chrisjroos/601727552/"><img src="http://farm2.static.flickr.com/1358/601727552_238151d7e8_m.jpg" alt="" /></a></p>
+
+
+	<p>Type our Customer Number and Last Name into the login form.</p>
+
+
+	<p>Before submitting the form, we open the <a href="http://livehttpheaders.mozdev.org/">Live Http headers</a> <a href="http://www.mozilla.com/en-US/firefox/">firefox</a> extension.</p>
+
+
+	<p>We see that the following information gets POSTed to InitialINGDirect.html</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">command=enterCustomerNumber&amp;locale=en_GB&amp;device=web&amp;ACN=&lt;YOUR_CUSTOMER_NUMBER&gt;&amp;LNAME=&lt;YOUR_LAST_NAME&gt;&amp;GO.x=23&amp;GO.y=12</code></pre></div>
+
+	<p>We are redirected to a second security page.</p>
+
+
+	<p><a href="http://www.flickr.com/photos/chrisjroos/601727868/"><img src="http://farm2.static.flickr.com/1344/601727868_4569c11af6_m.jpg" alt="" /></a></p>
+
+
+	<p>The first use of <a href="http://curl.haxx.se/">curl</a> is to see whether we can get this far from the command line.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">curl -X&quot;POST&quot; -d&quot;command=enterCustomerNumber&quot; -d&quot;locale=en_GB&quot; -d&quot;device=web&quot; -d&quot;ACN=YOUR_CUSTOMER_NUMBER&quot; -d&quot;LNAME=YOUR_LAST_NAME&quot; -d&quot;GO.x=23&quot; -d&quot;GO.y=12&quot; &quot;https://secure.ingdirect.co.uk/InitialINGDirect.html&quot; -o&quot;&lt;FILENAME_FOR_OUTPUT&gt;&quot;</code></pre></div>
+
+	<p>The actual output in this instance is</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
+location.replace(&quot;/INGDirect.html?command=displayValidateCustomer&amp;fill=1&quot;);
+&lt;/SCRIPT&gt;</code></pre></div>
+
+	<p>So we amend the curl command to see exactly what&#8217;s going on (the removal of -o and the addition of -v)</p>
+
+
+	<p>Right, so this is interesting &#8211; I was expecting to see an <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.30"><span class="caps">HTTP</span> Location</a> header directing us to the second security page.  Instead the body of the response is the javascript seen above.  I guess they want to ensure that we have javascript enabled eh.</p>
+
+
+	<p>Let&#8217;s just see what happens if we request the page returned in the javascript (https://secure.ingdirect.co.uk/INGDirect.html?command=displayValidateCustomer&#38;fill=1)</p>
+
+
+	<p><a href="http://www.flickr.com/photos/chrisjroos/601442615/"><img src="http://farm2.static.flickr.com/1130/601442615_2ce8dafc21_m.jpg" alt="" /></a></p>
+
+
+	<p>Ok, so that&#8217;s not unexpected.  How about, if we store the cookies sent to us in the original response, and then request the page returned in the javascript.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">curl -X&quot;POST&quot; -c&quot;/Users/chrisroos/Desktop/ing-cookie&quot; -d&quot;command=enterCustomerNumber&quot; -d&quot;locale=en_GB&quot; -d&quot;device=web&quot; -d&quot;ACN=YOUR_CUSTOMER_NUMBER&quot; -d&quot;LNAME=YOUR_LAST_NAME&quot; -d&quot;GO.x=23&quot; -d&quot;GO.y=12&quot; &quot;https://secure.ingdirect.co.uk/InitialINGDirect.html&quot;
+
+curl -b&quot;/Users/chrisroos/Desktop/ing-cookie&quot; &quot;https://secure.ingdirect.co.uk/INGDirect.html?command=displayValidateCustomer&amp;fill=1&quot; -o&quot;/Users/chrisroos/Desktop/ing.html&quot;</code></pre></div>
+
+	<p>Ok, this looks promising.  We can now proceed to the second security page.</p>
+
+
+	<p>Let&#8217;s use firefox to log in and get to the second security page again.  Fill in the details as requested, open live http headers and get hold of the data we are sending.  Right, so we <span class="caps">POST</span> the following details to InitialINGDirect.html</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">command=validateCustomer&amp;locale=en_GB&amp;device=web&amp;PIN_A=5&amp;PIN_B=1&amp;PIN_C=4&amp;DAYS=65&amp;MONTHS=65&amp;YEARS=66&amp;GO.x=41&amp;GO.y=9</code></pre></div>
+
+	<p>Ah, so this looks interesting.  It seems that each key on the keypad is assigned a number (potentially different to the number displayed on the key).  It is that number that gets sent.  The numbers on the keypad appear in a random order, so I wonder if the same number is always assigned to the same key, or whether something else is required to tell the server the order of the keys.  Let&#8217;s log in one more time and see if the results differ.  The assumption being that if they do then the server must know what order the keys have been displayed in.</p>
+
+
+	<p>Bugger &#8211; now it won&#8217;t let me log in anymore (too many failed attempts) and I have to call the call centre.  Ooops.</p>
+
+
+	<h3>Later</h3>
+
+
+	<p>Right, so it&#8217;s now about 5 weeks after starting this investigation.  I&#8217;m going to attempt to pick up where I left off and see if we can&#8217;t get it finished.  Previously, before I got locked out of my account, I was going to test whether each digit on the keypad got assigned a different number each time.  In order to test, I logged into my account twice.  Each time, I saved the content of the page containing the keypad, and the output from Live Http Headers.  A quick examination of the differences between the output seems to suggest that we only ever send the position of a number on the keypad.  A made-up example might help to make this clear, starting with a keypad in no particular order.</p>
+
+
+<pre>
+5 1 2
+4 7 3
+0 8 9
+  6
+</pre>
+
+	<p>If our pin number is 1234 and we are asked for the first digit then, although we would push the button labeled 1 on the keypad, we would actually send the value 2 to the server.  The buttons (but not the values they represent) all have a constant position, where the top-left button is position 1, the bottom-right is position 9 and the bottom button is position 0 (same layout as phone keypads).  For the above example, the button labeled 1 is in position 2, hence us sending a 2 to the server.</p>
+
+
+	<p>Right, so unless I&#8217;m missing something, the server must &#8216;know&#8217; which three digits we&#8217;re being asked for, along with the order of the keypad.  If we&#8217;re to log in automatically then we&#8217;re going to need to parse the text that asks us for certain digits and determine the order of the keypad.  A little experimentation with <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> yielded the following code.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+
+<span class="ident">html</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">('</span><span class="string">/Users/chrisroos/Desktop/ingdirect-b1.html</span><span class="punct">')</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">}</span>
+
+<span class="comment"># The request for our PIN digits appears within the following text</span>
+<span class="comment"># &lt;b&gt;Using the Key Pad, please enter the 3rd, 5th and 2nd digits from your PIN&lt;/b&gt;</span>
+<span class="ident">pin_a</span><span class="punct">,</span> <span class="ident">pin_b</span><span class="punct">,</span> <span class="ident">pin_c</span> <span class="punct">=</span> <span class="ident">html</span><span class="punct">.</span><span class="ident">scan</span><span class="punct">(/</span><span class="regex">Using the Key Pad, please enter the (<span class="escape">\d</span>).+?(<span class="escape">\d</span>).+?(<span class="escape">\d</span>).*?&lt;<span class="escape">\/</span>b&gt;</span><span class="punct">/).</span><span class="ident">flatten</span>
+
+<span class="comment"># Ok, now let's find the order of the keypad (hey, it's in a div with id pin-pad - cool)</span>
+<span class="comment"># This has turned out quite trivial.  The keypad is rendered within an html table, where each cell contains a button (input)</span>
+<span class="comment"># that has a value of the number displayed on the button.  Hpricot makes it very easy to say 'get me all buttons (input)</span>
+<span class="comment"># that appear in cells within the table that is in the div with an id of pin-pad'.  As hpricot will parse the html table</span>
+<span class="comment"># 'in order', i.e. from top-left to bottom right, we just have to append each button value into an array, preserving the</span>
+<span class="comment"># order of the keypad.</span>
+<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
+<span class="ident">keypad</span> <span class="punct">=</span> <span class="punct">(</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">div#pin-pad/table/tr/td/input</span><span class="punct">').</span><span class="ident">inject</span><span class="punct">([])</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">array</span><span class="punct">,</span> <span class="ident">btn</span><span class="punct">|</span> <span class="ident">array</span> <span class="punct">&lt;&lt;</span> <span class="ident">btn</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">'].</span><span class="ident">to_i</span><span class="punct">;</span> <span class="ident">array</span> <span class="punct">}</span>
+<span class="comment"># The last value read from the html keypad table will appear at index 9 (our array is 0 based), where we actually want it to </span>
+<span class="comment"># appear at index 0 (keypad is in phone keypad order, i.e. 0 at bottom).  Luckily, we can just pop it off the end and</span>
+<span class="comment"># prepend it to the array</span>
+<span class="ident">keypad</span><span class="punct">.</span><span class="ident">unshift</span><span class="punct">(</span><span class="ident">keypad</span><span class="punct">.</span><span class="ident">pop</span><span class="punct">)</span>
+<span class="comment"># So, we can now convert a keypad like this</span>
+<span class="comment"># 5 1 2</span>
+<span class="comment"># 4 7 3</span>
+<span class="comment"># 0 8 9</span>
+<span class="comment">#   6</span>
+<span class="comment"># into the equivalent ruby array [6, 5, 1, 2, 4, 7, 3, 0, 8, 9]</span>
+<span class="comment"># We can then use Array#index to dive in grab the keypad position of a number</span>
+<span class="comment"># keypad.index(5) #=&gt; 1</span>
+<span class="comment"># keypad.index(7) #=&gt; 5</span></code></pre></div>
+
+	<p>Cool, so we should be able to string together what we have and automatically login to our account, we need to dip into ruby so that we might parse the keypad page using our code above.</p>
+
+
+	<p>Right, I&#8217;ve cobbled the code together but instead of seeing an account overview page, I&#8217;m actually receiving a page with more javascript relocation magic.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
+location.replace(&quot;/InitialINGDirect.html?command=displayLoggedOutError&amp;locale=en_GB&amp;device=web&quot;);
+&lt;/SCRIPT&gt;</code></pre></div>
+
+	<p>I&#8217;m wondering if I&#8217;m missing some cookies &#8211; maybe some more cookies get added to the jar on the keypad page.  Using the <a href="https://addons.mozilla.org/en-US/firefox/addon/60">web developer extension</a> this is trivial to check.  Two cookies are set when we first visit the login page&#8230;  Hmm, and there are still two when we get to the keypad page.  So something else is different.  Ok, so I found it.  Somehow, I&#8217;d managed to miss out some data that was required for the login to work correctly.  I was not sending the command=validateCustomer key/pair even though I&#8217;d already pasted it once above.  Oh well.  With this &#8216;command&#8217; added, we still get a page with some javascript relocation but this time we get relocated to the account summary..</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
+location.replace(&quot;/INGDirect.html?command=accountSummary&amp;locale=en_GB&amp;device=web&amp;method=fetchClientAccountSummary&quot;);
+&lt;/SCRIPT&gt;</code></pre></div>
+
+	<p>If we finally <span class="caps">GET</span> this page then we should be able to &#8216;see&#8217; our account overview on the command line.  Of course it wasn&#8217;t that simple.  This just yields another javascript redirect.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
+location.replace(&quot;/INGDirect.html?command=displayClientAccountSummary&amp;fill=1&quot;);
+&lt;/SCRIPT&gt;</code></pre></div>
+
+	<p>Let&#8217;s try to <span class="caps">GET</span> this page then.  Woohoo, we&#8217;re finally at the account overview page.  Wow that was hard work, so, so much harder than it should be for a web application.</p>
+
+
+	<p>The final step is to <span class="caps">GET</span> and save the transaction page.  The url to the account page in the browser is:</p>
+
+
+	<p>https://secure.ingdirect.co.uk/INGDirect.html?command=accountSummary&#38;method=fetchClientAccountSummary&#38;account=0&#38;stepName=saving</p>
+
+
+	<p>GETting that url on the command line yields yet another javascript redirect (really, you do surprise me).</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
+location.replace(&quot;/INGDirect.html?command=displayAccountDetails&quot;);
+&lt;/SCRIPT&gt;</code></pre></div>
+
+	<p>Fine, let&#8217;s <span class="caps">GET</span> that url then (starting to get bored now).  And, wait for it&#8230;  Yeah, we have downloaded transactions.  Phew.  Right then, just a little code tidying and I&#8217;ll get it uploaded to google code and this article can be posted.  Yay.</p>
+
+
+	<p>Ok, so we&#8217;re uploaded to <a href="http://chrisroos.googlecode.com/svn/trunk/ing-direct">google code</a>.  Now to set this little fella free&#8230;  An we&#8217;re done.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/curl" rel="tag">curl</a>, 
+                
+                  <a href="/articles/tag/direct" rel="tag">direct</a>, 
+                
+                  <a href="/articles/tag/finance" rel="tag">finance</a>, 
+                
+                  <a href="/articles/tag/ing" rel="tag">ing</a>, 
+                
+                  <a href="/articles/tag/ofx" rel="tag">ofx</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/transaction" rel="tag">transaction</a>, 
+                
+                  <a href="/articles/tag/wesabe" rel="tag">wesabe</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/23/this-makes-me-happy">This makes me happy</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 23 Jun 2007 17:34:00">
+                  Sat, 23 Jun 2007 17:34:00
+                </span>
+              </p>
+          
+              <p>A <a href="http://birchington.blogspot.com/">local blogger</a> forwards a <a href="http://birchington.blogspot.com/2007/06/unusual-request.html">request</a> he&#8217;s received from a visiting pilot for photos to be taken of him practising at our <a href="http://en.wikipedia.org/wiki/Kent_International_Airport">local airstrip</a>.  I duly <a href="http://www.flickr.com/photos/chrisjroos/sets/72157600450060497/">obliged</a> (not hard as I live under the flight path) as has <a href="http://www.flickr.com/photos/doverpast/sets/72157600449864913/">one other</a> so far.  The Internet is great isn&#8217;t it.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/airlines" rel="tag">airlines</a>, 
+                
+                  <a href="/articles/tag/blog" rel="tag">blog</a>, 
+                
+                  <a href="/articles/tag/flickr" rel="tag">flickr</a>, 
+                
+                  <a href="/articles/tag/internet" rel="tag">internet</a>, 
+                
+                  <a href="/articles/tag/kia" rel="tag">kia</a>, 
+                
+                  <a href="/articles/tag/manston" rel="tag">manston</a>, 
+                
+                  <a href="/articles/tag/oasis" rel="tag">oasis</a>, 
+                
+                  <a href="/articles/tag/photo" rel="tag">photo</a>, 
+                
+                  <a href="/articles/tag/plane" rel="tag">plane</a>, 
+                
+                  <a href="/articles/tag/thanet" rel="tag">thanet</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/23/automatically-download-egg-credit-card-transactions">Automatically download egg credit card transactions</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 23 Jun 2007 12:34:00">
+                  Sat, 23 Jun 2007 12:34:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve followed in my <a href="http://blog.seagul.co.uk/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb">previous</a> <a href="http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions">footsteps</a> and automated the download of my <a href="http://egg.com">egg</a> credit card transactions and statements.  Using this in combination with my <a href="http://blog.seagul.co.uk/articles/2007/04/01/converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe">ofx convertor</a> makes it easier for me to upload my financial data to <a href="http://www.wesabe.com">wesabe</a>.</p>
+
+
+	<p>As always, the code is in <a href="http://chrisroos.googlecode.com/svn/trunk/egg/">google code</a> and pasted below for your viewing pleasure&#8230;</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">egg-credentials</span><span class="punct">'</span>
+
+<span class="keyword">def </span><span class="method">execute_curl</span><span class="punct">(</span><span class="ident">cmd</span><span class="punct">)</span>
+  `<span class="comment">#{cmd}`</span>
+<span class="keyword">end</span>
+
+<span class="constant">COOKIE_LOCATION</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">/tmp/egg.cookie</span><span class="punct">&quot;</span>
+<span class="constant">STATEMENT_DATE</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">18 January 2007</span><span class="punct">'</span>
+
+<span class="constant">RECENT_TRANSACTIONS_FILE</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/Desktop/egg-recent-transactions.html</span><span class="punct">'</span>
+<span class="constant">STATEMENT_FILE</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/Desktop/egg-statement.html</span><span class="punct">'</span>
+
+<span class="comment"># Logging in requires a cookie that is set when we first visit the login page</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -c&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://new.egg.com/security/customer/logon?URI=https://new.egg.com/customer/youraccounts&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+<span class="comment"># POST our login credentials</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; -c&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; -L &quot;https://logon.egg.com/LoginWebServer/services/CustomerLogin&quot; -d&quot;firstName=<span class="expr">#{FIRST_NAME}</span>&quot; -d&quot;lastName=<span class="expr">#{LAST_NAME}</span>&quot; -d&quot;dobDay=<span class="expr">#{DOB_DAY}</span>&quot; -d&quot;dobMonth=<span class="expr">#{DOB_MONTH}</span>&quot; -d&quot;dobYear=<span class="expr">#{DOB_YEAR}</span>&quot; -d&quot;postcode=<span class="expr">#{POSTCODE}</span>&quot; -d&quot;mmn=<span class="expr">#{MOTHERS_MAIDEN_NAME}</span>&quot; -d&quot;password=<span class="expr">#{PASSWORD}</span>&quot; -d&quot;HiddenURI=https%3A%2F%2Fnew.egg.com%2Fcustomer%2Fyouraccounts&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+<span class="comment"># List and save recent transactions</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -o&quot;<span class="expr">#{RECENT_TRANSACTIONS_FILE}</span>&quot; -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://your.egg.com/customer/eggcard/recenttransactions.aspx&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+<span class="comment"># There is no sensible way to get your statements.  I'd hope for something like /statements/18-jun-2007.html but no such luck</span>
+<span class="comment"># Instead, there is a zero indexed array of statement dates.  Selecting one of these statement dates allows us to construct</span>
+<span class="comment"># a uri using the index of the date in the list.  So, if 18 June 2007 is the first date in the list (i.e. index 0) then we can view that</span>
+<span class="comment"># statement at https://your.egg.com/customer/eggcard/statements.aspx?index=0</span>
+<span class="comment"># Interestingly, this is how it works from the recent transactions page, from any actual statement page, it appears that this is</span>
+<span class="comment"># too hard (it's not) and instead the developers have resorted to using some magical .net/javascript voodoo to obtain a different</span>
+<span class="comment"># statement.</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+
+<span class="ident">recent_transactions</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">(</span><span class="constant">RECENT_TRANSACTIONS_FILE</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">}</span>
+<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">recent_transactions</span><span class="punct">)</span>
+<span class="ident">statement_dates</span> <span class="punct">=</span> <span class="punct">[]</span>
+<span class="punct">(</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">select#ctl01_content_recenttransactions_lstPreviousStatements/option</span><span class="punct">').</span><span class="ident">each</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">e</span><span class="punct">|</span> <span class="ident">statement_dates</span> <span class="punct">&lt;&lt;</span> <span class="ident">e</span><span class="punct">.</span><span class="ident">inner_text</span> <span class="punct">}</span>
+<span class="ident">statement_index</span> <span class="punct">=</span> <span class="ident">statement_dates</span><span class="punct">.</span><span class="ident">index</span><span class="punct">(</span><span class="constant">STATEMENT_DATE</span><span class="punct">)</span>
+
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -o&quot;<span class="expr">#{STATEMENT_FILE}</span>&quot; -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://your.egg.com/customer/eggcard/statements.aspx?index=<span class="expr">#{statement_index}</span>&quot;</span><span class="punct">]</span>
+<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+
+</code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/curl" rel="tag">curl</a>, 
+                
+                  <a href="/articles/tag/egg" rel="tag">egg</a>, 
+                
+                  <a href="/articles/tag/finance" rel="tag">finance</a>, 
+                
+                  <a href="/articles/tag/ofx" rel="tag">ofx</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/wesabe" rel="tag">wesabe</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/13/i-really-dont-know-whether-this-is-spam-or-not">I really don't know whether this is spam or not...</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 13 Jun 2007 22:18:00">
+                  Wed, 13 Jun 2007 22:18:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve received another innocent looking comment, &#8220;Hey man, thanks for article!&#8221;, this time from gribitonline.com.</p>
+
+
+	<p>I followed the same procedure as <a href="http://blog.seagul.co.uk/articles/2007/06/06/a-little-further-investigation-into-those-pesky-scammers">last time</a>  and found that this site contains  the same style porn links at the bottom of the page.  The site looks more genuine than all the others, hence the title &#8211; I&#8217;m really not sure whether this is intentional spam or whether it&#8217;s been hijacked.</p>
+
+
+	<p>I did some investigation to see if I could find the provider of the porn links.  Unfortunately I&#8217;ve not found anything obvious, although I have noticed some patterns.</p>
+
+
+	<ul>
+	<li>The porn links are embedded within the body of the page and then moved to the bottom with the help of javascript.  I assume that this is an <a href="http://www.wikipedia.org/wiki/SEO"><span class="caps">SEO</span></a> trick, based on the understanding that links in content are granted higher ratings than links just for navigation.</li>
+	</ul>
+
+
+	<h3>Site without javascript enabled</h3>
+
+
+	<p><img src="http://farm2.static.flickr.com/1208/544423293_cdf567e9a2_o.jpg" alt="" /></p>
+
+
+	<h3>Site with javascript enabled</h3>
+
+
+	<p><img src="http://farm2.static.flickr.com/1040/544325496_41bc3cb742_o.jpg" alt="" /></p>
+
+
+	<ul>
+	<li>The javascript used to move the links always looks like this.</li>
+	</ul>
+
+
+<div class="typocode"><pre><code class="typocode_default">var el, el2;
+el = document.getElementById('cbceddfd');
+el2 = document.getElementById('cceedfda');
+if (el &amp;&amp; el2)
+el2.appendChild(el);
+el = document.getElementById('bfabedba');
+el2 = // ... and repeat</code></pre></div>
+
+	<ul>
+	<li>Each link is inserted into its own empty span at the bottom of the page.  The spans seem to have the same ids on each of the sites that have these type of links.  The first span is always cceedfda, the second is cecfaabe, with subsequent ids also being the same across different sites.  There doesn&#8217;t appear to be any other pattern to the ids.</li>
+	</ul>
+
+
+	<ul>
+	<li>Sites from previous experiment that follow this pattern
+	<ul>
+	<li>timesofsooz.com</li>
+		<li>pinkyspaperhause.com</li>
+		<li>moradblog.com</li>
+		<li>fromgreghead.com</li>
+	</ul></li>
+	</ul>
+
+
+	<ul>
+	<li>I&#8217;m really quite intrigued by these sites.  Sad, I know.</li>
+	</ul>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/sad" rel="tag">sad</a>, 
+                
+                  <a href="/articles/tag/spam" rel="tag">spam</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/07/steel-mounted-photographic-wall-prints-or-cool-pictures-printed-on-metal-in-thanet">Steel mounted photographic wall prints (or, cool pictures printed on metal) in Thanet</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 07 Jun 2007 08:44:00">
+                  Thu, 07 Jun 2007 08:44:00
+                </span>
+              </p>
+          
+              <p><a href="http://www.printeriordesign.co.uk">Printerior Design</a> are a <a href="http://en.wikipedia.org/wiki/Thanet">local</a> (to me, probably not to you) firm that produce cool pictures.  They are beautiful <a href="http://www.printeriordesign.co.uk/galleries.html">photos</a> printed directly onto heavy duty metal &#8211; &#8216;man-art&#8217; if you will.  I bought <a href="http://www.printeriordesign.co.uk/landscapes/pages/Dawn%201500%20thumbnail%20with%20drop%20shadow_jpg.htm">this one</a> as a Christmas present.</p>
+
+
+	<p><a href="http://www.printeriordesign.co.uk/landscapes/pages/Dawn%201500%20thumbnail%20with%20drop%20shadow_jpg.htm"><img src="http://farm2.static.flickr.com/1239/534275282_2d4ba6dde1.jpg" alt="" /></a></p>
+
+
+	<p>The reason for this post is because a friend recently asked me where I got the picture.  Not remembering the name of the company, I started googling.  I knew that they had pictures in Harpers Wine Bar (I thought they had a website but I can&#8217;t find it) in <a href="http://en.wikipedia.org/wiki/Broadstairs">Broadstairs</a>, and in the <a href="http://www.albionbroadstairs.co.uk/">Albion Hotel</a>, also in Broadstairs.  I also knew that their workshop was on Pysons Road Industrial estate.  Sadly, even with this info, they just weren&#8217;t appearing in google.  So, I&#8217;m hoping that this might help them out a little bit.</p>
+
+
+	<p>I can&#8217;t help but think that they&#8217;d benefit massively from a blog about their work &#8211; I&#8217;m of the belief that what they do is pretty different.</p>
+
+
+	<p><strong>Update</strong> I&#8217;ve uploaded a copy of the picture I have to <a href="http://www.flickr.com">flickr</a> and embedded it in this post &#8211; hoping the printerior guys don&#8217;t mind too much&#8230;</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/art" rel="tag">art</a>, 
+                
+                  <a href="/articles/tag/broadstairs" rel="tag">broadstairs</a>, 
+                
+                  <a href="/articles/tag/graphic" rel="tag">graphic</a>, 
+                
+                  <a href="/articles/tag/photo" rel="tag">photo</a>, 
+                
+                  <a href="/articles/tag/print" rel="tag">print</a>, 
+                
+                  <a href="/articles/tag/printeriordesign" rel="tag">printeriordesign</a>, 
+                
+                  <a href="/articles/tag/thanet" rel="tag">thanet</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/07/reevoo-com-and-seo">Reevoo.com and Seo</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 07 Jun 2007 08:30:00">
+                  Thu, 07 Jun 2007 08:30:00
+                </span>
+              </p>
+          
+              <p><a href="http://www.reevoo.com">We</a> had an <a href="http://en.wikipedia.org/wiki/Search_engine_optimization">Seo</a> consultant in yesterday.  Although a lot of what was suggested was common sense there were a few interesting snippets of information.</p>
+
+
+	<ul>
+	<li>Seo is only just starting to become a viable marketing option in the Uk.  Are we really that far behind the states?</li>
+		<li>Google are working really hard on getting their bots to &#8216;see&#8217; the page exactly the same as a user.  This allows them to give a higher rating to content appearing in the top left hand corner of the page (the bit a user looks at first), regardless of where it is in the document.</li>
+		<li>Google accounts for about 97% of search in the Uk, so although we talk about search engine optimisation, we really mean google optimisation.</li>
+		<li><a href="http://www.sitemaps.org">Xml sitemaps</a> have little or no effect.  The majority of reevoo.com may soon be made up of pages with little or no review content.  The suggestion is that we keep these pages hidden from google, but by using <a href="http://microformats.org/wiki/rel-nofollow">rel=&#8217;nofollow&#8217;</a> when linking to these pages from within the site, not by removing them from the sitemap.</li>
+		<li>Having an unbalanced number of links-out vs links-in is bad.  This is related to the above point.  The reason we may well end up with lots of pages with little content is that we have a relatively long lead time between a product being released and us collecting reviews for it.  We would like to be able to present some useful info for these products even if we don&#8217;t have reviews &#8211; links to relevant material elsewhere on the net seems like one way of reaching that goal.</li>
+		<li>Google still recognises dial-up as the lowest common denominator when taking into account page download size and time.  It was suggested that each page be no larger than 100KB.  Hmm, <a href="http://www.prototypejs.org">prototype</a> alone seems to weigh in at around 97KB, and we are sending 225KB of javascript for any given product page (<a href="http://www.reevoo.com/reviews/mpn/nikon/d70">example</a>).</li>
+		<li>Title attributes on anchors carry a lot of weighting.</li>
+		<li>Links in content are more valuable than a bunch of stand-alone links.</li>
+		<li>People aren&#8217;t particular interested in searching/filtering by price.  Really?</li>
+	</ul>
+
+
+	<p>A lot of the advice boils down to having a site that people actually find useful.  I think that if we can work on that in combination with the basic principles of well formed documents, clean separation of <a href="http://en.wikipedia.org/wiki/CSS">presentation</a> from content and of <a href="http://en.wikipedia.org/wiki/Unobtrusive_JavaScript">behaviour from markup</a>, we&#8217;ll have a solid base on which to apply the tips above.</p>
+
+
+	<p>Oh, and the reason for the Seo chap coming in was in an attempt to find out why we fell off the google radar a few months back.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                
+                  <a href="/articles/tag/seo" rel="tag">seo</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/06/a-little-further-investigation-into-those-pesky-scammers">A little further investigation into those pesky scammers</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Wed, 06 Jun 2007 23:11:00">
+                  Wed, 06 Jun 2007 23:11:00
+                </span>
+              </p>
+          
+              <p>I <a href="http://blog.seagul.co.uk/articles/2007/05/17/pesky-scammers">wrote</a> a short while ago about receiving comments that were not obviously spam.  In the few weeks  between that post and this, I&#8217;ve received several more legitimate looking comments.  Tonight, I finally looked in some detail at the comments I&#8217;d received.  The comments were either very generic (&#8216;nice post&#8217; or &#8216;thanks for the info&#8217;) or were copied from previous comments on the site.  The &#8216;homepages&#8217; came in four different flavours.</p>
+
+
+	<h3>Look like legitimate blogs but contain hidden content and porn links at the bottom of the page.</h3>
+
+
+	<ul>
+	<li>moradblog.com</li>
+		<li>fromgreghead.com</li>
+	</ul>
+
+
+	<h3>Crappy web shops.  These only really caught my attention because they all look identical.</h3>
+
+
+	<ul>
+	<li>camikon.com</li>
+		<li>leaderdvd.com</li>
+		<li>pet-supplies-store.info</li>
+	</ul>
+
+
+	<h3>Look like legitimate blogs but are noticeable due to a complete lack of style and porn links at the bottom of the page.</h3>
+
+
+	<ul>
+	<li>pinkyspaperhause.com</li>
+		<li>timesofsooz.com</li>
+	</ul>
+
+
+	<h3>Look like legitimate websites but a <code>site:&lt;website&gt;</code> search in google reveals lots of porn pages.</h3>
+
+
+	<ul>
+	<li>smachex.info</li>
+		<li>wampy.info</li>
+		<li>www.valmux.com</li>
+	</ul>
+
+
+	<p>Oh, there is also one other site that I really cannot decide whether to classify as spam or not &#8211; ireadnews.net (sorry if you&#8217;re not spam).</p>
+
+
+	<p>The addresses are here (and not linked to) for the benefit of anyone that happens to stumble across this page.  I&#8217;m actually quite amazed at the depth of some of these sites.  moradblog.com in particular has links to lots of &#8216;web 2.0&#8217; sites for &#8216;morad&#8217; (flickr, del.icio.us etc).  It makes me half wonder if they are actual spam sites or whether the site has been hijacked in some way..</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/comments" rel="tag">comments</a>, 
+                
+                  <a href="/articles/tag/spam" rel="tag">spam</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/05/ranting-about-sky">Ranting about Sky</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 05 Jun 2007 23:03:00">
+                  Tue, 05 Jun 2007 23:03:00
+                </span>
+              </p>
+          
+              <p>I have three minor outstanding issues with a recent sky installation.  Not wanting to phone them (as previous experience suggests that it&#8217;s going to waste a lot of my life) I thought I&#8217;d drop them an email.</p>
+
+
+	<p><a href="http://www.flickr.com/photos/chrisjroos/532292949/"><img src="http://farm2.static.flickr.com/1324/532292949_c503f0b1db.jpg" alt="" /></a></p>
+
+
+	<p>Uh oh.  Looks like they don&#8217;t want my email.</p>
+
+
+	<blockquote>
+		<p>&#8220;The highlighted field above has an invalid value.  Please correct it.
+Please make sure that no more than 500 characters have been entered in this field.&#8221;</p>
+	</blockquote>
+
+
+	<p>So now, not only have I wasted time waiting for their website to time out while signing up, but I&#8217;ve also wasted time filling in a useless feedback form, taking a screenshot and even blogging about it.  Oh, and I&#8217;m still going to have to speak to someone.  Brilliant.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/shit" rel="tag">shit</a>, 
+                
+                  <a href="/articles/tag/sky" rel="tag">sky</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/01/an-open-letter-to-my-local-newspapers">An open letter to my local newspapers</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 01 Jun 2007 12:00:00">
+                  Fri, 01 Jun 2007 12:00:00
+                </span>
+              </p>
+          
+              <p>I just sent this email to the editors of four local papers.</p>
+
+
+<blockquote>
+Hi,
+
+	<p>I&#8217;m emailing you as representatives of (what I believe to be) the four main newspapers in Thanet.</p>
+
+
+	<ul>
+	<li>KM Extra</li>
+		<li>Thanet Adscene</li>
+		<li>Isle of Thanet Gazette</li>
+		<li>Thanet Times</li>
+	</ul>
+
+
+	<p>On the off chance you&#8217;re already bored or have filed me to spam (please don&#8217;t), a quick summary is that I&#8217;m offering to do some work, for free, that might help foster discussion around your newspaper content.</p>
+
+
+	<p>I&#8217;d love it if all of your newspaper content was on-line.  I realise that both kentonline.co.uk and ickent.co.uk already exist and carry <strong>some</strong> of the content from your papers.  I also realise that it may not be commercially wise to publish all newspaper content on-line.</p>
+
+
+	<p>So, I&#8217;ve come up with a very cunning (it&#8217;s not that cunning) plan.  I&#8217;m thinking of creating a blog-type site, where each post will represent a newspaper story.  I propose that the title of the blog post will be the title of the article in the paper, and that the body of the blog post will be left blank.  My intention is that people that buy/receive any of the above papers can use the permalink of the blog post as a central discussion point.  They can either comment right there on the blog or they can ping/trackback to the post from their own blogs.  The best thing that could happen is that other people stumble across these conversations and want to get involved, at which point they have to go buy a copy of the paper to get the original content.</p>
+
+
+	<p>I&#8217;m planning on doing this stuff anyway, but I wanted to give you guys a heads up.  I figure that this mail will either a) land in spamland, b) be received with a negative response, or c) be received with a positive response.  Oh, or d) received and ignored.  Pretty much covered all bases there haven&#8217;t I?  Anyhoo, I&#8217;d love to hear any thoughts you have, especially if they are strongly for or against the idea.</p>
+
+
+	<p>This letter will be posted to my blog<sup><a href="#fn1">1</a></sup> shortly.  On the off chance you&#8217;ve read this far and feel like replying, I&#8217;d like to post them to my blog too, but that&#8217;s completely up to you.</p>
+
+
+	<p>To summarize.</p>
+
+
+	<ul>
+	<li>I&#8217;d like to converse with other people that have read the same article that I have.</li>
+		<li>The only content from your newspapers that will appear on-line is the heading of each article.</li>
+		<li>I&#8217;m offering to do all the work.</li>
+		<li>I&#8217;ll host the site and transcribe each article from each of the four weekly papers.</li>
+		<li>The site won&#8217;t have advertising.</li>
+		<li>Anyone can comment on the site.</li>
+		<li>Anyone can trackback/pingback to the site.</li>
+		<li>I can&#8217;t promise that I&#8217;ll keep up the work forever.</li>
+		<li>All the content of the site will be available to anyone that wants it &#8211; probably under a creative commons license or something similar.</li>
+		<li>I have no intention of making money from this.  In fact, I&#8217;m willing to pay money to make it happen.</li>
+	</ul>
+
+
+	<p>Cheers,</p>
+
+
+	<p>Chris</p>
+
+
+[1] http://blog.seagul.co.uk
+</blockquote>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/converse" rel="tag">converse</a>, 
+                
+                  <a href="/articles/tag/discourse" rel="tag">discourse</a>, 
+                
+                  <a href="/articles/tag/kent" rel="tag">kent</a>, 
+                
+                  <a href="/articles/tag/media" rel="tag">media</a>, 
+                
+                  <a href="/articles/tag/newspaper" rel="tag">newspaper</a>, 
+                
+                  <a href="/articles/tag/thanet" rel="tag">thanet</a>, 
+                
+              
+            </p>
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2007/06/01/i-wanna-be-cool-too">I wanna be cool too</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 01 Jun 2007 09:10:00">
+                  Fri, 01 Jun 2007 09:10:00
+                </span>
+              </p>
+          
+              <p>Err, right.  Anyhoo, I&#8217;ve started using <a href="http://www.tumblr.com">tumblr</a> to aggregate (currently) my <a href="http://flickr.com/photos/chrisjroos">flickr</a>, <a href="http://twitter.com/chrisroos">twitter</a> and <a href="http://del.icio.us/chrisjroos">del.icio.us</a> feeds.  What&#8217;s that you say, &#8220;where is it?&#8221;, why, it&#8217;s right <a href="http://life.chrisroos.co.uk">here</a> of course.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/lifestream" rel="tag">lifestream</a>, 
+                
+                  <a href="/articles/tag/tumblr" rel="tag">tumblr</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

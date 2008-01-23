@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts tagged rpc - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/11/27/maybe-i-need-some-more-rest">Maybe I need some more REST</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 27 Nov 2006 22:26:00">
+                  Mon, 27 Nov 2006 22:26:00
+                </span>
+              </p>
+          
+              <p>This post isn&#8217;t about sleep deprevation.  Instead, the witty title is referring to everyone&#8217;s newest, favouritist buzzword: <a href="http://www.wikipedia.org/wiki/REST"><span class="caps">REST</span></a> (or Representational State Transfer).</p>
+
+
+	<p>Scene setting with some things that have happened recently (in roughly this order):</p>
+
+
+	<ul>
+	<li><a href="http://www.reevoo.com/blogs/bengriffiths/">Ben</a> mentions that we need to think about splitting our application up to better distribute the load on servers.  I don&#8217;t completely &#8216;get it&#8217;.</li>
+		<li><a href="http://www.rubyonrails.com">Rails</a> gets <a href="http://www.wikipedia.org/wiki/REST"><span class="caps">REST</span></a> support <a href="http://www.ryandaigle.com/articles/2006/08/01/whats-new-in-edge-rails-simply-restful-support-and-how-to-use-it">baked in</a> (Ok, so this is pretty old news now)</li>
+		<li>We spent quite a lot of time at <a href="http://www.reevoo.com">work</a> writing code to access the <a href="http://adwords.google.com">google adwords</a> <a href="http://www.google.com/apis/adwords/">soap api</a></li>
+		<li>I finally got (thanks to <a href="http://blog.floehopper.org">James</a>) why <a href="http://habtm.com/articles/2006/07/01/if-your-models-arent-namespaced-why-should-your-controllers-be-or-how-i-learned-to-stop-worrying-and-love-the-crud">some</a> rails folk have stated that following a RESTful design frees them up from having namespaced admin controllers.</li>
+		<li>I spent quite a bit of time over the last two weeks really looking into the <a href="http://www.ietf.org/rfc/rfc4287.txt">atom syndication format</a> and <a href="http://www.ietf.org/internet-drafts/draft-ietf-atompub-protocol-11.txt">atom publishing protocol</a></li>
+		<li>I spent a few hours at the weekend playing with the <a href="http://www.amazon.com/s3">amazon s3</a> service</li>
+		<li><a href="http://wanderingbarque.com/nonintersecting/2006/11/15/the-s-stands-for-simple/">This</a> popped up recently and got an incredible amount of attention.</li>
+		<li>I read an <a href="http://www.acmqueue.com/modules.php?name=Content&#38;pa=showpage&#38;pid=388">interview</a> with <a href="http://www.allthingsdistributed.com/">Werner Vogel</a> (CTO of Amazon) that talks about everything being a service.  One quote in particular caught my attention.</li>
+	</ul>
+
+
+	<blockquote>
+		<p>If you hit the Amazon.com gateway page, the application calls more than 100 services to collect data and construct the page for you.</p>
+	</blockquote>
+
+
+	<ul>
+	<li>I took the plunge and just about stayed awake through <a href="http://roy.gbiv.com/pubs/dissertation/top.htm">The Document</a>.  I found chapter 6 (and in particular 6.3.4) the most relevant as it explains <span class="caps">REST</span> in the context of the <span class="caps">URI</span> and <span class="caps">HTTP</span>.  I tend to drift off on when things are explained without real examples.</li>
+		<li>I watched <a href="http://nubyonrails.com">Geoffrey Grosenbach&#8217;s</a> <a href="http://www.peepcode.org">peepcode</a> screencast on <a href="http://peepcode.com/articles/2006/10/08/restful-rails">restful rails</a>.</li>
+		<li>I worked out how to use <a href="http://del.icio.us">del.icio.us</a> and subscribed to some of the tags (keywords) mentioned above.</li>
+	</ul>
+
+
+	<p>Wow.  You&#8217;d think with all that reading, listening and viewing I&#8217;d be right up on the subject.  Sadly I don&#8217;t feel as though that&#8217;s quite the case.</p>
+
+
+	<p>Now.  I do see an advantage of a RESTful approach (particular the style currently advocated in <a href="http://www.rubyonrails.com">rails</a>), over <span class="caps">SOAP</span>, when dealing with something like the google adwords api<sup><a href="#fn1">1</a></sup>.  But, what about services like currency conversion and syntax highlighting?  I can&#8217;t get these to fit into a RESTful style in my head (I guess I can&#8217;t find the resource in each case).  Instead, I see them as analogous to unix command line applications: pipe simple data in (an amount with two curencies or ruby code) and get simple data out (an amount in the new currency or syntax-highlighted ruby code).  Actually, I see them as remote procedure calls.  Are these types of services incompatible with the <span class="caps">REST</span> architectural style or have I missed something?  I&#8217;m starting to wonder if I&#8217;m getting too hung up on <span class="caps">REST</span> = <span class="caps">CRUD</span> and therefore missing some of the more fundamental points.  Either way, I definitely feel that it&#8217;d be good to see some more concrete examples in the <span class="caps">REST</span> vs <span class="caps">SOAP</span>/RPC/SOA arguments.  As stated above, I&#8217;m not so great in the abstract.</p>
+
+
+	<p id="fn1"><sup>1</sup> I had a few problems when interacting with the adwords api.  I don&#8217;t, however, feel that I have enough information to know whether the pain was caused by <a href="http://dev.ctor.org/soap4r">soap4r</a>, <a href="http://en.wikipedia.org/wiki/SOAP">soap</a>, the <a href="http://www.google.com/apis/adwords/">api</a> or just my lack of knowledge.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/rest" rel="tag">rest</a>, 
+                
+                  <a href="/articles/tag/rpc" rel="tag">rpc</a>, 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/soap" rel="tag">soap</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

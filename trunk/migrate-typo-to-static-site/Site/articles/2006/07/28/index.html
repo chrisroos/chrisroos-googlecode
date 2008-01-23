@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Posts published on Fri, 28 July 2006 - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          
+            <div class="post">
+              <h2>
+                <a href="/articles/2006/07/28/textmate-and-env-ruby-no-such-file-or-directory">TextMate and &quot;env: ruby: No such file or directory&quot;</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 28 Jul 2006 23:06:00">
+                  Fri, 28 Jul 2006 23:06:00
+                </span>
+              </p>
+          
+              <p>So, I was coming up against this problem in TextMate just recently.</p>
+
+
+	<p>It&#8217;s a bit of a strange error in that you get seemingly conflicting output from TextMate.</p>
+
+
+	<p>In a new TextMate document, I could run (by using the well handy, and very new to me, Ctrl-r key combo)..</p>
+
+
+<pre>
+/usr/bin/env ruby --version
+=&gt; ruby 1.8.4 (2005-12-24) [i686-darwin8.7.1]
+
+/usr/bin/which ruby
+=&gt; /usr/local/bin/ruby
+
+#!/usr/local/bin/ruby
+
+puts "hello world" 
+=&gt; hello world
+</pre>
+
+	<p>However, if I ran..</p>
+
+
+<pre>
+#!/usr/bin/env ruby
+
+puts "hello world again" 
+=&gt; env: ruby: No such file or directory
+</pre>
+
+	<p>Hmm, so <code>/usr/bin/env ruby --version</code> works, but when using the very same as the shebang interpreter we get an error.  Odd huh.</p>
+
+
+	<p>Well, apparently not; if we read the textmate docs about <a href="http://macromates.com/textmate/manual/shell_commands#search_path">shell commands</a>.</p>
+
+
+	<p>Although I, in no way, understand this completely; I blindly followed the instructions on that page and got TextMate back to health.</p>
+
+
+	<p>In summary for those that don&#8217;t wish to read the docs..</p>
+
+
+<pre>
+# mkdir ~/.MacOSX/
+# cat &gt;&gt; ~/.MacOSX/environment.plist
+{ PATH = "/usr/local/bin"; }
+</pre>
+
+	<p><strong>Note</strong> You&#8217;ll want to change the path to the location of the binaries you want found.</p>
+
+
+	<p>Then a quick log out and back in, and all is well with TextMate.  Yay.</p>
+            </div>
+        
+            <p class="meta">
+              
+                Tags 
+                
+                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                
+                  <a href="/articles/tag/textmate" rel="tag">textmate</a>, 
+                
+              
+            </p>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>

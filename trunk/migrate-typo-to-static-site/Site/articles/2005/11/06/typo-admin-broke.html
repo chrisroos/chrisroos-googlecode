@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Typo admin broke! - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Typo admin broke!</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Sun, 06 Nov 2005 14:25:00">
+                Sun, 06 Nov 2005 14:25:00
+              </span>
+            </p>
+          
+            <p>I went to add a link to my bloglines public feed this morning and couldn&#8217;t log into typo admin.  I double checked that my username and password were correct using the console and so took a look at the accounts controller.  Using some advanced debugging techniques (mmm render :text =&gt; &#8217;&#8217;) I found that request.method was returning :POST where the code was checking for :post.  I amended the controller and all now works.  I&#8217;m just really not sure why it stopped working as nothing had changed!</p>
+
+
+	<p><strong>Update Sun 6th Nov 14:26</strong></p>
+
+
+	<p>I originally tried to post this article yesterday but it would appear that the new method in the content controller was also broken &#8211; checking for request.post? was not working as expected.  I&#8217;ve just changed this to request.method == :POST and it now works.  Really not sure what&#8217;s going on though.</p>
+
+
+	<p><strong>Update Sun 6th Nov 14:40</strong></p>
+
+
+	<p>Right then, it would appear that the &#8216;method&#8217; method of request had been changed from <code>env['REQUEST_METHOD'].downcase.to_sym</code> to <code>env['REQUEST_METHOD'].to_sym</code>.  This was in actionpack 1.9.1.  Checking the version on my laptop confirms that it should be the downcase variant.  I&#8217;ve now changed it back so will see how it goes.</p>
+
+
+	<p><strong>Update Mon 7th Nov 08:45</strong></p>
+
+
+	<p>It would appear that it was actually me that changed the code in request.rb when I was trying to diagnose and fix some problems when installing <a href="http://weed.rbse.com">weed</a>.  Oops.</p>
+          </div>
+        
+          <p class="meta">
+            
+          </p>
+
+          
+            <a name="comments"></a>
+            <h4 class="blueblk">Comments</h4>
+            <ol class="comment-list" id="commentList">
+              
+              <li>
+                <cite>
+                  <strong>
+                    
+                      Kieran
+                    
+                  </strong>
+                </cite> said on Mon, 07 Nov 2005 13:54:05:<br />
+                <p>Your updates appear to be a month out :o)</p>
+              </li>
+              
+              <li>
+                <cite>
+                  <strong>
+                    
+                      Chris
+                    
+                  </strong>
+                </cite> said on Tue, 08 Nov 2005 08:10:59:<br />
+                <p>Mmm, it would indeed appear so.  Now fixed ta.</p>
+              </li>
+              
+            </ol>
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+  </body>
+
+</html>
