@@ -10,6 +10,17 @@
     <description></description>
     
       <item>
+        <title>Migration from Typo to a static site is complete</title>
+        <description>&lt;p&gt;I&amp;#8217;m tired so I&amp;#8217;ll keep this short&amp;#8230;  If you can see this post then it means that I haven&amp;#8217;t broken anything (well, it means I haven&amp;#8217;t broken the rss feed anyway).  I still have lots to do but &lt;a href=&quot;http://en.wikipedia.org/wiki/Eat_one's_own_dog_food&quot;&gt;eating my own dogfood&lt;/a&gt; should give me a reason to keep improving.&lt;/p&gt;</description>
+
+        <pubDate>Wed, 23 Jan 2008 23:15:34 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:e26ad0cb-1403-4961-801d-e3192495cc97</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete</link>
+        
+      </item>
+    
+      <item>
         <title>Migrating this blog from Typo to a static site</title>
         <description>&lt;p&gt;I&amp;#8217;m in the process of migrating this site from &lt;a href=&quot;http://www.typosphere.org/&quot;&gt;typo&lt;/a&gt; to a bunch of static pages.  I aim to get the static site deployed this evening.  I&amp;#8217;ll post again when I&amp;#8217;ve migrated.  If any &lt;span class=&quot;caps&quot;&gt;RSS&lt;/span&gt; subscribers out there don&amp;#8217;t see a new post this evening, or tomorrow morning, then it means that I&amp;#8217;ve failed to get it deployed or that it&amp;#8217;s deployed and I&amp;#8217;ve screwed up&amp;#8230;. That&amp;#8217;s all for now.&lt;/p&gt;
 
@@ -393,84 +404,6 @@ addRvm(); // Ask our wrapper function to call the actual bookmarklet function&lt
           <category>bookmark</category>
         
           <category>del.icio.us</category>
-        
-      </item>
-    
-      <item>
-        <title>Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)</title>
-        <description>&lt;p&gt;I wasted quite a bit of time over the last couple of days trying to get a &lt;a href=&quot;http://en.wikipedia.org/wiki/Bookmarklet&quot;&gt;bookmarklet&lt;/a&gt; (or favelet) working in Internet Explorer 6.  It worked perfectly in Firefox and Safari but wasn&amp;#8217;t doing anything at all in IE.  Through lots of trial and error, I came to the conclusion that it was because of the length of the bookmarklet: it seems that Microsoft &lt;a href=&quot;http://www.squarefree.com/2005/01/12/internet-explorer-drops-support-for-bookmarklets/&quot;&gt;reduced the maximum length of a bookmarklet in &lt;span class=&quot;caps&quot;&gt;IE 6&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-	&lt;p&gt;Although my original bookmarklet wasn&amp;#8217;t all that long, I had it spread over multiple lines for readability.  The fix in my case was to remove all the spaces and place the bookmarklet on one line.&lt;/p&gt;
-
-
-	&lt;p&gt;I started to think that it might be nice to have a bookmarklet &lt;a href=&quot;http://www.rubyonrails.com&quot;&gt;rails&lt;/a&gt; helper.  The bookmarklet helper would allow you to format your javascript for readability but shorten it all in the resulting html (it could even warn if the bookmarklet is too long for IE).  I couldn&amp;#8217;t find anything similar, and I probably won&amp;#8217;t get around to doing it myself, but I did decide to investigate the limit in IE (which could form the basis of such a helper).&lt;/p&gt;
-
-
-	&lt;p&gt;I used the html page below to test the limits of Internet Explorer.  This is the longest bookmarklet that I could get to work: one more character (a 2 on the end of those numbers, for example) and the bookmarklet won&amp;#8217;t work (it still works if you click the link in the page &amp;#8211; it only fails when used as an actual bookmarklet).&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD HTML 4.01//EN&amp;quot;&amp;gt;
-&amp;lt;html&amp;gt;
-  &amp;lt;head&amp;gt;
-    &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
-  &amp;lt;/head&amp;gt;
-  &amp;lt;body&amp;gt;
-    &amp;lt;a href=&amp;quot;javascript:
-      var msg = 'hello world, this is my message.  i\'m trying to see how long i can be until internet explorer blows up in my face.';
-      var msg = msg + '\n';
-      var msg = msg + 'this is the second line of my long message';
-      var msg = msg + '\n';
-      var msg = msg + '12345679012345678901';
-      alert(msg);&amp;quot;&amp;gt;bookmarklet&amp;lt;/a&amp;gt;
-  &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;I noticed that, once added to Internet Explorer, the bookmarklet appeared to be &lt;a href=&quot;http://www.blooberry.com/indexdot/html/topics/urlencoding.htm&quot;&gt;&lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; encoded&lt;/a&gt; (my assumption was based on the conversion of spaces to %20.)&lt;/p&gt;
-
-
-	&lt;p&gt;&lt;a href=&quot;http://www.flickr.com/photos/chrisjroos/2109757023/&quot;&gt;&lt;img src=&quot;http://farm3.static.flickr.com/2321/2109757023_0f69015c44.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-	&lt;p&gt;I tried to replicate this encoded string in &lt;a href=&quot;http://www.ruby-lang.org&quot;&gt;ruby&lt;/a&gt; but failed:  A simple &lt;span class=&quot;caps&quot;&gt;URI&lt;/span&gt;.escape in ruby was escaping too much.  Inspecting the bookmarklet again seemed to suggest that the only encoding performed is to remove newlines and convert spaces to %20.  Replicating this in irb gave me the same string that Internet Explorer had in its favourites.&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_ruby&quot;&gt;&lt;span class=&quot;ident&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;javascript:
-  var msg = 'hello world, this is my message.  i&lt;span class=&quot;escape&quot;&gt;\'&lt;/span&gt;m trying to see how long i can be until internet explorer blows up in my face.';
-  var msg = msg + '&lt;span class=&quot;escape&quot;&gt;\n&lt;/span&gt;';
-  var msg = msg + 'this is the second line of my long message';
-  var msg = msg + '&lt;span class=&quot;escape&quot;&gt;\n&lt;/span&gt;';
-  var msg = msg + '12345679012345678901';
-  alert(msg);&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;ident&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;(&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;'&lt;span class=&quot;escape&quot;&gt;\n&lt;/span&gt;'&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;,&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;'--NEW-LINE--'&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;).&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;(&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;&lt;span class=&quot;escape&quot;&gt;\n&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;,&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;').&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;(&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;'--NEW-LINE--'&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;,&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;'&lt;span class=&quot;escape&quot;&gt;\n&lt;/span&gt;'&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;).&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;('&lt;/span&gt;&lt;span class=&quot;string&quot;&gt; &lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;',&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;%20&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;).&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;length&lt;/span&gt;
-&lt;span class=&quot;punct&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;505&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;Everything I&amp;#8217;d read about these bookmarklets in Internet Explorer suggested that the limit was 508 characters: the length of the bookmarklet above (once encoded) is only 505 characters.  Adding one more character makes it fail as a bookmarklet.  Hmm, maybe I&amp;#8217;m doing something dumb?&lt;/p&gt;
-
-
-	&lt;p&gt;I&amp;#8217;ve cheated a bit in the &amp;#8216;encoding&amp;#8217; above.  IE removes all newlines (I wonder if this happens in the &lt;span class=&quot;caps&quot;&gt;DOM&lt;/span&gt; or just when you add it as a favourite?) so that the bookmarklet appears on one line.  I needed to do the same but also needed those newlines in the msg to remain (hence the &lt;span class=&quot;caps&quot;&gt;NEW&lt;/span&gt;-LINE replacement stuff).  This is a very naive imlpementation: if you have &amp;#8217;\n\n&amp;#8217;, for example, then it breaks.  The &amp;#8216;encoding&amp;#8217; would need to be a little more intelligent in an actual helper (but only if you wanted to report on the size of the bookmarklet).&lt;/p&gt;
-
-
-	&lt;p&gt;I couldn&amp;#8217;t find any reference to source of this 508 character limit in Internet Explorer: all the blog articles just state it as fact.  So, maybe it&amp;#8217;s not 508.  Maybe it&amp;#8217;s actually 505&amp;#8230;&lt;/p&gt;</description>
-
-        <pubDate>Fri, 14 Dec 2007 08:46:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:958ddabd-4102-4da1-8e3b-18a07bb38d35</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7</link>
-        
-          <category>bookmarklet</category>
-        
-          <category>browser</category>
-        
-          <category>explorer</category>
-        
-          <category>internet</category>
-        
-          <category>javascript</category>
-        
-          <category>ruby</category>
-        
-          <category>url</category>
         
       </item>
     
