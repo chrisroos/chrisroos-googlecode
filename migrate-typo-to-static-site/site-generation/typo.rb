@@ -39,8 +39,12 @@ Tag.find(:all).each do |tag|
 end
 
 articles = Article.find(:all, :order => 'published_at DESC', :limit => 10)
+
 latest_articles_view = LatestArticlesView.new(articles)
 PageGenerator.new(latest_articles_view, 'articles').generate
+
+latest_articles_xml_view = LatestArticlesXmlView.new(articles)
+PageGenerator.new(latest_articles_xml_view, 'articles', 'xml').generate
 
 Page.find(:all).each do |page|
   view = PageView.new(page)
