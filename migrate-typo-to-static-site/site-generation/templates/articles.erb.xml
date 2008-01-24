@@ -18,7 +18,7 @@
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk<%= article.url %></link>
         <% article.tags.each do |tag| %>
-          <category><%= tag.display_name %></category>
+          <category><%= tag.name %></category>
         <% end %>
       </item>
     <% end %>

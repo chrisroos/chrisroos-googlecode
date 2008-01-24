@@ -46,7 +46,7 @@
             <% unless tags.empty? %>
               Tags 
               <% tags.each do |tag| %>
-                <a href="/articles/tag/<%= tag.name %>" rel="tag"><%= tag.display_name %></a>, 
+                <a href="/articles/tag/<%= tag.name %>" rel="tag"><%= tag.name %></a>, 
               <% end %>
             <% end %>
           </p>
