@@ -21,3 +21,6 @@ http://blog.seagul.co.uk/pages/cyrus-imap
 http://blog.seagul.co.uk/articles/markup_help/5
 http://blog.seagul.co.uk/xml/rss
 http://blog.seagul.co.uk/xml/rss.xml
+http://blog.seagul.co.uk/xml/rss20/feed.xml
+http://blog.seagul.co.uk/xml/atom10/feed.xml
+http://blog.seagul.co.uk/xml/rss/feed.xml
