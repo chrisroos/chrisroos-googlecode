@@ -30,8 +30,8 @@ ALTER TABLE tags DROP COLUMN updated_at; -- I don't use this in any of my templa
 ALTER TABLE tags DROP COLUMN display_name; -- I use name rather than display_name
 
 -- Split articles out from the contents table and remove some now unnecessary columns
-CREATE TABLE articles (id INTEGER, title VARCHAR(255), author VARCHAR(255), body TEXT, keywords VARCHAR(255), created_at DATETIME, updated_at DATETIME, permalink VARCHAR(255), guid VARCHAR(255), published_at DATETIME);
-INSERT INTO articles SELECT id, title, author, body, keywords, created_at, updated_at, permalink, guid, published_at FROM contents WHERE type = 'Article';
+CREATE TABLE articles (id INTEGER, title VARCHAR(255), author VARCHAR(255), body TEXT, keywords VARCHAR(255), permalink VARCHAR(255), guid VARCHAR(255), published_at DATETIME);
+INSERT INTO articles SELECT id, title, author, body, keywords, permalink, guid, published_at FROM contents WHERE type = 'Article';
 DELETE FROM contents WHERE type = 'Article';
 ALTER TABLE contents DROP COLUMN keywords;
 ALTER TABLE contents DROP COLUMN permalink;
