@@ -1,6 +1,6 @@
 class Tag < ActiveRecord::Base
   
-  has_and_belongs_to_many :articles, :order => 'created_at DESC'
+  has_and_belongs_to_many :articles, :order => 'published_at DESC'
   
   def path
     TAGS_URL_ROOT
