@@ -1,0 +1,9 @@
+# Parse the Google SERPS (search site:blog.seagul.co.uk, show 100 results and save resulting html) for URLs
+$ ./google_parser.rb pages-indexed-by-google-1.html > google_urls.txt
+$ ./google_parser.rb pages-indexed-by-google-2.html >> google_urls.txt
+
+# Parse the Yahoo URL data
+$ cat blog.seagul.co.uk_all_pages.tsv | ./yahoo_parser.rb
+
+# Manipulate test URLs so they reference my local instance of the blog and pass them through the test utility
+$ cat test_urls.txt | sed -e 's|blog|local-blog|' | ./url_test.rb
