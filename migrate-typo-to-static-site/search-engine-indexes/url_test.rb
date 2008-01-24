@@ -2,6 +2,12 @@
 
 rules = [
   {
+    :description => "Mis-spelled URL should redirect to correct spelling (this is so that I can remove the permalink column from articles and dymanically generate)",
+    :pattern => /^\/articles\/2006\/12\/10\/crapy-ruby-script-to-download-photos-from-a-flickr-photoset$/,
+    :expected_location => proc { "http://blog.seagul.co.uk/articles/2006/12/10/crappy-ruby-script-to-download-photos-from-a-flickr-photoset" },
+    :expected_code => '301'
+  },
+  {
     :description => "The root resource (latest articles) should render OK.",
     :pattern => /^\/$/,
     :expected_code => '200'
@@ -194,7 +200,6 @@ while request_url = gets
   response = Net::HTTP.start(url.host, url.port) do |http|
     http.request(request)
   end
-
   matching_rule = rules.detect { |rule| url.path =~ rule[:pattern] }
   unless matching_rule
     puts "No rule found to match: #{request_url}"
