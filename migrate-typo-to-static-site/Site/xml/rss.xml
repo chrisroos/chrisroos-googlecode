@@ -201,6 +201,8 @@ RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
         
           <category>the</category>
         
+          <category>the-local-paper.co.uk</category>
+        
           <category>tlpa</category>
         
       </item>
@@ -382,6 +384,8 @@ addRvm(); // Ask our wrapper function to call the actual bookmarklet function&lt
           <category>firefox</category>
         
           <category>internet</category>
+        
+          <category>internet-explorer</category>
         
           <category>javascript</category>
         
