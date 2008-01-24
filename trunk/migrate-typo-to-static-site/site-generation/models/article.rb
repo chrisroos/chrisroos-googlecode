@@ -39,6 +39,10 @@ class Article < ActiveRecord::Base
     published_at.strftime("%a, %d %b %Y %H:%M:%S")
   end
   
+  def permalink
+    title.downcase.tr("\"'", '').gsub(/\W/, ' ').strip.tr_s(' ', '-').tr(' ', '-').sub(/^$/, "-")
+  end
+  
   def body_html
     body = self.body.gsub(/<typo:code(.*?)>(.*?)<\/typo:code>/m) do
       code = $2
