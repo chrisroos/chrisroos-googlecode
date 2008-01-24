@@ -55,3 +55,6 @@ ALTER TABLE contents DROP COLUMN blog_name;
 CREATE TABLE comments (id INTEGER, author VARCHAR(255), body TEXT, created_at DATETIME, updated_at DATETIME, article_id INTEGER, email VARCHAR(255), url VARCHAR(255), ip VARCHAR(255), published TINYINT(1), published_at DATETIME);
 INSERT INTO comments SELECT id, author, body, created_at, updated_at, article_id, email, url, ip, published, published_at FROM contents;
 DROP TABLE contents;
+
+-- Unpublish some spam comments (I decided they were spam by manually looking at my published comments - there were only 100 or so, so it wasn't too painful)
+UPDATE comments SET published = false WHERE id in (163, 2439, 2681, 2682, 23244, 52651, 52652, 60260, 64396, 72994, 78223);
