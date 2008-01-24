@@ -25,6 +25,9 @@ ALTER TABLE contents DROP COLUMN text_filter_id; -- All articles use textile
 ALTER TABLE contents DROP COLUMN blog_id; -- I only have one blog
 ALTER TABLE contents DROP COLUMN user_id; -- I only have one user
 ALTER TABLE contents DROP COLUMN extended_html; -- Empty column
+ALTER TABLE tags DROP COLUMN created_at; -- I don't use this in any of my templates
+ALTER TABLE tags DROP COLUMN updated_at; -- I don't use this in any of my templates
+ALTER TABLE tags DROP COLUMN display_name; -- I use name rather than display_name
 
 -- Split articles out from the contents table and remove some now unnecessary columns
 CREATE TABLE articles (id INTEGER, title VARCHAR(255), author VARCHAR(255), body TEXT, keywords VARCHAR(255), created_at DATETIME, updated_at DATETIME, permalink VARCHAR(255), guid VARCHAR(255), published_at DATETIME);
