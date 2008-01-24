@@ -166,6 +166,24 @@ rules = [
     :pattern => /^\/xml\/rss$/,
     :expected_code => '200'
   },
+  {
+    :description => "Legacy RSS 2.0 feed should redirect to feedburner (copied from http config for old blog)",
+    :pattern => /^\/xml\/rss20\/feed\.xml$/,
+    :expected_location => proc { "http://feeds.feedburner.com/DeferredUntilInspirationHits" },
+    :expected_code => '301'
+  },
+  {
+    :description => "Legacy Atom 1.0 feed should redirect to feedburner (copied from http config for old blog)",
+    :pattern => /^\/xml\/atom10\/feed\.xml$/,
+    :expected_location => proc { "http://feeds.feedburner.com/DeferredUntilInspirationHits" },
+    :expected_code => '301'
+  },
+  {
+    :description => "Legacy RSS (1?) feed should redirect to feedburner (copied from http config for old blog)",
+    :pattern => /^\/xml\/rss\/feed\.xml$/,
+    :expected_location => proc { "http://feeds.feedburner.com/DeferredUntilInspirationHits" },
+    :expected_code => '301'
+  }
 ]
 
 require 'net/http'
