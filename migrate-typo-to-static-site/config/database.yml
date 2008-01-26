@@ -1,0 +1,5 @@
+production:
+  adapter: mysql
+  host: localhost
+  database: blog_test
+  username: root
