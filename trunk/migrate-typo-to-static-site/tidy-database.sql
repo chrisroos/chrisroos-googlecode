@@ -30,7 +30,7 @@ ALTER TABLE tags DROP COLUMN updated_at; -- I don't use this in any of my templa
 ALTER TABLE tags DROP COLUMN display_name; -- I use name rather than display_name
 
 -- Split articles out from the contents table and remove some now unnecessary columns
-CREATE TABLE articles (id INTEGER, title VARCHAR(255), author VARCHAR(255), body TEXT, keywords VARCHAR(255), guid VARCHAR(255), published_at DATETIME);
+CREATE TABLE articles (id INTEGER, title VARCHAR(255), author VARCHAR(255), body TEXT, keywords VARCHAR(255), guid VARCHAR(255), published_at DATETIME, PRIMARY KEY(id));
 INSERT INTO articles SELECT id, title, author, body, keywords, guid, published_at FROM contents WHERE type = 'Article';
 DELETE FROM contents WHERE type = 'Article';
 ALTER TABLE contents DROP COLUMN keywords;
@@ -38,13 +38,13 @@ ALTER TABLE contents DROP COLUMN permalink;
 
 -- Split pages out from the contents table and remove some now unecessary columns
 -- Although all (five) of my pages are accessible on the web, only one was published (and therefore had a published_at value) - hence me ignoring the published* columns
-CREATE TABLE pages (id INTEGER, title VARCHAR(255), body TEXT, created_at DATETIME, updated_at DATETIME, name VARCHAR(255));
+CREATE TABLE pages (id INTEGER, title VARCHAR(255), body TEXT, created_at DATETIME, updated_at DATETIME, name VARCHAR(255), PRIMARY KEY(id));
 INSERT INTO pages SELECT id, title, body, created_at, updated_at, name FROM contents WHERE type = 'page';
 DELETE FROM contents WHERE type = 'page';
 ALTER TABLE contents DROP COLUMN name;
 
 -- Split trackbacks out from the contents table and remove some now unnecessary columns
-CREATE TABLE trackbacks (id INTEGER, title VARCHAR(255), excerpt TEXT, article_id INTEGER, url VARCHAR(255), ip VARCHAR(40), blog_name VARCHAR(255), published TINYINT(1), published_at DATETIME);
+CREATE TABLE trackbacks (id INTEGER, title VARCHAR(255), excerpt TEXT, article_id INTEGER, url VARCHAR(255), ip VARCHAR(40), blog_name VARCHAR(255), published TINYINT(1), published_at DATETIME, PRIMARY KEY(id));
 INSERT INTO trackbacks SELECT id, title, excerpt, article_id, url, ip, blog_name, published, published_at FROM contents WHERE type = 'trackback';
 DELETE FROM contents WHERE type = 'trackback';
 ALTER TABLE contents DROP COLUMN title;
@@ -52,7 +52,7 @@ ALTER TABLE contents DROP COLUMN excerpt;
 ALTER TABLE contents DROP COLUMN blog_name;
 
 -- Split comments out from the contents table and remove the contents table
-CREATE TABLE comments (id INTEGER, author VARCHAR(255), body TEXT, created_at DATETIME, updated_at DATETIME, article_id INTEGER, email VARCHAR(255), url VARCHAR(255), ip VARCHAR(255), published TINYINT(1), published_at DATETIME);
+CREATE TABLE comments (id INTEGER, author VARCHAR(255), body TEXT, created_at DATETIME, updated_at DATETIME, article_id INTEGER, email VARCHAR(255), url VARCHAR(255), ip VARCHAR(255), published TINYINT(1), published_at DATETIME, PRIMARY KEY(id));
 INSERT INTO comments SELECT id, author, body, created_at, updated_at, article_id, email, url, ip, published, published_at FROM contents;
 DROP TABLE contents;
 
