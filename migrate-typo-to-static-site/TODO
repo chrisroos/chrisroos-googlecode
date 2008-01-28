@@ -16,3 +16,21 @@
 * Feed icon needs to be copied over from typo r1219
 
 * Permanently redirect latest articles rss feed to atom feed - does that mean I can get rid of guids?
+
+* Move site-generation/typo.rb to bin/generate-site.rb
+
+* Move site-generation/environment.rb to config/ and update paths accordingly
+
+* Make db/migrate.rb require 'environment'
+
+* Move site-generation to app
+
+* A tag 'index page' (that can't be called index because we actually have a tag called index...) that lists all tags.
+
+* Monthly archives in right hand nav
+
+* Store articles as Atom entries (to allow easy storage of metadata)
+
+* Add tags to sitemap??? (One idea is to tag each of my pages in del.icio.us and redirect requests for my tags over there)
+
+* Run each comment/trackback through akismet and see if any of the unpublished ones come up as potential ham
