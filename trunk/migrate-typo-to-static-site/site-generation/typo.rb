@@ -59,3 +59,7 @@ end
 articles = Article.find(:all, :order => 'published_at DESC')
 articles_view = ContentsView.new(articles)
 PageGenerator.new(articles_view, 'contents').generate
+
+articles = Article.find(:all, :order => 'published_at DESC')
+view = SitemapView.new(articles)
+PageGenerator.new(view, 'sitemap', 'xml').generate
