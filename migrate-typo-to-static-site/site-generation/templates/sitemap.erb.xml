@@ -3,6 +3,6 @@
   <url><loc>http://blog.seagul.co.uk/</loc></url>
   <url><loc>http://blog.seagul.co.uk/contents</loc></url>
   <% articles.each do |article| %>
-    <url><loc><%= h(article.url) %></loc></url>
+    <url><loc>http://blog.seagul.co.uk<%= h(article.url) %></loc></url>
   <% end %>
 </urlset>
