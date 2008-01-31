@@ -19,8 +19,6 @@
 
 * Move site-generation/typo.rb to bin/generate-site.rb
 
-* Make db/migrate.rb require 'environment'
-
 * Move site-generation to app
 
 * A tag 'index page' (that can't be called index because we actually have a tag called index...) that lists all tags.
