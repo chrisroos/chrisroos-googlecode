@@ -17,8 +17,6 @@
 
 * Permanently redirect latest articles rss feed to atom feed - does that mean I can get rid of guids?
 
-* Move site-generation/typo.rb to bin/generate-site.rb
-
 * Move site-generation to app
 
 * A tag 'index page' (that can't be called index because we actually have a tag called index...) that lists all tags.
