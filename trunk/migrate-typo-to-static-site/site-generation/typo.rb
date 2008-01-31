@@ -9,7 +9,7 @@
 # Subscribe to the feed
 # </a>
 
-require File.join(File.dirname(__FILE__), 'environment')
+require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
 require 'article'
 require 'page'
 require 'year'
