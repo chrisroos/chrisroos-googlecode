@@ -14,9 +14,8 @@ PAGES_URL_ROOT = File.join('/', 'pages')
 $: << File.join(MIGRATOR_ROOT, 'models')
 $: << File.join(MIGRATOR_ROOT, 'lib')
 
-ActiveRecord::Base.establish_connection({
-  :adapter => 'mysql',
-  :host => 'localhost',
-  :database => 'blog_seagul_co_uk',
-  :user => 'root'
-})
+database_config = YAML.load_file(File.join(File.dirname(__FILE__), 'database.yml'))
+database_config = database_config['production']
+
+ActiveRecord::Base.establish_connection(database_config)
+ActiveRecord::Base.logger = Logger.new(StringIO.new)
