@@ -1,0 +1,3 @@
+content delicious-trackbacks chrome/content/
+
+overlay chrome://ybookmarks/content/yAddBookMark.xul chrome://delicious-trackbacks/content/addBookMark.xul

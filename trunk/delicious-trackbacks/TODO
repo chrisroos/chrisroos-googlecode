@@ -1,0 +1,18 @@
+== For P.O.C ==
+* Get logged in username so that I can construct the del.icio.us permalink
+
+== To get to a compiled state ==
+* Populate trackback text with trackback url
+* Remove trackback textfield and the option to send (i.e. always send).
+
+== Nice to have ==
+* yDebug debugging statements
+* Preferences for default 'send trackback'
+* Add pingback support
+* Tidy up xul display
+* Support for multiple trackback urls?? (could/would this ever happen?)
+* Support for user-entered trackback url
+
+== Permalinks Project ==
+* Add urlTag to post object
+* Add permalink to post object (which is full url, including username)
