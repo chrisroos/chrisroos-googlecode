@@ -19,8 +19,6 @@
 
 * Move site-generation/typo.rb to bin/generate-site.rb
 
-* Move site-generation/environment.rb to config/ and update paths accordingly
-
 * Make db/migrate.rb require 'environment'
 
 * Move site-generation to app
