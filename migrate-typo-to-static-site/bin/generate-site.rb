@@ -15,7 +15,7 @@ require 'page'
 require 'year'
 require 'month'
 require 'day'
-require 'views'
+require File.join(File.dirname(__FILE__), '..', 'site-generation', 'views')
 require 'page_generator'
 
 Day.find_all.each do |day|
