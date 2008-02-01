@@ -1,14 +1,8 @@
 <?xml version="1.0"?>
-<overlay id="deliciousPermalinksAddBookMarkOverlay"
+<overlay id="deliciousTrackbacksAddBookMarkOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script src="chrome://delicious-trackbacks/content/deliciousTrackbacks.js" type="application/x-javascript" />
-    
-  <hbox insertbefore="hbx_buttons">
-    <label control="deliciousTBUrl" value="Trackback Url" class="right-aligned-text"/>
-    <textbox id="deliciousTBUrl" flex="1" cols="60" oninput="alert('hello world');" bk_tabindex="0"/>
-    <checkbox id="deliciousTBSend" label="Send Trackback?" style="-moz-user-focus: ignore;" bk_tabindex="-1" />
-  </hbox>
     
   <!-- <button id="btn_save" oncommand="yAddBookMark.saveBookMark();" /> -->
   <!-- onaccesskey seems to ignore the value for oncommand so i'll need to override that too, i guess -->
