@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 def next_extra_character(extras)
   next_extra(extras).chr
 end
@@ -64,3 +66,9 @@ def get_hashed_password(password, realm)
   nonalphanumeric = !password.match(/\W/).nil?
   apply_constraints(hash, size, nonalphanumeric)
 end
+
+print "Enter realm (usually the website domain): "
+realm = gets
+print "Enter password: "
+password = gets
+p get_hashed_password(password, realm)
