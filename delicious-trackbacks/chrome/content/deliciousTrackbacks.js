@@ -2,14 +2,11 @@ var httpRequest; // Didn't work as a member of the deliciousTrackbacks object
 
 var deliciousTrackbacks = {
   sendTrackback : function() {
-    var shouldSendTrackbacks = document.getElementById('deliciousTBSend').checked;
-    if (shouldSendTrackbacks) {
-      var trackbackUrl = this.findTrackbackUrl();
-      if (trackbackUrl) {
-        var permalink = this.getUrlTag();
-        if (permalink) {
-          this.postTrackback(trackbackUrl, permalink);
-        };
+    var trackbackUrl = this.findTrackbackUrl();
+    if (trackbackUrl) {
+      var permalink = this.getUrlTag();
+      if (permalink) {
+        this.postTrackback(trackbackUrl, permalink);
       };
     };
   },
