@@ -89,7 +89,7 @@
 33,Skinny Bitch by Rory Freedman and Kim Barnouin,Eileen O'Brien,Section:Leisure
 47,Sporty Auris with punch,,Section:Motors
 50,Your chance to win brand new Corsa,,Section:Sport,Compiled By:Craig Tucker
-50,You'll keep, Joe, and do a great job,,Section:Sport,Compiled By:Craig Tucker
+50,"You'll keep, Joe, and do a great job",,Section:Sport,Compiled By:Craig Tucker
 51,Luke takes his goals tally to 23 for season,,Section:Sport,Compiled By:Craig Tucker
 51,Poor old keeper Toni right out of luck,,Section:Sport,Compiled By:Craig Tucker
 51,Ville are just too physical,,Section:Sport,Compiled By:Craig Tucker,Sport:Hockey
