@@ -24,7 +24,11 @@ class ArticleParser
     @io.each do |line|
       next if line =~ /^#/
       page_number, title, author, *attributes = CSV.parse_line(line)
-      attributes = attributes.inject({}) { |h, key_value| key, value = key_value.split(':'); h[key] = value; h }
+      begin
+        attributes = attributes.inject({}) { |h, key_value| key, value = key_value.split(':'); h[key] = value; h }
+      rescue NoMethodError => e
+        warn "Unparsable line: #{line.inspect}"
+      end
       data = {
         :page_number => page_number,
         :title => title,
