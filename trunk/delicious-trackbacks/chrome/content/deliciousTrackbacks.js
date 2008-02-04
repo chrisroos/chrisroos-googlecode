@@ -1,10 +1,14 @@
 var httpRequest; // Didn't work as a member of the deliciousTrackbacks object
 
 var deliciousTrackbacks = {
+  saveBookMarkAndTrackback : function() {
+    this.sendTrackback();
+    yAddBookMark.saveBookMark();
+  },
   sendTrackback : function() {
     var trackbackUrl = this.findTrackbackUrl();
     if (trackbackUrl) {
-      var permalink = this.getUrlTag();
+      var permalink = this.getPostPermalink();
       if (permalink) {
         this.postTrackback(trackbackUrl, permalink);
       };
@@ -23,6 +27,12 @@ var deliciousTrackbacks = {
       alert(e);
     }
   },
+  getUsername : function() {
+    // Stolen from the onLoad function in yBookmarksOverlay.js of the main del.icio.us extension
+    var Y_kDelContractID = "@yahoo.com/socialstore/delicious;1";
+    var del = Components.classes[Y_kDelContractID].getService( Components.interfaces.nsISocialStore );
+    return del.getUserName();
+  },
   getUrlTag : function() {
     var post = window.arguments[0];
     var urlTagRegex = /^url\/.+/;
@@ -32,6 +42,14 @@ var deliciousTrackbacks = {
         return tag;
       }
     }
+  },
+  getPostPermalink : function() {
+    try {
+      var permalink = 'http://del.icio.us/' + this.getUsername() + '/' + this.getUrlTag();
+    } catch(e) {
+      alert(e);
+    }
+    return permalink;
   },
   postTrackback : function(trackbackUrl, originatingUrl) {
     try {
@@ -47,8 +65,8 @@ var deliciousTrackbacks = {
   },
   getTrackbackResponse : function() {
     try {
-      alert(httpRequest.status);
-      alert(httpRequest.responseText);
+      // alert(httpRequest.status);
+      // alert(httpRequest.responseText);
     } catch(e) {
       alert('error in response');
       alert(e);
