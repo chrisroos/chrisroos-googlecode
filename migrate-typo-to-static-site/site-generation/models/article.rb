@@ -6,8 +6,8 @@ require 'redcloth'
 
 class Article < ActiveRecord::Base
   
-  has_many :comments, :dependent => :destroy, :order => 'created_at ASC', :conditions => 'published = TRUE'
-  has_many :trackbacks, :dependent => :destroy, :order => 'created_at ASC'
+  has_many :comments, :dependent => :destroy, :order => 'published_at ASC', :conditions => 'published = TRUE'
+  has_many :trackbacks, :dependent => :destroy, :order => 'published_at ASC'
   has_and_belongs_to_many :tags, :foreign_key => 'article_id', :order => 'name'
   
   class << self
