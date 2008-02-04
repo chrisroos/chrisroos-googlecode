@@ -6,7 +6,8 @@
 * Remove trackback textfield and the option to send (i.e. always send).
 
 == Nice to have ==
-* yDebug debugging statements
+* I want to know how to add to oncommand rather than re-defining it.  At present, I'm a bit too coupled to the implementation of the original extension.
+* yDebug debugging statements (download yDebug reference)
 * Preferences for default 'send trackback'
 * Add pingback support
 * Tidy up xul display

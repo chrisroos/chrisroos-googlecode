@@ -3,9 +3,12 @@
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script src="chrome://delicious-trackbacks/content/deliciousTrackbacks.js" type="application/x-javascript" />
-    
-  <!-- <button id="btn_save" oncommand="yAddBookMark.saveBookMark();" /> -->
-  <!-- onaccesskey seems to ignore the value for oncommand so i'll need to override that too, i guess -->
-  <button id="btn_save" oncommand="deliciousTrackbacks.sendTrackback();" />
+
+  <!-- When someone clicks on the Save Button... -->
+  <button id="btn_save" oncommand="deliciousTrackbacks.saveBookMarkAndTrackback();" />
+  
+  <!-- When someone hits enter (or return) anywhere on the save bookmark pop-up -->
+  <key id="key_enter" keycode="VK_ENTER" oncommand="deliciousTrackbacks.saveBookMarkAndTrackback();"/>
+  <key id="key_return" keycode="VK_RETURN" oncommand="deliciousTrackbacks.saveBookMarkAndTrackback();"/>
   
 </overlay>
