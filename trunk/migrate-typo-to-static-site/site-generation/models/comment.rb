@@ -8,8 +8,8 @@ class Comment < ActiveRecord::Base
     RedCloth.new(body).to_html(:textile)
   end
   
-  def formatted_created_date
-    created_at.strftime("%a, %d %b %Y %H:%M:%S")
+  def formatted_published_date
+    published_at.strftime("%a, %d %b %Y %H:%M:%S")
   end
   
 end
