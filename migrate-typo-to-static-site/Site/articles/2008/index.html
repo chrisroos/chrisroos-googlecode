@@ -33,6 +33,57 @@
           
             <div class="post">
               <h2>
+                <a href="/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us">Sending trackbacks to the sites that you bookmark in del.icio.us</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Mon, 04 Feb 2008 09:53:00">
+                  Mon, 04 Feb 2008 09:53:00
+                </span>
+              </p>
+          
+              <p>I know they have their problems (I had 26 good and 38428 spam when they were enabled on my site) but I&#8217;ve always liked the idea of <a href="http://en.wikipedia.org/wiki/Trackback">trackbacks</a> (and the <a href="http://en.wikipedia.org/wiki/Pingback">pingback</a> alternative).</p>
+
+
+	<p>A few months back I started thinking about <a href="http://tech.groups.yahoo.com/group/ydn-delicious/message/1447">sending trackbacks when bookmarking pages in del.icio.us</a>.  Having been told that, although it was something that had been considered, it wasn&#8217;t likely to be added anytime soon I decided to take a look at adding the functionality myself.</p>
+
+
+	<p>The <a href="http://www.sixapart.com/pronet/docs/trackback_spec">trackback specification</a> states that I must send the <a href="http://en.wikipedia.org/wiki/Permalink">permalink</a> of my &#8216;post&#8217; to the resource that I&#8217;m tracking back to.  By design, individual posts (or bookmarks) in <a href="http://del.icio.us">del.icio.us</a> aren&#8217;t addressable by a <a href="http://en.wikipedia.org/wiki/Uniform_Resource_Identifier"><span class="caps">URI</span></a>.  So, the first step was to <a href="http://blog.seagul.co.uk/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts">add permalinks to my del.icio.us bookmarks</a>.  This was a kludgy, manual fix that added permalinks to all my old bookmarks: it didn&#8217;t work for any new bookmarks.</p>
+
+
+	<p>From here, I spent some time <a href="http://blog.seagul.co.uk/articles/2007/09/05/patching-the-del-icio-us-firefox-extension-to-add-permalinks">hacking around with the del.icio.us firefox extension</a> to get it to automatically generate these permalink tags.</p>
+
+
+	<p>The final stage was to <a href="http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension">extract the hacked-in functionality into its own extension</a> (an extension of an extension &#8211; cool huh).</p>
+
+
+	<p>Somehow, it took until about a month ago for me to realise that I now had everything in place to actually add trackback support to the <a href="https://addons.mozilla.org/en-US/firefox/addon/3615">del.icio.us firefox extension</a>.  I started looking at it last week and I&#8217;ve just finish up the proof of concept this morning.  At present, it scans the page you&#8217;re bookmarking looking for an anchor tag with rel=trackback (because this is easier than trying to parse the <span class="caps">RDF</span>).  If it finds one then it uses the url-tag from the <a href="http://groups.google.com/group/delicious-permalinks">del.icio.us permalinks</a> extension to construct the permalink for your (to-be-created) bookmark and promptly goes off to send a trackback.</p>
+
+
+	<p>The code is over in my <a href="http://chrisroos.googlecode.com/svn/trunk/delicious-trackbacks/">google code repository</a>.  It&#8217;s very rough around the edges so I&#8217;m holding off providing a compiled version just yet.  If you really want to play along then you can follow these steps:</p>
+
+
+	<ul>
+	<li>Install the del.icio.us firefox extension (to be fair, I&#8217;m going to assume that you&#8217;re probably at this stage already)</li>
+		<li>Install the del.icio.us permalinks extension</li>
+		<li>Checkout out the del.icio.us trackbacks source</li>
+		<li>Find your Firefox extensions directory</li>
+		<li>Create a textfile called delicious-trackbacks@googlegroups.com</li>
+		<li>Add the path to the checked out project del.icio.us trackbacks project to this textfile</li>
+		<li>Restart firefox</li>
+		<li>Hope it all works and doesn&#8217;t destroy your computer :-)</li>
+	</ul>
+
+
+	<p>Oh, and I&#8217;ve created a real simple <a href="http://chrisroos.googlecode.com/svn/trunk/scratch/trackback-server/">trackback server</a> (well, a <a href="http://mongrel.rubyforge.org/">mongrel</a> handler) and a dummy page that includes a link to this server so that you can see the trackbacks being sent.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
                 <a href="/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete">Migration from Typo to a static site is complete</a>
               </h2>
               <p class="auth">
