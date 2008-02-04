@@ -6,9 +6,19 @@ class TrackbackHandler < Mongrel::HttpHandler
     # request should be POST
     # body of request should look like..
     # e.g. title=Foo+Bar&url=http://www.bar.com/&excerpt=My+Excerpt&blog_name=Foo
+    http_method = request.params['REQUEST_METHOD']
+    unless http_method == 'POST'
+      error = "You must use HTTP POST, you used: #{http_method.inspect}"
+    end
+    
+    content_type = request.params['HTTP_CONTENT_TYPE']
+    unless content_type =~ /^application\/x-www-form-urlencoded/
+      error = "You must specify the Content-Type header as application/x-www-form-urlencoded.  You specified: #{content_type.inspect}"
+    end
+    
 p request
 p request.body.read#.string
-    if true # good
+    if !error # good
       xml_response = <<-EndXml
 <?xml version="1.0" encoding="utf-8"?>
 <response>
@@ -20,10 +30,11 @@ EndXml
 <?xml version="1.0" encoding="utf-8"?> 
 <response> 
   <error>1</error> 
-  <message>The error message</message> 
+  <message>#{error}</message> 
 </response>
       EndXml
     end
+    
     response.start do |head, out|
       out << xml_response
     end
