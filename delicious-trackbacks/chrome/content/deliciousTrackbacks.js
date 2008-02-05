@@ -58,7 +58,7 @@ var deliciousTrackbacks = {
       httpRequest.onload = this.getTrackbackResponse; // Using this instead of onreadystatechange means we don't have to wait for a readyState of 4 (at least that's what I think's happening)
       httpRequest.open("POST", trackbackUrl, true);
       httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-      httpRequest.send('url=' + originatingUrl + '&excerpt=' + encodeURIComponent(note));
+      httpRequest.send('url=' + encodeURIComponent(originatingUrl) + '&excerpt=' + encodeURIComponent(note));
     } catch(e) {
       alert('error');
       alert(e);
