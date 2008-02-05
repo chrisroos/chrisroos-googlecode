@@ -10,8 +10,9 @@ var deliciousTrackbacks = {
     if (trackbackUrl) {
       var permalink = this.getPostPermalink();
       if (permalink) {
+        var postTitle = document.getElementById('tb_yBookmarkName').value;
         var postNote = document.getElementById("tb_yBookmarkNotes").value;
-        this.postTrackback(trackbackUrl, permalink, postNote);
+        this.postTrackback(trackbackUrl, permalink, postTitle, postNote);
       };
     };
   },
@@ -52,13 +53,13 @@ var deliciousTrackbacks = {
     }
     return permalink;
   },
-  postTrackback : function(trackbackUrl, originatingUrl, note) {
+  postTrackback : function(trackbackUrl, originatingUrl, title, note) {
     try {
       httpRequest = new XMLHttpRequest();
       httpRequest.onload = this.getTrackbackResponse; // Using this instead of onreadystatechange means we don't have to wait for a readyState of 4 (at least that's what I think's happening)
       httpRequest.open("POST", trackbackUrl, true);
       httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-      httpRequest.send('url=' + encodeURIComponent(originatingUrl) + '&excerpt=' + encodeURIComponent(note));
+      httpRequest.send('url=' + encodeURIComponent(originatingUrl) + '&title=' + encodeURIComponent(title) + '&excerpt=' + encodeURIComponent(note));
     } catch(e) {
       alert('error');
       alert(e);
