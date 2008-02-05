@@ -1,9 +1,8 @@
-== For P.O.C ==
-* Get logged in username so that I can construct the del.icio.us permalink
-
 == To get to a compiled state ==
+* Send the title as part of the trackback
 * Populate trackback text with trackback url
 * Remove trackback textfield and the option to send (i.e. always send).
+* Make sure it doesn't break terribly when no url-tag is found.
 
 == Nice to have ==
 * I want to know how to add to oncommand rather than re-defining it.  At present, I'm a bit too coupled to the implementation of the original extension.
