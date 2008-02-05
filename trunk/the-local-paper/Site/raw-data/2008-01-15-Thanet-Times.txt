@@ -48,7 +48,7 @@
 18,Sexiest moves 'all in best possible taste',Eileen O'Brien
 18,Job losses at Kent Probation
 19,Judo Kwai gets to grips with success,,Pictures:Paul McMullan
-21,Music stimulates all the emotions,Jenna Donnelly,Subtitle:"Sweet, sweet music",Section:The Guide
+21,Music stimulates all the emotions,Jenna Donnelly,Section:The Guide
 21,Local talent,,Section:The Guide
 22,Eileen's view,Eileen O'Brien,Section:The Guide
 22,Screen test: You on your favourite film,,Section:The Guide
