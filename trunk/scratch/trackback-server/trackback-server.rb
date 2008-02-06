@@ -15,9 +15,17 @@ class TrackbackHandler < Mongrel::HttpHandler
     unless content_type =~ /^application\/x-www-form-urlencoded/
       error = "You must specify the Content-Type header as application/x-www-form-urlencoded.  You specified: #{content_type.inspect}"
     end
+
+    data = request.body.read.split('&').inject({}) do |hash, key_and_value|
+      key, value = key_and_value.split('=')
+      hash[key] = URI.unescape(value)
+      hash
+    end
     
-p request
-p request.body.read#.string
+    unless data['url']
+      error = "You must send the URL of your post that mentions this post."
+    end
+
     if !error # good
       xml_response = <<-EndXml
 <?xml version="1.0" encoding="utf-8"?>
