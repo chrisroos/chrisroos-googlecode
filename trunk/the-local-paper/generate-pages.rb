@@ -4,7 +4,7 @@ require File.join(File.dirname(__FILE__), 'article')
 require File.join(File.dirname(__FILE__), 'paper')
 require File.join(File.dirname(__FILE__), 'date')
 
-SITE_FOLDER = File.join(File.dirname(__FILE__), 'Site')
+SITE_FOLDER = File.join(File.dirname(__FILE__), 'public')
 RAW_DATA_FOLDER = File.join(SITE_FOLDER, 'raw-data')
 
 Dir[File.join(RAW_DATA_FOLDER, '*.txt')].each do |filename|
