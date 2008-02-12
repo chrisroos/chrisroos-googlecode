@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom">
+  <content type="xhtml">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>Article content goes here</p>
+    </div>
+  </content>
+  <category term="tag1" />
+  <category term="tag2 /">
+  
+  <author>
+    <name>Chris Roos</name>
+  </author>
+  
+  
+  <id TODO: DOWNLOAD RFC 3987>
+    EXAMPLE: urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a
+  </id>
+  <published TODO: DOWNLOAD RFC 3339 (also know as iso8601???)>
+    2003-12-13T18:30:02Z
+  </published>
+  <title>
+    My first atom feed
+  </title>
+  <updated>
+    2003-12-13T18:30:02Z
+  </updated>
+</entry>

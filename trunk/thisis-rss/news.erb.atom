@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>thisiskent thanet news</title>
+  <link href="http://thisiskent.co.uk/" />
+  <link href="http://seagul.co.uk/thisiskent-thanet.atom" rel="self" />
+  <updated>2008-02-12T09:36:00Z</updated>
+  <author>
+    <name>Thisiskent Author</name>
+  </author>
+  <id>urn:thisiskent-co-uk:thanet</id>
+
+  <% articles.each do |article| %>
+    <entry>
+      <title type="text"><%= h(article[:headline]) %></title>
+      <id>urn:thisiskent-co-uk:<%= article[:id] %></id>
+      <published><%= article[:date].iso8601 %></published>
+      <updated><%= article[:date].iso8601 %></updated>
+      <summary type="html"><%= h(article[:content]) %></summary>
+      <content src="<%= h(article[:url]) %>" type="text/html" />
+      <link rel="alternate" href="<%= h(article[:url]) %>" type="text/html" />
+    </entry>
+  <% end %>
+
+</feed>
