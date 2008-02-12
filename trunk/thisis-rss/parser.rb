@@ -33,7 +33,7 @@ end
 
 articles = []
 
-BASE_URL = 'http://thisiskent.co.uk'
+BASE_URL = 'http://www.thisiskent.co.uk'
 (doc/'div.newsListingMainDivWidth').each do |element|
   url = [BASE_URL, (element/'a.lbblue').first.attributes['href']].join('/')
   
