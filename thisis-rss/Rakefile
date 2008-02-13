@@ -1,0 +1,12 @@
+require 'rake/testtask'
+
+desc "Produce the atom feed"
+task :produce_atom_feed do
+  ruby 'bin/create_atom_feed.rb'
+end
+
+desc "Run all the tests."
+Rake::TestTask.new(:default) do |t|
+  t.test_files = FileList['test/*_test.rb']
+  t.verbose = true
+end
