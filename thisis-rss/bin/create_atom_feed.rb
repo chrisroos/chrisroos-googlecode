@@ -7,7 +7,7 @@ require 'articles_view'
 
 DATA_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'data')
 HTML_DIRECTORY = File.join(File.dirname(__FILE__), '..')
-TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..')
+TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'app', 'templates')
 PUBLIC_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'public')
 
 # download articles
