@@ -1,5 +1,5 @@
 require 'test/unit'
-require 'yaml_deserializer'
+require 'lib/yaml_deserializer'
 
 class YamlDeserializerTest < Test::Unit::TestCase
   

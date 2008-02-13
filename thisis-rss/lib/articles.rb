@@ -1,5 +1,5 @@
-require 'yaml_serializer'
-require 'yaml_deserializer'
+require File.join(File.dirname(__FILE__), 'yaml_serializer')
+require File.join(File.dirname(__FILE__), 'yaml_deserializer')
 
 class Articles
 

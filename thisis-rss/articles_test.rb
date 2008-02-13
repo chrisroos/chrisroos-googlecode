@@ -1,5 +1,5 @@
 require 'test/unit'
-require 'articles'
+require 'lib/articles'
 
 class ArticlesTest < Test::Unit::TestCase
   

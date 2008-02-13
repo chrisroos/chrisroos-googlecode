@@ -1,3 +1,4 @@
+$: << File.join(File.dirname(__FILE__), 'lib')
 require 'erb_renderer'
 require 'document_parser'
 require 'articles'
