@@ -1,6 +1,7 @@
 require 'erb_renderer'
 require 'document_parser'
 require 'articles'
+require 'articles_view'
 
 # download articles
 # compare articles to those currently stored in the 'database'
@@ -21,22 +22,7 @@ end
 
 articles.store_to_yaml_file(ArticlesFilename)
 
-class ArticlesView
-  def initialize(articles, number_to_display)
-    @articles, @number_to_display = articles, number_to_display
-  end
-  def each_article
-    number_displayed = 0
-    @articles.each do |article|
-      break if number_displayed == @number_to_display
-      yield article
-      number_displayed += 1
-    end
-  end
-  public :binding
-end
-
-articles_view = ArticlesView.new(articles, 1)
+articles_view = ArticlesView.new(articles, 2)
 
 erb_template = File.join(File.dirname(__FILE__), "news.erb.atom")
 renderer = ErbRenderer.new(erb_template, articles_view.binding)
