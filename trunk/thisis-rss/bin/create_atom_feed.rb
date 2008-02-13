@@ -4,7 +4,7 @@ require 'document_parser'
 require 'articles'
 require 'articles_view'
 
-DATA_DIRECTORY = File.dirname(__FILE__)
+DATA_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'data')
 HTML_DIRECTORY = File.join(File.dirname(__FILE__), '..')
 TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..')
 PUBLIC_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'public')
