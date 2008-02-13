@@ -10,11 +10,6 @@ HTML_DIRECTORY = File.join(File.dirname(__FILE__), '..')
 TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'app', 'templates')
 PUBLIC_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'public')
 
-# download articles
-# compare articles to those currently stored in the 'database'
-# add to the database if not found
-# reproduce feed from database
-
 ArticlesFilename = File.join(DATA_DIRECTORY, 'articles.yaml')
 File.open(ArticlesFilename, 'w') unless File.exists?(ArticlesFilename) # Create if it doesn't already exist
 
