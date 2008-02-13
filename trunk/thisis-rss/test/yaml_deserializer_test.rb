@@ -1,5 +1,5 @@
-require 'test/unit'
-require 'lib/yaml_deserializer'
+require File.join(File.dirname(__FILE__), 'test_helper')
+require 'yaml_deserializer'
 
 class YamlDeserializerTest < Test::Unit::TestCase
   

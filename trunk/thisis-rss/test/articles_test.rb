@@ -1,5 +1,5 @@
-require 'test/unit'
-require 'lib/articles'
+require File.join(File.dirname(__FILE__), 'test_helper')
+require 'articles'
 
 class ArticlesTest < Test::Unit::TestCase
   
