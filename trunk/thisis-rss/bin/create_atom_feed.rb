@@ -7,6 +7,7 @@ require 'articles_view'
 DATA_DIRECTORY = File.dirname(__FILE__)
 HTML_DIRECTORY = File.join(File.dirname(__FILE__), '..')
 TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..')
+PUBLIC_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'public')
 
 # download articles
 # compare articles to those currently stored in the 'database'
@@ -31,4 +32,4 @@ articles_view = ArticlesView.new(articles, 2)
 
 erb_template = File.join(TEMPLATE_DIRECTORY, "news.erb.atom")
 renderer = ErbRenderer.new(erb_template, articles_view.binding)
-File.open(File.join(File.dirname(__FILE__), "news.atom"), 'w') { |io| renderer.render(io) }
+File.open(File.join(PUBLIC_DIRECTORY, "news.atom"), 'w') { |io| renderer.render(io) }
