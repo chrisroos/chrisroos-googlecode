@@ -10,7 +10,7 @@
   </author>
   <id>urn:thisiskent-co-uk:thanet</id>
 
-  <% articles.each do |article| %>
+  <% each_article do |article| %>
     <entry>
       <title type="text"><%= h(article[:headline]) %></title>
       <id>urn:thisiskent-co-uk:<%= article[:id] %></id>
