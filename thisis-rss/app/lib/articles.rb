@@ -21,7 +21,11 @@ class Articles
   end
   
   def add(article)
-    @articles << article unless article_exists?(article)
+    if article_exists?(article)
+      false
+    else
+      @articles << article
+    end
   end
   
   def length
