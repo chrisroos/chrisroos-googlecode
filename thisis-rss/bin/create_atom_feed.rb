@@ -15,15 +15,27 @@ File.open(ArticlesFilename, 'w') unless File.exists?(ArticlesFilename) # Create 
 
 articles = Articles.retrieve_from_yaml_file(ArticlesFilename)
 
-parser = DocumentParser.from_url('http://www.thisiskent.co.uk/displayNode.jsp?nodeId=250478&command=newPage')
-duplicate_article_found = false
-parser.each_article_attributes do |article_attributes|
-  article_added = articles.add(article_attributes)
-  duplicate_article_found = true unless article_added
+def spider(url, articles, continue_to_next_page = true)
+  unless url
+    p "URL is empty, I guess we're all finished"
+    return
+  end
+  
+  p "Spidering: #{url}"
+  parser = DocumentParser.from_url(url)
+  duplicate_article_found = false
+  parser.each_article_attributes do |article_attributes|
+    article_added = articles.add(article_attributes)
+    duplicate_article_found = true unless article_added
+  end
+  
+  spider(parser.next_page_url, articles, continue_to_next_page) if continue_to_next_page && !duplicate_article_found
 end
-unless duplicate_article_found
-  p parser.next_page_url
-end
+
+# *** Let's get some article data so that we don't have to go spider every news page
+# spider('http://www.thisiskent.co.uk/displayNode.jsp?nodeId=250439&command=refreshModule&sourceNode=250439&page=8&pNodeId=250478', articles, false)
+# Spider 'new' pages
+spider('http://www.thisiskent.co.uk/displayNode.jsp?nodeId=250478&command=newPage', articles)
 
 articles.store_to_yaml_file(ArticlesFilename)
 
