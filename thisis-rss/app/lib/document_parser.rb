@@ -1,11 +1,26 @@
 require 'hpricot'
+require 'net/http'
 
 class DocumentParser
   
-  def self.from_file(filename)
-    html = File.open(filename) { |f| f.read }
-    doc = Hpricot(html)
-    new(doc)
+  class << self
+    
+    def from_file(filename)
+      html = File.open(filename) { |f| f.read }
+      doc = Hpricot(html)
+      new(doc)
+    end
+    
+    def from_url(url)
+      user_agent = "User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.12) Gecko/20080201 Firefox/2.0.0.12"
+      url = URI.parse(url)
+      response = Net::HTTP.start(url.host, url.port) {|http|
+        http.get(url.request_uri, 'User-Agent' => user_agent)
+      }
+      doc = Hpricot(response.body)
+      new(doc)
+    end
+    
   end
   
   BASE_URL = 'http://www.thisiskent.co.uk'
@@ -26,6 +41,14 @@ class DocumentParser
       }
       yield article_attributes
     end
+  end
+  
+  def next_page_url
+    previous_and_next_link_elements = (@hpricot_doc/'div.newsPageInfo'/'a.lblue')
+    next_page_link_element = previous_and_next_link_elements.find { |element| element.innerText == 'next >>'}
+    return nil unless next_page_link_element
+    relative_url = next_page_link_element.attributes['href']
+    [BASE_URL, relative_url].join('/')
   end
   
   class ArticleElementParser
