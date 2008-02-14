@@ -24,4 +24,17 @@ class ArticlesTest < Test::Unit::TestCase
     assert collected_articles.include?(article_2)
   end
   
+  def test_should_return_false_when_a_duplicate_article_is_added_so_that_we_can_know_to_stop_processing_html_pages_that_we_have_previously_seend
+    article = {:id => 'unique-article-id'}
+    articles = Articles.new
+    articles.add(article)
+    assert_equal false, articles.add(article)
+  end
+  
+  def test_should_not_return_false_when_an_article_is_successfully_added
+    article = {:id => 'unique-article-id'}
+    articles = Articles.new
+    assert_not_equal false, articles.add(article)
+  end
+  
 end
