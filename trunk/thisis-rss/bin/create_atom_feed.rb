@@ -39,7 +39,7 @@ spider('http://www.thisiskent.co.uk/displayNode.jsp?nodeId=250478&command=newPag
 
 articles.store_to_yaml_file(ArticlesFilename)
 
-articles_view = ArticlesView.new(articles, 15)
+articles_view = ArticlesView.new(articles, 50)
 
 erb_template = File.join(TEMPLATE_DIRECTORY, "news.erb.atom")
 renderer = ErbRenderer.new(erb_template, articles_view.binding)
