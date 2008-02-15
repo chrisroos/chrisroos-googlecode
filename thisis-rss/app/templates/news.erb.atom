@@ -12,7 +12,7 @@
 
   <% each_article do |article| %>
     <entry>
-      <title type="text"><%= h(article[:headline]) %></title>
+      <title type="html"><%= h(article[:headline]) %></title>
       <id>urn:thisiskent-co-uk:<%= article[:id] %></id>
       <published><%= article[:date].iso8601 %></published>
       <updated><%= article[:date].iso8601 %></updated>
