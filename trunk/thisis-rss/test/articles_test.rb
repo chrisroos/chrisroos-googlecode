@@ -37,4 +37,15 @@ class ArticlesTest < Test::Unit::TestCase
     assert_not_equal false, articles.add(article)
   end
   
+  def test_should_return_articles_in_descending_order_of_date_so_that_we_see_new_articles_at_the_top_of_the_pile
+    old_article, new_article = {:id => 1}, {:id => 100}
+    articles = Articles.new
+    articles.add(old_article)
+    articles.add(new_article)
+    collected_articles = []
+    articles.each { |a| collected_articles << a }
+    
+    assert_equal [new_article, old_article], collected_articles
+  end
+  
 end

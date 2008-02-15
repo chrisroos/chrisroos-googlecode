@@ -17,7 +17,7 @@ class Articles
   end
   
   def each(&blk)
-    @articles.each(&blk)
+    sorted_articles.each(&blk)
   end
   
   def add(article)
@@ -41,6 +41,10 @@ class Articles
   end
   
 private
+  
+  def sorted_articles
+    @articles.sort { |article_1, article_2| article_2[:id] <=> article_1[:id] }
+  end
   
   def article_exists?(article)
     @articles.find { |a| a[:id] == article[:id] }
