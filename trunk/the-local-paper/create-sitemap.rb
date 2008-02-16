@@ -20,6 +20,7 @@ add_articles File.join('thanet-adscene', '2008', '01', '17')
 add_articles File.join('thanet-adscene', '2008', '01', '24')
 add_articles File.join('thanet-adscene', '2008', '01', '31')
 add_articles File.join('thanet-adscene', '2008', '02', '07')
+add_articles File.join('thanet-adscene', '2008', '02', '14')
 
 # Thanet Times
 add_articles File.join('thanet-times', '2008', '01', '08')
