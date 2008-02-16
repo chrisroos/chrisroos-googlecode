@@ -27,6 +27,7 @@ add_articles File.join('thanet-times', '2008', '01', '15')
 add_articles File.join('thanet-times', '2008', '01', '22')
 add_articles File.join('thanet-times', '2008', '01', '29')
 add_articles File.join('thanet-times', '2008', '02', '05')
+add_articles File.join('thanet-times', '2008', '02', '12')
 
 # Output Sitemap
 SITEMAP_PATH = File.join(PUBLIC_DIRECTORY, 'sitemap.xml')
