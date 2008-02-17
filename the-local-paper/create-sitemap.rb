@@ -13,6 +13,7 @@ add_articles File.join('isle-of-thanet-gazette', '2008', '01', '11')
 add_articles File.join('isle-of-thanet-gazette', '2008', '01', '18')
 add_articles File.join('isle-of-thanet-gazette', '2008', '01', '25')
 add_articles File.join('isle-of-thanet-gazette', '2008', '02', '08')
+add_articles File.join('isle-of-thanet-gazette', '2008', '02', '15')
 
 # Thanet Adscene
 add_articles File.join('thanet-adscene', '2008', '01', '10')
