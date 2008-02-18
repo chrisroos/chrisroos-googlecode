@@ -10,6 +10,184 @@
     <description></description>
     
       <item>
+        <title>What I've been up to - Projects and Ideas</title>
+        <description>&lt;p&gt;I&amp;#8217;ve been a bit quiet on the blogging front (to be fair, I&amp;#8217;ve always been a bit slack) but I think it&amp;#8217;s for good reason: I&amp;#8217;ve re-discovered a love for programming, and in particular, creating things that I (and hopefully others) find useful.&lt;/p&gt;
+
+
+	&lt;p&gt;So, as a bit of an update, and a bit of a reminder for me, I thought I&amp;#8217;d list all the things I&amp;#8217;m either working on or thinking about.  Feel free to ask questions in the comments or by emailing me (chris at this domain).&lt;/p&gt;
+
+
+	&lt;h2&gt;Projects&lt;/h2&gt;
+
+
+	&lt;h3&gt;Atom (like &lt;span class=&quot;caps&quot;&gt;RSS&lt;/span&gt;) feed for thisiskent news content&lt;/h3&gt;
+
+
+	&lt;p&gt;I&amp;#8217;m interested in reading news articles from the local area but the &lt;a href=&quot;http://www.thisiskent.co.uk&quot;&gt;thisiskent website&lt;/a&gt; doesn&amp;#8217;t provide a feed for me to subscribe to.  I&amp;#8217;ve created a little project that scrapes the news content from that site and produces a feed.  The feed is currently at &lt;a href=&quot;http://seagul.co.uk/thisiskent-thanet.atom&quot;&gt;http://seagul.co.uk/thisiskent-thanet.atom&lt;/a&gt; but will possibly move in the future.&lt;/p&gt;
+
+
+	&lt;h3&gt;The Local Paper&lt;/h3&gt;
+
+
+	&lt;p&gt;I wanted to give each article, in our local papers, a permalink so that people had a way to reference an article they were talking about.  I&amp;#8217;ve started building the site over at &lt;a href=&quot;http://the-local-paper.co.uk&quot;&gt;http://the-local-paper.co.uk&lt;/a&gt;.  There&amp;#8217;s a long way to go but I really wanted to start getting some content up so that I had more incentive to continue.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/06/01/an-open-letter-to-my-local-newspapers&quot;&gt;An open letter to my local newspapers&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;Sending trackbacks to pages that I bookmark in &lt;a href=&quot;http://del.icio.us&quot;&gt;del.icio.us&lt;/a&gt;&lt;/h3&gt;
+
+
+	&lt;p&gt;I asked for this a while back in the &lt;a href=&quot;http://tech.groups.yahoo.com/group/ydn-delicious/message/1447&quot;&gt;del.icio.us group&lt;/a&gt;.  It occurred to me that I could add the functionality myself to the &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/3615&quot;&gt;del.icio.us firefox extension&lt;/a&gt;, so I did.  It&amp;#8217;s more of a proof of concept at the moment but you can follow &lt;a href=&quot;/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us&quot;&gt;these instructions&lt;/a&gt; if you wish to try it out.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us&quot;&gt;Sending trackbacks to the sites that you bookmark in del.icio.us&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;Adding &lt;a href=&quot;http://en.wikipedia.org/wiki/Permalink&quot;&gt;permalinks&lt;/a&gt; to del.icio.us bookmarks&lt;/h3&gt;
+
+
+	&lt;p&gt;This was the precursor to the trackbacks project above.  I&amp;#8217;ve created a firefox extension that, building on the del.icio.us extension, adds a &amp;#8216;permalink tag&amp;#8217; to each bookmark you create.  You can read more &lt;a href=&quot;/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension&quot;&gt;here&lt;/a&gt; or visit the &lt;a href=&quot;http://delicious-permalinks.googlegroups.com/web/installation.html&quot;&gt;installation page&lt;/a&gt; to install the extension.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension&quot;&gt;Extracting my del.icio.us permalinks functionality into its own firefox extension&lt;/a&gt;, &lt;a href=&quot;/articles/2007/09/29/commenting-on-my-del-icio-us-bookmarks&quot;&gt;Commenting on my del.icio.us bookmarks&lt;/a&gt;, &lt;a href=&quot;/articles/2007/09/05/patching-the-del-icio-us-firefox-extension-to-add-permalinks&quot;&gt;Patching the del.icio.us firefox extension to add permalinks&lt;/a&gt;, &lt;a href=&quot;/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts&quot; title=&quot;posts&quot;&gt;Permalinks for del.icio.us bookmarks&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;Some blogging software&lt;/h3&gt;
+
+
+	&lt;p&gt;I decided that I really didn&amp;#8217;t need the overhead of &lt;a href=&quot;http://www.typosphere.org/&quot;&gt;typo&lt;/a&gt; to produce what is essentially a static site.  The result is some software that produces the website that you&amp;#8217;re reading now.  I actually need to get some work done on this because I&amp;#8217;m currently in a position where it&amp;#8217;s harder for me to add content now than it used to be with typo.  D&amp;#8217;oh.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete&quot;&gt;Migration from typo to a static site is complete&lt;/a&gt;, &lt;a href=&quot;/articles/2008/01/23/migrating-this-blog-from-typo-to-a-static-site&quot;&gt;Migrating this blog from Typo to a static site&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;An &lt;span class=&quot;caps&quot;&gt;SMS&lt;/span&gt; service to lookup train information&lt;/h3&gt;
+
+
+	&lt;p&gt;I&amp;#8217;ve built a service on top of &lt;a href=&quot;http://www.twitter.com&quot;&gt;twitter&lt;/a&gt; that allows you to request departure information.  This is actually live now (read the &lt;a href=&quot;/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries&quot;&gt;instructions&lt;/a&gt;) but could be a lot more useful.  I&amp;#8217;ve found that my main use case is to find the next few trains from a specific station within the next half hour or so &amp;#8211; I&amp;#8217;m hoping to make the interface better suit this need.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries&quot; title=&quot;or, improving National Rail Enquiries&quot;&gt;Train times by &lt;span class=&quot;caps&quot;&gt;SMS&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;Software to interface with banking websites and download/convert the data to &lt;a href=&quot;http://www.ofx.net/&quot;&gt;&lt;span class=&quot;caps&quot;&gt;OFX&lt;/span&gt;&lt;/a&gt; (for upload to &lt;a href=&quot;http://www.wesabe.com&quot;&gt;wesabe&lt;/a&gt;)&lt;/h3&gt;
+
+
+	&lt;p&gt;A while back, I got quite addicted to using wesabe in an attempt to manage my finances (as it happens I&amp;#8217;ve been very slack on this front too &amp;#8211; managing money is just boring).  I wrote some scripts to download data from my banks&amp;#8217; websites and additionally to convert that data to &lt;span class=&quot;caps&quot;&gt;OFX&lt;/span&gt;.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/06/23/automatically-downloading-my-ing-direct-transactions&quot;&gt;Automatically downloading my Ing Direct transactions&lt;/a&gt;, &lt;a href=&quot;/articles/2007/06/23/automatically-download-egg-credit-card-transactions&quot;&gt;Automatically download egg credit card transactions&lt;/a&gt;, &lt;a href=&quot;/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb&quot;&gt;Automatically downloading my recent transactions from Lloyds &lt;span class=&quot;caps&quot;&gt;TSB&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions&quot;&gt;Automatically downloading my most recent Hsbc transactions&lt;/a&gt;, &lt;a href=&quot;/articles/2007/04/01/converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe&quot; title=&quot;for upload to wesabe&quot;&gt;Converting Egg Credit Card Statements to Ofx&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;A ruby implementation of &lt;a href=&quot;http://www.pwdhash.com&quot;&gt;pwdhash&lt;/a&gt;&lt;/h3&gt;
+
+
+	&lt;p&gt;I wanted a command line version of the pwdhash tool.  I knocked up a ruby implementation but haven&amp;#8217;t really got round to making it command line friendly.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/04/11/getting-to-grips-with-pwdhash&quot;&gt;Getting to grips with pwdhash&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;A web service that converts a UK postcode to Latitude/Longitude&lt;/h3&gt;
+
+
+	&lt;p&gt;It currently lives at &lt;a href=&quot;http://seagul.co.uk/postcodes&quot;&gt;http://seagul.co.uk/postcodes&lt;/a&gt;.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/07/13/web-service-to-convert-uk-postcodes-outcode-to-latitude-and-longitude&quot;&gt;Web service to convert UK Postcodes (outcode) to Latitude and Longitude&lt;/a&gt;, &lt;a href=&quot;/articles/2007/04/03/obtaining-latitude-longitude-for-uk-postcodes&quot;&gt;Obtaining latitude/longitude for UK postcodes&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h2&gt;Ideas&lt;/h2&gt;
+
+
+	&lt;h3&gt;A del.icio.us extension that mines del.icio.us (and magnolia etc) to find similar sites to those that I&amp;#8217;m looking at&lt;/h3&gt;
+
+
+	&lt;p&gt;I did a fair bit of investigation into this, although I&amp;#8217;m not sure any of it is of any real use.  I was working on the theory that if the page I&amp;#8217;m looking at is tagged with, for example, &amp;#8216;train&amp;#8217;, &amp;#8216;uk&amp;#8217; and &amp;#8216;travel&amp;#8217; then other pages tagged in the same way would probably also be of interest.  Check the &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/delicious_similar_sites&quot;&gt;delicious_similar_sites&lt;/a&gt; and &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/delicious-sidebar&quot;&gt;delicious-sidebar&lt;/a&gt; projects to check my progress.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/10/03/finding-similar-sites-by-mining-the-del-icio-us-data&quot;&gt;Finding similar sites by mining the del.icio.us data&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;A hosted &lt;a href=&quot;http://en.wikipedia.org/wiki/Trackback&quot;&gt;trackback&lt;/a&gt; / &lt;a href=&quot;http://en.wikipedia.org/wiki/Pingback&quot;&gt;pingback&lt;/a&gt; service&lt;/h3&gt;
+
+
+	&lt;p&gt;I&amp;#8217;m thinking of something like &lt;a href=&quot;http://www.disqus.com&quot;&gt;disqus&lt;/a&gt; (hosted comments service) but for trackbacks/pingbacks.  I did find a site called &lt;a href=&quot;http://www.trackbackr.com&quot;&gt;trackbackr&lt;/a&gt; that would appear to offer something similar but I haven&amp;#8217;t looked into it in any detail.&lt;/p&gt;
+
+
+	&lt;h3&gt;A hosted redirection service&lt;/h3&gt;
+
+
+	&lt;p&gt;I want an easy way to create short/friendly URLs for a domain that I own.  I&amp;#8217;ve started exploring the possibility of a RESTful service to do just this.  There&amp;#8217;s some initial code over on &lt;a href=&quot;http://chrisroos.co.uk/code/mongrel-redirection&quot;&gt;google code&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/12/07/more-on-those-friendly-urls&quot;&gt;More on those friendly URLs&lt;/a&gt;, &lt;a href=&quot;/articles/2007/11/27/short-human-friendly-permalinks&quot;&gt;Short, Human friendly, Permalinks&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;A mobile friendly version of the &lt;a href=&quot;http://www.nationalrail.co.uk&quot;&gt;National Rail Enquiries&lt;/a&gt; website&lt;/h3&gt;
+
+
+	&lt;p&gt;I need to check whether this is already covered by the &lt;a href=&quot;http://www.traintimes.org.uk&quot;&gt;accessible national rails&lt;/a&gt; website.&lt;/p&gt;
+
+
+	&lt;h3&gt;An &lt;span class=&quot;caps&quot;&gt;SMS&lt;/span&gt; alert with train information&lt;/h3&gt;
+
+
+	&lt;p&gt;For three mornings a week, I get a regular train.  I&amp;#8217;d like to receive a text message, half an hour (or so) before I leave house, that tells me whether the train is running on time.&lt;/p&gt;
+
+
+	&lt;h3&gt;A receipt tagging application (del.icio.us for receipts)&lt;/h3&gt;
+
+
+	&lt;p&gt;Until recently I had a lot of receipts stored on my email server.  This didn&amp;#8217;t feel like the right place for them so I&amp;#8217;ve placed them all on my laptop, in a folder that gets backed up to &lt;a href=&quot;http://aws.amazon.com/s3&quot;&gt;Amazon S3&lt;/a&gt; with the help of &lt;a href=&quot;http://jungledisk.com&quot;&gt;jungledisk&lt;/a&gt;.  I&amp;#8217;d like to be able to tag these receipts to make retrieval easier.  Ooh, I just had a thought &amp;#8211; I wonder if I could just bookmark their &lt;span class=&quot;caps&quot;&gt;S3 URL&lt;/span&gt; in del.icio.us&amp;#8230;&lt;/p&gt;
+
+
+	&lt;h3&gt;Some software to track my unsubscriptions&lt;/h3&gt;
+
+
+	&lt;p&gt;Marketing emails annoy me.  I almost certainly don&amp;#8217;t want them.  More importantly, when I state that I don&amp;#8217;t want them, I want to have my wishes respected.  I knew that I was getting emails from companies that I&amp;#8217;d unsubscribed from and wanted to track the offenders.  I&amp;#8217;ve been using the &lt;a href=&quot;http://www.stikipad.com&quot;&gt;stikipad&lt;/a&gt; wiki to do this but it&amp;#8217;s not exactly ideal.  I&amp;#8217;d like a service that will collect these emails (I&amp;#8217;m thinking that I&amp;#8217;ll forward them straight there) and report on those naughty companies that keep spamming me.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/10/31/naughty-spammy-tesco-entertainment&quot;&gt;Naughty spammy Tesco Entertainment&lt;/a&gt;, &lt;a href=&quot;/articles/2007/09/21/companies-you-must-make-it-simple-for-me-to-unsubscribe-from-your-marketing-shite&quot;&gt;Companies. You must make it simple for me to unsubscribe from your marketing shite&lt;/a&gt;, &lt;a href=&quot;/articles/2007/03/16/orange-orange-orange&quot;&gt;Orange, orange, orange&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;A firefox extension/&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/748&quot;&gt;greasemonkey&lt;/a&gt; script to determine the canonical &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; of a resource&lt;/h3&gt;
+
+
+	&lt;p&gt;At one stage I was trying to use del.icio.us to manage the stuff I had for sale on &lt;a href=&quot;http://www.ebay.co.uk&quot;&gt;ebay&lt;/a&gt;.  Unfortunately, ebay is a bit naughty with their URLs (the same item for sale is available at different URLs) which meant I could end up bookmarking one &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; and then not find my bookmark notes again &amp;#8211; even though I knew I was looking at the same item.  I figure that we could maintain a list of rules that allow you to turn any &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; into its canonical version.  This wouldn&amp;#8217;t be ebay specific.&lt;/p&gt;
+
+
+	&lt;p&gt;Related posts: &lt;a href=&quot;/articles/2007/12/14/web-pages-should-specify-their-canonical-url-permalink&quot; title=&quot;permalink&quot;&gt;Web pages should specify their canonical &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+	&lt;h3&gt;A website with lots of info about swimming pools&lt;/h3&gt;
+
+
+	&lt;p&gt;I&amp;#8217;ve found it quite hard to find swimming pools close to work in the past.  I&amp;#8217;d like a site that has a map of all swimming pools in the local area along with info (opening times, costs) and reviews of those pools (when&amp;#8217;s a good time to go).&lt;/p&gt;</description>
+
+        <pubDate>Mon, 18 Feb 2008 10:12:00 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:cf1cb765-edb9-4db9-aab3-08e439b97047</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/02/18/what-ive-been-up-to-projects-and-ideas</link>
+        
+      </item>
+    
+      <item>
+        <title>Atom (like RSS) feeds for thisiskent.co.uk news stories</title>
+        <description>&lt;p&gt;I&amp;#8217;ve only recently discovered that thisiskent.co.uk (the website of three of our local newspapers) place their &lt;a href=&quot;http://www.thisiskent.co.uk/displayNode.jsp?nodeId=250478&amp;#38;command=newPage&quot;&gt;news content&lt;/a&gt; online.  Unfortunately they&amp;#8217;ve neglected to provide &lt;a href=&quot;http://en.wikipedia.org/wiki/RSS&quot;&gt;&lt;span class=&quot;caps&quot;&gt;RSS&lt;/span&gt;&lt;/a&gt; or &lt;a href=&quot;http://en.wikipedia.org/wiki/Atom_%28standard%29&quot;&gt;Atom&lt;/a&gt; feeds which means that I don&amp;#8217;t get to see it (visiting websites is soooo old school).  As I&amp;#8217;m kinda interested in reading this news, I&amp;#8217;ve put something together that creates a feed from their news articles.  The feed currently lives at http://seagul.co.uk/thisiskent-thanet.atom although this will probably move in the future.  Feel free to subscribe to the feed and please leave comments if it&amp;#8217;s not working for you.  I&amp;#8217;m currently only interested in the Thanet news section but I&amp;#8217;d be happy to produce a feed for other areas if people are interested.&lt;/p&gt;
+
+
+	&lt;p&gt;The code&amp;#8217;s over on &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/thisis-rss/&quot;&gt;google code&lt;/a&gt; if you want to see how it all works.&lt;/p&gt;</description>
+
+        <pubDate>Mon, 18 Feb 2008 10:00:00 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:cfe3b7ae-05e5-406a-9dcd-e3a646b9d16c</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/02/18/atom-like-rss-feeds-for-thisiskent-co-uk-news-stories</link>
+        
+      </item>
+    
+      <item>
         <title>Sending trackbacks to the sites that you bookmark in del.icio.us</title>
         <description>&lt;p&gt;I know they have their problems (I had 26 good and 38428 spam when they were enabled on my site) but I&amp;#8217;ve always liked the idea of &lt;a href=&quot;http://en.wikipedia.org/wiki/Trackback&quot;&gt;trackbacks&lt;/a&gt; (and the &lt;a href=&quot;http://en.wikipedia.org/wiki/Pingback&quot;&gt;pingback&lt;/a&gt; alternative).&lt;/p&gt;
 
@@ -351,89 +529,6 @@ RewriteRule ^(.*)index\.html$ $1 [R=301,L]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
           <category>svn</category>
         
           <category>trac</category>
-        
-      </item>
-    
-      <item>
-        <title>Extracting my del.icio.us permalinks functionality into its own firefox extension</title>
-        <description>&lt;p&gt;My &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/09/05/patching-the-del-icio-us-firefox-extension-to-add-permalinks&quot;&gt;previous implementation&lt;/a&gt; amended the &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/3615&quot;&gt;del.icio.us bookmarks extension&lt;/a&gt;.  I spent some time this morning, and evening, extracting the functionality into its own &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/delicious-permalinks/&quot;&gt;extension&lt;/a&gt;.  This should mean that I remain decoupled from their extension: I don&amp;#8217;t have to update, or even just apply, my original patch whenever the del.icio.us extension is changed.  It should also make it much easier for anyone else to try (if they so wish).&lt;/p&gt;
-
-
-	&lt;p&gt;I&amp;#8217;ve created a &lt;a href=&quot;http://groups.google.com/group/delicious-permalinks/&quot;&gt;google group&lt;/a&gt; if folks want to chat about it.&lt;/p&gt;
-
-
-	&lt;p&gt;To install the extension just visit the (very, very basic) &lt;a href=&quot;http://delicious-permalinks.googlegroups.com/web/installation.html&quot;&gt;installation page&lt;/a&gt;.&lt;/p&gt;</description>
-
-        <pubDate>Tue, 18 Dec 2007 23:01:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:c3be6b95-9fd4-4169-84de-faea63703c8b</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension</link>
-        
-          <category>bookmark</category>
-        
-          <category>del.icio.us</category>
-        
-          <category>extension</category>
-        
-          <category>firefox</category>
-        
-          <category>permalinks</category>
-        
-      </item>
-    
-      <item>
-        <title>Cross browser (well, IE 6, Firefox 2 and Safari 3) bookmarklet script</title>
-        <description>&lt;p&gt;I &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7&quot;&gt;mentioned&lt;/a&gt; that I&amp;#8217;d been playing with bookmarklets in Internet Explorer 6 (among other, proper, browsers).&lt;/p&gt;
-
-
-	&lt;p&gt;I thought it might be useful to paste the script that bootstraps the bookmarklet.  The concept is that we use the bookmarklet javascript to insert a script tag into the page that links to the full javascript file containing the function(s) that we wish to execute.  I know this has been documented elsewhere and I&amp;#8217;ve probably missed some important stuff out but it may prove useful to someone.&lt;/p&gt;
-
-
-	&lt;h3&gt;The commented, un-compressed, version&lt;/h3&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_javascript&quot;&gt;if (typeof(rvmBM) == 'undefined') { // Best to name rvmBM to something unlikely to clash with pre-defined variables
-  var s = document.createElement('script'); // Use of s versus script saves some precious space
-  s.type = 'text/javascript';
-  s.src = 'http://example.com/my-external-bookmarklet.js'; // The location of your bookmarklet javascript that does all the work
-  void(rvmBM = true); // Prevent the bookmarklet javascript from being loaded multiple times by setting this flag
-  void(document.body.appendChild(s)); // Place the script tag in the body of the document
-  // If we don't use void() above then we end up writing either 'true' or some junk to the screen in Internet Explorer (only)
-};
-function addRvm() { // A wrapper function around the actual function we want to call
-  if (typeof(addReevooMark) == 'function') { // We want to make sure our bookmarklet function is defined (there's some delay in it becoming available in Firefox.  It's defined immediately in Internet Explorer.)
-    addReevooMark();
-  } else {
-    void(setTimeout(addRvm, 100)); // If our function isn't ready yet we'll just hang on 1/10th of a second and try again
-  };
-};
-addRvm(); // Ask our wrapper function to call the actual bookmarklet function&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;h3&gt;The compressed version&lt;/h3&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_javascript&quot;&gt;javascript:if(typeof(rvmBM)=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.src='http://example.com/my-external-bookmarklet.js';void(rvmBM=true);void(document.body.appendChild(s));};function addRvm(){if(typeof(addReevooMark)=='function'){addReevooMark();}else{void(setTimeout(addRvm,100));};};addRvm();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-
-        <pubDate>Fri, 14 Dec 2007 21:27:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:bad3b2d6-3353-4df9-94ed-73df516a11dc</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2007/12/14/cross-browser-well-ie-6-firefox-2-and-safari-3-bookmarklet-script</link>
-        
-          <category>bookmarklet</category>
-        
-          <category>browser</category>
-        
-          <category>explorer</category>
-        
-          <category>firefox</category>
-        
-          <category>internet</category>
-        
-          <category>internet-explorer</category>
-        
-          <category>javascript</category>
-        
-          <category>safari</category>
         
       </item>
     
