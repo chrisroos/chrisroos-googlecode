@@ -4,6 +4,7 @@ require 'erb_renderer'
 require 'document_parser'
 require 'articles'
 require 'articles_view'
+require File.join(File.dirname(__FILE__), '..', 'lib', 'time')
 
 DATA_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'data')
 HTML_DIRECTORY = File.join(DATA_DIRECTORY, 'html_files')
