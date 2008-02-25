@@ -1,5 +1,6 @@
 task :build do
-  `zip -r delicious-permalinks.xpi src/*`
+  `cd src && zip -r delicious-permalinks.xpi *`
+  `mv src/delicious-permalinks.xpi .`
   hash = `md5 delicious-permalinks.xpi`[/= (.+)/, 1]
   installation_html_file = File.join(File.dirname(__FILE__), 'installation.html')
   installation_html = File.open(installation_html_file) { |f| f.read }
