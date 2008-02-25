@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>delicious-domain-tags@googlegroups.com</em:id>
+    <em:name>Del.icio.us Domain Tags</em:name>
+    <em:version>0.1</em:version>
+    <em:creator>Chris Roos</em:creator>
+    <em:description>Builds on the del.icio.us bookmarks extension to add a domain tag to each bookmark.</em:description>
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- firefox -->
+        <em:minVersion>2.0.0</em:minVersion>
+        <em:maxVersion>2.0.13</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+  </Description>
+</RDF>

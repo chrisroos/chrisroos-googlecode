@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<overlay id="deliciousDomainTagsAddBookMarkOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script src="chrome://delicious-domain-tags/content/deliciousDomainTags.js" type="application/x-javascript" />
+  <script src="chrome://delicious-domain-tags/content/init.js" type="application/x-javascript" />
+  
+</overlay>
