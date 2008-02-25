@@ -1,5 +1,6 @@
 task :build do
-  `zip -r delicious-domain-tags.xpi src/*`
+  `cd src && zip -r delicious-domain-tags.xpi *`
+  `cp src/delicious-domain-tags.xpi .`
   hash = `md5 delicious-domain-tags.xpi`[/= (.+)/, 1]
   installation_html_file = File.join(File.dirname(__FILE__), 'installation.html')
   installation_html = File.open(installation_html_file) { |f| f.read }
