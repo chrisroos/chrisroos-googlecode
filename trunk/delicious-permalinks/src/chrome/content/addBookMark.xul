@@ -4,7 +4,6 @@
 
   <script src="chrome://delicious-permalinks/content/md5.js" type="application/x-javascript" />
   <script src="chrome://delicious-permalinks/content/deliciousPermalinks.js" type="application/x-javascript" />
-  
-  <window id="dlg_AddYBookMark" onload="yAddBookMark.init(); deliciousPermalinks.addPermalinkTag()" />
+  <script src="chrome://delicious-permalinks/content/init.js" type="application/x-javascript" />
   
 </overlay>
