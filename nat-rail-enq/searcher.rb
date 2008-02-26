@@ -11,9 +11,10 @@ class Searcher
       [response['set-cookie'], response['Location']]
     end
     uri = URI.parse(location)
-    Net::HTTP.start(uri.host, uri.port) do |http|
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
       http.get(uri.request_uri, 'Cookie' => cookie)
     end
+    response.body
   end
   private
   def search_url
@@ -39,6 +40,3 @@ class Searcher
     }.to_a.collect { |key_and_value| key_and_value.join('=') }.join('&')
   end
 end
-
-searcher = Searcher.new('ramsgate', 'wae')
-File.open('blurgh1.html', 'w') { |f| f.puts(searcher.search_timetable) }
