@@ -33,6 +33,41 @@
           
             <div class="post">
               <h2>
+                <a href="/articles/2008/02/26/tagging-my-del-icio-us-bookmarks-with-the-domain-of-the-url-that-im-bookmarking">Tagging my del.icio.us bookmarks with the domain of the URL that I'm bookmarking</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Tue, 26 Feb 2008 08:49:00">
+                  Tue, 26 Feb 2008 08:49:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve created another <a href="http://www.mozilla.com/firefox">firefox</a> extension that builds on the <a href="http://del.icio.us">del.icio.us</a> <a href="https://addons.mozilla.org/en-US/firefox/addon/3615">extension</a>.  This one finds the domain of the <a href="http://en.wikipedia.org/wiki/Uniform_Resource_Locator"><span class="caps">URL</span></a> you&#8217;re bookmarking and adds it as a tag to your bookmark.  It&#8217;s basically just a copy of my <a href="http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension">del.icio.us permalinks extension</a></p>
+
+
+	<p>To install this extension head over to the <a href="http://groups.google.com/group/delicious-domain-tags">delicious domain tags google group</a> and visit the installation page (I don&#8217;t seem to be able to link directly to it for some reason).</p>
+
+
+	<p>I came across an interesting problem when trying to get both this and the del.icio.us permalinks extension working together.  Both of the extensions modify the onload attribute of the add bookmark dialog.  When I only had the del.icio.us permalinks extension I was hardcoding the onload attribute to call my function (deliciousPermalinks.addPermalinkTag()) and the original function (yAddBookMark.init()).  This approach fell down as soon as I had two extensions trying to modify the onload attribute: I didn&#8217;t know which extension would be loaded first and therefore one was always overwriting the other.  I&#8217;m sure there&#8217;s a nice way to do this but I hacked together a noddy initialisation script that finds the existing value of the onload attribute and adds to it with the relevant function.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">var yAddBookmarkDialog = document.getElementById('dlg_AddYBookMark');
+var yAddBookmarkOnload = yAddBookmarkDialog.getAttribute('onload');
+var onload = 'deliciousPermalinks.addPermalinkTag()';
+yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';'))</code></pre></div>
+
+	<p>I reference this script in my <a href="http://en.wikipedia.org/wiki/XUL">xul</a> file which causes it to be evaluated at (I guess) browser start time and the onload event to be modified correctly.</p>
+
+
+	<p>I&#8217;ve updated the del.icio.us permalinks extension too but I think you&#8217;ll need to remove and re-add it again from the <a href="http://groups.google.com/group/delicious-permalinks/files">installation page</a>.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
                 <a href="/articles/2008/02/18/what-ive-been-up-to-projects-and-ideas">What I've been up to - Projects and Ideas</a>
               </h2>
               <p class="auth">
@@ -562,82 +597,6 @@ RewriteRule ^(.*)index\.html$ $1 [R=301,L]</code></pre></div>
                   <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
                 
                   <a href="/articles/tag/url" rel="tag">url</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2008/01/14/searching-subversion-history">Searching subversion history</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Mon, 14 Jan 2008 09:59:00">
-                  Mon, 14 Jan 2008 09:59:00
-                </span>
-              </p>
-          
-              <p>I&#8217;ve often felt the need to search through our <a href="http://subversion.tigris.org/">subversion</a> repository to find, for example, when a method was removed/renamed.  As far as I&#8217;m aware there&#8217;s no easy way to do this using the standard subversion, or <a href="http://trac.edgewall.org/">trac</a>, tools.  A few days ago the need arose once more: I wanted to know when a particular class had stopped being used within our codebase.  It struck me that if I had a <a href="http://en.wikipedia.org/wiki/Diff">diff</a> file for each changeset that I&#8217;d be able to <a href="http://en.wikipedia.org/wiki/Grep">grep</a> for the change I was looking for.  I hacked together a script to produce a diff of each changeset (actually, as I knew when the class was added, I only produced a diff for a subset of the changesets) and was able to find the information I needed.  The script is pasted below and on <a href="http://chrisroos.googlecode.com/svn/trunk/svn_changesets/">google code</a>.  It assumes that you are running it from within an svn working direction.  It took a while to produce the diff files (I&#8217;m afraid I don&#8217;t have any stats) but the result was a really fast way of finding, otherwise hard to find, information.  I guess it&#8217;d be quite easy to automate the diff creation process so that you had an always up-to-date bunch of diff fies&#8230;</p>
-
-
-	<p>Is this useful, or have I missed something obvious in Subversion or Trac that does exactly this?</p>
-
-
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">fileutils</span><span class="punct">'</span>
-
-<span class="ident">stop_at_revision</span> <span class="punct">=</span> <span class="constant">ARGV</span><span class="punct">[</span><span class="number">0</span><span class="punct">]</span>
-<span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Please specify the revision that you wish to go back to as the only argument to this script.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">stop_at_revision</span>
-<span class="ident">stop_at_revision</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">stop_at_revision</span><span class="punct">)</span>
-
-<span class="keyword">class </span><span class="class">Time</span>
-  <span class="keyword">def </span><span class="method">friendly_format</span>
-    <span class="ident">strftime</span><span class="punct">(&quot;</span><span class="string">%Y-%m-%d %H:%M:%S</span><span class="punct">&quot;)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-
-<span class="keyword">def </span><span class="method">msg</span><span class="punct">(</span><span class="ident">message</span><span class="punct">)</span>
-  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{Time.now.friendly_format}</span> - <span class="expr">#{message}</span></span><span class="punct">&quot;</span>
-<span class="keyword">end</span>
-
-<span class="keyword">def </span><span class="method">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">,</span> <span class="ident">earlier_revision</span> <span class="punct">=</span> <span class="constant">nil</span><span class="punct">)</span>
-  <span class="keyword">if</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">empty?</span>
-    <span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">All finished.</span><span class="punct">&quot;</span>
-    <span class="ident">exit</span>
-  <span class="keyword">end</span>
-
-  <span class="ident">later_revision</span> <span class="punct">=</span> <span class="ident">earlier_revision</span> <span class="punct">?</span> <span class="ident">earlier_revision</span> <span class="punct">:</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">shift</span>
-  <span class="ident">earlier_revision</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">shift</span>
-
-  <span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">Creating diff from revision <span class="expr">#{earlier_revision}</span> to <span class="expr">#{later_revision}</span>.</span><span class="punct">&quot;</span>
-  `<span class="ident">svn</span> <span class="ident">diff</span> <span class="punct">-</span><span class="ident">r</span><span class="comment">#{earlier_revision}:#{later_revision} &gt; patches/#{later_revision}.patch`</span>
-  <span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">,</span> <span class="ident">earlier_revision</span><span class="punct">)</span>
-<span class="keyword">end</span>
-
-<span class="constant">FileUtils</span><span class="punct">.</span><span class="ident">mkdir_p</span> <span class="punct">'</span><span class="string">patches</span><span class="punct">'</span>
-
-<span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">Scanning output of svn log to find all revisions that we care about...</span><span class="punct">&quot;</span>
-<span class="ident">log</span> <span class="punct">=</span> `<span class="ident">svn</span> <span class="ident">log</span> <span class="punct">-</span><span class="ident">rHEAD</span><span class="punct">:</span><span class="comment">#{stop_at_revision} -q`</span>
-<span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">log</span><span class="punct">.</span><span class="ident">scan</span><span class="punct">(/</span><span class="regex">^r(<span class="escape">\d</span>+)</span><span class="punct">/)</span>
-<span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">flatten</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">revision</span><span class="punct">|</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">revision</span><span class="punct">)</span> <span class="punct">}</span>
-
-<span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">)</span></code></pre></div>
-            </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/script" rel="tag">script</a>, 
-                
-                  <a href="/articles/tag/search" rel="tag">search</a>, 
-                
-                  <a href="/articles/tag/subversion" rel="tag">subversion</a>, 
-                
-                  <a href="/articles/tag/svn" rel="tag">svn</a>, 
-                
-                  <a href="/articles/tag/trac" rel="tag">trac</a>, 
                 
               
             </p>
