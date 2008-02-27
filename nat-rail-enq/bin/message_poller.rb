@@ -1,15 +1,11 @@
 require 'yaml'
-require File.join(File.dirname(__FILE__), '..', 'lib', 'message_parser')
-require File.join(File.dirname(__FILE__), '..', 'lib', 'searcher')
-require File.join(File.dirname(__FILE__), '..', 'lib', 'parser')
-require File.join(File.dirname(__FILE__), '..', 'lib', 'twitter')
+require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
 
-MESSAGE_STORE = File.expand_path(File.join(File.dirname(__FILE__), '..', '/messages'))
-LAST_MESSAGE_PROCESSED = Dir["#{MESSAGE_STORE}/*"].collect { |f| File.basename(f).to_i }.sort.last
+last_message_processed = Dir["#{MESSAGE_STORE}/*"].collect { |f| File.basename(f).to_i }.sort.last
 
 twitter_credentials = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'config', 'twitter.yaml'))
 twitter = Twitter.new(twitter_credentials)
-direct_messages = twitter.get_direct_messages(LAST_MESSAGE_PROCESSED)
+direct_messages = twitter.get_direct_messages(last_message_processed)
 
 puts "#{Time.now} - Processing #{direct_messages.size} messages."
 
