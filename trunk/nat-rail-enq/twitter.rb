@@ -1,29 +1,38 @@
-require 'yaml'
+require 'net/http'
+require 'json'
 
-twitter_credentials = YAML.load_file(File.join(File.dirname(__FILE__), 'config', 'twitter.yaml'))
+class Twitter
+  Host = 'http://twitter.com'
+  def initialize(credentials)
+    @credentials = credentials
+  end
+  def get_direct_messages(since_message_id = nil)
+    path = 'direct_messages.json'
+    query_string = "since_id=#{since_message_id}" if since_message_id
+
+    uri = URI.parse [Host, '/', path, '?', query_string].join('')
+
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
+      request = Net::HTTP::Get.new(uri.request_uri)
+      request.basic_auth @credentials[:username], @credentials[:password]
+      http.request(request)
+    end
+    direct_messages = JSON.parse(response.body)
+  end
+end
 
 MESSAGE_STORE = File.expand_path(File.join(File.dirname(__FILE__), '/messages'))
 LAST_MESSAGE_PROCESSED = Dir["#{MESSAGE_STORE}/*"].collect { |f| File.basename(f).to_i }.sort.last
 
-require 'rubygems'
-require 'net/http'
-require 'json'
+require 'yaml'
 
-host = 'http://twitter.com'
-path = 'direct_messages.json'
-query_string = "since_id=#{LAST_MESSAGE_PROCESSED}" if LAST_MESSAGE_PROCESSED
+twitter_credentials = YAML.load_file(File.join(File.dirname(__FILE__), 'config', 'twitter.yaml'))
+twitter = Twitter.new(twitter_credentials)
+direct_messages = twitter.get_direct_messages(LAST_MESSAGE_PROCESSED)
 
-uri = URI.parse [host, '/', path, '?', query_string].join('')
-
-response = Net::HTTP.start(uri.host, uri.port) do |http|
-  request = Net::HTTP::Get.new(uri.request_uri)
-  request.basic_auth twitter_credentials[:username], twitter_credentials[:password]
-  http.request(request)
-end
-
-direct_messages = JSON.parse(response.body)
 puts "#{Time.now} - Processing #{direct_messages.size} messages."
 
+require 'rubygems'
 require File.join(File.dirname(__FILE__), 'message_parser')
 require File.join(File.dirname(__FILE__), 'searcher')
 require File.join(File.dirname(__FILE__), 'parser')
