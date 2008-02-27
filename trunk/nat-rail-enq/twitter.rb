@@ -32,7 +32,6 @@ direct_messages = twitter.get_direct_messages(LAST_MESSAGE_PROCESSED)
 
 puts "#{Time.now} - Processing #{direct_messages.size} messages."
 
-require 'rubygems'
 require File.join(File.dirname(__FILE__), 'message_parser')
 require File.join(File.dirname(__FILE__), 'searcher')
 require File.join(File.dirname(__FILE__), 'parser')
