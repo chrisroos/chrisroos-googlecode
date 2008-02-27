@@ -1,5 +1,6 @@
-USERNAME = 'natrailenq'
-PASSWORD = 'n4tr41l'
+require 'yaml'
+
+twitter_credentials = YAML.load_file(File.join(File.dirname(__FILE__), 'config', 'twitter.yaml'))
 
 MESSAGE_STORE = File.expand_path(File.join(File.dirname(__FILE__), '/messages'))
 LAST_MESSAGE_PROCESSED = Dir["#{MESSAGE_STORE}/*"].collect { |f| File.basename(f).to_i }.sort.last
@@ -16,7 +17,7 @@ uri = URI.parse [host, '/', path, '?', query_string].join('')
 
 response = Net::HTTP.start(uri.host, uri.port) do |http|
   request = Net::HTTP::Get.new(uri.request_uri)
-  request.basic_auth USERNAME, PASSWORD
+  request.basic_auth twitter_credentials[:username], twitter_credentials[:password]
   http.request(request)
 end
 
@@ -41,7 +42,7 @@ direct_messages.each do |direct_message|
   uri = URI.parse('http://twitter.com/direct_messages/new.json')
   response = Net::HTTP.start(uri.host, uri.port) do |http|
     request = Net::HTTP::Post.new(uri.request_uri)
-    request.basic_auth USERNAME, PASSWORD
+    request.basic_auth twitter_credentials[:username], twitter_credentials[:password]
     request.set_form_data('user' => reply_to, 'text' => train_times)
     http.request(request)
   end
