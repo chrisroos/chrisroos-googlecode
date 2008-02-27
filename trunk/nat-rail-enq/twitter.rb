@@ -19,6 +19,15 @@ class Twitter
     end
     direct_messages = JSON.parse(response.body)
   end
+  def reply_to(to, data)
+    uri = URI.parse [Host, 'direct_messages/new.json'].join('/')
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request.basic_auth @credentials[:username], @credentials[:password]
+      request.set_form_data('user' => to, 'text' => data)
+      http.request(request)
+    end
+  end
 end
 
 MESSAGE_STORE = File.expand_path(File.join(File.dirname(__FILE__), '/messages'))
@@ -47,13 +56,7 @@ direct_messages.each do |direct_message|
   parser = NatRailEnq::Parser.new(html)
   train_times = parser.parse_timetable
   
-  uri = URI.parse('http://twitter.com/direct_messages/new.json')
-  response = Net::HTTP.start(uri.host, uri.port) do |http|
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request.basic_auth twitter_credentials[:username], twitter_credentials[:password]
-    request.set_form_data('user' => reply_to, 'text' => train_times)
-    http.request(request)
-  end
+  response = twitter.reply_to(reply_to, train_times)
   
   File.open("#{MESSAGE_STORE}/#{msg_id}", 'a') { |f| f.puts [msg_content, reply_to, train_times, response.code, response.body].to_json }
 end
