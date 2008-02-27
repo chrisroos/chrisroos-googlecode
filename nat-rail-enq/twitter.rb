@@ -32,10 +32,10 @@ direct_messages.each do |direct_message|
   msg_content = direct_message['text']
   reply_to = direct_message['sender']['screen_name']
   
-  from, to = MessageParser.new(msg_content).parse
-  searcher = Searcher.new(from, to)
+  from, to = NatRailEnq::MessageParser.new(msg_content).parse
+  searcher = NatRailEnq::Searcher.new(from, to)
   html = searcher.search_timetable
-  parser = Parser.new(html)
+  parser = NatRailEnq::Parser.new(html)
   train_times = parser.parse_timetable
   
   uri = URI.parse('http://twitter.com/direct_messages/new.json')
