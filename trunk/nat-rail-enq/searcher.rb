@@ -1,8 +1,9 @@
 require 'net/http'
+require 'cgi'
 
 class Searcher
   def initialize(from, to)
-    @from, @to = from, to
+    @from, @to = CGI.escape(from), CGI.escape(to)
   end
   def search_timetable
     uri = URI.parse(search_url)
