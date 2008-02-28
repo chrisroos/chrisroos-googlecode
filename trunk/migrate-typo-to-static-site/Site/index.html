@@ -33,6 +33,35 @@
           
             <div class="post">
               <h2>
+                <a href="/articles/2008/02/28/national-rail-train-times-by-sms-again">National Rail Train Times by SMS (again)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 28 Feb 2008 17:45:00">
+                  Thu, 28 Feb 2008 17:45:00
+                </span>
+              </p>
+          
+              <p>A while back I <a href="http://blog.seagul.co.uk/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries">hacked</a> a simple <a href="http://en.wikipedia.org/wiki/Short_message_service"><span class="caps">SMS</span></a> interface onto the <a href="http://www.nationalrail.co.uk/">national rail enquiries</a> website.  It turned out to be more gimmicky than functional and I left it to die.  Over the past couple of weeks I&#8217;ve found myself, once again, in need of such a service and so spent a couple of hours last night reviving it: making it work, making it simpler and tidying the code.  The previous interface required the source station and destination station as well as the date and time of travel.  The format was very strict (requiring you to use the unique three digit station codes) and, as I found, overly complex (I could never remember what it was).  All I really wanted to do was specify the source and destination stations and get a list of the next few departures/arrival times.</p>
+
+
+	<p>The new interface is simply in the format of <span class="caps">SOURCE</span>_STATION to <span class="caps">DESTINATION</span>_STATION.  So, to find the next few trains from <a href="http://en.wikipedia.org/wiki/Ramsgate_railway_station">Ramsgate</a> to <a href="http://en.wikipedia.org/wiki/Waterloo_East_railway_station">London Waterloo East</a> we can send the following <a href="http://help.twitter.com/index.php?pg=kb.page&#38;id=15">direct message</a> to the <a href="http://twitter.com/natrailenq">natrailenq</a> user on <a href="http://twitter.com">twitter</a></p>
+
+
+<div class="typocode"><pre><code class="typocode_default">d natrailenq ramsgate to london waterloo east</code></pre></div>
+
+	<p>Although you can now use the full station name it will only, currently, work if you know the exact name of the station (so, waterloo east wouldn&#8217;t work in that above example, but london waterloo east will).  It will still work if you supply the three digit station code.</p>
+
+
+	<p>In order to use this service, you will need to create a twitter account, <a href="http://twitter.com/help/follow">follow</a> the natrailenq user and enable <span class="caps">SMS</span> notifications from natrailenq.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
                 <a href="/articles/2008/02/26/tagging-my-del-icio-us-bookmarks-with-the-domain-of-the-url-that-im-bookmarking">Tagging my del.icio.us bookmarks with the domain of the URL that I'm bookmarking</a>
               </h2>
               <p class="auth">
@@ -550,53 +579,6 @@ RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
                   <a href="/articles/tag/the-local-paper.co.uk" rel="tag">the-local-paper.co.uk</a>, 
                 
                   <a href="/articles/tag/tlpa" rel="tag">tlpa</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2008/01/14/fun-with-mod_rewrite-and-its-special-variables-request_uri-is_subreq-and-the_request">Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Mon, 14 Jan 2008 10:14:00">
-                  Mon, 14 Jan 2008 10:14:00
-                </span>
-              </p>
-          
-              <p>I wasted a few hours of my life, over the weekend, playing with <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a>.  I had, what I thought to be, a fairly simple problem to solve: I wanted requests for index.html within any subdirectory of my site to be <a href="http://en.wikipedia.org/wiki/URL_redirection">redirected</a> to the root of that subdirectory.  So, a request for example.com/subdir/index.html would be (301) redirected to example.com/subdir/.</p>
-
-
-	<p>I thought I could do this without using <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html#RewriteCond">RewriteCond</a>.  I tried something like this.</p>
-
-
-<div class="typocode"><pre><code class="typocode_default">RewriteRule ^(.*)index\.html$ $1 [R=301]</code></pre></div>
-
-	<p>I would expect this to match requests for URLs that end with index.html and redirect them to the <span class="caps">URL</span> minus index.html.  Although this correctly redirected /subdir/index.html to /subdir/ it would also attempt to redirect /subdir/ to /subdir/ resulting in an infinite loop.  It took me a very long time to work out, what I believe, is going on.  If I understand correctly, <a href="http://httpd.apache.org/">apache</a> will send every request (i.e. not just the request you issue from the browser) through mod_rewrite.  When we request /subdir/, apache will try, and fail, to match that <span class="caps">URL</span> with our regex (/subdir/ doesn&#8217;t end with index.html).  Internally, apache then &#8216;requests&#8217; index.html (since index.html is the <a href="http://httpd.apache.org/docs/1.3/mod/mod_dir.html#directoryindex">DirectoryIndex</a>).  This request matches our regex which results in apache sending the 301 redirect and us ending up with an infinite loop.  If I mis-understand what&#8217;s going on please feel free to correct me.</p>
-
-
-	<p>Based on this assumption, I figured I&#8217;d need to use RewriteCond to somehow ignore the internal request for index.html.  I initially added a condition that checked for the <span class="caps">REQUEST</span>_URI ending in index.html (<code>RewriteCond %{REQUEST_URI} index\.html$</code>).  This suffered the same problem as my initial attempt.  A little more reading led me to the IS_SUBREQ special variable.  I thought this might allow me to ignore the &#8216;internal request&#8217; for index.html (<code>RewriteCond %{IS_SUBREQ} false</code>) but I couldn&#8217;t get it to have any effect.</p>
-
-
-	<p>In searching for answers to this problem I kept seeing <span class="caps">THE</span>_REQUEST special variable used in the solution, although never an explanation as to why it&#8217;s used (specifically in preference to <span class="caps">REQUEST</span>_URI).  I ended up using <span class="caps">THE</span>_REQUEST in my solution (not technically my solution as I stole it from a site that I failed to bookmark) and it seems to work OK.</p>
-
-
-<div class="typocode"><pre><code class="typocode_default">RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
-RewriteRule ^(.*)index\.html$ $1 [R=301,L]</code></pre></div>
-
-	<p>I&#8217;m guessing that this is because <span class="caps">THE</span>_REQUEST contains the full details (the stuff that appears in the log file) of the request from the client (browser) and will therefore be empty for any &#8216;internal requests&#8217;.  Anyone know if my assumptions are correct?</p>
-            </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/apache" rel="tag">apache</a>, 
-                
-                  <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
-                
-                  <a href="/articles/tag/url" rel="tag">url</a>, 
                 
               
             </p>

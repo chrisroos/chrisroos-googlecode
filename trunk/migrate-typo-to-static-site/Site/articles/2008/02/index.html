@@ -33,6 +33,35 @@
           
             <div class="post">
               <h2>
+                <a href="/articles/2008/02/28/national-rail-train-times-by-sms-again">National Rail Train Times by SMS (again)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Thu, 28 Feb 2008 17:45:00">
+                  Thu, 28 Feb 2008 17:45:00
+                </span>
+              </p>
+          
+              <p>A while back I <a href="http://blog.seagul.co.uk/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries">hacked</a> a simple <a href="http://en.wikipedia.org/wiki/Short_message_service"><span class="caps">SMS</span></a> interface onto the <a href="http://www.nationalrail.co.uk/">national rail enquiries</a> website.  It turned out to be more gimmicky than functional and I left it to die.  Over the past couple of weeks I&#8217;ve found myself, once again, in need of such a service and so spent a couple of hours last night reviving it: making it work, making it simpler and tidying the code.  The previous interface required the source station and destination station as well as the date and time of travel.  The format was very strict (requiring you to use the unique three digit station codes) and, as I found, overly complex (I could never remember what it was).  All I really wanted to do was specify the source and destination stations and get a list of the next few departures/arrival times.</p>
+
+
+	<p>The new interface is simply in the format of <span class="caps">SOURCE</span>_STATION to <span class="caps">DESTINATION</span>_STATION.  So, to find the next few trains from <a href="http://en.wikipedia.org/wiki/Ramsgate_railway_station">Ramsgate</a> to <a href="http://en.wikipedia.org/wiki/Waterloo_East_railway_station">London Waterloo East</a> we can send the following <a href="http://help.twitter.com/index.php?pg=kb.page&#38;id=15">direct message</a> to the <a href="http://twitter.com/natrailenq">natrailenq</a> user on <a href="http://twitter.com">twitter</a></p>
+
+
+<div class="typocode"><pre><code class="typocode_default">d natrailenq ramsgate to london waterloo east</code></pre></div>
+
+	<p>Although you can now use the full station name it will only, currently, work if you know the exact name of the station (so, waterloo east wouldn&#8217;t work in that above example, but london waterloo east will).  It will still work if you supply the three digit station code.</p>
+
+
+	<p>In order to use this service, you will need to create a twitter account, <a href="http://twitter.com/help/follow">follow</a> the natrailenq user and enable <span class="caps">SMS</span> notifications from natrailenq.</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
                 <a href="/articles/2008/02/26/tagging-my-del-icio-us-bookmarks-with-the-domain-of-the-url-that-im-bookmarking">Tagging my del.icio.us bookmarks with the domain of the URL that I'm bookmarking</a>
               </h2>
               <p class="auth">
