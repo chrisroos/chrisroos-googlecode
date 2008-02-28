@@ -10,6 +10,28 @@
     <description></description>
     
       <item>
+        <title>National Rail Train Times by SMS (again)</title>
+        <description>&lt;p&gt;A while back I &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries&quot;&gt;hacked&lt;/a&gt; a simple &lt;a href=&quot;http://en.wikipedia.org/wiki/Short_message_service&quot;&gt;&lt;span class=&quot;caps&quot;&gt;SMS&lt;/span&gt;&lt;/a&gt; interface onto the &lt;a href=&quot;http://www.nationalrail.co.uk/&quot;&gt;national rail enquiries&lt;/a&gt; website.  It turned out to be more gimmicky than functional and I left it to die.  Over the past couple of weeks I&amp;#8217;ve found myself, once again, in need of such a service and so spent a couple of hours last night reviving it: making it work, making it simpler and tidying the code.  The previous interface required the source station and destination station as well as the date and time of travel.  The format was very strict (requiring you to use the unique three digit station codes) and, as I found, overly complex (I could never remember what it was).  All I really wanted to do was specify the source and destination stations and get a list of the next few departures/arrival times.&lt;/p&gt;
+
+
+	&lt;p&gt;The new interface is simply in the format of &lt;span class=&quot;caps&quot;&gt;SOURCE&lt;/span&gt;_STATION to &lt;span class=&quot;caps&quot;&gt;DESTINATION&lt;/span&gt;_STATION.  So, to find the next few trains from &lt;a href=&quot;http://en.wikipedia.org/wiki/Ramsgate_railway_station&quot;&gt;Ramsgate&lt;/a&gt; to &lt;a href=&quot;http://en.wikipedia.org/wiki/Waterloo_East_railway_station&quot;&gt;London Waterloo East&lt;/a&gt; we can send the following &lt;a href=&quot;http://help.twitter.com/index.php?pg=kb.page&amp;#38;id=15&quot;&gt;direct message&lt;/a&gt; to the &lt;a href=&quot;http://twitter.com/natrailenq&quot;&gt;natrailenq&lt;/a&gt; user on &lt;a href=&quot;http://twitter.com&quot;&gt;twitter&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;d natrailenq ramsgate to london waterloo east&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+	&lt;p&gt;Although you can now use the full station name it will only, currently, work if you know the exact name of the station (so, waterloo east wouldn&amp;#8217;t work in that above example, but london waterloo east will).  It will still work if you supply the three digit station code.&lt;/p&gt;
+
+
+	&lt;p&gt;In order to use this service, you will need to create a twitter account, &lt;a href=&quot;http://twitter.com/help/follow&quot;&gt;follow&lt;/a&gt; the natrailenq user and enable &lt;span class=&quot;caps&quot;&gt;SMS&lt;/span&gt; notifications from natrailenq.&lt;/p&gt;</description>
+
+        <pubDate>Thu, 28 Feb 2008 17:45:00 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:6f82d1cd-59c4-414f-8b35-a3a1d5160e3e</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/02/28/national-rail-train-times-by-sms-again</link>
+        
+      </item>
+    
+      <item>
         <title>Tagging my del.icio.us bookmarks with the domain of the URL that I'm bookmarking</title>
         <description>&lt;p&gt;I&amp;#8217;ve created another &lt;a href=&quot;http://www.mozilla.com/firefox&quot;&gt;firefox&lt;/a&gt; extension that builds on the &lt;a href=&quot;http://del.icio.us&quot;&gt;del.icio.us&lt;/a&gt; &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/3615&quot;&gt;extension&lt;/a&gt;.  This one finds the domain of the &lt;a href=&quot;http://en.wikipedia.org/wiki/Uniform_Resource_Locator&quot;&gt;&lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt;&lt;/a&gt; you&amp;#8217;re bookmarking and adds it as a tag to your bookmark.  It&amp;#8217;s basically just a copy of my &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension&quot;&gt;del.icio.us permalinks extension&lt;/a&gt;&lt;/p&gt;
 
@@ -454,43 +476,6 @@ RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
           <category>the-local-paper.co.uk</category>
         
           <category>tlpa</category>
-        
-      </item>
-    
-      <item>
-        <title>Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)</title>
-        <description>&lt;p&gt;I wasted a few hours of my life, over the weekend, playing with &lt;a href=&quot;http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html&quot;&gt;mod_rewrite&lt;/a&gt;.  I had, what I thought to be, a fairly simple problem to solve: I wanted requests for index.html within any subdirectory of my site to be &lt;a href=&quot;http://en.wikipedia.org/wiki/URL_redirection&quot;&gt;redirected&lt;/a&gt; to the root of that subdirectory.  So, a request for example.com/subdir/index.html would be (301) redirected to example.com/subdir/.&lt;/p&gt;
-
-
-	&lt;p&gt;I thought I could do this without using &lt;a href=&quot;http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html#RewriteCond&quot;&gt;RewriteCond&lt;/a&gt;.  I tried something like this.&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;RewriteRule ^(.*)index\.html$ $1 [R=301]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;I would expect this to match requests for URLs that end with index.html and redirect them to the &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; minus index.html.  Although this correctly redirected /subdir/index.html to /subdir/ it would also attempt to redirect /subdir/ to /subdir/ resulting in an infinite loop.  It took me a very long time to work out, what I believe, is going on.  If I understand correctly, &lt;a href=&quot;http://httpd.apache.org/&quot;&gt;apache&lt;/a&gt; will send every request (i.e. not just the request you issue from the browser) through mod_rewrite.  When we request /subdir/, apache will try, and fail, to match that &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; with our regex (/subdir/ doesn&amp;#8217;t end with index.html).  Internally, apache then &amp;#8216;requests&amp;#8217; index.html (since index.html is the &lt;a href=&quot;http://httpd.apache.org/docs/1.3/mod/mod_dir.html#directoryindex&quot;&gt;DirectoryIndex&lt;/a&gt;).  This request matches our regex which results in apache sending the 301 redirect and us ending up with an infinite loop.  If I mis-understand what&amp;#8217;s going on please feel free to correct me.&lt;/p&gt;
-
-
-	&lt;p&gt;Based on this assumption, I figured I&amp;#8217;d need to use RewriteCond to somehow ignore the internal request for index.html.  I initially added a condition that checked for the &lt;span class=&quot;caps&quot;&gt;REQUEST&lt;/span&gt;_URI ending in index.html (&lt;code&gt;RewriteCond %{REQUEST_URI} index\.html$&lt;/code&gt;).  This suffered the same problem as my initial attempt.  A little more reading led me to the IS_SUBREQ special variable.  I thought this might allow me to ignore the &amp;#8216;internal request&amp;#8217; for index.html (&lt;code&gt;RewriteCond %{IS_SUBREQ} false&lt;/code&gt;) but I couldn&amp;#8217;t get it to have any effect.&lt;/p&gt;
-
-
-	&lt;p&gt;In searching for answers to this problem I kept seeing &lt;span class=&quot;caps&quot;&gt;THE&lt;/span&gt;_REQUEST special variable used in the solution, although never an explanation as to why it&amp;#8217;s used (specifically in preference to &lt;span class=&quot;caps&quot;&gt;REQUEST&lt;/span&gt;_URI).  I ended up using &lt;span class=&quot;caps&quot;&gt;THE&lt;/span&gt;_REQUEST in my solution (not technically my solution as I stole it from a site that I failed to bookmark) and it seems to work OK.&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
-RewriteRule ^(.*)index\.html$ $1 [R=301,L]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;I&amp;#8217;m guessing that this is because &lt;span class=&quot;caps&quot;&gt;THE&lt;/span&gt;_REQUEST contains the full details (the stuff that appears in the log file) of the request from the client (browser) and will therefore be empty for any &amp;#8216;internal requests&amp;#8217;.  Anyone know if my assumptions are correct?&lt;/p&gt;</description>
-
-        <pubDate>Mon, 14 Jan 2008 10:14:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:0d80acad-6b51-42bb-b456-1168c8b59302</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/01/14/fun-with-mod_rewrite-and-its-special-variables-request_uri-is_subreq-and-the_request</link>
-        
-          <category>apache</category>
-        
-          <category>mod_rewrite</category>
-        
-          <category>url</category>
         
       </item>
     
