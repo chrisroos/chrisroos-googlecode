@@ -1,0 +1,9 @@
+task :build do
+  `cd src && zip -r delicious-trackbacks.xpi *`
+  `mv src/delicious-trackbacks.xpi .`
+  hash = `md5 delicious-trackbacks.xpi`[/= (.+)/, 1]
+  installation_html_file = File.join(File.dirname(__FILE__), 'installation.html')
+  installation_html = File.open(installation_html_file) { |f| f.read }
+  installation_html.gsub!(/'md5:(.*)'/, "'md5:#{hash}'")
+  File.open(installation_html_file, 'w') { |f| f.puts(installation_html) }
+end
