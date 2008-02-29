@@ -18,6 +18,7 @@ class TrackbackHandler < Mongrel::HttpHandler
 
     data = request.body.read.split('&').inject({}) do |hash, key_and_value|
       key, value = key_and_value.split('=')
+      value = '' if value.nil? # URI.unescape will fail if value is nil (if we've left out the excert, for example)
       hash[key] = URI.unescape(value)
       hash
     end
