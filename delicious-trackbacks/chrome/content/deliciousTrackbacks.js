@@ -25,8 +25,8 @@ var deliciousTrackbacks = {
       var trackbackAnchor = htmlDocument.evaluate('//a[@rel="trackback"]', htmlDocument, null, XPathResult.ANY_TYPE, null).iterateNext()
       return trackbackAnchor;
     } catch(e) {
-      alert('error');
-      alert(e);
+      // alert('error');
+      // alert(e);
     }
   },
   getUsername : function() {
@@ -49,7 +49,7 @@ var deliciousTrackbacks = {
     try {
       var permalink = 'http://del.icio.us/' + this.getUsername() + '/' + this.getUrlTag();
     } catch(e) {
-      alert(e);
+      // alert(e);
     }
     return permalink;
   },
@@ -61,8 +61,8 @@ var deliciousTrackbacks = {
       httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
       httpRequest.send('url=' + encodeURIComponent(originatingUrl) + '&title=' + encodeURIComponent(title) + '&excerpt=' + encodeURIComponent(note));
     } catch(e) {
-      alert('error');
-      alert(e);
+      // alert('error');
+      // alert(e);
     }
   },
   getTrackbackResponse : function() {
@@ -70,8 +70,8 @@ var deliciousTrackbacks = {
       // alert(httpRequest.status);
       // alert(httpRequest.responseText);
     } catch(e) {
-      alert('error in response');
-      alert(e);
+      // alert('error in response');
+      // alert(e);
     }
   }
 }
