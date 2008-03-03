@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= h(subject) %></title>
+  </head>
+  <body>
+    <h1 class="subject"><%= h(subject) %></h1>
+    <dl>
+      <dt>Sender</dt>
+      <dd class="sender"><%= h(sender) %></dd>
+      <dt>Received</dt>
+      <dd class="received"><%= h(received) %></dd>
+      <dt>Recipient</dt>
+      <dd class="recipient"><%= h(recipient) %></dd>
+    </dl>
+    <pre class="body"><%= h(body) %></pre>
+  </body>
+</html>
