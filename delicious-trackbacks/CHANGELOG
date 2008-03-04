@@ -1,0 +1,8 @@
+0.2 (4th Mar 2008)
+-------------------
+* Record the success/failure of sending a trackback - this relies on some crappy regex parsing of the response we get from the trackback service and that we send the trackback request synchronously.
+* Only send a trackback once per bookmark (by checking for the dtb-sent tag).
+
+0.1
+---
+* Initial version

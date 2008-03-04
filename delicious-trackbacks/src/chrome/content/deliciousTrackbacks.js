@@ -2,7 +2,9 @@ var httpRequest; // Didn't work as a member of the deliciousTrackbacks object
 
 var deliciousTrackbacks = {
   saveBookMarkAndTrackback : function() {
-    this.sendTrackback();
+    if (!this.trackbackPreviouslySent()) {
+      this.sendTrackback();
+    }
     yAddBookMark.saveBookMark();
   },
   sendTrackback : function() {
@@ -57,7 +59,7 @@ var deliciousTrackbacks = {
     try {
       httpRequest = new XMLHttpRequest();
       httpRequest.onload = this.getTrackbackResponse; // Using this instead of onreadystatechange means we don't have to wait for a readyState of 4 (at least that's what I think's happening)
-      httpRequest.open("POST", trackbackUrl, true);
+      httpRequest.open("POST", trackbackUrl, false); // false = NOT asynchronous so that we can record the success/failure of the send
       httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
       httpRequest.send('url=' + encodeURIComponent(originatingUrl) + '&title=' + encodeURIComponent(title) + '&excerpt=' + encodeURIComponent(note));
     } catch(e) {
@@ -67,11 +69,29 @@ var deliciousTrackbacks = {
   },
   getTrackbackResponse : function() {
     try {
-      // alert(httpRequest.status);
-      // alert(httpRequest.responseText);
+      yAddBookMark._addToUserTags('dtb-sent');
+      if (httpRequest.status == 200) { 
+        var error = httpRequest.responseText.match(/<error>(\d)<\/error>/)[1] // crappy parsing of the trackback response
+        if (error == '0') {
+          yAddBookMark._addToUserTags('dtb-success');
+        } else {
+          yAddBookMark._addToUserTags('dtb-failure');
+        }
+      } else {
+        yAddBookMark._addToUserTags('dtb-failure');
+      }
     } catch(e) {
-      // alert('error in response');
-      // alert(e);
+      alert(e)
+      // yAddBookMark._addToUserTags('dtb-failed');
     }
-  }
+  },
+  trackbackPreviouslySent : function() {
+    var post = window.arguments[0];
+    for (var i = 0; i < post.tags.length; ++i) {
+      if (post.tags[i] == 'dtb-sent') {
+        return true;
+      }
+    }
+    return false;
+  },
 }
