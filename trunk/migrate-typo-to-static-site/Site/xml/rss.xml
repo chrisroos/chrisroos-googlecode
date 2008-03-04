@@ -10,6 +10,37 @@
     <description></description>
     
       <item>
+        <title>Version 0.2 of the del.icio.us trackback extension</title>
+        <description>&lt;p&gt;I finally got round to compiling the &lt;a href=&quot;http://blog.seagul.co.uk/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us&quot;&gt;del.icio.us trackback extension&lt;/a&gt; I wrote about a while back.&lt;/p&gt;
+
+
+	&lt;p&gt;You can install it from the installation.html&lt;sup&gt;&lt;a href=&quot;#fn1&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; page on the &lt;a href=&quot;http://groups.google.com/group/delicious-trackbacks&quot;&gt;del.icio.us trackbacks google group&lt;/a&gt;.  Feel free to use that group to post any questions you have too.&lt;/p&gt;
+
+
+	&lt;p&gt;Current features:&lt;/p&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Scans the html of the page you&amp;#8217;re bookmarking looking for a link (anchor) with a rel attribute whose value is trackback.&lt;/li&gt;
+		&lt;li&gt;Sends a request to the trackback &lt;span class=&quot;caps&quot;&gt;URI&lt;/span&gt; if it was found.&lt;/li&gt;
+		&lt;li&gt;Records (by adding the &amp;#8216;dtb-sent&amp;#8217; tag) the sending of the trackback so that we can avoid sending multiple trackbacks to the same site.&lt;/li&gt;
+		&lt;li&gt;Records the success (&amp;#8216;dtb-success&amp;#8217; tag) or failure (&amp;#8216;dtb-failure&amp;#8217;) of the trackback request.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;p&gt;That&amp;#8217;s all for now.&lt;/p&gt;
+
+
+	&lt;p id=&quot;fn1&quot;&gt;&lt;sup&gt;1&lt;/sup&gt; I don&amp;#8217;t appear to be able to link directly to that page which is a bit odd.&lt;/p&gt;</description>
+
+        <pubDate>Tue, 04 Mar 2008 09:30:00 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:d1b7bcd5-eed9-410e-8d2f-3232aca73d04</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension</link>
+        
+      </item>
+    
+      <item>
         <title>National Rail Train Times by SMS (again)</title>
         <description>&lt;p&gt;A while back I &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries&quot;&gt;hacked&lt;/a&gt; a simple &lt;a href=&quot;http://en.wikipedia.org/wiki/Short_message_service&quot;&gt;&lt;span class=&quot;caps&quot;&gt;SMS&lt;/span&gt;&lt;/a&gt; interface onto the &lt;a href=&quot;http://www.nationalrail.co.uk/&quot;&gt;national rail enquiries&lt;/a&gt; website.  It turned out to be more gimmicky than functional and I left it to die.  Over the past couple of weeks I&amp;#8217;ve found myself, once again, in need of such a service and so spent a couple of hours last night reviving it: making it work, making it simpler and tidying the code.  The previous interface required the source station and destination station as well as the date and time of travel.  The format was very strict (requiring you to use the unique three digit station codes) and, as I found, overly complex (I could never remember what it was).  All I really wanted to do was specify the source and destination stations and get a list of the next few departures/arrival times.&lt;/p&gt;
 
@@ -404,78 +435,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
           <category>ruby</category>
         
           <category>test</category>
-        
-      </item>
-    
-      <item>
-        <title>Chris 1, mod_rewrite 0 (muhahahaha)</title>
-        <description>&lt;p&gt;I&amp;#8217;ve now spent quite a considerable amount of time trying to get &lt;a href=&quot;http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html&quot;&gt;mod_rewrite&lt;/a&gt; to do my bidding and I think I might just have cracked it&lt;sup&gt;&lt;a href=&quot;#fn1&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-
-
-	&lt;h3&gt;The requirements&lt;/h3&gt;
-
-
-	&lt;ul&gt;
-	&lt;li&gt;Permanently redirect (301) and requests for www.the-local-paper.co.uk to the-local-paper.co.uk&lt;/li&gt;
-		&lt;li&gt;Permanently redirect any requests for &lt;code&gt;/index.html&lt;/code&gt; to &lt;code&gt;/&lt;/code&gt;&lt;/li&gt;
-		&lt;li&gt;Permanently redirect any requests for &lt;code&gt;/&amp;lt;article&amp;gt;.html&lt;/code&gt; to &lt;code&gt;/&amp;lt;article&amp;gt;&lt;/code&gt;&lt;/li&gt;
-		&lt;li&gt;Render the corresponding &lt;code&gt;/&amp;lt;article&amp;gt;.html&lt;/code&gt; for any requests for &lt;code&gt;/&amp;lt;article&amp;gt;&lt;/code&gt;&lt;/li&gt;
-		&lt;li&gt;Hide .svn directories as the entire site is checked out from &lt;a href=&quot;http://subversion.tigris.org/&quot;&gt;subversion&lt;/a&gt;&lt;/li&gt;
-	&lt;/ul&gt;
-
-
-	&lt;h3&gt;The mod_rewrite rules&lt;/h3&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;# Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
-RewriteRule ^(.*)index\.html$ $1 [R=301,L]
-
-# Permanently (301) redirect /&amp;lt;article&amp;gt;.html to /&amp;lt;article&amp;gt;, ensuring that we don't try to redirect index.html to index
-RewriteCond %{THE_REQUEST} .+/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+\.html\ HTTP/
-RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
-RewriteRule ^(.*)\.html$ $1 [R=301,L]
-
-# If we receive a request for an article without a .html extension then let's rewrite internally to render the file with the .html extension
-RewriteCond %{REQUEST_URI} .+/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+$
-RewriteCond %{REQUEST_URI} !\.html$
-RewriteRule ^(.*)$ $1.html [L]
-
-# Permanently (301) remove www.
-RewriteCond %{HTTP_HOST} ^www.the-local-paper.co.uk$ [NC]
-RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
-
-# Block access to the .svn directories
-&amp;lt;DirectoryMatch &amp;quot;^/.*/\.svn/&amp;quot;&amp;gt;
-  ErrorDocument 403 /404.html
-  Order allow,deny
-  Deny from all
-  Satisfy All
-&amp;lt;/DirectoryMatch&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;I figured that there&amp;#8217;s a chance some of these rules might come in useful to someone else.&lt;/p&gt;
-
-
-	&lt;p id=&quot;fn1&quot;&gt;&lt;sup&gt;1&lt;/sup&gt; This has all been for the &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers&quot;&gt;local paper idea&lt;/a&gt; I mentioned a while back.  I&amp;#8217;ve actually &lt;a href=&quot;http://twitter.com/chrisroos/statuses/570937102&quot;&gt;started&lt;/a&gt; to get some content up on &lt;a href=&quot;http://the-local-paper.co.uk&quot;&gt;the-local-paper.co.uk&lt;/a&gt; if you want to play along and see how it&amp;#8217;s shaping up..&lt;/p&gt;</description>
-
-        <pubDate>Wed, 16 Jan 2008 09:08:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:d8b747ec-367b-4ae3-abdc-8acabeef6d17</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha</link>
-        
-          <category>apache</category>
-        
-          <category>local</category>
-        
-          <category>mod_rewrite</category>
-        
-          <category>paper.co.uk</category>
-        
-          <category>the</category>
-        
-          <category>the-local-paper.co.uk</category>
-        
-          <category>tlpa</category>
         
       </item>
     
