@@ -1,7 +1,8 @@
+* Don't send trackbacks when we've marked the post as private
+
 == To get to a compiled state ==
 * Send the title as part of the trackback
 * Populate trackback text with trackback url
-* Remove trackback textfield and the option to send (i.e. always send).
 * Make sure it doesn't break terribly when no url-tag is found.
 
 == Nice to have ==
@@ -9,9 +10,9 @@
 * yDebug debugging statements (download yDebug reference)
 * Preferences for default 'send trackback'
 * Add pingback support
-* Tidy up xul display
 * Support for multiple trackback urls?? (could/would this ever happen?)
 * Support for user-entered trackback url
+* Parse rdf trackback stuff
 
 == Permalinks Project ==
 * Add urlTag to post object
