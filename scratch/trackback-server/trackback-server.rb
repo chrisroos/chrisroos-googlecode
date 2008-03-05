@@ -1,20 +1,17 @@
 require 'rubygems'
 require 'mongrel'
+require 'lib/trackback_http_request'
 
 class TrackbackHandler < Mongrel::HttpHandler
   def process(request, response)
     # request should be POST
     # body of request should look like..
     # e.g. title=Foo+Bar&url=http://www.bar.com/&excerpt=My+Excerpt&blog_name=Foo
-    http_method = request.params['REQUEST_METHOD']
-    unless http_method == 'POST'
-      error = "You must use HTTP POST, you used: #{http_method.inspect}"
-    end
     
-    content_type = request.params['HTTP_CONTENT_TYPE']
-    unless content_type =~ /^application\/x-www-form-urlencoded/
-      error = "You must specify the Content-Type header as application/x-www-form-urlencoded.  You specified: #{content_type.inspect}"
-    end
+    trackback_http_request = TrackbackHttpRequest.new(request)
+    trackback_http_request.valid?
+    error = trackback_http_request.errors.join(', ')
+    error = nil if error == '' # Crappy at the moment because we use if !error further down this script
 
     data = request.body.read.split('&').inject({}) do |hash, key_and_value|
       key, value = key_and_value.split('=')
