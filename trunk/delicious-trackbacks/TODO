@@ -1,4 +1,5 @@
 * Don't send trackbacks when we've marked the post as private
+* Send the blog_name - make it something like "chrisjroos' del.icio.us bookmarks"
 
 == To get to a compiled state ==
 * Send the title as part of the trackback
