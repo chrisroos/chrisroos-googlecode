@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>delicious-domain-tags@googlegroups.com</em:id>
     <em:name>Del.icio.us Domain Tags</em:name>
-    <em:version>0.1</em:version>
+    <em:version>0.2</em:version>
     <em:creator>Chris Roos</em:creator>
     <em:description>Builds on the del.icio.us bookmarks extension to add a domain tag to each bookmark.</em:description>
     <em:targetApplication>
