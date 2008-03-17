@@ -1,0 +1,7 @@
+0.2 (17th Mar 2008)
+-------------------
+* Strip www. from domain tags.  It's often possible to use the same domain with or without www and I want to know that bookmarks for www.techcrunch.com are the same as bookmarks for techcrunch.com.
+
+0.1
+---
+* Initial version
