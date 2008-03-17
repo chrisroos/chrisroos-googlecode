@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>delicious-trackbacks@googlegroups.com</em:id>
     <em:name>Del.icio.us Trackbacks</em:name>
-    <em:version>0.2</em:version>
+    <em:version>0.3</em:version>
     <em:creator>Chris Roos</em:creator>
     <em:description>An extension of the del.icio.us extension that, in combination with the del.icio.us permalinks extension, allows you to send trackbacks to the sites you're bookmarking.</em:description>
     <em:targetApplication>

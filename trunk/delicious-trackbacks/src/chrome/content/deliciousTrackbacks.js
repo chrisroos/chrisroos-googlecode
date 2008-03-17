@@ -2,7 +2,8 @@ var httpRequest; // Didn't work as a member of the deliciousTrackbacks object
 
 var deliciousTrackbacks = {
   saveBookMarkAndTrackback : function() {
-    if (!this.trackbackPreviouslySent()) {
+    var privateBookmark = document.getElementById('cb_noShare').checked;
+    if (!this.trackbackPreviouslySent() && !privateBookmark) {
       this.sendTrackback();
     }
     yAddBookMark.saveBookMark();
@@ -61,7 +62,8 @@ var deliciousTrackbacks = {
       httpRequest.onload = this.getTrackbackResponse; // Using this instead of onreadystatechange means we don't have to wait for a readyState of 4 (at least that's what I think's happening)
       httpRequest.open("POST", trackbackUrl, false); // false = NOT asynchronous so that we can record the success/failure of the send
       httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-      httpRequest.send('url=' + encodeURIComponent(originatingUrl) + '&title=' + encodeURIComponent(title) + '&excerpt=' + encodeURIComponent(note));
+      var blogName = 'del.icio.us bookmarks for ' + this.getUsername();
+      httpRequest.send('url=' + encodeURIComponent(originatingUrl) + '&title=' + encodeURIComponent(title) + '&excerpt=' + encodeURIComponent(note) + '&blog_name=' + encodeURIComponent(blogName));
     } catch(e) {
       // alert('error');
       // alert(e);

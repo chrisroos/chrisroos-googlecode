@@ -1,3 +1,8 @@
+0.3 (17th Mar 2008)
+-------------------
+* Don't attempt to send trackbacks if we mark the bookmark as private: If the bookmark is private then the permalink that we send as part of the trackback won't be resolvable (at least I don't think it is!)
+* Send the blog_name (currently 'del.icio.us bookmarks for USERNAME') as part of the trackback.
+
 0.2 (4th Mar 2008)
 -------------------
 * Record the success/failure of sending a trackback - this relies on some crappy regex parsing of the response we get from the trackback service and that we send the trackback request synchronously.
