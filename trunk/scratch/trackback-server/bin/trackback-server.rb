@@ -1,21 +1,23 @@
 require 'rubygems'
 require 'mongrel'
-require 'lib/trackback_http_request'
-require 'lib/trackback_renderer'
-require 'lib/trackbacks'
-require 'lib/erb_renderer'
+require File.join(File.dirname(__FILE__), '..', 'lib', 'trackback_http_request')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'trackback_renderer')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'trackbacks')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'erb_renderer')
 
-TRACKBACK_FILE = File.join(File.dirname(__FILE__), 'data', 'trackbacks.yml')
+TRACKBACK_FILE = File.join(File.dirname(__FILE__), '..', 'data', 'trackbacks.yml')
 unless File.exists?(TRACKBACK_FILE)
   File.open(TRACKBACK_FILE, 'w') { |f| f.puts [].to_yaml }
 end
+
+TRACKBACKS_TEMPLATE = File.join(File.dirname(__FILE__), '..', 'trackbacks.html.erb')
 
 class TrackbackListHandler < Mongrel::HttpHandler
   def process(request, response)
     trackbacks = Trackbacks.from_yaml_file(TRACKBACK_FILE)
     response.start do |head, out|
       head['Content-Type'] = 'text/html'
-      ErbRenderer.new('trackbacks.html.erb', binding).render(out)
+      ErbRenderer.new(TRACKBACKS_TEMPLATE, binding).render(out)
     end
   end
 end
