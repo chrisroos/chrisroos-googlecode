@@ -24,29 +24,10 @@ end
 
 class TrackbackHandler < Mongrel::HttpHandler
   def process(request, response)
-    # request should be POST
-    # body of request should look like..
-    # e.g. title=Foo+Bar&url=http://www.bar.com/&excerpt=My+Excerpt&blog_name=Foo
-    
     trackback_http_request = TrackbackHttpRequest.new(request)
-    trackback_http_request.valid?
-    error = trackback_http_request.errors.join(', ')
-    error = nil if error == '' # Crappy at the moment because we use if !error further down this script
 
-    data = request.body.read.split('&').inject({}) do |hash, key_and_value|
-      key, value = key_and_value.split('=')
-      value = '' if value.nil? # URI.unescape will fail if value is nil (if we've left out the excert, for example)
-      hash[key] = URI.unescape(value)
-      hash
-    end
-    
-    unless data['url']
-      error = "You must send the URL of your post that mentions this post."
-    end
-    
-    data['received_at'] = Time.now
-
-    if !error # good
+    if trackback_http_request.valid?
+      data = trackback_http_request.trackback.to_hash
       trackbacks = Trackbacks.from_yaml_file(TRACKBACK_FILE)
       trackbacks.add(data)
       trackbacks.to_yaml_file(TRACKBACK_FILE)
@@ -62,7 +43,7 @@ EndXml
 <?xml version="1.0" encoding="utf-8"?> 
 <response> 
   <error>1</error> 
-  <message>#{error}</message> 
+  <message>#{trackback_http_request.errors.join(', ')}</message> 
 </response>
       EndXml
     end
