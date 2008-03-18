@@ -10,7 +10,7 @@ unless File.exists?(TRACKBACK_FILE)
   File.open(TRACKBACK_FILE, 'w') { |f| f.puts [].to_yaml }
 end
 
-TRACKBACKS_TEMPLATE = File.join(File.dirname(__FILE__), '..', 'trackbacks.html.erb')
+TRACKBACKS_TEMPLATE = File.join(File.dirname(__FILE__), '..', 'templates', 'trackbacks.html.erb')
 
 class TrackbackListHandler < Mongrel::HttpHandler
   def process(request, response)
