@@ -1,3 +1,7 @@
 * Create a Trackback object that can create itself from the http submitted data, stores the received_at and handles other logic currently in the mongrel handler itself.
 
 * Tidy up the display of the trackbacks - it should look ok even if we receive only the REQUIRED data.
+
+* Follow more 'rails-like' directory structure
+
+* Create an AR type interface with a file store.  So, rather than reading existing trackbacks from yaml and then storing an additional one, we could just do Trackback.create (or similar)
