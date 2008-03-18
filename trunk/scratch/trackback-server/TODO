@@ -1,0 +1,3 @@
+* Create a Trackback object that can create itself from the http submitted data, stores the received_at and handles other logic currently in the mongrel handler itself.
+
+* Tidy up the display of the trackbacks - it should look ok even if we receive only the REQUIRED data.
