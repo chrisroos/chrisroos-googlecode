@@ -5,7 +5,7 @@ require 'lib/trackback_renderer'
 require 'lib/trackbacks'
 require 'lib/erb_renderer'
 
-TRACKBACK_FILE = File.join(File.dirname(__FILE__), 'trackbacks.yml')
+TRACKBACK_FILE = File.join(File.dirname(__FILE__), 'data', 'trackbacks.yml')
 unless File.exists?(TRACKBACK_FILE)
   File.open(TRACKBACK_FILE, 'w') { |f| f.puts [].to_yaml }
 end
