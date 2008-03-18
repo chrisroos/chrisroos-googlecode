@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+  <head>
+    <title>Test Trackback Page</title>
+  </head>
+  <body>
+    <h1>Test Trackback Page</h1>
+    <p><a href="/trackback" rel="trackback">Trackback from your own site</a></p>
+    <h2>Trackbacks</h2>
+    <% trackbacks.each do |trackback| %>
+      <% rendered_trackback = TrackbackRenderer.new(trackback) %>
+      <div class="trackback">
+        By <a class="trackbackPermalink" href="<%= trackback['url'] %>"><span class="trackbackBlogName"><%= trackback['blog_name'] %></span></a>
+        <abbr class="trackbackReceivedAt" title="<%= trackback['received_at'] %>">
+          on <%= rendered_trackback.received_on %>
+          at <%= rendered_trackback.received_at %>
+        </abbr>
+        <p class="trackbackTitle"><%= trackback['title'] %></p>
+        <p>[...] <span class="trackbackExcerpt"><%= trackback['excerpt'] %></span> [...]</p>
+      </div>
+    <% end %>
+  </body>
+</html>

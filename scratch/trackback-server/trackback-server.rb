@@ -1,6 +1,24 @@
 require 'rubygems'
 require 'mongrel'
 require 'lib/trackback_http_request'
+require 'lib/trackback_renderer'
+require 'lib/trackbacks'
+require 'lib/erb_renderer'
+
+TRACKBACK_FILE = File.join(File.dirname(__FILE__), 'trackbacks.yml')
+unless File.exists?(TRACKBACK_FILE)
+  File.open(TRACKBACK_FILE, 'w') { |f| f.puts [].to_yaml }
+end
+
+class TrackbackListHandler < Mongrel::HttpHandler
+  def process(request, response)
+    trackbacks = Trackbacks.from_yaml_file(TRACKBACK_FILE)
+    response.start do |head, out|
+      head['Content-Type'] = 'text/html'
+      ErbRenderer.new('trackbacks.html.erb', binding).render(out)
+    end
+  end
+end
 
 class TrackbackHandler < Mongrel::HttpHandler
   def process(request, response)
@@ -23,8 +41,14 @@ class TrackbackHandler < Mongrel::HttpHandler
     unless data['url']
       error = "You must send the URL of your post that mentions this post."
     end
+    
+    data['received_at'] = Time.now
 
     if !error # good
+      trackbacks = Trackbacks.from_yaml_file(TRACKBACK_FILE)
+      trackbacks.add(data)
+      trackbacks.to_yaml_file(TRACKBACK_FILE)
+
       xml_response = <<-EndXml
 <?xml version="1.0" encoding="utf-8"?>
 <response>
@@ -49,7 +73,8 @@ end
 
 config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4000' do
   listener do
-    uri "/", :handler => TrackbackHandler.new
+    uri '/trackback', :handler => TrackbackHandler.new
+    uri '/', :handler => TrackbackListHandler.new
   end
   trap("INT") { stop }
   run
