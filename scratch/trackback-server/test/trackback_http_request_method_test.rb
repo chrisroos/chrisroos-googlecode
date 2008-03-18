@@ -9,7 +9,7 @@ class TrackbackHttpRequestMethodTest < Test::Unit::TestCase
     assert http_request_method.valid?
   end
   
-  def test_should_not_valid_if_http_method_is_not_post_as_per_the_spec
+  def test_should_not_be_valid_if_http_method_is_not_post_as_per_the_spec
     http_request_params = {'REQUEST_METHOD' => 'NOT-POST'}
     http_request_method = TrackbackHttpRequest::HttpMethod.new(http_request_params)
     assert ! http_request_method.valid?
