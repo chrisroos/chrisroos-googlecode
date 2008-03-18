@@ -27,7 +27,6 @@ class WeekdaySuffixTest < Test::Unit::TestCase
   end
   
   def test_should_be_th
-    p DaysWithThSuffix
     DaysWithThSuffix.each do |day|
       assert_equal 'th', WeekdaySuffix.new(day).suffix
     end
