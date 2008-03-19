@@ -1,8 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Test Trackback Page</title>
   </head>
   <body>
@@ -12,14 +13,23 @@
     <% trackbacks.each do |trackback| %>
       <% rendered_trackback = TrackbackRenderer.new(trackback) %>
       <div class="trackback">
-        By <a class="trackbackPermalink" href="<%= trackback['url'] %>"><span class="trackbackBlogName"><%= trackback['blog_name'] %></span></a>
+        <% blog_name = trackback['blog_name'].empty? ? 'Anonymous' : "<span class=\"trackbackBlogName\">#{trackback['blog_name']}</span>" %>
+        By <a class="trackbackPermalink" href="<%= trackback['url'] %>"><%= blog_name %></a>
+        
         <abbr class="trackbackReceivedAt" title="<%= trackback['received_at'] %>">
           on <%= rendered_trackback.received_on %>
           at <%= rendered_trackback.received_at %>
         </abbr>
-        <p class="trackbackTitle"><%= trackback['title'] %></p>
-        <p>[...] <span class="trackbackExcerpt"><%= trackback['excerpt'] %></span> [...]</p>
+        
+        <% unless trackback['title'].empty? %>
+          <p class="trackbackTitle"><%= trackback['title'] %></p>
+        <% end %>
+        
+        <% unless trackback['excerpt'].empty? %>
+          <p>[...] <span class="trackbackExcerpt"><%= trackback['excerpt'] %></span> [...]</p>
+        <% end %>
       </div>
+      <hr/>
     <% end %>
   </body>
 </html>
