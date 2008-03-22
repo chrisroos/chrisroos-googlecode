@@ -3,6 +3,7 @@
   DocumentRoot <%= public_directory %>
   <Directory <%= public_directory %>>
     AllowOverride All
+    allow from all
   </Directory>
   <DirectoryMatch "^/.*/\.svn/">
     ErrorDocument 403 /404.html
