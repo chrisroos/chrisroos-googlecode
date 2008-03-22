@@ -16,3 +16,8 @@ task :create_apache_config do
   erb = ERB.new(template)
   put erb.result(binding), "#{current_path}/config/apache.config"
 end
+
+desc "Restart the Apache webserver"
+task :restart_apache do
+  sudo "apachectl restart"
+end
