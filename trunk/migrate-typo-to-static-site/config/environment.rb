@@ -5,7 +5,7 @@ PROJECT_ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
 MIGRATOR_ROOT = File.join(PROJECT_ROOT, 'site-generation')
 TEMPLATE_ROOT = File.join(MIGRATOR_ROOT, 'templates')
-SITE_ROOT = File.join(PROJECT_ROOT, 'Site')
+SITE_ROOT = File.join(PROJECT_ROOT, 'public')
 
 ARTICLES_URL_ROOT = File.join('/', 'articles')
 TAGS_URL_ROOT = File.join(ARTICLES_URL_ROOT, 'tag')
