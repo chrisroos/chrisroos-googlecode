@@ -1,5 +1,5 @@
 set :application, "postcodes.seagul.co.uk"
-set :repository,  "http://chrisroos.googlecode.com/svn/trunk/uk-postcodes"
+set :repository,  "http://chrisroos.googlecode.com/svn/trunk/www/postcodes.seagul.co.uk"
 
 set :deploy_to, "/home/chrisroos/www/#{application}"
 set :deploy_via, :copy
