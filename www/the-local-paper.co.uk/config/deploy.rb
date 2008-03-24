@@ -1,5 +1,5 @@
 set :application, "the-local-paper.co.uk"
-set :repository,  "http://chrisroos.googlecode.com/svn/trunk/the-local-paper"
+set :repository,  "http://chrisroos.googlecode.com/svn/trunk/www/#{application}"
 
 set :deploy_to, "/home/chrisroos/www/#{application}"
 set :deploy_via, :copy
