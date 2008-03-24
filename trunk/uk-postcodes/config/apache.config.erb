@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+  ServerName <%= application %>
+  DocumentRoot <%= public_directory %>
+  # Allow us to do cool things in the .htaccess file
+  <Directory <%= public_directory %>>
+    AllowOverride All
+    Allow from all
+  </Directory>
+  ErrorLog <%= log_directory %>/error_log
+  CustomLog <%= log_directory %>/access_log common
+  # RewriteLogLevel 3
+  RewriteLog <%= log_directory %>/rewrite_log
+</VirtualHost>
