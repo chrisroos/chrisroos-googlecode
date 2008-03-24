@@ -1,0 +1,19 @@
+RewriteEngine On
+RewriteBase /
+
+# Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
+RewriteRule ^(.*)index\.html$ $1 [R=301,L]
+
+# Permanently (301) redirect /<outcode>.html to /<outcode>, ensuring that we don't try to redirect index.html to index
+RewriteCond %{THE_REQUEST} .+/[a-z0-9]{3,5}\.html\ HTTP/
+RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
+RewriteRule ^(.*)\.html$ $1 [R=301,L]
+
+# If we receive a request for an outcode without a .html extension then let's rewrite internally to render the file with the .html extension
+RewriteCond %{REQUEST_URI} .+/[a-z0-9]{3,5}/.+$
+RewriteCond %{REQUEST_URI} !\.html$
+RewriteRule ^(.*)$ $1.html [L]
+
+# Provide our own 404 page
+ErrorDocument 404 /404.html
