@@ -1,5 +1,5 @@
 set :application, "blog.seagul.co.uk"
-set :repository,  "http://chrisroos.googlecode.com/svn/trunk/migrate-typo-to-static-site"
+set :repository,  "http://chrisroos.googlecode.com/svn/trunk/www/#{application}"
 
 set :deploy_to, "/home/chrisroos/www/#{application}"
 set :deploy_via, :copy
