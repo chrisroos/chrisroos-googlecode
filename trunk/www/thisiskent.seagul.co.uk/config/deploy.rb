@@ -1,5 +1,5 @@
 set :application, "thisiskent.seagul.co.uk"
-set :repository,  "http://chrisroos.googlecode.com/svn/trunk/thisis-rss"
+set :repository,  "http://chrisroos.googlecode.com/svn/trunk/www/thisiskent.seagul.co.uk"
 
 set :deploy_to, "/home/chrisroos/www/#{application}"
 set :deploy_via, :copy
