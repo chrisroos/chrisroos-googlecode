@@ -16,7 +16,7 @@ require 'rubygems'
 require 'mongrel'
 require 'json'
 
-postcodes_file = File.dirname(__FILE__) + '/uk-postcodes.json'
+postcodes_file = File.join(File.dirname(__FILE__), 'data', 'uk-postcodes.json')
 Postcodes = JSON.parse(File.open(postcodes_file) { |f| f.read })
 Index = Postcodes.inject([]) { |index, postcode| index << postcode['postcode'].downcase }
 
