@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 DATA_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'data')
 TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'templates')
 
@@ -38,6 +40,9 @@ class TrackbackHandler < Mongrel::HttpHandler
 end
 
 config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4000' do
+  log_file = File.join(File.dirname(__FILE__), *%w[.. log trackback-server.log])
+  pid_file = File.join(File.dirname(__FILE__), *%w[.. log trackback-server.pid])
+  daemonize :cwd => Dir.pwd, :log_file => log_file, :pid_file => pid_file
   listener do
     uri '/trackback', :handler => TrackbackHandler.new
     uri '/', :handler => TrackbackListHandler.new
