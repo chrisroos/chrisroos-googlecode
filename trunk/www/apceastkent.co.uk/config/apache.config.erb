@@ -1,10 +1,11 @@
 <VirtualHost *:80>
-    ServerName apceastkent.co.uk
-    ServerAlias www.apceastkent.co.uk
-    DocumentRoot <%= public_directory %>
-    <Directory <%= public_directory %>>
-      allow from all
-    </Directory>
-    ErrorLog <%= log_directory %>/error_log
-    CustomLog <%= log_directory %>/access_log common
+  ServerAdmin www-admin@seagul.co.uk
+  ServerName apceastkent.co.uk
+  ServerAlias www.apceastkent.co.uk
+  DocumentRoot <%= public_directory %>
+  <Directory <%= public_directory %>>
+    allow from all
+  </Directory>
+  ErrorLog <%= log_directory %>/error_log
+  CustomLog <%= log_directory %>/access_log common
 </VirtualHost>
