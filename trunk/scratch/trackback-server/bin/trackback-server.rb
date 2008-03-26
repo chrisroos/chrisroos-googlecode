@@ -39,10 +39,11 @@ class TrackbackHandler < Mongrel::HttpHandler
   end
 end
 
-config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4000' do
+pid_file = File.join(File.dirname(__FILE__), *%w[.. log trackback-server.pid])
+config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4000', :pid_file => pid_file do
   log_file = File.join(File.dirname(__FILE__), *%w[.. log trackback-server.log])
-  pid_file = File.join(File.dirname(__FILE__), *%w[.. log trackback-server.pid])
-  daemonize :cwd => Dir.pwd, :log_file => log_file, :pid_file => pid_file
+  daemonize :cwd => Dir.pwd, :log_file => log_file
+  write_pid_file
   listener do
     uri '/trackback', :handler => TrackbackHandler.new
     uri '/', :handler => TrackbackListHandler.new
