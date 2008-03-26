@@ -5,3 +5,5 @@
 * Follow more 'rails-like' directory structure
 
 * Create an AR type interface with a file store.  So, rather than reading existing trackbacks from yaml and then storing an additional one, we could just do Trackback.create (or similar)
+
+* Symlink data dir to shared/data so that trackbacks remain between code updates
