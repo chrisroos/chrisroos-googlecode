@@ -34,6 +34,12 @@ task :start_trackback_server do
   run "#{current_path}/bin/trackback-server.rb"
 end
 
+task :stop_trackback_server do
+  server_pid = File.join(current_path, 'log', 'trackback-server.pid')
+  run "kill -KILL `cat #{server_pid}`"
+  run "rm #{server_pid}"
+end
+
 desc "Clear current trackbacks"
 task :clear_trackbacks do
   run "rm #{current_path}/data/trackbacks.yml"
