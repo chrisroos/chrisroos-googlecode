@@ -14,7 +14,7 @@
       <% rendered_trackback = TrackbackRenderer.new(trackback) %>
       <div class="trackback">
         <% blog_name = trackback['blog_name'] && !trackback['blog_name'].empty? ? "<span class=\"trackbackBlogName\">#{trackback['blog_name']}</span>" : 'Anonymous' %>
-        By <a class="trackbackPermalink" href="<%= trackback['url'] %>"><%= blog_name %></a>
+        By <a class="trackbackPermalink" rel="nofollow" href="<%= trackback['url'] %>"><%= blog_name %></a>
         
         <abbr class="trackbackReceivedAt" title="<%= trackback['received_at'] %>">
           on <%= rendered_trackback.received_on %>

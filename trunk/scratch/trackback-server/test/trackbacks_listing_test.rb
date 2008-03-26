@@ -24,6 +24,7 @@ class TrackbacksListingTest < Test::Unit::TestCase
     doc = Hpricot(rendered_template)
     
     assert_equal 'url', (doc/'a.trackbackPermalink').first.attributes['href']
+    assert_equal 'nofollow', (doc/'a.trackbackPermalink').first.attributes['rel']
     assert_equal 'Anonymous', (doc/'a.trackbackPermalink').first.innerText
     assert (doc/'p.trackbackTitle').empty?
     assert (doc/'p.trackbackExcerpt').empty?
