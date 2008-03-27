@@ -1,24 +1,36 @@
 #! /usr/bin/env ruby
 
+title = ARGV.delete_at(0)
+
+raise "You must supply the title of the article as the first, and only, argument" unless title
+
+body = ''
+while line = gets
+  body << line
+end
+
 require File.join(File.dirname(__FILE__), *%w[.. config environment])
 require File.join(File.dirname(__FILE__), *%w[.. site-generation models article])
 require File.join(File.dirname(__FILE__), *%w[.. vendor uuidtools])
 
 published_at = Time.now
+published_at_db_format = published_at.strftime("%Y-%m-%d %H:%M:%S")
+published_at_for_filename = published_at.strftime("%Y-%m-%d")
 guid = UUID.random_create.to_s
 
-title = ARGV[0]
-raise "You must supply the title of the article as the first, and only, argument" unless title
-
-filename = Article.new(:title => title).permalink
-filepath = File.join(File.dirname(__FILE__), '..', 'articles', "#{filename}.rb")
+permalink = Article.new(:title => title).permalink
+filename = "#{published_at_for_filename}-#{permalink}.yml"
+filepath = File.join(File.dirname(__FILE__), '..', 'articles', filename)
 
 if File.exists?(filepath)
-  warn "WARNING: Cannot overwrite existing article called: #{filename}.rb"
+  warn "WARNING: Cannot overwrite existing article called: #{filename}"
 else
-  File.open(filepath, 'w') do |file|
-    file.puts(published_at)
-    file.puts(guid)
-  end
+  article_data = {
+    :title => title,
+    :published_at => published_at_db_format,
+    :guid => guid,
+    :body => body
+  }
+  File.open(filepath, 'w') { |file| file.puts(article_data.to_yaml) }
   puts "Created article: #{filename}.rb"
 end
