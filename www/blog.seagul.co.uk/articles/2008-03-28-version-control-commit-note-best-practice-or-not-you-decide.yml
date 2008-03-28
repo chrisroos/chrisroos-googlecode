@@ -1,0 +1,22 @@
+--- 
+:body: |-
+  This is my own opinion but it has evolved from the need to dig back into past commit notes *a lot*.  The lazy approach to writing commit notes is just to explain what's in the changeset (much like a code comment that says "set x to 1"):  It's exactly what I used to write (and still do if I'm not concentrating).  The more useful approach is to explain why the changeset is there.  I can take two of my own commit notes as examples.
+  
+  h2. Useless commit note
+  
+  bq. <notextile>Capistrano deploy:setup should generate apache proxy cluster configuration.</notextile>
+  
+  This is a fairly useless commit note: If I was to come back to this (as I did today when looking at it) I would have no idea what I was trying to achieve.  Why should the config be generated at setup and not at some other point in the deploy process?  If I'd spent an extra 30 seconds writing the note in the first place I wouldn't have to try to work out what I was trying to achieve.
+  
+  h2. More useful commit note
+  
+  bq. <notextile>This isn't a card but _has_ been bugging me for a long time. You can now click on the <product_type> in the 'Top 3 <product_type>' headings on super category pages to visit that product type. Oh, I also made them h2s as having multiple h1s on a page just doesn't make sense.</notextile>
+  
+  This is a much more useful (imho) comment.  If at some point in the future we want to know why the 'top 3 product types' is now a link, we can come back to the note and see that it was because I, personally, was fed up of it not being so.  I also explain why I've changed the heading from a h1 to h2 (although that comment could be open to interpretation: why doesn't it make sense?).
+  
+  This all ties into submitting small checkins that are only doing one thing, but I might try to give some examples of that separately.
+  
+  Anyone else have any thoughts or alternative approaches?
+:published_at: 2008-03-28 19:17:57.100530 +00:00
+:title: Version Control Commit Note Best Practice (or not, you decide)
+:guid: ae997b7a-4abf-4c07-bdbb-082eb3e64401

@@ -10,6 +10,45 @@
     <description></description>
     
       <item>
+        <title>Version Control Commit Note Best Practice (or not, you decide)</title>
+        <description>&lt;p&gt;This is my own opinion but it has evolved from the need to dig back into past commit notes &lt;strong&gt;a lot&lt;/strong&gt;.  The lazy approach to writing commit notes is just to explain what&amp;#8217;s in the changeset (much like a code comment that says &amp;#8220;set x to 1&amp;#8221;):  It&amp;#8217;s exactly what I used to write (and still do if I&amp;#8217;m not concentrating).  The more useful approach is to explain why the changeset is there.  I can take two of my own commit notes as examples.&lt;/p&gt;
+
+
+	&lt;h2&gt;Useless commit note&lt;/h2&gt;
+
+
+	&lt;blockquote&gt;
+		&lt;p&gt;Capistrano deploy:setup should generate apache proxy cluster configuration.&lt;/p&gt;
+	&lt;/blockquote&gt;
+
+
+	&lt;p&gt;This is a fairly useless commit note: If I was to come back to this (as I did today when looking at it) I would have no idea what I was trying to achieve.  Why should the config be generated at setup and not at some other point in the deploy process?  If I&amp;#8217;d spent an extra 30 seconds writing the note in the first place I wouldn&amp;#8217;t have to try to work out what I was trying to achieve.&lt;/p&gt;
+
+
+	&lt;h2&gt;More useful commit note&lt;/h2&gt;
+
+
+	&lt;blockquote&gt;
+		&lt;p&gt;This isn't a card but _has_ been bugging me for a long time. You can now click on the &lt;product_type&gt; in the 'Top 3 &lt;product_type&gt;' headings on super category pages to visit that product type. Oh, I also made them h2s as having multiple h1s on a page just doesn't make sense.&lt;/p&gt;
+	&lt;/blockquote&gt;
+
+
+	&lt;p&gt;This is a much more useful (imho) comment.  If at some point in the future we want to know why the &amp;#8216;top 3 product types&amp;#8217; is now a link, we can come back to the note and see that it was because I, personally, was fed up of it not being so.  I also explain why I&amp;#8217;ve changed the heading from a h1 to h2 (although that comment could be open to interpretation: why doesn&amp;#8217;t it make sense?).&lt;/p&gt;
+
+
+	&lt;p&gt;This all ties into submitting small checkins that are only doing one thing, but I might try to give some examples of that separately.&lt;/p&gt;
+
+
+	&lt;p&gt;Anyone else have any thoughts or alternative approaches?&lt;/p&gt;</description>
+
+        <pubDate>Fri, 28 Mar 2008 19:17:57 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:ae997b7a-4abf-4c07-bdbb-082eb3e64401</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/03/28/version-control-commit-note-best-practice-or-not-you-decide</link>
+        
+      </item>
+    
+      <item>
         <title>Version 0.2 of the del.icio.us trackback extension</title>
         <description>&lt;p&gt;I finally got round to compiling the &lt;a href=&quot;http://blog.seagul.co.uk/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us&quot;&gt;del.icio.us trackback extension&lt;/a&gt; I wrote about a while back.&lt;/p&gt;
 
@@ -385,56 +424,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
           <category>pictures</category>
         
           <category>skypephone</category>
-        
-      </item>
-    
-      <item>
-        <title>Testing my mod_rewrite configuration with ruby</title>
-        <description>&lt;p&gt;In order to ensure that I didn&amp;#8217;t break anything while setting up my &lt;a href=&quot;http://blog.seagul.co.uk/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha&quot;&gt;mod_rewrite rules&lt;/a&gt; I created a little &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/the-local-paper/apache_test.rb&quot;&gt;ruby script&lt;/a&gt; to test my expectations.  I&amp;#8217;ve cut down the rules in the example below but you should get the idea.  It&amp;#8217;d be quite cool to create a little dsl to better express the intentions of the code.&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_ruby&quot;&gt;&lt;span class=&quot;ident&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;net/http&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;
-
-&lt;span class=&quot;ident&quot;&gt;expectations&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;comment&quot;&gt;# Redirect www. to .&lt;/span&gt;
-  &lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;http://www.the-local-paper.co.uk/&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;symbol&quot;&gt;:url&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;http://the-local-paper.co.uk/&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;',&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;:code&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;301&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;
-  &lt;span class=&quot;punct&quot;&gt;},&lt;/span&gt;
-  &lt;span class=&quot;comment&quot;&gt;# Requests for the-local-paper.co.uk should return a 200 (OK) response&lt;/span&gt;
-  &lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;http://the-local-paper.co.uk/&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;symbol&quot;&gt;:code&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;'&lt;/span&gt;
-  &lt;span class=&quot;punct&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;punct&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;ident&quot;&gt;expectations&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;request_url&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;expected_attributes&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;ident&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;Requesting: &lt;span class=&quot;expr&quot;&gt;#{request_url}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;
-
-  &lt;span class=&quot;ident&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;constant&quot;&gt;URI&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;request_url&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;ident&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;constant&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;constant&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;constant&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;ident&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;constant&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;constant&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;|&lt;/span&gt;
-    &lt;span class=&quot;ident&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;redirection_url&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;expected_attributes&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:url&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;keyword&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;Expected '&lt;span class=&quot;expr&quot;&gt;#{redirection_url}&lt;/span&gt;' in the Location header but got '&lt;span class=&quot;expr&quot;&gt;#{response['Location']}&lt;/span&gt;'.&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;redirection_url&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;['&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;Location&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;']&lt;/span&gt;
-  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;status_code&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;expected_attributes&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;symbol&quot;&gt;:code&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;keyword&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;Expected status code of (&lt;span class=&quot;expr&quot;&gt;#{status_code}&lt;/span&gt;) but got (&lt;span class=&quot;expr&quot;&gt;#{response.code}&lt;/span&gt;).&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;status_code&lt;/span&gt; &lt;span class=&quot;punct&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;ident&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;punct&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;ident&quot;&gt;code&lt;/span&gt;
-  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-
-        <pubDate>Wed, 16 Jan 2008 09:31:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:92474f38-31b4-4247-bc47-af786b4577bb</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/01/16/testing-my-mod_rewrite-configuration-with-ruby</link>
-        
-          <category>apache</category>
-        
-          <category>mod_rewrite</category>
-        
-          <category>ruby</category>
-        
-          <category>test</category>
         
       </item>
     

@@ -33,6 +33,52 @@
           
             <div class="post">
               <h2>
+                <a href="/articles/2008/03/28/version-control-commit-note-best-practice-or-not-you-decide">Version Control Commit Note Best Practice (or not, you decide)</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Fri, 28 Mar 2008 19:17:57">
+                  Fri, 28 Mar 2008 19:17:57
+                </span>
+              </p>
+          
+              <p>This is my own opinion but it has evolved from the need to dig back into past commit notes <strong>a lot</strong>.  The lazy approach to writing commit notes is just to explain what&#8217;s in the changeset (much like a code comment that says &#8220;set x to 1&#8221;):  It&#8217;s exactly what I used to write (and still do if I&#8217;m not concentrating).  The more useful approach is to explain why the changeset is there.  I can take two of my own commit notes as examples.</p>
+
+
+	<h2>Useless commit note</h2>
+
+
+	<blockquote>
+		<p>Capistrano deploy:setup should generate apache proxy cluster configuration.</p>
+	</blockquote>
+
+
+	<p>This is a fairly useless commit note: If I was to come back to this (as I did today when looking at it) I would have no idea what I was trying to achieve.  Why should the config be generated at setup and not at some other point in the deploy process?  If I&#8217;d spent an extra 30 seconds writing the note in the first place I wouldn&#8217;t have to try to work out what I was trying to achieve.</p>
+
+
+	<h2>More useful commit note</h2>
+
+
+	<blockquote>
+		<p>This isn't a card but _has_ been bugging me for a long time. You can now click on the <product_type> in the 'Top 3 <product_type>' headings on super category pages to visit that product type. Oh, I also made them h2s as having multiple h1s on a page just doesn't make sense.</p>
+	</blockquote>
+
+
+	<p>This is a much more useful (imho) comment.  If at some point in the future we want to know why the &#8216;top 3 product types&#8217; is now a link, we can come back to the note and see that it was because I, personally, was fed up of it not being so.  I also explain why I&#8217;ve changed the heading from a h1 to h2 (although that comment could be open to interpretation: why doesn&#8217;t it make sense?).</p>
+
+
+	<p>This all ties into submitting small checkins that are only doing one thing, but I might try to give some examples of that separately.</p>
+
+
+	<p>Anyone else have any thoughts or alternative approaches?</p>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
                 <a href="/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension">Version 0.2 of the del.icio.us trackback extension</a>
               </h2>
               <p class="auth">
@@ -475,66 +521,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
                   <a href="/articles/tag/pictures" rel="tag">pictures</a>, 
                 
                   <a href="/articles/tag/skypephone" rel="tag">skypephone</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2008/01/16/testing-my-mod_rewrite-configuration-with-ruby">Testing my mod_rewrite configuration with ruby</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 16 Jan 2008 09:31:00">
-                  Wed, 16 Jan 2008 09:31:00
-                </span>
-              </p>
-          
-              <p>In order to ensure that I didn&#8217;t break anything while setting up my <a href="http://blog.seagul.co.uk/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha">mod_rewrite rules</a> I created a little <a href="http://chrisroos.googlecode.com/svn/trunk/the-local-paper/apache_test.rb">ruby script</a> to test my expectations.  I&#8217;ve cut down the rules in the example below but you should get the idea.  It&#8217;d be quite cool to create a little dsl to better express the intentions of the code.</p>
-
-
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">net/http</span><span class="punct">'</span>
-
-<span class="ident">expectations</span> <span class="punct">=</span> <span class="punct">{</span>
-  <span class="comment"># Redirect www. to .</span>
-  <span class="punct">'</span><span class="string">http://www.the-local-paper.co.uk/</span><span class="punct">'</span> <span class="punct">=&gt;</span> <span class="punct">{</span>
-    <span class="symbol">:url</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">http://the-local-paper.co.uk/</span><span class="punct">',</span> <span class="symbol">:code</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">301</span><span class="punct">'</span>
-  <span class="punct">},</span>
-  <span class="comment"># Requests for the-local-paper.co.uk should return a 200 (OK) response</span>
-  <span class="punct">'</span><span class="string">http://the-local-paper.co.uk/</span><span class="punct">'</span> <span class="punct">=&gt;</span> <span class="punct">{</span>
-    <span class="symbol">:code</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">200</span><span class="punct">'</span>
-  <span class="punct">}</span>
-<span class="punct">}</span>
-
-<span class="ident">expectations</span><span class="punct">.</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">request_url</span><span class="punct">,</span> <span class="ident">expected_attributes</span><span class="punct">|</span>
-  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">Requesting: <span class="expr">#{request_url}</span></span><span class="punct">&quot;</span>
-
-  <span class="ident">url</span> <span class="punct">=</span> <span class="constant">URI</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(</span><span class="ident">request_url</span><span class="punct">)</span>
-  <span class="ident">request</span> <span class="punct">=</span> <span class="constant">Net</span><span class="punct">::</span><span class="constant">HTTP</span><span class="punct">::</span><span class="constant">Get</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">url</span><span class="punct">.</span><span class="ident">path</span><span class="punct">)</span>
-  <span class="ident">response</span> <span class="punct">=</span> <span class="constant">Net</span><span class="punct">::</span><span class="constant">HTTP</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span><span class="ident">url</span><span class="punct">.</span><span class="ident">host</span><span class="punct">,</span> <span class="ident">url</span><span class="punct">.</span><span class="ident">port</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">http</span><span class="punct">|</span>
-    <span class="ident">http</span><span class="punct">.</span><span class="ident">request</span><span class="punct">(</span><span class="ident">request</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-
-  <span class="keyword">if</span> <span class="ident">redirection_url</span> <span class="punct">=</span> <span class="ident">expected_attributes</span><span class="punct">[</span><span class="symbol">:url</span><span class="punct">]</span>
-    <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Expected '<span class="expr">#{redirection_url}</span>' in the Location header but got '<span class="expr">#{response['Location']}</span>'.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">redirection_url</span> <span class="punct">==</span> <span class="ident">response</span><span class="punct">['</span><span class="string">Location</span><span class="punct">']</span>
-  <span class="keyword">end</span>
-  <span class="keyword">if</span> <span class="ident">status_code</span> <span class="punct">=</span> <span class="ident">expected_attributes</span><span class="punct">[</span><span class="symbol">:code</span><span class="punct">]</span>
-    <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Expected status code of (<span class="expr">#{status_code}</span>) but got (<span class="expr">#{response.code}</span>).</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">status_code</span> <span class="punct">==</span> <span class="ident">response</span><span class="punct">.</span><span class="ident">code</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
-            </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/apache" rel="tag">apache</a>, 
-                
-                  <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/test" rel="tag">test</a>, 
                 
               
             </p>
