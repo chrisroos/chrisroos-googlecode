@@ -26,3 +26,8 @@ desc "Restart the Apache webserver"
 task :restart_apache do
   sudo "apachectl restart"
 end
+
+desc "Updates the site by svn up'ing, rather than checking out the entire site content and uploading (which deploy:update does)"
+task :update_site do
+  run "cd #{current_path} && svn up"
+end
