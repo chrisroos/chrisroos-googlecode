@@ -1,0 +1,20 @@
+<VirtualHost *:80>
+  ServerAdmin www-admin@seagul.co.uk
+  ServerName public-swimming-pools.co.uk
+  ServerAlias www.public-swimming-pools.co.uk
+  DocumentRoot <%= public_directory %>
+  <Directory <%= public_directory %>>
+    AllowOverride All
+    allow from all
+  </Directory>
+  <DirectoryMatch "^/.*/\.svn/">
+    ErrorDocument 403 /404.html
+    Order allow,deny
+    Deny from all
+    Satisfy All
+  </DirectoryMatch>
+  ErrorLog <%= log_directory %>/error_log
+  CustomLog <%= log_directory %>/access_log common
+  # RewriteLogLevel 3
+  RewriteLog <%= log_directory %>/rewrite_log
+</VirtualHost>
