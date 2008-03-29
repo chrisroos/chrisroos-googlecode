@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /
+
+# Permanently (301) remove www.
+RewriteCond %{HTTP_HOST} ^www.public-swimming-pools.co.uk$ [NC]
+RewriteRule ^(.*)$ http://public-swimming-pools.co.uk/$1 [R=301,L]
