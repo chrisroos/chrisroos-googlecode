@@ -33,6 +33,62 @@
           
             <div class="post">
               <h2>
+                <a href="/articles/2008/03/29/reference-trackback-server-implementation">Reference Trackback Server implementation</a>
+              </h2>
+              <p class="auth">
+                Posted by Chris Roos
+                <span class="typo_date" title="Sat, 29 Mar 2008 06:27:05">
+                  Sat, 29 Mar 2008 06:27:05
+                </span>
+              </p>
+          
+              <p>To aid my development of the <a href="http://blog.seagul.co.uk/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension">del.icio.us trackbacks firefox extension</a> I created a reference <a href="http://en.wikipedia.org/wiki/Trackback">trackback</a> server implementation based on the <a href="http://www.sixapart.com/pronet/docs/trackback_spec">trackback specification</a>.</p>
+
+
+	<p>It&#8217;s written in <a href="http://www.ruby-lang.org">Ruby</a> as a <a href="http://mongrel.rubyforge.org/">Mongrel</a> handler and stores the trackbacks serialized to <a href="http://en.wikipedia.org/wiki/YAML"><span class="caps">YAML</span></a> on the filesystem.  The code is over in <a href="http://code.google.com/p/chrisroos/">my google code repository</a> (no direct link as I plan to move the trackback-server from its current home in /trunk/scratch to /trunk/www/trackbacks.seagul.co.uk).</p>
+
+
+	<p>On the off-chance that someone else might find it useful I&#8217;m currently hosting it at <a href="http://trackbacks.seagul.co.uk">http://trackbacks.seagul.co.uk</a>.  You might use it to see the del.icio.us trackbacks extension in action or to test the sending of trackbacks from your blog (the trackback <span class="caps">URL</span> is <a href="http://trackbacks.seagul.co.uk/trackback">http://trackbacks.seagul.co.uk/trackback</a>).  Or, you could just play with it using <a href="http://curl.haxx.se">curl</a>.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default"># Let's just try to GET the trackback URL
+$ curl http://trackbacks.seagul.co.uk/trackback
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;response&gt;
+  &lt;error&gt;1&lt;/error&gt;
+  &lt;message&gt;Http Method MUST be POST&lt;/message&gt;
+&lt;/response&gt;
+
+# OK, so we'll POST to the trackback URL
+$ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;response&gt;
+  &lt;error&gt;1&lt;/error&gt;
+  &lt;message&gt;Content-Type MUST be 'application/x-www-form-urlencoded' with OPTIONAL character encoding&lt;/message&gt;
+&lt;/response&gt;
+
+# Posting with the correct Content-Type
+$ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot; -H&quot;Content-Type: application/x-wencoded&quot;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;response&gt;
+  &lt;error&gt;1&lt;/error&gt;
+  &lt;message&gt;You MUST send the URL of your post (permalink) that mentions this post.&lt;/message&gt;
+&lt;/response&gt;
+
+# Post with the correct Content-Type and the required URL parameter to actually have a trackback created on the server
+$ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot; -H&quot;Content-Type: application/x-wencoded&quot; -d&quot;url=http://example.com&quot;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;response&gt;
+  &lt;error&gt;0&lt;/error&gt;
+&lt;/response&gt;</code></pre></div>
+            </div>
+        
+            <p class="meta">
+              
+            </p>
+          
+            <div class="post">
+              <h2>
                 <a href="/articles/2008/03/29/files-hosted-on-google-groups-cannot-be-opened-in-safari-or-internet-explorer">Files hosted on Google Groups cannot be opened in Safari (or Internet Explorer)</a>
               </h2>
               <p class="auth">

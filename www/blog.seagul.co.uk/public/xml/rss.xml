@@ -10,6 +10,55 @@
     <description></description>
     
       <item>
+        <title>Reference Trackback Server implementation</title>
+        <description>&lt;p&gt;To aid my development of the &lt;a href=&quot;http://blog.seagul.co.uk/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension&quot;&gt;del.icio.us trackbacks firefox extension&lt;/a&gt; I created a reference &lt;a href=&quot;http://en.wikipedia.org/wiki/Trackback&quot;&gt;trackback&lt;/a&gt; server implementation based on the &lt;a href=&quot;http://www.sixapart.com/pronet/docs/trackback_spec&quot;&gt;trackback specification&lt;/a&gt;.&lt;/p&gt;
+
+
+	&lt;p&gt;It&amp;#8217;s written in &lt;a href=&quot;http://www.ruby-lang.org&quot;&gt;Ruby&lt;/a&gt; as a &lt;a href=&quot;http://mongrel.rubyforge.org/&quot;&gt;Mongrel&lt;/a&gt; handler and stores the trackbacks serialized to &lt;a href=&quot;http://en.wikipedia.org/wiki/YAML&quot;&gt;&lt;span class=&quot;caps&quot;&gt;YAML&lt;/span&gt;&lt;/a&gt; on the filesystem.  The code is over in &lt;a href=&quot;http://code.google.com/p/chrisroos/&quot;&gt;my google code repository&lt;/a&gt; (no direct link as I plan to move the trackback-server from its current home in /trunk/scratch to /trunk/www/trackbacks.seagul.co.uk).&lt;/p&gt;
+
+
+	&lt;p&gt;On the off-chance that someone else might find it useful I&amp;#8217;m currently hosting it at &lt;a href=&quot;http://trackbacks.seagul.co.uk&quot;&gt;http://trackbacks.seagul.co.uk&lt;/a&gt;.  You might use it to see the del.icio.us trackbacks extension in action or to test the sending of trackbacks from your blog (the trackback &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; is &lt;a href=&quot;http://trackbacks.seagul.co.uk/trackback&quot;&gt;http://trackbacks.seagul.co.uk/trackback&lt;/a&gt;).  Or, you could just play with it using &lt;a href=&quot;http://curl.haxx.se&quot;&gt;curl&lt;/a&gt;.&lt;/p&gt;
+
+
+&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;# Let's just try to GET the trackback URL
+$ curl http://trackbacks.seagul.co.uk/trackback
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;response&amp;gt;
+  &amp;lt;error&amp;gt;1&amp;lt;/error&amp;gt;
+  &amp;lt;message&amp;gt;Http Method MUST be POST&amp;lt;/message&amp;gt;
+&amp;lt;/response&amp;gt;
+
+# OK, so we'll POST to the trackback URL
+$ curl http://trackbacks.seagul.co.uk/trackback -X&amp;quot;POST&amp;quot;
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;response&amp;gt;
+  &amp;lt;error&amp;gt;1&amp;lt;/error&amp;gt;
+  &amp;lt;message&amp;gt;Content-Type MUST be 'application/x-www-form-urlencoded' with OPTIONAL character encoding&amp;lt;/message&amp;gt;
+&amp;lt;/response&amp;gt;
+
+# Posting with the correct Content-Type
+$ curl http://trackbacks.seagul.co.uk/trackback -X&amp;quot;POST&amp;quot; -H&amp;quot;Content-Type: application/x-wencoded&amp;quot;
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;response&amp;gt;
+  &amp;lt;error&amp;gt;1&amp;lt;/error&amp;gt;
+  &amp;lt;message&amp;gt;You MUST send the URL of your post (permalink) that mentions this post.&amp;lt;/message&amp;gt;
+&amp;lt;/response&amp;gt;
+
+# Post with the correct Content-Type and the required URL parameter to actually have a trackback created on the server
+$ curl http://trackbacks.seagul.co.uk/trackback -X&amp;quot;POST&amp;quot; -H&amp;quot;Content-Type: application/x-wencoded&amp;quot; -d&amp;quot;url=http://example.com&amp;quot;
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;response&amp;gt;
+  &amp;lt;error&amp;gt;0&amp;lt;/error&amp;gt;
+&amp;lt;/response&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+
+        <pubDate>Sat, 29 Mar 2008 06:27:05 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:d9caacb2-2920-4ccd-ac3f-f2154258c400</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/03/29/reference-trackback-server-implementation</link>
+        
+      </item>
+    
+      <item>
         <title>Files hosted on Google Groups cannot be opened in Safari (or Internet Explorer)</title>
         <description>&lt;p&gt;I noticed a little while ago that opening a, &lt;a href=&quot;http://groups.google.com&quot;&gt;Google Groups&lt;/a&gt; hosted, file in &lt;a href=&quot;http://www.apple.com/safari/&quot;&gt;Safari&lt;/a&gt; didn&amp;#8217;t work.  I have a file at &lt;a href=&quot;http://delicious-trackbacks.googlegroups.com/web/installation.html&quot;&gt;http://delicious-trackbacks.googlegroups.com/web/installation.html&lt;/a&gt; that you can try out if you&amp;#8217;re so inclined.  Requests for that file result in a page being rendered in Firefox but not in Safari or Internet Explorer (6 at least).  &lt;a href=&quot;http://interblah.net/&quot;&gt;James&lt;/a&gt; noticed that requests for these hosted files were resulting in a 302 response, as we can see from this &lt;a href=&quot;http://curl.haxx.se/&quot;&gt;curl&lt;/a&gt; output.&lt;/p&gt;
 
@@ -396,26 +445,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
         <guid isPermaLink="false">urn:uuid:e26ad0cb-1403-4961-801d-e3192495cc97</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete</link>
-        
-      </item>
-    
-      <item>
-        <title>Migrating this blog from Typo to a static site</title>
-        <description>&lt;p&gt;I&amp;#8217;m in the process of migrating this site from &lt;a href=&quot;http://www.typosphere.org/&quot;&gt;typo&lt;/a&gt; to a bunch of static pages.  I aim to get the static site deployed this evening.  I&amp;#8217;ll post again when I&amp;#8217;ve migrated.  If any &lt;span class=&quot;caps&quot;&gt;RSS&lt;/span&gt; subscribers out there don&amp;#8217;t see a new post this evening, or tomorrow morning, then it means that I&amp;#8217;ve failed to get it deployed or that it&amp;#8217;s deployed and I&amp;#8217;ve screwed up&amp;#8230;. That&amp;#8217;s all for now.&lt;/p&gt;
-
-
-	&lt;p&gt;Oh and the code is in the &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/migrate-typo-to-static-site/&quot;&gt;usual place&lt;/a&gt; if you fancy following along.&lt;/p&gt;</description>
-
-        <pubDate>Wed, 23 Jan 2008 08:48:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:ed9cd68e-1944-4d30-9919-da37c33fd2a7</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/01/23/migrating-this-blog-from-typo-to-a-static-site</link>
-        
-          <category>blog</category>
-        
-          <category>ruby</category>
-        
-          <category>typo</category>
         
       </item>
     
