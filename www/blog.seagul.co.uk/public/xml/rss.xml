@@ -10,6 +10,26 @@
     <description></description>
     
       <item>
+        <title>Another project - Public Swimming Pools in the UK</title>
+        <description>&lt;p&gt;Not content with already having a &lt;a href=&quot;/articles/2008/02/18/what-ive-been-up-to-projects-and-ideas&quot;&gt;bunch of unfinished projects&lt;/a&gt; I thought I&amp;#8217;d embark upon another.&lt;/p&gt;
+
+
+	&lt;p&gt;I&amp;#8217;ve struggled in the past to find public swimming pools that I can use when staying in London.  I&amp;#8217;ve searched on multiple occasions and never really found anything useful so figured there was probably a gap waiting to be filled.  Interestingly, I think that someone in or around the government must realise this too.  A search, on google, for &lt;a href=&quot;http://www.google.co.uk/search?q=uk+public+swimming+pools&quot;&gt;uk public swimming pools&lt;/a&gt; results in an &lt;a href=&quot;http://adwords.google.com&quot;&gt;Adword&lt;/a&gt; for &lt;a href=&quot;http://direct.gov.uk&quot;&gt;DirectGov&lt;/a&gt; that takes you to a page promoting the &lt;a href=&quot;http://www.activeplaces.com&quot;&gt;Active Places&lt;/a&gt; website.  This website allows you to search for leisure facilities by postcode or by clicking around a map.  As noted in my &lt;a href=&quot;http://del.icio.us/chrisjroos/url/0a078da5074a6c759210508c0bc6a60e&quot;&gt;del.icio.us note&lt;/a&gt;, I think this could be a valuable site but the current implementation is very very poor: Both from a usability and search engine friendly point of view (I can&amp;#8217;t help but wonder, as it appears to be a Government funded project, through Sport England, how much money has been spent on it).  One last point about the site is that it appears to include data about pools that can&amp;#8217;t actually be used by members of the public (a pool belonging to a local private school appears when searching for pools near home).&lt;/p&gt;
+
+
+	&lt;p&gt;According to this &lt;a href=&quot;http://www.theyworkforyou.com/wrans/?id=2008-03-10b.192802.h&quot;&gt;parliamentary question&lt;/a&gt;, the &lt;a href=&quot;http://www.culture.gov.uk/&quot;&gt;department for Culture, Media and Sport&lt;/a&gt; know the number and type of pools opened and closed since 2004: actually, I&amp;#8217;ve just noticed that they appear to rely on the Active Places database.  There&amp;#8217;s an email address (actually, a Sport England address) on the Active Places website that I&amp;#8217;m going to use to see if I can get hold of this data.&lt;/p&gt;
+
+
+	&lt;p&gt;The initial, and most basic, site will just list all the public swimming pools and, I&amp;#8217;m hoping this is pretty easy with the &lt;a href=&quot;http://code.google.com/apis/maps/&quot;&gt;Google Maps &lt;span class=&quot;caps&quot;&gt;API&lt;/span&gt;&lt;/a&gt;, allow you to search for one by location.  As, and indeed if, the site evolves, I&amp;#8217;d like to get lots more useful information about these pools up: I&amp;#8217;m hoping that allowing users to comment will reveal useful info about the best times to visit depending on what you&amp;#8217;re trying to get out of it.&lt;/p&gt;</description>
+
+        <pubDate>Mon, 31 Mar 2008 14:18:43 +0100</pubDate>
+        <guid isPermaLink="false">urn:uuid:81049870-4a70-495f-8774-ef1ca3d2f15f</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/03/31/another-project-public-swimming-pools-in-the-uk</link>
+        
+      </item>
+    
+      <item>
         <title>Reference Trackback Server implementation</title>
         <description>&lt;p&gt;To aid my development of the &lt;a href=&quot;http://blog.seagul.co.uk/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension&quot;&gt;del.icio.us trackbacks firefox extension&lt;/a&gt; I created a reference &lt;a href=&quot;http://en.wikipedia.org/wiki/Trackback&quot;&gt;trackback&lt;/a&gt; server implementation based on the &lt;a href=&quot;http://www.sixapart.com/pronet/docs/trackback_spec&quot;&gt;trackback specification&lt;/a&gt;.&lt;/p&gt;
 
@@ -434,17 +454,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
         <guid isPermaLink="false">urn:uuid:be4e61ba-08ff-4e98-b8f1-81a67147bc4a</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us</link>
-        
-      </item>
-    
-      <item>
-        <title>Migration from Typo to a static site is complete</title>
-        <description>&lt;p&gt;I&amp;#8217;m tired so I&amp;#8217;ll keep this short&amp;#8230;  If you can see this post then it means that I haven&amp;#8217;t broken anything (well, it means I haven&amp;#8217;t broken the rss feed anyway).  I still have lots to do but &lt;a href=&quot;http://en.wikipedia.org/wiki/Eat_one's_own_dog_food&quot;&gt;eating my own dogfood&lt;/a&gt; should give me a reason to keep improving.&lt;/p&gt;</description>
-
-        <pubDate>Wed, 23 Jan 2008 23:15:34 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:e26ad0cb-1403-4961-801d-e3192495cc97</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete</link>
         
       </item>
     
