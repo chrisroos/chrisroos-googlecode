@@ -22,7 +22,9 @@ class Article < ActiveRecord::Base
           article_attributes[:comments] = (article_attributes.delete(:comments)||[]).collect { |comment_attributes|
             Comment.new(comment_attributes)
           }
-          article_attributes.delete(:trackbacks)
+          article_attributes[:trackbacks] = (article_attributes.delete(:trackbacks)||[]).collect { |trackback_attributes|
+            Trackback.new(trackback_attributes)
+          }
           Article.new(article_attributes)
         end.sort do |article_a, article_b| # Sort in descending order of published_at
           article_b.published_at <=> article_a.published_at

@@ -23,5 +23,8 @@ class ArticleView
   def comments
     @article.comments
   end
+  def trackbacks
+    @article.trackbacks
+  end
   public :binding
 end

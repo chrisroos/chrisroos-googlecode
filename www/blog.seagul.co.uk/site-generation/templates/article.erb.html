@@ -77,6 +77,19 @@
               <% end %>
             </ol>
           <% end %>
+          <% unless trackbacks.empty? %>
+            <a name="trackbacks"></a>
+            <h4 class="blueblk">Trackbacks</h4>
+            <ol class="trackback-list" id="trackbackList">
+              <% trackbacks.each do |trackback| %>
+                <li>
+                  From <strong><%= trackback.blog_name %></strong> on <%= trackback.formatted_published_date %><br />
+                  <a href="<%= trackback.url %>" rel="nofollow"><%=h trackback.title %></a><br/>
+                  <%= trackback.excerpt %>
+                </li>
+              <% end %>
+            </ol>
+          <% end %>
 
         </div>
 
