@@ -1,0 +1,38 @@
+--- 
+:published_at: 2006-09-22 11:16:00 +01:00
+:guid: 8582dc34-92cc-4050-b89f-4e542308273f
+:title: The best property search website
+:tags: 
+- fact
+:comments: 
+- :author: Ed Freyfogle
+  :published_at: 2006-09-22 12:33:07 +01:00
+  :article_id: 165
+  :url: http://blog.nestoria.co.uk
+  :body: |+
+    Hi Chris,
+    
+    I'm Ed, one of the founders of Nestoria.
+    
+    Many thanks for the kind words, we like to think we're not crap either ;-).
+    
+    That being said, we know we still have a lot to do to make searching for property as simple as possible. Any ideas you (or your readers) have are very welcome. 
+    
+    In that sense, from your blog I see that you're a Ruby coder. I don't suppose I could persuade you to write a Ruby library for using the Nestoria API? We recently had someone create a python library:
+    
+    http://blog.nestoria.co.uk/2006/09/21/python-library-for-the-nestoria-api/
+    
+    and we'd love to see what clever ideas the Ruby community could come up with for playing with our database.
+    
+    Thanks again for the vote of confidence,
+    
+    Ed 
+    
+    
+    
+:body: |-
+  The majority of estate agent websites are crap.  Fact[1].
+  
+  "Nestoria":http://www.nestoria.co.uk is not crap.  Fact[1].
+  
+  fn1.  *fact* _-noun_ - the personal opinion of chris

@@ -1,0 +1,107 @@
+--- 
+:published_at: 2006-10-24 22:42:00 +01:00
+:guid: c7b18aa8-99d9-4d79-b7e6-2c644463e288
+:title: Connecting to gmail with Ruby (or Connecting to POP3 servers over SSL with Ruby)
+:tags: 
+- gmail
+- pop
+- rails
+- ruby
+:comments: 
+- :author: Mike
+  :published_at: 2007-03-13 22:20:53 +00:00
+  :article_id: 339
+  :url: ""
+  :body: |-
+    I am having the exact same experience as you. I'm going to subscribe to your blog and keep checking it to see if you've gotten any updates on this subject.
+    
+    I agree.. It simply must be possible to make a web services call over SSL.. It's just a matter of finding a working example.
+- :author: Bob the Chef
+  :published_at: 2007-04-12 23:01:53 +01:00
+  :article_id: 339
+  :url: ""
+  :body: |-
+    Well, Houston, we have a problem. 
+    
+    ./pop_ssl.rb:537:in `initialize': wrong number of arguments(1 for 2) (ArgumentError)
+            from ./pop_ssl.rb:537:in `new'
+            from ./pop_ssl.rb:537:in `do_start'
+            from ./pop_ssl.rb:507:in `start'
+            from ./pop_ssl.rb:382:in `start'
+            from foobar.rb:8
+    
+    Did you do anything besides just downloading pop.rb from the HEAD and sticking it into your ruby path?
+- :author: mike
+  :published_at: 2007-10-29 17:18:56 +00:00
+  :article_id: 339
+  :url: ""
+  :body: |-
+    Any updates on where I can get this new pop3 ssl library?  All the links are broken..
+    
+    thanks
+- :author: mike
+  :published_at: 2007-10-29 17:35:54 +00:00
+  :article_id: 339
+  :url: ""
+  :body: oh. 1.9.0.  I get it.thanks
+:body: |-
+  h3. Short version (or, "I want to connect to gmail NOW")
+  
+  * Download the "pop3 library":http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/index.html from "Ruby HEAD":http://www.ruby-lang.org/cgi-bin/cvsweb.cgi//?only_with_tag=HEAD (Ruby 1.9) ("download file":http://www.ruby-lang.org/cgi-bin/cvsweb.cgi/~checkout~/ruby/lib/net/pop.rb?rev=1.73;content-type=application%2Fx-ruby;only_with_tag=HEAD)
+  * Use the following script to get started (making sure that you explicitly reference the downloaded pop3 file)...
+  
+  <typo:code lang="ruby">
+  require 'pop_ssl' # I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version
+  
+  username = 'YOUR_GMAIL_USERNAME@gmail.com'
+  password = 'YOUR_GMAIL_PASSWORD'
+  
+  Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_NONE)
+  Net::POP3.start('pop.gmail.com', 995, username, password) do |pop|
+    if pop.mails.empty?
+      puts 'No mail.'
+    else
+      pop.each_mail do |mail|
+        p mail.header
+      end
+    end
+  end
+  </typo:code>
+  
+  h3. Medium version (or, "Let me know I'm connecting to the correct site, Dammit")
+  
+  This is identical to the short version except that we verify the ssl certificate this time round.
+  
+  * Follow the first step above (i.e. download new version of pop3 lib).
+  * Download the CA Root Certificates bundle from "cURL site":http://curl.haxx.se/ ("download file":http://curl.haxx.se/ca/cacert.pem)
+  * Copy the code above but change the Net::POP3.enable_ssl line to read...
+  
+  <typo:code lang="ruby">
+  Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, '/PATH/TO/DOWNLOADED/cacert.pem')
+  </typo:code>
+  
+  h3. Longer version (or, "Pray tell, how did you find this information sir")
+  
+  An explanation of how I got here.  Feel free to ignore.
+  
+  For a while I've wanted to play around with receiving emails within a "rails":http://www.rubyonrails.org app (with "action mailer":http://am.rubyonrails.org/files/README.html).  I had an hour or two free the other evening and so started to play.  First step was to take a look at the "rails wiki":http://wiki.rubyonrails.org and see that there's already a "page":http://wiki.rubyonrails.org/rails/pages/HowToReceiveEmailsWithActionMailer detailing exactly what I wanted to do.  As I started reading, I was getting put off by the thought of configuring "sendmail":http://www.sendmail.org or some other 'heavyweight' solution.  Luckily, someone has added a much better suggestion at the bottom of the page - using "net/pop":http://ruby-doc.org/stdlib/libdoc/net/pop/rdoc/index.html (or "net/imap":http://ruby-doc.org/stdlib/libdoc/net/imap/rdoc/index.html) to collect emails from a pre-configured mail server.  Although I use "imap":http://www.fastmail.co.uk for my own email provision, I wanted a pop server for testing.  Aha, I thought, I'll just set-up another "gmail":http://www.gmail.com account and use that...  And that's where the problems started.
+  
+  You see, gmail only accepts "POP3":http://en.wikipedia.org/wiki/POP3 connections over "SSL":http://en.wikipedia.org/wiki/SSL (on port 995), a feature not found in our beloved net/pop library.  Hmm.  Time for some help from google.  The first page I "came across":http://involution.com/2006/07/20/access-gmail-from-ruby-using-netpop3-and-stunnel/ described using "stunnel":http://www.stunnel.org to create an ssl tunnel to route standard net/pop traffic through.  This sounded great, except that I couldn't get stunnel (v4.16) to compile on mac os x, although I didn't try too hard...  The other point of interest in that original article was that the pop3 with ssl support was in development.  The next step was to track down some mailing list threads that talked about the ssl support and hope for a patch.  We're in luck, the "first patch":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2703 was actually submitted in March 2004, with the second, accepted and committed, "patch":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2745 coming in April 2004.  As per the "last message":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/2780 in the second thread, the patch was accepted into core, and is now available in the 1.9 release.  So, we don't even need to patch our existing copy of net/pop, we can just download the newer version.  I named this downloaded version as pop_ssl, to avoid confusion, and placed it in my ruby load path.  
+  
+  Next step was to follow the example on the "net/pop3 page":http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/classes/Net/POP3.html, and, with the addition of the Net::POP3::enable_ssl directive, try to connect.  Hmm, things still weren't working quite right.  I was getting the following error.
+  
+  <typo:code>
+  OpenSSL::SSL::SSLError: certificate verify failed
+  </typo:code>
+  
+  Some more googling led me to "this post":http://ghouston.blogspot.com/2006/03/using-ssl-with-ruby-http-access2.html by "Greg Houston":http://ghouston.blogspot.com/.  It turns out that the error is actually raised in the "OpenSSL":http://www.openssl.org layer.  It is caused by us trying to verify the server certificate without having the correct trusted root certificate.  It turns out that we can either disable the verification (by using <code>Net::POP3::enable_ssl(OpenSSL::SSL::VERIFY_NONE)</code>), or we can verify against a trusted root certificate bundle, like the one "supplied":http://curl.haxx.se/docs/caextract.html by cURL.  To verify using the certificate bundle from cURL (or similar), we would amend the above line of code to <code>Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, File.dirname(__FILE__) + '/PATH/TO/DOWNLOADED/cacert.pem')</code>.
+  
+  I can finally now get on with my rails app to retrieve emails from gmail.
+  
+  h3. Conclusion
+  
+  * I've spent a lot more than the intended couple of hours investigating this stuff, yet still have no rails app receiving emails (although I'm a lot closer now...)
+  * There's very little information on the ssl enabled libraries (net/https, net/pop, http-access2 to name but a few) in ruby.  Maybe everybody else just knows about this stuff already, but I'm certainly pretty unclear.
+  * I have a feeling that it should be possible to use net/https to connect (unverified) to a site that uses ssl and obtain the certificate for use in subsequent verified connections.  Indeed, another "document":http://curl.haxx.se/docs/sslcerts.html hosted on curl.haxx.se seems to indicate that this is possible.
+  * I still know very little about ssl and certificates.
+  * I hope that what little information is here can help someone else in a similar situation.

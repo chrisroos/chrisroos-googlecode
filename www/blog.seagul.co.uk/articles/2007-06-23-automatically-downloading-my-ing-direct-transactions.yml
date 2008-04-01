@@ -1,0 +1,174 @@
+--- 
+:published_at: 2007-06-23 18:00:00 +01:00
+:guid: 83e603e5-15ad-413f-9d1a-c30a2895e114
+:title: Automatically downloading my Ing Direct transactions
+:tags: 
+- curl
+- direct
+- finance
+- ing
+- ing-direct
+- ofx
+- ruby
+- transaction
+- wesabe
+:comments: []
+
+:body: |-
+  I wanted to "automate":http://blog.seagul.co.uk/articles/2007/06/23/automatically-download-egg-credit-card-transactions the "download":http://blog.seagul.co.uk/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb of "transaction":http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions data for my "ing direct":http://www.ingdirect.co.uk account.  Instead of just pasting up the finished result, I've tried to capture the process I went through, on the off chance it's of interest to anyone...
+  
+  h3. Earlier
+  
+  Open the "homepage":http://www.ingdirect.co.uk
+  
+  Click the login link. (goes to https://secure.ingdirect.co.uk/InitialINGDirect.html?command=displayLogin&device=web&locale=en_GB)
+  
+  "!http://farm2.static.flickr.com/1358/601727552_238151d7e8_m.jpg!":http://www.flickr.com/photos/chrisjroos/601727552/
+  
+  Type our Customer Number and Last Name into the login form.
+  
+  Before submitting the form, we open the "Live Http headers":http://livehttpheaders.mozdev.org/ "firefox":http://www.mozilla.com/en-US/firefox/ extension.
+  
+  We see that the following information gets POSTed to InitialINGDirect.html
+  
+  <typo:code>
+  command=enterCustomerNumber&locale=en_GB&device=web&ACN=<YOUR_CUSTOMER_NUMBER>&LNAME=<YOUR_LAST_NAME>&GO.x=23&GO.y=12
+  </typo:code>
+  
+  We are redirected to a second security page.
+  
+  "!http://farm2.static.flickr.com/1344/601727868_4569c11af6_m.jpg!":http://www.flickr.com/photos/chrisjroos/601727868/
+  
+  The first use of "curl":http://curl.haxx.se/ is to see whether we can get this far from the command line.
+  
+  <typo:code>
+  curl -X"POST" -d"command=enterCustomerNumber" -d"locale=en_GB" -d"device=web" -d"ACN=YOUR_CUSTOMER_NUMBER" -d"LNAME=YOUR_LAST_NAME" -d"GO.x=23" -d"GO.y=12" "https://secure.ingdirect.co.uk/InitialINGDirect.html" -o"<FILENAME_FOR_OUTPUT>"
+  </typo:code>
+  
+  The actual output in this instance is
+  
+  <typo:code>
+  <SCRIPT>
+  location.replace("/INGDirect.html?command=displayValidateCustomer&fill=1");
+  </SCRIPT>
+  </typo:code>
+  
+  So we amend the curl command to see exactly what's going on (the removal of -o and the addition of -v)
+  
+  Right, so this is interesting - I was expecting to see an "HTTP Location":http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.30 header directing us to the second security page.  Instead the body of the response is the javascript seen above.  I guess they want to ensure that we have javascript enabled eh.
+  
+  Let's just see what happens if we request the page returned in the javascript (https://secure.ingdirect.co.uk/INGDirect.html?command=displayValidateCustomer&fill=1)
+  
+  "!http://farm2.static.flickr.com/1130/601442615_2ce8dafc21_m.jpg!":http://www.flickr.com/photos/chrisjroos/601442615/
+  
+  Ok, so that's not unexpected.  How about, if we store the cookies sent to us in the original response, and then request the page returned in the javascript.
+  
+  <typo:code>
+  curl -X"POST" -c"/Users/chrisroos/Desktop/ing-cookie" -d"command=enterCustomerNumber" -d"locale=en_GB" -d"device=web" -d"ACN=YOUR_CUSTOMER_NUMBER" -d"LNAME=YOUR_LAST_NAME" -d"GO.x=23" -d"GO.y=12" "https://secure.ingdirect.co.uk/InitialINGDirect.html"
+  
+  curl -b"/Users/chrisroos/Desktop/ing-cookie" "https://secure.ingdirect.co.uk/INGDirect.html?command=displayValidateCustomer&fill=1" -o"/Users/chrisroos/Desktop/ing.html"
+  </typo:code>
+  
+  Ok, this looks promising.  We can now proceed to the second security page.
+  
+  Let's use firefox to log in and get to the second security page again.  Fill in the details as requested, open live http headers and get hold of the data we are sending.  Right, so we POST the following details to InitialINGDirect.html
+  
+  <typo:code>
+  command=validateCustomer&locale=en_GB&device=web&PIN_A=5&PIN_B=1&PIN_C=4&DAYS=65&MONTHS=65&YEARS=66&GO.x=41&GO.y=9
+  </typo:code>
+  
+  Ah, so this looks interesting.  It seems that each key on the keypad is assigned a number (potentially different to the number displayed on the key).  It is that number that gets sent.  The numbers on the keypad appear in a random order, so I wonder if the same number is always assigned to the same key, or whether something else is required to tell the server the order of the keys.  Let's log in one more time and see if the results differ.  The assumption being that if they do then the server must know what order the keys have been displayed in.
+  
+  Bugger - now it won't let me log in anymore (too many failed attempts) and I have to call the call centre.  Ooops.
+  
+  h3. Later
+  
+  Right, so it's now about 5 weeks after starting this investigation.  I'm going to attempt to pick up where I left off and see if we can't get it finished.  Previously, before I got locked out of my account, I was going to test whether each digit on the keypad got assigned a different number each time.  In order to test, I logged into my account twice.  Each time, I saved the content of the page containing the keypad, and the output from Live Http Headers.  A quick examination of the differences between the output seems to suggest that we only ever send the position of a number on the keypad.  A made-up example might help to make this clear, starting with a keypad in no particular order.
+  
+  <pre>
+  5 1 2
+  4 7 3
+  0 8 9
+    6
+  </pre>
+  
+  If our pin number is 1234 and we are asked for the first digit then, although we would push the button labeled 1 on the keypad, we would actually send the value 2 to the server.  The buttons (but not the values they represent) all have a constant position, where the top-left button is position 1, the bottom-right is position 9 and the bottom button is position 0 (same layout as phone keypads).  For the above example, the button labeled 1 is in position 2, hence us sending a 2 to the server.
+  
+  Right, so unless I'm missing something, the server must 'know' which three digits we're being asked for, along with the order of the keypad.  If we're to log in automatically then we're going to need to parse the text that asks us for certain digits and determine the order of the keypad.  A little experimentation with "hpricot":http://code.whytheluckystiff.net/hpricot/ yielded the following code.
+  
+  <typo:code lang="ruby">
+  require 'rubygems'
+  require 'hpricot'
+  
+  html = File.open('/Users/chrisroos/Desktop/ingdirect-b1.html') { |f| f.read }
+  
+  # The request for our PIN digits appears within the following text
+  # <b>Using the Key Pad, please enter the 3rd, 5th and 2nd digits from your PIN</b>
+  pin_a, pin_b, pin_c = html.scan(/Using the Key Pad, please enter the (\d).+?(\d).+?(\d).*?<\/b>/).flatten
+  
+  # Ok, now let's find the order of the keypad (hey, it's in a div with id pin-pad - cool)
+  # This has turned out quite trivial.  The keypad is rendered within an html table, where each cell contains a button (input)
+  # that has a value of the number displayed on the button.  Hpricot makes it very easy to say 'get me all buttons (input)
+  # that appear in cells within the table that is in the div with an id of pin-pad'.  As hpricot will parse the html table
+  # 'in order', i.e. from top-left to bottom right, we just have to append each button value into an array, preserving the
+  # order of the keypad.
+  doc = Hpricot(html)
+  keypad = (doc/'div#pin-pad/table/tr/td/input').inject([]) { |array, btn| array << btn.attributes['value'].to_i; array }
+  # The last value read from the html keypad table will appear at index 9 (our array is 0 based), where we actually want it to 
+  # appear at index 0 (keypad is in phone keypad order, i.e. 0 at bottom).  Luckily, we can just pop it off the end and
+  # prepend it to the array
+  keypad.unshift(keypad.pop)
+  # So, we can now convert a keypad like this
+  # 5 1 2
+  # 4 7 3
+  # 0 8 9
+  #   6
+  # into the equivalent ruby array [6, 5, 1, 2, 4, 7, 3, 0, 8, 9]
+  # We can then use Array#index to dive in grab the keypad position of a number
+  # keypad.index(5) #=> 1
+  # keypad.index(7) #=> 5
+  </typo:code>
+  
+  Cool, so we should be able to string together what we have and automatically login to our account, we need to dip into ruby so that we might parse the keypad page using our code above.
+  
+  Right, I've cobbled the code together but instead of seeing an account overview page, I'm actually receiving a page with more javascript relocation magic.
+  
+  <typo:code>
+  <SCRIPT>
+  location.replace("/InitialINGDirect.html?command=displayLoggedOutError&locale=en_GB&device=web");
+  </SCRIPT>
+  </typo:code>
+  
+  I'm wondering if I'm missing some cookies - maybe some more cookies get added to the jar on the keypad page.  Using the "web developer extension":https://addons.mozilla.org/en-US/firefox/addon/60 this is trivial to check.  Two cookies are set when we first visit the login page...  Hmm, and there are still two when we get to the keypad page.  So something else is different.  Ok, so I found it.  Somehow, I'd managed to miss out some data that was required for the login to work correctly.  I was not sending the command=validateCustomer key/pair even though I'd already pasted it once above.  Oh well.  With this 'command' added, we still get a page with some javascript relocation but this time we get relocated to the account summary..
+  
+  <typo:code>
+  <SCRIPT>
+  location.replace("/INGDirect.html?command=accountSummary&locale=en_GB&device=web&method=fetchClientAccountSummary");
+  </SCRIPT>
+  </typo:code>
+  
+  If we finally GET this page then we should be able to 'see' our account overview on the command line.  Of course it wasn't that simple.  This just yields another javascript redirect.
+  
+  <typo:code>
+  <SCRIPT>
+  location.replace("/INGDirect.html?command=displayClientAccountSummary&fill=1");
+  </SCRIPT>
+  </typo:code>
+  
+  Let's try to GET this page then.  Woohoo, we're finally at the account overview page.  Wow that was hard work, so, so much harder than it should be for a web application.
+  
+  The final step is to GET and save the transaction page.  The url to the account page in the browser is:
+  
+  https://secure.ingdirect.co.uk/INGDirect.html?command=accountSummary&method=fetchClientAccountSummary&account=0&stepName=saving
+  
+  GETting that url on the command line yields yet another javascript redirect (really, you do surprise me).
+  
+  <typo:code>
+  <SCRIPT>
+  location.replace("/INGDirect.html?command=displayAccountDetails");
+  </SCRIPT>
+  </typo:code>
+  
+  Fine, let's GET that url then (starting to get bored now).  And, wait for it...  Yeah, we have downloaded transactions.  Phew.  Right then, just a little code tidying and I'll get it uploaded to google code and this article can be posted.  Yay.
+  
+  Ok, so we're uploaded to "google code":http://chrisroos.googlecode.com/svn/trunk/ing-direct.  Now to set this little fella free...  An we're done.

@@ -1,0 +1,19 @@
+--- 
+:published_at: 2007-05-17 22:55:00 +01:00
+:guid: 6677280b-8db0-40d8-9841-87bc0fcef5b2
+:title: Pesky Scammers
+:tags: 
+- spam
+- spammed
+- spammedy
+:comments: []
+
+:body: |-
+  A couple of days ago, I received a comment to one of my articles.  "Hmm, that looks familiar I thought", and not without good reason.  You see, the comment had been copied verbatim from another comment on the same article.  The only change was the author's name and the url of their 'homepage'.  After a little deliberation I deleted the comment.  I found it interesting for two reasons.
+  
+  # The 'homepage' link wasn't obviously spam (it was some kind of kitchen site I believe), although a quick search did reveal it on some blacklists.
+  # I am unable to teach "akismet":http://akismet.com/ (my current form of spam protection) to recognise these types of messages as spam, after all, the content itself is perfectly valid.
+  
+  Anyway, I got on with my life until, whoah, it happened again this morning.  Same article but a different comment had been copied.  The mystery continues... (at least, until I forget about it again).
+  
+  Anyone else experienced this?

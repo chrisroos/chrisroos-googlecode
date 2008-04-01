@@ -1,0 +1,62 @@
+--- 
+:published_at: 2006-07-28 23:06:00 +01:00
+:guid: 5d5c719c-b0be-45d7-8400-12b3c8bb6988
+:title: "TextMate and \"env: ruby: No such file or directory\""
+:tags: 
+- ruby
+- textmate
+:comments: 
+- :author: Paul Battley
+  :published_at: 2006-08-15 13:02:26 +01:00
+  :article_id: 101
+  :url: http://po-ru.com/
+  :body: |-
+    The plist file can be either plain text or XML (maybe binary too); these instructions only work if the file is plain text or if it doesn't exist yet. In my case, I already had an XML format file in that location.
+    
+    If it does exist, you can either edit it by hand or open it in the property list editor instead (type 'open ~/.MacOSX/environment.plist' in the console) and add a String key called 'PATH' under Root.
+:body: |-
+  So, I was coming up against this problem in TextMate just recently.
+  
+  It's a bit of a strange error in that you get seemingly conflicting output from TextMate.
+  
+  In a new TextMate document, I could run (by using the well handy, and very new to me, Ctrl-r key combo)..
+  
+  <pre>
+  /usr/bin/env ruby --version
+  => ruby 1.8.4 (2005-12-24) [i686-darwin8.7.1]
+  
+  /usr/bin/which ruby
+  => /usr/local/bin/ruby
+  
+  #!/usr/local/bin/ruby
+  
+  puts "hello world"
+  => hello world
+  </pre>
+  
+  However, if I ran..
+  
+  <pre>
+  #!/usr/bin/env ruby
+  
+  puts "hello world again"
+  => env: ruby: No such file or directory
+  </pre>
+  
+  Hmm, so <code>/usr/bin/env ruby --version</code> works, but when using the very same as the shebang interpreter we get an error.  Odd huh.
+  
+  Well, apparently not; if we read the textmate docs about "shell commands":http://macromates.com/textmate/manual/shell_commands#search_path.
+  
+  Although I, in no way, understand this completely; I blindly followed the instructions on that page and got TextMate back to health.
+  
+  In summary for those that don't wish to read the docs..
+  
+  <pre>
+  # mkdir ~/.MacOSX/
+  # cat >> ~/.MacOSX/environment.plist
+  { PATH = "/usr/local/bin"; }
+  </pre>
+  
+  *Note* You'll want to change the path to the location of the binaries you want found.
+  
+  Then a quick log out and back in, and all is well with TextMate.  Yay.
