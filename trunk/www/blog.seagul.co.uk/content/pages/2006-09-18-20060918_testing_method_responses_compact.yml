@@ -1,0 +1,91 @@
+--- 
+:body: |-
+  <typo:code lang="ruby">
+  require 'test/unit'
+  
+  class Foo
+    def foo; end; public :foo
+    def bar; end; protected :bar
+    def baz; end; private :baz
+  end
+  
+  # Testing from Class
+  Class.new(Test::Unit::TestCase) do
+    
+    def test_public_method_access
+      method_name = 'foo'
+      
+      assert Foo.instance_methods.include?(method_name)
+      assert Foo.public_instance_methods.include?(method_name)
+  
+      assert Foo.method_defined?(method_name)
+      assert Foo.public_method_defined?(method_name)
+      
+      assert_equal UnboundMethod, Foo.instance_method(method_name).class
+    end
+    
+    def test_protected_method_access
+      method_name = 'bar'
+      
+      assert Foo.instance_methods.include?(method_name)
+      assert Foo.protected_instance_methods.include?(method_name)
+      
+      assert Foo.method_defined?(method_name)
+      assert Foo.protected_method_defined?(method_name)
+      
+      assert_equal UnboundMethod, Foo.instance_method(method_name).class
+    end
+    
+    def test_private_method_access
+      method_name = 'baz'
+      
+      assert Foo.private_instance_methods.include?(method_name)
+      assert Foo.private_method_defined?(method_name)
+      assert_equal UnboundMethod, Foo.instance_method(method_name).class
+    end
+    
+  end
+  
+  # Testing from instance
+  Class.new(Test::Unit::TestCase) do
+    
+    def setup
+      @foo = Foo.new
+    end
+    
+    def test_public_method_access
+      method_name = 'foo'
+      
+      assert @foo.methods.include?(method_name)
+      assert @foo.public_methods.include?(method_name)
+      
+      assert @foo.respond_to?(method_name)
+      
+      assert_equal Method, @foo.method(method_name).class
+    end
+    
+    def test_protected_method_access
+      method_name = 'bar'
+      
+      assert @foo.methods.include?(method_name)
+      assert @foo.protected_methods.include?(method_name)
+      
+      assert @foo.respond_to?(method_name)
+      
+      assert_equal Method, @foo.method(method_name).class
+    end
+    
+    def test_private_method_access
+      method_name = 'baz'
+      
+      assert @foo.private_methods.include?(method_name)
+      assert @foo.respond_to?(method_name, include_private=true)
+      assert_equal Method, @foo.method(method_name).class
+    end
+    
+  end
+  </typo:code>
+:updated_at: 2006-09-18 22:21:41 +01:00
+:name: 20060918_testing_method_responses_compact
+:title: Testing Method Responses - Compact
+:created_at: 2006-09-18 21:47:00 +01:00
