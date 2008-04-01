@@ -1,12 +1,10 @@
 --- 
 :published_at: 2006-09-09 12:16:00 +01:00
-:guid: 553ca94e-9491-4803-8238-e2a6479a9c27
-:title: Changing Irb context
+:trackbacks: []
+
 :tags: 
 - irb
 - ruby
-:comments: []
-
 :body: |-
   I picked up on this yesterday and now cannot find the article (it was something to do with manipulating a rails app from the console).  Sorry.
   
@@ -28,3 +26,7 @@
   </typo:code>
   
   Although cool, I can't think of any situations where this would have been useful.  Ho hum.
+:guid: 553ca94e-9491-4803-8238-e2a6479a9c27
+:comments: []
+
+:title: Changing Irb context

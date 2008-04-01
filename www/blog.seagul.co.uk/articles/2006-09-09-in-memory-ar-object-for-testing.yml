@@ -1,12 +1,10 @@
 --- 
 :published_at: 2006-09-09 12:03:00 +01:00
-:guid: 346ed442-9499-44fc-a578-9f61bd89ebd4
-:title: In memory AR object for testing
+:trackbacks: []
+
 :tags: 
 - rails
 - testing
-:comments: []
-
 :body: |-
   I've "previously written":http://blog.seagul.co.uk/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing about using in memory active record objects for testing.
   
@@ -27,3 +25,7 @@
   </typo:code>
   
   Cool.
+:guid: 346ed442-9499-44fc-a578-9f61bd89ebd4
+:comments: []
+
+:title: In memory AR object for testing

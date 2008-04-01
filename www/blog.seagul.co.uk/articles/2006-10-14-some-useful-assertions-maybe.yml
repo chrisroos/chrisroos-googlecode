@@ -1,13 +1,11 @@
 --- 
 :published_at: 2006-10-14 10:27:00 +01:00
-:guid: a332b171-dc34-4382-b88a-8a408ec5806e
-:title: Some useful assertions, maybe
+:trackbacks: []
+
 :tags: 
 - assertions
 - ruby
 - test
-:comments: []
-
 :body: |-
   The first is to ensure two arrays contain the same elements not necessarily in the same order.
   
@@ -80,3 +78,7 @@
     
   end
   </typo:code>
+:guid: a332b171-dc34-4382-b88a-8a408ec5806e
+:comments: []
+
+:title: Some useful assertions, maybe

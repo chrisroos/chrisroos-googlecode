@@ -1,14 +1,28 @@
 --- 
 :published_at: 2007-11-27 09:31:00 +00:00
-:guid: ffb5b1fc-23ce-4c9a-91aa-354b2a5ff75f
-:title: Short, Human Friendly, Permalinks
+:trackbacks: 
+- :article_id: 59263
+  :published_at: 2007-12-07 07:59:58 +00:00
+  :blog_name: deferred until inspiration hits
+  :url: http://blog.seagul.co.uk/articles/2007/12/07/more-on-those-friendly-urls
+  :published: true
+  :excerpt: So, not being able to sleep does have some benefits. I managed to get started on my latest little pet project. I had been using apache and mod_rewrite to redirect &#8220;chrisroos.co.uk/amazonwishlist&#8221; to my actual wishlist. I had something ...
+  :ip: 82.138.248.206
+  :title: More on those friendly URLs
 :tags: 
 - permalink
 - tinyurl
+:body: |-
+  I was recently asked for my Amazon wishlist.  I wasn't able to use email and was expected to write down the URL.  I had a look and found that the URL ("http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD":http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD) wasn't paper or speech friendly.  Instead of attempting to convey this URL, I used the opportunity to create my own human friendly permalink for my wishlist ("chrisroos.co.uk/amazonwishlist":http://chrisroos.co.uk/amazonwishlist).  I actually started with a hyphenated variant (amazon-wishlist) but realised that the non-hyphenated version would be easier for someone to understand in conversation.
+  
+  This seems to tie in with what "Dave Winer":http://www.scripting.com has been talking about "recently":http://www.scripting.com/stories/2007/11/20/solvingTheTinyurlCentraliz.html.
+  
+  I think this'd be quite a neat, and fairly easy, little webapp to build.  It would need a simple interface for managing permalinks and the ability to work with multiple domains.  Hmm, I'm tempted to give this a shot unless anyone knows of anything similar already out there?
+:guid: ffb5b1fc-23ce-4c9a-91aa-354b2a5ff75f
 :comments: 
-- :author: Paul Battley
+- :article_id: 59263
   :published_at: 2007-11-27 12:54:15 +00:00
-  :article_id: 59263
+  :author: Paul Battley
   :url: http://po-ru.com/
   :body: |-
     It wouldn't be too hard to make hyphenation optional, and to redirect to the canonical version.
@@ -16,9 +30,4 @@
     The BBC do something clever with their URLs, actually: many of them are communicated by being read out over the air, so they are short and sweet and handle ambiguity: http://www.bbc.co.uk/radio4/ is canonical; http://www.bbc.co.uk/radiofour/ redirects to radio4. (And of course, http, www, and trailing slashes are dealt with higher up the application stack.)
     
     They don't handle hyphens, however. Maybe they should.
-:body: |-
-  I was recently asked for my Amazon wishlist.  I wasn't able to use email and was expected to write down the URL.  I had a look and found that the URL ("http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD":http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD) wasn't paper or speech friendly.  Instead of attempting to convey this URL, I used the opportunity to create my own human friendly permalink for my wishlist ("chrisroos.co.uk/amazonwishlist":http://chrisroos.co.uk/amazonwishlist).  I actually started with a hyphenated variant (amazon-wishlist) but realised that the non-hyphenated version would be easier for someone to understand in conversation.
-  
-  This seems to tie in with what "Dave Winer":http://www.scripting.com has been talking about "recently":http://www.scripting.com/stories/2007/11/20/solvingTheTinyurlCentraliz.html.
-  
-  I think this'd be quite a neat, and fairly easy, little webapp to build.  It would need a simple interface for managing permalinks and the ability to work with multiple domains.  Hmm, I'm tempted to give this a shot unless anyone knows of anything similar already out there?
+:title: Short, Human Friendly, Permalinks

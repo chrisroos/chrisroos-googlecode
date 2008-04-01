@@ -1,7 +1,7 @@
 --- 
 :published_at: 2007-07-12 23:49:00 +01:00
-:guid: be6d4d23-532f-46ba-9bf8-fe0dde4d28b5
-:title: Wesabe open up their API and ask me to help write their press release...
+:trackbacks: []
+
 :tags: 
 - api
 - cool
@@ -9,22 +9,6 @@
 - praise
 - ramble
 - wesabe
-:comments: 
-- :author: Paul Battley
-  :published_at: 2007-07-13 16:47:31 +01:00
-  :article_id: 21565
-  :url: http://po-ru.com/
-  :body: That would be a bit easier to read with some line breaks!
-- :author: Chris
-  :published_at: 2007-07-13 16:50:19 +01:00
-  :article_id: 21565
-  :url: ""
-  :body: Yeah, I was being lazy and pasted it straight from the email.  I'll re-format it shortly.
-- :author: Chris
-  :published_at: 2007-07-13 17:12:01 +01:00
-  :article_id: 21565
-  :url: ""
-  :body: Email should now be legible.  Cheers Paul.
 :body: |-
   Ok, so that second bit isn't strictly true ;-)  I was, however, flattered to be contacted by Debbie from "Wesabe":http://www.wesabe.com to answer a few questions and maybe provide a quote for their press release.  They have just improved their service by "offering":http://blog.wesabe.com/index.php/2007/07/12/your-bank-has-a-rest-api-now-shhh-dont-tell-them/ an "API":http://www.wikipedia.org/wiki/API after all.
   
@@ -95,3 +79,21 @@
   Wesabe
   
   *Update 17:10 - made the email legible. Thanks Paul.*
+:guid: be6d4d23-532f-46ba-9bf8-fe0dde4d28b5
+:comments: 
+- :article_id: 21565
+  :published_at: 2007-07-13 16:47:31 +01:00
+  :author: Paul Battley
+  :url: http://po-ru.com/
+  :body: That would be a bit easier to read with some line breaks!
+- :article_id: 21565
+  :published_at: 2007-07-13 16:50:19 +01:00
+  :author: Chris
+  :url: ""
+  :body: Yeah, I was being lazy and pasted it straight from the email.  I'll re-format it shortly.
+- :article_id: 21565
+  :published_at: 2007-07-13 17:12:01 +01:00
+  :author: Chris
+  :url: ""
+  :body: Email should now be legible.  Cheers Paul.
+:title: Wesabe open up their API and ask me to help write their press release...

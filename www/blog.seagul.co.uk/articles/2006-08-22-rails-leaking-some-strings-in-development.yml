@@ -1,13 +1,11 @@
 --- 
 :published_at: 2006-08-22 10:47:00 +01:00
-:guid: 17e3dfab-6ca4-4245-94ad-181079e16b37
-:title: Rails leaking some strings in development
+:trackbacks: []
+
 :tags: 
 - memoryleak
 - rails
 - ruby
-:comments: []
-
 :body: |-
   I spent some time this morning checking out "Scott Laird's":http://scottstuff.net/blog/ "memory profiler":http://scottstuff.net/blog/articles/2006/08/17/memory-leak-profiling-with-rails against a fresh rails app.
   
@@ -18,3 +16,7 @@
   A little inspection and the culprit was found.  The "rails breakpoint library":http://api.rubyonrails.com/classes/Breakpoint.html requires irb, which loads the irb_history.
   
   In summary: the contents of irb_history are loaded into object space on each request made to your rails app, while in development.  These strings do not appear to get garbage collected.  The problem does not affect apps running in production as the breakpoint library is not loaded in that environment.
+:guid: 17e3dfab-6ca4-4245-94ad-181079e16b37
+:comments: []
+
+:title: Rails leaking some strings in development

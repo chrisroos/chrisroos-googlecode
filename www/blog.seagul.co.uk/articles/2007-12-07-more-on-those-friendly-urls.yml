@@ -1,7 +1,7 @@
 --- 
 :published_at: 2007-12-07 07:26:00 +00:00
-:guid: b10a6984-0800-481d-884e-8bb2a798ac6f
-:title: More on those friendly URLs
+:trackbacks: []
+
 :tags: 
 - apache
 - decenturl
@@ -10,48 +10,6 @@
 - ruby
 - tinyurl
 - url
-:comments: 
-- :author: James Mead
-  :published_at: 2007-12-07 09:42:32 +00:00
-  :article_id: 60922
-  :url: http://blog.floehopper.org
-  :body: That's cool. I've probably got something horribly wrong, but would it be possible to set up a publicly available http proxy which could do the same sort of redirecting but for *any* domain. If users had to login to the proxy, you'd be able to discriminate between users and so each user could set up their own rules.
-- :author: Chris
-  :published_at: 2007-12-07 10:13:20 +00:00
-  :article_id: 60922
-  :url: ""
-  :body: |-
-    Hey James,
-    
-    I think I'm aiming to do exactly what you're talking about.
-    
-    I'm aiming for anyone to be able to point a CNAME at my host, log into the web interface (that doesn't exist yet) and configure their redirections.
-    
-    Is that what you meant?
-- :author: James Mead
-  :published_at: 2007-12-07 11:19:18 +00:00
-  :article_id: 60922
-  :url: http://blog.floehopper.org
-  :body: |-
-    No I don't think it's the same. Your idea is probably much more sensible and useful.
-    
-    With your idea, if I understand correctly, you have to be the owner of a domain to be able to set up these friendly URLs (mainly because you have to set up the CNAME). This way if I own www.example.org, I can set up redirections from www.example.org/anything to any URL. The big advantage is that these redirections would work for anybody.
-    
-    My poorly thought through suggestion was to set up a publicly accessible HTTP proxy that a user would configure their browser to use. This would allow them to setup redirections from any URL to any other URL (i.e. the source URL would not be restricted to a domain that they own). Initially I was thinking about these redirections being private to each user, but could make them available to share.
-    
-    Using Paul's comment in your previous post as an example, I could set up http://www.bbc.co.uk/radio-4/ to point to http://www.bbc.co.uk/radio4/ (but this would only be effective for users of the proxy).
-    
-    I suspect at least one problem with my idea is that people wouldn't want to connect their browser to the web via a third-party proxy due to privacy concerns. But I wonder if using a local proxy like "Mousehole":http://code.whytheluckystiff.net/mouseHole/  r a browser plugin would be more feasible. You could then provide a redirection sharing mechanism via some central server. You could even make the popular redirections for a particular domain available to the domain owner as valuable feedback on making their URLs better.
-    
-    Anyway that's enough rambling for one morning ;-)
-- :author: Chris
-  :published_at: 2007-12-07 14:36:52 +00:00
-  :article_id: 60922
-  :url: ""
-  :body: |-
-    Hmm, that's quite a cool idea.  I particularly the idea of feeding back to domain owners.
-    
-    This made me think of something that "James":http://interblah.net/ mentioned the other night: "Why":http://redhanded.hobix.com/ created "nic.d":http://redhanded.hobix.com/cult/whoNicDOffWithTheYummyJunkDomains.html for registering domains with traditionally illegal characters.  Similar too, to "hoodwink.d":http://redhanded.hobix.com/-h/hoodwinkDDayOneForcingTheHostToAttendTheParty.html.  Generally subversive - I like it.
 :body: |-
   So, "not being able to sleep":http://twitter.com/chrisroos/statuses/477052802 does have some benefits.  I managed to get started on my latest little "pet project":http://blog.seagul.co.uk/articles/2007/11/27/short-human-friendly-permalinks.
   
@@ -111,3 +69,47 @@
   [1] Assuming, of course, that www.example.com and example.com both point to the server that this redirection server is running on.
   
   [2] You probably won't be able to watch as it'll redirect too quickly in the browser - your best bet is to use "curl":http://curl.haxx.se/ or the "Live HTTP Headers":http://livehttpheaders.mozdev.org/ "firefox":http://www.mozilla.com/en-US/firefox/ extension so see what's actually going on.
+:guid: b10a6984-0800-481d-884e-8bb2a798ac6f
+:comments: 
+- :article_id: 60922
+  :published_at: 2007-12-07 09:42:32 +00:00
+  :author: James Mead
+  :url: http://blog.floehopper.org
+  :body: That's cool. I've probably got something horribly wrong, but would it be possible to set up a publicly available http proxy which could do the same sort of redirecting but for *any* domain. If users had to login to the proxy, you'd be able to discriminate between users and so each user could set up their own rules.
+- :article_id: 60922
+  :published_at: 2007-12-07 10:13:20 +00:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    Hey James,
+    
+    I think I'm aiming to do exactly what you're talking about.
+    
+    I'm aiming for anyone to be able to point a CNAME at my host, log into the web interface (that doesn't exist yet) and configure their redirections.
+    
+    Is that what you meant?
+- :article_id: 60922
+  :published_at: 2007-12-07 11:19:18 +00:00
+  :author: James Mead
+  :url: http://blog.floehopper.org
+  :body: |-
+    No I don't think it's the same. Your idea is probably much more sensible and useful.
+    
+    With your idea, if I understand correctly, you have to be the owner of a domain to be able to set up these friendly URLs (mainly because you have to set up the CNAME). This way if I own www.example.org, I can set up redirections from www.example.org/anything to any URL. The big advantage is that these redirections would work for anybody.
+    
+    My poorly thought through suggestion was to set up a publicly accessible HTTP proxy that a user would configure their browser to use. This would allow them to setup redirections from any URL to any other URL (i.e. the source URL would not be restricted to a domain that they own). Initially I was thinking about these redirections being private to each user, but could make them available to share.
+    
+    Using Paul's comment in your previous post as an example, I could set up http://www.bbc.co.uk/radio-4/ to point to http://www.bbc.co.uk/radio4/ (but this would only be effective for users of the proxy).
+    
+    I suspect at least one problem with my idea is that people wouldn't want to connect their browser to the web via a third-party proxy due to privacy concerns. But I wonder if using a local proxy like "Mousehole":http://code.whytheluckystiff.net/mouseHole/  r a browser plugin would be more feasible. You could then provide a redirection sharing mechanism via some central server. You could even make the popular redirections for a particular domain available to the domain owner as valuable feedback on making their URLs better.
+    
+    Anyway that's enough rambling for one morning ;-)
+- :article_id: 60922
+  :published_at: 2007-12-07 14:36:52 +00:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    Hmm, that's quite a cool idea.  I particularly the idea of feeding back to domain owners.
+    
+    This made me think of something that "James":http://interblah.net/ mentioned the other night: "Why":http://redhanded.hobix.com/ created "nic.d":http://redhanded.hobix.com/cult/whoNicDOffWithTheYummyJunkDomains.html for registering domains with traditionally illegal characters.  Similar too, to "hoodwink.d":http://redhanded.hobix.com/-h/hoodwinkDDayOneForcingTheHostToAttendTheParty.html.  Generally subversive - I like it.
+:title: More on those friendly URLs

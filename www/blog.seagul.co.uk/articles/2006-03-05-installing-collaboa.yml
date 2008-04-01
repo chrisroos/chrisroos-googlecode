@@ -1,10 +1,8 @@
 --- 
 :published_at: 2006-03-05 11:58:00 +00:00
-:guid: e41e4af3-93de-47af-be84-596ae4acf110
-:title: Installing Collaboa
-:tags: []
+:trackbacks: []
 
-:comments: []
+:tags: []
 
 :body: |-
   I just spent a few minutes installing "collaboa":http://www.collaboa.org on my "FreeBsd":http://www.freebsd.org server.
@@ -12,3 +10,7 @@
   I already had a number of the pre-requisites installed.  All that was outstanding was "swig":http://www.swig.org, the "subversion-ruby bindings":http://www.freshports.org/devel/subversion-ruby/ and the "ruby iconv bindings":http://www.freshports.org/converters/ruby-iconv/ which were all installed using packages.
   
   Collaboa is a "rails":http://www.rubyonrails.org alternative to "trac":http://www.edgewall.com/trac/, minus the wiki.  It basically provides a nice frontend to subversion and some project management'y type stuff.  I'm using it to host my "poor attempts":http://dev.seagul.co.uk at coding.
+:guid: e41e4af3-93de-47af-be84-596ae4acf110
+:comments: []
+
+:title: Installing Collaboa

@@ -1,7 +1,22 @@
 --- 
 :published_at: 2007-05-04 12:53:00 +01:00
-:guid: a2714682-c1c2-408a-b368-0020a22627b5
-:title: Automatically downloading my most recent Hsbc transactions
+:trackbacks: 
+- :article_id: 4145
+  :published_at: 2007-06-23 12:40:59 +01:00
+  :blog_name: deferred until inspiration hits
+  :url: http://blog.seagul.co.uk/articles/2007/06/23/automatically-download-egg-credit-card-transactions
+  :published: true
+  :excerpt: I&#8217;ve followed in my previous footsteps and automated the download of my egg credit card transactions and statements. Using this in combination with my ofx convertor makes it easier for me to upload my financial data to wesabe. As always, the...
+  :ip: 82.138.248.206
+  :title: Automatically download egg credit card transactions
+- :article_id: 4145
+  :published_at: 2007-06-23 18:09:16 +01:00
+  :blog_name: deferred until inspiration hits
+  :url: http://blog.seagul.co.uk/articles/2007/06/23/automatically-downloading-my-ing-direct-transactions
+  :published: true
+  :excerpt: I wanted to automate the download of transaction data for my ing direct account. Instead of just pasting up the finished result, I&#8217;ve tried to capture the process I went through, on the off chance it&#8217;s of interest to anyone&#8230; Earl...
+  :ip: 82.138.248.206
+  :title: Automatically downloading my Ing Direct transactions
 :tags: 
 - curl
 - egg
@@ -10,48 +25,53 @@
 - ofx
 - ruby
 - wesabe
+:body: |-
+  I've updated my "previous":http://blog.seagul.co.uk/articles/2006/12/24/curl-is-fast-becoming-my-favourite-toy curl/ruby script to automatically download my most recent transactions from Hsbc.  I created the original script as I had a couple of hours spare and wanted to see if I could do it.  The update has been driven by my continued use of "wesabe":http://www.wesabe.com.  Not only does it make my life a bit easier (which is, after all, the point of software) but the wesabe guys have suggested that they may be able to roll it into their client.  Cool.
+  
+  As an aside.  It really, really, really shouldn't be as hard as it is to automatically get a downloaded list of my transactions.  At least Hsbc offer transactions in "ofx":http://www.ofx.net format, unlike "egg":http://blog.seagul.co.uk/articles/2007/04/01/converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe and "ing direct":http://chrisroos.googlecode.com/svn/trunk/egg-ofx/ing_direct.  Come on, The Banks, sort it out eh.
+:guid: a2714682-c1c2-408a-b368-0020a22627b5
 :comments: 
-- :author: Flowers 999
+- :article_id: 4145
   :published_at: 2007-05-27 09:02:29 +01:00
-  :article_id: 4145
+  :author: Flowers 999
   :url: ""
   :body: |
     I need the last two transactions
 
-- :author: Richard
+- :article_id: 4145
   :published_at: 2007-07-18 23:04:56 +01:00
-  :article_id: 4145
+  :author: Richard
   :url: ""
   :body: Would you mind sharing the code please?
-- :author: Chris
+- :article_id: 4145
   :published_at: 2007-07-19 01:06:28 +01:00
-  :article_id: 4145
+  :author: Chris
   :url: ""
   :body: The code is all in me google code repository - http://chrisroos.googlecode.com/svn/trunk/hsbc/
-- :author: simon
+- :article_id: 4145
   :published_at: 2007-07-21 20:34:02 +01:00
-  :article_id: 4145
+  :author: simon
   :url: ""
   :body: |-
     Hi chris, 
     
     Thanks very much for this - it looks like a right pain in the bum. Fantastically useful!
-- :author: Peter
+- :article_id: 4145
   :published_at: 2007-07-25 22:12:07 +01:00
-  :article_id: 4145
+  :author: Peter
   :url: ""
   :body: Thanks for the script, has been working well up until a few days ago when HSBC changed their website.  Any chance of updating the script?  Thanks.
-- :author: Chris
+- :article_id: 4145
   :published_at: 2007-07-30 22:12:29 +01:00
-  :article_id: 4145
+  :author: Chris
   :url: ""
   :body: |-
     Peter,
     
     The script still works fine for me.  What problems are you experiencing?
-- :author: Peter
+- :article_id: 4145
   :published_at: 2007-08-04 01:02:14 +01:00
-  :article_id: 4145
+  :author: Peter
   :url: ""
   :body: |-
     I guess they haven't done this to all their customers, but they have changed their online banking to look more like their main site...and in the process have changed URLs, HTML coding etc. which of course breaks the script.  This is the actual error I get:
@@ -59,15 +79,12 @@
     hsbc.rb:30: undefined method `downcase' for nil:NilClass (NoMethodError)
     
     presumably because the regex to extract the security code indices doesn't match any more. Since I have access to the new online banking I'll see if I can add support for it to the script.
-- :author: Peter
+- :article_id: 4145
   :published_at: 2007-08-04 04:04:03 +01:00
-  :article_id: 4145
+  :author: Peter
   :url: ""
   :body: |-
     Here is a new version of the script which is compatible with the new version of the site.  It should also stay compatible with the old version -- since I don't have an account which is on the old version I cannot test this.  If you would like to credit me for this please contact me at pcc03 AT doc.ic.ac.uk
     
     http://www.doc.ic.ac.uk/~pcc03/tmp/hsbc.txt (rename to hsbc.rb)
-:body: |-
-  I've updated my "previous":http://blog.seagul.co.uk/articles/2006/12/24/curl-is-fast-becoming-my-favourite-toy curl/ruby script to automatically download my most recent transactions from Hsbc.  I created the original script as I had a couple of hours spare and wanted to see if I could do it.  The update has been driven by my continued use of "wesabe":http://www.wesabe.com.  Not only does it make my life a bit easier (which is, after all, the point of software) but the wesabe guys have suggested that they may be able to roll it into their client.  Cool.
-  
-  As an aside.  It really, really, really shouldn't be as hard as it is to automatically get a downloaded list of my transactions.  At least Hsbc offer transactions in "ofx":http://www.ofx.net format, unlike "egg":http://blog.seagul.co.uk/articles/2007/04/01/converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe and "ing direct":http://chrisroos.googlecode.com/svn/trunk/egg-ofx/ing_direct.  Come on, The Banks, sort it out eh.
+:title: Automatically downloading my most recent Hsbc transactions

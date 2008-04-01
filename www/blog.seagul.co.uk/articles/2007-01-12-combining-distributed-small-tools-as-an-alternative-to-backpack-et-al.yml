@@ -1,21 +1,13 @@
 --- 
 :published_at: 2007-01-12 11:53:00 +00:00
-:guid: 98ac9d3f-9709-48ed-b6e2-9899ddb38b89
-:title: Combining distributed small tools as an alternative to Backpack et al
+:trackbacks: []
+
 :tags: 
 - cool
 - distributed
 - opensearch
 - rest
 - software
-:comments: 
-- :author: JackyMooll
-  :published_at: 2007-02-06 14:25:21 +00:00
-  :article_id: 607
-  :url: http://www.google.com
-  :body: |-
-    Who can help me with .httpaccess ? 
-    where i can fined full information about .httpaccess file syntaxis?
 :body: |-
   For a while now, I've been thinking/dreaming of having a number of very specific, distributed services.  These would be no more than additions to the single purpose services we already use (notably, in my case, "flickr":http://flickr.com for photos, this blog for articulating thought and "del.icio.us":http://del.icio.us for storing bookmarks).  Some additions I'd like to see[1] are:
   
@@ -70,3 +62,13 @@
   fn1. I did had every intention of developing these things as a proof of concept, but, on the basis that I'm unlikely to get around to it, and that I do actually think something like this is a good idea, I thought I'd jot my thoughts here.
   
   fn2. I started out thinking that the tags would be stored against the resource itself - the same way that the tag for a photo in flickr is stored against that photo.  I was also assuming that these services would be "opensearch":http://opensearch.org enabled to allow searching of the tags.  As I've been writing the post I've realised that, providing everything has a uri, we can use del.icio.us as our tagging mechanism and as our search engine.
+:guid: 98ac9d3f-9709-48ed-b6e2-9899ddb38b89
+:comments: 
+- :article_id: 607
+  :published_at: 2007-02-06 14:25:21 +00:00
+  :author: JackyMooll
+  :url: http://www.google.com
+  :body: |-
+    Who can help me with .httpaccess ? 
+    where i can fined full information about .httpaccess file syntaxis?
+:title: Combining distributed small tools as an alternative to Backpack et al

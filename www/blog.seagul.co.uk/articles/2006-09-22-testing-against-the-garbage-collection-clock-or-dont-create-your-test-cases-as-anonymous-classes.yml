@@ -1,12 +1,10 @@
 --- 
 :published_at: 2006-09-22 10:43:00 +01:00
-:guid: ddd20dc2-f3fb-428e-b17d-8a25c74f563b
-:title: Testing against the (Garbage Collection) Clock, or, Don't create your Test Cases as anonymous classes
+:trackbacks: []
+
 :tags: 
 - ruby
 - testing
-:comments: []
-
 :body: |-
   I "wrote":http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing a while ago about how I'd started creating my test cases as anonymous classes.
   
@@ -47,3 +45,7 @@
   So, although you get a little added excitement to your testing ("Will this test class run before it gets garbage collected???"), it's probably a lot safer to not use anonymous classes when testing.
   
   James has just informed me that we gained about 230 tests in rake by naming all of our test cases...
+:guid: ddd20dc2-f3fb-428e-b17d-8a25c74f563b
+:comments: []
+
+:title: Testing against the (Garbage Collection) Clock, or, Don't create your Test Cases as anonymous classes

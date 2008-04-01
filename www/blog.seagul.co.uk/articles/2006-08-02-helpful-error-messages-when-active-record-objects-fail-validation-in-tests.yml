@@ -1,14 +1,12 @@
 --- 
 :published_at: 2006-08-02 13:47:00 +01:00
-:guid: 38a62231-a604-4dbe-8611-bbb3c2edc0ff
-:title: Helpful error messages when active record objects fail validation (in tests)
+:trackbacks: []
+
 :tags: 
 - activerecord
 - plugin
 - rails
 - validation
-:comments: []
-
 :body: |-
   I "posted":http://blog.seagul.co.uk/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing a while back about displaying the reasons for an active record model failing validation.
   
@@ -46,3 +44,7 @@
      |
      |--record_invalid.rb (copy content of code above)
   </pre>
+:guid: 38a62231-a604-4dbe-8611-bbb3c2edc0ff
+:comments: []
+
+:title: Helpful error messages when active record objects fail validation (in tests)

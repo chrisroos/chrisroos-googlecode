@@ -1,69 +1,12 @@
 --- 
 :published_at: 2006-02-08 08:54:00 +00:00
-:guid: b1012d3b-90d4-4d03-a4b6-9cfd6671c2cb
-:title: In memory sqlite database for rails testing
+:trackbacks: []
+
 :tags: 
 - rails
 - ruby
 - sqlite
 - test
-:comments: 
-- :author: Manfred Stienstra
-  :published_at: 2006-02-13 14:13:44 +00:00
-  :article_id: 51
-  :url: ""
-  :body: Thanks, this was really useful. It looks like this isn't document anywhere, or I suck at reading documentation.
-- :author: Dean
-  :published_at: 2007-04-13 13:02:08 +01:00
-  :article_id: 51
-  :url: http://www.dlbmux.info
-  :body: |-
-    ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
-      Rails::Configuration.new.database_configuration['test']['database'] == ':memory:'
-     
-    - doesn't work at mine
-- :author: Mike Johnson
-  :published_at: 2007-04-19 21:27:04 +01:00
-  :article_id: 51
-  :url: http://www.jayod.info
-  :body: Dean, for me either
-- :author: Chris
-  :published_at: 2007-04-20 13:55:24 +01:00
-  :article_id: 51
-  :url: ""
-  :body: |-
-    Mike and Dean,
-    
-    I'll need far more details if I'm to look into the problem.  At least Ruby, Rails, sqlite versions - probably more that I can't think of.  Also, no promises that I'll get round to doing anything - we haven't used sqlite with rails for ages so I don't have any major interest in getting it to work.
-    
-    Chris
-- :author: Florian
-  :published_at: 2007-08-05 22:04:05 +01:00
-  :article_id: 51
-  :url: ""
-  :body: |
-    This should do
-    
-    ENV['RAILS_ENV'] == 'test' and
-    ActiveRecord::Base.configurations['test'] == {
-      'adapter' => 'sqlite3',
-      'dbfile' => ':memory:'
-    } and
-    ActiveRecord::Migrator.up('db/migrate')
-
-- :author: AkitaOnRails
-  :published_at: 2007-11-27 15:31:41 +00:00
-  :article_id: 51
-  :url: http://www.akitaonrails.com
-  :body: I am trying it but it feels like my fixtures are not being loaded into the in-memory database. Is there something I have to do to force it?
-- :author: Chris
-  :published_at: 2007-12-17 13:59:44 +00:00
-  :article_id: 51
-  :url: ""
-  :body: |-
-    Hey AkitaOnRails,
-    
-    I'm afraid that I haven't used this plugin for a very long time now and it'd probably take me a while to work out what was going on.  Sorry I can't help.
 :body: |-
   *Update 12th June 2006*
   
@@ -148,3 +91,62 @@
   h3. Useless stats
   
   Changing to in-memory testing shaved about 33% off the running time of our unit tests.
+:guid: b1012d3b-90d4-4d03-a4b6-9cfd6671c2cb
+:comments: 
+- :article_id: 51
+  :published_at: 2006-02-13 14:13:44 +00:00
+  :author: Manfred Stienstra
+  :url: ""
+  :body: Thanks, this was really useful. It looks like this isn't document anywhere, or I suck at reading documentation.
+- :article_id: 51
+  :published_at: 2007-04-13 13:02:08 +01:00
+  :author: Dean
+  :url: http://www.dlbmux.info
+  :body: |-
+    ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
+      Rails::Configuration.new.database_configuration['test']['database'] == ':memory:'
+     
+    - doesn't work at mine
+- :article_id: 51
+  :published_at: 2007-04-19 21:27:04 +01:00
+  :author: Mike Johnson
+  :url: http://www.jayod.info
+  :body: Dean, for me either
+- :article_id: 51
+  :published_at: 2007-04-20 13:55:24 +01:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    Mike and Dean,
+    
+    I'll need far more details if I'm to look into the problem.  At least Ruby, Rails, sqlite versions - probably more that I can't think of.  Also, no promises that I'll get round to doing anything - we haven't used sqlite with rails for ages so I don't have any major interest in getting it to work.
+    
+    Chris
+- :article_id: 51
+  :published_at: 2007-08-05 22:04:05 +01:00
+  :author: Florian
+  :url: ""
+  :body: |
+    This should do
+    
+    ENV['RAILS_ENV'] == 'test' and
+    ActiveRecord::Base.configurations['test'] == {
+      'adapter' => 'sqlite3',
+      'dbfile' => ':memory:'
+    } and
+    ActiveRecord::Migrator.up('db/migrate')
+
+- :article_id: 51
+  :published_at: 2007-11-27 15:31:41 +00:00
+  :author: AkitaOnRails
+  :url: http://www.akitaonrails.com
+  :body: I am trying it but it feels like my fixtures are not being loaded into the in-memory database. Is there something I have to do to force it?
+- :article_id: 51
+  :published_at: 2007-12-17 13:59:44 +00:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    Hey AkitaOnRails,
+    
+    I'm afraid that I haven't used this plugin for a very long time now and it'd probably take me a while to work out what was going on.  Sorry I can't help.
+:title: In memory sqlite database for rails testing

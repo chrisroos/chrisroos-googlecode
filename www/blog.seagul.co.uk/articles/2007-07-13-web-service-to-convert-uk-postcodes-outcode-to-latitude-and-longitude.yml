@@ -1,7 +1,7 @@
 --- 
 :published_at: 2007-07-13 14:41:00 +01:00
-:guid: eceb8cc6-ff9e-4109-8536-70f23d333f61
-:title: Web service to convert UK Postcodes (outcode) to Latitude and Longitude
+:trackbacks: []
+
 :tags: 
 - mongrel
 - outcodes
@@ -10,18 +10,6 @@
 - ruby
 - service
 - web
-:comments: 
-- :author: Ed
-  :published_at: 2007-07-13 18:11:50 +01:00
-  :article_id: 21678
-  :url: ""
-  :body: |+
-    Cool stuff. Another way to do this is to use the Nestoria API.
-    
-    http://www.nestoria.co.uk/help/api-tech
-    
-    
-    
 :body: |-
   Using the data supplied in this "article":http://postcodes.easypeasy.com, by "Nik Sargent":http://www.niksargent.com, I've created a simple web service that returns "JSON":http://www.json.org formatted data about UK Outcodes (the first bit of the postcode).
   
@@ -73,3 +61,17 @@
   
   config.join
   </typo:code>
+:guid: eceb8cc6-ff9e-4109-8536-70f23d333f61
+:comments: 
+- :article_id: 21678
+  :published_at: 2007-07-13 18:11:50 +01:00
+  :author: Ed
+  :url: ""
+  :body: |+
+    Cool stuff. Another way to do this is to use the Nestoria API.
+    
+    http://www.nestoria.co.uk/help/api-tech
+    
+    
+    
+:title: Web service to convert UK Postcodes (outcode) to Latitude and Longitude

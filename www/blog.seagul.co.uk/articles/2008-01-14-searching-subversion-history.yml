@@ -1,7 +1,7 @@
 --- 
 :published_at: 2008-01-14 09:59:00 +00:00
-:guid: fd5f813c-6d6f-488a-bcfa-46ea5a7b37f0
-:title: Searching subversion history
+:trackbacks: []
+
 :tags: 
 - ruby
 - script
@@ -9,8 +9,6 @@
 - subversion
 - svn
 - trac
-:comments: []
-
 :body: |-
   I've often felt the need to search through our "subversion":http://subversion.tigris.org/ repository to find, for example, when a method was removed/renamed.  As far as I'm aware there's no easy way to do this using the standard subversion, or "trac":http://trac.edgewall.org/, tools.  A few days ago the need arose once more: I wanted to know when a particular class had stopped being used within our codebase.  It struck me that if I had a "diff":http://en.wikipedia.org/wiki/Diff file for each changeset that I'd be able to "grep":http://en.wikipedia.org/wiki/Grep for the change I was looking for.  I hacked together a script to produce a diff of each changeset (actually, as I knew when the class was added, I only produced a diff for a subset of the changesets) and was able to find the information I needed.  The script is pasted below and on "google code":http://chrisroos.googlecode.com/svn/trunk/svn_changesets/.  It assumes that you are running it from within an svn working direction.  It took a while to produce the diff files (I'm afraid I don't have any stats) but the result was a really fast way of finding, otherwise hard to find, information.  I guess it'd be quite easy to automate the diff creation process so that you had an always up-to-date bunch of diff fies...
   
@@ -56,3 +54,7 @@
   
   produce_diff(revisions)
   </typo:code>
+:guid: fd5f813c-6d6f-488a-bcfa-46ea5a7b37f0
+:comments: []
+
+:title: Searching subversion history

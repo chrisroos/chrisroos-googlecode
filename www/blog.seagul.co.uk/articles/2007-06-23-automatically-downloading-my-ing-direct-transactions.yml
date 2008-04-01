@@ -1,7 +1,7 @@
 --- 
 :published_at: 2007-06-23 18:00:00 +01:00
-:guid: 83e603e5-15ad-413f-9d1a-c30a2895e114
-:title: Automatically downloading my Ing Direct transactions
+:trackbacks: []
+
 :tags: 
 - curl
 - direct
@@ -12,8 +12,6 @@
 - ruby
 - transaction
 - wesabe
-:comments: []
-
 :body: |-
   I wanted to "automate":http://blog.seagul.co.uk/articles/2007/06/23/automatically-download-egg-credit-card-transactions the "download":http://blog.seagul.co.uk/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb of "transaction":http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions data for my "ing direct":http://www.ingdirect.co.uk account.  Instead of just pasting up the finished result, I've tried to capture the process I went through, on the off chance it's of interest to anyone...
   
@@ -172,3 +170,7 @@
   Fine, let's GET that url then (starting to get bored now).  And, wait for it...  Yeah, we have downloaded transactions.  Phew.  Right then, just a little code tidying and I'll get it uploaded to google code and this article can be posted.  Yay.
   
   Ok, so we're uploaded to "google code":http://chrisroos.googlecode.com/svn/trunk/ing-direct.  Now to set this little fella free...  An we're done.
+:guid: 83e603e5-15ad-413f-9d1a-c30a2895e114
+:comments: []
+
+:title: Automatically downloading my Ing Direct transactions

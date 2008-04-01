@@ -1,7 +1,7 @@
 --- 
 :published_at: 2007-10-03 23:52:00 +01:00
-:guid: 874b338e-23aa-4494-94da-5464ccce7cca
-:title: A microformat for my contact details (instant messaging, twitter et al)
+:trackbacks: []
+
 :tags: 
 - aim
 - contact
@@ -14,8 +14,6 @@
 - skype
 - twitter
 - yim
-:comments: []
-
 :body: |-
   I haven't done any research on this so it may have already been proposed over at the "microformats":http://microformats.org/ site.
   
@@ -103,3 +101,7 @@
   Code is all over on "google code":http://chrisroos.googlecode.com/svn/trunk/contact-microformat/.
   
   fn1. I'm thinking of multi protocol tools, like "adium":http://www.adiumx.com/, in particular.
+:guid: 874b338e-23aa-4494-94da-5464ccce7cca
+:comments: []
+
+:title: A microformat for my contact details (instant messaging, twitter et al)

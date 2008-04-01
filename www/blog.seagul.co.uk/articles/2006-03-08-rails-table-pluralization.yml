@@ -1,10 +1,8 @@
 --- 
 :published_at: 2006-03-08 07:48:00 +00:00
-:guid: 9a1acd4e-57eb-4415-a9fb-71a4324ae83c
-:title: Rails table pluralization
-:tags: []
+:trackbacks: []
 
-:comments: []
+:tags: []
 
 :body: |-
   I was talking to someone recently about the pluralisation of table names in "rails":http://www.rubyonrails.org.  It was grating him because some hand built queries no longer read very naturally.
@@ -62,3 +60,7 @@
   There are lots of things wrong with this code and many better ways for it to be implemented but it was really just for me to see if I could do it.
   
   fn1. Boring and sad.  I was going to start that sentence with i.e. but wasn't sure whether that was grammatically correct (I'm not very good at English).  I did a quick search and found that it translates as 'that is' from the Latin which is much better.
+:guid: 9a1acd4e-57eb-4415-a9fb-71a4324ae83c
+:comments: []
+
+:title: Rails table pluralization

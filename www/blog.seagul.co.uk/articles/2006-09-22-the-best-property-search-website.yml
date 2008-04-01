@@ -1,13 +1,20 @@
 --- 
 :published_at: 2006-09-22 11:16:00 +01:00
-:guid: 8582dc34-92cc-4050-b89f-4e542308273f
-:title: The best property search website
+:trackbacks: []
+
 :tags: 
 - fact
+:body: |-
+  The majority of estate agent websites are crap.  Fact[1].
+  
+  "Nestoria":http://www.nestoria.co.uk is not crap.  Fact[1].
+  
+  fn1.  *fact* _-noun_ - the personal opinion of chris
+:guid: 8582dc34-92cc-4050-b89f-4e542308273f
 :comments: 
-- :author: Ed Freyfogle
+- :article_id: 165
   :published_at: 2006-09-22 12:33:07 +01:00
-  :article_id: 165
+  :author: Ed Freyfogle
   :url: http://blog.nestoria.co.uk
   :body: |+
     Hi Chris,
@@ -30,9 +37,4 @@
     
     
     
-:body: |-
-  The majority of estate agent websites are crap.  Fact[1].
-  
-  "Nestoria":http://www.nestoria.co.uk is not crap.  Fact[1].
-  
-  fn1.  *fact* _-noun_ - the personal opinion of chris
+:title: The best property search website

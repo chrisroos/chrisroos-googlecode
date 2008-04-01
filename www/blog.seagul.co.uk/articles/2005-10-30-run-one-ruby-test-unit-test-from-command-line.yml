@@ -1,10 +1,8 @@
 --- 
 :published_at: 2005-10-30 09:38:00 +00:00
-:guid: a2e60c69-1dbd-4b92-89a0-d4a2dc0a80e3
-:title: Run one ruby test/unit test from command line
-:tags: []
+:trackbacks: []
 
-:comments: []
+:tags: []
 
 :body: |-
   Summary..
@@ -16,3 +14,7 @@
   "Source Page":http://wiki.rubyonrails.com/rails/pages/HowtoRunOneTest
   
   "Explanation":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/163358 from ruby mailing list
+:guid: a2e60c69-1dbd-4b92-89a0-d4a2dc0a80e3
+:comments: []
+
+:title: Run one ruby test/unit test from command line

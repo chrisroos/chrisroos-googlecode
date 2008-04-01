@@ -1,12 +1,10 @@
 --- 
 :published_at: 2007-12-06 16:26:00 +00:00
-:guid: 317c603f-c90d-42f0-907d-7f4209591b38
-:title: Ruby Rake - Invoke vs Execute
+:trackbacks: []
+
 :tags: 
 - rake
 - ruby
-:comments: []
-
 :body: |-
   First up - I don't know an awful lot about the magic that is "Rake":http://rake.rubyforge.org/.  As such, this is probably common knowledge to most people.
   
@@ -67,3 +65,7 @@
   #=> to_be_run_before_task_1
   #=> task_1
   </typo:code>
+:guid: 317c603f-c90d-42f0-907d-7f4209591b38
+:comments: []
+
+:title: Ruby Rake - Invoke vs Execute

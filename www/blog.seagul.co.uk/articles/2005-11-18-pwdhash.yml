@@ -1,18 +1,9 @@
 --- 
 :published_at: 2005-11-18 00:34:00 +00:00
-:guid: 40ce8c63-ac97-4903-ad97-25a975ff13e0
-:title: PwdHash
+:trackbacks: []
+
 :tags: []
 
-:comments: 
-- :author: Paul
-  :published_at: 2005-12-02 10:36:10 +00:00
-  :article_id: 27
-  :url: http://null
-  :body: |-
-    Did you have a peak at this one at any point?
-    
-    http://passwordmaker.org/
 :body: |-
   I read about this "concept":https://www.pwdhash.com and associated "firefox plugin":https://addons.mozilla.org/extensions/moreinfo.php?id=1033 a while back but then promptly forgot about it.  I came across it again recently and decided to take a more detailed look.
   
@@ -35,3 +26,14 @@
   To summarise, I've installed the plugin and have started changing some of my passwords over to their hashed counterpart.  I've only changed a couple of passwords and haven't yet had to use the javascript util but so far it seems pretty good.
   
   I'm just going to grab a copy of the javascript source and place it "some place safe":http://www.strongspace.com just in case...
+:guid: 40ce8c63-ac97-4903-ad97-25a975ff13e0
+:comments: 
+- :article_id: 27
+  :published_at: 2005-12-02 10:36:10 +00:00
+  :author: Paul
+  :url: http://null
+  :body: |-
+    Did you have a peak at this one at any point?
+    
+    http://passwordmaker.org/
+:title: PwdHash

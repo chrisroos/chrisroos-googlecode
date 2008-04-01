@@ -1,78 +1,9 @@
 --- 
 :published_at: 2006-10-20 00:19:00 +01:00
-:guid: 381579d7-3b5c-4a94-bdef-a089e13c137d
-:title: "Boolean method in Ruby (sibling of Array, Float, Integer and String) "
+:trackbacks: []
+
 :tags: 
 - ruby
-:comments: 
-- :author: Kyle
-  :published_at: 2007-12-08 22:52:48 +00:00
-  :article_id: 319
-  :url: http://remkade.ambitiouslemon.com
-  :body: |-
-    This is an old post, but how about doing this?:
-    
-    <pre>
-    <code>
-    Class String
-            def self.to_bool
-                    return true if string == true || string =~ /^true$/i
-                    return false if string == false || string.nil? || string =~ /^false$/i
-                    raise ArgumentError.new("invalid value for to_bool: \"#{string}\"")
-            end
-    end
-    </code>
-    </pre>
-    
-    That allows you to just use string.to_bool
-- :author: Kyle
-  :published_at: 2007-12-08 22:55:15 +00:00
-  :article_id: 319
-  :url: http://remkade.ambitiouslemon.com
-  :body: |-
-    each @string@ item actually should be converted to @self@ instead. Like this:
-    
-    <pre>
-    <code>
-    Class String
-            def self.to_bool
-                    return true if self == true || self =~ /^true$/i
-                    return false if self == false || self.nil? || self =~ /^false$/i
-                    raise ArgumentError.new("invalid value for to_bool: \"#{self}\"")
-            end
-    end
-    </code>
-    </pre>
-- :author: Chris
-  :published_at: 2007-12-14 09:11:06 +00:00
-  :article_id: 319
-  :url: ""
-  :body: |-
-    Hey Kyle,
-    
-    I guess to follow the conventions within ruby (Integer() and to_i, Float() and to_f etc) we should allow both.
-    
-    Assuming my original Kernel#Boolean method, we could have something like:
-    
-    <typo:code lang="ruby">
-    class Object
-      def to_bool
-        Boolean(self)
-      end
-    end
-    
-    Object.new.to_bool
-    => ArgumentError: invalid value for Boolean: "#<Object:0x10b0e68>"
-    
-    'true'.to_bool
-    => true
-    
-    'false'.to_bool
-    => false
-    
-    nil.to_bool
-    => false
-    </typo:code>
 :body: |-
   I was reading in data from a file and expected one particular column to contain either 'true' or 'false'.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada...
   
@@ -117,3 +48,74 @@
     
   end
   </typo:code>
+:guid: 381579d7-3b5c-4a94-bdef-a089e13c137d
+:comments: 
+- :article_id: 319
+  :published_at: 2007-12-08 22:52:48 +00:00
+  :author: Kyle
+  :url: http://remkade.ambitiouslemon.com
+  :body: |-
+    This is an old post, but how about doing this?:
+    
+    <pre>
+    <code>
+    Class String
+            def self.to_bool
+                    return true if string == true || string =~ /^true$/i
+                    return false if string == false || string.nil? || string =~ /^false$/i
+                    raise ArgumentError.new("invalid value for to_bool: \"#{string}\"")
+            end
+    end
+    </code>
+    </pre>
+    
+    That allows you to just use string.to_bool
+- :article_id: 319
+  :published_at: 2007-12-08 22:55:15 +00:00
+  :author: Kyle
+  :url: http://remkade.ambitiouslemon.com
+  :body: |-
+    each @string@ item actually should be converted to @self@ instead. Like this:
+    
+    <pre>
+    <code>
+    Class String
+            def self.to_bool
+                    return true if self == true || self =~ /^true$/i
+                    return false if self == false || self.nil? || self =~ /^false$/i
+                    raise ArgumentError.new("invalid value for to_bool: \"#{self}\"")
+            end
+    end
+    </code>
+    </pre>
+- :article_id: 319
+  :published_at: 2007-12-14 09:11:06 +00:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    Hey Kyle,
+    
+    I guess to follow the conventions within ruby (Integer() and to_i, Float() and to_f etc) we should allow both.
+    
+    Assuming my original Kernel#Boolean method, we could have something like:
+    
+    <typo:code lang="ruby">
+    class Object
+      def to_bool
+        Boolean(self)
+      end
+    end
+    
+    Object.new.to_bool
+    => ArgumentError: invalid value for Boolean: "#<Object:0x10b0e68>"
+    
+    'true'.to_bool
+    => true
+    
+    'false'.to_bool
+    => false
+    
+    nil.to_bool
+    => false
+    </typo:code>
+:title: "Boolean method in Ruby (sibling of Array, Float, Integer and String) "

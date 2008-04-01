@@ -1,7 +1,7 @@
 --- 
 :published_at: 2005-11-18 11:08:00 +00:00
-:guid: fe559494-2085-48d6-8ac1-0a5b3534bc22
-:title: I don't know how to use the debugger
+:trackbacks: []
+
 :tags: 
 - development
 - driven
@@ -9,8 +9,6 @@
 - ruby
 - test
 - unit
-:comments: []
-
 :body: |-
   I currently use "Ruby":http://www.ruby-lang.org and "Rails":http://www.rubyonrails.com all day, every day, at "work":http://www.revieworld.com.  It's great.
   
@@ -21,3 +19,7 @@
   fn1. It works when the tests pass.
   
   fn2. But very much with the help of unit tests.
+:guid: fe559494-2085-48d6-8ac1-0a5b3534bc22
+:comments: []
+
+:title: I don't know how to use the debugger
