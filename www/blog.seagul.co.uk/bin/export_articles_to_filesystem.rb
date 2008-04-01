@@ -17,7 +17,7 @@ Article.find(:all).each do |article|
   }
   published_at_for_filename = article_attributes[:published_at].strftime("%Y-%m-%d")
   filename = "#{published_at_for_filename}-#{article.permalink}.yml"
-  filepath = File.join(File.dirname(__FILE__), '..', 'articles', filename)
+  filepath = File.join(File.dirname(__FILE__), '..', 'content', 'articles', filename)
 
   if File.exists?(filepath)
     warn "WARNING: Cannot overwrite existing article called: #{filename}"
