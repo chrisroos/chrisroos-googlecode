@@ -38,7 +38,7 @@ Tag.find(:all).each do |tag|
   PageGenerator.new(view, 'articles').generate
 end
 
-articles = Article.find(:all, :order => 'published_at DESC', :limit => 10)
+articles = Article.find_all[0...10]
 
 latest_articles_view = LatestArticlesView.new(articles)
 PageGenerator.new(latest_articles_view, 'articles').generate
@@ -51,15 +51,15 @@ Page.find(:all).each do |page|
   PageGenerator.new(view, 'page').generate
 end
 
-Article.find(:all).each do |article|
+Article.find_all.each do |article|
   view = ArticleView.new(article)
   PageGenerator.new(view, 'article').generate
 end
 
-articles = Article.find(:all, :order => 'published_at DESC')
+articles = Article.find_all
 articles_view = ContentsView.new(articles)
 PageGenerator.new(articles_view, 'contents').generate
 
-articles = Article.find(:all, :order => 'published_at DESC')
+articles = Article.find_all
 view = SitemapView.new(articles)
 PageGenerator.new(view, 'sitemap', 'xml').generate
