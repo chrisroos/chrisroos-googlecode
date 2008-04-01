@@ -10,15 +10,20 @@ Article.find(:all).each do |article|
     comment_attributes.delete(:id)
     comment_attributes
   }
+  article_attributes[:trackbacks] = article.trackbacks.collect { |trackback|
+    trackback_attributes = trackback.attributes.symbolize_keys
+    trackback_attributes.delete(:id)
+    trackback_attributes
+  }
   published_at_for_filename = article_attributes[:published_at].strftime("%Y-%m-%d")
   filename = "#{published_at_for_filename}-#{article.permalink}.yml"
   filepath = File.join(File.dirname(__FILE__), '..', 'articles', filename)
 
-  if File.exists?(filepath)
-    warn "WARNING: Cannot overwrite existing article called: #{filename}"
-  else
+  # if File.exists?(filepath)
+    # warn "WARNING: Cannot overwrite existing article called: #{filename}"
+  # else
     File.open(filepath, 'w') { |f| f.puts(article_attributes.to_yaml) }
     puts "Created article: #{filename}"
-  end
+  # end
   
 end
