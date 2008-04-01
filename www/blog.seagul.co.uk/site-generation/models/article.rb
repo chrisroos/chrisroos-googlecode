@@ -4,11 +4,15 @@ require 'tag'
 require 'syntax_highlighter'
 require 'redcloth'
 
-class Article < ActiveRecord::Base
+class Article
   
-  has_many :comments, :dependent => :destroy, :order => 'published_at ASC'
-  has_many :trackbacks, :dependent => :destroy, :order => 'published_at ASC'
-  has_and_belongs_to_many :tags, :foreign_key => 'article_id', :order => 'name'
+  attr_accessor :title, :guid, :body, :published_at, :tags, :comments, :trackbacks
+  
+  def initialize(attributes)
+    attributes.each do |attribute, value|
+      __send__("#{attribute}=", value)
+    end
+  end
   
   class << self
     def find_all

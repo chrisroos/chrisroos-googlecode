@@ -1,6 +1,24 @@
-class Tag < ActiveRecord::Base
+class Tag
   
-  has_and_belongs_to_many :articles, :order => 'published_at DESC'
+  def self.find_all
+    @tags ||= (
+      tags = Hash.new { |hash, key| hash[key] = [] }
+      Article.find_all.each do |article|
+        article.tags.each { |tag| tags[tag.name] << article }
+      end
+      tags.collect do |tag, articles|
+        new(:name => tag, :articles => articles)
+      end
+    )
+  end
+  
+  attr_accessor :name, :articles
+  
+  def initialize(attributes)
+    attributes.each do |attribute, value|
+      __send__("#{attribute}=", value)
+    end
+  end
   
   def path
     TAGS_URL_ROOT

@@ -33,7 +33,7 @@ Year.find_all.each do |year|
   PageGenerator.new(view, 'articles').generate
 end
 
-Tag.find(:all).each do |tag|
+Tag.find_all.each do |tag|
   view = TagView.new(tag)
   PageGenerator.new(view, 'articles').generate
 end
@@ -46,7 +46,7 @@ PageGenerator.new(latest_articles_view, 'articles').generate
 latest_articles_xml_view = LatestArticlesXmlView.new(articles)
 PageGenerator.new(latest_articles_xml_view, 'articles', 'xml').generate
 
-Page.find(:all).each do |page|
+Page.find_all.each do |page|
   view = PageView.new(page)
   PageGenerator.new(view, 'page').generate
 end
