@@ -1,15 +1,13 @@
 --- 
 :published_at: 2006-06-30 12:08:00 +01:00
-:guid: 90292477-5dc2-4c47-a76b-b6ec1e6f992f
-:title: Very very lightweight mocking(ish)
+:trackbacks: []
+
 :tags: 
 - mock
 - mocking
 - objects
 - ruby
 - testing
-:comments: []
-
 :body: |-
   "James":http://www.floehopper.org/ has been developing a great "mocking":http://www.martinfowler.com/articles/mocksArentStubs.html framework at "work":http://www.reevoo.com which makes life real easy when it comes to testing interaction between objects.
   
@@ -59,3 +57,7 @@
   </typo:code>
   
   I define a 'mock' Net::HTTP object (net_http) that records a message when it gets sent the 'get' message.  I can then check the log to ensure that the expected method was called; and be (hopefully) safe in the knowledge that when I supply an actual Net::HTTP object the code does what I expect.
+:guid: 90292477-5dc2-4c47-a76b-b6ec1e6f992f
+:comments: []
+
+:title: Very very lightweight mocking(ish)

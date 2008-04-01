@@ -1,49 +1,12 @@
 --- 
 :published_at: 2006-10-24 22:42:00 +01:00
-:guid: c7b18aa8-99d9-4d79-b7e6-2c644463e288
-:title: Connecting to gmail with Ruby (or Connecting to POP3 servers over SSL with Ruby)
+:trackbacks: []
+
 :tags: 
 - gmail
 - pop
 - rails
 - ruby
-:comments: 
-- :author: Mike
-  :published_at: 2007-03-13 22:20:53 +00:00
-  :article_id: 339
-  :url: ""
-  :body: |-
-    I am having the exact same experience as you. I'm going to subscribe to your blog and keep checking it to see if you've gotten any updates on this subject.
-    
-    I agree.. It simply must be possible to make a web services call over SSL.. It's just a matter of finding a working example.
-- :author: Bob the Chef
-  :published_at: 2007-04-12 23:01:53 +01:00
-  :article_id: 339
-  :url: ""
-  :body: |-
-    Well, Houston, we have a problem. 
-    
-    ./pop_ssl.rb:537:in `initialize': wrong number of arguments(1 for 2) (ArgumentError)
-            from ./pop_ssl.rb:537:in `new'
-            from ./pop_ssl.rb:537:in `do_start'
-            from ./pop_ssl.rb:507:in `start'
-            from ./pop_ssl.rb:382:in `start'
-            from foobar.rb:8
-    
-    Did you do anything besides just downloading pop.rb from the HEAD and sticking it into your ruby path?
-- :author: mike
-  :published_at: 2007-10-29 17:18:56 +00:00
-  :article_id: 339
-  :url: ""
-  :body: |-
-    Any updates on where I can get this new pop3 ssl library?  All the links are broken..
-    
-    thanks
-- :author: mike
-  :published_at: 2007-10-29 17:35:54 +00:00
-  :article_id: 339
-  :url: ""
-  :body: oh. 1.9.0.  I get it.thanks
 :body: |-
   h3. Short version (or, "I want to connect to gmail NOW")
   
@@ -105,3 +68,42 @@
   * I have a feeling that it should be possible to use net/https to connect (unverified) to a site that uses ssl and obtain the certificate for use in subsequent verified connections.  Indeed, another "document":http://curl.haxx.se/docs/sslcerts.html hosted on curl.haxx.se seems to indicate that this is possible.
   * I still know very little about ssl and certificates.
   * I hope that what little information is here can help someone else in a similar situation.
+:guid: c7b18aa8-99d9-4d79-b7e6-2c644463e288
+:comments: 
+- :article_id: 339
+  :published_at: 2007-03-13 22:20:53 +00:00
+  :author: Mike
+  :url: ""
+  :body: |-
+    I am having the exact same experience as you. I'm going to subscribe to your blog and keep checking it to see if you've gotten any updates on this subject.
+    
+    I agree.. It simply must be possible to make a web services call over SSL.. It's just a matter of finding a working example.
+- :article_id: 339
+  :published_at: 2007-04-12 23:01:53 +01:00
+  :author: Bob the Chef
+  :url: ""
+  :body: |-
+    Well, Houston, we have a problem. 
+    
+    ./pop_ssl.rb:537:in `initialize': wrong number of arguments(1 for 2) (ArgumentError)
+            from ./pop_ssl.rb:537:in `new'
+            from ./pop_ssl.rb:537:in `do_start'
+            from ./pop_ssl.rb:507:in `start'
+            from ./pop_ssl.rb:382:in `start'
+            from foobar.rb:8
+    
+    Did you do anything besides just downloading pop.rb from the HEAD and sticking it into your ruby path?
+- :article_id: 339
+  :published_at: 2007-10-29 17:18:56 +00:00
+  :author: mike
+  :url: ""
+  :body: |-
+    Any updates on where I can get this new pop3 ssl library?  All the links are broken..
+    
+    thanks
+- :article_id: 339
+  :published_at: 2007-10-29 17:35:54 +00:00
+  :author: mike
+  :url: ""
+  :body: oh. 1.9.0.  I get it.thanks
+:title: Connecting to gmail with Ruby (or Connecting to POP3 servers over SSL with Ruby)

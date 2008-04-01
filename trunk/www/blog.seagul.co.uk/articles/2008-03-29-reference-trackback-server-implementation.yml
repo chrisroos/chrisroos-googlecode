@@ -1,4 +1,9 @@
 --- 
+:published_at: 2008-03-29 06:27:05 +00:00
+:trackbacks: []
+
+:tags: []
+
 :body: |-
   To aid my development of the "del.icio.us trackbacks firefox extension":http://blog.seagul.co.uk/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension I created a reference "trackback":http://en.wikipedia.org/wiki/Trackback server implementation based on the "trackback specification":http://www.sixapart.com/pronet/docs/trackback_spec.
   
@@ -38,6 +43,7 @@
     <error>0</error>
   </response>
   </typo:code>
-:published_at: 2008-03-29 06:27:05.716536 +00:00
-:title: Reference Trackback Server implementation
 :guid: d9caacb2-2920-4ccd-ac3f-f2154258c400
+:comments: []
+
+:title: Reference Trackback Server implementation

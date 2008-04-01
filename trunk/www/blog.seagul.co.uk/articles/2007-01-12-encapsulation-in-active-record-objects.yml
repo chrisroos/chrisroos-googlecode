@@ -1,115 +1,12 @@
 --- 
 :published_at: 2007-01-12 01:37:00 +00:00
-:guid: 9c692b70-b1ef-4694-9579-66b1374ffde7
-:title: Encapsulation in Active Record objects
+:trackbacks: []
+
 :tags: 
 - encapsulation
 - rails
 - ruby
 - testing
-:comments: 
-- :author: Jamis
-  :published_at: 2007-01-12 20:11:45 +00:00
-  :article_id: 604
-  :url: ""
-  :body: |-
-    Chris, I'm not sure why you feel that "touching" the hobbies method is a bad thing. It's a public method, not a public instance variable. The method provides the abstraction, and you could ultimately replace that implementation with something else, so there is no violation of encapsulation.
-    
-    Am I misunderstanding your concern? Personally, I find "my.hobbies << biking" more esthetically appealing then "my.add_hobby(biking)".
-- :author: Chris
-  :published_at: 2007-01-13 13:21:47 +00:00
-  :article_id: 604
-  :url: ""
-  :body: |-
-    Hi Jamis,
-    
-    I think the problem is that we're asking a person for their hobbies object in order to manipulate it directly.  What we really want to do is tell the person to add their own hobby - we don't care how they go about it.
-    
-    Apologies for the short answer - I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I'll try a follow-up post with more exploration of the issue.
-- :author: Jamis
-  :published_at: 2007-01-13 15:35:24 +00:00
-  :article_id: 604
-  :url: ""
-  :body: |-
-    Chris, actually, you're not getting the hobbies object back. The "hobbies" method returns a proxy object, not the array of hobbies directly. When you invoke a method on what is returned, it is hitting the proxy, not the array.
-    
-    It's all nicely encapsulated. Ruby makes it so clean and neat to do these things. The problem is, so many of us are coming from languages like Java, where it is _not_ so easy to do things like that transparently, and since we're taught that manipulating the internal object directly is bad, we feel like we have to jump through all kinds of hoops in order to avoid even the _appearance_ of that kind of access.
-    
-    The fact is, though, that encapsulation is the goal, and what it is attained, there are no more hoops to jump through. And ActiveRecord correctly and safely encapsulates your data, via the association proxy classes.
-    
-    There's no need for Javaisms like "add_hobby", unless you, personally, prefer it that way. Myself, I think Java has taught programmers a lot of very bad habits, and Ruby (and Rails) gives us the chance to unlearn some of those.
-- :author: Chris
-  :published_at: 2007-01-15 22:06:11 +00:00
-  :article_id: 604
-  :url: ""
-  :body: |-
-    Jamis, I'm confused as to how this fits in with the "Tell, don't ask" principle.  I'm probably missing something, but, it very much seems to me that we're _asking_ a person for their hobbies and then _telling_ the hobbies to add a hobby to itself.  The fact that we are getting a proxy that represents their hobbies rather than the hobbies object directly seems irrelevant.
-    
-    I'm thinking in terms of testing, and in particular, using mocks and stubs.  By exposing the association proxies publicly, we have to provide more complicated mocks/stubs in our tests.
-    
-    Assuming we want to test a controller action that adds a hobby to a given person, and we're exposing the hobbies object directly, we would have something like:
-    
-    <typo:code lang="ruby">
-    hobbies = mock
-    hobbies.expects(:<<).with('MY_NEW_HOBBY')
-    person = stub(:hobbies => hobbies)
-    Person.stubs(:find).returns(person)
-    
-    post :add_hobby, :id => 99, :hobby => 'MY_NEW_HOBBY'
-    </typo:code>
-    
-    As a slight aside, I feel more uncomfortable because of the aliasing of << as both push and concat (which of the three methods should we expect?).  However, I'll admit that this is more a problem of tightly tying our tests to our implementation.  I would, however, still feel better if there was only one way to do what was required (i.e. one addition method.)
-    
-    If we were able to tell our person to add their own hobby then the test becomes slightly cleaner.
-    
-    <typo:code lang="ruby">
-    person = mock
-    person.expects(:add_hobby).with('MY_NEW_HOBBY)
-    Person.stubs(:find).returns(person)
-    
-    post :add_hobby, :id => 99, 'MY_NEW_HOBBY'
-    </typo:code>
-    
-    Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it's probably all irrelevant?
-- :author: David Chelimsky
-  :published_at: 2007-02-06 15:51:21 +00:00
-  :article_id: 604
-  :url: ""
-  :body: |-
-    It's not just a matter of making your tests cleaner. It's also a matter of protecting the consumers of your model from changes to the model over time.
-    
-    Imagine a project management app in which you have Project > Iterations > Stories. All through your controllers and views you have calls like this:
-    
-    @project.iterations.stories
-    
-    Later on, you decide that your model is wrong and that it should really be Project > Stories > Iterations. Now you have to change every call to stories or iterations. If, however, you started off with this in Project:
-    
-    def stories
-      iterations.stories
-    end
-    
-    all you would have to do now is change the Project model.
-    
-    To me, THAT is the whole point of Demeter. It's about managing dependencies to isolate change.
-- :author: Matt Pelletier
-  :published_at: 2007-02-07 07:50:10 +00:00
-  :article_id: 604
-  :url: ""
-  :body: |-
-    Chris,
-    
-    We've run into similar concerns re. association proxies and object hopping. I wrote a plugin that adds methods that wrap the common find, build and count association proxy methods. You could add 'add' to this easily.
-    
-    http://svn.eastmedia.com/svn/code/plugins/model_extensions/lib/associations.rb
-    
-    We've also become fans of Forwardable's def_delegator and def_delegators (roughly the same as Rails' delegate method, if you want). Using David's example:
-    
-    class Stories < AR:B
-      extend Forwardable
-      def_delegator :iterations, :stories
-    end
-    
-    Matt
 :body: |-
   I've been meaning to finish a post on this subject for ages.  As I probably won't finish it in its current incarnation, I thought I'd at least get something up here.
   
@@ -192,3 +89,108 @@
   Just one final note.  "Dave Astels":http://www.daveastels.com/ has a good "article":http://blog.daveastels.com/articles/2006/10/24/encapsulation-in-action about encapsulation in rails, as "referred to":http://www.reevoo.com/blogs/bengriffiths/2006/10/24/rails-like-or-oo/ by "Ben":http://www.reevoo.com/blogs/bengriffiths
   
   fn1.  Ok.  That is, of course, a blatant lie - we can still access the private association - this is "ruby":http://www.ruby-lang.org remember.  The important point is that we've made our intentions more explicit.
+:guid: 9c692b70-b1ef-4694-9579-66b1374ffde7
+:comments: 
+- :article_id: 604
+  :published_at: 2007-01-12 20:11:45 +00:00
+  :author: Jamis
+  :url: ""
+  :body: |-
+    Chris, I'm not sure why you feel that "touching" the hobbies method is a bad thing. It's a public method, not a public instance variable. The method provides the abstraction, and you could ultimately replace that implementation with something else, so there is no violation of encapsulation.
+    
+    Am I misunderstanding your concern? Personally, I find "my.hobbies << biking" more esthetically appealing then "my.add_hobby(biking)".
+- :article_id: 604
+  :published_at: 2007-01-13 13:21:47 +00:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    Hi Jamis,
+    
+    I think the problem is that we're asking a person for their hobbies object in order to manipulate it directly.  What we really want to do is tell the person to add their own hobby - we don't care how they go about it.
+    
+    Apologies for the short answer - I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I'll try a follow-up post with more exploration of the issue.
+- :article_id: 604
+  :published_at: 2007-01-13 15:35:24 +00:00
+  :author: Jamis
+  :url: ""
+  :body: |-
+    Chris, actually, you're not getting the hobbies object back. The "hobbies" method returns a proxy object, not the array of hobbies directly. When you invoke a method on what is returned, it is hitting the proxy, not the array.
+    
+    It's all nicely encapsulated. Ruby makes it so clean and neat to do these things. The problem is, so many of us are coming from languages like Java, where it is _not_ so easy to do things like that transparently, and since we're taught that manipulating the internal object directly is bad, we feel like we have to jump through all kinds of hoops in order to avoid even the _appearance_ of that kind of access.
+    
+    The fact is, though, that encapsulation is the goal, and what it is attained, there are no more hoops to jump through. And ActiveRecord correctly and safely encapsulates your data, via the association proxy classes.
+    
+    There's no need for Javaisms like "add_hobby", unless you, personally, prefer it that way. Myself, I think Java has taught programmers a lot of very bad habits, and Ruby (and Rails) gives us the chance to unlearn some of those.
+- :article_id: 604
+  :published_at: 2007-01-15 22:06:11 +00:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    Jamis, I'm confused as to how this fits in with the "Tell, don't ask" principle.  I'm probably missing something, but, it very much seems to me that we're _asking_ a person for their hobbies and then _telling_ the hobbies to add a hobby to itself.  The fact that we are getting a proxy that represents their hobbies rather than the hobbies object directly seems irrelevant.
+    
+    I'm thinking in terms of testing, and in particular, using mocks and stubs.  By exposing the association proxies publicly, we have to provide more complicated mocks/stubs in our tests.
+    
+    Assuming we want to test a controller action that adds a hobby to a given person, and we're exposing the hobbies object directly, we would have something like:
+    
+    <typo:code lang="ruby">
+    hobbies = mock
+    hobbies.expects(:<<).with('MY_NEW_HOBBY')
+    person = stub(:hobbies => hobbies)
+    Person.stubs(:find).returns(person)
+    
+    post :add_hobby, :id => 99, :hobby => 'MY_NEW_HOBBY'
+    </typo:code>
+    
+    As a slight aside, I feel more uncomfortable because of the aliasing of << as both push and concat (which of the three methods should we expect?).  However, I'll admit that this is more a problem of tightly tying our tests to our implementation.  I would, however, still feel better if there was only one way to do what was required (i.e. one addition method.)
+    
+    If we were able to tell our person to add their own hobby then the test becomes slightly cleaner.
+    
+    <typo:code lang="ruby">
+    person = mock
+    person.expects(:add_hobby).with('MY_NEW_HOBBY)
+    Person.stubs(:find).returns(person)
+    
+    post :add_hobby, :id => 99, 'MY_NEW_HOBBY'
+    </typo:code>
+    
+    Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it's probably all irrelevant?
+- :article_id: 604
+  :published_at: 2007-02-06 15:51:21 +00:00
+  :author: David Chelimsky
+  :url: ""
+  :body: |-
+    It's not just a matter of making your tests cleaner. It's also a matter of protecting the consumers of your model from changes to the model over time.
+    
+    Imagine a project management app in which you have Project > Iterations > Stories. All through your controllers and views you have calls like this:
+    
+    @project.iterations.stories
+    
+    Later on, you decide that your model is wrong and that it should really be Project > Stories > Iterations. Now you have to change every call to stories or iterations. If, however, you started off with this in Project:
+    
+    def stories
+      iterations.stories
+    end
+    
+    all you would have to do now is change the Project model.
+    
+    To me, THAT is the whole point of Demeter. It's about managing dependencies to isolate change.
+- :article_id: 604
+  :published_at: 2007-02-07 07:50:10 +00:00
+  :author: Matt Pelletier
+  :url: ""
+  :body: |-
+    Chris,
+    
+    We've run into similar concerns re. association proxies and object hopping. I wrote a plugin that adds methods that wrap the common find, build and count association proxy methods. You could add 'add' to this easily.
+    
+    http://svn.eastmedia.com/svn/code/plugins/model_extensions/lib/associations.rb
+    
+    We've also become fans of Forwardable's def_delegator and def_delegators (roughly the same as Rails' delegate method, if you want). Using David's example:
+    
+    class Stories < AR:B
+      extend Forwardable
+      def_delegator :iterations, :stories
+    end
+    
+    Matt
+:title: Encapsulation in Active Record objects

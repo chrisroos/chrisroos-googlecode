@@ -1,7 +1,7 @@
 --- 
 :published_at: 2007-10-05 08:43:00 +01:00
-:guid: bdbb76c5-3530-4613-869c-9bffa7774b03
-:title: Trying to speak to someone in development at Hsbc - can anyone help?
+:trackbacks: []
+
 :tags: 
 - banking
 - bug
@@ -11,12 +11,6 @@
 - internet
 - ofx
 - wesabe
-:comments: 
-- :author: Brad Greenlee
-  :published_at: 2007-10-05 14:51:41 +01:00
-  :article_id: 38339
-  :url: ""
-  :body: Chris- if there's anything we can do to fix things on the Wesabe end, let me know. Once your account is no longer overdrawn, things should be fine on our site, as we work backwards from the most recent balance. We could always correct the bad balances manually in the database, too.
 :body: |-
   I'm almost 100% certain that there's a "bug":http://twitter.com/chrisroos/statuses/247143372 in the Hsbc Internet Banking site.
   
@@ -27,3 +21,11 @@
   Does anyone know anyone that works at Hsbc and might be able to get a message to someone in development?  If not, what's the etiquette on facebook groups?  I notice that there a few hsbc groups - can I just post messages to them asking for help?
   
   I've gotten so used to dealing with "real":http://www.wesabe.com companies that I'd forgotten how the old world works.
+:guid: bdbb76c5-3530-4613-869c-9bffa7774b03
+:comments: 
+- :article_id: 38339
+  :published_at: 2007-10-05 14:51:41 +01:00
+  :author: Brad Greenlee
+  :url: ""
+  :body: Chris- if there's anything we can do to fix things on the Wesabe end, let me know. Once your account is no longer overdrawn, things should be fine on our site, as we work backwards from the most recent balance. We could always correct the bad balances manually in the database, too.
+:title: Trying to speak to someone in development at Hsbc - can anyone help?

@@ -1,91 +1,12 @@
 --- 
 :published_at: 2006-07-14 08:18:00 +01:00
-:guid: bdad36d1-fc62-4c97-bfdc-c910ee33a466
-:title: Textmate command to display Active Record column attributes
+:trackbacks: []
+
 :tags: 
 - activerecord
 - rails
 - ruby
 - textmate
-:comments: 
-- :author: Edward Ocampo-Gooding
-  :published_at: 2006-07-15 20:22:55 +01:00
-  :article_id: 86
-  :url: ""
-  :body: |-
-    That is pretty darn nifty.
-    
-    I agree with you in regards to how I think it's dangerous to have a plugin copy and paste text into your model, because there's nothing that keeps an errant or tired developer from not running the script after every modification from the database.
-    
-    It would be safer if there was a hook in the plugin that got it to run on every migration, but for larger projects, it might be painful (although I'd be surprised if it's *really* bad).
-- :author: Chris McGrath
-  :published_at: 2006-07-17 15:40:08 +01:00
-  :article_id: 86
-  :url: http://octopod.info
-  :body: |-
-    Very cool and very handy. Thanks!
-    
-    I mentioned this to Allan in #textmate and he's added it to the Rails bundle.
-- :author: Allan Odgaard
-  :published_at: 2006-07-17 15:40:25 +01:00
-  :article_id: 86
-  :url: http://macromates.com/blog/
-  :body: "I added this to the Rails bundle included with TextMate, hopefully you won\xE2\x80\x99t mind :)\n\n\
-    I gave it a key equivalent of \xE2\x8C\x83\xE2\x87\xA7\xE2\x8C\x98S (a little convoluted, but presumably this isn\xE2\x80\x99t a frequent action) and placed it in the Model submenu. I also added a progress indicator since it took ~1.5s for me for the tool tip to show.\n"
-- :author: Chris McGrath
-  :published_at: 2006-07-17 16:09:26 +01:00
-  :article_id: 86
-  :url: http://octopod.info
-  :body: BTW, if you have the Edit in TextMate command installed, you can use it from the bundle editor to open the code in TM itself.
-- :author: Rodney
-  :published_at: 2006-07-17 18:05:49 +01:00
-  :article_id: 86
-  :url: http://www.pinupgeek.com
-  :body: I'm hooked already. What could you possibly do to make it better :-) ?
-- :author: Chris
-  :published_at: 2006-07-17 18:21:51 +01:00
-  :article_id: 86
-  :url: ""
-  :body: |-
-    @Chris - Thanks for mentioning it to Allan.
-    
-    @Allan - It's great that it's included in the rails bundle.
-    
-    I'm just glad it's proving useful to others too.
-- :author: Ryan Allen
-  :published_at: 2006-07-18 00:42:27 +01:00
-  :article_id: 86
-  :url: http://leftjoinrightjoin.com
-  :body: |-
-    Rodney: To make it better, 1. not load the whole rails environment to get the attributes, 2. support set_table_name :)
-    
-    But nice one! Textmate just updated so I imagine I've already got it!
-- :author: Ryan Allen
-  :published_at: 2006-07-18 00:43:57 +01:00
-  :article_id: 86
-  :url: http://leftjoinrightjoin.com
-  :body: |-
-    Oh wait, my bad!
-    
-    You're getting the columns from ActiveRecord itself so it does work with set_table_name!
-- :author: Luke Redpath
-  :published_at: 2006-07-27 13:18:48 +01:00
-  :article_id: 86
-  :url: http://www.lukeredpath.co.uk
-  :body: Chris - this is really useful. Finally I can get rid of those crufty annotations - they served their purpose but its time to say goodbye ;)
-- :author: Jamie van Dyke
-  :published_at: 2006-08-10 13:51:27 +01:00
-  :article_id: 86
-  :url: http://www.fearoffish.co.uk/
-  :body: That's handy to say the least, opening a console to double check becomes so tiresome...even if I use Visor.
-- :author: Ben
-  :published_at: 2006-08-11 17:45:03 +01:00
-  :article_id: 86
-  :url: ""
-  :body: |-
-    Perhaps this should be improved so it doesn't load the entire Rails framework. I think the config parsing and the ActiveRecord module would be enough. Can someone confirm this ?
-    
-    I only have a pbook g4. Booting Rails entirely takes a few seconds... I'd expect something faster for a TextMate tooltip :)
 :body: |-
   I find myself constantly visiting either the console or the mysql command line to check out the attributes (columns) of "active record":http://api.rubyonrails.com/classes/ActiveRecord/Base.html objects.
   
@@ -132,3 +53,84 @@
   Anyone find this remotely useful or want to finish off what I've started?
   
   [1] I spent ages trying to develop within the textmate bundle editor before realising it'd be a helluva lot quicker and easier to develop in textmate proper.  Hmmm.
+:guid: bdad36d1-fc62-4c97-bfdc-c910ee33a466
+:comments: 
+- :article_id: 86
+  :published_at: 2006-07-15 20:22:55 +01:00
+  :author: Edward Ocampo-Gooding
+  :url: ""
+  :body: |-
+    That is pretty darn nifty.
+    
+    I agree with you in regards to how I think it's dangerous to have a plugin copy and paste text into your model, because there's nothing that keeps an errant or tired developer from not running the script after every modification from the database.
+    
+    It would be safer if there was a hook in the plugin that got it to run on every migration, but for larger projects, it might be painful (although I'd be surprised if it's *really* bad).
+- :article_id: 86
+  :published_at: 2006-07-17 15:40:08 +01:00
+  :author: Chris McGrath
+  :url: http://octopod.info
+  :body: |-
+    Very cool and very handy. Thanks!
+    
+    I mentioned this to Allan in #textmate and he's added it to the Rails bundle.
+- :article_id: 86
+  :published_at: 2006-07-17 15:40:25 +01:00
+  :author: Allan Odgaard
+  :url: http://macromates.com/blog/
+  :body: "I added this to the Rails bundle included with TextMate, hopefully you won\xE2\x80\x99t mind :)\n\n\
+    I gave it a key equivalent of \xE2\x8C\x83\xE2\x87\xA7\xE2\x8C\x98S (a little convoluted, but presumably this isn\xE2\x80\x99t a frequent action) and placed it in the Model submenu. I also added a progress indicator since it took ~1.5s for me for the tool tip to show.\n"
+- :article_id: 86
+  :published_at: 2006-07-17 16:09:26 +01:00
+  :author: Chris McGrath
+  :url: http://octopod.info
+  :body: BTW, if you have the Edit in TextMate command installed, you can use it from the bundle editor to open the code in TM itself.
+- :article_id: 86
+  :published_at: 2006-07-17 18:05:49 +01:00
+  :author: Rodney
+  :url: http://www.pinupgeek.com
+  :body: I'm hooked already. What could you possibly do to make it better :-) ?
+- :article_id: 86
+  :published_at: 2006-07-17 18:21:51 +01:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    @Chris - Thanks for mentioning it to Allan.
+    
+    @Allan - It's great that it's included in the rails bundle.
+    
+    I'm just glad it's proving useful to others too.
+- :article_id: 86
+  :published_at: 2006-07-18 00:42:27 +01:00
+  :author: Ryan Allen
+  :url: http://leftjoinrightjoin.com
+  :body: |-
+    Rodney: To make it better, 1. not load the whole rails environment to get the attributes, 2. support set_table_name :)
+    
+    But nice one! Textmate just updated so I imagine I've already got it!
+- :article_id: 86
+  :published_at: 2006-07-18 00:43:57 +01:00
+  :author: Ryan Allen
+  :url: http://leftjoinrightjoin.com
+  :body: |-
+    Oh wait, my bad!
+    
+    You're getting the columns from ActiveRecord itself so it does work with set_table_name!
+- :article_id: 86
+  :published_at: 2006-07-27 13:18:48 +01:00
+  :author: Luke Redpath
+  :url: http://www.lukeredpath.co.uk
+  :body: Chris - this is really useful. Finally I can get rid of those crufty annotations - they served their purpose but its time to say goodbye ;)
+- :article_id: 86
+  :published_at: 2006-08-10 13:51:27 +01:00
+  :author: Jamie van Dyke
+  :url: http://www.fearoffish.co.uk/
+  :body: That's handy to say the least, opening a console to double check becomes so tiresome...even if I use Visor.
+- :article_id: 86
+  :published_at: 2006-08-11 17:45:03 +01:00
+  :author: Ben
+  :url: ""
+  :body: |-
+    Perhaps this should be improved so it doesn't load the entire Rails framework. I think the config parsing and the ActiveRecord module would be enough. Can someone confirm this ?
+    
+    I only have a pbook g4. Booting Rails entirely takes a few seconds... I'd expect something faster for a TextMate tooltip :)
+:title: Textmate command to display Active Record column attributes

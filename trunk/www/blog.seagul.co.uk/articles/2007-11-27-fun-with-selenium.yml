@@ -1,21 +1,11 @@
 --- 
 :published_at: 2007-11-27 09:36:00 +00:00
-:guid: 2e2b020d-7a31-49c6-a7ed-945f600c37f3
-:title: Fun with Selenium
+:trackbacks: []
+
 :tags: 
 - reevoo
 - selenium
 - testing
-:comments: 
-- :author: Peter
-  :published_at: 2007-11-27 18:08:08 +00:00
-  :article_id: 59268
-  :url: ""
-  :body: |
-    Wow !!
-    This is a nightmare to test.
-    Kudos for finding the problem.
-
 :body: |-
   "James":http://interblah.net/ and I spent a frustrating, but rewarding, day last Tuesday trying to fix what, for at least four hours, seemed to be a non-reproducible error.  "We've":http://www.reevoo.com used "selenium":http://www.openqa.org/selenium/ for a while to test that our reevoomark application is working as expected.  Every so often, some of these reevoomark tests would fail, with either of the following two messages:
   
@@ -51,3 +41,15 @@
   </script>
   <script type="text/javascript" src='http://www.revieworld.com/javascripts/reevoomark.js'></script>
   </notextile>
+:guid: 2e2b020d-7a31-49c6-a7ed-945f600c37f3
+:comments: 
+- :article_id: 59268
+  :published_at: 2007-11-27 18:08:08 +00:00
+  :author: Peter
+  :url: ""
+  :body: |
+    Wow !!
+    This is a nightmare to test.
+    Kudos for finding the problem.
+
+:title: Fun with Selenium

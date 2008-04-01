@@ -1,12 +1,10 @@
 --- 
 :published_at: 2007-06-07 08:30:00 +01:00
-:guid: 940994f6-21c3-4f85-b400-c876124d7b13
-:title: Reevoo.com and Seo
+:trackbacks: []
+
 :tags: 
 - reevoo
 - seo
-:comments: []
-
 :body: |-
   "We":http://www.reevoo.com had an "Seo":http://en.wikipedia.org/wiki/Search_engine_optimization consultant in yesterday.  Although a lot of what was suggested was common sense there were a few interesting snippets of information.
   
@@ -23,3 +21,7 @@
   A lot of the advice boils down to having a site that people actually find useful.  I think that if we can work on that in combination with the basic principles of well formed documents, clean separation of "presentation":http://en.wikipedia.org/wiki/CSS from content and of "behaviour from markup":http://en.wikipedia.org/wiki/Unobtrusive_JavaScript, we'll have a solid base on which to apply the tips above.
   
   Oh, and the reason for the Seo chap coming in was in an attempt to find out why we fell off the google radar a few months back.
+:guid: 940994f6-21c3-4f85-b400-c876124d7b13
+:comments: []
+
+:title: Reevoo.com and Seo

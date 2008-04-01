@@ -1,25 +1,27 @@
 --- 
 :published_at: 2007-12-14 17:49:00 +00:00
-:guid: 1fc52fd3-6ca6-4fa9-9822-bd0dd0161af7
-:title: Web pages should specify their canonical URL (permalink)
+:trackbacks: []
+
 :tags: 
 - bookmark
 - del.icio.us
+:body: |-
+  I've been using "del.icio.us":http://del.icio.us to record items on "ebay":http://www.ebay.co.uk that I'm interested in.  The problem is that each ebay page can have multiple URLs - none of which redirect to the canonical version.  I can end up tagging the same listing twice if I happen to visit it with two different URLs - this is annoying.  It wouldn't be hard for them to either redirect to the canonical version or just add a <code><link rel="bookmark" ... /></code> tag to the document.  This way, I could ensure that I was always bookmarking the same version (even modifying the del.icio.us plugin if necessary).
+  
+  This isn't just a problem for ebay: lots of sites duplicate their content on multiple URLs (hello retailers).  Maybe in the short term we could come up with some rules for turning any given URL on a specific site into its canonical representation.  That sounds like a nice, useful, little service to me.  Can someone build it for me please?
+:guid: 1fc52fd3-6ca6-4fa9-9822-bd0dd0161af7
 :comments: 
-- :author: Matt B
+- :article_id: 64067
   :published_at: 2007-12-16 15:53:28 +00:00
-  :article_id: 64067
+  :author: Matt B
   :url: http://thanetstar.com/
   :body: With ebay... I think you are better off just giving up... unless you bookmarked the auction ID and stripped of the other parameters.  Each auction has a unique number that can be tracked.  You seem to have a grasp of JavaScript so maybe you could build a linklet?
-- :author: Chris
+- :article_id: 64067
   :published_at: 2007-12-17 13:37:22 +00:00
-  :article_id: 64067
+  :author: Chris
   :url: ""
   :body: |-
     Hey Matt,
     
     I've started to wonder whether a greasemonkey script might do what I need.  The script would just recognise the page you're on and look up, in a set of rules, how to find the canonical URL.  Sadly, I'm not sure when I might find time to do it.
-:body: |-
-  I've been using "del.icio.us":http://del.icio.us to record items on "ebay":http://www.ebay.co.uk that I'm interested in.  The problem is that each ebay page can have multiple URLs - none of which redirect to the canonical version.  I can end up tagging the same listing twice if I happen to visit it with two different URLs - this is annoying.  It wouldn't be hard for them to either redirect to the canonical version or just add a <code><link rel="bookmark" ... /></code> tag to the document.  This way, I could ensure that I was always bookmarking the same version (even modifying the del.icio.us plugin if necessary).
-  
-  This isn't just a problem for ebay: lots of sites duplicate their content on multiple URLs (hello retailers).  Maybe in the short term we could come up with some rules for turning any given URL on a specific site into its canonical representation.  That sounds like a nice, useful, little service to me.  Can someone build it for me please?
+:title: Web pages should specify their canonical URL (permalink)

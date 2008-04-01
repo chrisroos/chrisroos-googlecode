@@ -1,14 +1,12 @@
 --- 
 :published_at: 2006-07-12 01:23:00 +01:00
-:guid: 34bcbcc9-b592-4a27-9b8f-90027d57bdd6
-:title: Using in memory Active Record objects with associations for testing
+:trackbacks: []
+
 :tags: 
 - activerecord
 - learning
 - rails
 - ruby
-:comments: []
-
 :body: |-
   Hitting the database in testing is bad.
   
@@ -68,3 +66,7 @@
   </typo:code>
   
   I've occasionally used this in place of stubbing methods but am still not 100% convinced of the definite benefits one way or another.  I do have some definite disadvantages of stubbing methods (nothing exciting, they've almost certainly been noted by many others in the past) which I'll note down at a later date.
+:guid: 34bcbcc9-b592-4a27-9b8f-90027d57bdd6
+:comments: []
+
+:title: Using in memory Active Record objects with associations for testing

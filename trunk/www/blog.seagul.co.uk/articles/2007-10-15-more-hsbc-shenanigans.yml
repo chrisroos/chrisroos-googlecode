@@ -1,45 +1,12 @@
 --- 
 :published_at: 2007-10-15 20:13:00 +01:00
-:guid: c5da6cb9-7a1f-481b-b1db-23f1db4b6a56
-:title: More Hsbc Shenanigans
+:trackbacks: []
+
 :tags: 
 - banking
 - hsbc
 - internet
 - ofx
-:comments: 
-- :author: Tom
-  :published_at: 2007-12-08 14:25:12 +00:00
-  :article_id: 43380
-  :url: ""
-  :body: |-
-    Hi Chris,
-    
-    I was looking for an online business account which supplied transaction history in OFX format, and stumbled across your posts re HSBC.
-    
-    When I called them, they said they only supported exports in Quicken format (they didn't say whether it was QIF or QFX, though), and in CSV (and declined to tell me what fields would appear in the CSV).
-    
-    Is there any chance you could show an example of the OFX format output they provide(with personal information removed of course), along with an example of the same data in the format as you would expect it to appear? I too am going to have to parse whatever they provide, so am very curious about whatever problems you've already found!
-    
-    Lastly, is there chance that they're actually serving up QFX format? If so, this should be valid OFX, should it not?
-    thanks :)
-    tom
-- :author: Chris
-  :published_at: 2007-12-10 14:57:31 +00:00
-  :article_id: 43380
-  :url: ""
-  :body: |-
-    Hi Tom,
-    
-    HSBC offer exports in three different formats.  They actually offer five in the list of options but two are duplicates (the OFX and QIF formats).
-    
-    * Money - QIF
-    * Money 98 - OFX
-    * Quicken - QIF
-    * Quicken 2002 - OFX
-    * Spreadsheets - CSV
-    
-    I've pasted examples of each of "QIF":http://pastie.caboo.se/126490, "OFX":http://pastie.caboo.se/126491 and "CSV":http://pastie.caboo.se/126492 to "pastie":http://pastie.caboo.se.  Let me know if you need anything else.
 :body: |-
   This will be of interest to very few (if any) people - I'd suggest you just move on to something more interesting.
   
@@ -104,3 +71,38 @@
   </blockquote>
   
   I'm getting slightly concerned that I might be wrong now - then I'd look real stoopid.  As it is I just look a bit sad.
+:guid: c5da6cb9-7a1f-481b-b1db-23f1db4b6a56
+:comments: 
+- :article_id: 43380
+  :published_at: 2007-12-08 14:25:12 +00:00
+  :author: Tom
+  :url: ""
+  :body: |-
+    Hi Chris,
+    
+    I was looking for an online business account which supplied transaction history in OFX format, and stumbled across your posts re HSBC.
+    
+    When I called them, they said they only supported exports in Quicken format (they didn't say whether it was QIF or QFX, though), and in CSV (and declined to tell me what fields would appear in the CSV).
+    
+    Is there any chance you could show an example of the OFX format output they provide(with personal information removed of course), along with an example of the same data in the format as you would expect it to appear? I too am going to have to parse whatever they provide, so am very curious about whatever problems you've already found!
+    
+    Lastly, is there chance that they're actually serving up QFX format? If so, this should be valid OFX, should it not?
+    thanks :)
+    tom
+- :article_id: 43380
+  :published_at: 2007-12-10 14:57:31 +00:00
+  :author: Chris
+  :url: ""
+  :body: |-
+    Hi Tom,
+    
+    HSBC offer exports in three different formats.  They actually offer five in the list of options but two are duplicates (the OFX and QIF formats).
+    
+    * Money - QIF
+    * Money 98 - OFX
+    * Quicken - QIF
+    * Quicken 2002 - OFX
+    * Spreadsheets - CSV
+    
+    I've pasted examples of each of "QIF":http://pastie.caboo.se/126490, "OFX":http://pastie.caboo.se/126491 and "CSV":http://pastie.caboo.se/126492 to "pastie":http://pastie.caboo.se.  Let me know if you need anything else.
+:title: More Hsbc Shenanigans

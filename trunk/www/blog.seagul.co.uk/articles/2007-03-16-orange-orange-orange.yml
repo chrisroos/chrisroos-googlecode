@@ -1,24 +1,26 @@
 --- 
 :published_at: 2007-03-16 19:58:00 +00:00
-:guid: b4536d88-439b-4cc6-8ec1-e02396f58bb6
-:title: Orange, orange, orange
+:trackbacks: 
+- :article_id: 1010
+  :published_at: 2007-09-21 07:54:02 +01:00
+  :blog_name: deferred until inspiration hits
+  :url: http://blog.seagul.co.uk/articles/2007/09/21/companies-you-must-make-it-simple-for-me-to-unsubscribe-from-your-marketing-shite
+  :published: true
+  :excerpt: Over the past few months I&#8217;ve been actively trying to unsubscribe from things that I&#8217;m no longer interested in. Both electronic and traditional mail. I&#8217;ve started to keep a little record of when I receive said shite and when I un...
+  :ip: 82.138.248.206
+  :title: Companies. You must make it simple for me to unsubscribe from your marketing shite.
+- :article_id: 1010
+  :published_at: 2007-10-31 22:25:19 +00:00
+  :blog_name: deferred until inspiration hits
+  :url: http://blog.seagul.co.uk/articles/2007/10/31/naughty-spammy-tesco-entertainment
+  :published: true
+  :excerpt: Are Tesco Entertainment the new Orange? They might just be you know. See, I&#8217;ve been sad and pathetic enough to record details of unwanted emails that I receive. So far Tesco Entertainment, bless &#8216;em, have been unable to remove me from ...
+  :ip: 82.138.248.206
+  :title: Naughty spammy Tesco Entertainment
 :tags: 
 - crap
 - naughty
 - orange
-:comments: 
-- :author: Ben
-  :published_at: 2007-03-17 18:58:29 +00:00
-  :article_id: 1010
-  :url: ""
-  :body: http://www.scotchspam.com/
-- :author: Kieran
-  :published_at: 2007-03-21 20:51:58 +00:00
-  :article_id: 1010
-  :url: ""
-  :body: |-
-    Watchdog just slagged off Orange broadband, one of the major complaints was the difficulty in unsubscribing; sound familiar?
-    http://www.bbc.co.uk/consumer/tv_and_radio/watchdog/reports/internet/internet_20070321.shtml
 :body: |-
   Tuttety tut tut tut.  I unsubscribed from you guys, don't you "remember":http://blog.seagul.co.uk/articles/2007/01/12/move-over-seetickets-com-youve-got-nothing-on-orange-co-uk?  Obviously not, as you've just emailed me again.  Oh well, might as well hit that unsubscribe link one more time...
   
@@ -27,3 +29,18 @@
   Unless I'm very much mistaken, there have been about two months between the 12th January and now, one month more than the, err, very reasonable[1], 28 days they say it should take.
   
   fn1. It's not reasonable.  In fact, I may go as far as to say it's unjustifiable.
+:guid: b4536d88-439b-4cc6-8ec1-e02396f58bb6
+:comments: 
+- :article_id: 1010
+  :published_at: 2007-03-17 18:58:29 +00:00
+  :author: Ben
+  :url: ""
+  :body: http://www.scotchspam.com/
+- :article_id: 1010
+  :published_at: 2007-03-21 20:51:58 +00:00
+  :author: Kieran
+  :url: ""
+  :body: |-
+    Watchdog just slagged off Orange broadband, one of the major complaints was the difficulty in unsubscribing; sound familiar?
+    http://www.bbc.co.uk/consumer/tv_and_radio/watchdog/reports/internet/internet_20070321.shtml
+:title: Orange, orange, orange

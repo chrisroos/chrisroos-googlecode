@@ -1,23 +1,12 @@
 --- 
 :published_at: 2006-11-28 23:55:00 +00:00
-:guid: c4aa4d10-0fed-4730-9c95-8aad4d30e199
-:title: Amazing non-customer service
+:trackbacks: []
+
 :tags: 
 - claimid
 - open
 - reevoo
 - wesabe
-:comments: 
-- :author: Marc Hedlund
-  :published_at: 2006-11-29 01:39:42 +00:00
-  :article_id: 552
-  :url: ""
-  :body: Glad we were able to get back to you so quickly!  If you have any suggestions for making the site better, please let us know.
-- :author: Fred
-  :published_at: 2006-12-04 22:51:52 +00:00
-  :article_id: 552
-  :url: http://claimid.com
-  :body: Hey, thanks for the nice words!
 :body: |-
   I heard (well, read) about "wesabe":http://www.wesabe.com this morning and thought I'd sign-up to find out what it was all about.  During the sign-up process I was asked for _two_ security questions and answers - to be used in the event of me forgetting my password.  Although I was unable[1] to sign-up and use the service, I still got an amazing 'non-customer experience'.  I was curious as to why they wanted me to answer two security questions in order to sign-up, and emailed them to that affect.
   
@@ -42,3 +31,16 @@
   [1] There's a little white lie there to be fair.  Of course I _could've_ signed up.  They didn't put a spell on me (although that'd be cool) or anything.  It's just that I feel uncomfortable giving out the answers to real questions (mother's maiden name) and there's zero chance of me remembering the answer to made up questions (favourite colour/day/smell).
   
   [2] I was going to cleverly protect my email addresses from prying robot eyes...  but really can't be bothered.
+:guid: c4aa4d10-0fed-4730-9c95-8aad4d30e199
+:comments: 
+- :article_id: 552
+  :published_at: 2006-11-29 01:39:42 +00:00
+  :author: Marc Hedlund
+  :url: ""
+  :body: Glad we were able to get back to you so quickly!  If you have any suggestions for making the site better, please let us know.
+- :article_id: 552
+  :published_at: 2006-12-04 22:51:52 +00:00
+  :author: Fred
+  :url: http://claimid.com
+  :body: Hey, thanks for the nice words!
+:title: Amazing non-customer service

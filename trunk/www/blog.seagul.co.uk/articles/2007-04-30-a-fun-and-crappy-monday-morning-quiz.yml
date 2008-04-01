@@ -1,18 +1,12 @@
 --- 
 :published_at: 2007-04-30 09:08:00 +01:00
-:guid: c42c088b-48bd-4580-ba44-7272bad89605
-:title: A fun (and crappy) Monday morning quiz
+:trackbacks: []
+
 :tags: 
 - job
 - quiz
 - reevoo
 - ruby
-:comments: 
-- :author: warren
-  :published_at: 2007-04-30 09:50:48 +01:00
-  :article_id: 3886
-  :url: http://warrenseen.com/blog/
-  :body: you were bored on the train, and I was bored after dinner :-) Thanks for a cute diversion!
 :body: |-
   <typo:code lang="ruby">
   require 'test/unit'
@@ -75,3 +69,11 @@
   dF9wYXNzd29yZD8KICAgIHB1dHMgQ2FuZGlkYXRlLm5ldygncnVieSBpcyBj
   b29sJykuc2VjcmV0X21lc3NhZ2UKICBlbmQKZW5kCg==
   </typo:code>
+:guid: c42c088b-48bd-4580-ba44-7272bad89605
+:comments: 
+- :article_id: 3886
+  :published_at: 2007-04-30 09:50:48 +01:00
+  :author: warren
+  :url: http://warrenseen.com/blog/
+  :body: you were bored on the train, and I was bored after dinner :-) Thanks for a cute diversion!
+:title: A fun (and crappy) Monday morning quiz

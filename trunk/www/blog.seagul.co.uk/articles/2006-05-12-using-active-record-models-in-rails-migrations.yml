@@ -1,13 +1,11 @@
 --- 
 :published_at: 2006-05-12 16:32:00 +01:00
-:guid: e7338fc7-3433-4d3b-a68b-53b1db6c59d8
-:title: Using active record models in rails migrations
+:trackbacks: []
+
 :tags: 
 - migrations
 - rails
 - ruby
-:comments: []
-
 :body: |-
   I seem to remember that "we":http://www.reevoo.com first came across the "migrations out of sync with code" problems around the time that Scott Laird "posted":http://scottstuff.net/blog/articles/2005/10/31/migrating-in-two-dimensions about it regarding "typo":http://www.typosphere.org.
   
@@ -64,3 +62,7 @@
   h3. A problem with this method and re-defining classes directly in the migration
   
   Both methods create AR derived classes in a namespace that isn't the root namespace.  We came across a problem where we were serializing the contents of one of these re-defined classes to the database from within our migration.  When we came to read the serialized data in our code, it didn't 'know' what a Migration001::Person was and so raised an exception.  Without thinking about it too much, I think this might cause problems with STI too (I've seen notes to this effect from the Typo migration solution).
+:guid: e7338fc7-3433-4d3b-a68b-53b1db6c59d8
+:comments: []
+
+:title: Using active record models in rails migrations

@@ -1,20 +1,9 @@
 --- 
 :published_at: 2005-11-06 14:25:00 +00:00
-:guid: 377ed1c8-f1b7-4fef-bfaf-d74b1e60f9d1
-:title: Typo admin broke!
+:trackbacks: []
+
 :tags: []
 
-:comments: 
-- :author: Kieran
-  :published_at: 2005-11-07 13:54:05 +00:00
-  :article_id: 17
-  :url: ""
-  :body: Your updates appear to be a month out :o)
-- :author: Chris
-  :published_at: 2005-11-08 08:10:59 +00:00
-  :article_id: 17
-  :url: ""
-  :body: Mmm, it would indeed appear so.  Now fixed ta.
 :body: |-
   I went to add a link to my bloglines public feed this morning and couldn't log into typo admin.  I double checked that my username and password were correct using the console and so took a look at the accounts controller.  Using some advanced debugging techniques (mmm render :text => '') I found that request.method was returning :POST where the code was checking for :post.  I amended the controller and all now works.  I'm just really not sure why it stopped working as nothing had changed!
   
@@ -29,3 +18,16 @@
   *Update Mon 7th Nov 08:45*
   
   It would appear that it was actually me that changed the code in request.rb when I was trying to diagnose and fix some problems when installing "weed":http://weed.rbse.com.  Oops.
+:guid: 377ed1c8-f1b7-4fef-bfaf-d74b1e60f9d1
+:comments: 
+- :article_id: 17
+  :published_at: 2005-11-07 13:54:05 +00:00
+  :author: Kieran
+  :url: ""
+  :body: Your updates appear to be a month out :o)
+- :article_id: 17
+  :published_at: 2005-11-08 08:10:59 +00:00
+  :author: Chris
+  :url: ""
+  :body: Mmm, it would indeed appear so.  Now fixed ta.
+:title: Typo admin broke!

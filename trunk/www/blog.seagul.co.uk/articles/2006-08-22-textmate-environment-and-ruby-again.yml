@@ -1,13 +1,11 @@
 --- 
 :published_at: 2006-08-22 23:53:00 +01:00
-:guid: eae3fed9-0d74-489b-87c3-2034ae1d178b
-:title: Textmate environment and ruby (again)
+:trackbacks: []
+
 :tags: 
 - environment
 - ruby
 - textmate
-:comments: []
-
 :body: |-
   I've recently upgraded the version of ruby on my machine and came up against problems similar to "this ":http://blog.seagul.co.uk/articles/2006/07/28/textmate-and-env-ruby-no-such-file-or-directory.  The problem previously was that "textmate":http://www.macromates.com wasn't finding "ruby":http://www.ruby-lang.org at all.  This time, textmate was finding the wrong version of ruby.
   
@@ -29,3 +27,7 @@
   	puts "#{key} = #{value}"
   end
   </typo:code>
+:guid: eae3fed9-0d74-489b-87c3-2034ae1d178b
+:comments: []
+
+:title: Textmate environment and ruby (again)

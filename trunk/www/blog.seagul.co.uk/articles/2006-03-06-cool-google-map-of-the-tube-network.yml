@@ -1,28 +1,30 @@
 --- 
 :published_at: 2006-03-06 09:33:00 +00:00
-:guid: f3d11d45-1bd9-4f5b-bc85-38f63f0624f3
-:title: Cool google map of the tube network...
+:trackbacks: []
+
 :tags: []
 
+:body: ..."right here":http://tubejp.co.uk/
+:guid: f3d11d45-1bd9-4f5b-bc85-38f63f0624f3
 :comments: 
-- :author: Kieran
+- :article_id: 64
   :published_at: 2006-03-06 22:21:07 +00:00
-  :article_id: 64
+  :author: Kieran
   :url: ""
   :body: "Really cool - but is it *useful*? You can also get the tube map for mp3 players here: <a href='http://www.ipodsubwaymaps.com/download.php#london'>http://www.ipodsubwaymaps.com/download.php#london</a> (the site mentions only iPods but it works fine on my iRiver). "
-- :author: Chris
+- :article_id: 64
   :published_at: 2006-03-07 14:06:25 +00:00
-  :article_id: 64
+  :author: Chris
   :url: ""
   :body: Err, usefulness needn't apply - it's just cool.  Yeah.
-- :author: Paul
+- :article_id: 64
   :published_at: 2006-03-15 11:45:10 +00:00
-  :article_id: 64
+  :author: Paul
   :url: http://null
   :body: Looks very cool and it's got a route planner too.  It must be using the google maps API, there's an article on this on development works too <a href='http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/'>http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/</a>
-- :author: Chris
+- :article_id: 64
   :published_at: 2006-03-16 07:58:46 +00:00
-  :article_id: 64
+  :author: Chris
   :url: ""
   :body: It certainly does - I subscribe to the feed at "this":http://googlemapsmania.blogspot.com/ site to get updates on new uses of the google maps api.
-:body: ..."right here":http://tubejp.co.uk/
+:title: Cool google map of the tube network...

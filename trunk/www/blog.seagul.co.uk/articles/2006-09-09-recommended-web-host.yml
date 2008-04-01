@@ -1,12 +1,10 @@
 --- 
 :published_at: 2006-09-09 11:32:00 +01:00
-:guid: 585b660b-4990-44fa-a6c1-50cd2ed4eb4a
-:title: Recommended web host
+:trackbacks: []
+
 :tags: 
 - hosting
 - praise
-:comments: []
-
 :body: |-
   I can't recommend "A Small Orange":http://www.asmallorange.com enough.  They offer very competitive shared hosting and don't charge for "upgrades" like the majority of hosts.  From their site..
   
@@ -31,3 +29,7 @@
   In fairness, I actually moved hosting for one of the firms to "bluehost":http://www.bluehost.com originally.  These guys also offer great rates and features (not quite as great as ASO).  We just had one problem - there are consistent network failures between us (at least parts of the UK) and them (somewhere in the States).  They can see the problem but as it lies with one of their upstream providers apparently there is not much they can do about it.  Hmmm.
   
   That's enough praising for now.  Go ASO.
+:guid: 585b660b-4990-44fa-a6c1-50cd2ed4eb4a
+:comments: []
+
+:title: Recommended web host

@@ -1,13 +1,18 @@
 --- 
 :published_at: 2006-10-06 09:19:00 +01:00
-:guid: f59fe5c0-fe96-4995-9fc9-5153cf7e088c
-:title: Recording daily spending with a Ruby Dsl
+:trackbacks: 
+- :article_id: 173
+  :published_at: 2006-10-14 10:49:05 +01:00
+  :blog_name: deferred until inspiration hits
+  :url: http://blog.seagul.co.uk/articles/2006/10/14/some-useful-assertions-maybe
+  :published: true
+  :excerpt: The first is to ensure two arrays contain the same elements not necessarily in the same order. require 'test/unit' require 'set' module AssertEqualArray def assert_equal_array(array_1, array_2) assert_equal array_1.size, array_2.size, &quot;Arrays...
+  :ip: 82.138.248.206
+  :title: Some useful assertions, maybe
 :tags: 
 - dsl
 - finance
 - ruby
-:comments: []
-
 :body: |-
   I'm very very very bad with money.  Don't get me wrong, I'm very good at -spending- wasting money, just bad at all "the":http://en.wikipedia.org/wiki/Savings "boring":http://en.wikipedia.org/wiki/Investing "stuff":http://en.wikipedia.org/wiki/Pension.
   
@@ -48,3 +53,7 @@
   That's about all I have at the moment.  Unfortunately, I'm already getting a bit bored with this project so this may be the last of it and I'll continue spending over my limits.  Or, I'll get those colourful graphs added and it'll be heralded as the best budgeting app in the world ever[1].
   
   fn1. This reminds me of the 'best [dance|rock|urban|insert music genre here] album in the world ever...' type compilations, of which "this":http://www.amazon.co.uk/Worst-Album-World-Ever-Ever-Shirehorses/dp/B000024V87 is undoubtedly the best.
+:guid: f59fe5c0-fe96-4995-9fc9-5153cf7e088c
+:comments: []
+
+:title: Recording daily spending with a Ruby Dsl

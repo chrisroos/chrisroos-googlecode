@@ -1,7 +1,7 @@
 --- 
 :published_at: 2007-09-29 09:11:00 +01:00
-:guid: 86e74ab7-047f-4670-bf35-3753c3f2bb4a
-:title: Monitoring the Mac OSX Filesystem with ruby
+:trackbacks: []
+
 :tags: 
 - cron
 - file
@@ -12,8 +12,6 @@
 - script
 - sync
 - system
-:comments: []
-
 :body: |-
   On Thursday, "James":http://blog.floehopper.org/ and I spent some time investigating remote pairing options.  One tiny part of that investigation was finding a way to keep two remote filesystems in sync.  I initially thought of using "rsync":http://en.wikipedia.org/wiki/Rsync at regular intervals with "cron":http://en.wikipedia.org/wiki/Cron.  Unless I've missed something, the smallest interval between cron jobs is one minute which is potentially too long.  We wanted a way to rsync (or sync in general) whenever the filesystem changed.  A little searching brought this "fslogger":http://www.kernelthread.com/software/fslogger/ tool to my attention.  It simply writes some event details to STDOUT every time something changes on the filesystem.  I figured that we could use this, with a little bit of ruby glue, to trigger rsync.  Our glue script continuously reads from STDIN, tries to match some pre-defined patterns and triggers rsync if those patterns are matched.  It's very brittle but it gets the job done.  Well, actually, it only partially gets the job done: I'm very unfamiliar with rsync but it seemed to take between 10 and 30 seconds to sync even if only one file had changed.  I suspect that I may have been doing something wrong though.
   
@@ -38,3 +36,7 @@
     end
   end
   </typo:code>
+:guid: 86e74ab7-047f-4670-bf35-3753c3f2bb4a
+:comments: []
+
+:title: Monitoring the Mac OSX Filesystem with ruby
