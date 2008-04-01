@@ -1,0 +1,86 @@
+--- 
+:published_at: 2007-04-01 13:48:00 +01:00
+:guid: e2764d81-1c82-47e7-8a66-51dd711a680f
+:title: Converting Egg Credit Card Statements to Ofx (for upload to wesabe)
+:tags: 
+- egg.com
+- finance
+- ofx
+- wesabe
+:comments: 
+- :author: Andrew Donaldson
+  :published_at: 2007-04-01 20:53:11 +01:00
+  :article_id: 1894
+  :url: http://desto.net/
+  :body: |-
+    Hey,
+    
+    I love what you're doing with these things -- it'd be cool to compile all these scripts into an active-merchant style online-banking gateway library..?
+    
+    I guess the tricky thing is that you'd be attempting to map a library to a moving target, not to mention it'd be very hard for people to trust a library without fully interrogating the source.
+    
+    Perhaps thats why there hasn't been one before!
+- :author: Tanc
+  :published_at: 2007-04-24 12:26:15 +01:00
+  :article_id: 1894
+  :url: http://tancredi.co.uk
+  :body: |-
+    Hi Chris,
+    
+    I'm finally getting around to trying out your code to convert my egg statements. I've checked out the svn code and created the statements and ofx output folders (basically put them in with the code to make things easier, didn't alter the defaults). I've also installed the hpricot gem with: sudo gem install hpricot
+    
+    When I run the ruby code egg.rb I get the following error:
+    
+    <code>tanc$ ruby egg.rb</code>
+    <br/>
+    <code>./lib/ofx.rb:2:in `require': no such file to load -- builder (LoadError)
+            from ./lib/ofx.rb:2
+            from egg.rb:2</code>
+    
+    <br/>Can you guide me on what is going wrong? I'd love to get this working. Feel free to email me.
+    
+    Thanks.
+- :author: Tanc
+  :published_at: 2007-04-24 16:24:04 +01:00
+  :article_id: 1894
+  :url: http://tancredi.co.uk
+  :body: |-
+    Genius! (you are).
+    
+    I got your system working, for some reason my ruby and gems are all messed up, probably from installing different versions around the place. Once I manually installed the Builder and Hpricot code it worked beautifully.
+    
+    Thank you so much for this, I'm really happy to have my egg account on Wesabe.
+- :author: Marc
+  :published_at: 2007-09-05 23:15:11 +01:00
+  :article_id: 1894
+  :url: ""
+  :body: |
+    Hey Chris,
+    
+    Thanks for the code but I can't get it working. It doesn't seem to generate a valid OFX file for me, by which I mean it actually looks like valid OFX (as far as I can tell) but doesn't seem to upload to Wesabe nor validate with the Money OFX Data Analyzer that I found.
+    
+    I've got the latest code from your google repository. Any ideas?
+    
+    Cheers,
+    Marc
+
+- :author: Chris
+  :published_at: 2007-09-06 09:07:37 +01:00
+  :article_id: 1894
+  :url: ""
+  :body: |-
+    Hey Marc,
+    
+    Let me take a look at the code and see if I can get it to work.  I'll drop you a mail to keep you up to date.
+:body: |-
+  I've cobbled together some pretty nasty code to convert an "Egg":http://www.egg.com Credit Card statement to "Ofx":http://www.ofx.net.
+  
+  Grab the "source":http://chrisroos.googlecode.com/svn/trunk/egg-ofx/ from "google code":http://code.google.com.
+  
+  <typo:code>
+  svn checkout http://chrisroos.googlecode.com/svn/trunk/egg-ofx
+  </typo:code>
+  
+  As well as requiring "hpricot":http://code.whytheluckystiff.net/hpricot/, you will need to edit the StatementsFolder and OfxOutputFolder variables in egg.rb.  These need to point to a directory containing html statements, and an empty output directory respectively.
+  
+  I've used the script to upload my last 12 statements to "wesabe":http://www.wesabe.com and everything seems to work Ok. If you have any questions, just post a comment here.

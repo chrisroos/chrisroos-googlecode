@@ -1,0 +1,150 @@
+--- 
+:published_at: 2006-02-08 08:54:00 +00:00
+:guid: b1012d3b-90d4-4d03-a4b6-9cfd6671c2cb
+:title: In memory sqlite database for rails testing
+:tags: 
+- rails
+- ruby
+- sqlite
+- test
+:comments: 
+- :author: Manfred Stienstra
+  :published_at: 2006-02-13 14:13:44 +00:00
+  :article_id: 51
+  :url: ""
+  :body: Thanks, this was really useful. It looks like this isn't document anywhere, or I suck at reading documentation.
+- :author: Dean
+  :published_at: 2007-04-13 13:02:08 +01:00
+  :article_id: 51
+  :url: http://www.dlbmux.info
+  :body: |-
+    ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
+      Rails::Configuration.new.database_configuration['test']['database'] == ':memory:'
+     
+    - doesn't work at mine
+- :author: Mike Johnson
+  :published_at: 2007-04-19 21:27:04 +01:00
+  :article_id: 51
+  :url: http://www.jayod.info
+  :body: Dean, for me either
+- :author: Chris
+  :published_at: 2007-04-20 13:55:24 +01:00
+  :article_id: 51
+  :url: ""
+  :body: |-
+    Mike and Dean,
+    
+    I'll need far more details if I'm to look into the problem.  At least Ruby, Rails, sqlite versions - probably more that I can't think of.  Also, no promises that I'll get round to doing anything - we haven't used sqlite with rails for ages so I don't have any major interest in getting it to work.
+    
+    Chris
+- :author: Florian
+  :published_at: 2007-08-05 22:04:05 +01:00
+  :article_id: 51
+  :url: ""
+  :body: |
+    This should do
+    
+    ENV['RAILS_ENV'] == 'test' and
+    ActiveRecord::Base.configurations['test'] == {
+      'adapter' => 'sqlite3',
+      'dbfile' => ':memory:'
+    } and
+    ActiveRecord::Migrator.up('db/migrate')
+
+- :author: AkitaOnRails
+  :published_at: 2007-11-27 15:31:41 +00:00
+  :article_id: 51
+  :url: http://www.akitaonrails.com
+  :body: I am trying it but it feels like my fixtures are not being loaded into the in-memory database. Is there something I have to do to force it?
+- :author: Chris
+  :published_at: 2007-12-17 13:59:44 +00:00
+  :article_id: 51
+  :url: ""
+  :body: |-
+    Hey AkitaOnRails,
+    
+    I'm afraid that I haven't used this plugin for a very long time now and it'd probably take me a while to work out what was going on.  Sorry I can't help.
+:body: |-
+  *Update 12th June 2006*
+  
+  There is now a "plugin":http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids from "Geoffrey Grosenbach":http://nubyonrails.com/ that encapsulates this hack.
+  
+  ---
+  
+  I finally took some time to get the "sqlite":http://www.sqlite.org in memory database working correctly for testing "Rails":http://www.rubyonrails.com apps.
+  
+  It appears to be available by default (appearing in the example database.yml file) as
+  
+  <typo:code>
+  sqlite3_in_memory_example:
+    adapter: sqlite3
+    database: ":memory:"
+  </typo:code>
+  
+  Unfortunately, it doesn't appear to be quite as easy as just replacing sqlite3_in_memory_example with test...  The main problem being that in-memory databases have a tendency not to hang around (odd that).
+  
+  My solution (which has every chance of being bad or downright incorrect) is to force the creation of the database in memory at the beginning of the tests.
+  
+  The current implementation relies on either schema.rb being present or comprehensive migrations (i.e. you can use migrations to get a database from zero to your current development status).
+  
+  If you wish to use the schema.rb approach then uncomment the following line in your environment.rb file.
+  
+  <typo:code lang="ruby">
+  config.active_record.schema_format = :ruby
+  </typo:code>
+  
+  Un-commenting this option ensures that the database schema is exported to schema.rb rather than adapter specific sql (ENV_database.sql).
+  
+  Add the following code right below the "# Include your application configuration below" line in environment.rb.
+  
+  <typo:code lang="ruby">
+  def in_memory_database?
+    ENV["RAILS_ENV"] == "test" and 
+    ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
+    Rails::Configuration.new.database_configuration['test']['database'] == ':memory:'
+  end
+  
+  if in_memory_database?
+    puts "creating sqlite in memory database"
+    load "#{RAILS_ROOT}/db/schema.rb" # use db agnostic schema by default
+  #  ActiveRecord::Migrator.up('db/migrate') # use migrations
+  end
+  </typo:code>
+  
+  The reason for adding this code at this point and not just at the end of the environment file is that you may have further logic in environment that actually relies on the database being present.
+  
+  If you are running your tests using rake then it shouldn't matter whether you use the schema or migrations to create the database.  This is because the rake test tasks rely on the test database being set-up, which involves exporting the development db schema to file.
+  
+  If you wish to run tests individually (which, of course, you do) and you choose to use the schema to create your test scructure, you must make sure that it first exists.  The easiest way is to run the following rake task.
+  
+  <typo:code>
+  rake db_schema_dump
+  </typo:code>
+  
+  That should be all there is to it; although I must confess that I've seen additional strange problems when running certain tests against the sqlite in-memory database.  In certain cases I think these may be fixture related.  Where, in "MySql":http://www.mysql.org, you seem to be able to omit required fields (not null) from a fixtures file, sqlite requires their presence.  In other cases; who knows...
+  
+  h3. Testing your sqlite installation
+  
+  One final note that may be of interest.  When I first started playing with sqlite3 with Ruby it seems that I didn't have it installed correctly (relying on pre-installed sqlite and the sqlite3-ruby gem).  As per "this article":http://wiki.rubyonrails.org/rails/pages/HowtoUseSQLite I had to un-install sqlite3-ruby gem and first install the swig port before re-installing sqlite3-ruby gem.  You can test for the correct installation by running the "Active Record":http://wiki.rubyonrails.com/rails/pages/ActiveRecord tests against sqlite by following these steps.
+  
+  * Change directory to Active Record tests (rails/activerecord/test)
+  
+  * Run base_test.rb, supplying the location of the sqlite3 connection to the load path.
+  
+  * <code>ruby -I "connections/native_sqlite3/" base_test.rb</code>
+  
+  You can also run the tests using the sqlite3 in memory connection.  To do so, perform these actions before running the tests as above.
+  
+  * Remove the standard sqlite3 connection
+  
+  * <code>rm connections/native_sqlite3/connection.rb</code>
+  
+  * Rename in_memory_connection.rb as connection.rb
+  
+  * <code>mv connections/in_memory_connection.rb connections/connection.rb</code>
+  
+  I'd suggest doing this against an svn checked out copy of rails, purely due to the these at which the changes can be reverted.
+  
+  h3. Useless stats
+  
+  Changing to in-memory testing shaved about 33% off the running time of our unit tests.

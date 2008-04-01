@@ -1,0 +1,134 @@
+--- 
+:published_at: 2006-07-14 08:18:00 +01:00
+:guid: bdad36d1-fc62-4c97-bfdc-c910ee33a466
+:title: Textmate command to display Active Record column attributes
+:tags: 
+- activerecord
+- rails
+- ruby
+- textmate
+:comments: 
+- :author: Edward Ocampo-Gooding
+  :published_at: 2006-07-15 20:22:55 +01:00
+  :article_id: 86
+  :url: ""
+  :body: |-
+    That is pretty darn nifty.
+    
+    I agree with you in regards to how I think it's dangerous to have a plugin copy and paste text into your model, because there's nothing that keeps an errant or tired developer from not running the script after every modification from the database.
+    
+    It would be safer if there was a hook in the plugin that got it to run on every migration, but for larger projects, it might be painful (although I'd be surprised if it's *really* bad).
+- :author: Chris McGrath
+  :published_at: 2006-07-17 15:40:08 +01:00
+  :article_id: 86
+  :url: http://octopod.info
+  :body: |-
+    Very cool and very handy. Thanks!
+    
+    I mentioned this to Allan in #textmate and he's added it to the Rails bundle.
+- :author: Allan Odgaard
+  :published_at: 2006-07-17 15:40:25 +01:00
+  :article_id: 86
+  :url: http://macromates.com/blog/
+  :body: "I added this to the Rails bundle included with TextMate, hopefully you won\xE2\x80\x99t mind :)\n\n\
+    I gave it a key equivalent of \xE2\x8C\x83\xE2\x87\xA7\xE2\x8C\x98S (a little convoluted, but presumably this isn\xE2\x80\x99t a frequent action) and placed it in the Model submenu. I also added a progress indicator since it took ~1.5s for me for the tool tip to show.\n"
+- :author: Chris McGrath
+  :published_at: 2006-07-17 16:09:26 +01:00
+  :article_id: 86
+  :url: http://octopod.info
+  :body: BTW, if you have the Edit in TextMate command installed, you can use it from the bundle editor to open the code in TM itself.
+- :author: Rodney
+  :published_at: 2006-07-17 18:05:49 +01:00
+  :article_id: 86
+  :url: http://www.pinupgeek.com
+  :body: I'm hooked already. What could you possibly do to make it better :-) ?
+- :author: Chris
+  :published_at: 2006-07-17 18:21:51 +01:00
+  :article_id: 86
+  :url: ""
+  :body: |-
+    @Chris - Thanks for mentioning it to Allan.
+    
+    @Allan - It's great that it's included in the rails bundle.
+    
+    I'm just glad it's proving useful to others too.
+- :author: Ryan Allen
+  :published_at: 2006-07-18 00:42:27 +01:00
+  :article_id: 86
+  :url: http://leftjoinrightjoin.com
+  :body: |-
+    Rodney: To make it better, 1. not load the whole rails environment to get the attributes, 2. support set_table_name :)
+    
+    But nice one! Textmate just updated so I imagine I've already got it!
+- :author: Ryan Allen
+  :published_at: 2006-07-18 00:43:57 +01:00
+  :article_id: 86
+  :url: http://leftjoinrightjoin.com
+  :body: |-
+    Oh wait, my bad!
+    
+    You're getting the columns from ActiveRecord itself so it does work with set_table_name!
+- :author: Luke Redpath
+  :published_at: 2006-07-27 13:18:48 +01:00
+  :article_id: 86
+  :url: http://www.lukeredpath.co.uk
+  :body: Chris - this is really useful. Finally I can get rid of those crufty annotations - they served their purpose but its time to say goodbye ;)
+- :author: Jamie van Dyke
+  :published_at: 2006-08-10 13:51:27 +01:00
+  :article_id: 86
+  :url: http://www.fearoffish.co.uk/
+  :body: That's handy to say the least, opening a console to double check becomes so tiresome...even if I use Visor.
+- :author: Ben
+  :published_at: 2006-08-11 17:45:03 +01:00
+  :article_id: 86
+  :url: ""
+  :body: |-
+    Perhaps this should be improved so it doesn't load the entire Rails framework. I think the config parsing and the ActiveRecord module would be enough. Can someone confirm this ?
+    
+    I only have a pbook g4. Booting Rails entirely takes a few seconds... I'd expect something faster for a TextMate tooltip :)
+:body: |-
+  I find myself constantly visiting either the console or the mysql command line to check out the attributes (columns) of "active record":http://api.rubyonrails.com/classes/ActiveRecord/Base.html objects.
+  
+  I know there is a "plugin":http://blogs.pragprog.com/cgi-bin/pragdave.cgi/Tech/Ruby/AnnotateModels.rdoc by "Dave Thomas":http://blogs.pragprog.com/cgi-bin/pragdave.cgi that places the table structure within the model code itself.  To be honest I've never tried this and it might well suffice (although I'm not 100% convinced I like the idea).
+  
+  Anyhoo, I just spent some time whilst on the train hacking together a basic "textmate":http://macromates.com/ command that displays a tooltip containing the table structure.  It's very basic (though you wouldn't have thought it based on the amount of time it took me together[1]); but seems to work ok.
+  
+  !http://farm1.static.flickr.com/236/460082493_49ff4cd1ed_o.png!
+  
+  The code is below.  You'll need to add a ruby command in the ruby textmate bundle, setting the intput to 'selected text' or 'nothing', the output to 'show as tooltip' and preferably a hotkey that isn't one of the ones you use every day (however tempting that is).
+  
+  <typo:code lang="ruby">
+  #! /usr/local/bin/ruby
+  
+  project = ENV['TM_PROJECT_DIRECTORY']
+  word = ENV['TM_CURRENT_WORD']
+  
+  require "#{project}/config/boot"
+  require "#{project}/config/environment"
+  
+  klass = Object.const_get(word) rescue nil
+  if klass and klass.class == Class and klass.ancestors.include?(ActiveRecord::Base)
+    columns = klass.columns_hash
+  
+    data = []
+    data += [%w[column primary sql_type default]]
+    data += [%w[------ ------- -------- -------]]
+    data += columns.collect { |col, attrs| [col, attrs.primary.to_s, attrs.sql_type.to_s, attrs.default.to_s] }
+  
+    STDOUT << data.inject('') do |output, array| 
+      output + array.inject('') { |row_str, value| row_str + value.ljust(20) } + "\n"
+    end
+  elsif klass and klass.class == Class and not klass.ancestors.include?(ActiveRecord::Base)
+    STDOUT << "#{word} is not an Active Record derived class"
+  else
+    STDOUT << "#{word} was not recognised as a class"
+  end
+  </typo:code>
+  
+  It relies on you having your entire rails project (the folder right above app, config, script etc) open in textmate (in order to find the config files).  With that, just click on the name of an active record class (it has to be the actual class name at present, it'd be cool if it also worked based on the class definition you are currently in too) and hit your hotkey of choice (best to use the one you assigned to this command).  Hey presto, a tooltip containing your table structure.
+  
+  One odd thing I've noticed is that it never recognises standard class constants.  It should display 'this is not an active record derived class' but instead always displays 'was not recognised as a class'.  Oh well.
+  
+  Anyone find this remotely useful or want to finish off what I've started?
+  
+  [1] I spent ages trying to develop within the textmate bundle editor before realising it'd be a helluva lot quicker and easier to develop in textmate proper.  Hmmm.

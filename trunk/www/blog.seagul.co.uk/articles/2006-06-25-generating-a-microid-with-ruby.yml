@@ -1,0 +1,23 @@
+--- 
+:published_at: 2006-06-25 13:18:00 +01:00
+:guid: c74a1ea3-a0c2-46f3-845c-8ecbb11bca2a
+:title: Generating a MicroId with Ruby
+:tags: 
+- microid
+- ruby
+:comments: []
+
+:body: |-
+  Very naive Ruby method to create a "MicroId":http://www.microid.org for a given email and url.
+  
+  <typo:code lang="ruby">
+  require 'digest/sha1'
+  
+  def micro_id(email, url)
+    email_digest = Digest::SHA1.new(email).to_s
+    url_digest = Digest::SHA1.new(url).to_s
+    Digest::SHA1.new(email_digest + url_digest).to_s
+  end
+  </typo:code>
+  
+  Note that there is no validation of the MicroId in this code at all.

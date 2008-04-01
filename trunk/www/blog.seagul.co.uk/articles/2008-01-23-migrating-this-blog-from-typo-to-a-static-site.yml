@@ -1,0 +1,14 @@
+--- 
+:published_at: 2008-01-23 08:48:00 +00:00
+:guid: ed9cd68e-1944-4d30-9919-da37c33fd2a7
+:title: Migrating this blog from Typo to a static site
+:tags: 
+- blog
+- ruby
+- typo
+:comments: []
+
+:body: |-
+  I'm in the process of migrating this site from "typo":http://www.typosphere.org/ to a bunch of static pages.  I aim to get the static site deployed this evening.  I'll post again when I've migrated.  If any RSS subscribers out there don't see a new post this evening, or tomorrow morning, then it means that I've failed to get it deployed or that it's deployed and I've screwed up.... That's all for now.
+  
+  Oh and the code is in the "usual place":http://chrisroos.googlecode.com/svn/trunk/migrate-typo-to-static-site/ if you fancy following along.

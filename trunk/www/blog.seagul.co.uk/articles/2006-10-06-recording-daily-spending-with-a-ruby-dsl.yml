@@ -1,0 +1,50 @@
+--- 
+:published_at: 2006-10-06 09:19:00 +01:00
+:guid: f59fe5c0-fe96-4995-9fc9-5153cf7e088c
+:title: Recording daily spending with a Ruby Dsl
+:tags: 
+- dsl
+- finance
+- ruby
+:comments: []
+
+:body: |-
+  I'm very very very bad with money.  Don't get me wrong, I'm very good at -spending- wasting money, just bad at all "the":http://en.wikipedia.org/wiki/Savings "boring":http://en.wikipedia.org/wiki/Investing "stuff":http://en.wikipedia.org/wiki/Pension.
+  
+  The main part of my problem is that I never know how much I have and therefore don't know when to stop spending.  This is down to laziness.  It takes time to check balances at a cash point or via my bank's website.  I feel that this time can be better spent withdrawing the cash and wandering to the pub.
+  
+  Anyhoo.  What I really need is a something that illustrates (preferably with big colourful graphs) the amount going out vs the amount coming in.  This needs to be as un-intrusive as possible or I'm not going to use it.  I'd also kinda like to see what sort of things I'm spending on, so that I can maybe shock myself into stopping.  So, I need a record of what I spend my money on.  Enter... The little dsl to do just that.
+  
+  <typo:code>
+  payment_mechanisms :cash, :cheque
+  
+  day '6-oct-2006' do
+    cheque 9.99, lunch, 'expensivo restaurant', burger
+    cash 4.00, 'return ticket', train
+    cash 1.00, 'mars bar', coke
+  end
+  </typo:code>
+  
+  This basically records when and how much I spent, what I spent it on and how I paid for it.  It does nothing more than record at present (and offer some basic addition), but I've got some more ideas.
+  
+  There's also a budgeting counterpart.  The idea being that my colourful graphs can show (very clearly) when I go over budget for a given day/week/month etc.
+  
+  <typo:code>
+  weekly do
+    outgoing 18.00, lunch
+    outgoing 40.00, 'train travel'
+  end
+  
+  monthly do
+    income 1_000_000, 'wages (not really my monthly wage)'
+    outgoing 500_000, tax
+  end
+  
+  yearly do
+    outgoing 25.00, 'flickr subscription'
+  end
+  </typo:code>
+  
+  That's about all I have at the moment.  Unfortunately, I'm already getting a bit bored with this project so this may be the last of it and I'll continue spending over my limits.  Or, I'll get those colourful graphs added and it'll be heralded as the best budgeting app in the world ever[1].
+  
+  fn1. This reminds me of the 'best [dance|rock|urban|insert music genre here] album in the world ever...' type compilations, of which "this":http://www.amazon.co.uk/Worst-Album-World-Ever-Ever-Shirehorses/dp/B000024V87 is undoubtedly the best.

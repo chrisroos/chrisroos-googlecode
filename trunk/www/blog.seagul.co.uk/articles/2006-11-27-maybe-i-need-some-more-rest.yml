@@ -1,0 +1,48 @@
+--- 
+:published_at: 2006-11-27 22:26:00 +00:00
+:guid: 590ca24e-90f3-4668-a0f8-5972712b55c6
+:title: Maybe I need some more REST
+:tags: 
+- rest
+- rpc
+- ruby
+- soap
+:comments: 
+- :author: Iain Buckingham
+  :published_at: 2006-11-30 10:19:08 +00:00
+  :article_id: 551
+  :url: ""
+  :body: "I'm thinking that learning REST is like learning OO, and the trick is in seeing what the objects (URL resources) are.\n\
+    For currency conversion, a conversion is uniquely specified by the exchange rate and the source amount, and the exchange rate is specified by a date and the source and destination currencies. Therefore a RESTful URL would be /conversions?source=USD&dest=GBP&date=20061130&amount=100, (or /conversions/USD/GBP/20061130/100) The contents of the page would then be the value (\xC2\xA351.45). The URL parameters shouldn't be seen as the parameters to a function, but the parameters of an object 'constructor', which you are then fetching.\n\
+    For the syntax highlighting example you might want to construct a code block on the server, by POSTing your code to the /code_blocks page. The server could return a link to the new, highlighted resource (/code_blocks/81782), for later reference, but could also return the results in the body content at the same time.\n\
+    The key would seem to be the same as good OO design, decomposing the domain into appropriate collaborating objects. And avoiding the 'global function' thinking that many SOAP examples promote."
+- :author: Ivanhoe
+  :published_at: 2007-06-05 19:48:27 +01:00
+  :article_id: 551
+  :url: http://www.wondirection.org
+  :body: "This is one hell of a post. Although I can't say that I truly agree with everything that you've said as my own personal experiences have told me differently, I still enjoyed it. Keep up the good posts "
+:body: |-
+  This post isn't about sleep deprevation.  Instead, the witty title is referring to everyone's newest, favouritist buzzword: "REST":http://www.wikipedia.org/wiki/REST (or Representational State Transfer).
+  
+  Scene setting with some things that have happened recently (in roughly this order):
+  
+  * "Ben":http://www.reevoo.com/blogs/bengriffiths/ mentions that we need to think about splitting our application up to better distribute the load on servers.  I don't completely 'get it'.
+  * "Rails":http://www.rubyonrails.com gets "REST":http://www.wikipedia.org/wiki/REST support "baked in":http://www.ryandaigle.com/articles/2006/08/01/whats-new-in-edge-rails-simply-restful-support-and-how-to-use-it (Ok, so this is pretty old news now)
+  * We spent quite a lot of time at "work":http://www.reevoo.com writing code to access the "google adwords":http://adwords.google.com "soap api":http://www.google.com/apis/adwords/
+  * I finally got (thanks to "James":http://blog.floehopper.org) why "some":http://habtm.com/articles/2006/07/01/if-your-models-arent-namespaced-why-should-your-controllers-be-or-how-i-learned-to-stop-worrying-and-love-the-crud rails folk have stated that following a RESTful design frees them up from having namespaced admin controllers.
+  * I spent quite a bit of time over the last two weeks really looking into the "atom syndication format":http://www.ietf.org/rfc/rfc4287.txt and "atom publishing protocol":http://www.ietf.org/internet-drafts/draft-ietf-atompub-protocol-11.txt
+  * I spent a few hours at the weekend playing with the "amazon s3":http://www.amazon.com/s3 service
+  * "This":http://wanderingbarque.com/nonintersecting/2006/11/15/the-s-stands-for-simple/ popped up recently and got an incredible amount of attention.
+  * I read an "interview":http://www.acmqueue.com/modules.php?name=Content&pa=showpage&pid=388 with "Werner Vogel":http://www.allthingsdistributed.com/ (CTO of Amazon) that talks about everything being a service.  One quote in particular caught my attention.
+  
+  bq. If you hit the Amazon.com gateway page, the application calls more than 100 services to collect data and construct the page for you.
+  
+  * I took the plunge and just about stayed awake through "The Document":http://roy.gbiv.com/pubs/dissertation/top.htm.  I found chapter 6 (and in particular 6.3.4) the most relevant as it explains REST in the context of the URI and HTTP.  I tend to drift off on when things are explained without real examples.
+  * I watched "Geoffrey Grosenbach's":http://nubyonrails.com "peepcode":http://www.peepcode.org screencast on "restful rails":http://peepcode.com/articles/2006/10/08/restful-rails.
+  * I worked out how to use "del.icio.us":http://del.icio.us and subscribed to some of the tags (keywords) mentioned above.
+  
+  Wow.  You'd think with all that reading, listening and viewing I'd be right up on the subject.  Sadly I don't feel as though that's quite the case.
+  
+  Now.  I do see an advantage of a RESTful approach (particular the style currently advocated in "rails":http://www.rubyonrails.com), over SOAP, when dealing with something like the google adwords api[1].  But, what about services like currency conversion and syntax highlighting?  I can't get these to fit into a RESTful style in my head (I guess I can't find the resource in each case).  Instead, I see them as analogous to unix command line applications: pipe simple data in (an amount with two curencies or ruby code) and get simple data out (an amount in the new currency or syntax-highlighted ruby code).  Actually, I see them as remote procedure calls.  Are these types of services incompatible with the REST architectural style or have I missed something?  I'm starting to wonder if I'm getting too hung up on REST = CRUD and therefore missing some of the more fundamental points.  Either way, I definitely feel that it'd be good to see some more concrete examples in the REST vs SOAP/RPC/SOA arguments.  As stated above, I'm not so great in the abstract.
+  
+  fn1. I had a few problems when interacting with the adwords api.  I don't, however, feel that I have enough information to know whether the pain was caused by "soap4r":http://dev.ctor.org/soap4r, "soap":http://en.wikipedia.org/wiki/SOAP, the "api":http://www.google.com/apis/adwords/ or just my lack of knowledge.
