@@ -1,5 +1,1 @@
-* Make Article, Tag and Comment Model that don't rely on ActiveRecord::Base.  At the moment, although we're not reading most data from the database - we are relying on the models getting their attributes from there.
-
-* Get Pages onto filesystem and generate without the use of the database
-
-* Get Tags onto filesystem and generate without the use of the database
+* Move the export-to-filesystem stuff into a migration maybe
