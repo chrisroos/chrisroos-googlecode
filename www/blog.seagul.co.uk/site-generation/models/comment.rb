@@ -1,8 +1,14 @@
 require 'redcloth'
 
-class Comment < ActiveRecord::Base
+class Comment
   
-  belongs_to :article
+  attr_accessor :body, :url, :author, :published_at, :article_id
+  
+  def initialize(attributes)
+    attributes.each do |attribute, value|
+      __send__("#{attribute}=", value)
+    end
+  end
   
   def body_html
     RedCloth.new(body).to_html(:textile)
