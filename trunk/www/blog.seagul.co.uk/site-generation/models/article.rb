@@ -17,7 +17,7 @@ class Article
   class << self
     def find_all
       @articles ||= (
-        articles_dir = File.join(File.dirname(__FILE__), *%w[.. .. articles])
+        articles_dir = File.join(File.dirname(__FILE__), *%w[.. .. content articles])
         Dir[File.join(articles_dir, '*.yml')].collect do |article_filename|
           article_attributes = YAML.load_file(article_filename)
           article_attributes[:tags] = (article_attributes.delete(:tags) || []).collect { |tag_name| 
