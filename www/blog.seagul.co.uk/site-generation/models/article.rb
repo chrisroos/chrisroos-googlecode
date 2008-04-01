@@ -27,6 +27,7 @@ class Article
             Comment.new(comment_attributes)
           }
           article_attributes[:trackbacks] = (article_attributes.delete(:trackbacks)||[]).collect { |trackback_attributes|
+            [:published, :ip, :article_id].each { |key| trackback_attributes.delete(key) }
             Trackback.new(trackback_attributes)
           }
           Article.new(article_attributes)
