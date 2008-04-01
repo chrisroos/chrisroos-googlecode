@@ -11,27 +11,31 @@ class Article < ActiveRecord::Base
   has_and_belongs_to_many :tags, :foreign_key => 'article_id', :order => 'name'
   
   class << self
+    def find_all
+      @articles ||= (
+        articles_dir = File.join(File.dirname(__FILE__), *%w[.. .. articles])
+        Dir[File.join(articles_dir, '*.yml')].collect do |article_filename|
+          article_attributes = YAML.load_file(article_filename)
+          article_attributes[:tags] = (article_attributes.delete(:tags) || []).collect { |tag_name| 
+            Tag.new(:name => tag_name) 
+          }
+          article_attributes[:comments] = (article_attributes.delete(:comments)||[]).collect { |comment_attributes|
+            Comment.new(comment_attributes)
+          }
+          Article.new(article_attributes)
+        end.sort do |article_a, article_b| # Sort in descending order of published_at
+          article_b.published_at <=> article_a.published_at
+        end
+      )
+    end
     def years_published
-      articles = find(:all, :select => "YEAR(published_at) AS year", 
-                            :group => 'year')
-      articles.collect { |article| article.year }
+      find_all.collect { |article| article.published_at.year }.uniq
     end
     def months_and_years_published
-      articles = find(:all, :select => 'YEAR(published_at) AS year, MONTH(published_at) AS month', 
-                            :group => 'year, month')
-      articles.collect { |article| [article.month, article.year] }
+      find_all.collect { |article| [article.published_at.month, article.published_at.year] }.uniq
     end
     def days_months_and_years_published
-      articles = find(:all, :select => 'YEAR(published_at) AS year, MONTH(published_at) AS month, DAY(published_at) AS day', 
-                            :group => 'year, month, day')
-      articles.collect { |article| [article.day, article.month, article.year] }
-    end
-    def find_all_published_during(year, month = nil, day = nil)
-      # Naughty Chris - leaving us open to sql injection attacks
-      conditions = "YEAR(published_at) = '#{year}'"
-      conditions += " AND MONTH(published_at) = '#{month}'" if month
-      conditions += " AND DAY(published_at) = '#{day}'" if day
-      find(:all, :conditions => conditions, :order => 'published_at DESC')
+      find_all.collect { |article| [article.published_at.day, article.published_at.month, article.published_at.year] }.uniq
     end
   end
   
