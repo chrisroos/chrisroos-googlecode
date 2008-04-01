@@ -4,15 +4,14 @@ class Year
     Article.years_published.collect { |year| new(year) }
   end
   
-  attr_reader :year, :published_date
+  attr_reader :year, :published_date, :articles
   
-  def initialize(year)
-    @year = year
+  def initialize(year, articles = Article.find_all)
+    @year = year.to_s
     @published_date = Date.new(year.to_i, 1, 1)
-  end
-  
-  def articles
-    @articles ||= Article.find_all_published_during(@year)
+    @articles = articles.select { |article| 
+      article.published_at.year == year
+    }
   end
   
   def path
