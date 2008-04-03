@@ -1,0 +1,12 @@
+---
+:extension:
+  :id: delicious-permalinks@googlegroups.com
+  :name: Del.icio.us Permalinks
+  :version: 0.3
+  :creator: Chris Roos
+  :description: Builds on the del.icio.us bookmarks extension to add permalinks to each bookmark.
+  :update_url: http://wem.co.uk/update.rdf
+:target_application:
+  :id: "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+  :min_version: 2.0.0
+  :max_version: 2.0.12
