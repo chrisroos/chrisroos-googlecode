@@ -33,4 +33,5 @@ builder.r(:RDF, 'xmlns:r' => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'xml
   end
 end
 
-File.open('update.rdf', 'w') { |f| f.puts(update_rdf_buffer.string) }
+update_rdf_file = File.join(File.dirname(__FILE__), *%w[.. public update.rdf])
+File.open(update_rdf_file, 'w') { |f| f.puts(update_rdf_buffer.string) }
