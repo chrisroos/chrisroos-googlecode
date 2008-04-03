@@ -27,7 +27,7 @@ private
   end
 end
 
-Dir[File.join(File.dirname(__FILE__), *%w[data *.yaml])].each do |swimming_pool_file|
+Dir[File.join(File.dirname(__FILE__), *%w[.. data *.yaml])].each do |swimming_pool_file|
   next if File.basename(swimming_pool_file) =~ /^__template/
   
   swimming_pool = YAML.load_file(swimming_pool_file)
