@@ -1,4 +1,6 @@
 task :build do
+  `ruby bin/generate_install_manifest.rb`
+  `ruby bin/generate_update_manifest.rb`
   `cd src && zip -r delicious-permalinks.xpi *`
   `mv src/delicious-permalinks.xpi public/`
   hash = `md5 public/delicious-permalinks.xpi`[/= (.+)/, 1]
