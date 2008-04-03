@@ -29,4 +29,5 @@ builder.RDF(:xmlns => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'xmlns:em' 
   end
 end
 
-File.open('install.rdf', 'w') { |f| f.puts(install_rdf_buffer.string) }
+install_rdf_file = File.join(File.dirname(__FILE__), *%w[.. src install.rdf])
+File.open(install_rdf_file, 'w') { |f| f.puts(install_rdf_buffer.string) }
