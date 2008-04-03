@@ -1,3 +1,7 @@
+0.3 (3rd Apr 2008)
+------------------
+* Add auto-update capability to the extension
+
 0.2 (25th Feb 2008)
 -------------------
 * Use init.js to play nice with the delicious-base-urls extension
