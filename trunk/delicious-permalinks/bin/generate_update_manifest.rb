@@ -23,7 +23,7 @@ builder.r(:RDF, 'xmlns:r' => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'xml
                 builder.id(target_application[:id])
                 builder.minVersion(target_application[:min_version])
                 builder.maxVersion(target_application[:max_version])
-                builder.updateLink(extension[:install_url])
+                builder.updateLink(extension[:update_url])
               end
             end
           end
