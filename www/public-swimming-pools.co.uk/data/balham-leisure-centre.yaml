@@ -1,8 +1,11 @@
 --- 
 name: Balham Leisure Centre
-address: Elmfield Road,Balham,Greater London
 postcode: SW17 8AN
-phone: 020 8772 9577
-fax: 020 8673 1810
-email: enquiries@balhamleisurecentre.co.uk
 url: http://www.dcleisurecentres.co.uk/Centres/Greater+London/Balham+Leisure+Centre/index.html
+fax: 020 8673 1810
+phone: 020 8772 9577
+coords: 
+- 49.922549
+- 10.143465
+address: Elmfield Road,Balham,Greater London
+email: enquiries@balhamleisurecentre.co.uk

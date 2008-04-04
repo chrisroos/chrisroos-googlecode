@@ -1,8 +1,11 @@
 --- 
 name: Hartsdown Leisure Centre
-address: Hartsdown Park,Hartsdown Road,Margate,Kent
 postcode: CT9 5QX
-phone: 01843 226221
-fax: 
-email: info@leisureforce.co.uk
 url: http://www.tlfleisure.co.uk/indoor/hartsdown/
+fax: 
+phone: 01843 226221
+coords: 
+- 51.386518
+- 1.405244
+address: Hartsdown Park,Hartsdown Road,Margate,Kent
+email: info@leisureforce.co.uk
