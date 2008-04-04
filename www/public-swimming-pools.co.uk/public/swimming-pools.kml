@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+  <Document>
+    <Placemark>
+      <name>Balham Leisure Centre</name>
+      <description>Elmfield Road,Balham,Greater London</description>
+      <Point>
+        <coordinates>-0.152607,51.441115,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Hartsdown Leisure Centre</name>
+      <description>Hartsdown Park,Hartsdown Road,Margate,Kent</description>
+      <Point>
+        <coordinates>1.369472,51.382281,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Ramsgate Swimming Centre</name>
+      <description>Newington Road,Ramsgate,Kent</description>
+      <Point>
+        <coordinates>1.401744,51.339272,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Westcroft Leisure Centre</name>
+      <description>Westcroft Road,Carshalton,Surrey</description>
+      <Point>
+        <coordinates>-0.156856,51.367869,0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>
