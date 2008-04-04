@@ -1,8 +1,11 @@
 --- 
 name: Westcroft Leisure Centre
-address: Westcroft Road,Carshalton,Surrey
 postcode: SM5 2TG
-phone: 020 8770 4800
-fax: 020 8770 4841
-email: general@SCL98.com
 url: http://www.sutton.gov.uk/leisure/leisurecentres/westcroft.htm
+fax: 020 8770 4841
+phone: 020 8770 4800
+coords: 
+- 51.372598
+- -0.167513
+address: Westcroft Road,Carshalton,Surrey
+email: general@SCL98.com
