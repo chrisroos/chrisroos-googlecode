@@ -11,8 +11,6 @@ class SwimmingPool
   def kml_coordinates
     [longitude, latitude, '0'].join(',')
   end
-  
-private
 
   def latitude
     @coords.first
@@ -20,6 +18,10 @@ private
   
   def longitude
     @coords.last
+  end
+  
+  def permalink
+    [name, address].join(' ').downcase.gsub(/,/, ' ').gsub(/ /, '-').gsub(/[^a-zA-Z0-9-]/, '').squeeze('-')
   end
   
 end
