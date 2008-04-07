@@ -1,0 +1,424 @@
+<div id="tooltip"><font color="#ffffff" >true</font></div>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>SITE NAME - </title>
+
+<style type="text/css">
+body{
+	font-size:11px;
+}
+
+a:link.helptext, a:visited.helptext,a:active.helptext
+{
+	font-size:16px;
+}
+	
+h1 { font-size:18px }	
+
+
+
+#close A:link
+{
+  COLOR: #0000ff;
+  
+    TEXT-DECORATION: underline;
+    font-weight:normal;
+}
+#close A:visited
+{
+  COLOR: #0000ff;
+    TEXT-DECORATION: underline;
+    font-weight:normal;
+
+}
+#close A:hover
+{
+  
+    COLOR: #bb0000;
+    TEXT-DECORATION: underline;
+    font-weight:normal;
+
+}
+#close A:active
+{
+  COLOR: #0000ff;
+    TEXT-DECORATION: underline;
+    font-weight:normal;
+
+}
+
+
+<!--a:link { color:#33c }	
+a:visited { color:#339 }	
+-->
+/* This is where you can customize the appearance of the tooltip */
+div#tipDiv {
+  position:absolute; 
+  visibility:hidden; 
+  left:0; 
+  top:0; 
+  z-index:10000;
+  background-color:#E4E4E4; 
+  border-left:1px solid #333333;
+  border-top:1px solid #333333;  
+  border-right:1px solid #333333; 
+  border-right:1px solid #333333; 
+  border-bottom:1px solid #333333; 
+  border-right:1px solid #333333; 
+  width:300px; 
+  padding:4px;
+  color:#000; 
+  font-size:12px;
+  
+}
+
+</style>
+<link href="../Styles/mainStyles.css" rel="stylesheet" type="text/css">
+<link href="../Styles/moreInfo.css" rel="stylesheet" type="text/css" media="screen">
+<link href="../Styles/lowresolution.css" rel="stylesheet" type="text/css" media="screen">
+<link href="../Styles/tab_lowgraphic.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../Scripts/tabbed.js"></script>
+<script src="../Scripts/dw_event.js" type="text/javascript"></script>
+<script src="../Scripts/dw_viewport.js" type="text/javascript"></script>
+<script src="../Scripts/dw_tooltip.js" type="text/javascript"></script>
+<script type="text/javascript">
+//Stores the FacilityType Id for te ecurrent active tab. Used incase of print the page as it is
+var isIE=document.all;
+var isNN=!document.all&&document.getElementById;
+var isN4=document.layers;
+
+if (isIE||isNN){
+	document.oncontextmenu=checkV;
+}else{
+	document.captureEvents(Event.MOUSEDOWN || Event.MOUSEUP);
+	document.onmousedown=checkV;}
+
+function checkV(e){
+if (isN4){
+	if (e.which==2||e.which==3){
+	return false;
+	}}else{
+	return false;}}
+	
+var ActiveTab; 
+function synchTab(frameName) {
+
+  var elList, i;
+
+  // Exit if no frame name was given.
+
+  if (frameName == null)
+    return;
+
+  // Check all links.
+
+  elList = document.getElementsByTagName("A");
+  for (i = 0; i < elList.length; i++)
+
+    // Check if the link's target matches the frame being loaded.
+
+    if (elList[i].target == frameName) {
+
+      // If the link's URL matches the page being loaded, activate it.
+      // Otherwise, make sure the tab is deactivated.
+
+      if (elList[i].href == window.frames[frameName].location.href) {
+        elList[i].className += " activeTab";
+        elList[i].blur();
+        ActiveTab=elList[i].id;
+
+      }
+      else
+        removeName(elList[i], "activeTab");
+    }
+}
+
+function removeName(el, name) {
+
+  var i, curList, newList;
+
+  if (el.className == null)
+    return;
+
+  // Remove the given class name from the element's className property.
+
+  newList = new Array();
+  curList = el.className.split(" ");
+  for (i = 0; i < curList.length; i++)
+    if (curList[i] != name)
+      newList.push(curList[i]);
+  el.className = newList.join(" ");
+}
+// leave in page for way to customize layout of tooltip 
+// and avoid errors if onmouseovers/outs before page completely loaded
+function doTooltip(e, msg) {
+  if ( typeof Tooltip == "undefined" || !Tooltip.ready ) return;
+  Tooltip.show(e, msg);
+}
+
+function hideTip() {
+  if ( typeof Tooltip == "undefined" || !Tooltip.ready ) return;
+  Tooltip.hide();
+}
+
+function MM_openBrWindow(theURL,winName,features, lheight, lwidth) { //v2.0
+ var objwindow;
+ lheight = 700;
+ lwidth=900;
+ if (document.all)
+        var xMax = screen.width, yMax = screen.height;
+    else
+        if (document.layers)
+            var xMax = window.outerWidth, yMax = window.outerHeight;
+        else
+            var xMax = 1000, yMax=700;
+
+    var xOffset = (xMax - lwidth)/2, yOffset = (yMax - 748)/2;
+	
+	objwindow=window.open(theURL,winName,'height=700 width=900, resizable=no,scrollbars, screenX='+xOffset+',screenY='+yOffset+',top='+yOffset+',left='+xOffset+'');
+	objwindow.focus();
+}	
+
+
+function MM_openFeedWindow(theURL,winName,features, lheight, lwidth) { //v2.0
+ var objwindow;
+ if (document.all)
+        var xMax = screen.width, yMax = screen.height;
+    else
+        if (document.layers)
+            var xMax = window.outerWidth, yMax = window.outerHeight;
+        else
+            var xMax = 1000, yMax=700;
+
+    var xOffset = (xMax - lwidth)/2, yOffset = (yMax - lheight)/2;
+	
+
+  //window.open(theURL,winName,'width='+lwidth+',height='+lheight+',screenX='+xOffset+',screenY='+yOffset+',top='+yOffset+',left='+xOffset+ ','+ features +'');
+objwindow=window.open(theURL,winName,'width='+lwidth+',height='+lheight+', screenX='+xOffset+',screenY='+yOffset+',top='+yOffset+',left='+xOffset+','+ features +'');
+objwindow.focus();
+}	
+
+function fnprint()
+{
+	MM_openBrWindow('moreinfoprint.asp?graphic=low&SiteId=1000081&FacTypeid='+ActiveTab+'&strWardName=&strLocalAuth=&strSiteName=&mapurl=http://www.landmarkgov.co.uk/output/ACTIVEPLACES_as238404408251.png&x=&y=','PrintOption','Height=700, width=900, scrollbars =yes, toolbar=no,location=no, resizable=no');
+}
+
+function LauchTimoutPage(){
+		var strLink = "../TimeOut.htm"
+		document.location.href = strLink;
+	
+		}
+function LaunchSessionExpire(){
+	window.close();
+	window.opener.parent.location.href="../TimeOut.htm";
+}		
+</script>
+
+
+</head>
+
+<body>
+<!-- Header Bar starts -->
+
+<div id="topHolder" style="clear:both">
+	<!--<div class="logo" style="float:left "><img src="../images/logo_active_top.gif" alt="logo" WIDTH="184" HEIGHT="35"></div>
+	<div style="float:left "><img src="../images/logo_right.gif" WIDTH="57" HEIGHT="35"></div>-->
+	  <!-- Welcome message -->
+	<div id="close" class="link" style="float:right ">
+	
+	<a href="#" onClick="fnprint();">Print</a> |
+	
+		<a href="#" onClick="MM_openBrWindow('moreinfoprint.asp?graphic=low&SiteId=1000081&strWardName=&strLocalAuth=&strSiteName=&mapurl=http://www.landmarkgov.co.uk/output/ACTIVEPLACES_as238404408251.png&x=&y=','PrintOption','Height=700, width=900, scrollbars =yes, toolbar=no,location=no, resizable=no');">Print all Information</a> |
+	
+	<a href="#" onClick="window.close();">Close window</a>
+	&nbsp;
+	</div>
+	  <!-- Welcome message -->	
+	
+</div>
+<div  style="clear:both">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr width ="50%">
+	
+  	<td class="subHeading">&nbsp;&nbsp;<b></b></td>
+	<td class = "site"   align="right" >
+	Site ID: 1000081&nbsp;&nbsp;<br>Date last checked:  18 May 2007&nbsp;&nbsp;
+	</td>
+  </tr>
+  <tr>
+    <td width="70%" valign="top">
+	<!--##############################  Left Column ####################################-->
+	<div id="leftColumn">
+		<!--########## Header Info ###########-->
+			<div id="headerInfo">
+			<table nowrap width="100%" border="0" cellspacing="0" cellpadding="0">
+				  <tr align="left" valign="top">
+				  
+					<td>
+						<div>
+						
+									<a href="#" onclick="doTooltip(event,'<b>Address</b><br> The address for sports site.')" onmouseout="hideTip()" class="helptext"">Address:</a>
+																			
+							<br>
+							<span class="site">St. Mellion,<br>Saltash-PL12 6SD</span>
+							<br>
+						</div>
+					</td>
+					
+					<td class="vertDotted" width="1%"><img src="../images/clear.gif" WIDTH="1" HEIGHT="1"></td>
+					<td >
+						<div >
+							 
+											<a href="#" onclick="doTooltip(event,'<b>Contact Details:</b><br> Contact details for the site')" onmouseout="hideTip()" class="helptext"">Contact Details:</a><br>
+											
+											<a href="#" onclick="doTooltip(event,'<b>Tel:  </b><br> The general enquiries telephone number for the site.')" onmouseout="hideTip()" class="helptext"">Tel:</a>
+											<span class="site">01579 351351</span>
+											
+											<br><a href="#" onclick="doTooltip(event,'<b>Email:  </b><br> The general enquiries email for the site.')" onmouseout="hideTip()" class="helptext"">Email:</a>
+											
+											<span class="site"><a href="mailto:stmellion@crown-golf.co.uk">stmellion@crown-golf.co.uk</a></span>
+											
+											<br>
+											<a href="#" onclick="doTooltip(event,'<b>Website:  </b><br> This provides a link to the website of the sports site.')" onmouseout="hideTip()" class="helptext"">Website:</a>
+											<span class="site"><a href="http://www.st-mellion.co.uk" target="_blank">http://www.st-mellion.co.uk</a></span>
+												 			
+					  </div>
+					
+				    </td>
+					
+					<td class="vertDotted"><img src="../images/clear.gif" WIDTH="1" HEIGHT="1"></td>
+					<td >
+						<div id="siteInformation">
+							
+											<a href="#" onclick="doTooltip(event,'<b>Amenities Available:  </b><br> What are the amenities available at the sports site?')" onmouseout="hideTip()" class="helptext"">Amenities Available:</a><br>
+										
+							<span class="site"><a href="#" onclick="doTooltip(event,'<b>Car Park</b><br>Is there a dedicated car park?  If so, how many spaces are there?')" onmouseout="hideTip()" class="helptext">Car Park:  </a>Yes, 480 spaces<br><a href="#" onclick="doTooltip(event,'<b>Disability Access</b><br>Does the site provide access to disabled users?')" onmouseout="hideTip()" class="helptext">Disability Access</a>:  Yes<br><a href="#" onclick="doTooltip(event,'<b>Disability Standard</b><br>In which key areas the site provides access to disabled users?')" onmouseout="hideTip()" class="helptext">Disability Standard</a>:  Parking, <br>Finding and reaching the entrance, Reception area, <br>Doorways, Changing facilities, <br>Activity areas, Toilets, <br>Social areas, Spectator areas, <br>Emergency exits</span>
+						</div>
+					
+					<div class="linebreak1px"></div>
+					</td>
+					
+				
+				  </tr>
+				  </table>
+				  
+				  			
+				  <div class="dottedBlack"></div>
+				  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+				  <tr align="left" valign="top">
+				  	
+				  
+					
+						<td colspan ="4" style="PADDING-RIGHT: 1px;PADDING-LEFT: 1px;">
+							<div id="siteInformation">
+								<span class="site"><a href="#" onclick="doTooltip(event,'<b>Owner Type</b><br>Type of Owner organisation')" onmouseout="hideTip()" class="helptext">Owner Type: </a>Commercial<br> <a href="#" onclick="doTooltip(event,'<b>Management Type</b></br>Type of organisation that manages the site.')" onmouseout="hideTip()" class="helptext">Management Type: </a>Commercial Management</span>
+							</div>
+						</td>
+														
+						</tr>
+						</table>
+					
+			  
+		</div>
+		<!--########## Header Info ###########-->
+		
+			<div class="linebreak10"></div>
+			<div class="linebreak10"></div>
+		<!-- ######### Tabs Display ##########-->
+			<!-- tabs -->
+				 <div class="tabArea"><a class="tab"  id="9"  href="FacilityType.asp?graphic=low&SiteId=1000081&FacilityTypeId=9" target="myIframe" >Golf</a> <a class="tab"  id="2"  href="FacilityType.asp?graphic=low&SiteId=1000081&FacilityTypeId=2" target="myIframe" >Health and Fitness Suite</a> <a class="tab"  id="7"  href="FacilityType.asp?graphic=low&SiteId=1000081&FacilityTypeId=7" target="myIframe" >Swimming Pool</a> </div> <div class="tabMain"> <div class="tabIframeWrapper"> <iframe class="tabContent" name="myIframe" src="FacilityType.asp?graphic=low&SiteId=1000081&FacilityTypeId=9"  marginheight="0" marginwidth="0" frameborder="0"  height="300" width="100%"></iframe></div> </div>
+			  <!-- tabs end -->
+
+		</div>
+		<!--########## Tabs Display ##########-->
+	</div>
+	</div>
+	<!--##############################  Left Column ####################################-->
+	</td>
+    <td valign="top" bgcolor="#ebebeb">
+	<!--##############################  Right Column ####################################-->
+	<!--<div id="rightColumn">
+	<div id="contactDetails">
+	  <div id="mainLayer">
+  		 <div class="indexmap"><img src=http://www.landmarkgov.co.uk/output/ACTIVEPLACES_as238404408251.png width="250" height="200"></div>
+	  </div>
+  	</div>
+	<div class="linebreak5"></div><div id="contactDetails"><b>Location:</b><div class="linebreak1px"></div><a href="#" onclick="doTooltip(event,'X is the first part of the grid reference.')" onmouseout="hideTip()" class="helptext">X </a> :0&nbsp;<a href="#" onclick="doTooltip(event,'Y is the second part of the grid reference.')" onmouseout="hideTip()" class="helptext">Y </a> :0<div class="linebreak1px"></div></div>-->
+  	
+	
+	<div class="dottedBlack"></div>
+	<div id="contactDetails">
+		<span class="subHeading">Additional Details:</span>					  
+		<span class="site"><br><span class="titleTxt"><a href="#" onclick="doTooltip(event,'<b>Ward Name</b></br>The name of the electoral ward in which this site is to be found.')" onmouseout="hideTip()" class="helptext">Ward</a>:</span>  Landrake and St. Dominick Ward<br><span><a href="#" onclick="doTooltip(event,'<b>Local Authority</b><br>The name of the local authority area in which this site is found.')" onmouseout="hideTip()" class="helptext">Local Authority:</a></span>  Caradon District<br><span><a href="#" onclick="doTooltip(event,'<b>Region</b><br>The name of the region in which this site is to be found.')" onmouseout="hideTip()" class="helptext">Region:</a></span>  South West  Region<div class="linebreak1px"></div><div class="dottedBlack"></div></span>
+		
+	</div>
+				
+	<!--<div id="contactDetails">
+		<span class="subHeading">Other relevant info:</span>					  
+		  <span class="site"><a href="#" onclick="doTooltip(event,'<b>Owner Type</b><br>Type of Owner organisation')" onmouseout="hideTip()" class="helptext">Owner Type: </a>Commercial<br> <a href="#" onclick="doTooltip(event,'<b>Management Type</b></br>Type of organisation that manages the site.')" onmouseout="hideTip()" class="helptext">Management Type: </a>Commercial Management</span>
+		  <div class="linebreak1px"></div>
+	</div>-->
+	
+	<!--<div class="dottedBlack"></div>-->
+		<table width="203" height="32">
+          <tr>
+		    <td width=15%>&nbsp;</td>
+		    <td width=85% > 
+              
+              <div id="close" class="link" style="float:center ">
+              
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick="MM_openFeedWindow('../Feedback/feedback.asp?graphic=low','feeback','resizable=no,width=358,height=373', 397, 373)" href="#" >Feedback</a>
+              
+              </div>
+              
+            </td>
+		  </tr>
+		</table>
+		<!--<div class="dottedBlack"></div>-->
+		<table width="203" height="10">
+		<tr>
+		    <td width=35%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		</tr>
+		</table>
+		<table width="203" height="32">
+		<tr>
+		    <td width=35%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		    <td width=85% > 
+              <div id="close" class="link" style="float:center ">
+              <a onclick="MM_openFeedWindow('../metadata/Metadata_lowgraphic.asp','sportdata','resizable=no,width=800,height=648', 648, 800)" href="#" >About the Data</a>
+            </td>
+            
+		</tr>
+		</table>
+
+       </div>
+	
+	<!--##############################  Right Column ####################################-->
+	</td>
+  </tr>
+</table>
+
+
+</div>
+<table width="100%" border="0">
+	<tr>
+    <td  align="center" ><span class="site">Unless otherwise stated all measurements are in metres</span></td>
+	</tr>
+
+<tr>
+    <td  align="center" ><span class="site">All data referring to
+sports sites and facilities is copyright of Sport England.</span></td>
+</tr>
+<tr>
+<td id="close"  align="center" ><span class="site">
+Data is regularly reviewed.  All comments welcome.  Please use the  <a  onclick="MM_openFeedWindow('../Feedback/feedback.asp?graphic=low','feeback','resizable=no,width=358,height=373', 397, 373)" href="#">Feedback</a>
+button.
+</tr>
+</table>
+<script src='http://www.google-analytics.com/urchin.js' type='text/javascript'></script><script type='text/javascript'>_uacct = 'UA-1859625-10';urchinTracker();</script></body>
+</html>
