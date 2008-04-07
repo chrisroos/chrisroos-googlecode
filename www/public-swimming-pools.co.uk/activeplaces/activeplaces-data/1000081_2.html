@@ -1,0 +1,206 @@
+
+<html>
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> New Document </title>
+<link href="../Styles/mainStyles.css" rel="stylesheet" type="text/css">
+<link href="../Styles/moreInfo.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../Scripts/tabbed.js"></script>
+<script type="text/javascript" src="../Scripts/scripts.js"></script>
+
+	<link href="../Styles/lowresolution.css" rel="stylesheet" type="text/css">	
+<style type="text/css">
+
+	a:link.helptext, a:visited.helptext,a:active.helptext
+	{
+		font-size:16px;
+	}
+
+.facilityID{
+	background-color:#EBEBEB;
+	font-weight:bold;
+	font-size:18px;
+	padding:5px;
+
+}
+
+</style>
+
+
+<style type="text/css">
+<!--
+body{
+	margin-left:0px;
+	SCROLLBAR-HIGHLIGHT-COLOR: #CCCCCC; 
+	SCROLLBAR-ARROW-COLOR: #FFFFFF; 
+	SCROLLBAR-TRACK-COLOR: #CCCCCC; 
+	SCROLLBAR-DARKSHADOW-COLOR: #999999; 
+	SCROLLBAR-BASE-COLOR: #999999; 
+}h1 { font-size:18px }	
+a:link { color:#33c }	
+a:visited { color:#339 }	
+
+/* This is where you can customize the appearance of the tooltip */
+
+div#tipDiv {
+  position:absolute; 
+  visibility:hidden; 
+  left:0; 
+  top:0; 
+  z-index:10000;
+  background-color:#E4E4E4; 
+  border-left:1px solid #333333;
+  border-top:1px solid #333333;  
+  border-right:1px solid #333333; 
+  border-right:1px solid #333333; 
+  border-bottom:1px solid #333333; 
+  border-right:1px solid #333333; 
+  padding:4px;
+  color:#000; 
+  
+	width:345px; 
+  	font-size:12px;
+  	
+}div#inside{
+
+}
+/* These are optional. They demonstrate how you can individually format tooltip content  */
+div.tp1 { font-size:10px; color:#000;  font-weight:bolder}
+th{
+	background-color:#CCCCCC;
+	border-top:1px solid #f5f5f5;
+	border-right:1px solid #f5f5f5;
+	border-bottom:1px solid #999999;
+	border-right:1px solid #999999;
+	font-weight:normal;
+	}
+
+
+
+
+-->
+
+</style><script type="text/javascript">
+/*************************************************************************
+  This code is from Dynamic Web Coding at http://www.dyn-web.com/
+  Copyright 2003 by Sharon Paine 
+  See Terms of Use at http://www.dyn-web.com/bus/terms.html
+  regarding conditions under which you may use this code.
+  This notice must be retained in the code as is!
+*************************************************************************/
+
+// leave in page for way to customize layout of tooltip 
+// and avoid errors if onmouseovers/outs before page completely loaded
+var isIE=document.all;
+var isNN=!document.all&&document.getElementById;
+var isN4=document.layers;
+
+if (isIE||isNN){
+	document.oncontextmenu=checkV;
+}else{
+	document.captureEvents(Event.MOUSEDOWN || Event.MOUSEUP);
+	document.onmousedown=checkV;}
+
+function checkV(e){
+if (isN4){
+	if (e.which==2||e.which==3){
+	return false;
+	}}else{
+	return false;}}
+
+function doTooltip(e, msg) {
+  if ( typeof Tooltip == "undefined" || !Tooltip.ready ) return;
+  Tooltip.show(e, msg);
+}
+
+function hideTip() {
+  if ( typeof Tooltip == "undefined" || !Tooltip.ready ) return;
+  Tooltip.hide();
+}
+	
+
+</script>
+</head>
+
+<body onload="ShowFirstPage();stripe('playlist', '#FFFFFF', '#ebebeb');">
+
+
+		<!-- Summary Information --> 
+			<table width="100%" border="0" cellspacing="0" cellpadding="2">
+			  <tr>
+				
+					<td colapan="2" width="100%" valign="top">
+				
+					<b><span class="subheading">Summary information:</span></b>	
+					<span class="site"><div class="linebreak1px"></div><span class="subHeading"><a href="javascript:void(0)" onclick="doTooltip(event,'<b>Health and Fitness Suite</b><br>Normally a minimum of 20 stations, although some small health & fitness suites may be included.')" onmouseout="hideTip()" class="helptext"> <b>Total Health and Fitness Suite: </a></span>1<b></span>
+				</td>
+									
+			  </tr>
+			</table>
+		<!-- Summary Information --> 
+ <div class="dottedBlack"></div> 
+ <form ACTION METHOD="POST" NAME="frmData">
+ <script LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+function ShowFirstPage() {
+	ShowPage(1);
+}
+function ShowPrevPage() {
+	var v = document.frmData.PageNo.value;
+	
+	if(v>1)
+		ShowPage(--v);
+	else
+		ShowPage(1);
+		
+}
+function ShowNextPage() {
+	var v = document.frmData.PageNo.value;
+	if(v<1)
+		ShowPage(++v);
+	else
+		ShowPage(1);
+}
+function ShowLastPage() {
+	ShowPage(1);
+}
+function ShowPage(p) {
+	var oldp = document.frmData.PageNo.value;
+	document.getElementById('pg'+oldp).style.visibility = 'hidden';
+	document.getElementById('pg'+p).style.visibility = 'visible';
+	//document.getElementById('CurrPageNo' + p).value = p + ' of ' + 1;
+
+	document.frmData.PageNo.value = p;
+	//document.frmData.CurrPageNo.value = p + ' of ' + 1;
+	document.getElementById('CurrPageNo').innerHTML = 'Displaying ' + p + ' of ' + 1;
+	document.getElementById('CurrPageNo'+p).innerHTML = 'Displaying ' + p + ' of ' + 1;
+	//alert(document.getElementById('CurrPageNo').innerHTML);
+}
+
+	
+//document.frmData.PageNo.value = 1;
+
+
+//-->
+</script>
+<input TYPE="hidden" NAME="PageNo" VALUE="1">
+
+<div class="site" align="center" style="background-color:#CCCCCC; width:100%">
+<a href="javascript:void(0)" onClick="ShowPrevPage()">&lt;&lt;Prev</a>| <span  id="CurrPageNo">Displaying 1 of 1</span> |
+<a href="javascript:void(0)" onClick="ShowNextPage()">Next&gt;&gt;</a> 
+</div>
+<div class="dottedBlack"></div> 
+ <DIV ID="pg1" STYLE="position:absolute;  visibility:visible;">	<div class="dottedBlack"></div> <div class="facilityID">Facility ID:  2014854</div><div class="dottedBlack"></div>	<table width="100%"  border="0" cellspacing="0" cellpadding="0"><tr><td width="38%" valign="top">	<div id="siteInformation">	 <a href="javascript:void(0)" onclick="doTooltip(event,'<b>Access Policy</b><br><b>Free Public Access:</b>  There is no charge to use the facility<br><b>Pay and Play:</b>  The main means of public access to the facility is on payment of a charge, although the facility may also have a membership scheme, and it may be possible to block book the facility for a specific activity or for lessons.<br><b>Sports Club/Community Association:</b>  The main means of public access to the facility is via sports clubs or community associations, which book it for use by their members.  Membership of the club or association is based on a particular sport or community group, and is not based on performance criteria or on a particular facility.<br><b>Registered Membership use:</b>  The main public access to the facility is by membership, and members usually pay a joining fee as well as a monthly or annual subscription.<br><b>Private use:</b>  The facility cannot be used by the public, either on a pay and play basis or through a recreational club, except when playing against the owner of the site.')" onmouseout="hideTip()" class="helptext">Access Policy:</a>  <span class="site">Registered Membership use</span>	 <div class="linebreak1px"></div>	 <a href="javascript:void(0)" onclick="doTooltip(event,'<b>Disability Access</b><br>Does the facility provide access to disabled users? ')" onmouseout="hideTip()" class="helptext">Disability Access:</a>  <span class="site">Yes</span>	 <div class="linebreak1px"></div>	 <a href="javascript:void(0)" onclick="doTooltip(event,'<b>Disability Standard</b><br>In which key areas the facility provide access to disabled users?')" onmouseout="hideTip()" class="helptext">Disability Standard:</a>  <span class="site">Parking, <br>Finding and reaching the entrance, Reception area, <br>Doorways, Changing facilities, <br>Activity areas, Toilets, <br>Social areas, Spectator areas, <br>Emergency exits</span>	 <div class="linebreak1px"></div>	 <a href="javascript:void(0)" onclick="doTooltip(event,'<b>Changing Facilities</b><br>Are there changing facilities that are appropriate for the activities carriedout atthisfacility?  For example lockers would be appropriate for indoor bowls but not for swimming;  showers would be appropriate for swimming.')" onmouseout="hideTip()" class="helptext">Changing Facilities:</a>  <span class="site">Yes</span>	 <div class="linebreak1px"></div>	</div>	</td>	<td class="vertDotted"><img src="../images/clear.gif"></td><td valign=top ><div id="siteInformation" align=left><a href="javascript:void(0)" onclick="doTooltip(event,'<b>Number of Stations</b><br>How many health and fitness stations are there?')" onmouseout="hideTip()" class="helptext">Number of Stations:</a>  <span class="site">29</span>
+<div class="linebreak1px"></div>	</div>	</td>	</tr>	</table>	<div class="dottedBlack"></div>	<table width="100%"  border="0" cellspacing="1" cellpadding="1"><tr>  <td valign="top" width="33%"><a href="javascript:void(0)" onclick="doTooltip(event,'<b>Year Built</b><br>When was the sports facility built?')" onmouseout="hideTip()" class="helptext">Year Built:</a>  <span class="site">1997</span>
+<div class="linebreak1px"></div><a href="javascript:void(0)" onclick="doTooltip(event,'<b>Has the facility been refurbished/resurfaced?</b><br>Has the facility been refurbished or resurfaced? If so, when?')" onmouseout="hideTip()" class="helptext">Has the facility been refurbished/resurfaced?:</a>  <span class="site">Yes, 2006</span>
+<div class="linebreak1px"></div><a href="javascript:void(0)" onclick="doTooltip(event,'<b>Date last checked</b><br>When was the data on this facility last checked?')" onmouseout="hideTip()" class="helptext">Date last checked:</a>  <span class="site">18 May 2007</span><div class="linebreak1px"></div><a href="javascript:void(0)" onclick="doTooltip(event,'<b>Facility Status</b><br>What is the status of the facility? If it is temporarily closed, this will beshown here.')" onmouseout="hideTip()" class="helptext">Facility Status:</a>  <span class="site">Operational</span>
+<div class="linebreak1px"></div>  </td>	</table>  </tr></table>	<div class="dottedBlack"></div> 	<div class="linebreak10"></div>  <td width="0%" class="vertDotted"><img src="../images/clear.gif"></td>	<td valign="top" width="70%">	<DIV class="linebreak10"></DIV>	<table width="95%"  border="1" align="center" cellpadding="0" cellspacing="0" >	<TR><Th class="site" colspan="5"><b>FACILITY OPENING TIMES</b></TH></TR>	<TR><th class="site" scope="col">Day</th><th class="site" scope="col">Open-Close Timings </th>	<th class="site" scope="col">Accessibility</th>	</tr>	<tr >	<th class="site" scope="row">Weekend</th>		<td   class="site" align="center" style="background-color: #ebebeb;">8:00-21:00</td>		<td class="site" align="center" style="background-color: #ebebeb;">Registered Membership use</td>	 </tr>	<tr >	<th class="site" scope="row">Monday-Friday</th>		<td   class="site" align="center" style="background-color: #ebebeb;">7:00-22:00</td>		<td class="site" align="center" style="background-color: #ebebeb;">Registered Membership use</td>	 </tr>	<tr><td class="site" colspan="3">These are indicative opening hours for a typical Winter term-time schedule. For detailed programming information, contact the sports site direct</td>	</table><br><div class="site" align="center" style="background-color:#CCCCCC; width:100%"><a href="javascript:void(0)" onClick="ShowPrevPage()">&lt;&lt;Prev</a>| <span id="CurrPageNo1" >Displaying 1 of 1</span> |<a href="javascript:void(0)" onClick="ShowNextPage()">Next&gt;&gt;</a> </div></DIV> 
+ 
+</form>
+<!-- place these just before close body tag -->
+<script src="../Scripts/dw_event.js" type="text/javascript"></script>
+<script src="../Scripts/dw_viewport.js" type="text/javascript"></script>
+<script src="../Scripts/dw_tooltip.js" type="text/javascript"></script>
+<script src='http://www.google-analytics.com/urchin.js' type='text/javascript'></script><script type='text/javascript'>_uacct = 'UA-1859625-10';urchinTracker();</script></body>
+</html>
