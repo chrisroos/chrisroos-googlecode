@@ -14,12 +14,12 @@ task :create_apache_config do
   log_directory = "#{current_path}/log"
   template = File.open(File.join(File.dirname(__FILE__), *%w[apache.config.erb])) { |f| f.read }
   erb = ERB.new(template)
-  put erb.result(binding), "#{current_path}/config/apache.config"
+  put erb.result(binding), "#{shared_path}/apache.config"
 end
 
 desc "Create a symlink to the apache config so that all config files end up in the same directory which allows us to restart apache and get it to load all config files in that directory."
 task :create_symlink_to_apache_config do
-  run "ln -sf #{current_path}/config/apache.config #{deploy_to}.config"
+  run "ln -sf #{shared_path}/apache.config #{deploy_to}.config"
 end
 
 desc "Restart the Apache webserver"
