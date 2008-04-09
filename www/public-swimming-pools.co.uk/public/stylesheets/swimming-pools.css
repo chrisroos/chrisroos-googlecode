@@ -19,6 +19,7 @@ div.mapContainer {
 }
 div.comments {
   clear: both;
+  padding-top: 1em;
 }
 div.footer {
   clear: both;
