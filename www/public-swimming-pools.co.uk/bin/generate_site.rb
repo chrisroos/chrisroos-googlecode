@@ -39,7 +39,7 @@ __END__
       <% img_url_params << "markers=#{swimming_pool.latitude},#{swimming_pool.longitude}" %>
       <% img_url_params << 'key=ABQIAAAAKHjf8pvj0mv3o07jD0Tc5RQaqNW12GnHBM9UqBhN-tKTStROsxS_YKqdsgFyjjinVKdFKNOHhZmPOQ' %>
       <% img_url = img_url + img_url_params.join('&') %>
-      <img width="200px" height="200px" src="<%= h(img_url) %>" alt="<%= h(swimming_pool.name) %>" />
+      <img width="300px" height="300px" src="<%= h(img_url) %>" alt="<%= h(swimming_pool.name) %>" />
     </div>
   
     <table>
