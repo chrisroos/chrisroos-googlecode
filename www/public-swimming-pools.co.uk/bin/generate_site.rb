@@ -42,6 +42,15 @@ __END__
       <dd class="email"><a href="mailto:<%= h(swimming_pool.email) %>"><%= h(swimming_pool.email) %></a></dd>
     </dl>
     
+    <% img_url = 'http://maps.google.com/staticmap?' %>
+    <% img_url_params = ["center=#{swimming_pool.latitude},#{swimming_pool.longitude}"] %>
+    <% img_url_params << 'zoom=14' %>
+    <% img_url_params << 'size=300x300' %>
+    <% img_url_params << "markers=#{swimming_pool.latitude},#{swimming_pool.longitude}" %>
+    <% img_url_params << 'key=ABQIAAAAKHjf8pvj0mv3o07jD0Tc5RQaqNW12GnHBM9UqBhN-tKTStROsxS_YKqdsgFyjjinVKdFKNOHhZmPOQ' %>
+    <% img_url = img_url + img_url_params.join('&') %>
+    <p><img src="<%= h(img_url) %>" width="300" height="300" alt="<%= h(swimming_pool.name) %>" /></p>
+    
     <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
       document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
