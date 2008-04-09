@@ -1,7 +1,7 @@
 <VirtualHost *:80>
   ServerAdmin www-admin@seagul.co.uk
-  ServerName public-swimming-pools.co.uk
-  ServerAlias www.public-swimming-pools.co.uk
+  ServerName <%= domain %>
+  ServerAlias www.<%= domain %>
   DocumentRoot <%= public_directory %>
   <Directory <%= public_directory %>>
     AllowOverride All
