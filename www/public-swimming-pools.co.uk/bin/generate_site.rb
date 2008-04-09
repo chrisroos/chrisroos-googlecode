@@ -35,11 +35,11 @@ __END__
       <% img_url = 'http://maps.google.com/staticmap?' %>
       <% img_url_params = ["center=#{swimming_pool.latitude},#{swimming_pool.longitude}"] %>
       <% img_url_params << 'zoom=14' %>
-      <% img_url_params << 'size=300x300' %>
+      <% img_url_params << 'size=200x200' %>
       <% img_url_params << "markers=#{swimming_pool.latitude},#{swimming_pool.longitude}" %>
       <% img_url_params << 'key=ABQIAAAAKHjf8pvj0mv3o07jD0Tc5RQaqNW12GnHBM9UqBhN-tKTStROsxS_YKqdsgFyjjinVKdFKNOHhZmPOQ' %>
       <% img_url = img_url + img_url_params.join('&') %>
-      <img width="300px" height="300px" src="<%= h(img_url) %>" alt="<%= h(swimming_pool.name) %>" />
+      <img width="200px" height="200px" src="<%= h(img_url) %>" alt="<%= h(swimming_pool.name) %>" />
     </div>
   
     <table>
@@ -76,6 +76,15 @@ __END__
         <td class="longitude"><%= h(swimming_pool.longitude) %></td>
       </tr>
     </table>
+    
+    <div class="comments">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript" src="http://disqus.com/forums/public-swimming-pools/embed.js"></script>
+      <noscript>
+        <p><a href="http://public-swimming-pools.disqus.com/?url=ref">View the forum thread.</a></p>
+      </noscript>
+      <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
   
     <div class="footer">
       <a href="/">Home</a>
