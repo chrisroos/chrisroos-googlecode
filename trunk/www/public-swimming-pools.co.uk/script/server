@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'webrick'
+include WEBrick
+
+s = HTTPServer.new(
+  :Port => 2000,
+  :DocumentRoot => File.join(File.dirname(__FILE__), *%w[.. public])
+)
+trap("INT") { s.shutdown }
+s.start
