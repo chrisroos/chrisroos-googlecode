@@ -12,6 +12,12 @@ SwimmingPools.find_all.each do |swimming_pool|
   end
 end
 
+template = File.read(File.join(File.dirname(__FILE__), *%w[index.html.erb]))
+erb = ERB.new(template)
+File.open(File.join(public_dir, "index.html"), 'w') do |file|
+  file.puts(erb.result(binding))
+end
+
 __END__
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
