@@ -8,6 +8,18 @@ class SwimmingPool
     end
   end
   
+  def address
+    @address.split(',').join(', ')
+  end
+  
+  def website
+    url
+  end
+  
+  def website_domain
+    url[/(http:\/\/.+?\/).*/, 1]
+  end
+  
   def kml_coordinates
     [longitude, latitude, '0'].join(',')
   end
