@@ -1,1 +1,0 @@
-* Sitemap generation results in files without .html extensions but apache (.htaccess) config doesn't allow them to be served.
