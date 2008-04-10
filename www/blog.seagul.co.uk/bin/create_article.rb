@@ -20,7 +20,7 @@ guid = UUID.random_create.to_s
 
 permalink = Article.new(:title => title).permalink
 filename = "#{published_at_for_filename}-#{permalink}.yml"
-filepath = File.join(File.dirname(__FILE__), '..', 'articles', filename)
+filepath = File.join(File.dirname(__FILE__), '..', 'content', 'articles', filename)
 
 if File.exists?(filepath) && !force_creation
   warn "WARNING: Cannot overwrite existing article called: #{filename}"
