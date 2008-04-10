@@ -1,5 +1,4 @@
 # To create a new article and re-generate the site..
 
 $ cat path_to_article | bin/create_article.rb "title of article"
-$ bin/store_articles.rb
 $ bin/generate-site.rb
