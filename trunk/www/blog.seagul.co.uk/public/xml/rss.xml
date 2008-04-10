@@ -10,6 +10,41 @@
     <description></description>
     
       <item>
+        <title>Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)</title>
+        <description>&lt;p&gt;Exporting query results to a remote machine with MySql (an alternative to &lt;span class=&quot;caps&quot;&gt;SELECT INTO OUTFILE&lt;/span&gt;)&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;a href=&quot;http://mysql.com&quot;&gt;MySql&amp;#8217;s&lt;/a&gt; &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.0/en/select.html&quot;&gt;&lt;span class=&quot;caps&quot;&gt;SELECT INTO OUTFILE&lt;/span&gt;&lt;/a&gt; syntax provides a nice way to export the results of a query into a tab delimited (by default) text file.  Unfortunately, the file has to be created on the MySql host (by a user with file permissions), rendering it unsuitable for dumping the data to a remote machine.  If you wish to dump the query results to a different machine then the &lt;a href=&quot;http://dev.mysql.com/doc/&quot;&gt;mysql docs&lt;/a&gt; suggest redirecting the output from the mysql command line client:&lt;/p&gt;
+
+
+	&lt;blockquote&gt;
+		&lt;p&gt;The &lt;span class=&quot;caps&quot;&gt;SELECT&lt;/span&gt; &amp;#8230; &lt;span class=&quot;caps&quot;&gt;INTO OUTFILE&lt;/span&gt; statement is intended primarily to let you very quickly dump a table to a text file on the server machine. If you want to create the resulting file on some client host other than the server host, you cannot use &lt;span class=&quot;caps&quot;&gt;SELECT&lt;/span&gt; &amp;#8230; &lt;span class=&quot;caps&quot;&gt;INTO OUTFILE&lt;/span&gt;. In that case, you should instead use a command such as mysql -e &amp;#8220;SELECT &amp;#8230;&amp;#8221; &amp;gt;  file_name to generate the file on the client host.&lt;/p&gt;
+	&lt;/blockquote&gt;
+
+
+	&lt;p&gt;This works great but the default output you&amp;#8217;ll get from redirecting &lt;span class=&quot;caps&quot;&gt;STDOUT&lt;/span&gt; won&amp;#8217;t be the same as using &lt;span class=&quot;caps&quot;&gt;SELECT INTO OUTFILE&lt;/span&gt;.  The two main (only?) differences are, in the redirected output, the addition of the headers and that &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt; values are output as &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt; instead of the special \N (backslash-N) sequence.  We can fix both of these things by specifying an optional switch (skip-column-names) to the mysql client and employing some &lt;a href=&quot;http://en.wikipedia.org/wiki/Sed&quot;&gt;sed&lt;/a&gt; magic.&lt;/p&gt;
+
+
+&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;mysql -h&amp;quot;my-host&amp;quot; -u&amp;quot;my-user&amp;quot; -p&amp;quot;my-password&amp;quot; -e&amp;quot;select * from my-database.my-table&amp;quot; --skip-column-names |\
+  sed -e 's/[[:&amp;lt;:]]NULL[[:&amp;gt;:]]/\\N/g' &amp;gt;\
+  my-export-directory/my-table.csv`&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+	&lt;p&gt;That sed magic is replacing instances of &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt;, surrounded by some whitespace, with the special \N escape sequence.&lt;/p&gt;
+
+
+	&lt;p&gt;Oh, and it&amp;#8217;s probably worth mentioning that this is only really important if you want to load this data back into mysql (using &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.0/en/load-data.html&quot;&gt;&lt;span class=&quot;caps&quot;&gt;LOAD DATA INFILE&lt;/span&gt;&lt;/a&gt; for example).  If you were to load the default output, from redirecting the mysql client, back into mysql then you&amp;#8217;d end up with an unwanted header row and &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt; strings (or 0 for numeric columns) where you expected actual &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt; values.&lt;/p&gt;
+
+
+	&lt;p&gt;It took us a while to figure this out so I thought it might be of some use to others.&lt;/p&gt;</description>
+
+        <pubDate>Thu, 10 Apr 2008 16:45:29 +0100</pubDate>
+        <guid isPermaLink="false">urn:uuid:3ba09b50-ed76-46e9-9179-8655c943c005</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/04/10/exporting-query-results-to-a-remote-machine-with-mysql-an-alternative-to-select-into-outfile</link>
+        
+      </item>
+    
+      <item>
         <title>Another project - Public Swimming Pools in the UK</title>
         <description>&lt;p&gt;Not content with already having a &lt;a href=&quot;/articles/2008/02/18/what-ive-been-up-to-projects-and-ideas&quot;&gt;bunch of unfinished projects&lt;/a&gt; I thought I&amp;#8217;d embark upon another.&lt;/p&gt;
 
@@ -410,50 +445,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
         <guid isPermaLink="false">urn:uuid:cfe3b7ae-05e5-406a-9dcd-e3a646b9d16c</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008/02/18/atom-like-rss-feeds-for-thisiskent-co-uk-news-stories</link>
-        
-      </item>
-    
-      <item>
-        <title>Sending trackbacks to the sites that you bookmark in del.icio.us</title>
-        <description>&lt;p&gt;I know they have their problems (I had 26 good and 38428 spam when they were enabled on my site) but I&amp;#8217;ve always liked the idea of &lt;a href=&quot;http://en.wikipedia.org/wiki/Trackback&quot;&gt;trackbacks&lt;/a&gt; (and the &lt;a href=&quot;http://en.wikipedia.org/wiki/Pingback&quot;&gt;pingback&lt;/a&gt; alternative).&lt;/p&gt;
-
-
-	&lt;p&gt;A few months back I started thinking about &lt;a href=&quot;http://tech.groups.yahoo.com/group/ydn-delicious/message/1447&quot;&gt;sending trackbacks when bookmarking pages in del.icio.us&lt;/a&gt;.  Having been told that, although it was something that had been considered, it wasn&amp;#8217;t likely to be added anytime soon I decided to take a look at adding the functionality myself.&lt;/p&gt;
-
-
-	&lt;p&gt;The &lt;a href=&quot;http://www.sixapart.com/pronet/docs/trackback_spec&quot;&gt;trackback specification&lt;/a&gt; states that I must send the &lt;a href=&quot;http://en.wikipedia.org/wiki/Permalink&quot;&gt;permalink&lt;/a&gt; of my &amp;#8216;post&amp;#8217; to the resource that I&amp;#8217;m tracking back to.  By design, individual posts (or bookmarks) in &lt;a href=&quot;http://del.icio.us&quot;&gt;del.icio.us&lt;/a&gt; aren&amp;#8217;t addressable by a &lt;a href=&quot;http://en.wikipedia.org/wiki/Uniform_Resource_Identifier&quot;&gt;&lt;span class=&quot;caps&quot;&gt;URI&lt;/span&gt;&lt;/a&gt;.  So, the first step was to &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts&quot;&gt;add permalinks to my del.icio.us bookmarks&lt;/a&gt;.  This was a kludgy, manual fix that added permalinks to all my old bookmarks: it didn&amp;#8217;t work for any new bookmarks.&lt;/p&gt;
-
-
-	&lt;p&gt;From here, I spent some time &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/09/05/patching-the-del-icio-us-firefox-extension-to-add-permalinks&quot;&gt;hacking around with the del.icio.us firefox extension&lt;/a&gt; to get it to automatically generate these permalink tags.&lt;/p&gt;
-
-
-	&lt;p&gt;The final stage was to &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension&quot;&gt;extract the hacked-in functionality into its own extension&lt;/a&gt; (an extension of an extension &amp;#8211; cool huh).&lt;/p&gt;
-
-
-	&lt;p&gt;Somehow, it took until about a month ago for me to realise that I now had everything in place to actually add trackback support to the &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/3615&quot;&gt;del.icio.us firefox extension&lt;/a&gt;.  I started looking at it last week and I&amp;#8217;ve just finish up the proof of concept this morning.  At present, it scans the page you&amp;#8217;re bookmarking looking for an anchor tag with rel=trackback (because this is easier than trying to parse the &lt;span class=&quot;caps&quot;&gt;RDF&lt;/span&gt;).  If it finds one then it uses the url-tag from the &lt;a href=&quot;http://groups.google.com/group/delicious-permalinks&quot;&gt;del.icio.us permalinks&lt;/a&gt; extension to construct the permalink for your (to-be-created) bookmark and promptly goes off to send a trackback.&lt;/p&gt;
-
-
-	&lt;p&gt;The code is over in my &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/delicious-trackbacks/&quot;&gt;google code repository&lt;/a&gt;.  It&amp;#8217;s very rough around the edges so I&amp;#8217;m holding off providing a compiled version just yet.  If you really want to play along then you can follow these steps:&lt;/p&gt;
-
-
-	&lt;ul&gt;
-	&lt;li&gt;Install the del.icio.us firefox extension (to be fair, I&amp;#8217;m going to assume that you&amp;#8217;re probably at this stage already)&lt;/li&gt;
-		&lt;li&gt;Install the del.icio.us permalinks extension&lt;/li&gt;
-		&lt;li&gt;Checkout out the del.icio.us trackbacks source&lt;/li&gt;
-		&lt;li&gt;Find your Firefox extensions directory&lt;/li&gt;
-		&lt;li&gt;Create a textfile called delicious-trackbacks@googlegroups.com&lt;/li&gt;
-		&lt;li&gt;Add the path to the checked out project del.icio.us trackbacks project to this textfile&lt;/li&gt;
-		&lt;li&gt;Restart firefox&lt;/li&gt;
-		&lt;li&gt;Hope it all works and doesn&amp;#8217;t destroy your computer :-)&lt;/li&gt;
-	&lt;/ul&gt;
-
-
-	&lt;p&gt;Oh, and I&amp;#8217;ve created a real simple &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/scratch/trackback-server/&quot;&gt;trackback server&lt;/a&gt; (well, a &lt;a href=&quot;http://mongrel.rubyforge.org/&quot;&gt;mongrel&lt;/a&gt; handler) and a dummy page that includes a link to this server so that you can see the trackbacks being sent.&lt;/p&gt;</description>
-
-        <pubDate>Mon, 04 Feb 2008 09:53:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:be4e61ba-08ff-4e98-b8f1-81a67147bc4a</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us</link>
         
       </item>
     

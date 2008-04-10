@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
+    <link rel="openid.server" href="http://www.myopenid.com/server"/>
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <title>Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE) - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+  
+    <div id="container" class="clearfix">
+    
+      <div id="header">
+        <div id="logo">
+          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
+        </div>
+      </div>
+
+      <div id="search">
+      </div>
+
+      <div id="content" class="clearfix">
+
+        <div id="main">
+
+          <div class="post">
+            <h2>Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)</h2>
+            <p class="auth">
+              Posted by Chris Roos
+              <span class="typo_date" title="Thu, 10 Apr 2008 16:45:29">
+                Thu, 10 Apr 2008 16:45:29
+              </span>
+            </p>
+          
+            <p>Exporting query results to a remote machine with MySql (an alternative to <span class="caps">SELECT INTO OUTFILE</span>)</p>
+
+
+	<p><a href="http://mysql.com">MySql&#8217;s</a> <a href="http://dev.mysql.com/doc/refman/5.0/en/select.html"><span class="caps">SELECT INTO OUTFILE</span></a> syntax provides a nice way to export the results of a query into a tab delimited (by default) text file.  Unfortunately, the file has to be created on the MySql host (by a user with file permissions), rendering it unsuitable for dumping the data to a remote machine.  If you wish to dump the query results to a different machine then the <a href="http://dev.mysql.com/doc/">mysql docs</a> suggest redirecting the output from the mysql command line client:</p>
+
+
+	<blockquote>
+		<p>The <span class="caps">SELECT</span> &#8230; <span class="caps">INTO OUTFILE</span> statement is intended primarily to let you very quickly dump a table to a text file on the server machine. If you want to create the resulting file on some client host other than the server host, you cannot use <span class="caps">SELECT</span> &#8230; <span class="caps">INTO OUTFILE</span>. In that case, you should instead use a command such as mysql -e &#8220;SELECT &#8230;&#8221; &gt;  file_name to generate the file on the client host.</p>
+	</blockquote>
+
+
+	<p>This works great but the default output you&#8217;ll get from redirecting <span class="caps">STDOUT</span> won&#8217;t be the same as using <span class="caps">SELECT INTO OUTFILE</span>.  The two main (only?) differences are, in the redirected output, the addition of the headers and that <span class="caps">NULL</span> values are output as <span class="caps">NULL</span> instead of the special \N (backslash-N) sequence.  We can fix both of these things by specifying an optional switch (skip-column-names) to the mysql client and employing some <a href="http://en.wikipedia.org/wiki/Sed">sed</a> magic.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">mysql -h&quot;my-host&quot; -u&quot;my-user&quot; -p&quot;my-password&quot; -e&quot;select * from my-database.my-table&quot; --skip-column-names |\
+  sed -e 's/[[:&lt;:]]NULL[[:&gt;:]]/\\N/g' &gt;\
+  my-export-directory/my-table.csv`</code></pre></div>
+
+	<p>That sed magic is replacing instances of <span class="caps">NULL</span>, surrounded by some whitespace, with the special \N escape sequence.</p>
+
+
+	<p>Oh, and it&#8217;s probably worth mentioning that this is only really important if you want to load this data back into mysql (using <a href="http://dev.mysql.com/doc/refman/5.0/en/load-data.html"><span class="caps">LOAD DATA INFILE</span></a> for example).  If you were to load the default output, from redirecting the mysql client, back into mysql then you&#8217;d end up with an unwanted header row and <span class="caps">NULL</span> strings (or 0 for numeric columns) where you expected actual <span class="caps">NULL</span> values.</p>
+
+
+	<p>It took us a while to figure this out so I thought it might be of some use to others.</p>
+          </div>
+        
+          <p class="meta">
+            
+          </p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+          <noscript>
+            <a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a>
+          </noscript>
+
+          
+          
+
+        </div>
+
+        <div id="sidebar">
+
+          <div class="sidebar-node">
+            <h3>Syndicate</h3>
+            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
+              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
+              Subscribe to the feed
+            </a>
+          </div>
+
+        </div>
+
+        <br clear="all" />
+
+      </div>
+    
+      <div id="footer">
+      </div>
+
+    </div>
+  
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      var pageTracker = _gat._getTracker("UA-160238-1");
+      pageTracker._initData();
+      pageTracker._trackPageview();
+    </script>
+  </body>
+
+</html>
