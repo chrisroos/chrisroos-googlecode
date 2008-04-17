@@ -2,7 +2,7 @@
 :extension:
   :id: delicious-domain-tags@googlegroups.com
   :name: Del.icio.us Domain Tags
-  :version: 0.2
+  :version: 0.3
   :creator: Chris Roos
   :description: Builds on the del.icio.us bookmarks extension to add permalinks to each bookmark.
   :install_url: http://delicious-domain-tags.seagul.co.uk/delicious-domain-tags.xpi
