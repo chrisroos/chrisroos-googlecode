@@ -1,3 +1,7 @@
+0.3 (17th Apr 2008)
+-------------------
+* Add auto-update capability to the extension
+
 0.2 (17th Mar 2008)
 -------------------
 * Strip www. from domain tags.  It's often possible to use the same domain with or without www and I want to know that bookmarks for www.techcrunch.com are the same as bookmarks for techcrunch.com.
