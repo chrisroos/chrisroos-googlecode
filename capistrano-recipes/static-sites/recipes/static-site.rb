@@ -4,7 +4,7 @@ namespace :static_sites do
   task :create_apache_config do
     public_directory = "#{current_path}/public"
     log_directory = "#{current_path}/log"
-    template = File.open(File.join(File.dirname(__FILE__), *%w[apache.config.erb])) { |f| f.read }
+    template = File.open(File.join(File.dirname(__FILE__), *%w[.. .. .. .. config apache.config.erb])) { |f| f.read }
     erb = ERB.new(template)
     put erb.result(binding), "#{shared_path}/apache.config"
   end
