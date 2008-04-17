@@ -7,6 +7,9 @@ builder = Builder::XmlMarkup.new(:target => sitemap_buffer, :indent => 2)
 builder.instruct!
 builder.urlset(:xmlns => 'http://www.sitemaps.org/schemas/sitemap/0.9') do
   builder.url do
+    builder.loc 'http://public-swimming-pools.co.uk/about'
+  end
+  builder.url do
     builder.loc 'http://public-swimming-pools.co.uk/swimming-pools.kml'
   end
   SwimmingPools.find_all.each do |swimming_pool|
