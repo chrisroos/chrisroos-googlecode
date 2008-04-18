@@ -1,7 +1,7 @@
 default_environment['PATH'] = "/usr/local/bin:$PATH"
 
 set :application, "trackbacks.seagul.co.uk"
-set :repository,  "http://chrisroos.googlecode.com/svn/trunk/scratch/trackback-server"
+set :repository,  "http://chrisroos.googlecode.com/svn/trunk/www/#{application}"
 
 set :deploy_to, "/home/chrisroos/www/#{application}"
 set :deploy_via, :copy
