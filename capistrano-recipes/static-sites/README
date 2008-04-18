@@ -1,0 +1,10 @@
+Some common recipes for configuring the Apache config, restarting Apache and updating the site without doing a full checkout/copy deploy-type-thing.
+
+Add a vendor/plugins folder to your project and set the svn:externals property on that folder:
+
+mkdir -p vendor/plugins
+svn add vendor
+svn commit vendor -m "Getting ready for shared capistrano recipes"
+svn propedit "svn:externals" vendor/plugins
+static-site-recipes http://chrisroos.googlecode.com/svn/trunk/capistrano-recipes/static-sites
+svn commit -m "Added shared static-sites capistrano recipes"
