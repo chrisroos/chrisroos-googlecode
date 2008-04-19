@@ -3,28 +3,44 @@
   <Document>
     <Placemark>
       <name>Balham Leisure Centre</name>
-      <description>Elmfield Road,Balham,Greater London</description>
+      <description>
+        <![CDATA[<a href="http://www.dcleisurecentres.co.uk/Centres/Greater+London/Balham+Leisure+Centre/index.html">Balham Leisure Centre</a><br/>
+Elmfield Road, Balham, Greater London, SW17 8AN<br/>
+020 8772 9577<br/>]]>
+      </description>
       <Point>
         <coordinates>-0.152607,51.441115,0</coordinates>
       </Point>
     </Placemark>
     <Placemark>
       <name>Hartsdown Leisure Centre</name>
-      <description>Hartsdown Park,Hartsdown Road,Margate,Kent</description>
+      <description>
+        <![CDATA[<a href="http://www.tlfleisure.co.uk/indoor/hartsdown/">Hartsdown Leisure Centre</a><br/>
+Hartsdown Park, Hartsdown Road, Margate, Kent, CT9 5QX<br/>
+01843 226221<br/>]]>
+      </description>
       <Point>
         <coordinates>1.369472,51.382281,0</coordinates>
       </Point>
     </Placemark>
     <Placemark>
       <name>Ramsgate Swimming Centre</name>
-      <description>Newington Road,Ramsgate,Kent</description>
+      <description>
+        <![CDATA[<a href="http://www.tlfleisure.co.uk/indoor/ramsgate%5Fswim/">Ramsgate Swimming Centre</a><br/>
+Newington Road, Ramsgate, Kent, CT11 0QX<br/>
+01843 593754<br/>]]>
+      </description>
       <Point>
         <coordinates>1.401744,51.339272,0</coordinates>
       </Point>
     </Placemark>
     <Placemark>
       <name>Westcroft Leisure Centre</name>
-      <description>Westcroft Road,Carshalton,Surrey</description>
+      <description>
+        <![CDATA[<a href="http://www.sutton.gov.uk/leisure/leisurecentres/westcroft.htm">Westcroft Leisure Centre</a><br/>
+Westcroft Road, Carshalton, Surrey, SM5 2TG<br/>
+020 8770 4800<br/>]]>
+      </description>
       <Point>
         <coordinates>-0.156856,51.367869,0</coordinates>
       </Point>
