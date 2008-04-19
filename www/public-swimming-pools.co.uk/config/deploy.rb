@@ -7,7 +7,7 @@ else
   set :domain, application
 end
 
-set :deploy_to, "/home/chrisroos/www/#{domain}"
+set :deploy_to, "/u/chrisroos/www/#{domain}"
 set :deploy_via, :copy
 
 role :app, "jail0093.vps.exonetric.net"
