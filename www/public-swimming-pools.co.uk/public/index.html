@@ -5,11 +5,32 @@
     <link rel="stylesheet" href="/stylesheets/swimming-pools.css" type="text/css" media="screen" charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Public Swimming Pools in the UK</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAKHjf8pvj0mv3o07jD0Tc5RQaqNW12GnHBM9UqBhN-tKTStROsxS_YKqdsgFyjjinVKdFKNOHhZmPOQ"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+
+    //<![CDATA[
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"));
+        geoXml = new GGeoXml("http://public-swimming-pools.co.uk/swimming-pools.kml");
+        map.addControl(new GLargeMapControl());
+        map.setCenter(new GLatLng(51.441115,-0.152607), 7); 
+        map.addControl(new GLargeMapControl());
+        map.addOverlay(geoXml);
+      }
+    }
+
+    //]]>
+    </script>
   </head>
-  <body>
+  <body onload="load()" onunload="GUnload()">
     <h1>Public Swimming Pools in the UK</h1>
     
     <h2>Wait, it's not ready yet (you could still see what it's all <a href="/about">about</a> though)</h2>
+    
+    <div id="map" style="width: 500px; height: 300px"></div>
     
     <ul class="swimmingPools">
     
