@@ -1,0 +1,68 @@
+body {
+  margin: 0 1em;
+  line-height: 1.8em;
+}
+h2 {
+  color: #005A9C;
+  font-size: 167%;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+strong {
+  font-weight: bold;
+}
+ol, ul {
+  font-size: 116%;
+  margin-left: 3em;
+  margin-bottom: 1em;
+}
+ol li {
+  list-style-type: decimal;
+}
+ul li {
+  list-style-type: disc;
+}
+ol.comments, ol.trackbacks {
+  font-size: 100%;
+  margin-left: 0em;
+}
+ol.comments li, ol.trackbacks li {
+  list-style-type: none;
+}
+p {
+  margin-bottom: 1.5em;
+  font-size: 116%;
+}
+p.postedOn {
+  color: #999;
+  font-size: 85%;
+  border-bottom: 0.1em solid #999;
+  margin-top: -1.5em;
+}
+blockquote {
+  padding-left: 4em;
+  font-style: italic;
+  color: #666;
+  background-image: url('/quote.gif');
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+div#hd {
+  background-color: #005A9C;
+  padding: 1em 1em 0.5em 1em;
+  text-align: right;
+  border-bottom: 0.5em solid #000;
+  margin-bottom: 3em;
+}
+div#hd .blogTitle {
+  font-size: 200%;
+  color: #fff;
+  text-decoration: none;
+}
+div#ft {
+  background-color: #005A9C;
+  padding: 0.5em 1em 1em 1em;
+  text-align: center;
+  border-top: 0.5em solid #000;
+  margin-top: 3em;
+}
