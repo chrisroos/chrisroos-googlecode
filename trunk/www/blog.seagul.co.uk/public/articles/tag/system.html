@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts tagged system - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2007/09/29/monitoring-the-mac-osx-filesystem-with-ruby">Monitoring the Mac OSX Filesystem with ruby</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Sat, 29 Sep 2007 09:11:00">
+                    Sat, 29 Sep 2007 09:11:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/09/29/monitoring-the-mac-osx-filesystem-with-ruby">Monitoring the Mac OSX Filesystem with ruby</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Sat, 29 Sep 2007 09:11:00">
-                  Sat, 29 Sep 2007 09:11:00
-                </span>
-              </p>
-          
-              <p>On Thursday, <a href="http://blog.floehopper.org/">James</a> and I spent some time investigating remote pairing options.  One tiny part of that investigation was finding a way to keep two remote filesystems in sync.  I initially thought of using <a href="http://en.wikipedia.org/wiki/Rsync">rsync</a> at regular intervals with <a href="http://en.wikipedia.org/wiki/Cron">cron</a>.  Unless I&#8217;ve missed something, the smallest interval between cron jobs is one minute which is potentially too long.  We wanted a way to rsync (or sync in general) whenever the filesystem changed.  A little searching brought this <a href="http://www.kernelthread.com/software/fslogger/">fslogger</a> tool to my attention.  It simply writes some event details to <span class="caps">STDOUT</span> every time something changes on the filesystem.  I figured that we could use this, with a little bit of ruby glue, to trigger rsync.  Our glue script continuously reads from <span class="caps">STDIN</span>, tries to match some pre-defined patterns and triggers rsync if those patterns are matched.  It&#8217;s very brittle but it gets the job done.  Well, actually, it only partially gets the job done: I&#8217;m very unfamiliar with rsync but it seemed to take between 10 and 30 seconds to sync even if only one file had changed.  I suspect that I may have been doing something wrong though.</p>
+                <p>On Thursday, <a href="http://blog.floehopper.org/">James</a> and I spent some time investigating remote pairing options.  One tiny part of that investigation was finding a way to keep two remote filesystems in sync.  I initially thought of using <a href="http://en.wikipedia.org/wiki/Rsync">rsync</a> at regular intervals with <a href="http://en.wikipedia.org/wiki/Cron">cron</a>.  Unless I&#8217;ve missed something, the smallest interval between cron jobs is one minute which is potentially too long.  We wanted a way to rsync (or sync in general) whenever the filesystem changed.  A little searching brought this <a href="http://www.kernelthread.com/software/fslogger/">fslogger</a> tool to my attention.  It simply writes some event details to <span class="caps">STDOUT</span> every time something changes on the filesystem.  I figured that we could use this, with a little bit of ruby glue, to trigger rsync.  Our glue script continuously reads from <span class="caps">STDIN</span>, tries to match some pre-defined patterns and triggers rsync if those patterns are matched.  It&#8217;s very brittle but it gets the job done.  Well, actually, it only partially gets the job done: I&#8217;m very unfamiliar with rsync but it seemed to take between 10 and 30 seconds to sync even if only one file had changed.  I suspect that I may have been doing something wrong though.</p>
 
 
 <div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#!/usr/bin/env ruby</span>
@@ -64,45 +58,43 @@
     <span class="ident">rsync!</span> <span class="keyword">if</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">string<span class="escape">\s</span>+=(.*)</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">].</span><span class="ident">strip</span> <span class="punct">=~</span> <span class="constant">Regexp</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">DIRECTORY_PATTERN</span><span class="punct">)</span>
   <span class="keyword">end</span>
 <span class="keyword">end</span></code></pre></div>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/cron" rel="tag">cron</a>, 
+                    
+                      <a href="/articles/tag/file" rel="tag">file</a>, 
+                    
+                      <a href="/articles/tag/file-system" rel="tag">file-system</a>, 
+                    
+                      <a href="/articles/tag/fslogger" rel="tag">fslogger</a>, 
+                    
+                      <a href="/articles/tag/rsync" rel="tag">rsync</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/script" rel="tag">script</a>, 
+                    
+                      <a href="/articles/tag/sync" rel="tag">sync</a>, 
+                    
+                      <a href="/articles/tag/system" rel="tag">system</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/cron" rel="tag">cron</a>, 
-                
-                  <a href="/articles/tag/file" rel="tag">file</a>, 
-                
-                  <a href="/articles/tag/file-system" rel="tag">file-system</a>, 
-                
-                  <a href="/articles/tag/fslogger" rel="tag">fslogger</a>, 
-                
-                  <a href="/articles/tag/rsync" rel="tag">rsync</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/script" rel="tag">script</a>, 
-                
-                  <a href="/articles/tag/sync" rel="tag">sync</a>, 
-                
-                  <a href="/articles/tag/system" rel="tag">system</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2005/11/27/operating-systems-should-be-managed-by-version-control">Operating systems should be managed by version control</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Sun, 27 Nov 2005 08:24:00">
-                  Sun, 27 Nov 2005 08:24:00
-                </span>
-              </p>
-          
-              <p>I spent from about 09:30 until 15:00 yesterday trying to get some graphics software talking to two output devices (basically printers) on Windows.</p>
+                <h2>
+                  <a href="/articles/2005/11/27/operating-systems-should-be-managed-by-version-control">Operating systems should be managed by version control</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Sun, 27 Nov 2005 08:24:00">
+                    Sun, 27 Nov 2005 08:24:00
+                  </span>
+                </p>
+
+                <p>I spent from about 09:30 until 15:00 yesterday trying to get some graphics software talking to two output devices (basically printers) on Windows.</p>
 
 
 	<p>On arrival, it kinda worked, although not as requested.  There were some additional problems that needed to be sorted too.</p>
@@ -121,49 +113,50 @@
 
 
 	<p>Mmm, I think I might install a fresh copy of XP, add all files to version control (which I guess might not even work), change something and then diff between the versions.  I can already think of problems when diffing registry files as they are in binary format so it will not be easy to see differences.. Although, I guess it wouldn&#8217;t be too difficult to store registry files in a text format, i.e. customize the version control somehow.  Just an idea.</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/annoyances" rel="tag">annoyances</a>, 
+                    
+                      <a href="/articles/tag/control" rel="tag">control</a>, 
+                    
+                      <a href="/articles/tag/ideas" rel="tag">ideas</a>, 
+                    
+                      <a href="/articles/tag/operating" rel="tag">operating</a>, 
+                    
+                      <a href="/articles/tag/system" rel="tag">system</a>, 
+                    
+                      <a href="/articles/tag/version" rel="tag">version</a>, 
+                    
+                  </p>
+                
+              
+
             </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/annoyances" rel="tag">annoyances</a>, 
-                
-                  <a href="/articles/tag/control" rel="tag">control</a>, 
-                
-                  <a href="/articles/tag/ideas" rel="tag">ideas</a>, 
-                
-                  <a href="/articles/tag/operating" rel="tag">operating</a>, 
-                
-                  <a href="/articles/tag/system" rel="tag">system</a>, 
-                
-                  <a href="/articles/tag/version" rel="tag">version</a>, 
-                
-              
-            </p>
-          
-
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

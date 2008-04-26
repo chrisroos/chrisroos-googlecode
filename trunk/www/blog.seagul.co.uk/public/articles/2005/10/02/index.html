@@ -1,66 +1,56 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts published on Sun, 02 October 2005 - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
-
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2005/10/02/cyrus-imap">Cyrus Imap</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Sun, 02 Oct 2005 20:18:16">
-                  Sun, 02 Oct 2005 20:18:16
-                </span>
-              </p>
-          
-              <p>I&#8217;ve been trying to install Cyrus Imap today.  Initial writing is <a href="/pages/cyrus-imap">here</a>.</p>
-            </div>
-        
-            <p class="meta">
               
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2005/10/02/typo-pings">Typo pings</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Sun, 02 Oct 2005 19:51:00">
-                  Sun, 02 Oct 2005 19:51:00
-                </span>
-              </p>
-          
-              <p>I updated Typo last night to run from svn trunk, just to get the added benefit of pinging sites like <a href="http://www.weblogs.com">weblogs</a> and <a href="http://www.technorati.com">technorati</a> whenever I publish an article.  All was running smoothly until I just tried to create the newsreader article.  On saving, I get a not very helpful Rails app error.  The logs didn&#8217;t help an amazing amount either&#8230;</p>
+                <h2>
+                  <a href="/articles/2005/10/02/cyrus-imap">Cyrus Imap</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Sun, 02 Oct 2005 20:18:16">
+                    Sun, 02 Oct 2005 20:18:16
+                  </span>
+                </p>
+
+                <p>I&#8217;ve been trying to install Cyrus Imap today.  Initial writing is <a href="/pages/cyrus-imap">here</a>.</p>
+
+                
+              
+                <h2>
+                  <a href="/articles/2005/10/02/typo-pings">Typo pings</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Sun, 02 Oct 2005 19:51:00">
+                    Sun, 02 Oct 2005 19:51:00
+                  </span>
+                </p>
+
+                <p>I updated Typo last night to run from svn trunk, just to get the added benefit of pinging sites like <a href="http://www.weblogs.com">weblogs</a> and <a href="http://www.technorati.com">technorati</a> whenever I publish an article.  All was running smoothly until I just tried to create the newsreader article.  On saving, I get a not very helpful Rails app error.  The logs didn&#8217;t help an amazing amount either&#8230;</p>
 
 
 	<p>It was at around this point that I remembered that my shared hosting account didn&#8217;t actually allow for certain low level network access (e.g. <acronym title="Internet Control Message Protocol">ICMP</acronym>) from my virtual machine.  Sure enough, disabling the auto-ping option made the error go away.  Having looked a bit further it would appear that the articles were actually being saved but I was seeing the error when the ping request was timing out.  This has already been reported on <a href="http://typo.leetsoft.com/trac/ticket/400">typo trac</a>.  I must admit I don&#8217;t know the exact cause of the problem here but am guessing that the blog ping&#8217;s require access to some network operation that I don&#8217;t have permissions for&#8230;</p>
@@ -70,24 +60,20 @@
 
 
 	<p>Mmmm, seems I was being stupid in my assumption.  The &#8216;blog pings&#8217; just transfer data over http, nothing lower than that.  As such, the problem must have been caused by a non-respondent ping server at the time I was trying to save.  In fact, I just created a new test article and enabled the pings and all worked fine.  Oops.</p>
-            </div>
-        
-            <p class="meta">
+
+                
               
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2005/10/02/online-news-reader">Online news reader</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Sun, 02 Oct 2005 19:02:00">
-                  Sun, 02 Oct 2005 19:02:00
-                </span>
-              </p>
-          
-              <p>It&#8217;s been on my list for quite a while to check out online newsreaders in order to replace my flagging <a href="http://www.sharpreader.com">desktop client of choice</a>.</p>
+                <h2>
+                  <a href="/articles/2005/10/02/online-news-reader">Online news reader</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Sun, 02 Oct 2005 19:02:00">
+                    Sun, 02 Oct 2005 19:02:00
+                  </span>
+                </p>
+
+                <p>It&#8217;s been on my list for quite a while to check out online newsreaders in order to replace my flagging <a href="http://www.sharpreader.com">desktop client of choice</a>.</p>
 
 
 	<p>This has been pushed up the list by my recent contract taking me away from my main machine for the best part of the week.  As such, I spent last night looking at some of the alternatives listed on <a href="http://en.wikipedia.org/wiki/List_of_news_aggregators#Online_news_aggregators">this</a> <a href="http://www.wikipedia.org">wikipedia</a> article.</p>
@@ -114,34 +100,33 @@
 		<li><a href="http://www.waggr.com">waggr</a> &#8211; pretty good, slight interface problems, import opml but no categories</li>
 		<li><a href="http://www.feedlounge.com">feed lounge</a> &#8211; looks good, still in alpha.</li>
 	</ul>
-            </div>
-        
-            <p class="meta">
+
+                
               
-            </p>
-          
 
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
+            </div>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

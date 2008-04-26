@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts published on Tue, 06 September 2005 - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2005/09/06/remote-control-software">Remote Control Software</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Tue, 06 Sep 2005 16:45:00">
+                    Tue, 06 Sep 2005 16:45:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2005/09/06/remote-control-software">Remote Control Software</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Tue, 06 Sep 2005 16:45:00">
-                  Tue, 06 Sep 2005 16:45:00
-                </span>
-              </p>
-          
-              <p>I&#8217;ve always preferred <a href="http://www.tightvnc.com">TightVNC</a> for remote control of other machines.  When run through an <span class="caps">SSH</span> tunnel it provides secure, free, remote access.  The only problem is that it&#8217;s not amazingly easy to talk someone through installing it remotely, what with the need to configure suitable <span class="caps">SSH</span> software, firewall and TightVNC.</p>
+                <p>I&#8217;ve always preferred <a href="http://www.tightvnc.com">TightVNC</a> for remote control of other machines.  When run through an <span class="caps">SSH</span> tunnel it provides secure, free, remote access.  The only problem is that it&#8217;s not amazingly easy to talk someone through installing it remotely, what with the need to configure suitable <span class="caps">SSH</span> software, firewall and TightVNC.</p>
 
 
 	<p><a href="http://www.fogcreek.com">Fogcreek</a> <a href="http://www.copilot.com">Copilot</a> offers a commercial solution to this by having both parties communicate via a mediator.  This is fine but I&#8217;m not keen on the cost.</p>
@@ -52,76 +46,67 @@
 
 
 	<p>I then started thinking that if there was a very simple <span class="caps">P2P VPN</span>, we could just use standard TightVNC and get round the cost and difficulty problems.  It turns out that there is a free <span class="caps">P2P VPN</span> in the form of <a href="http://www.hamachi.cc">Hamachi</a>.  Although I&#8217;ve not managed to test this over the Internet I have tested it connecting two different computers on a <span class="caps">LAN</span> (one of which is in VM Ware).  I also managed to successfully get TightVNC working, after opening the relevant port (5900) in the target machine.  For some reason Remote Desktop wouldn&#8217;t work &#8211; it seemed to connect but just left me with a black screen &#8211; but I was happy enough with Tight <span class="caps">VNC</span> anyway.</p>
-            </div>
-        
-            <p class="meta">
+
+                
               
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2005/09/06/typo-flickr-problems">Typo flickr problems</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Tue, 06 Sep 2005 11:07:00">
-                  Tue, 06 Sep 2005 11:07:00
-                </span>
-              </p>
-          
-              <p>I initially had this running on typo 2.5.5 but the flickr integration into the sidebar didn&#8217;t seem to work &#8211; unless I was doing something stupid which is entirely possible.  I applied patches from changesets 596 and 632 to no avail, so decided to export the trunk from svn and try that.  I still have the same problems which is slightly frustrating.  The db migrations built into the admin interface as amazing though.</p>
+                <h2>
+                  <a href="/articles/2005/09/06/typo-flickr-problems">Typo flickr problems</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Tue, 06 Sep 2005 11:07:00">
+                    Tue, 06 Sep 2005 11:07:00
+                  </span>
+                </p>
+
+                <p>I initially had this running on typo 2.5.5 but the flickr integration into the sidebar didn&#8217;t seem to work &#8211; unless I was doing something stupid which is entirely possible.  I applied patches from changesets 596 and 632 to no avail, so decided to export the trunk from svn and try that.  I still have the same problems which is slightly frustrating.  The db migrations built into the admin interface as amazing though.</p>
 
 
 	<p><i>It would appear that it was my ignorance that was causing the flickr syndication problems.  I wasn&#8217;t entering the feed url correctly.  I&#8217;m wondering though, whether there should be some docs on the format of the feed url &#8211; I had to look at the flickr.rb source to find the format, and then search unrelated websites to find my actual flickr nsid</i>.</p>
 
 
 	<p><i>Having got the flickr syndication working I&#8217;ve not reverted back to typo stable 2.5.5.</i></p>
-            </div>
-        
-            <p class="meta">
+
+                
               
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2005/09/06/linspire">Linspire</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Tue, 06 Sep 2005 09:58:00">
-                  Tue, 06 Sep 2005 09:58:00
-                </span>
-              </p>
-          
-              <p>Apparently due to confusion caused by the <a href="http://www.freespire.org/">freespire</a> project, <a href="http://www.linspire.com/">Linspire</a> decided to give away <a href="http://info.linspire.com/freespire/index.html">free copies</a> of their Linux distribution.  I downloaded it the other day and just this morning took a look at it running in &#8216;LiveCD&#8217; mode within VM Ware.  Initial impression is that it&#8217;s trying far too hard to look like Windows and hides far too much from the user.  I guess this is for their target audience but it didn&#8217;t feel right to me.  I may take the time to have a more detailed play in the future.</p>
-            </div>
-        
-            <p class="meta">
+                <h2>
+                  <a href="/articles/2005/09/06/linspire">Linspire</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Tue, 06 Sep 2005 09:58:00">
+                    Tue, 06 Sep 2005 09:58:00
+                  </span>
+                </p>
+
+                <p>Apparently due to confusion caused by the <a href="http://www.freespire.org/">freespire</a> project, <a href="http://www.linspire.com/">Linspire</a> decided to give away <a href="http://info.linspire.com/freespire/index.html">free copies</a> of their Linux distribution.  I downloaded it the other day and just this morning took a look at it running in &#8216;LiveCD&#8217; mode within VM Ware.  Initial impression is that it&#8217;s trying far too hard to look like Windows and hides far too much from the user.  I guess this is for their target audience but it didn&#8217;t feel right to me.  I may take the time to have a more detailed play in the future.</p>
+
+                
               
-            </p>
-          
 
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
+            </div>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts tagged subversion - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2008/01/14/searching-subversion-history">Searching subversion history</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Mon, 14 Jan 2008 09:59:00">
+                    Mon, 14 Jan 2008 09:59:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2008/01/14/searching-subversion-history">Searching subversion history</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Mon, 14 Jan 2008 09:59:00">
-                  Mon, 14 Jan 2008 09:59:00
-                </span>
-              </p>
-          
-              <p>I&#8217;ve often felt the need to search through our <a href="http://subversion.tigris.org/">subversion</a> repository to find, for example, when a method was removed/renamed.  As far as I&#8217;m aware there&#8217;s no easy way to do this using the standard subversion, or <a href="http://trac.edgewall.org/">trac</a>, tools.  A few days ago the need arose once more: I wanted to know when a particular class had stopped being used within our codebase.  It struck me that if I had a <a href="http://en.wikipedia.org/wiki/Diff">diff</a> file for each changeset that I&#8217;d be able to <a href="http://en.wikipedia.org/wiki/Grep">grep</a> for the change I was looking for.  I hacked together a script to produce a diff of each changeset (actually, as I knew when the class was added, I only produced a diff for a subset of the changesets) and was able to find the information I needed.  The script is pasted below and on <a href="http://chrisroos.googlecode.com/svn/trunk/svn_changesets/">google code</a>.  It assumes that you are running it from within an svn working direction.  It took a while to produce the diff files (I&#8217;m afraid I don&#8217;t have any stats) but the result was a really fast way of finding, otherwise hard to find, information.  I guess it&#8217;d be quite easy to automate the diff creation process so that you had an always up-to-date bunch of diff fies&#8230;</p>
+                <p>I&#8217;ve often felt the need to search through our <a href="http://subversion.tigris.org/">subversion</a> repository to find, for example, when a method was removed/renamed.  As far as I&#8217;m aware there&#8217;s no easy way to do this using the standard subversion, or <a href="http://trac.edgewall.org/">trac</a>, tools.  A few days ago the need arose once more: I wanted to know when a particular class had stopped being used within our codebase.  It struck me that if I had a <a href="http://en.wikipedia.org/wiki/Diff">diff</a> file for each changeset that I&#8217;d be able to <a href="http://en.wikipedia.org/wiki/Grep">grep</a> for the change I was looking for.  I hacked together a script to produce a diff of each changeset (actually, as I knew when the class was added, I only produced a diff for a subset of the changesets) and was able to find the information I needed.  The script is pasted below and on <a href="http://chrisroos.googlecode.com/svn/trunk/svn_changesets/">google code</a>.  It assumes that you are running it from within an svn working direction.  It took a while to produce the diff files (I&#8217;m afraid I don&#8217;t have any stats) but the result was a really fast way of finding, otherwise hard to find, information.  I guess it&#8217;d be quite easy to automate the diff creation process so that you had an always up-to-date bunch of diff fies&#8230;</p>
 
 
 	<p>Is this useful, or have I missed something obvious in Subversion or Trac that does exactly this?</p>
@@ -86,49 +80,50 @@
 <span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">flatten</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">revision</span><span class="punct">|</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">revision</span><span class="punct">)</span> <span class="punct">}</span>
 
 <span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">)</span></code></pre></div>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/script" rel="tag">script</a>, 
+                    
+                      <a href="/articles/tag/search" rel="tag">search</a>, 
+                    
+                      <a href="/articles/tag/subversion" rel="tag">subversion</a>, 
+                    
+                      <a href="/articles/tag/svn" rel="tag">svn</a>, 
+                    
+                      <a href="/articles/tag/trac" rel="tag">trac</a>, 
+                    
+                  </p>
+                
+              
+
             </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/script" rel="tag">script</a>, 
-                
-                  <a href="/articles/tag/search" rel="tag">search</a>, 
-                
-                  <a href="/articles/tag/subversion" rel="tag">subversion</a>, 
-                
-                  <a href="/articles/tag/svn" rel="tag">svn</a>, 
-                
-                  <a href="/articles/tag/trac" rel="tag">trac</a>, 
-                
-              
-            </p>
-          
-
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

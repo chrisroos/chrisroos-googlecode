@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts tagged search - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2008/01/14/searching-subversion-history">Searching subversion history</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Mon, 14 Jan 2008 09:59:00">
+                    Mon, 14 Jan 2008 09:59:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2008/01/14/searching-subversion-history">Searching subversion history</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Mon, 14 Jan 2008 09:59:00">
-                  Mon, 14 Jan 2008 09:59:00
-                </span>
-              </p>
-          
-              <p>I&#8217;ve often felt the need to search through our <a href="http://subversion.tigris.org/">subversion</a> repository to find, for example, when a method was removed/renamed.  As far as I&#8217;m aware there&#8217;s no easy way to do this using the standard subversion, or <a href="http://trac.edgewall.org/">trac</a>, tools.  A few days ago the need arose once more: I wanted to know when a particular class had stopped being used within our codebase.  It struck me that if I had a <a href="http://en.wikipedia.org/wiki/Diff">diff</a> file for each changeset that I&#8217;d be able to <a href="http://en.wikipedia.org/wiki/Grep">grep</a> for the change I was looking for.  I hacked together a script to produce a diff of each changeset (actually, as I knew when the class was added, I only produced a diff for a subset of the changesets) and was able to find the information I needed.  The script is pasted below and on <a href="http://chrisroos.googlecode.com/svn/trunk/svn_changesets/">google code</a>.  It assumes that you are running it from within an svn working direction.  It took a while to produce the diff files (I&#8217;m afraid I don&#8217;t have any stats) but the result was a really fast way of finding, otherwise hard to find, information.  I guess it&#8217;d be quite easy to automate the diff creation process so that you had an always up-to-date bunch of diff fies&#8230;</p>
+                <p>I&#8217;ve often felt the need to search through our <a href="http://subversion.tigris.org/">subversion</a> repository to find, for example, when a method was removed/renamed.  As far as I&#8217;m aware there&#8217;s no easy way to do this using the standard subversion, or <a href="http://trac.edgewall.org/">trac</a>, tools.  A few days ago the need arose once more: I wanted to know when a particular class had stopped being used within our codebase.  It struck me that if I had a <a href="http://en.wikipedia.org/wiki/Diff">diff</a> file for each changeset that I&#8217;d be able to <a href="http://en.wikipedia.org/wiki/Grep">grep</a> for the change I was looking for.  I hacked together a script to produce a diff of each changeset (actually, as I knew when the class was added, I only produced a diff for a subset of the changesets) and was able to find the information I needed.  The script is pasted below and on <a href="http://chrisroos.googlecode.com/svn/trunk/svn_changesets/">google code</a>.  It assumes that you are running it from within an svn working direction.  It took a while to produce the diff files (I&#8217;m afraid I don&#8217;t have any stats) but the result was a really fast way of finding, otherwise hard to find, information.  I guess it&#8217;d be quite easy to automate the diff creation process so that you had an always up-to-date bunch of diff fies&#8230;</p>
 
 
 	<p>Is this useful, or have I missed something obvious in Subversion or Trac that does exactly this?</p>
@@ -86,76 +80,72 @@
 <span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">flatten</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">revision</span><span class="punct">|</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">revision</span><span class="punct">)</span> <span class="punct">}</span>
 
 <span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">)</span></code></pre></div>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/script" rel="tag">script</a>, 
+                    
+                      <a href="/articles/tag/search" rel="tag">search</a>, 
+                    
+                      <a href="/articles/tag/subversion" rel="tag">subversion</a>, 
+                    
+                      <a href="/articles/tag/svn" rel="tag">svn</a>, 
+                    
+                      <a href="/articles/tag/trac" rel="tag">trac</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/script" rel="tag">script</a>, 
-                
-                  <a href="/articles/tag/search" rel="tag">search</a>, 
-                
-                  <a href="/articles/tag/subversion" rel="tag">subversion</a>, 
-                
-                  <a href="/articles/tag/svn" rel="tag">svn</a>, 
-                
-                  <a href="/articles/tag/trac" rel="tag">trac</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/11/20/wow-google-must-really-love-chris">Wow.  Google must really love Chris.</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Tue, 20 Nov 2007 22:51:00">
-                  Tue, 20 Nov 2007 22:51:00
-                </span>
-              </p>
-          
-              <p>I&#8217;d read <a href="http://www.scripting.com/stories/2007/07/17/instantIndexing.html">previously</a> about <a href="http://www.google.com">Google</a> indexing pages in almost real-time.  I only experienced it myself for the first time this evening.  I was continuing to search for answers to my <a href="http://blog.seagul.co.uk/articles/2007/11/20/can-anyone-recommend-a-good-simple-web-hosting-solution">recent question</a> when my own question popped up at number three in the <a href="http://www.google.co.uk/search?hl=en&#38;q=static+simple+web+hosting">search results</a>.</p>
+                <h2>
+                  <a href="/articles/2007/11/20/wow-google-must-really-love-chris">Wow.  Google must really love Chris.</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Tue, 20 Nov 2007 22:51:00">
+                    Tue, 20 Nov 2007 22:51:00
+                  </span>
+                </p>
+
+                <p>I&#8217;d read <a href="http://www.scripting.com/stories/2007/07/17/instantIndexing.html">previously</a> about <a href="http://www.google.com">Google</a> indexing pages in almost real-time.  I only experienced it myself for the first time this evening.  I was continuing to search for answers to my <a href="http://blog.seagul.co.uk/articles/2007/11/20/can-anyone-recommend-a-good-simple-web-hosting-solution">recent question</a> when my own question popped up at number three in the <a href="http://www.google.co.uk/search?hl=en&#38;q=static+simple+web+hosting">search results</a>.</p>
 
 
 	<p><a href="http://flickr.com/photos/chrisjroos/2050547123/"><img src="http://farm3.static.flickr.com/2310/2050547123_31a16714ec.jpg" alt="" /></a></p>
 
 
 	<p>I assume this might be to do with Google&#8217;s <a href="http://googlewebmastercentral.blogspot.com/2007/05/taking-advantage-of-universal-search.html">Universal Search</a> that blends lots of different sources into their main search results.  Or, they really do just love me.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/google" rel="tag">google</a>, 
+                    
+                      <a href="/articles/tag/index" rel="tag">index</a>, 
+                    
+                      <a href="/articles/tag/search" rel="tag">search</a>, 
+                    
+                      <a href="/articles/tag/universal" rel="tag">universal</a>, 
+                    
+                      <a href="/articles/tag/universal-search" rel="tag">universal-search</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/google" rel="tag">google</a>, 
-                
-                  <a href="/articles/tag/index" rel="tag">index</a>, 
-                
-                  <a href="/articles/tag/search" rel="tag">search</a>, 
-                
-                  <a href="/articles/tag/universal" rel="tag">universal</a>, 
-                
-                  <a href="/articles/tag/universal-search" rel="tag">universal-search</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/12/13/reevoo-com-dips-its-toes-into-the-opensearch-water">Reevoo.com dips its toes into the opensearch water</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 13 Dec 2006 21:37:00">
-                  Wed, 13 Dec 2006 21:37:00
-                </span>
-              </p>
-          
-              <p>So.  What does that mean exactly?  Well, right at the moment, not a great deal.  It pretty much means that you can add the ability to search reevoo.com to the Firefox 2 and <span class="caps">IE7</span> browsers very easily.  Visiting <a href="http://www.reevoo.com">reevoo.com</a> with either of these browsers will highlight part of the &#8216;search box&#8217;.</p>
+                <h2>
+                  <a href="/articles/2006/12/13/reevoo-com-dips-its-toes-into-the-opensearch-water">Reevoo.com dips its toes into the opensearch water</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 13 Dec 2006 21:37:00">
+                    Wed, 13 Dec 2006 21:37:00
+                  </span>
+                </p>
+
+                <p>So.  What does that mean exactly?  Well, right at the moment, not a great deal.  It pretty much means that you can add the ability to search reevoo.com to the Firefox 2 and <span class="caps">IE7</span> browsers very easily.  Visiting <a href="http://www.reevoo.com">reevoo.com</a> with either of these browsers will highlight part of the &#8216;search box&#8217;.</p>
 
 
 	<p><img src="http://static.flickr.com/126/321626445_dfe00b4e0e.jpg?v=0" alt="" /></p>
@@ -180,45 +170,46 @@
 
 
 	<p id="fn1"><sup>1</sup> Currently, this requires a lot of imagination.  A quick browse this afternoon found four big retailers that don&#8217;t even have working search without javascript enabled.  At least they&#8217;ve got <a href="http://www.w3.org/Provider/Style/URI">well</a> <a href="http://wiki.welldesignedurls.org/Main_Page">designed</a> urls.  Oh, hang on&#8230;</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/atom" rel="tag">atom</a>, 
+                    
+                      <a href="/articles/tag/opensearch" rel="tag">opensearch</a>, 
+                    
+                      <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
+                    
+                      <a href="/articles/tag/search" rel="tag">search</a>, 
+                    
+                  </p>
+                
+              
+
             </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/atom" rel="tag">atom</a>, 
-                
-                  <a href="/articles/tag/opensearch" rel="tag">opensearch</a>, 
-                
-                  <a href="/articles/tag/reevoo" rel="tag">reevoo</a>, 
-                
-                  <a href="/articles/tag/search" rel="tag">search</a>, 
-                
-              
-            </p>
-          
-
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

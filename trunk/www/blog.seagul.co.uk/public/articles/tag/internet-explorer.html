@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts tagged internet-explorer - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2007/12/14/cross-browser-well-ie-6-firefox-2-and-safari-3-bookmarklet-script">Cross browser (well, IE 6, Firefox 2 and Safari 3) bookmarklet script</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Fri, 14 Dec 2007 21:27:00">
+                    Fri, 14 Dec 2007 21:27:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/12/14/cross-browser-well-ie-6-firefox-2-and-safari-3-bookmarklet-script">Cross browser (well, IE 6, Firefox 2 and Safari 3) bookmarklet script</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Fri, 14 Dec 2007 21:27:00">
-                  Fri, 14 Dec 2007 21:27:00
-                </span>
-              </p>
-          
-              <p>I <a href="http://blog.seagul.co.uk/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7">mentioned</a> that I&#8217;d been playing with bookmarklets in Internet Explorer 6 (among other, proper, browsers).</p>
+                <p>I <a href="http://blog.seagul.co.uk/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7">mentioned</a> that I&#8217;d been playing with bookmarklets in Internet Explorer 6 (among other, proper, browsers).</p>
 
 
 	<p>I thought it might be useful to paste the script that bootstraps the bookmarklet.  The concept is that we use the bookmarklet javascript to insert a script tag into the page that links to the full javascript file containing the function(s) that we wish to execute.  I know this has been documented elsewhere and I&#8217;ve probably missed some important stuff out but it may prove useful to someone.</p>
@@ -72,43 +66,41 @@ addRvm(); // Ask our wrapper function to call the actual bookmarklet function</c
 
 
 <div class="typocode"><pre><code class="typocode_javascript">javascript:if(typeof(rvmBM)=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.src='http://example.com/my-external-bookmarklet.js';void(rvmBM=true);void(document.body.appendChild(s));};function addRvm(){if(typeof(addReevooMark)=='function'){addReevooMark();}else{void(setTimeout(addRvm,100));};};addRvm();</code></pre></div>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/bookmarklet" rel="tag">bookmarklet</a>, 
+                    
+                      <a href="/articles/tag/browser" rel="tag">browser</a>, 
+                    
+                      <a href="/articles/tag/explorer" rel="tag">explorer</a>, 
+                    
+                      <a href="/articles/tag/firefox" rel="tag">firefox</a>, 
+                    
+                      <a href="/articles/tag/internet" rel="tag">internet</a>, 
+                    
+                      <a href="/articles/tag/internet-explorer" rel="tag">internet-explorer</a>, 
+                    
+                      <a href="/articles/tag/javascript" rel="tag">javascript</a>, 
+                    
+                      <a href="/articles/tag/safari" rel="tag">safari</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/bookmarklet" rel="tag">bookmarklet</a>, 
-                
-                  <a href="/articles/tag/browser" rel="tag">browser</a>, 
-                
-                  <a href="/articles/tag/explorer" rel="tag">explorer</a>, 
-                
-                  <a href="/articles/tag/firefox" rel="tag">firefox</a>, 
-                
-                  <a href="/articles/tag/internet" rel="tag">internet</a>, 
-                
-                  <a href="/articles/tag/internet-explorer" rel="tag">internet-explorer</a>, 
-                
-                  <a href="/articles/tag/javascript" rel="tag">javascript</a>, 
-                
-                  <a href="/articles/tag/safari" rel="tag">safari</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7">Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Fri, 14 Dec 2007 08:46:00">
-                  Fri, 14 Dec 2007 08:46:00
-                </span>
-              </p>
-          
-              <p>I wasted quite a bit of time over the last couple of days trying to get a <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklet</a> (or favelet) working in Internet Explorer 6.  It worked perfectly in Firefox and Safari but wasn&#8217;t doing anything at all in IE.  Through lots of trial and error, I came to the conclusion that it was because of the length of the bookmarklet: it seems that Microsoft <a href="http://www.squarefree.com/2005/01/12/internet-explorer-drops-support-for-bookmarklets/">reduced the maximum length of a bookmarklet in <span class="caps">IE 6</span></a></p>
+                <h2>
+                  <a href="/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7">Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Fri, 14 Dec 2007 08:46:00">
+                    Fri, 14 Dec 2007 08:46:00
+                  </span>
+                </p>
+
+                <p>I wasted quite a bit of time over the last couple of days trying to get a <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklet</a> (or favelet) working in Internet Explorer 6.  It worked perfectly in Firefox and Safari but wasn&#8217;t doing anything at all in IE.  Through lots of trial and error, I came to the conclusion that it was because of the length of the bookmarklet: it seems that Microsoft <a href="http://www.squarefree.com/2005/01/12/internet-explorer-drops-support-for-bookmarklets/">reduced the maximum length of a bookmarklet in <span class="caps">IE 6</span></a></p>
 
 
 	<p>Although my original bookmarklet wasn&#8217;t all that long, I had it spread over multiple lines for readability.  The fix in my case was to remove all the spaces and place the bookmarklet on one line.</p>
@@ -162,53 +154,54 @@ addRvm(); // Ask our wrapper function to call the actual bookmarklet function</c
 
 
 	<p>I couldn&#8217;t find any reference to source of this 508 character limit in Internet Explorer: all the blog articles just state it as fact.  So, maybe it&#8217;s not 508.  Maybe it&#8217;s actually 505&#8230;</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/bookmarklet" rel="tag">bookmarklet</a>, 
+                    
+                      <a href="/articles/tag/browser" rel="tag">browser</a>, 
+                    
+                      <a href="/articles/tag/explorer" rel="tag">explorer</a>, 
+                    
+                      <a href="/articles/tag/internet" rel="tag">internet</a>, 
+                    
+                      <a href="/articles/tag/internet-explorer" rel="tag">internet-explorer</a>, 
+                    
+                      <a href="/articles/tag/javascript" rel="tag">javascript</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/url" rel="tag">url</a>, 
+                    
+                  </p>
+                
+              
+
             </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/bookmarklet" rel="tag">bookmarklet</a>, 
-                
-                  <a href="/articles/tag/browser" rel="tag">browser</a>, 
-                
-                  <a href="/articles/tag/explorer" rel="tag">explorer</a>, 
-                
-                  <a href="/articles/tag/internet" rel="tag">internet</a>, 
-                
-                  <a href="/articles/tag/internet-explorer" rel="tag">internet-explorer</a>, 
-                
-                  <a href="/articles/tag/javascript" rel="tag">javascript</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/url" rel="tag">url</a>, 
-                
-              
-            </p>
-          
-
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

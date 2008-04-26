@@ -1,45 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Encapsulation in Active Record objects - deferred until inspiration hits</title>
   </head>
 
   <body>
-  
-    <div id="container" class="clearfix">
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
-
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          <div class="post">
-            <h2>Encapsulation in Active Record objects</h2>
-            <p class="auth">
-              Posted by Chris Roos
-              <span class="typo_date" title="Fri, 12 Jan 2007 01:37:00">
-                Fri, 12 Jan 2007 01:37:00
-              </span>
-            </p>
+              <h2>Encapsulation in Active Record objects</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Fri, 12 Jan 2007 01:37:00">
+                  Fri, 12 Jan 2007 01:37:00
+                </span>
+              </p>
           
-            <p>I&#8217;ve been meaning to finish a post on this subject for ages.  As I probably won&#8217;t finish it in its current incarnation, I thought I&#8217;d at least get something up here.</p>
+              <p>I&#8217;ve been meaning to finish a post on this subject for ages.  As I probably won&#8217;t finish it in its current incarnation, I thought I&#8217;d at least get something up here.</p>
 
 
 	<p><a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Base.html">Active Record</a> <a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Associations/ClassMethods.html">associations</a> are brilliant for quickly putting together an object graph.  They&#8217;re not so brilliant for testing, or keeping the code particularly tidy.  They quickly lead to (and even encourage) train-wreck expressions in your code.  Diving straight into an example:</p>
@@ -122,74 +117,75 @@
 
 
 	<p id="fn1"><sup>1</sup>  Ok.  That is, of course, a blatant lie &#8211; we can still access the private association &#8211; this is <a href="http://www.ruby-lang.org">ruby</a> remember.  The important point is that we&#8217;ve made our intentions more explicit.</p>
-          </div>
         
-          <p class="meta">
-            
-              Tags 
               
-                <a href="/articles/tag/encapsulation" rel="tag">encapsulation</a>, 
+                <p>
+                  Tags 
+                  
+                    <a href="/articles/tag/encapsulation" rel="tag">encapsulation</a>, 
+                  
+                    <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                  
+                    <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                  
+                    <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                  
+                </p>
               
-                <a href="/articles/tag/rails" rel="tag">rails</a>, 
-              
-                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-              
-                <a href="/articles/tag/testing" rel="tag">testing</a>, 
-              
-            
-          </p>
           
-          <div id="disqus_thread"></div>
-          <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
-          <noscript>
-            <a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a>
-          </noscript>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
 
-          
-            <a name="comments"></a>
-            <h4 class="blueblk">Legacy Comments</h4>
-            <ol class="comment-list" id="commentList">
               
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Jamis
-                    
-                  </strong>
-                </cite> said on Fri, 12 Jan 2007 20:11:45:<br />
-                <p>Chris, I&#8217;m not sure why you feel that &#8220;touching&#8221; the hobbies method is a bad thing. It&#8217;s a public method, not a public instance variable. The method provides the abstraction, and you could ultimately replace that implementation with something else, so there is no violation of encapsulation.</p>
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Jamis
+                        
+                      </strong>
+                      said on Fri, 12 Jan 2007 20:11:45:
+                    </p>
+                    <p>Chris, I&#8217;m not sure why you feel that &#8220;touching&#8221; the hobbies method is a bad thing. It&#8217;s a public method, not a public instance variable. The method provides the abstraction, and you could ultimately replace that implementation with something else, so there is no violation of encapsulation.</p>
 
 
 	<p>Am I misunderstanding your concern? Personally, I find &#8220;my.hobbies &lt;&lt; biking&#8221; more esthetically appealing then &#8220;my.add_hobby(biking)&#8221;.</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Chris
-                    
-                  </strong>
-                </cite> said on Sat, 13 Jan 2007 13:21:47:<br />
-                <p>Hi Jamis,</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Sat, 13 Jan 2007 13:21:47:
+                    </p>
+                    <p>Hi Jamis,</p>
 
 
 	<p>I think the problem is that we&#8217;re asking a person for their hobbies object in order to manipulate it directly.  What we really want to do is tell the person to add their own hobby &#8211; we don&#8217;t care how they go about it.</p>
 
 
 	<p>Apologies for the short answer &#8211; I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I&#8217;ll try a follow-up post with more exploration of the issue.</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Jamis
-                    
-                  </strong>
-                </cite> said on Sat, 13 Jan 2007 15:35:24:<br />
-                <p>Chris, actually, you&#8217;re not getting the hobbies object back. The &#8220;hobbies&#8221; method returns a proxy object, not the array of hobbies directly. When you invoke a method on what is returned, it is hitting the proxy, not the array.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Jamis
+                        
+                      </strong>
+                      said on Sat, 13 Jan 2007 15:35:24:
+                    </p>
+                    <p>Chris, actually, you&#8217;re not getting the hobbies object back. The &#8220;hobbies&#8221; method returns a proxy object, not the array of hobbies directly. When you invoke a method on what is returned, it is hitting the proxy, not the array.</p>
 
 
 	<p>It&#8217;s all nicely encapsulated. Ruby makes it so clean and neat to do these things. The problem is, so many of us are coming from languages like Java, where it is <em>not</em> so easy to do things like that transparently, and since we&#8217;re taught that manipulating the internal object directly is bad, we feel like we have to jump through all kinds of hoops in order to avoid even the <em>appearance</em> of that kind of access.</p>
@@ -199,17 +195,18 @@
 
 
 	<p>There&#8217;s no need for Javaisms like &#8220;add_hobby&#8221;, unless you, personally, prefer it that way. Myself, I think Java has taught programmers a lot of very bad habits, and Ruby (and Rails) gives us the chance to unlearn some of those.</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Chris
-                    
-                  </strong>
-                </cite> said on Mon, 15 Jan 2007 22:06:11:<br />
-                <p>Jamis, I&#8217;m confused as to how this fits in with the &#8220;Tell, don&#8217;t ask&#8221; principle.  I&#8217;m probably missing something, but, it very much seems to me that we&#8217;re <em>asking</em> a person for their hobbies and then <em>telling</em> the hobbies to add a hobby to itself.  The fact that we are getting a proxy that represents their hobbies rather than the hobbies object directly seems irrelevant.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Mon, 15 Jan 2007 22:06:11:
+                    </p>
+                    <p>Jamis, I&#8217;m confused as to how this fits in with the &#8220;Tell, don&#8217;t ask&#8221; principle.  I&#8217;m probably missing something, but, it very much seems to me that we&#8217;re <em>asking</em> a person for their hobbies and then <em>telling</em> the hobbies to add a hobby to itself.  The fact that we are getting a proxy that represents their hobbies rather than the hobbies object directly seems irrelevant.</p>
 
 
 	<p>I&#8217;m thinking in terms of testing, and in particular, using mocks and stubs.  By exposing the association proxies publicly, we have to provide more complicated mocks/stubs in our tests.</p>
@@ -242,17 +239,18 @@ post :add_hobby, :id =&gt; 99, &#8216;MY_NEW_HOBBY&#8217;
 </typo:code>
 
 	<p>Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it&#8217;s probably all irrelevant?</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      David Chelimsky
-                    
-                  </strong>
-                </cite> said on Tue, 06 Feb 2007 15:51:21:<br />
-                <p>It&#8217;s not just a matter of making your tests cleaner. It&#8217;s also a matter of protecting the consumers of your model from changes to the model over time.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          David Chelimsky
+                        
+                      </strong>
+                      said on Tue, 06 Feb 2007 15:51:21:
+                    </p>
+                    <p>It&#8217;s not just a matter of making your tests cleaner. It&#8217;s also a matter of protecting the consumers of your model from changes to the model over time.</p>
 
 
 	<p>Imagine a project management app in which you have Project &gt; Iterations &gt; Stories. All through your controllers and views you have calls like this:</p>
@@ -273,17 +271,18 @@ end</p>
 
 
 	<p>To me, <span class="caps">THAT</span> is the whole point of Demeter. It&#8217;s about managing dependencies to isolate change.</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Matt Pelletier
-                    
-                  </strong>
-                </cite> said on Wed, 07 Feb 2007 07:50:10:<br />
-                <p>Chris,</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Matt Pelletier
+                        
+                      </strong>
+                      said on Wed, 07 Feb 2007 07:50:10:
+                    </p>
+                    <p>Chris,</p>
 
 
 	<p>We&#8217;ve run into similar concerns re. association proxies and object hopping. I wrote a plugin that adds methods that wrap the common find, build and count association proxy methods. You could add &#8216;add&#8217; to this easily.</p>
@@ -302,33 +301,36 @@ end</p>
 
 
 	<p>Matt</p>
-              </li>
+                  </li>
+                  
+                </ol>
               
-            </ol>
-          
-          
+              
+              
 
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
+            </div>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

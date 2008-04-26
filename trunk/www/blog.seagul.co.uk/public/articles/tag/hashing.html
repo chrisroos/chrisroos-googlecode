@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts tagged hashing - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2007/04/11/getting-to-grips-with-pwdhash">Getting to grips with pwdhash</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 11 Apr 2007 22:27:00">
+                    Wed, 11 Apr 2007 22:27:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/04/11/getting-to-grips-with-pwdhash">Getting to grips with pwdhash</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 11 Apr 2007 22:27:00">
-                  Wed, 11 Apr 2007 22:27:00
-                </span>
-              </p>
-          
-              <h3>Overview</h3>
+                <h3>Overview</h3>
 
 
 	<p>Having used <a href="http://www.pwdhash.com">pwdhash</a> for a while, I decided it was about time I dived into the implementation to see what was actually going on.  I figured that the best way for me to get an understanding of the library was to translate it from <a href="http://en.wikipedia.org/wiki/Javascript">javascript</a> to <a href="http://www.ruby-lang.org">ruby</a>.</p>
@@ -149,49 +143,50 @@ ruby: Base64.encode64(HMAC::MD5.digest(key, data)) =&gt; &quot;nVxz74VZTTTsRDi3y
 
 
 	<p>Investigate the whole world of <a href="http://www.unicode.org">unicode</a> a bit more &#8211; I definitely don&#8217;t know as much about it as I should.</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/hashing" rel="tag">hashing</a>, 
+                    
+                      <a href="/articles/tag/hmac" rel="tag">hmac</a>, 
+                    
+                      <a href="/articles/tag/javascript" rel="tag">javascript</a>, 
+                    
+                      <a href="/articles/tag/md5" rel="tag">md5</a>, 
+                    
+                      <a href="/articles/tag/pwdhash" rel="tag">pwdhash</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
+              
+
             </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/hashing" rel="tag">hashing</a>, 
-                
-                  <a href="/articles/tag/hmac" rel="tag">hmac</a>, 
-                
-                  <a href="/articles/tag/javascript" rel="tag">javascript</a>, 
-                
-                  <a href="/articles/tag/md5" rel="tag">md5</a>, 
-                
-                  <a href="/articles/tag/pwdhash" rel="tag">pwdhash</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

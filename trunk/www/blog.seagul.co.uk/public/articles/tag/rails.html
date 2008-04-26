@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts tagged rails - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2007/12/07/testing-actionmailer-base-server_settings">Testing ActionMailer::Base.server_settings</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Fri, 07 Dec 2007 17:23:00">
+                    Fri, 07 Dec 2007 17:23:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/12/07/testing-actionmailer-base-server_settings">Testing ActionMailer::Base.server_settings</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Fri, 07 Dec 2007 17:23:00">
-                  Fri, 07 Dec 2007 17:23:00
-                </span>
-              </p>
-          
-              <p>I needed to use an external <span class="caps">SMTP</span> server to get mail through to certain providers (notably, hotmail).</p>
+                <p>I needed to use an external <span class="caps">SMTP</span> server to get mail through to certain providers (notably, hotmail).</p>
 
 
 	<p>I was sending my <a href="http://api.rubyonrails.org/classes/ActionMailer/Base.html">action mailer</a> email but couldn&#8217;t be sure that I&#8217;d configured the settings correctly as I didn&#8217;t get any detailed log output (or at least not where I was looking).</p>
@@ -56,37 +50,35 @@
 <span class="constant">Net</span><span class="punct">::</span><span class="constant">SMTP</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span><span class="ident">s</span><span class="punct">[</span><span class="symbol">:address</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:port</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:domain</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:user_name</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:password</span><span class="punct">],</span> <span class="ident">s</span><span class="punct">[</span><span class="symbol">:authentication</span><span class="punct">])</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">smtp</span><span class="punct">|</span> 
   <span class="ident">smtp</span><span class="punct">.</span><span class="ident">sendmail</span><span class="punct">(</span><span class="ident">message</span><span class="punct">,</span> <span class="ident">from</span><span class="punct">,</span> <span class="ident">to</span><span class="punct">)</span>
 <span class="keyword">end</span></code></pre></div>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/action" rel="tag">action</a>, 
+                    
+                      <a href="/articles/tag/action-mailer" rel="tag">action-mailer</a>, 
+                    
+                      <a href="/articles/tag/mailer" rel="tag">mailer</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/action" rel="tag">action</a>, 
-                
-                  <a href="/articles/tag/action-mailer" rel="tag">action-mailer</a>, 
-                
-                  <a href="/articles/tag/mailer" rel="tag">mailer</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/03/19/monkey-patching-rails-routing">Monkey patching rails routing</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Mon, 19 Mar 2007 22:16:00">
-                  Mon, 19 Mar 2007 22:16:00
-                </span>
-              </p>
-          
-              <p>This <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/routing_redirection/">plugin</a> offers the following two features.</p>
+                <h2>
+                  <a href="/articles/2007/03/19/monkey-patching-rails-routing">Monkey patching rails routing</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Mon, 19 Mar 2007 22:16:00">
+                    Mon, 19 Mar 2007 22:16:00
+                  </span>
+                </p>
+
+                <p>This <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/routing_redirection/">plugin</a> offers the following two features.</p>
 
 
 	<ol>
@@ -103,31 +95,29 @@
 
 
 	<p>The plugin is known to work with Rails 1.1.6.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/routing" rel="tag">routing</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/routing" rel="tag">routing</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/01/12/encapsulation-in-active-record-objects">Encapsulation in Active Record objects</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Fri, 12 Jan 2007 01:37:00">
-                  Fri, 12 Jan 2007 01:37:00
-                </span>
-              </p>
-          
-              <p>I&#8217;ve been meaning to finish a post on this subject for ages.  As I probably won&#8217;t finish it in its current incarnation, I thought I&#8217;d at least get something up here.</p>
+                <h2>
+                  <a href="/articles/2007/01/12/encapsulation-in-active-record-objects">Encapsulation in Active Record objects</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Fri, 12 Jan 2007 01:37:00">
+                    Fri, 12 Jan 2007 01:37:00
+                  </span>
+                </p>
+
+                <p>I&#8217;ve been meaning to finish a post on this subject for ages.  As I probably won&#8217;t finish it in its current incarnation, I thought I&#8217;d at least get something up here.</p>
 
 
 	<p><a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Base.html">Active Record</a> <a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Associations/ClassMethods.html">associations</a> are brilliant for quickly putting together an object graph.  They&#8217;re not so brilliant for testing, or keeping the code particularly tidy.  They quickly lead to (and even encourage) train-wreck expressions in your code.  Diving straight into an example:</p>
@@ -210,35 +200,33 @@
 
 
 	<p id="fn1"><sup>1</sup>  Ok.  That is, of course, a blatant lie &#8211; we can still access the private association &#8211; this is <a href="http://www.ruby-lang.org">ruby</a> remember.  The important point is that we&#8217;ve made our intentions more explicit.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/encapsulation" rel="tag">encapsulation</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/encapsulation" rel="tag">encapsulation</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/10/24/connecting-to-gmail-with-ruby-or-connecting-to-pop3-servers-over-ssl-with-ruby">Connecting to gmail with Ruby (or Connecting to POP3 servers over SSL with Ruby)</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Tue, 24 Oct 2006 22:42:00">
-                  Tue, 24 Oct 2006 22:42:00
-                </span>
-              </p>
-          
-              <h3>Short version (or, &#8220;I want to connect to gmail <span class="caps">NOW</span>&#8221;)</h3>
+                <h2>
+                  <a href="/articles/2006/10/24/connecting-to-gmail-with-ruby-or-connecting-to-pop3-servers-over-ssl-with-ruby">Connecting to gmail with Ruby (or Connecting to POP3 servers over SSL with Ruby)</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Tue, 24 Oct 2006 22:42:00">
+                    Tue, 24 Oct 2006 22:42:00
+                  </span>
+                </p>
+
+                <h3>Short version (or, &#8220;I want to connect to gmail <span class="caps">NOW</span>&#8221;)</h3>
 
 
 	<ul>
@@ -311,35 +299,33 @@
 		<li>I still know very little about ssl and certificates.</li>
 		<li>I hope that what little information is here can help someone else in a similar situation.</li>
 	</ul>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/gmail" rel="tag">gmail</a>, 
+                    
+                      <a href="/articles/tag/pop" rel="tag">pop</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/gmail" rel="tag">gmail</a>, 
-                
-                  <a href="/articles/tag/pop" rel="tag">pop</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/09/09/in-memory-ar-object-for-testing">In memory AR object for testing</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Sat, 09 Sep 2006 12:03:00">
-                  Sat, 09 Sep 2006 12:03:00
-                </span>
-              </p>
-          
-              <p>I&#8217;ve <a href="http://blog.seagul.co.uk/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">previously written</a> about using in memory active record objects for testing.</p>
+                <h2>
+                  <a href="/articles/2006/09/09/in-memory-ar-object-for-testing">In memory AR object for testing</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Sat, 09 Sep 2006 12:03:00">
+                    Sat, 09 Sep 2006 12:03:00
+                  </span>
+                </p>
+
+                <p>I&#8217;ve <a href="http://blog.seagul.co.uk/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">previously written</a> about using in memory active record objects for testing.</p>
 
 
 	<p>In doing so recently, I&#8217;ve found it necessary to define the id of the in memory object.  By default this is obviously nil as it has not been persisted.  In addition, it is not possible to set it during normal object construction.</p>
@@ -357,31 +343,29 @@
 <span class="comment">#=&gt; 1</span></code></pre></div>
 
 	<p>Cool.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/08/22/rails-leaking-some-strings-in-development">Rails leaking some strings in development</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Tue, 22 Aug 2006 10:47:00">
-                  Tue, 22 Aug 2006 10:47:00
-                </span>
-              </p>
-          
-              <p>I spent some time this morning checking out <a href="http://scottstuff.net/blog/">Scott Laird&#8217;s</a> <a href="http://scottstuff.net/blog/articles/2006/08/17/memory-leak-profiling-with-rails">memory profiler</a> against a fresh rails app.</p>
+                <h2>
+                  <a href="/articles/2006/08/22/rails-leaking-some-strings-in-development">Rails leaking some strings in development</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Tue, 22 Aug 2006 10:47:00">
+                    Tue, 22 Aug 2006 10:47:00
+                  </span>
+                </p>
+
+                <p>I spent some time this morning checking out <a href="http://scottstuff.net/blog/">Scott Laird&#8217;s</a> <a href="http://scottstuff.net/blog/articles/2006/08/17/memory-leak-profiling-with-rails">memory profiler</a> against a fresh rails app.</p>
 
 
 	<p>I was suprised to see that around 110 strings were being leaked on each request.  I was incredibly surprised when I used the string_debug option (to the memory profiler) to generate logs of strings living in ObjectSpace.  There were strings appearing that I <em>knew</em> were not in my new rails app anywhere.</p>
@@ -394,33 +378,31 @@
 
 
 	<p>In summary: the contents of irb_history are loaded into object space on each request made to your rails app, while in development.  These strings do not appear to get garbage collected.  The problem does not affect apps running in production as the breakpoint library is not loaded in that environment.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/memoryleak" rel="tag">memoryleak</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/memoryleak" rel="tag">memoryleak</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/08/17/i-guess-thats-one-way-to-do-it">I guess that's one way to do it...</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Thu, 17 Aug 2006 08:08:00">
-                  Thu, 17 Aug 2006 08:08:00
-                </span>
-              </p>
-          
-              <p>We&#8217;re not <em>quite</em> at this stage yet&#8230;</p>
+                <h2>
+                  <a href="/articles/2006/08/17/i-guess-thats-one-way-to-do-it">I guess that's one way to do it...</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Thu, 17 Aug 2006 08:08:00">
+                    Thu, 17 Aug 2006 08:08:00
+                  </span>
+                </p>
+
+                <p>We&#8217;re not <em>quite</em> at this stage yet&#8230;</p>
 
 
 <div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ActiveRecord::ConnectionAdapters::MysqlAdapter</span>
@@ -432,35 +414,33 @@
     <span class="ident">execute_before_unit_test_hijack</span><span class="punct">(*</span><span class="ident">args</span><span class="punct">)</span>
   <span class="keyword">end</span>
 <span class="keyword">end</span></code></pre></div>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/database" rel="tag">database</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/database" rel="tag">database</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/08/14/tickling-link_to-into-submission">Tickling link_to into submission</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Mon, 14 Aug 2006 23:10:00">
-                  Mon, 14 Aug 2006 23:10:00
-                </span>
-              </p>
-          
-              <p>What a crappy title.  Ho hum.</p>
+                <h2>
+                  <a href="/articles/2006/08/14/tickling-link_to-into-submission">Tickling link_to into submission</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Mon, 14 Aug 2006 23:10:00">
+                    Mon, 14 Aug 2006 23:10:00
+                  </span>
+                </p>
+
+                <p>What a crappy title.  Ho hum.</p>
 
 
 	<p>This bit explains the itch I had.  Skip over it if you like.</p>
@@ -488,33 +468,31 @@
 
 
 	<p id="fn1"><sup>1</sup> She didn&#8217;t say that.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/plugin" rel="tag">plugin</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/plugin" rel="tag">plugin</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/08/14/create-rails-projects-using-a-specific-rails-gem-version">Create rails projects using a specific rails gem version</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Mon, 14 Aug 2006 22:06:00">
-                  Mon, 14 Aug 2006 22:06:00
-                </span>
-              </p>
-          
-              <p>I just found this when trying to create a rails project using rails 1.0.0 (having both 1.0.0 and 1.1.6 installed as gems).</p>
+                <h2>
+                  <a href="/articles/2006/08/14/create-rails-projects-using-a-specific-rails-gem-version">Create rails projects using a specific rails gem version</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Mon, 14 Aug 2006 22:06:00">
+                    Mon, 14 Aug 2006 22:06:00
+                  </span>
+                </p>
+
+                <p>I just found this when trying to create a rails project using rails 1.0.0 (having both 1.0.0 and 1.1.6 installed as gems).</p>
 
 
 	<p>If the first argument to the rails command is a valid (i.e. installed) version number and surrounded by underscores then that version of the gem is used to create the rails application structure.</p>
@@ -539,56 +517,52 @@ $ rails my-rails-proj
 </code>
 
 	<p>By passing the version argument to the rails command and then placing rails 1.0.0 into the vendor directory, everything works as expected.</p>
-            </div>
-        
-            <p class="meta">
-              
-                Tags 
+
                 
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/08/05/new-rails-weblob">New rails weblob</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Sat, 05 Aug 2006 00:47:00">
-                  Sat, 05 Aug 2006 00:47:00
-                </span>
-              </p>
-          
-              <p><a href="http://railsblob.blogspot.com/">he he he</a></p>
-            </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/blog" rel="tag">blog</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
                 
               
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/08/02/helpful-error-messages-when-active-record-objects-fail-validation-in-tests">Helpful error messages when active record objects fail validation (in tests)</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 02 Aug 2006 13:47:00">
-                  Wed, 02 Aug 2006 13:47:00
-                </span>
-              </p>
-          
-              <p>I <a href="http://blog.seagul.co.uk/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">posted</a> a while back about displaying the reasons for an active record model failing validation.</p>
+                <h2>
+                  <a href="/articles/2006/08/05/new-rails-weblob">New rails weblob</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Sat, 05 Aug 2006 00:47:00">
+                    Sat, 05 Aug 2006 00:47:00
+                  </span>
+                </p>
+
+                <p><a href="http://railsblob.blogspot.com/">he he he</a></p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/blog" rel="tag">blog</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                  </p>
+                
+              
+                <h2>
+                  <a href="/articles/2006/08/02/helpful-error-messages-when-active-record-objects-fail-validation-in-tests">Helpful error messages when active record objects fail validation (in tests)</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 02 Aug 2006 13:47:00">
+                    Wed, 02 Aug 2006 13:47:00
+                  </span>
+                </p>
+
+                <p>I <a href="http://blog.seagul.co.uk/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">posted</a> a while back about displaying the reasons for an active record model failing validation.</p>
 
 
 	<p>I knew the code was hacky and nasty but didn&#8217;t realise quite how bad until I noticed how <a href="http://dev.rubyonrails.org/browser/tags/rel_1-1-0/activerecord/lib/active_record/validations.rb">simply</a>  (1 line) the same thing was implemented in <a href="http://weblog.rubyonrails.com/2006/3/28/rails-1-1-rjs-active-record-respond_to-integration-tests-and-500-other-things">Rails 1.1</a> (and above).</p>
@@ -624,35 +598,33 @@ active_record_validation_error/
    |
    |--record_invalid.rb (copy content of code above)
 </pre>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/activerecord" rel="tag">activerecord</a>, 
+                    
+                      <a href="/articles/tag/plugin" rel="tag">plugin</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/validation" rel="tag">validation</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/activerecord" rel="tag">activerecord</a>, 
-                
-                  <a href="/articles/tag/plugin" rel="tag">plugin</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/validation" rel="tag">validation</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/07/17/some-realisations-about-testing">Some realisations about testing</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Mon, 17 Jul 2006 09:19:00">
-                  Mon, 17 Jul 2006 09:19:00
-                </span>
-              </p>
-          
-              <p>Having been predominantly involved in <a href="http://www.rubyonrails.com">Rails</a> development just recently, <a href="http://api.rubyonrails.com/classes/Fixtures.html">fixtures</a> have taken on a slightly different meaning to what I now believe to be the original understanding.  Having recently re-read <a href="http://www.amazon.co.uk/gp/product/0321146530/202-8808398-1811851?v=glance&#38;n=266239">Test Driven Development: By Example</a> I re-discovered the &#8216;original&#8217; meaning of the word (essentially shared objects used by all tests in a test case).</p>
+                <h2>
+                  <a href="/articles/2006/07/17/some-realisations-about-testing">Some realisations about testing</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Mon, 17 Jul 2006 09:19:00">
+                    Mon, 17 Jul 2006 09:19:00
+                  </span>
+                </p>
+
+                <p>Having been predominantly involved in <a href="http://www.rubyonrails.com">Rails</a> development just recently, <a href="http://api.rubyonrails.com/classes/Fixtures.html">fixtures</a> have taken on a slightly different meaning to what I now believe to be the original understanding.  Having recently re-read <a href="http://www.amazon.co.uk/gp/product/0321146530/202-8808398-1811851?v=glance&#38;n=266239">Test Driven Development: By Example</a> I re-discovered the &#8216;original&#8217; meaning of the word (essentially shared objects used by all tests in a test case).</p>
 
 
 	<p>This has made me think about the way that I&#8217;ve been structuring my tests (or not structuring them as the case may be).  I have never been a fan of the setup and teardown methods provided to us in <a href="http://en.wikipedia.org/wiki/XUnit">xUnit</a> and I now believe this to be due to my misunderstanding of the term fixture and therefore their intention.  This has led to my test cases growing very large and containing many disparate tests.  If there was any separation of the testcase then it was usually based on functionality of a particular method (which separately leads me to believe that they may have been better expressed in a new object).  I now understand that test cases should be split to contain tests that rely on a common test fixture.  As soon as I started to do this, the setup and (to a lesser degree) teardown methods have become much more useful.</p>
@@ -704,39 +676,37 @@ active_record_validation_error/
 
 
 	<p>The realisations set out above have come at around the same time as my taking more of an interest in <a href="http://rspec.rubyforge.org/">rSpec</a> (the stack test above has been adapted directly from one of the rSpec examples); a <a href="http://behaviour-driven.org/">behaviour driven development</a> framework for <a href="http://www.ruby-lang.org">ruby</a>.  I haven&#8217;t done any real work with rSpec yet but am hoping it might improve the way I think of both testing and OO design in general.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/agiledox" rel="tag">agiledox</a>, 
+                    
+                      <a href="/articles/tag/bdd" rel="tag">bdd</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/rspec" rel="tag">rspec</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/tdd" rel="tag">tdd</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/agiledox" rel="tag">agiledox</a>, 
-                
-                  <a href="/articles/tag/bdd" rel="tag">bdd</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/rspec" rel="tag">rspec</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/tdd" rel="tag">tdd</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/07/14/textmate-command-to-display-active-record-column-attributes">Textmate command to display Active Record column attributes</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Fri, 14 Jul 2006 08:18:00">
-                  Fri, 14 Jul 2006 08:18:00
-                </span>
-              </p>
-          
-              <p>I find myself constantly visiting either the console or the mysql command line to check out the attributes (columns) of <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">active record</a> objects.</p>
+                <h2>
+                  <a href="/articles/2006/07/14/textmate-command-to-display-active-record-column-attributes">Textmate command to display Active Record column attributes</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Fri, 14 Jul 2006 08:18:00">
+                    Fri, 14 Jul 2006 08:18:00
+                  </span>
+                </p>
+
+                <p>I find myself constantly visiting either the console or the mysql command line to check out the attributes (columns) of <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">active record</a> objects.</p>
 
 
 	<p>I know there is a <a href="http://blogs.pragprog.com/cgi-bin/pragdave.cgi/Tech/Ruby/AnnotateModels.rdoc">plugin</a> by <a href="http://blogs.pragprog.com/cgi-bin/pragdave.cgi">Dave Thomas</a> that places the table structure within the model code itself.  To be honest I&#8217;ve never tried this and it might well suffice (although I&#8217;m not 100% convinced I like the idea).</p>
@@ -787,35 +757,33 @@ active_record_validation_error/
 
 
 	<p>[1] I spent ages trying to develop within the textmate bundle editor before realising it&#8217;d be a helluva lot quicker and easier to develop in textmate proper.  Hmmm.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/activerecord" rel="tag">activerecord</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/textmate" rel="tag">textmate</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/activerecord" rel="tag">activerecord</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/textmate" rel="tag">textmate</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">Using in memory Active Record objects with associations for testing</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 12 Jul 2006 01:23:00">
-                  Wed, 12 Jul 2006 01:23:00
-                </span>
-              </p>
-          
-              <p>Hitting the database in testing is bad.</p>
+                <h2>
+                  <a href="/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">Using in memory Active Record objects with associations for testing</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 12 Jul 2006 01:23:00">
+                    Wed, 12 Jul 2006 01:23:00
+                  </span>
+                </p>
+
+                <p>Hitting the database in testing is bad.</p>
 
 
 	<p>Something that I&#8217;ve found relatively useful at <a href="http://www.reevoo.com">work</a> is to use real <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> objects without any persistence (basically use AR#new and not AR#save[!] or AR#create[!]).  When using standard techniques to create the association objects in memory you only get one side of the association at a time.  Consider the following.</p>
@@ -872,35 +840,33 @@ active_record_validation_error/
 <span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span></code></pre></div>
 
 	<p>I&#8217;ve occasionally used this in place of stubbing methods but am still not 100% convinced of the definite benefits one way or another.  I do have some definite disadvantages of stubbing methods (nothing exciting, they&#8217;ve almost certainly been noted by many others in the past) which I&#8217;ll note down at a later date.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/activerecord" rel="tag">activerecord</a>, 
+                    
+                      <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/activerecord" rel="tag">activerecord</a>, 
-                
-                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">More helpful messages for Active Record validation errors in Rails testing</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 21 Jun 2006 08:10:00">
-                  Wed, 21 Jun 2006 08:10:00
-                </span>
-              </p>
-          
-              <p>In testing (and production code) <a href="http://www.reevoo.com">we</a> always try to persist <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> models with the bang variants (save! and create!).  This allows us to <a href="http://www.martinfowler.com/ieeeSoftware/failFast.pdf">fail fast</a> if any of our models fail our  <a href="http://api.rubyonrails.com/classes/ActiveRecord/Validations/ClassMethods.html">validation</a> rules.</p>
+                <h2>
+                  <a href="/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">More helpful messages for Active Record validation errors in Rails testing</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 21 Jun 2006 08:10:00">
+                    Wed, 21 Jun 2006 08:10:00
+                  </span>
+                </p>
+
+                <p>In testing (and production code) <a href="http://www.reevoo.com">we</a> always try to persist <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> models with the bang variants (save! and create!).  This allows us to <a href="http://www.martinfowler.com/ieeeSoftware/failFast.pdf">fail fast</a> if any of our models fail our  <a href="http://api.rubyonrails.com/classes/ActiveRecord/Validations/ClassMethods.html">validation</a> rules.</p>
 
 
 	<p>The problem is that the standard <a href="http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html">test/unit</a> reporting framework displays the exception without any details of why the validation failed.</p>
@@ -958,68 +924,64 @@ ActiveRecord Errors:​Surname can't be blank, Email can't be blank
 </div>
 
 	<p>The code is pretty hacky and includes no tests.  It&#8217;s only been tested on Mac Os <span class="caps">X 10</span>.4.6 with Ruby 1.8.2 and Rails 1.0.0 but please feel free to do what you will with it if you think it might be of some use to you.</p>
-            </div>
-        
-            <p class="meta">
-              
-                Tags 
+
                 
-                  <a href="/articles/tag/active" rel="tag">active</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/record" rel="tag">record</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
-                
-                  <a href="/articles/tag/validations" rel="tag">validations</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/06/02/rails-plugin-to-utilise-sqlite-for-testing">Rails plugin to utilise Sqlite for testing</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Fri, 02 Jun 2006 16:41:00">
-                  Fri, 02 Jun 2006 16:41:00
-                </span>
-              </p>
-          
-              <p>I feel pretty honoured that <a href="http://nubyonrails.com/">Geoffrey Grosenbach</a>, of <a href="http://podcast.rubyonrails.com/">Rails podcast</a> fame (plus so much more) has <a href="http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids">used</a> the stuff <a href="http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing">I wrote</a> a while back to create a <a href="http://wiki.rubyonrails.com/rails/pages/Plugins">rails plugin</a>, enabling the easy use of sqlite for testing.</p>
-            </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
-                
-                  <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/active" rel="tag">active</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/record" rel="tag">record</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                    
+                      <a href="/articles/tag/validations" rel="tag">validations</a>, 
+                    
+                  </p>
                 
               
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/05/12/using-active-record-models-in-rails-migrations">Using active record models in rails migrations</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Fri, 12 May 2006 16:32:00">
-                  Fri, 12 May 2006 16:32:00
-                </span>
-              </p>
-          
-              <p>I seem to remember that <a href="http://www.reevoo.com">we</a> first came across the &#8220;migrations out of sync with code&#8221; problems around the time that Scott Laird <a href="http://scottstuff.net/blog/articles/2005/10/31/migrating-in-two-dimensions">posted</a> about it regarding <a href="http://www.typosphere.org">typo</a>.</p>
+                <h2>
+                  <a href="/articles/2006/06/02/rails-plugin-to-utilise-sqlite-for-testing">Rails plugin to utilise Sqlite for testing</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Fri, 02 Jun 2006 16:41:00">
+                    Fri, 02 Jun 2006 16:41:00
+                  </span>
+                </p>
+
+                <p>I feel pretty honoured that <a href="http://nubyonrails.com/">Geoffrey Grosenbach</a>, of <a href="http://podcast.rubyonrails.com/">Rails podcast</a> fame (plus so much more) has <a href="http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids">used</a> the stuff <a href="http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing">I wrote</a> a while back to create a <a href="http://wiki.rubyonrails.com/rails/pages/Plugins">rails plugin</a>, enabling the easy use of sqlite for testing.</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
+                    
+                      <a href="/articles/tag/testing" rel="tag">testing</a>, 
+                    
+                  </p>
+                
+              
+                <h2>
+                  <a href="/articles/2006/05/12/using-active-record-models-in-rails-migrations">Using active record models in rails migrations</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Fri, 12 May 2006 16:32:00">
+                    Fri, 12 May 2006 16:32:00
+                  </span>
+                </p>
+
+                <p>I seem to remember that <a href="http://www.reevoo.com">we</a> first came across the &#8220;migrations out of sync with code&#8221; problems around the time that Scott Laird <a href="http://scottstuff.net/blog/articles/2005/10/31/migrating-in-two-dimensions">posted</a> about it regarding <a href="http://www.typosphere.org">typo</a>.</p>
 
 
 	<p>Having just read <a href="http://www.reevoo.com/blogs/bengriffiths">Ben&#8217;s</a> <a href="http://www.reevoo.com/blogs/bengriffiths/2006/05/10/misrepresenting-rails-reliability/">post</a> about rails reliability, I was reminded again about the pitfalls of using model code in migrations.</p>
@@ -1083,33 +1045,31 @@ ActiveRecord Errors:​Surname can't be blank, Email can't be blank
 
 
 	<p>Both methods create AR derived classes in a namespace that isn&#8217;t the root namespace.  We came across a problem where we were serializing the contents of one of these re-defined classes to the database from within our migration.  When we came to read the serialized data in our code, it didn&#8217;t &#8216;know&#8217; what a Migration001::Person was and so raised an exception.  Without thinking about it too much, I think this might cause problems with <span class="caps">STI</span> too (I&#8217;ve seen notes to this effect from the Typo migration solution).</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/migrations" rel="tag">migrations</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/migrations" rel="tag">migrations</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing">In memory sqlite database for rails testing</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 08 Feb 2006 08:54:00">
-                  Wed, 08 Feb 2006 08:54:00
-                </span>
-              </p>
-          
-              <p><strong>Update 12th June 2006</strong></p>
+                <h2>
+                  <a href="/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing">In memory sqlite database for rails testing</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 08 Feb 2006 08:54:00">
+                    Wed, 08 Feb 2006 08:54:00
+                  </span>
+                </p>
+
+                <p><strong>Update 12th June 2006</strong></p>
 
 
 	<p>There is now a <a href="http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids">plugin</a> from <a href="http://nubyonrails.com/">Geoffrey Grosenbach</a> that encapsulates this hack.</p>
@@ -1225,45 +1185,46 @@ ActiveRecord Errors:​Surname can't be blank, Email can't be blank
 
 
 	<p>Changing to in-memory testing shaved about 33% off the running time of our unit tests.</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
+                    
+                      <a href="/articles/tag/test" rel="tag">test</a>, 
+                    
+                  </p>
+                
+              
+
             </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
-                
-                  <a href="/articles/tag/test" rel="tag">test</a>, 
-                
-              
-            </p>
-          
-
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">
