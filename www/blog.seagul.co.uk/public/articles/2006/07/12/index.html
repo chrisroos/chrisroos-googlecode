@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts published on Wed, 12 July 2006 - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">Using in memory Active Record objects with associations for testing</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 12 Jul 2006 01:23:00">
+                    Wed, 12 Jul 2006 01:23:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/07/12/using-in-memory-active-record-objects-with-associations-for-testing">Using in memory Active Record objects with associations for testing</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 12 Jul 2006 01:23:00">
-                  Wed, 12 Jul 2006 01:23:00
-                </span>
-              </p>
-          
-              <p>Hitting the database in testing is bad.</p>
+                <p>Hitting the database in testing is bad.</p>
 
 
 	<p>Something that I&#8217;ve found relatively useful at <a href="http://www.reevoo.com">work</a> is to use real <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> objects without any persistence (basically use AR#new and not AR#save[!] or AR#create[!]).  When using standard techniques to create the association objects in memory you only get one side of the association at a time.  Consider the following.</p>
@@ -99,35 +93,33 @@
 <span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span></code></pre></div>
 
 	<p>I&#8217;ve occasionally used this in place of stubbing methods but am still not 100% convinced of the definite benefits one way or another.  I do have some definite disadvantages of stubbing methods (nothing exciting, they&#8217;ve almost certainly been noted by many others in the past) which I&#8217;ll note down at a later date.</p>
-            </div>
-        
-            <p class="meta">
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/activerecord" rel="tag">activerecord</a>, 
+                    
+                      <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                    
+                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
               
-                Tags 
-                
-                  <a href="/articles/tag/activerecord" rel="tag">activerecord</a>, 
-                
-                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
-                
-                  <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/07/12/ruby-hashes-with-default-values">Ruby hashes with default values</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 12 Jul 2006 01:17:00">
-                  Wed, 12 Jul 2006 01:17:00
-                </span>
-              </p>
-          
-              <p>I found that on several occasions I&#8217;ve wanted to create a hash that increments the number of instances of a given key.  We could do something manual like.</p>
+                <h2>
+                  <a href="/articles/2006/07/12/ruby-hashes-with-default-values">Ruby hashes with default values</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 12 Jul 2006 01:17:00">
+                    Wed, 12 Jul 2006 01:17:00
+                  </span>
+                </p>
+
+                <p>I found that on several occasions I&#8217;ve wanted to create a hash that increments the number of instances of a given key.  We could do something manual like.</p>
 
 
 <div class="typocode"><pre><code class="typocode_ruby"><span class="ident">hash</span> <span class="punct">=</span> <span class="constant">Hash</span><span class="punct">.</span><span class="ident">new</span>
@@ -167,66 +159,65 @@
 <span class="punct">=&gt;</span> <span class="punct">[]</span></code></pre></div>
 
 	<p>I say I looked it up today but to be fair there&#8217;s every chance that I was well aware of this at some point in the past&#8230;</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
+              
+                <h2>
+                  <a href="/articles/2006/07/12/trying-to-learn">Trying to learn</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 12 Jul 2006 01:15:00">
+                    Wed, 12 Jul 2006 01:15:00
+                  </span>
+                </p>
+
+                <p>I&#8217;ve decided I&#8217;m going to attempt to write down some things that I learn about ruby.  I &#8216;learn&#8217; the same stuff all the time due to the nature of my very bad memory.  In an attempt to learn some things just the once I&#8217;m going to try write them down.  It probably wont help.</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/learning" rel="tag">learning</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                  </p>
+                
+              
+
             </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2006/07/12/trying-to-learn">Trying to learn</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Wed, 12 Jul 2006 01:15:00">
-                  Wed, 12 Jul 2006 01:15:00
-                </span>
-              </p>
-          
-              <p>I&#8217;ve decided I&#8217;m going to attempt to write down some things that I learn about ruby.  I &#8216;learn&#8217; the same stuff all the time due to the nature of my very bad memory.  In an attempt to learn some things just the once I&#8217;m going to try write them down.  It probably wont help.</p>
-            </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/learning" rel="tag">learning</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-              
-            </p>
-          
-
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

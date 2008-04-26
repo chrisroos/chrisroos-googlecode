@@ -1,45 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>In memory sqlite database for rails testing - deferred until inspiration hits</title>
   </head>
 
   <body>
-  
-    <div id="container" class="clearfix">
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
-
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          <div class="post">
-            <h2>In memory sqlite database for rails testing</h2>
-            <p class="auth">
-              Posted by Chris Roos
-              <span class="typo_date" title="Wed, 08 Feb 2006 08:54:00">
-                Wed, 08 Feb 2006 08:54:00
-              </span>
-            </p>
+              <h2>In memory sqlite database for rails testing</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Wed, 08 Feb 2006 08:54:00">
+                  Wed, 08 Feb 2006 08:54:00
+                </span>
+              </p>
           
-            <p><strong>Update 12th June 2006</strong></p>
+              <p><strong>Update 12th June 2006</strong></p>
 
 
 	<p>There is now a <a href="http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids">plugin</a> from <a href="http://nubyonrails.com/">Geoffrey Grosenbach</a> that encapsulates this hack.</p>
@@ -155,97 +150,100 @@
 
 
 	<p>Changing to in-memory testing shaved about 33% off the running time of our unit tests.</p>
-          </div>
         
-          <p class="meta">
-            
-              Tags 
               
-                <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                <p>
+                  Tags 
+                  
+                    <a href="/articles/tag/rails" rel="tag">rails</a>, 
+                  
+                    <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                  
+                    <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
+                  
+                    <a href="/articles/tag/test" rel="tag">test</a>, 
+                  
+                </p>
               
-                <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-              
-                <a href="/articles/tag/sqlite" rel="tag">sqlite</a>, 
-              
-                <a href="/articles/tag/test" rel="tag">test</a>, 
-              
-            
-          </p>
           
-          <div id="disqus_thread"></div>
-          <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
-          <noscript>
-            <a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a>
-          </noscript>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
 
-          
-            <a name="comments"></a>
-            <h4 class="blueblk">Legacy Comments</h4>
-            <ol class="comment-list" id="commentList">
               
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Manfred Stienstra
-                    
-                  </strong>
-                </cite> said on Mon, 13 Feb 2006 14:13:44:<br />
-                <p>Thanks, this was really useful. It looks like this isn&#8217;t document anywhere, or I suck at reading documentation.</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      <a href="http://www.dlbmux.info">Dean</a>
-                    
-                  </strong>
-                </cite> said on Fri, 13 Apr 2007 13:02:08:<br />
-                <p>ActiveRecord::Base.connection.class  ActiveRecord::ConnectionAdapters::SQLiteAdapter and
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Manfred Stienstra
+                        
+                      </strong>
+                      said on Mon, 13 Feb 2006 14:13:44:
+                    </p>
+                    <p>Thanks, this was really useful. It looks like this isn&#8217;t document anywhere, or I suck at reading documentation.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://www.dlbmux.info">Dean</a>
+                        
+                      </strong>
+                      said on Fri, 13 Apr 2007 13:02:08:
+                    </p>
+                    <p>ActiveRecord::Base.connection.class  ActiveRecord::ConnectionAdapters::SQLiteAdapter and
   Rails::Configuration.new.database_configuration['test']['database']  &#8217;:memory:&#8217;</p>
 
 
 	<p>- doesn&#8217;t work at mine</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      <a href="http://www.jayod.info">Mike Johnson</a>
-                    
-                  </strong>
-                </cite> said on Thu, 19 Apr 2007 21:27:04:<br />
-                <p>Dean, for me either</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Chris
-                    
-                  </strong>
-                </cite> said on Fri, 20 Apr 2007 13:55:24:<br />
-                <p>Mike and Dean,</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://www.jayod.info">Mike Johnson</a>
+                        
+                      </strong>
+                      said on Thu, 19 Apr 2007 21:27:04:
+                    </p>
+                    <p>Dean, for me either</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Fri, 20 Apr 2007 13:55:24:
+                    </p>
+                    <p>Mike and Dean,</p>
 
 
 	<p>I&#8217;ll need far more details if I&#8217;m to look into the problem.  At least Ruby, Rails, sqlite versions &#8211; probably more that I can&#8217;t think of.  Also, no promises that I&#8217;ll get round to doing anything &#8211; we haven&#8217;t used sqlite with rails for ages so I don&#8217;t have any major interest in getting it to work.</p>
 
 
 	<p>Chris</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Florian
-                    
-                  </strong>
-                </cite> said on Sun, 05 Aug 2007 22:04:05:<br />
-                <p>This should do</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Florian
+                        
+                      </strong>
+                      said on Sun, 05 Aug 2007 22:04:05:
+                    </p>
+                    <p>This should do</p>
 
 
 	<p><span class="caps">ENV</span>[&#8216;RAILS_ENV&#8217;]  'test' and
@@ -254,58 +252,63 @@ ActiveRecord::Base.configurations['test']  {
   &#8216;dbfile&#8217; =&gt; &#8217;:memory:&#8217;
 } and
 ActiveRecord::Migrator.up(&#8216;db/migrate&#8217;)</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      <a href="http://www.akitaonrails.com">AkitaOnRails</a>
-                    
-                  </strong>
-                </cite> said on Tue, 27 Nov 2007 15:31:41:<br />
-                <p>I am trying it but it feels like my fixtures are not being loaded into the in-memory database. Is there something I have to do to force it?</p>
-              </li>
-              
-              <li>
-                <cite>
-                  <strong>
-                    
-                      Chris
-                    
-                  </strong>
-                </cite> said on Mon, 17 Dec 2007 13:59:44:<br />
-                <p>Hey AkitaOnRails,</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://www.akitaonrails.com">AkitaOnRails</a>
+                        
+                      </strong>
+                      said on Tue, 27 Nov 2007 15:31:41:
+                    </p>
+                    <p>I am trying it but it feels like my fixtures are not being loaded into the in-memory database. Is there something I have to do to force it?</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Mon, 17 Dec 2007 13:59:44:
+                    </p>
+                    <p>Hey AkitaOnRails,</p>
 
 
 	<p>I&#8217;m afraid that I haven&#8217;t used this plugin for a very long time now and it&#8217;d probably take me a while to work out what was going on.  Sorry I can&#8217;t help.</p>
-              </li>
+                  </li>
+                  
+                </ol>
               
-            </ol>
-          
-          
+              
+              
 
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
+            </div>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

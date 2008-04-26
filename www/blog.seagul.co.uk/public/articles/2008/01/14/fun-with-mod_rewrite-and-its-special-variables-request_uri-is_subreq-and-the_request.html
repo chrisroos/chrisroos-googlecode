@@ -1,45 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST) - deferred until inspiration hits</title>
   </head>
 
   <body>
-  
-    <div id="container" class="clearfix">
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
-
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          <div class="post">
-            <h2>Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)</h2>
-            <p class="auth">
-              Posted by Chris Roos
-              <span class="typo_date" title="Mon, 14 Jan 2008 10:14:00">
-                Mon, 14 Jan 2008 10:14:00
-              </span>
-            </p>
+              <h2>Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Mon, 14 Jan 2008 10:14:00">
+                  Mon, 14 Jan 2008 10:14:00
+                </span>
+              </p>
           
-            <p>I wasted a few hours of my life, over the weekend, playing with <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a>.  I had, what I thought to be, a fairly simple problem to solve: I wanted requests for index.html within any subdirectory of my site to be <a href="http://en.wikipedia.org/wiki/URL_redirection">redirected</a> to the root of that subdirectory.  So, a request for example.com/subdir/index.html would be (301) redirected to example.com/subdir/.</p>
+              <p>I wasted a few hours of my life, over the weekend, playing with <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a>.  I had, what I thought to be, a fairly simple problem to solve: I wanted requests for index.html within any subdirectory of my site to be <a href="http://en.wikipedia.org/wiki/URL_redirection">redirected</a> to the root of that subdirectory.  So, a request for example.com/subdir/index.html would be (301) redirected to example.com/subdir/.</p>
 
 
 	<p>I thought I could do this without using <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html#RewriteCond">RewriteCond</a>.  I tried something like this.</p>
@@ -60,41 +55,40 @@
 RewriteRule ^(.*)index\.html$ $1 [R=301,L]</code></pre></div>
 
 	<p>I&#8217;m guessing that this is because <span class="caps">THE</span>_REQUEST contains the full details (the stuff that appears in the log file) of the request from the client (browser) and will therefore be empty for any &#8216;internal requests&#8217;.  Anyone know if my assumptions are correct?</p>
-          </div>
         
-          <p class="meta">
-            
-              Tags 
               
-                <a href="/articles/tag/apache" rel="tag">apache</a>, 
+                <p>
+                  Tags 
+                  
+                    <a href="/articles/tag/apache" rel="tag">apache</a>, 
+                  
+                    <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
+                  
+                    <a href="/articles/tag/url" rel="tag">url</a>, 
+                  
+                </p>
               
-                <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
-              
-                <a href="/articles/tag/url" rel="tag">url</a>, 
-              
-            
-          </p>
           
-          <div id="disqus_thread"></div>
-          <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
-          <noscript>
-            <a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a>
-          </noscript>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
 
-          
-            <a name="comments"></a>
-            <h4 class="blueblk">Legacy Comments</h4>
-            <ol class="comment-list" id="commentList">
               
-              <li>
-                <cite>
-                  <strong>
-                    
-                      <a href="http://thanetstar.com/">Matt B</a>
-                    
-                  </strong>
-                </cite> said on Wed, 16 Jan 2008 17:55:30:<br />
-                <p>The thing about mod rewrite is that it is voodoo, damn cool voodoo but voodoo nevertheless (some one more impressive than me said that ages ago but I&#8217;m to lazy to look up the actual quote).</p>
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://thanetstar.com/">Matt B</a>
+                        
+                      </strong>
+                      said on Wed, 16 Jan 2008 17:55:30:
+                    </p>
+                    <p>The thing about mod rewrite is that it is voodoo, damn cool voodoo but voodoo nevertheless (some one more impressive than me said that ages ago but I&#8217;m to lazy to look up the actual quote).</p>
 
 
 	<p>I had a similar situation when I moved a wiki from a sub directory to a sub domain.  The sub domain required that the folder of the SD be in the ht root.  Common cPanel hackishness.  So all requests for lordmatt.co.uk/wiki and wiki.lordmatt.co.uk were exactly the same.</p>
@@ -111,33 +105,36 @@ RewriteRule ^wiki(.*)$  http://wiki.lordmatt.co.uk$1 [R=301,NC,L]</pre>
 
 
 	<p>As you can gather there is more than one way to get something to work.  As with all voodoo that it works is important and a congratulations is awarded to anyone able to brew up a solution to a problem.</p>
-              </li>
+                  </li>
+                  
+                </ol>
               
-            </ol>
-          
-          
+              
+              
 
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
+            </div>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">

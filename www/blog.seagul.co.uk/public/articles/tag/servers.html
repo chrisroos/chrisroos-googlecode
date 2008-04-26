@@ -1,48 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
-    <link rel="stylesheet" href="/stylesheets/azure.css" media="all" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/print.css" media="print" type="text/css" />
-    <link rel="openid.server" href="http://www.myopenid.com/server"/>
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/"/>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/blog.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts tagged servers - deferred until inspiration hits</title>
   </head>
-
-  <body>
   
-    <div id="container" class="clearfix">
+  <body>
     
-      <div id="header">
-        <div id="logo">
-          <h1 id="sitename"><a href="/">deferred until inspiration hits</a></h1>
-        </div>
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
 
-      <div id="search">
-      </div>
+              
+                <h2>
+                  <a href="/articles/2007/04/14/small-specific-mongrel-web-servers">Small, specific mongrel web servers</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Sat, 14 Apr 2007 00:44:00">
+                    Sat, 14 Apr 2007 00:44:00
+                  </span>
+                </p>
 
-      <div id="content" class="clearfix">
-
-        <div id="main">
-
-          
-            <div class="post">
-              <h2>
-                <a href="/articles/2007/04/14/small-specific-mongrel-web-servers">Small, specific mongrel web servers</a>
-              </h2>
-              <p class="auth">
-                Posted by Chris Roos
-                <span class="typo_date" title="Sat, 14 Apr 2007 00:44:00">
-                  Sat, 14 Apr 2007 00:44:00
-                </span>
-              </p>
-          
-              <p>I&#8217;ve created a simple <a href="http://mongrel.rubyforge.org/">mongrel</a> server that allows you to upload text files for subsequent deletion and retrieval.  If it sounds pretty pointless, that&#8217;s because it is&#8230;currently.  I wonder though, if the basic premise couldn&#8217;t be used to create some text-transformation tools.  I&#8217;m thinking of really simple tools that might spell-check a text file, or convert text from <a href="http://www.textism.com/tools/textile/">textile</a> to html.  My end goal would be to have lots of super simple tools that I can chain together to use as a blogging platform, removing my current dependence on <a href="http://trac.typosphere.org/">typo</a>.</p>
+                <p>I&#8217;ve created a simple <a href="http://mongrel.rubyforge.org/">mongrel</a> server that allows you to upload text files for subsequent deletion and retrieval.  If it sounds pretty pointless, that&#8217;s because it is&#8230;currently.  I wonder though, if the basic premise couldn&#8217;t be used to create some text-transformation tools.  I&#8217;m thinking of really simple tools that might spell-check a text file, or convert text from <a href="http://www.textism.com/tools/textile/">textile</a> to html.  My end goal would be to have lots of super simple tools that I can chain together to use as a blogging platform, removing my current dependence on <a href="http://trac.typosphere.org/">typo</a>.</p>
 
 
 	<p>I&#8217;ve made the <a href="http://chrisroos.googlecode.com/svn/trunk/text_file_server/server.rb">server</a> slightly more complex than it needs to be by imposing some artificial constraints (<a href="http://chrisroos.googlecode.com/svn/trunk/text_file_server/server-test.rb">examples</a>).  The basic premise is that you <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.5">post</a> a text file, between 1 and 5000 bytes in size, with a <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">content-type</a> of <a href="http://www.iana.org/assignments/media-types/text/">plain/text</a>.  All being well, the server responds with <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> and the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.30">location</a> of the new resource.  The resource is actually retrieved by <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.7">deleting</a> it &#8211; the contents of the file are returned in the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.3">body</a> with a &#8220;200 OK&#8221; response.  I&#8217;ve tried to use the relevant <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4"><span class="caps">HTTP</span> error</a> when resource creation fails.  The whole &#8216;post&#8217; and &#8216;delete&#8217; pattern for these transformations feels kinda <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">restful</a>, but I may be way off the mark.</p>
@@ -52,51 +46,52 @@
 
 
 	<p>Anyone have any thoughts on any of this?</p>
+
+                
+                  <p>
+                    Tags 
+                    
+                      <a href="/articles/tag/http" rel="tag">http</a>, 
+                    
+                      <a href="/articles/tag/mongrel" rel="tag">mongrel</a>, 
+                    
+                      <a href="/articles/tag/rest" rel="tag">rest</a>, 
+                    
+                      <a href="/articles/tag/restful" rel="tag">restful</a>, 
+                    
+                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
+                    
+                      <a href="/articles/tag/servers" rel="tag">servers</a>, 
+                    
+                      <a href="/articles/tag/web" rel="tag">web</a>, 
+                    
+                  </p>
+                
+              
+
             </div>
-        
-            <p class="meta">
-              
-                Tags 
-                
-                  <a href="/articles/tag/http" rel="tag">http</a>, 
-                
-                  <a href="/articles/tag/mongrel" rel="tag">mongrel</a>, 
-                
-                  <a href="/articles/tag/rest" rel="tag">rest</a>, 
-                
-                  <a href="/articles/tag/restful" rel="tag">restful</a>, 
-                
-                  <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                
-                  <a href="/articles/tag/servers" rel="tag">servers</a>, 
-                
-                  <a href="/articles/tag/web" rel="tag">web</a>, 
-                
-              
-            </p>
-          
-
-        </div>
-
-        <div id="sidebar">
-
-          <div class="sidebar-node">
-            <h3>Syndicate</h3>
-            <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">
-              <img src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt="" style="border:0"/> 
-              Subscribe to the feed
-            </a>
           </div>
-
         </div>
-
-        <br clear="all" />
-
+        <div class="yui-b">
+          <ul class="navigation">
+            <li>
+              <a href="/contents">contents</a>
+            </li>
+            <li>
+              <a href="http://twitter.com/chrisroos">twitter</a>
+            </li>
+            <li>
+              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
+            </li>
+            <li>
+              <a href="http://del.icio.us/chrisjroos">del.icio.us</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    
-      <div id="footer">
-      </div>
-
+    </div>
+    <div id="ft">
+      <!-- Footer -->
     </div>
   
     <script type="text/javascript">
