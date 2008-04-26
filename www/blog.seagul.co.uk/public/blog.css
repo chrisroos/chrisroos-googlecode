@@ -1,3 +1,6 @@
+a:hover {
+  text-decoration: underline;
+}
 body {
   margin: 0 1em;
   line-height: 1.8em;
@@ -15,6 +18,10 @@ h2 a {
 h3 {
   color: #005A9C;
   font-size: 153.9%;
+}
+h3 a {
+  color: #005A9C;
+  text-decoration: none;
 }
 strong {
   font-weight: bold;
