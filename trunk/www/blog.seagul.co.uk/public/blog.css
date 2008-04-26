@@ -26,7 +26,7 @@ ol.comments, ol.trackbacks {
   font-size: 100%;
   margin-left: 0em;
 }
-ol.comments li, ol.trackbacks li {
+ol.comments li, ol.trackbacks li, ul.navigation li {
   list-style-type: none;
 }
 p {
