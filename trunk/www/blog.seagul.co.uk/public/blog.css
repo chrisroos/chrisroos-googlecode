@@ -8,6 +8,14 @@ h2 {
   font-weight: bold;
   margin-bottom: 1em;
 }
+h2 a {
+  color: #005A9C;
+  text-decoration: none;
+}
+h3 {
+  color: #005A9C;
+  font-size: 153.9%;
+}
 strong {
   font-weight: bold;
 }
