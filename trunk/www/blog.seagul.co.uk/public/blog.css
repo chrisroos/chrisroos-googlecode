@@ -84,3 +84,15 @@ div#ft {
   border-top: 0.5em solid #000;
   margin-top: 3em;
 }
+div#twitter_div h3 {
+  margin-bottom: 0.2em;
+}
+ul#twitter_update_list {
+  margin-left: 0;
+  font-size:100%;
+  line-height: 1.1em;
+}
+ul#twitter_update_list li {
+  list-style-type: none;
+  margin-bottom: 0.5em;
+}
