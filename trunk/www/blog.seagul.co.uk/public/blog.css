@@ -37,9 +37,12 @@ ol li {
 ul li {
   list-style-type: disc;
 }
+ul.navigation {
+  margin-left: 0;
+}
 ol.comments, ol.trackbacks {
   font-size: 100%;
-  margin-left: 0em;
+  margin-left: 0;
 }
 ol.comments li, ol.trackbacks li, ul.navigation li {
   list-style-type: none;
