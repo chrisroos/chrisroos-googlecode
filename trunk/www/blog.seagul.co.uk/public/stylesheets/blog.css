@@ -61,7 +61,7 @@ blockquote {
   padding-left: 4em;
   font-style: italic;
   color: #666;
-  background-image: url('/quote.gif');
+  background-image: url('/images/quote.gif');
   background-repeat: no-repeat;
   background-position: top left;
 }
