@@ -1,6 +1,6 @@
 <VirtualHost *:80>
   ServerAdmin www-admin@seagul.co.uk
-  ServerName blog.seagul.co.uk
+  ServerName <%= domain %>
   DocumentRoot <%= public_directory %>
   <Directory <%= public_directory %>>
     AllowOverride All
