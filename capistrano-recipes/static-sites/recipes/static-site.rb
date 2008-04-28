@@ -3,7 +3,7 @@ namespace :apache do
   desc "Create the apache config file that allows us to actually host this site"
   task :create_config do
     public_directory = "#{current_path}/public"
-    log_directory = "#{current_path}/log"
+    log_directory = "#{shared_path}/log"
     template = File.open(File.join(File.dirname(__FILE__), *%w[.. .. .. .. config apache.config.erb])) { |f| f.read }
     erb = ERB.new(template)
     put erb.result(binding), "#{shared_path}/apache.config"
