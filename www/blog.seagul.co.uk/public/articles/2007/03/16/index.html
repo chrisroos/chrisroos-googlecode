@@ -7,8 +7,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" >
     <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
     <link rel="stylesheet" href="/stylesheets/yui-reset-fonts-grids.css" type="text/css" media="all">
-    <link rel="stylesheet" href="/stylesheets/blog.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="/stylesheets/syntax.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/blog.css" type="text/css" media="all" charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/syntax.css" type="text/css" media="all" charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print" charset="utf-8">
     <link rel="openid.server" href="http://www.myopenid.com/server">
     <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
     <title>Posts published on Fri, 16 March 2007 - deferred until inspiration hits</title>
@@ -102,9 +103,11 @@
       document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
     <script type="text/javascript">
-      var pageTracker = _gat._getTracker("UA-160238-1");
-      pageTracker._initData();
-      pageTracker._trackPageview();
+      if (typeof(_gat) != 'undefined') {
+        var pageTracker = _gat._getTracker("UA-160238-1");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+      }
     </script>
   </body>
 
