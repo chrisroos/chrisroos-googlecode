@@ -10,6 +10,23 @@
     <description></description>
     
       <item>
+        <title>Redesigning my blog</title>
+        <description>&lt;p&gt;I finally got round to updating my blog template this weekend.  I based the new design on the &lt;a href=&quot;http://developer.yahoo.com/yui/grids/&quot;&gt;yui grids css&lt;/a&gt; in an attempt to provide the same look to users of different browsers.  In addition I&amp;#8217;ve &amp;#8216;borrowed&amp;#8217; some ideas from both the &lt;a href=&quot;http://www.w3.org/TR/xhtml1/&quot;&gt;w3c specification pages&lt;/a&gt; (the blue colour) and the &lt;a href=&quot;http://www.pearsonified.com/theme/copyblogger/&quot;&gt;copyblogger wordpress theme&lt;/a&gt; (mainly the header, seen on &lt;a href=&quot;http://www.techbelly.com&quot;&gt;Ben&amp;#8217;s&lt;/a&gt; blog).&lt;/p&gt;
+
+
+	&lt;p&gt;I&amp;#8217;ve also created a really simple print stylesheet (it just removes the right nav) that should make it possible to print the content out if you so wish.&lt;/p&gt;
+
+
+	&lt;p&gt;There&amp;#8217;s still work to do: the code snippets seem to break &lt;span class=&quot;caps&quot;&gt;IE6&lt;/span&gt; (not sure about &lt;span class=&quot;caps&quot;&gt;IE7&lt;/span&gt;) but in general I&amp;#8217;m pretty happy with the way it&amp;#8217;s looking.&lt;/p&gt;</description>
+
+        <pubDate>Tue, 29 Apr 2008 06:17:07 +0100</pubDate>
+        <guid isPermaLink="false">urn:uuid:1ec429c1-206b-4c2c-87a8-84f0c71db78d</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/04/29/redesigning-my-blog</link>
+        
+      </item>
+    
+      <item>
         <title>Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)</title>
         <description>&lt;p&gt;Exporting query results to a remote machine with MySql (an alternative to &lt;span class=&quot;caps&quot;&gt;SELECT INTO OUTFILE&lt;/span&gt;)&lt;/p&gt;
 
@@ -431,20 +448,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
         <guid isPermaLink="false">urn:uuid:cf1cb765-edb9-4db9-aab3-08e439b97047</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008/02/18/what-ive-been-up-to-projects-and-ideas</link>
-        
-      </item>
-    
-      <item>
-        <title>Atom (like RSS) feeds for thisiskent.co.uk news stories</title>
-        <description>&lt;p&gt;I&amp;#8217;ve only recently discovered that thisiskent.co.uk (the website of three of our local newspapers) place their &lt;a href=&quot;http://www.thisiskent.co.uk/displayNode.jsp?nodeId=250478&amp;#38;command=newPage&quot;&gt;news content&lt;/a&gt; online.  Unfortunately they&amp;#8217;ve neglected to provide &lt;a href=&quot;http://en.wikipedia.org/wiki/RSS&quot;&gt;&lt;span class=&quot;caps&quot;&gt;RSS&lt;/span&gt;&lt;/a&gt; or &lt;a href=&quot;http://en.wikipedia.org/wiki/Atom_%28standard%29&quot;&gt;Atom&lt;/a&gt; feeds which means that I don&amp;#8217;t get to see it (visiting websites is soooo old school).  As I&amp;#8217;m kinda interested in reading this news, I&amp;#8217;ve put something together that creates a feed from their news articles.  The feed currently lives at http://seagul.co.uk/thisiskent-thanet.atom although this will probably move in the future.  Feel free to subscribe to the feed and please leave comments if it&amp;#8217;s not working for you.  I&amp;#8217;m currently only interested in the Thanet news section but I&amp;#8217;d be happy to produce a feed for other areas if people are interested.&lt;/p&gt;
-
-
-	&lt;p&gt;The code&amp;#8217;s over on &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/thisis-rss/&quot;&gt;google code&lt;/a&gt; if you want to see how it all works.&lt;/p&gt;</description>
-
-        <pubDate>Mon, 18 Feb 2008 10:00:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:cfe3b7ae-05e5-406a-9dcd-e3a646b9d16c</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/02/18/atom-like-rss-feeds-for-thisiskent-co-uk-news-stories</link>
         
       </item>
     
