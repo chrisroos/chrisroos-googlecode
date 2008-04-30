@@ -3,15 +3,7 @@
 <html>
 
   <head>
-    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" >
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" >
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" >
-    <link rel="stylesheet" href="/stylesheets/yui-reset-fonts-grids.css" type="text/css" media="all">
-    <link rel="stylesheet" href="/stylesheets/blog.css" type="text/css" media="all" charset="utf-8">
-    <link rel="stylesheet" href="/stylesheets/syntax.css" type="text/css" media="all" charset="utf-8">
-    <link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print" charset="utf-8">
-    <link rel="openid.server" href="http://www.myopenid.com/server">
-    <link rel="openid.delegate" href="http://chrisroos.myopenid.com/">
+    <!--#include virtual="/includes/_head.html"-->
     <title>Posts published on Tue, 24 July 2007 - deferred until inspiration hits</title>
   </head>
   
@@ -19,7 +11,7 @@
     
     <div id="doc3" class="yui-t4">
       <div id="hd">
-        <h1><a class="blogTitle" href="/">deferred until inspiration hits</a></h1>
+        <!--#include virtual="/includes/_header.html"-->
       </div>
       <div id="bd">
         <div id="yui-main">
@@ -82,25 +74,7 @@
           </div>
         </div>
         <div class="yui-b">
-          <img class="avatar" src="/images/me.jpg" width="170px" height="111px" alt="Me">
-          
-          <ul class="navigation">
-            <li>
-              <a href="/contents">contents</a>
-            </li>
-            <li>
-              <a href="http://flickr.com/photos/chrisjroos">flickr</a>
-            </li>
-          </ul>
-          
-          <div id="twitter_div">
-            <h3><a href="http://twitter.com/chrisroos">twitter</a></h3>
-            <ul id="twitter_update_list"></ul>
-          </div>
-          
-          <div id="deliciousContainer">
-            <h3><a href="http://del.icio.us/chrisjroos">del.icio.us</a></h3>
-          </div>
+          <!--#include virtual="/includes/_navigation.html"-->
         </div>
       </div>
     </div>
@@ -108,23 +82,9 @@
       <!-- Footer -->
     </div>
     
-    <script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
-    <script type="text/javascript" src="http://twitter.com/statuses/user_timeline/chrisroos.json?callback=twitterCallback2&amp;count=5"></script>
-    
-    <script type="text/javascript" src="http://del.icio.us/feeds/json/chrisjroos?count=5"></script>
-    <script type="text/javascript" src="/javascripts/delicious.js"></script>
-  
-    <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-      if (typeof(_gat) != 'undefined') {
-        var pageTracker = _gat._getTracker("UA-160238-1");
-        pageTracker._initData();
-        pageTracker._trackPageview();
-      }
-    </script>
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
   </body>
 
 </html>
