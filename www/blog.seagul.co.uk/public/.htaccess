@@ -1,6 +1,9 @@
 RewriteEngine On
 RewriteBase /
 
+Options +Includes
+AddHandler server-parsed .html
+
 # RewriteRule .* http://foo?request_uri=%{REQUEST_URI}&the_request=%{THE_REQUEST}
 
 # Legacy rewrite for a mis-spelled article
