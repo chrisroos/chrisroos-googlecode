@@ -6,6 +6,7 @@
   <Directory <%= public_directory %>>
     AllowOverride All
     allow from all
+    Options -Indexes
   </Directory>
   <DirectoryMatch "^/.*/\.svn/">
     ErrorDocument 403 /404.html
