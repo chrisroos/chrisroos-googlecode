@@ -1,0 +1,5 @@
+* Content-Type - driving license email contains £ that isn't displayed correctly
+
+* Check that the attachment is a text attachment before saving - see driving license email for reference
+
+
