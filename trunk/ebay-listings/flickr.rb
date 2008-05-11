@@ -11,7 +11,7 @@ class Photos
   def photos
     return [] unless @tag
     (doc/'td#GoodStuff'/'p.UserTagList'/'a').collect do |anchor|
-      url = anchor.attributes['href']
+      url = flickr_url + anchor.attributes['href']
       thumbnail_url = (anchor/'img').first.attributes['src']
       {:url => url, :thumbnail_url => thumbnail_url}
     end
@@ -24,6 +24,9 @@ private
     Net::HTTP.get(url)
   end
   def url
-    URI.parse("http://www.flickr.com/photos/chrisjroos/tags/#{@tag}/")
+    URI.parse("#{flickr_url}/photos/chrisjroos/tags/#{@tag}/")
+  end
+  def flickr_url
+    'http://www.flickr.com'
   end
 end
