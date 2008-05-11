@@ -1,0 +1,17 @@
+<ul>
+<% photos.each do |photo| %>
+<li>
+  <a href="<%= photo[:url] %>">
+  <img src="<%= photo[:thumbnail_url] %>" />
+  </a>
+</li>
+<% end %>
+</ul>
+<dl>
+<dt>Dimensions</dt>
+<dd><%= dimensions %></dd>
+<dt>Weight</dt>
+<dd><%= weight %></dd>
+<dt>Volumetric weight</dt>
+<dd><%= volumetric_weight %></dd>
+</dl>
