@@ -1,6 +1,7 @@
 <div style="font-family: arial,helvetica,clean,sans-serif; color: #555">
   <%= RedCloth.new(listing[:description]).to_html if listing[:description] %>
   
+  <% if listing[:photos].length > 1 %>
   <p>Click the images to see larger versions hosted on <a href="http://www.flickr.com">flickr</a>.</p>
 
   <ul style="list-style: none; padding: 0">
@@ -10,6 +11,7 @@
       </li>
     <% end %>
   </ul>
+  <% end %>
   
   <dl>
     <dt style="display: inline">Dimensions:</dt>
