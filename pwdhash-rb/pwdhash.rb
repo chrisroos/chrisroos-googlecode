@@ -68,7 +68,7 @@ def get_hashed_password(password, realm)
 end
 
 print "Enter realm (usually the website domain): "
-realm = gets
+realm = gets.chomp
 print "Enter password: "
-password = gets
+password = gets.chomp
 p get_hashed_password(password, realm)
