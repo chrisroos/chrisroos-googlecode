@@ -1,0 +1,9 @@
+#! /usr/bin/env ruby
+
+require File.join(File.dirname(__FILE__), 'pwdhash')
+
+print "Enter realm (usually the website domain): "
+realm = gets.chomp
+print "Enter password: "
+password = gets.chomp
+p get_hashed_password(password, realm)
