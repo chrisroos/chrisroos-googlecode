@@ -49,7 +49,6 @@ expected = '1JMstxYHYz'
 actual = apply_constraints(hash='MstxYHYzGq0jEjzfTbaFrQ', size=10, nonalphanumeric=false)
 raise("apply_constraints is broken!") unless expected == actual
 
-$: << '~/dev/lib/ruby-hmac-0.3'
 require 'hmac-md5'
 require 'base64'
 
