@@ -43,24 +43,35 @@ def apply_constraints(hash, size, nonalphanumeric)
   return result.join('')
 end
 
-expected = '1JMstxYHYz'
-actual = apply_constraints(hash='MstxYHYzGq0jEjzfTbaFrQ', size=10, nonalphanumeric=false)
-raise("apply_constraints is broken!") unless expected == actual
-
 require 'hmac-md5'
 require 'base64'
 
-class String
-  def base64_hmac_md5(key)
-    Base64.encode64(HMAC::MD5.digest(key, self))
+module PwdHash
+  class Hash
+    attr_reader :hash
+    def initialize(realm, password)
+      @realm, @password = realm, password
+      hash!
+      remove_base64_pad_character
+    end
+    def size
+      @password.length + '@@'.length
+    end
+    def contains_non_alphanumeric?
+      @password =~ /\W/
+    end
+  private
+    def hash!
+      @hash = Base64.encode64(HMAC::MD5.digest(@password, @realm))
+    end
+    def remove_base64_pad_character
+      @hash.sub!(/=+$/, '')
+    end
   end
 end
 
 def get_hashed_password(password, realm)
-  hash = realm.base64_hmac_md5(password)
-  hash = hash.gsub(/=+$/, '') # remove base64 pad character (=) - not used by default in md5.js implementation
-  size = password.length + '@@'.length
-  nonalphanumeric = !password.match(/\W/).nil?
-  apply_constraints(hash, size, nonalphanumeric)
+  hash = PwdHash::Hash.new(realm, password)
+  apply_constraints(hash.hash, hash.size, hash.contains_non_alphanumeric?)
 end
 
