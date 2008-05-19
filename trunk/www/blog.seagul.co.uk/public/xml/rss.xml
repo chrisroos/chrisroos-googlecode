@@ -10,6 +10,20 @@
     <description></description>
     
       <item>
+        <title>Pwdhash Widget</title>
+        <description>&lt;p&gt;I&amp;#8217;ve been using &lt;a href=&quot;http://pwdhash.com&quot;&gt;pwdhash&lt;/a&gt; for ages.  Apart from some pathetic sites that impose password limitations (less than x characters, or no &amp;#8216;strange&amp;#8217; characters), I&amp;#8217;ve used it on every site I&amp;#8217;ve signed up to.  This has started to change recently as more sites offer a client application that sits alongside the online app (&lt;a href=&quot;http://flickr.com&quot;&gt;flickr&lt;/a&gt;, &lt;a href=&quot;http://twitter.com&quot;&gt;twitter&lt;/a&gt; and &lt;a href=&quot;http://last.fm&quot;&gt;last.fm&lt;/a&gt; come to mind): It&amp;#8217;s a pain to visit pwdhash.com every time I need to generate a password for an offline app.  So, I decided to have a stab at creating a dashboard widget to generate password hashes.  I used &lt;a href=&quot;http://developer.apple.com/tools/dashcode/&quot;&gt;dashcode&lt;/a&gt; (which makes this stuff &lt;em&gt;really&lt;/em&gt; easy) and got something knocked up, in about an hour, on &lt;a href=&quot;http://twitter.com/chrisroos/statuses/812954936&quot;&gt;Friday&lt;/a&gt;.  The fact that pwdhash.com is already composed of html and javascript helped just a bit too&amp;#8230;&lt;/p&gt;
+
+
+	&lt;p&gt;Anyway, if it sounds useful feel then free to download it &lt;a href=&quot;/files/pwdhash.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+
+        <pubDate>Mon, 19 May 2008 21:58:15 +0100</pubDate>
+        <guid isPermaLink="false">urn:uuid:8b08900d-3772-466f-8da4-05cb81f67e40</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/05/19/pwdhash-widget</link>
+        
+      </item>
+    
+      <item>
         <title>A trip to the tip</title>
         <description>&lt;p&gt;A recent trip to the local tip got me thinking.  Shouldn&amp;#8217;t the council be pimping alternative services (freecycle and charity shops come to mind) at the tip?  I saw a couple of things that I struggle to believe couldn&amp;#8217;t have been of use to someone else: a golf bag and computer tower (even if it didn&amp;#8217;t contain a computer &amp;#8211; I just sold a similar case on ebay, proving the demand).  In addition to these two items were the mountain (ok, not a mountain, but a fair number) of discarded fridge/freezers.  I wonder how many of these had actually broken and how many were no longer required for different reasons: maybe England beer fridges are out of fashion now?&lt;/p&gt;
 
@@ -273,34 +287,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&amp;quot;POST&amp;quot; -H&am
         <guid isPermaLink="false">urn:uuid:6f82d1cd-59c4-414f-8b35-a3a1d5160e3e</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008/02/28/national-rail-train-times-by-sms-again</link>
-        
-      </item>
-    
-      <item>
-        <title>Tagging my del.icio.us bookmarks with the domain of the URL that I'm bookmarking</title>
-        <description>&lt;p&gt;I&amp;#8217;ve created another &lt;a href=&quot;http://www.mozilla.com/firefox&quot;&gt;firefox&lt;/a&gt; extension that builds on the &lt;a href=&quot;http://del.icio.us&quot;&gt;del.icio.us&lt;/a&gt; &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/3615&quot;&gt;extension&lt;/a&gt;.  This one finds the domain of the &lt;a href=&quot;http://en.wikipedia.org/wiki/Uniform_Resource_Locator&quot;&gt;&lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt;&lt;/a&gt; you&amp;#8217;re bookmarking and adds it as a tag to your bookmark.  It&amp;#8217;s basically just a copy of my &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension&quot;&gt;del.icio.us permalinks extension&lt;/a&gt;&lt;/p&gt;
-
-
-	&lt;p&gt;To install this extension head over to the &lt;a href=&quot;http://groups.google.com/group/delicious-domain-tags&quot;&gt;delicious domain tags google group&lt;/a&gt; and visit the installation page (I don&amp;#8217;t seem to be able to link directly to it for some reason).&lt;/p&gt;
-
-
-	&lt;p&gt;I came across an interesting problem when trying to get both this and the del.icio.us permalinks extension working together.  Both of the extensions modify the onload attribute of the add bookmark dialog.  When I only had the del.icio.us permalinks extension I was hardcoding the onload attribute to call my function (deliciousPermalinks.addPermalinkTag()) and the original function (yAddBookMark.init()).  This approach fell down as soon as I had two extensions trying to modify the onload attribute: I didn&amp;#8217;t know which extension would be loaded first and therefore one was always overwriting the other.  I&amp;#8217;m sure there&amp;#8217;s a nice way to do this but I hacked together a noddy initialisation script that finds the existing value of the onload attribute and adds to it with the relevant function.&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;var yAddBookmarkDialog = document.getElementById('dlg_AddYBookMark');
-var yAddBookmarkOnload = yAddBookmarkDialog.getAttribute('onload');
-var onload = 'deliciousPermalinks.addPermalinkTag()';
-yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';'))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;I reference this script in my &lt;a href=&quot;http://en.wikipedia.org/wiki/XUL&quot;&gt;xul&lt;/a&gt; file which causes it to be evaluated at (I guess) browser start time and the onload event to be modified correctly.&lt;/p&gt;
-
-
-	&lt;p&gt;I&amp;#8217;ve updated the del.icio.us permalinks extension too but I think you&amp;#8217;ll need to remove and re-add it again from the &lt;a href=&quot;http://groups.google.com/group/delicious-permalinks/files&quot;&gt;installation page&lt;/a&gt;.&lt;/p&gt;</description>
-
-        <pubDate>Tue, 26 Feb 2008 08:49:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:0965ddb3-1309-4dc8-a04f-297cf892aa75</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/02/26/tagging-my-del-icio-us-bookmarks-with-the-domain-of-the-url-that-im-bookmarking</link>
         
       </item>
     
