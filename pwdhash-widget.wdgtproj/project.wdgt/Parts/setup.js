@@ -11,5 +11,6 @@ function setupParts() {
     CreateText('blogUrl', { text: 'http://blog.seagul.co.uk' });
     CreateText('emailAddress', { text: 'chris@seagul.co.uk' });
     CreateInfoButton('infobutton', { foregroundStyle: 'white', frontID: 'front', onclick: 'showBack', backgroundStyle: 'black' });
+    CreateText('blogUrl1', { text: unescape('By Me%2C Chris:') });
 }
 window.addEventListener('load', setupParts, false);
