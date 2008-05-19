@@ -111,7 +111,7 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
     left: 48px;
-    top: 142px;
+    top: 179px;
 }
 
 #emailAddress {
@@ -122,7 +122,7 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
     left: 48px;
-    top: 175px;
+    top: 151px;
 }
 
 #pwdhash {
@@ -144,4 +144,15 @@ body {
     height: 13px;
     left: 215px;
     top: 235px;
+}
+
+#blogUrl1 {
+    position: absolute;
+    color: black;
+    font-family: HelveticaNeue;
+    font-size: 10pt;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    left: 48px;
+    top: 125px;
 }
