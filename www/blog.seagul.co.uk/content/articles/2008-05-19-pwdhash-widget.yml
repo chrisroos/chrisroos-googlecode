@@ -1,0 +1,9 @@
+--- 
+:body: |
+  I've been using "pwdhash":http://pwdhash.com for ages.  Apart from some pathetic sites that impose password limitations (less than x characters, or no 'strange' characters), I've used it on every site I've signed up to.  This has started to change recently as more sites offer a client application that sits alongside the online app ("flickr":http://flickr.com, "twitter":http://twitter.com and "last.fm":http://last.fm come to mind): It's a pain to visit pwdhash.com every time I need to generate a password for an offline app.  So, I decided to have a stab at creating a dashboard widget to generate password hashes.  I used "dashcode":http://developer.apple.com/tools/dashcode/ (which makes this stuff _really_ easy) and got something knocked up, in about an hour, on "Friday":http://twitter.com/chrisroos/statuses/812954936.  The fact that pwdhash.com is already composed of html and javascript helped just a bit too...
+  
+  Anyway, if it sounds useful feel then free to download it "here":/files/pwdhash.zip.
+
+:published_at: 2008-05-19 21:58:15.266930 +01:00
+:title: Pwdhash Widget
+:guid: 8b08900d-3772-466f-8da4-05cb81f67e40
