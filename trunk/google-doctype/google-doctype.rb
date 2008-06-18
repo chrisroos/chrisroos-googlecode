@@ -1,3 +1,5 @@
+#! /usr/bin/env ruby
+
 require File.join(File.dirname(__FILE__), 'moin_moin_wiki_page_creator')
 require File.join(File.dirname(__FILE__), 'google-wiki-convertor')
 
