@@ -3,8 +3,11 @@
 require File.join(File.dirname(__FILE__), 'moin_moin_wiki_page_creator')
 require File.join(File.dirname(__FILE__), 'google-wiki-convertor')
 
-google_doctype_wiki_directory = File.join('/', 'Users', 'chrisroos', 'Code', 'third-party', 'google-doctype', 'wiki')
-moinmoin_wiki_pages_directory = File.join('/', 'Users', 'chrisroos', 'Downloads', 'moin-1.6.3', 'wiki', 'data', 'pages')
+google_doctype_wiki_directory = ARGV.shift
+raise "Please specify the location of the google-doctype wiki directory" unless google_doctype_wiki_directory
+
+moinmoin_wiki_pages_directory = ARGV.shift
+raise "Please specify the location of the MoinMoin wiki directory (e.g. moinmoin/wiki/data/pages)" unless moinmoin_wiki_pages_directory
 
 convertor = GoogleWikiConvertor.new
 
