@@ -1,1 +1,1 @@
-MyLink
+[MyLink my link]
