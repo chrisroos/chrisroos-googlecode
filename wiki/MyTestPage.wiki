@@ -1,1 +1,1 @@
-[MyLink my link]
+[http://www.google.com my link]
