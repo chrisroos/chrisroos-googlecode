@@ -1,3 +1,11 @@
+.email, .letter {
+  font-family: monospace;
+  font-size: smaller;
+  background-color: #ffc;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
 a:hover {
   text-decoration: underline;
 }
