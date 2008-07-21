@@ -10,6 +10,17 @@
     <description></description>
     
       <item>
+        <title>Open Source Optical Character Recognition (OCR) on the Mac</title>
+        <description>&lt;p&gt;I recently received a letter reply to an enquiry I made to &lt;a href=&quot;http://southeasternrailway.co.uk/&quot;&gt;South Eastern Trains&lt;/a&gt;.  I wanted to make the text available (I don&amp;#8217;t like reading text in images) but didn&amp;#8217;t want to type it all out.  Having scanned it in, I looked around for some &lt;a href=&quot;http://en.wikipedia.org/wiki/Optical_character_recognition&quot;&gt;&lt;span class=&quot;caps&quot;&gt;OCR&lt;/span&gt;&lt;/a&gt; software, for the &lt;a href=&quot;http://www.apple.com/mac/&quot;&gt;Mac&lt;/a&gt;, that would extract the text for me.  Through the (relatively large amount of) search result noise, I managed to find a reference to &lt;a href=&quot;http://code.google.com/p/tesseract-ocr/&quot;&gt;tesseract&lt;/a&gt;.  Installing from &lt;a href=&quot;http://www.macports.org/&quot;&gt;Mac Ports&lt;/a&gt; was easy but actually getting useful output was slightly tricker.  I was trying to extract the text from &lt;a href=&quot;http://www.flickr.com/photos/chrisjroos/2688362397/&quot;&gt;this letter&lt;/a&gt; but kept getting garbled output.  I tried a few things before stumbling across &lt;a href=&quot;https://help.ubuntu.com/community/OCR&quot;&gt;this page&lt;/a&gt; that suggests making the image greyscale and ensuring that the extension is .tif (not .tiff).  I duly complied, using &lt;a href=&quot;http://seashore.sourceforge.net/&quot;&gt;Seashore&lt;/a&gt; to convert the image to greyscale, and tried again.  This time the text was extracted perfectly (even the addresses, that appear in two columns, were extracted correctly).&lt;/p&gt;</description>
+
+        <pubDate>Mon, 21 Jul 2008 14:04:56 +0100</pubDate>
+        <guid isPermaLink="false">urn:uuid:19495a24-8ef5-4c1a-aab1-45d38a8ed548</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/07/21/open-source-optical-character-recognition-ocr-on-the-mac</link>
+        
+      </item>
+    
+      <item>
         <title>Pwdhash Widget</title>
         <description>&lt;p&gt;I&amp;#8217;ve been using &lt;a href=&quot;http://pwdhash.com&quot;&gt;pwdhash&lt;/a&gt; for ages.  Apart from some pathetic sites that impose password limitations (less than x characters, or no &amp;#8216;strange&amp;#8217; characters), I&amp;#8217;ve used it on every site I&amp;#8217;ve signed up to.  This has started to change recently as more sites offer a client application that sits alongside the online app (&lt;a href=&quot;http://flickr.com&quot;&gt;flickr&lt;/a&gt;, &lt;a href=&quot;http://twitter.com&quot;&gt;twitter&lt;/a&gt; and &lt;a href=&quot;http://last.fm&quot;&gt;last.fm&lt;/a&gt; come to mind): It&amp;#8217;s a pain to visit pwdhash.com every time I need to generate a password for an offline app.  So, I decided to have a stab at creating a dashboard widget to generate password hashes.  I used &lt;a href=&quot;http://developer.apple.com/tools/dashcode/&quot;&gt;dashcode&lt;/a&gt; (which makes this stuff &lt;em&gt;really&lt;/em&gt; easy) and got something knocked up, in about an hour, on &lt;a href=&quot;http://twitter.com/chrisroos/statuses/812954936&quot;&gt;Friday&lt;/a&gt;.  The fact that pwdhash.com is already composed of html and javascript helped just a bit too&amp;#8230;&lt;/p&gt;
 
@@ -265,28 +276,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&amp;quot;POST&amp;quot; -H&am
         <guid isPermaLink="false">urn:uuid:d1b7bcd5-eed9-410e-8d2f-3232aca73d04</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension</link>
-        
-      </item>
-    
-      <item>
-        <title>National Rail Train Times by SMS (again)</title>
-        <description>&lt;p&gt;A while back I &lt;a href=&quot;http://blog.seagul.co.uk/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries&quot;&gt;hacked&lt;/a&gt; a simple &lt;a href=&quot;http://en.wikipedia.org/wiki/Short_message_service&quot;&gt;&lt;span class=&quot;caps&quot;&gt;SMS&lt;/span&gt;&lt;/a&gt; interface onto the &lt;a href=&quot;http://www.nationalrail.co.uk/&quot;&gt;national rail enquiries&lt;/a&gt; website.  It turned out to be more gimmicky than functional and I left it to die.  Over the past couple of weeks I&amp;#8217;ve found myself, once again, in need of such a service and so spent a couple of hours last night reviving it: making it work, making it simpler and tidying the code.  The previous interface required the source station and destination station as well as the date and time of travel.  The format was very strict (requiring you to use the unique three digit station codes) and, as I found, overly complex (I could never remember what it was).  All I really wanted to do was specify the source and destination stations and get a list of the next few departures/arrival times.&lt;/p&gt;
-
-
-	&lt;p&gt;The new interface is simply in the format of &lt;span class=&quot;caps&quot;&gt;SOURCE&lt;/span&gt;_STATION to &lt;span class=&quot;caps&quot;&gt;DESTINATION&lt;/span&gt;_STATION.  So, to find the next few trains from &lt;a href=&quot;http://en.wikipedia.org/wiki/Ramsgate_railway_station&quot;&gt;Ramsgate&lt;/a&gt; to &lt;a href=&quot;http://en.wikipedia.org/wiki/Waterloo_East_railway_station&quot;&gt;London Waterloo East&lt;/a&gt; we can send the following &lt;a href=&quot;http://help.twitter.com/index.php?pg=kb.page&amp;#38;id=15&quot;&gt;direct message&lt;/a&gt; to the &lt;a href=&quot;http://twitter.com/natrailenq&quot;&gt;natrailenq&lt;/a&gt; user on &lt;a href=&quot;http://twitter.com&quot;&gt;twitter&lt;/a&gt;&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;d natrailenq ramsgate to london waterloo east&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;Although you can now use the full station name it will only, currently, work if you know the exact name of the station (so, waterloo east wouldn&amp;#8217;t work in that above example, but london waterloo east will).  It will still work if you supply the three digit station code.&lt;/p&gt;
-
-
-	&lt;p&gt;In order to use this service, you will need to create a twitter account, &lt;a href=&quot;http://twitter.com/help/follow&quot;&gt;follow&lt;/a&gt; the natrailenq user and enable &lt;span class=&quot;caps&quot;&gt;SMS&lt;/span&gt; notifications from natrailenq.&lt;/p&gt;</description>
-
-        <pubDate>Thu, 28 Feb 2008 17:45:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:6f82d1cd-59c4-414f-8b35-a3a1d5160e3e</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/02/28/national-rail-train-times-by-sms-again</link>
         
       </item>
     
