@@ -10,6 +10,54 @@
     <description></description>
     
       <item>
+        <title>Asking South Eastern about their crappy seats</title>
+        <description>&lt;p&gt;I regularly travel on the &lt;a href=&quot;http://southeasternrailway.co.uk/&quot;&gt;South Eastern&lt;/a&gt; service from &lt;a href=&quot;http://en.wikipedia.org/wiki/Waterloo_East_railway_station&quot;&gt;Waterloo East&lt;/a&gt; to &lt;a href=&quot;http://en.wikipedia.org/wiki/Ramsgate&quot;&gt;Ramsgate&lt;/a&gt;.  The train splits at &lt;a href=&quot;http://en.wikipedia.org/wiki/Ashford_International&quot;&gt;Ashford&lt;/a&gt; and I end up having to sit in the shitty commuter seats for the last 45 minutes (or so) of the journey.  I emailed South Eastern to ask if they couldn&amp;#8217;t reconfigure the train so that, of the eight cars that go to Dover, four could have commuter seats and four could have real seats.  They could then send the other four cars, with real seats, to Ramsgate.  I don&amp;#8217;t think I have the original email that I sent (feedback forms in general suffer from the problem that the sender doesn&amp;#8217;t retain a copy of what&amp;#8217;s been sent) but their reply is below (&lt;a href=&quot;http://flickr.com/photos/chrisjroos/2688362397/&quot;&gt;original here&lt;/a&gt;).&lt;/p&gt;
+
+
+&lt;pre&gt;
+Ref: 329980 / 93994
+
+Dear Mr Roos
+
+Formation of 17.59 Waterloo East to Ramsgate Service
+
+Thank you for your email of 2nd May
+
+I am sorry that you have found the seating on the rear four carriages of the above service to be
+uncomfortable. These are the higher density carriages that have 2+3 seating across the coach,
+rather than 2+2 seating, and are intended to deal with the heavy demand we face during the
+busy peak periods. We know that everyone would prefer all our trains to have 2+2 seating
+throughout. However, we have to utilise the higher density seating layout in order to provide
+enough seats for our London commuters.
+
+For a number of operational factors (for example, rolling stock maintenance), it is difficult to
+locate a set of four higher density carriages in the middle of a twelve-coach train, where the
+front and rear portions are formed of 2+2 seating. The usual procedure is to have four or eight
+carriages which are the same, and to have an additonai four carriages of either the higher
+density or 2+2 rolling stock. In addition to this, we have to look at the wider picture and consider
+what is needed for later services or on the following morning (as a rule, it is not possible to
+&quot;mix-and-match&quot; rolling stock to it each journey).
+
+For these reasons, it is unlikely that we will be able to make the change that to have requested.
+Thank you, however, for sharing your concerns with us. Passenger feedback, whether good or
+bad, is always appreciated so that we can continue to improve on the service we offer, and I
+hope you can be reassured that we take all issues very seriously.
+
+Yours sincerely
+
+David Eustace
+
+Southeastern Customer Services
+&lt;/pre&gt;</description>
+
+        <pubDate>Mon, 21 Jul 2008 21:08:55 +0100</pubDate>
+        <guid isPermaLink="false">urn:uuid:4c56508e-363a-4446-8526-470ee95be326</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/07/21/asking-south-eastern-about-their-crappy-seats</link>
+        
+      </item>
+    
+      <item>
         <title>Open Source Optical Character Recognition (OCR) on the Mac</title>
         <description>&lt;p&gt;I recently received a letter reply to an enquiry I made to &lt;a href=&quot;http://southeasternrailway.co.uk/&quot;&gt;South Eastern Trains&lt;/a&gt;.  I wanted to make the text available (I don&amp;#8217;t like reading text in images) but didn&amp;#8217;t want to type it all out.  Having scanned it in, I looked around for some &lt;a href=&quot;http://en.wikipedia.org/wiki/Optical_character_recognition&quot;&gt;&lt;span class=&quot;caps&quot;&gt;OCR&lt;/span&gt;&lt;/a&gt; software, for the &lt;a href=&quot;http://www.apple.com/mac/&quot;&gt;Mac&lt;/a&gt;, that would extract the text for me.  Through the (relatively large amount of) search result noise, I managed to find a reference to &lt;a href=&quot;http://code.google.com/p/tesseract-ocr/&quot;&gt;tesseract&lt;/a&gt;.  Installing from &lt;a href=&quot;http://www.macports.org/&quot;&gt;Mac Ports&lt;/a&gt; was easy but actually getting useful output was slightly tricker.  I was trying to extract the text from &lt;a href=&quot;http://www.flickr.com/photos/chrisjroos/2688362397/&quot;&gt;this letter&lt;/a&gt; but kept getting garbled output.  I tried a few things before stumbling across &lt;a href=&quot;https://help.ubuntu.com/community/OCR&quot;&gt;this page&lt;/a&gt; that suggests making the image greyscale and ensuring that the extension is .tif (not .tiff).  I duly complied, using &lt;a href=&quot;http://seashore.sourceforge.net/&quot;&gt;Seashore&lt;/a&gt; to convert the image to greyscale, and tried again.  This time the text was extracted perfectly (even the addresses, that appear in two columns, were extracted correctly).&lt;/p&gt;</description>
 
@@ -245,37 +293,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&amp;quot;POST&amp;quot; -H&am
         <guid isPermaLink="false">urn:uuid:ae997b7a-4abf-4c07-bdbb-082eb3e64401</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008/03/28/version-control-commit-note-best-practice-or-not-you-decide</link>
-        
-      </item>
-    
-      <item>
-        <title>Version 0.2 of the del.icio.us trackback extension</title>
-        <description>&lt;p&gt;I finally got round to compiling the &lt;a href=&quot;http://blog.seagul.co.uk/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us&quot;&gt;del.icio.us trackback extension&lt;/a&gt; I wrote about a while back.&lt;/p&gt;
-
-
-	&lt;p&gt;You can install it from the installation.html&lt;sup&gt;&lt;a href=&quot;#fn1&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; page on the &lt;a href=&quot;http://groups.google.com/group/delicious-trackbacks&quot;&gt;del.icio.us trackbacks google group&lt;/a&gt;.  Feel free to use that group to post any questions you have too.&lt;/p&gt;
-
-
-	&lt;p&gt;Current features:&lt;/p&gt;
-
-
-	&lt;ul&gt;
-	&lt;li&gt;Scans the html of the page you&amp;#8217;re bookmarking looking for a link (anchor) with a rel attribute whose value is trackback.&lt;/li&gt;
-		&lt;li&gt;Sends a request to the trackback &lt;span class=&quot;caps&quot;&gt;URI&lt;/span&gt; if it was found.&lt;/li&gt;
-		&lt;li&gt;Records (by adding the &amp;#8216;dtb-sent&amp;#8217; tag) the sending of the trackback so that we can avoid sending multiple trackbacks to the same site.&lt;/li&gt;
-		&lt;li&gt;Records the success (&amp;#8216;dtb-success&amp;#8217; tag) or failure (&amp;#8216;dtb-failure&amp;#8217;) of the trackback request.&lt;/li&gt;
-	&lt;/ul&gt;
-
-
-	&lt;p&gt;That&amp;#8217;s all for now.&lt;/p&gt;
-
-
-	&lt;p id=&quot;fn1&quot;&gt;&lt;sup&gt;1&lt;/sup&gt; I don&amp;#8217;t appear to be able to link directly to that page which is a bit odd.&lt;/p&gt;</description>
-
-        <pubDate>Tue, 04 Mar 2008 09:30:00 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:d1b7bcd5-eed9-410e-8d2f-3232aca73d04</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension</link>
         
       </item>
     
