@@ -20,6 +20,20 @@
 
               
                 <h2>
+                  <a href="/articles/2008/07/21/open-source-optical-character-recognition-ocr-on-the-mac">Open Source Optical Character Recognition (OCR) on the Mac</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Mon, 21 Jul 2008 14:04:56">
+                    Mon, 21 Jul 2008 14:04:56
+                  </span>
+                </p>
+
+                <p>I recently received a letter reply to an enquiry I made to <a href="http://southeasternrailway.co.uk/">South Eastern Trains</a>.  I wanted to make the text available (I don&#8217;t like reading text in images) but didn&#8217;t want to type it all out.  Having scanned it in, I looked around for some <a href="http://en.wikipedia.org/wiki/Optical_character_recognition"><span class="caps">OCR</span></a> software, for the <a href="http://www.apple.com/mac/">Mac</a>, that would extract the text for me.  Through the (relatively large amount of) search result noise, I managed to find a reference to <a href="http://code.google.com/p/tesseract-ocr/">tesseract</a>.  Installing from <a href="http://www.macports.org/">Mac Ports</a> was easy but actually getting useful output was slightly tricker.  I was trying to extract the text from <a href="http://www.flickr.com/photos/chrisjroos/2688362397/">this letter</a> but kept getting garbled output.  I tried a few things before stumbling across <a href="https://help.ubuntu.com/community/OCR">this page</a> that suggests making the image greyscale and ensuring that the extension is .tif (not .tiff).  I duly complied, using <a href="http://seashore.sourceforge.net/">Seashore</a> to convert the image to greyscale, and tried again.  This time the text was extracted perfectly (even the addresses, that appear in two columns, were extracted correctly).</p>
+
+                
+              
+                <h2>
                   <a href="/articles/2008/05/19/pwdhash-widget">Pwdhash Widget</a>
                 </h2>
                 <p class="postedOn">
@@ -302,31 +316,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot; -H&quot;Conte
 
 
 	<p id="fn1"><sup>1</sup> I don&#8217;t appear to be able to link directly to that page which is a bit odd.</p>
-
-                
-              
-                <h2>
-                  <a href="/articles/2008/02/28/national-rail-train-times-by-sms-again">National Rail Train Times by SMS (again)</a>
-                </h2>
-                <p class="postedOn">
-                  Posted by Chris Roos
-                  <span class="typo_date" title="Thu, 28 Feb 2008 17:45:00">
-                    Thu, 28 Feb 2008 17:45:00
-                  </span>
-                </p>
-
-                <p>A while back I <a href="http://blog.seagul.co.uk/articles/2007/07/24/train-times-by-sms-or-improving-national-rail-enquiries">hacked</a> a simple <a href="http://en.wikipedia.org/wiki/Short_message_service"><span class="caps">SMS</span></a> interface onto the <a href="http://www.nationalrail.co.uk/">national rail enquiries</a> website.  It turned out to be more gimmicky than functional and I left it to die.  Over the past couple of weeks I&#8217;ve found myself, once again, in need of such a service and so spent a couple of hours last night reviving it: making it work, making it simpler and tidying the code.  The previous interface required the source station and destination station as well as the date and time of travel.  The format was very strict (requiring you to use the unique three digit station codes) and, as I found, overly complex (I could never remember what it was).  All I really wanted to do was specify the source and destination stations and get a list of the next few departures/arrival times.</p>
-
-
-	<p>The new interface is simply in the format of <span class="caps">SOURCE</span>_STATION to <span class="caps">DESTINATION</span>_STATION.  So, to find the next few trains from <a href="http://en.wikipedia.org/wiki/Ramsgate_railway_station">Ramsgate</a> to <a href="http://en.wikipedia.org/wiki/Waterloo_East_railway_station">London Waterloo East</a> we can send the following <a href="http://help.twitter.com/index.php?pg=kb.page&#38;id=15">direct message</a> to the <a href="http://twitter.com/natrailenq">natrailenq</a> user on <a href="http://twitter.com">twitter</a></p>
-
-
-<div class="typocode"><pre><code class="typocode_default">d natrailenq ramsgate to london waterloo east</code></pre></div>
-
-	<p>Although you can now use the full station name it will only, currently, work if you know the exact name of the station (so, waterloo east wouldn&#8217;t work in that above example, but london waterloo east will).  It will still work if you supply the three digit station code.</p>
-
-
-	<p>In order to use this service, you will need to create a twitter account, <a href="http://twitter.com/help/follow">follow</a> the natrailenq user and enable <span class="caps">SMS</span> notifications from natrailenq.</p>
 
                 
               
