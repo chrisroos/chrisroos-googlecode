@@ -67,7 +67,7 @@ class WikiSyntax
     end
 
     # URLs
-    html.gsub!(/\[((?:f|htt)p:\/\/.*?) (.*?)\]/) do |matched_url|
+    html.gsub!(/\[((?:f|ht)tp:\/\/.*?) (.*?)\]/) do |matched_url|
       %%<a href="#{$1}">#{$2}</a>%
     end
     html.gsub!(/(?:^| +)((?:f|ht)tp:\/\/.*?)(?: |$)/) do |matched_url|
