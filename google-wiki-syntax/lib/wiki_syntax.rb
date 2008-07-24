@@ -67,7 +67,7 @@ class WikiSyntax
     end
 
     # Images
-    html.gsub!(/(?:^| +)(http:\/\/.*?\.(?:png|gif))(?: |$)/) do |matched_image_url|
+    html.gsub!(/(?:^| +)(http:\/\/.*?\.(?:png|gif|jpe?g))(?: |$)/) do |matched_image_url|
       matched_image_url.sub($1, %%<img src="#{$1}" />%)
     end
 

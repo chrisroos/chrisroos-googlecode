@@ -259,4 +259,14 @@ class WikiSyntaxImageTest < Test::Unit::TestCase
     assert_equal '<p>My first <img src="http://www.example.com/image.gif" /> image</p>', WikiSyntax.new('My first http://www.example.com/image.gif image').to_html
   end
 
+  def test_should_insert_a_jpg_image
+    assert_equal '<p><img src="http://www.example.com/image.jpg" /></p>', WikiSyntax.new('http://www.example.com/image.jpg').to_html
+    assert_equal '<p>My first <img src="http://www.example.com/image.jpg" /> image</p>', WikiSyntax.new('My first http://www.example.com/image.jpg image').to_html
+  end
+
+  def test_should_insert_a_jpeg_image
+    assert_equal '<p><img src="http://www.example.com/image.jpeg" /></p>', WikiSyntax.new('http://www.example.com/image.jpeg').to_html
+    assert_equal '<p>My first <img src="http://www.example.com/image.jpeg" /> image</p>', WikiSyntax.new('My first http://www.example.com/image.jpeg image').to_html
+  end
+
 end
