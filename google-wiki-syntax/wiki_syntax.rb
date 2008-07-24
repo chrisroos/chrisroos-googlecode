@@ -1,4 +1,5 @@
 class ListBlock
+  LineRegex = /^( +)(\*|#)(.*)$/ # Any number of spaces then a list token, a space and the list content
   Tokens = {
     '*' => 'ul',
     '#' => 'ol'
@@ -14,22 +15,26 @@ class ListBlock
   end
   def process
     @wiki_content.each do |line|
-      line =~ /^( +)(\*|#) (.*)$/ # Any number of spaces then a list token, a space and the list content
-      @indentation_to_token, token, list_item_content = $1.length, $2, $3
-      list_tag = Tokens[token]
-      if opening_list?
-        open_tag!('li') if opening_nested_list? # Opens the containing list item (li tag)
-        open_tag!(list_tag)
-      elsif closing_list?
-        close_tag!
-        close_tag! if nested_list? # Closes the containing list item (li tag)
-      end
-      add_list_item! list_item_content
+      extract_variables_from_line!(line)
+      open_tag!(list_tag) if opening_list?
+      close_tag! if closing_list?
+      add_list_item!
       update_previous_indentation_to_token!
     end
     close_all_remaining_tags!
+    add_newline_for_succeeding_paragraphs!
   end
 private
+  def add_newline_for_succeeding_paragraphs!
+    @html << "\n"
+  end
+  def extract_variables_from_line!(line)
+    line =~ LineRegex
+    @indentation_to_token, @token, @list_item_content = $1.length, $2, $3.strip
+  end
+  def list_tag
+    Tokens[@token]
+  end
   def opening_list?
     @indentation_to_token > @previous_indentation_to_token
   end
@@ -39,9 +44,9 @@ private
   def update_previous_indentation_to_token!
     @previous_indentation_to_token = @indentation_to_token
   end
-  def add_list_item!(content)
+  def add_list_item!
     open_tag!('li')
-    add_html content
+    add_html @list_item_content
     close_tag!
   end
   def open_tag!(tag)
@@ -54,12 +59,6 @@ private
   end
   def close_all_remaining_tags!
     close_tag! until @open_tags.empty?
-  end
-  def opening_nested_list?
-    @open_tags.any?
-  end
-  def nested_list?
-    @open_tags.last == 'li'
   end
   def processed?
     !@html.empty?
@@ -76,6 +75,7 @@ private
 end
 
 class WikiSyntax
+  ListBlockRegex = /(#{ListBlock::LineRegex}\n?)+/m # One or more list items, optionally ending with newlines
   Tokens = {
     '_' => 'i',
     '*' => 'b',
@@ -94,6 +94,9 @@ class WikiSyntax
   # We need to sort the tokens in descending order of length so that the most specific tokens match before the more general (i.e. === matches before == or =)
   EscapedTokens = Tokens.keys.sort_by { |k| k.length }.reverse.collect { |token| Regexp.escape(token) }
   TokenRegexp = Regexp.new(EscapedTokens.join('|'))
+  WikiWordRegex = /(?:^| +)((?:[A-Z][a-z]+){2,})(?: +|$)/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
+  WikiWordWithDescriptionRegex = /\[((?:[A-Z][a-z]+){2,}) (.+?)\]/
+  EscapedWikiWordRegex = /(?:^| +)!((?:[A-Z][a-z]+){2,})(?: +|$)/ # As a WikiWord but preceeded by exclamation mark.
   def initialize(wiki_content)
     @wiki_content = wiki_content
   end
@@ -110,7 +113,7 @@ class WikiSyntax
 
     # Extract list blocks so that we can parse them separately
     list_blocks = []
-    html.gsub!(/(^ +(\*|#) .*?\n?)+/m) do |list_block|
+    html.gsub!(ListBlockRegex) do |list_block|
       list_blocks << list_block
       "LISTBLOCK#{list_blocks.length}"
     end
@@ -154,6 +157,22 @@ class WikiSyntax
       list_blocks.each_with_index do |list_block, index|
         html.gsub!(/LISTBLOCK#{index+1}/, list_block)
       end
+    end
+    
+    # Wiki Words
+    html.gsub!(WikiWordRegex) do |matched_wiki_word|
+      matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
+    end
+#    html.gsub!(WikiWordWithDescriptionRegex) do |matched_wiki_word|
+#      matched_wiki_word.sub($1, %%
+#    end
+    html.gsub!(EscapedWikiWordRegex) do |matched_wiki_word|
+      matched_wiki_word.sub("!#{$1}", $1)  # it'll become $1 when i work out how to do non-collecting groups
+    end
+
+    # URLs
+    html.gsub!(/((?:f|ht)tp:\/\/.*?)(?: |$)/) do |matched_url|
+      matched_url.sub($1, %%<a href="#{$1}">#{$1}</a>%)
     end
 
     # Special case to deal with horizontal rules
