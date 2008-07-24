@@ -1,0 +1,7 @@
+require 'rake/testtask'
+
+desc "Run the tests for the google wiki to html convertor."
+Rake::TestTask.new(:default) do |t|
+  t.test_files = FileList['test/*_test.rb']
+  t.verbose = true
+end
