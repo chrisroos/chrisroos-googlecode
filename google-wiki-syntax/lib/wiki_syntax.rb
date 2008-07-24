@@ -59,11 +59,11 @@ class WikiSyntax
     html.gsub!(WikiWordRegex) do |matched_wiki_word|
       matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
     end
-    html.gsub!(WikiWordWithDescriptionRegex) do #|matched_wiki_word|
+    html.gsub!(WikiWordWithDescriptionRegex) do
       %%<a href="/#{$1}">#{$2}</a>%
     end
     html.gsub!(EscapedWikiWordRegex) do |matched_wiki_word|
-      matched_wiki_word.sub("!#{$1}", $1)  # it'll become $1 when i work out how to do non-collecting groups
+      matched_wiki_word.sub("!#{$1}", $1)
     end
 
     # URLs
