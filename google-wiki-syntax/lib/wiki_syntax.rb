@@ -23,11 +23,11 @@ class WikiSyntax
   module Regex
     AtStartOfStringOrBeginsWithSpaces = /(?:^| +)/
     AtEndOfStringOrEndsWithSpaces     = /(?: +|$)/
-    WikiWord                          = /(?:[A-Z][a-z]+){2,}/
+    CamelCaseWord                     = /(?:[A-Z][a-z]+){2,}/
     FtpOrHttpUrl                      = /(?:f|ht)tp:\/\/.*?/
-    WikiWordRegex                     = /#{AtStartOfStringOrBeginsWithSpaces}(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
-    WikiWordWithDescriptionRegex      = /\[(#{WikiWord}) (.+?)\]/
-    EscapedWikiWordRegex              = /#{AtStartOfStringOrBeginsWithSpaces}!(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
+    WikiWordRegex                     = /#{AtStartOfStringOrBeginsWithSpaces}(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
+    WikiWordWithDescriptionRegex      = /\[(#{CamelCaseWord}) (.+?)\]/
+    EscapedWikiWordRegex              = /#{AtStartOfStringOrBeginsWithSpaces}!(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
     UrlRegex                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{FtpOrHttpUrl})#{AtEndOfStringOrEndsWithSpaces}/
     UrlWithDescriptionRegex           = /\[(#{FtpOrHttpUrl}) (.*?)\]/
     ImageRegex                        = /#{AtStartOfStringOrBeginsWithSpaces}(http:\/\/.*?\.(?:png|gif|jpe?g))#{AtEndOfStringOrEndsWithSpaces}/
