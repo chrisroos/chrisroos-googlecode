@@ -212,7 +212,6 @@ class WikiSyntaxLinkTest < Test::Unit::TestCase
   
   def test_should_generate_a_relative_link_for_a_wiki_word
     assert_equal '<p><a href="/MyLink">MyLink</a></p>', WikiSyntax.new('MyLink').to_html
-    # Following failing test might work with non-collecting regex groups
     assert_equal '<p>Text with a <a href="/MyLink">MyLink</a> in the middle</p>', WikiSyntax.new('Text with a MyLink in the middle').to_html
   end
 
