@@ -18,11 +18,11 @@ class WikiSyntax
     '====== ' => 'h6', ' ======' => 'h6',
   }
   # We need to sort the tokens in descending order of length so that the most specific tokens match before the more general (i.e. === matches before == or =)
-  EscapedTokens = Tokens.keys.sort_by { |k| k.length }.reverse.collect { |token| Regexp.escape(token) }
-  TokenRegexp = Regexp.new(EscapedTokens.join('|'))
-  WikiWordRegex = /(?:^| +)((?:[A-Z][a-z]+){2,})(?: +|$)/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
+  EscapedTokens                = Tokens.keys.sort_by { |k| k.length }.reverse.collect { |token| Regexp.escape(token) }
+  TokenRegexp                  = Regexp.new(EscapedTokens.join('|'))
+  WikiWordRegex                = /(?:^| +)((?:[A-Z][a-z]+){2,})(?: +|$)/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
   WikiWordWithDescriptionRegex = /\[((?:[A-Z][a-z]+){2,}) (.+?)\]/
-  EscapedWikiWordRegex = /(?:^| +)!((?:[A-Z][a-z]+){2,})(?: +|$)/ # As a WikiWord but preceeded by exclamation mark.
+  EscapedWikiWordRegex         = /(?:^| +)!((?:[A-Z][a-z]+){2,})(?: +|$)/ # As a WikiWord but preceeded by exclamation mark.
   def initialize(wiki_content)
     @wiki_content = wiki_content
   end
@@ -59,9 +59,9 @@ class WikiSyntax
     html.gsub!(WikiWordRegex) do |matched_wiki_word|
       matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
     end
-#    html.gsub!(WikiWordWithDescriptionRegex) do |matched_wiki_word|
-#      matched_wiki_word.sub($1, %%
-#    end
+    html.gsub!(WikiWordWithDescriptionRegex) do #|matched_wiki_word|
+      %%<a href="/#{$1}">#{$2}</a>%
+    end
     html.gsub!(EscapedWikiWordRegex) do |matched_wiki_word|
       matched_wiki_word.sub("!#{$1}", $1)  # it'll become $1 when i work out how to do non-collecting groups
     end
