@@ -1,1 +1,1 @@
-test page http://images.reevoo.com/products/32/32325/500x500.jpg hello world
+hello world
