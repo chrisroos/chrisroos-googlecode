@@ -150,6 +150,10 @@ end
 
 class WikiSyntaxListTest < Test::Unit::TestCase
   
+  def test_should_generate_a_one_item_ordered_list_with_no_space_between_the_hash_and_list_item
+    assert_equal '<ul><li>list item</li></ul>', WikiSyntax.new(' *list item').to_html
+  end
+
   def test_should_generate_a_one_item_unordered_list
     assert_equal '<ul><li>list item</li></ul>', WikiSyntax.new(' * list item').to_html
   end
@@ -160,6 +164,10 @@ class WikiSyntaxListTest < Test::Unit::TestCase
 
   def test_should_generate_a_multi_item_unordered_list
     assert_equal '<ul><li>item 1</li><li>item 2</li><li>item 3</li></ul>', WikiSyntax.new(" * item 1\n * item 2\n * item 3").to_html
+  end
+
+  def test_should_generate_a_multi_item_ordered_list
+    assert_equal '<ol><li>item 1</li><li>item 2</li><li>item 3</li></ol>', WikiSyntax.new(" # item 1\n # item 2\n # item 3").to_html
   end
 
   def test_should_generate_a_multi_level_multi_item_unordered_list
@@ -174,13 +182,56 @@ class WikiSyntaxListTest < Test::Unit::TestCase
     assert_equal '<ol><li>ol 1</li><ul><li>ul 1</li></ul><li>ol 2</li></ol>', WikiSyntax.new(" # ol 1\n  * ul 1\n # ol 2").to_html
   end
 
-  def test_should_generate_two_unordered_lists
-    flunk "I know this fails due to the paragraph inbetween the lists - check the output online"
+  def test_should_generate_two_unordered_lists_separateed_by_a_paragraph
     assert_equal '<ul><li>list 1</li></ul><p>between lists</p><ul><li>list 2</li></ul>', WikiSyntax.new(" * list 1\n\nbetween lists\n\n * list 2").to_html
   end
 
   def test_should_allow_wiki_formatting_within_the_generated_list
     assert_equal '<ul><li><b>bold</b> list item</li></ul>', WikiSyntax.new(" * *bold* list item").to_html
   end
+
+  def test_should_generate_deep_nested_list
+    assert_equal '<ul><li>ul 1</li><ul><li>ul 2</li><ul><li>ul 3</li></ul></ul></ul>', WikiSyntax.new(" * ul 1\n  * ul 2\n   * ul 3").to_html
+  end
   
+end
+
+class WikiSyntaxBlockQuoteTest # < Test::Unit::TestCase
+
+  def test_should_generate_two_blockquotes_when_two_newlines_separate_the_quotes
+    assert_equal '<blockquote>first</blockquote><blockquote>second</blockquote><p>no quote</p>', WikiSyntax.new(" first\n\n second\nthird").to_html
+  end
+
+  def test_should_generate_one_blockquote_when_one_newline_separates_the_quotes
+    assert_equal "<blockquote>first\nsecond</blockquote><p>third</p>", WikiSyntax.new(" first\n second\nthird").to_html
+  end
+
+end
+
+class WikiSyntaxLinkTest < Test::Unit::TestCase
+  
+  def test_should_generate_a_relative_link_for_a_wiki_word
+    assert_equal '<p><a href="/MyLink">MyLink</a></p>', WikiSyntax.new('MyLink').to_html
+    # Following failing test might work with non-collecting regex groups
+    assert_equal '<p>Text with a <a href="/MyLink">MyLink</a> in the middle</p>', WikiSyntax.new('Text with a MyLink in the middle').to_html
+  end
+
+  def test_should_generate_a_paragraph_containing_the_escaped_wiki_word
+    assert_equal '<p>MyLink</p>', WikiSyntax.new('!MyLink').to_html
+    assert_equal '<p>Text with a WikiWord in the middle</p>', WikiSyntax.new('Text with a !WikiWord in the middle').to_html
+  end
+
+  def test_should_generate_a_link_to_external_http_urls
+    assert_equal '<p><a href="http://www.google.com">http://www.google.com</a></p>', WikiSyntax.new('http://www.google.com').to_html
+    assert_equal '<p>Click <a href="http://example.com">http://example.com</a> to visit</p>', WikiSyntax.new('Click http://example.com to visit').to_html
+  end
+
+  def test_should_generate_a_relative_link_with_specific_anchor_text_for_a_wiki_word
+    assert_equal '<p><a href="/MyLink">my link</a></p>', WikiSyntax.new('[MyLink my link]').to_html
+  end
+
+  def test_should_generate_a_link_to_external_ftp_urls
+    assert_equal '<p><a href="ftp://ftp.kernel.org">ftp://ftp.kernel.org</a></p>', WikiSyntax.new('ftp://ftp.kernel.org').to_html
+  end
+
 end
