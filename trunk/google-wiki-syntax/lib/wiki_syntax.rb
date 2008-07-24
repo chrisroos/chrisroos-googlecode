@@ -20,16 +20,18 @@ class WikiSyntax
   # We need to sort the tokens in descending order of length so that the most specific tokens match before the more general (i.e. === matches before == or =)
   EscapedTokens                = Tokens.keys.sort_by { |k| k.length }.reverse.collect { |token| Regexp.escape(token) }
   TokenRegexp                  = Regexp.new(EscapedTokens.join('|'))
-  AtStartOfStringOrBeginsWithSpaces = /(?:^| +)/
-  AtEndOfStringOrEndsWithSpaces     = /(?: +|$)/
-  WikiWord                          = /(?:[A-Z][a-z]+){2,}/
-  FtpOrHttpUrl                      = /(?:f|ht)tp:\/\/.*?/
-  WikiWordRegex                     = /#{AtStartOfStringOrBeginsWithSpaces}(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
-  WikiWordWithDescriptionRegex      = /\[(#{WikiWord}) (.+?)\]/
-  EscapedWikiWordRegex              = /#{AtStartOfStringOrBeginsWithSpaces}!(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
-  UrlRegex                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{FtpOrHttpUrl})#{AtEndOfStringOrEndsWithSpaces}/
-  UrlWithDescriptionRegex           = /\[(#{FtpOrHttpUrl}) (.*?)\]/
-  ImageRegex                        = /#{AtStartOfStringOrBeginsWithSpaces}(http:\/\/.*?\.(?:png|gif|jpe?g))#{AtEndOfStringOrEndsWithSpaces}/
+  module Regex
+    AtStartOfStringOrBeginsWithSpaces = /(?:^| +)/
+    AtEndOfStringOrEndsWithSpaces     = /(?: +|$)/
+    WikiWord                          = /(?:[A-Z][a-z]+){2,}/
+    FtpOrHttpUrl                      = /(?:f|ht)tp:\/\/.*?/
+    WikiWordRegex                     = /#{AtStartOfStringOrBeginsWithSpaces}(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
+    WikiWordWithDescriptionRegex      = /\[(#{WikiWord}) (.+?)\]/
+    EscapedWikiWordRegex              = /#{AtStartOfStringOrBeginsWithSpaces}!(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
+    UrlRegex                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{FtpOrHttpUrl})#{AtEndOfStringOrEndsWithSpaces}/
+    UrlWithDescriptionRegex           = /\[(#{FtpOrHttpUrl}) (.*?)\]/
+    ImageRegex                        = /#{AtStartOfStringOrBeginsWithSpaces}(http:\/\/.*?\.(?:png|gif|jpe?g))#{AtEndOfStringOrEndsWithSpaces}/
+  end
   def initialize(wiki_content)
     @wiki_content = wiki_content
   end
@@ -63,26 +65,26 @@ class WikiSyntax
     end
     
     # Wiki Words
-    html.gsub!(WikiWordRegex) do |matched_wiki_word|
+    html.gsub!(Regex::WikiWordRegex) do |matched_wiki_word|
       matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
     end
-    html.gsub!(WikiWordWithDescriptionRegex) do
+    html.gsub!(Regex::WikiWordWithDescriptionRegex) do
       %%<a href="/#{$1}">#{$2}</a>%
     end
-    html.gsub!(EscapedWikiWordRegex) do |matched_wiki_word|
+    html.gsub!(Regex::EscapedWikiWordRegex) do |matched_wiki_word|
       matched_wiki_word.sub("!#{$1}", $1)
     end
 
     # Images
-    html.gsub!(ImageRegex) do |matched_image_url|
+    html.gsub!(Regex::ImageRegex) do |matched_image_url|
       matched_image_url.sub($1, %%<img src="#{$1}" />%)
     end
 
     # URLs
-    html.gsub!(UrlWithDescriptionRegex) do |matched_url|
+    html.gsub!(Regex::UrlWithDescriptionRegex) do |matched_url|
       %%<a href="#{$1}">#{$2}</a>%
     end
-    html.gsub!(UrlRegex) do |matched_url|
+    html.gsub!(Regex::UrlRegex) do |matched_url|
       matched_url.sub($1, %%<a href="#{$1}">#{$1}</a>%)
     end
 
