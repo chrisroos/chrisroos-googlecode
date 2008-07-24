@@ -22,9 +22,10 @@ class WikiSyntax
   TokenRegexp                  = Regexp.new(EscapedTokens.join('|'))
   AtStartOfStringOrBeginsWithSpaces = /(?:^| +)/
   AtEndOfStringOrEndsWithSpaces = /(?: +|$)/
-  WikiWordRegex                = /#{AtStartOfStringOrBeginsWithSpaces}((?:[A-Z][a-z]+){2,})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
-  WikiWordWithDescriptionRegex = /\[((?:[A-Z][a-z]+){2,}) (.+?)\]/
-  EscapedWikiWordRegex         = /#{AtStartOfStringOrBeginsWithSpaces}!((?:[A-Z][a-z]+){2,})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
+  WikiWord = /(?:[A-Z][a-z]+){2,}/
+  WikiWordRegex                = /#{AtStartOfStringOrBeginsWithSpaces}(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
+  WikiWordWithDescriptionRegex = /\[(#{WikiWord}) (.+?)\]/
+  EscapedWikiWordRegex         = /#{AtStartOfStringOrBeginsWithSpaces}!(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
   UrlRegex                     = /#{AtStartOfStringOrBeginsWithSpaces}((?:f|ht)tp:\/\/.*?)#{AtEndOfStringOrEndsWithSpaces}/
   UrlWithDescriptionRegex      = /\[((?:f|ht)tp:\/\/.*?) (.*?)\]/
   ImageRegex                   = /#{AtStartOfStringOrBeginsWithSpaces}(http:\/\/.*?\.(?:png|gif|jpe?g))#{AtEndOfStringOrEndsWithSpaces}/
