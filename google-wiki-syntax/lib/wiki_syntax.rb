@@ -25,12 +25,12 @@ class WikiSyntax
     AtEndOfStringOrEndsWithSpaces     = /(?: +|$)/
     CamelCaseWord                     = /(?:[A-Z][a-z]+){2,}/
     FtpOrHttpUrl                      = /(?:f|ht)tp:\/\/.*?/
-    WikiWordRegex                     = /#{AtStartOfStringOrBeginsWithSpaces}(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
-    WikiWordWithDescriptionRegex      = /\[(#{CamelCaseWord}) (.+?)\]/
-    EscapedWikiWordRegex              = /#{AtStartOfStringOrBeginsWithSpaces}!(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
-    UrlRegex                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{FtpOrHttpUrl})#{AtEndOfStringOrEndsWithSpaces}/
-    UrlWithDescriptionRegex           = /\[(#{FtpOrHttpUrl}) (.*?)\]/
-    ImageRegex                        = /#{AtStartOfStringOrBeginsWithSpaces}(http:\/\/.*?\.(?:png|gif|jpe?g))#{AtEndOfStringOrEndsWithSpaces}/
+    WikiWord                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
+    WikiWordWithDescription           = /\[(#{CamelCaseWord}) (.+?)\]/
+    EscapedWikiWord                   = /#{AtStartOfStringOrBeginsWithSpaces}!(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
+    Url                               = /#{AtStartOfStringOrBeginsWithSpaces}(#{FtpOrHttpUrl})#{AtEndOfStringOrEndsWithSpaces}/
+    UrlWithDescription                = /\[(#{FtpOrHttpUrl}) (.*?)\]/
+    ImageUrl                          = /#{AtStartOfStringOrBeginsWithSpaces}(http:\/\/.*?\.(?:png|gif|jpe?g))#{AtEndOfStringOrEndsWithSpaces}/
   end
   def initialize(wiki_content)
     @wiki_content = wiki_content
@@ -65,26 +65,26 @@ class WikiSyntax
     end
     
     # Wiki Words
-    html.gsub!(Regex::WikiWordRegex) do |matched_wiki_word|
+    html.gsub!(Regex::WikiWord) do |matched_wiki_word|
       matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
     end
-    html.gsub!(Regex::WikiWordWithDescriptionRegex) do
+    html.gsub!(Regex::WikiWordWithDescription) do
       %%<a href="/#{$1}">#{$2}</a>%
     end
-    html.gsub!(Regex::EscapedWikiWordRegex) do |matched_wiki_word|
+    html.gsub!(Regex::EscapedWikiWord) do |matched_wiki_word|
       matched_wiki_word.sub("!#{$1}", $1)
     end
 
     # Images
-    html.gsub!(Regex::ImageRegex) do |matched_image_url|
+    html.gsub!(Regex::ImageUrl) do |matched_image_url|
       matched_image_url.sub($1, %%<img src="#{$1}" />%)
     end
 
     # URLs
-    html.gsub!(Regex::UrlWithDescriptionRegex) do |matched_url|
+    html.gsub!(Regex::UrlWithDescription) do |matched_url|
       %%<a href="#{$1}">#{$2}</a>%
     end
-    html.gsub!(Regex::UrlRegex) do |matched_url|
+    html.gsub!(Regex::Url) do |matched_url|
       matched_url.sub($1, %%<a href="#{$1}">#{$1}</a>%)
     end
 
