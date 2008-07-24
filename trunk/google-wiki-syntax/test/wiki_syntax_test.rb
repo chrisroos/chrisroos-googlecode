@@ -226,6 +226,11 @@ class WikiSyntaxLinkTest < Test::Unit::TestCase
     assert_equal '<p>Click <a href="http://example.com">http://example.com</a> to visit</p>', WikiSyntax.new('Click http://example.com to visit').to_html
   end
 
+  def test_should_generate_a_link_with_specific_anchor_text_to_external_http_urls
+    assert_equal '<p><a href="http://www.google.com">google home page</a></p>', WikiSyntax.new('[http://www.google.com google home page]').to_html
+    assert_equal '<p>Click <a href="http://www.google.com">google home page</a> to visit</p>', WikiSyntax.new('Click [http://www.google.com google home page] to visit').to_html
+  end
+
   def test_should_generate_a_relative_link_with_specific_anchor_text_for_a_wiki_word
     assert_equal '<p><a href="/MyLink">my link</a></p>', WikiSyntax.new('[MyLink my link]').to_html
     assert_equal '<p>Click <a href="/MyLink">my link</a> to visit</p>', WikiSyntax.new('Click [MyLink my link] to visit').to_html
