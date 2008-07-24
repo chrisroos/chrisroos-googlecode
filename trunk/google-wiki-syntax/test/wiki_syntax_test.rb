@@ -1,5 +1,5 @@
 require 'test/unit'
-require File.join(File.dirname(__FILE__), 'wiki_syntax')
+require File.join(File.dirname(__FILE__), '..', 'wiki_syntax')
 
 module Kernel
   alias_method :__original_p, :p
