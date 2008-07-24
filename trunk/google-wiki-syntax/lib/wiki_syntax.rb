@@ -23,6 +23,9 @@ class WikiSyntax
   WikiWordRegex                = /(?:^| +)((?:[A-Z][a-z]+){2,})(?: +|$)/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
   WikiWordWithDescriptionRegex = /\[((?:[A-Z][a-z]+){2,}) (.+?)\]/
   EscapedWikiWordRegex         = /(?:^| +)!((?:[A-Z][a-z]+){2,})(?: +|$)/ # As a WikiWord but preceeded by exclamation mark.
+  UrlRegex                     = /(?:^| +)((?:f|ht)tp:\/\/.*?)(?: |$)/
+  UrlWithDescriptionRegex      = /\[((?:f|ht)tp:\/\/.*?) (.*?)\]/
+  ImageRegex                   = /(?:^| +)(http:\/\/.*?\.(?:png|gif|jpe?g))(?: |$)/
   def initialize(wiki_content)
     @wiki_content = wiki_content
   end
@@ -67,15 +70,15 @@ class WikiSyntax
     end
 
     # Images
-    html.gsub!(/(?:^| +)(http:\/\/.*?\.(?:png|gif|jpe?g))(?: |$)/) do |matched_image_url|
+    html.gsub!(ImageRegex) do |matched_image_url|
       matched_image_url.sub($1, %%<img src="#{$1}" />%)
     end
 
     # URLs
-    html.gsub!(/\[((?:f|ht)tp:\/\/.*?) (.*?)\]/) do |matched_url|
+    html.gsub!(UrlWithDescriptionRegex) do |matched_url|
       %%<a href="#{$1}">#{$2}</a>%
     end
-    html.gsub!(/(?:^| +)((?:f|ht)tp:\/\/.*?)(?: |$)/) do |matched_url|
+    html.gsub!(UrlRegex) do |matched_url|
       matched_url.sub($1, %%<a href="#{$1}">#{$1}</a>%)
     end
 
