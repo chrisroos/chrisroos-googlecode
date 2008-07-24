@@ -246,3 +246,12 @@ class WikiSyntaxLinkTest < Test::Unit::TestCase
   end
 
 end
+
+class WikiSyntaxImageTest < Test::Unit::TestCase
+  
+  def test_should_insert_a_png_image
+    assert_equal '<p><img src="http://www.example.com/image.png" /></p>', WikiSyntax.new('http://www.example.com/image.png').to_html
+    assert_equal '<p>My first <img src="http://www.example.com/image.png" /> image</p>', WikiSyntax.new('My first http://www.example.com/image.png image').to_html
+  end
+
+end

@@ -66,6 +66,11 @@ class WikiSyntax
       matched_wiki_word.sub("!#{$1}", $1)
     end
 
+    # Images
+    html.gsub!(/(?:^| +)(http:\/\/.*?\.png)(?: |$)/) do |matched_image_url|
+      matched_image_url.sub($1, %%<img src="#{$1}" />%)
+    end
+
     # URLs
     html.gsub!(/\[((?:f|ht)tp:\/\/.*?) (.*?)\]/) do |matched_url|
       %%<a href="#{$1}">#{$2}</a>%
