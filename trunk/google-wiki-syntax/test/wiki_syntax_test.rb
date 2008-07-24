@@ -241,4 +241,9 @@ class WikiSyntaxLinkTest < Test::Unit::TestCase
     assert_equal '<p>Click <a href="ftp://ftp.kernel.org">ftp://ftp.kernel.org</a> to visit</p>', WikiSyntax.new('Click ftp://ftp.kernel.org to visit').to_html
   end
 
+  def test_should_generate_a_link_to_external_ftp_urls
+    assert_equal '<p><a href="ftp://ftp.kernel.org">kernel ftp site</a></p>', WikiSyntax.new('[ftp://ftp.kernel.org kernel ftp site]').to_html
+    assert_equal '<p>Click <a href="ftp://ftp.kernel.org">kernel ftp site</a> to visit</p>', WikiSyntax.new('Click [ftp://ftp.kernel.org kernel ftp site] to visit').to_html
+  end
+
 end
