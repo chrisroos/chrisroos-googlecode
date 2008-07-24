@@ -119,36 +119,6 @@ class WikiSyntax
     end
 
     list_blocks.each_with_index do |list_block, index|
-#      previous_indentation_to_token, list_block_buffer, open_tags = 0, '', []
-#      list_block.each do |line|
-#        line =~ /^( +)(\*|#) (.*)$/ # Any number of spaces then either list token, a space and the list content
-#        indentation_to_token, token, list_item_content = $1.length, $2, $3
-#        list_tag = ListTokens[token]
-#        if indentation_to_token > previous_indentation_to_token
-#          # Open a new list (and possibly list item) tag
-#          if open_tags.any?
-#            list_block_buffer << "<li>"
-#            open_tags.push('li')
-#          end
-#          list_block_buffer << "<#{list_tag}>"
-#          open_tags.push(list_tag)
-#        elsif indentation_to_token < previous_indentation_to_token
-#          # Close a list (and possibly list item) tag
-#          closing_tag = open_tags.pop
-#          list_block_buffer << "</#{closing_tag}>"
-#          if open_tags.last == 'li'
-#            open_tags.pop
-#            list_block_buffer << "</li>"
-#          end
-#        end
-#        list_block_buffer << "<li>#{list_item_content}</li>"
-#        previous_indentation_to_token = indentation_to_token
-#      end
-#      # Pop any remaining tags off the stack
-#      while open_tags.any? do
-#        closing_tag = open_tags.pop
-#        list_block_buffer << "</#{closing_tag}>"
-#      end
       list_block = ListBlock.new(list_block)
       list_blocks[index] = list_block.to_html
     end
