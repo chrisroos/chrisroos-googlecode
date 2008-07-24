@@ -23,11 +23,12 @@ class WikiSyntax
   AtStartOfStringOrBeginsWithSpaces = /(?:^| +)/
   AtEndOfStringOrEndsWithSpaces = /(?: +|$)/
   WikiWord = /(?:[A-Z][a-z]+){2,}/
+  FtpOrHttpUrl = /(?:f|ht)tp:\/\/.*?/
   WikiWordRegex                = /#{AtStartOfStringOrBeginsWithSpaces}(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
   WikiWordWithDescriptionRegex = /\[(#{WikiWord}) (.+?)\]/
   EscapedWikiWordRegex         = /#{AtStartOfStringOrBeginsWithSpaces}!(#{WikiWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
-  UrlRegex                     = /#{AtStartOfStringOrBeginsWithSpaces}((?:f|ht)tp:\/\/.*?)#{AtEndOfStringOrEndsWithSpaces}/
-  UrlWithDescriptionRegex      = /\[((?:f|ht)tp:\/\/.*?) (.*?)\]/
+  UrlRegex                     = /#{AtStartOfStringOrBeginsWithSpaces}(#{FtpOrHttpUrl})#{AtEndOfStringOrEndsWithSpaces}/
+  UrlWithDescriptionRegex      = /\[(#{FtpOrHttpUrl}) (.*?)\]/
   ImageRegex                   = /#{AtStartOfStringOrBeginsWithSpaces}(http:\/\/.*?\.(?:png|gif|jpe?g))#{AtEndOfStringOrEndsWithSpaces}/
   def initialize(wiki_content)
     @wiki_content = wiki_content
