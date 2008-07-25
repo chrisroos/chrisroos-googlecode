@@ -1,4 +1,4 @@
 hello world
 
 || table ||
-|| table 2 ||
+foo || table 2 ||
