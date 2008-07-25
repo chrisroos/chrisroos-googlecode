@@ -30,7 +30,9 @@ class WikiSyntax
     EscapedWikiWord                   = /#{AtStartOfStringOrBeginsWithSpaces}!(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
     Url                               = /#{AtStartOfStringOrBeginsWithSpaces}(#{FtpOrHttpUrl})#{AtEndOfStringOrEndsWithSpaces}/
     UrlWithDescription                = /\[(#{FtpOrHttpUrl}) (.*?)\]/
-    ImageUrl                          = /#{AtStartOfStringOrBeginsWithSpaces}(http:\/\/.*?\.(?:png|gif|jpe?g))#{AtEndOfStringOrEndsWithSpaces}/
+    Image                             = /http:\/\/.*?\.(?:png|gif|jpe?g)/
+    ImageUrl                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{Image})#{AtEndOfStringOrEndsWithSpaces}/
+    HyperlinkedImage                  = /\[(#{Regex::FtpOrHttpUrl}) (#{Image})\]/
   end
   def initialize(wiki_content)
     @wiki_content = wiki_content
@@ -73,6 +75,11 @@ class WikiSyntax
     end
     html.gsub!(Regex::EscapedWikiWord) do |matched_wiki_word|
       matched_wiki_word.sub("!#{$1}", $1)
+    end
+
+    # Links to Images
+    html.gsub!(Regex::HyperlinkedImage) do |matched_link_and_image_url|
+      %%<a href="#{$1}"><img src="#{$2}" /></a>%
     end
 
     # Images
