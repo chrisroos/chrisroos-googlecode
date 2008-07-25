@@ -1,4 +1,3 @@
 hello world
 
-|| table || cell 1 ||
-|| blurgh || foobar ||
+|| table
