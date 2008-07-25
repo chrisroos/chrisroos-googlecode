@@ -1,5 +1,4 @@
 hello world
 
 || table ||
-
-|| tabe 2 ||
+|| table 2 ||
