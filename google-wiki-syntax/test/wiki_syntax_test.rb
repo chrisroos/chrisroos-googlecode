@@ -109,27 +109,51 @@ class WikiSyntaxHeadingsTest < Test::Unit::TestCase
   def test_should_generate_h1
     assert_equal "<h1>heading</h1>", WikiSyntax.new("= heading =").to_html
   end
+    
+  def test_should_not_generate_h1
+    assert_equal '<p>= no heading</p>', WikiSyntax.new("= no heading").to_html
+  end
 
   def test_should_generate_h2
     assert_equal "<h2>heading 2</h2>", WikiSyntax.new("== heading 2 ==").to_html
+  end
+
+  def test_should_not_generate_h2
+    assert_equal '<p>== no heading</p>', WikiSyntax.new("== no heading").to_html
   end
 
   def test_should_generate_h3
     assert_equal "<h3>heading 3</h3>", WikiSyntax.new("=== heading 3 ===").to_html
   end
 
+  def test_should_not_generate_h3
+    assert_equal '<p>=== no heading</p>', WikiSyntax.new("=== no heading").to_html
+  end
+
   def test_should_generate_h4
     assert_equal "<h4>heading 4</h4>", WikiSyntax.new("==== heading 4 ====").to_html
+  end
+
+  def test_should_not_generate_h4
+    assert_equal '<p>==== no heading</p>', WikiSyntax.new("==== no heading").to_html
   end
 
   def test_should_generate_h5
     assert_equal "<h5>heading 5</h5>", WikiSyntax.new("===== heading 5 =====").to_html
   end
 
+  def test_should_not_generate_h5
+    assert_equal '<p>===== no heading</p>', WikiSyntax.new("===== no heading").to_html
+  end
+
   def test_should_generate_h6
     assert_equal "<h6>heading 6</h6>", WikiSyntax.new("====== heading 6 ======").to_html
   end
   
+  def test_should_not_generate_h6
+    assert_equal '<p>====== no heading</p>', WikiSyntax.new("====== no heading").to_html
+  end
+
 end
 
 class WikiSyntaxDividerTest < Test::Unit::TestCase
