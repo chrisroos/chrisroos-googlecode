@@ -279,3 +279,31 @@ class WikiSyntaxLinkedImagesTest < Test::Unit::TestCase
   end
 
 end
+
+class WikiSyntaxTableTest < Test::Unit::TestCase
+  
+  def test_should_not_generate_a_table
+    assert_equal "<p>|| no table here</p>", WikiSyntax.new("|| no table here").to_html
+  end
+
+  def test_should_generate_a_table_with_one_row_and_one_cell
+    assert_equal "<p><table><tr><td> cell1 </td></tr></table></p>", WikiSyntax.new("|| cell1 ||").to_html
+  end
+
+  def test_should_generate_a_table_with_one_row_and_multiple_cells
+    assert_equal "<p><table><tr><td> cell1 </td><td> cell2 </td><td> cell3 </td></tr></table></p>", WikiSyntax.new("|| cell1 || cell2 || cell3 ||").to_html
+  end
+
+  def test_should_generate_a_table_with_two_rows_and_one_cell
+    assert_equal "<p><table><tr><td> cell1 </td></tr><tr><td> cell2 </td></tr></table></p>", WikiSyntax.new("|| cell1 ||\n|| cell2 ||").to_html
+  end
+
+  def test_should_generate_a_table_with_two_rows_and_multiple_cells
+    assert_equal "<p><table><tr><td> cell1 </td><td> cell2 </td><td> cell3 </td></tr><tr><td> cell4 </td><td> cell5 </td><td> cell6 </td></tr></table></p>", WikiSyntax.new("|| cell1 || cell2 || cell3 ||\n|| cell4 || cell5 || cell6 ||").to_html
+  end
+
+  def test_should_generate_two_tables
+    assert_equal "<p><table><tr><td> cell1 </td></tr></table></p><p><table><tr><td> cell2 </td></tr></table></p>", WikiSyntax.new("|| cell1 ||\n\n|| cell2 ||").to_html
+  end
+
+end

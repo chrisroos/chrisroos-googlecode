@@ -65,7 +65,27 @@ class WikiSyntax
         html.gsub!(/LISTBLOCK#{index+1}/, list_block)
       end
     end
-    
+
+    # Tables
+    tables = []
+    html.gsub!(/\|\|(.*?\|\|)+(\n\|\|(.*?\|\|)+)*/) do |table|
+      tables << table
+      "TABLE#{tables.length}"
+    end
+    tables.each_with_index do |table, index|
+      table_html = ''
+      table.each_line do |line|
+        line = line.chomp
+        line.gsub!(/\|\|(.*)\|\|/) do |match|
+          "<tr><td>#{$1}</td></tr>"
+        end
+        line.gsub!(/\|\|/, '</td><td>')
+        table_html << line
+      end
+      table_html = "<table>#{table_html}</table>"
+      html.gsub!(/TABLE#{index+1}/, table_html)
+    end
+
     # Wiki Words
     html.gsub!(Regex::WikiWord) do |matched_wiki_word|
       matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
