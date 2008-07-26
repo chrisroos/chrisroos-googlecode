@@ -9,13 +9,7 @@ class WikiSyntax
     '{{{' => 'code', '}}}' => 'code',
     '^' => 'sup',
     ',,' => 'sub',
-    '~~' => 'strike',
-    '= ' => 'h1', ' =' => 'h1',
-    '== ' => 'h2', ' ==' => 'h2',
-    '=== ' => 'h3', ' ===' => 'h3',
-    '==== ' => 'h4', ' ====' => 'h4',
-    '===== ' => 'h5', ' =====' => 'h5',
-    '====== ' => 'h6', ' ======' => 'h6',
+    '~~' => 'strike'
   }
   # We need to sort the tokens in descending order of length so that the most specific tokens match before the more general (i.e. === matches before == or =)
   EscapedTokens                = Tokens.keys.sort_by { |k| k.length }.reverse.collect { |token| Regexp.escape(token) }
@@ -117,6 +111,14 @@ class WikiSyntax
 
     # Special case to deal with horizontal rules
     html = html.gsub(/^-{4,}$/, '<hr/>')
+
+    # Headings
+    html.gsub!(/======([^<>=]+?)======/) { "<h6>#{$1.strip}</h6>" }
+    html.gsub!(/=====([^<>=]+?)=====/) { "<h5>#{$1.strip}</h5>" }
+    html.gsub!(/====([^<>=]+?)====/) { "<h4>#{$1.strip}</h4>" }
+    html.gsub!(/===([^<>=]+?)===/) { "<h3>#{$1.strip}</h3>" }
+    html.gsub!(/==([^<>=]+?)==/) { "<h2>#{$1.strip}</h2>" }
+    html.gsub!(/=([^<>=]+?)=/) { "<h1>#{$1.strip}</h1>" }
 
     # Convert wiki markup to html tags
     open_tags = []
