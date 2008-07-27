@@ -55,6 +55,38 @@ class WikiSyntax
     @html.gsub!(/==([^<>=]+?)==/) { "<h2>#{$1.strip}</h2>" }
     @html.gsub!(/=([^<>=]+?)=/) { "<h1>#{$1.strip}</h1>" }
   end
+  def create_wiki_links
+    @html.gsub!(Regex::WikiWord) do |matched_wiki_word|
+      matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
+    end
+    @html.gsub!(Regex::WikiWordWithDescription) do
+      %%<a href="/#{$1}">#{$2}</a>%
+    end
+    @html.gsub!(Regex::EscapedWikiWord) do |matched_wiki_word|
+      matched_wiki_word.sub("!#{$1}", $1)
+    end
+  end
+  def create_url_links
+    @html.gsub!(Regex::UrlWithDescription) do |matched_url|
+      %%<a href="#{$1}">#{$2}</a>%
+    end
+    @html.gsub!(Regex::Url) do |matched_url|
+      matched_url.sub($1, %%<a href="#{$1}">#{$1}</a>%)
+    end
+  end
+  def create_images
+    @html.gsub!(Regex::ImageUrl) do |matched_image_url|
+      matched_image_url.sub($1, %%<img src="#{$1}" />%)
+    end
+  end
+  def create_image_links
+    @html.gsub!(Regex::HyperlinkedImage) do |matched_link_and_image_url|
+      %%<a href="#{$1}"><img src="#{$2}" /></a>%
+    end
+  end
+  def create_horizontal_rules
+    @html.gsub!(/^-{4,}$/, '<hr/>')
+  end
   def to_html
     extract_code_blocks
 
@@ -97,36 +129,19 @@ class WikiSyntax
     end
 
     # Wiki Words
-    @html.gsub!(Regex::WikiWord) do |matched_wiki_word|
-      matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
-    end
-    @html.gsub!(Regex::WikiWordWithDescription) do
-      %%<a href="/#{$1}">#{$2}</a>%
-    end
-    @html.gsub!(Regex::EscapedWikiWord) do |matched_wiki_word|
-      matched_wiki_word.sub("!#{$1}", $1)
-    end
+    create_wiki_links
 
     # Links to Images
-    @html.gsub!(Regex::HyperlinkedImage) do |matched_link_and_image_url|
-      %%<a href="#{$1}"><img src="#{$2}" /></a>%
-    end
+    create_image_links
 
     # Images
-    @html.gsub!(Regex::ImageUrl) do |matched_image_url|
-      matched_image_url.sub($1, %%<img src="#{$1}" />%)
-    end
+    create_images
 
     # URLs
-    @html.gsub!(Regex::UrlWithDescription) do |matched_url|
-      %%<a href="#{$1}">#{$2}</a>%
-    end
-    @html.gsub!(Regex::Url) do |matched_url|
-      matched_url.sub($1, %%<a href="#{$1}">#{$1}</a>%)
-    end
+    create_url_links
 
     # Special case to deal with horizontal rules
-    @html.gsub!(/^-{4,}$/, '<hr/>')
+    create_horizontal_rules
 
     # Headings
     write_headings
