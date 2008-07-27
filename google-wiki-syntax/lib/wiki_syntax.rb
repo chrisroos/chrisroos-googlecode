@@ -99,15 +99,9 @@ class WikiSyntax
 
     list_blocks.each_with_index do |list_block, index|
       list_block = ListBlock.new(list_block)
-      list_blocks[index] = list_block.to_html
+      @html.gsub!(/LISTBLOCK#{index+1}/, list_block.to_html)
     end
     
-    if list_blocks.any?
-      list_blocks.each_with_index do |list_block, index|
-        @html.gsub!(/LISTBLOCK#{index+1}/, list_block)
-      end
-    end
-
     # Tables
     tables = []
     @html.gsub!(/\|\|(.*?\|\|)+(\n\|\|(.*?\|\|)+)*/) do |table|
