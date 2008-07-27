@@ -118,6 +118,9 @@ class WikiSyntax
       @html.gsub!(/TABLE#{index+1}/, table_html)
     end
   end
+  def remove_newlines_from_the_end_of_wiki_content
+    while @html =~ /\n\Z/; @html.chomp!; end
+  end
   def to_html
     extract_code_blocks
 
@@ -147,7 +150,7 @@ class WikiSyntax
     end
 
     # Delete newlines that appear at the end of the wiki content
-    while @html =~ /\n\Z/; @html.chomp!; end
+    remove_newlines_from_the_end_of_wiki_content
 
     # Re-insert the code blocks into the wiki_content
     insert_code_blocks
