@@ -30,15 +30,25 @@ class WikiSyntax
   end
   def initialize(wiki_content)
     @wiki_content = @html = wiki_content
+    @code_blocks = []
   end
-  def to_html
-    # Extract code blocks from the wiki_content so that we leave the code blocks as they are
-    code_blocks = []
+  def extract_code_blocks
     @html = @html.gsub(/(`|\{\{\{).*?(\}\}\}|`)/m) do |code_block|
       code_block.gsub!(/`|\{|\}/, '')
-      code_blocks << code_block 
-      "CODEBLOCK#{code_blocks.length}"
+      @code_blocks << code_block 
+      "CODEBLOCK#{@code_blocks.length}"
     end
+  end
+  def insert_code_blocks
+    if @code_blocks.any?
+      @code_blocks.each_with_index do |code_block, index|
+        code_block = code_block =~ /\n/ ? "<pre>" + code_block.strip + "</pre>" : "<code>" + code_block.strip + "</code>"
+        @html = @html.gsub(/CODEBLOCK#{index+1}/, code_block)
+      end
+    end
+  end
+  def to_html
+    extract_code_blocks
 
     # Extract list blocks so that we can parse them separately
     list_blocks = []
@@ -135,12 +145,8 @@ class WikiSyntax
     while @html =~ /\n\Z/; @html.chomp!; end
 
     # Re-insert the code blocks into the wiki_content
-    if code_blocks.any?
-      code_blocks.each_with_index do |code_block, index|
-        code_block = code_block =~ /\n/ ? "<pre>" + code_block.strip + "</pre>" : "<code>" + code_block.strip + "</code>"
-        @html = @html.gsub(/CODEBLOCK#{index+1}/, code_block)
-      end
-    end
+    insert_code_blocks
+
     # Not convinced this is important but it removes the newline between the pre blocks in <pre>..code..</pre>\n<pre>...code...</pre>
     @html = @html.gsub(/<\/pre>\n<pre>/m, '</pre><pre>')
 
