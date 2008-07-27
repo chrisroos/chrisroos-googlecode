@@ -51,7 +51,6 @@ class WikiSyntax
     create_superscript_tags
     create_subscript_tags
     create_strike_tags
-    create_remaining_html
 
     insert_code_blocks
     remove_newlines_between_code_blocks
