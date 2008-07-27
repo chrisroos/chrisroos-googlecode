@@ -54,6 +54,10 @@ class WikiSyntaxTypefaceTest < Test::Unit::TestCase
     assert_equal "<p><sup>super</sup>script</p>", WikiSyntax.new('^super^script').to_html
   end
 
+  def test_should_not_enclose_text_in_html_sup_tags
+    assert_equal "<p>^not_superscript</p>", WikiSyntax.new('^not_superscript').to_html
+  end
+
   def test_should_enclose_text_in_html_sub_tags
     assert_equal "<p><sub>sub</sub>script</p>", WikiSyntax.new(',,sub,,script').to_html
   end

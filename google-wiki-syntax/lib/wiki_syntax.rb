@@ -6,7 +6,6 @@ class WikiSyntax
   Tokens = {
     '`' => 'code',
     '{{{' => 'code', '}}}' => 'code',
-    '^' => 'sup',
     ',,' => 'sub',
     '~~' => 'strike'
   }
@@ -51,6 +50,7 @@ class WikiSyntax
 
     create_italics
     create_bold_tags
+    create_superscript_tags
     create_remaining_html
 
     insert_code_blocks
@@ -64,6 +64,10 @@ class WikiSyntax
 
 private
   
+  def create_superscript_tags
+    @html.gsub!(/\^(.*?)\^/, '<sup>' + '\1' + '</sup>')
+  end
+
   def create_bold_tags
     @html.gsub!(/\*(.*?)\*/, '<b>' + '\1' + '</b>')
   end
