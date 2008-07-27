@@ -46,6 +46,10 @@ class WikiSyntaxTypefaceTest < Test::Unit::TestCase
     assert_equal "<p><b>bold</b></p>", WikiSyntax.new('*bold*').to_html
   end
 
+  def test_should_not_enclose_text_in_html_bold_tags
+    assert_equal "<p>*not_bold</p>", WikiSyntax.new('*not_bold').to_html
+  end
+
   def test_should_enclose_text_in_html_sup_tags
     assert_equal "<p><sup>super</sup>script</p>", WikiSyntax.new('^super^script').to_html
   end
