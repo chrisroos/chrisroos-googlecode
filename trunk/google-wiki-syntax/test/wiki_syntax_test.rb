@@ -38,6 +38,10 @@ class WikiSyntaxTypefaceTest < Test::Unit::TestCase
     assert_equal "<p><i>italic</i></p>", WikiSyntax.new('_italic_').to_html
   end
 
+  def test_should_not_enclose_text_in_html_italic_tags
+    assert_equal "<p>_italic</p>", WikiSyntax.new('_italic').to_html
+  end
+
   def test_should_enclose_text_in_html_bold_tags
     assert_equal "<p><b>bold</b></p>", WikiSyntax.new('*bold*').to_html
   end
