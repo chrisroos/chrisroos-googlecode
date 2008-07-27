@@ -32,6 +32,32 @@ class WikiSyntax
     @wiki_content = @html = wiki_content
     @code_blocks = []
   end
+  def to_html
+    extract_code_blocks
+
+    create_lists
+    create_tables
+
+    create_wiki_links
+    create_image_links
+    create_images
+    create_url_links
+
+    create_horizontal_rules
+
+    create_headings
+
+    create_remaining_html
+
+    insert_code_blocks
+    remove_newlines_between_code_blocks
+    remove_newlines_from_the_end_of_wiki_content
+
+    create_paragraphs
+
+    @html
+  end
+private
   def extract_code_blocks
     @html.gsub!(/(`|\{\{\{).*?(\}\}\}|`)/m) do |code_block|
       code_block.gsub!(/`|\{|\}/, '')
@@ -147,30 +173,5 @@ class WikiSyntax
         "<p>" + block.gsub(/\n/, ' ') + "</p>"
       end
     end.join
-  end
-  def to_html
-    extract_code_blocks
-
-    create_lists
-    create_tables
-
-    create_wiki_links
-    create_image_links
-    create_images
-    create_url_links
-
-    create_horizontal_rules
-
-    create_headings
-
-    create_remaining_html
-
-    insert_code_blocks
-    remove_newlines_between_code_blocks
-    remove_newlines_from_the_end_of_wiki_content
-
-    create_paragraphs
-
-    @html
   end
 end
