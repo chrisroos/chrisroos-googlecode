@@ -21,6 +21,8 @@ class WikiSyntax
     SubscriptText                     = /,,(.*?),,/
     SuperscriptText                   = /\^(.*?)\^/
     ItalicText                        = /_(.*?)_/
+    CodeBlock                         = /(`|\{\{\{).*?(\}\}\}|`)/m
+    HorizontalRule                    = /^-{4,}$/
   end
   
   def initialize(wiki_content)
@@ -81,7 +83,7 @@ private
   end
 
   def extract_code_blocks
-    @html.gsub!(/(`|\{\{\{).*?(\}\}\}|`)/m) do |code_block|
+    @html.gsub!(Regex::CodeBlock) do |code_block|
       code_block.gsub!(/`|\{|\}/, '')
       @code_blocks << code_block 
       "CODEBLOCK#{@code_blocks.length}"
@@ -140,7 +142,7 @@ private
   end
   
   def create_horizontal_rules
-    @html.gsub!(/^-{4,}$/, '<hr/>')
+    @html.gsub!(Regex::HorizontalRule, '<hr/>')
   end
   
   def create_lists
