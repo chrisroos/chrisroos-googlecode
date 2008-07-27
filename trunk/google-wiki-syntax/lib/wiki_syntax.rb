@@ -154,11 +154,9 @@ class WikiSyntax
 
     create_remaining_html
 
-    remove_newlines_from_the_end_of_wiki_content
-
     insert_code_blocks
-
     remove_newlines_between_code_blocks
+    remove_newlines_from_the_end_of_wiki_content
 
     # Find the 'blocks' of text in the content, and if they arent code then wrap them in P tags
     html_blocks = @html.split(/\n{2,}/m)
