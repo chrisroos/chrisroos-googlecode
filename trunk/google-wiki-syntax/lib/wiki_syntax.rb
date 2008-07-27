@@ -137,6 +137,17 @@ class WikiSyntax
       end
     end
   end
+  def create_paragraphs
+    html_blocks = @html.split(/\n{2,}/m)
+    @html = html_blocks.map do |block| 
+      if block =~ /\A<pre|h1|h2|h3|h4|h5|h6|hr\/|ul|ol>/
+        block
+      else
+        # remove newlines within normal (non-code) blocks of text
+        "<p>" + block.gsub(/\n/, ' ') + "</p>"
+      end
+    end.join
+  end
   def to_html
     extract_code_blocks
 
@@ -158,16 +169,7 @@ class WikiSyntax
     remove_newlines_between_code_blocks
     remove_newlines_from_the_end_of_wiki_content
 
-    # Find the 'blocks' of text in the content, and if they arent code then wrap them in P tags
-    html_blocks = @html.split(/\n{2,}/m)
-    @html = html_blocks.map do |block| 
-      if block =~ /\A<pre|h1|h2|h3|h4|h5|h6|hr\/|ul|ol>/
-        block
-      else
-        # remove newlines within normal (non-code) blocks of text
-        "<p>" + block.gsub(/\n/, ' ') + "</p>"
-      end
-    end.join
+    create_paragraphs
 
     @html
   end
