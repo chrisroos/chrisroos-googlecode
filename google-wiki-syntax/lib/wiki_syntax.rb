@@ -152,16 +152,12 @@ class WikiSyntax
 
     write_headings
 
-    # Convert wiki markup to html tags
     create_remaining_html
 
-    # Delete newlines that appear at the end of the wiki content
     remove_newlines_from_the_end_of_wiki_content
 
-    # Re-insert the code blocks into the wiki_content
     insert_code_blocks
 
-    # Not convinced this is important but it removes the newline between the pre blocks in <pre>..code..</pre>\n<pre>...code...</pre>
     remove_newlines_between_code_blocks
 
     # Find the 'blocks' of text in the content, and if they arent code then wrap them in P tags
