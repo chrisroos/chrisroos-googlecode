@@ -39,7 +39,7 @@ class WikiSyntaxTypefaceTest < Test::Unit::TestCase
   end
 
   def test_should_not_enclose_text_in_html_italic_tags
-    assert_equal "<p>_italic</p>", WikiSyntax.new('_italic').to_html
+    assert_equal "<p>_notitalic</p>", WikiSyntax.new('_notitalic').to_html
   end
 
   def test_should_enclose_text_in_html_bold_tags
