@@ -3,13 +3,6 @@ require File.join(File.dirname(__FILE__), 'list_block')
 class WikiSyntax
 
   ListBlockRegex = /(#{ListBlock::LineRegex}\n?)+/m # One or more list items, optionally ending with newlines
-  Tokens = {
-    '`' => 'code',
-    '{{{' => 'code', '}}}' => 'code'
-  }
-  # We need to sort the tokens in descending order of length so that the most specific tokens match before the more general (i.e. === matches before == or =)
-  EscapedTokens                = Tokens.keys.sort_by { |k| k.length }.reverse.collect { |token| Regexp.escape(token) }
-  TokenRegexp                  = Regexp.new(EscapedTokens.join('|'))
 
   module Regex
     AtStartOfStringOrBeginsWithSpaces = /(?:^| +)/
@@ -185,20 +178,6 @@ private
   
   def remove_newlines_between_code_blocks
     @html.gsub!(/<\/pre>\n<pre>/m, '</pre><pre>')
-  end
-  
-  def create_remaining_html
-    open_tags = []
-    @html.gsub!(TokenRegexp) do |matched_token|
-      html_tag = Tokens[matched_token] 
-      if open_tags.include?(html_tag)
-        open_tags.delete(html_tag)
-        "</#{html_tag}>"
-      else
-        open_tags.push(html_tag)
-        "<#{html_tag}>"
-      end
-    end
   end
   
   def create_paragraphs
