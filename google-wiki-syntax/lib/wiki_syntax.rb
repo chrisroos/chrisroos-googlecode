@@ -47,6 +47,14 @@ class WikiSyntax
       end
     end
   end
+  def write_headings
+    @html.gsub!(/======([^<>=]+?)======/) { "<h6>#{$1.strip}</h6>" }
+    @html.gsub!(/=====([^<>=]+?)=====/) { "<h5>#{$1.strip}</h5>" }
+    @html.gsub!(/====([^<>=]+?)====/) { "<h4>#{$1.strip}</h4>" }
+    @html.gsub!(/===([^<>=]+?)===/) { "<h3>#{$1.strip}</h3>" }
+    @html.gsub!(/==([^<>=]+?)==/) { "<h2>#{$1.strip}</h2>" }
+    @html.gsub!(/=([^<>=]+?)=/) { "<h1>#{$1.strip}</h1>" }
+  end
   def to_html
     extract_code_blocks
 
@@ -121,12 +129,7 @@ class WikiSyntax
     @html.gsub!(/^-{4,}$/, '<hr/>')
 
     # Headings
-    @html.gsub!(/======([^<>=]+?)======/) { "<h6>#{$1.strip}</h6>" }
-    @html.gsub!(/=====([^<>=]+?)=====/) { "<h5>#{$1.strip}</h5>" }
-    @html.gsub!(/====([^<>=]+?)====/) { "<h4>#{$1.strip}</h4>" }
-    @html.gsub!(/===([^<>=]+?)===/) { "<h3>#{$1.strip}</h3>" }
-    @html.gsub!(/==([^<>=]+?)==/) { "<h2>#{$1.strip}</h2>" }
-    @html.gsub!(/=([^<>=]+?)=/) { "<h1>#{$1.strip}</h1>" }
+    write_headings
 
     # Convert wiki markup to html tags
     open_tags = []
