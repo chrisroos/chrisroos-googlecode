@@ -123,22 +123,13 @@ class WikiSyntax
       @html.gsub!(/TABLE#{index+1}/, table_html)
     end
 
-    # Wiki Words
     create_wiki_links
-
-    # Links to Images
     create_image_links
-
-    # Images
     create_images
-
-    # URLs
     create_url_links
 
-    # Special case to deal with horizontal rules
     create_horizontal_rules
 
-    # Headings
     write_headings
 
     # Convert wiki markup to html tags
