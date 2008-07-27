@@ -47,7 +47,7 @@ class WikiSyntax
       end
     end
   end
-  def write_headings
+  def create_headings
     @html.gsub!(/======([^<>=]+?)======/) { "<h6>#{$1.strip}</h6>" }
     @html.gsub!(/=====([^<>=]+?)=====/) { "<h5>#{$1.strip}</h5>" }
     @html.gsub!(/====([^<>=]+?)====/) { "<h4>#{$1.strip}</h4>" }
@@ -161,7 +161,7 @@ class WikiSyntax
 
     create_horizontal_rules
 
-    write_headings
+    create_headings
 
     create_remaining_html
 
