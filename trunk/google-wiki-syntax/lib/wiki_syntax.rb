@@ -23,6 +23,12 @@ class WikiSyntax
     ItalicText                        = /_(.*?)_/
     CodeBlock                         = /(`|\{\{\{).*?(\}\}\}|`)/m
     HorizontalRule                    = /^-{4,}$/
+    Heading6                          = /======([^<>=]+?)======/
+    Heading5                          = /=====([^<>=]+?)=====/
+    Heading4                          = /====([^<>=]+?)====/
+    Heading3                          = /===([^<>=]+?)===/
+    Heading2                          = /==([^<>=]+?)==/
+    Heading1                          = /=([^<>=]+?)=/
   end
   
   def initialize(wiki_content)
@@ -100,12 +106,12 @@ private
   end
   
   def create_headings
-    @html.gsub!(/======([^<>=]+?)======/) { "<h6>#{$1.strip}</h6>" }
-    @html.gsub!(/=====([^<>=]+?)=====/) { "<h5>#{$1.strip}</h5>" }
-    @html.gsub!(/====([^<>=]+?)====/) { "<h4>#{$1.strip}</h4>" }
-    @html.gsub!(/===([^<>=]+?)===/) { "<h3>#{$1.strip}</h3>" }
-    @html.gsub!(/==([^<>=]+?)==/) { "<h2>#{$1.strip}</h2>" }
-    @html.gsub!(/=([^<>=]+?)=/) { "<h1>#{$1.strip}</h1>" }
+    @html.gsub!(Regex::Heading6) { "<h6>#{$1.strip}</h6>" }
+    @html.gsub!(Regex::Heading5) { "<h5>#{$1.strip}</h5>" }
+    @html.gsub!(Regex::Heading4) { "<h4>#{$1.strip}</h4>" }
+    @html.gsub!(Regex::Heading3) { "<h3>#{$1.strip}</h3>" }
+    @html.gsub!(Regex::Heading2) { "<h2>#{$1.strip}</h2>" }
+    @html.gsub!(Regex::Heading1) { "<h1>#{$1.strip}</h1>" }
   end
   
   def create_wiki_links
