@@ -16,6 +16,11 @@ class WikiSyntax
     Image                             = /http:\/\/.*?\.(?:png|gif|jpe?g)/
     ImageUrl                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{Image})#{AtEndOfStringOrEndsWithSpaces}/
     HyperlinkedImage                  = /\[(#{Regex::FtpOrHttpUrl}) (#{Image})\]/
+    BoldText                          = /\*(.*?)\*/
+    StrikeoutText                     = /~~(.*?)~~/
+    SubscriptText                     = /,,(.*?),,/
+    SuperscriptText                   = /\^(.*?)\^/
+    ItalicText                        = /_(.*?)_/
   end
   
   def initialize(wiki_content)
@@ -56,23 +61,23 @@ class WikiSyntax
 private
   
   def create_strike_tags
-    @html.gsub!(/~~(.*?)~~/, '<strike>' + '\1' + '</strike>')
+    @html.gsub!(Regex::StrikeoutText, '<strike>' + '\1' + '</strike>')
   end
 
   def create_subscript_tags
-    @html.gsub!(/,,(.*?),,/, '<sub>' + '\1' + '</sub>')
+    @html.gsub!(Regex::SubscriptText, '<sub>' + '\1' + '</sub>')
   end
 
   def create_superscript_tags
-    @html.gsub!(/\^(.*?)\^/, '<sup>' + '\1' + '</sup>')
+    @html.gsub!(Regex::SuperscriptText, '<sup>' + '\1' + '</sup>')
   end
 
   def create_bold_tags
-    @html.gsub!(/\*(.*?)\*/, '<b>' + '\1' + '</b>')
+    @html.gsub!(Regex::BoldText, '<b>' + '\1' + '</b>')
   end
 
   def create_italics
-    @html.gsub!(/_(.*?)_/, '<i>' + '\1' + '</i>')
+    @html.gsub!(Regex::ItalicText, '<i>' + '\1' + '</i>')
   end
 
   def extract_code_blocks
