@@ -70,6 +70,10 @@ class WikiSyntaxTypefaceTest < Test::Unit::TestCase
     assert_equal "<p><strike>strikeout</strike></p>", WikiSyntax.new('~~strikeout~~').to_html
   end
 
+  def test_should_not_enclose_text_in_html_strike_tags
+    assert_equal "<p>~~not_strikeout</p>", WikiSyntax.new('~~not_strikeout').to_html
+  end
+
   def test_should_enclose_bold_tags_within_italic_tags
     assert_equal "<p><i><b>bold</b> in italics</i></p>", WikiSyntax.new("_*bold* in italics_").to_html
   end
