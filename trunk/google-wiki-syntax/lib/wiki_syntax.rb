@@ -2,9 +2,8 @@ require File.join(File.dirname(__FILE__), 'list_block')
 
 class WikiSyntax
 
-  ListBlockRegex = /(#{ListBlock::LineRegex}\n?)+/m # One or more list items, optionally ending with newlines
-
   module Regex
+    ListBlock                         = /(#{ListBlock::LineRegex}\n?)+/m
     AtStartOfStringOrBeginsWithSpaces = /(?:^| +)/
     AtEndOfStringOrEndsWithSpaces     = /(?: +|$)/
     CamelCaseWord                     = /(?:[A-Z][a-z]+){2,}/
@@ -141,7 +140,7 @@ private
   
   def create_lists
     list_blocks = []
-    @html.gsub!(ListBlockRegex) do |list_block|
+    @html.gsub!(Regex::ListBlock) do |list_block|
       list_blocks << list_block
       "LISTBLOCK#{list_blocks.length}"
     end
