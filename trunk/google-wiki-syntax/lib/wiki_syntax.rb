@@ -98,12 +98,7 @@ class WikiSyntax
       @html.gsub!(/LISTBLOCK#{index+1}/, list_block.to_html)
     end
   end
-  def to_html
-    extract_code_blocks
-
-    create_lists
-    
-    # Tables
+  def create_tables
     tables = []
     @html.gsub!(/\|\|(.*?\|\|)+(\n\|\|(.*?\|\|)+)*/) do |table|
       tables << table
@@ -122,6 +117,12 @@ class WikiSyntax
       table_html = "<table>#{table_html}</table>"
       @html.gsub!(/TABLE#{index+1}/, table_html)
     end
+  end
+  def to_html
+    extract_code_blocks
+
+    create_lists
+    create_tables
 
     create_wiki_links
     create_image_links
