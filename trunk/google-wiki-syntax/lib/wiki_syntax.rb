@@ -33,7 +33,7 @@ class WikiSyntax
     @code_blocks = []
   end
   def extract_code_blocks
-    @html = @html.gsub(/(`|\{\{\{).*?(\}\}\}|`)/m) do |code_block|
+    @html.gsub!(/(`|\{\{\{).*?(\}\}\}|`)/m) do |code_block|
       code_block.gsub!(/`|\{|\}/, '')
       @code_blocks << code_block 
       "CODEBLOCK#{@code_blocks.length}"
@@ -43,7 +43,7 @@ class WikiSyntax
     if @code_blocks.any?
       @code_blocks.each_with_index do |code_block, index|
         code_block = code_block =~ /\n/ ? "<pre>" + code_block.strip + "</pre>" : "<code>" + code_block.strip + "</code>"
-        @html = @html.gsub(/CODEBLOCK#{index+1}/, code_block)
+        @html.gsub!(/CODEBLOCK#{index+1}/, code_block)
       end
     end
   end
@@ -118,7 +118,7 @@ class WikiSyntax
     end
 
     # Special case to deal with horizontal rules
-    @html = @html.gsub(/^-{4,}$/, '<hr/>')
+    @html.gsub!(/^-{4,}$/, '<hr/>')
 
     # Headings
     @html.gsub!(/======([^<>=]+?)======/) { "<h6>#{$1.strip}</h6>" }
@@ -130,7 +130,7 @@ class WikiSyntax
 
     # Convert wiki markup to html tags
     open_tags = []
-    @html = @html.gsub(TokenRegexp) do |matched_token|
+    @html.gsub!(TokenRegexp) do |matched_token|
       html_tag = Tokens[matched_token] 
       if open_tags.include?(html_tag)
         open_tags.delete(html_tag)
@@ -148,7 +148,7 @@ class WikiSyntax
     insert_code_blocks
 
     # Not convinced this is important but it removes the newline between the pre blocks in <pre>..code..</pre>\n<pre>...code...</pre>
-    @html = @html.gsub(/<\/pre>\n<pre>/m, '</pre><pre>')
+    @html.gsub!(/<\/pre>\n<pre>/m, '</pre><pre>')
 
     # Find the 'blocks' of text in the content, and if they arent code then wrap them in P tags
     html_blocks = @html.split(/\n{2,}/m)
