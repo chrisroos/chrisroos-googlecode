@@ -62,6 +62,10 @@ class WikiSyntaxTypefaceTest < Test::Unit::TestCase
     assert_equal "<p><sub>sub</sub>script</p>", WikiSyntax.new(',,sub,,script').to_html
   end
 
+  def test_should_not_enclose_text_in_html_sub_tags
+    assert_equal "<p>,,not_subscript</p>", WikiSyntax.new(',,not_subscript').to_html
+  end
+
   def test_should_enclose_text_in_html_strike_tags
     assert_equal "<p><strike>strikeout</strike></p>", WikiSyntax.new('~~strikeout~~').to_html
   end
