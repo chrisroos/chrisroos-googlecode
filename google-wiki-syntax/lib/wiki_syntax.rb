@@ -87,20 +87,21 @@ class WikiSyntax
   def create_horizontal_rules
     @html.gsub!(/^-{4,}$/, '<hr/>')
   end
-  def to_html
-    extract_code_blocks
-
-    # Extract list blocks so that we can parse them separately
+  def create_lists
     list_blocks = []
     @html.gsub!(ListBlockRegex) do |list_block|
       list_blocks << list_block
       "LISTBLOCK#{list_blocks.length}"
     end
-
     list_blocks.each_with_index do |list_block, index|
       list_block = ListBlock.new(list_block)
       @html.gsub!(/LISTBLOCK#{index+1}/, list_block.to_html)
     end
+  end
+  def to_html
+    extract_code_blocks
+
+    create_lists
     
     # Tables
     tables = []
