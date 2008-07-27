@@ -4,7 +4,6 @@ class WikiSyntax
 
   ListBlockRegex = /(#{ListBlock::LineRegex}\n?)+/m # One or more list items, optionally ending with newlines
   Tokens = {
-    '_' => 'i',
     '*' => 'b',
     '`' => 'code',
     '{{{' => 'code', '}}}' => 'code',
@@ -51,6 +50,7 @@ class WikiSyntax
 
     create_headings
 
+    create_italics
     create_remaining_html
 
     insert_code_blocks
@@ -64,6 +64,10 @@ class WikiSyntax
 
 private
   
+  def create_italics
+    @html.gsub!(/_(.*?)_/, '<i>' + '\1' + '</i>')
+  end
+
   def extract_code_blocks
     @html.gsub!(/(`|\{\{\{).*?(\}\}\}|`)/m) do |code_block|
       code_block.gsub!(/`|\{|\}/, '')
