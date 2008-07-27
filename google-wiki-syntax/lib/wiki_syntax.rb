@@ -5,8 +5,7 @@ class WikiSyntax
   ListBlockRegex = /(#{ListBlock::LineRegex}\n?)+/m # One or more list items, optionally ending with newlines
   Tokens = {
     '`' => 'code',
-    '{{{' => 'code', '}}}' => 'code',
-    '~~' => 'strike'
+    '{{{' => 'code', '}}}' => 'code'
   }
   # We need to sort the tokens in descending order of length so that the most specific tokens match before the more general (i.e. === matches before == or =)
   EscapedTokens                = Tokens.keys.sort_by { |k| k.length }.reverse.collect { |token| Regexp.escape(token) }
@@ -51,6 +50,7 @@ class WikiSyntax
     create_bold_tags
     create_superscript_tags
     create_subscript_tags
+    create_strike_tags
     create_remaining_html
 
     insert_code_blocks
@@ -64,6 +64,10 @@ class WikiSyntax
 
 private
   
+  def create_strike_tags
+    @html.gsub!(/~~(.*?)~~/, '<strike>' + '\1' + '</strike>')
+  end
+
   def create_subscript_tags
     @html.gsub!(/,,(.*?),,/, '<sub>' + '\1' + '</sub>')
   end
