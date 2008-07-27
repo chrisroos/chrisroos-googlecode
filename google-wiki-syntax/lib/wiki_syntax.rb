@@ -124,6 +124,19 @@ class WikiSyntax
   def remove_newlines_between_code_blocks
     @html.gsub!(/<\/pre>\n<pre>/m, '</pre><pre>')
   end
+  def create_remaining_html
+    open_tags = []
+    @html.gsub!(TokenRegexp) do |matched_token|
+      html_tag = Tokens[matched_token] 
+      if open_tags.include?(html_tag)
+        open_tags.delete(html_tag)
+        "</#{html_tag}>"
+      else
+        open_tags.push(html_tag)
+        "<#{html_tag}>"
+      end
+    end
+  end
   def to_html
     extract_code_blocks
 
@@ -140,17 +153,7 @@ class WikiSyntax
     write_headings
 
     # Convert wiki markup to html tags
-    open_tags = []
-    @html.gsub!(TokenRegexp) do |matched_token|
-      html_tag = Tokens[matched_token] 
-      if open_tags.include?(html_tag)
-        open_tags.delete(html_tag)
-        "</#{html_tag}>"
-      else
-        open_tags.push(html_tag)
-        "<#{html_tag}>"
-      end
-    end
+    create_remaining_html
 
     # Delete newlines that appear at the end of the wiki content
     remove_newlines_from_the_end_of_wiki_content
