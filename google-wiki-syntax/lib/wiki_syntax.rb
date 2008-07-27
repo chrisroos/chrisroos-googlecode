@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), 'list_block')
 
 class WikiSyntax
+
   ListBlockRegex = /(#{ListBlock::LineRegex}\n?)+/m # One or more list items, optionally ending with newlines
   Tokens = {
     '_' => 'i',
@@ -14,6 +15,7 @@ class WikiSyntax
   # We need to sort the tokens in descending order of length so that the most specific tokens match before the more general (i.e. === matches before == or =)
   EscapedTokens                = Tokens.keys.sort_by { |k| k.length }.reverse.collect { |token| Regexp.escape(token) }
   TokenRegexp                  = Regexp.new(EscapedTokens.join('|'))
+
   module Regex
     AtStartOfStringOrBeginsWithSpaces = /(?:^| +)/
     AtEndOfStringOrEndsWithSpaces     = /(?: +|$)/
@@ -28,10 +30,12 @@ class WikiSyntax
     ImageUrl                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{Image})#{AtEndOfStringOrEndsWithSpaces}/
     HyperlinkedImage                  = /\[(#{Regex::FtpOrHttpUrl}) (#{Image})\]/
   end
+  
   def initialize(wiki_content)
     @wiki_content = @html = wiki_content
     @code_blocks = []
   end
+  
   def to_html
     extract_code_blocks
 
@@ -57,7 +61,9 @@ class WikiSyntax
 
     @html
   end
+
 private
+  
   def extract_code_blocks
     @html.gsub!(/(`|\{\{\{).*?(\}\}\}|`)/m) do |code_block|
       code_block.gsub!(/`|\{|\}/, '')
@@ -65,6 +71,7 @@ private
       "CODEBLOCK#{@code_blocks.length}"
     end
   end
+  
   def insert_code_blocks
     if @code_blocks.any?
       @code_blocks.each_with_index do |code_block, index|
@@ -73,6 +80,7 @@ private
       end
     end
   end
+  
   def create_headings
     @html.gsub!(/======([^<>=]+?)======/) { "<h6>#{$1.strip}</h6>" }
     @html.gsub!(/=====([^<>=]+?)=====/) { "<h5>#{$1.strip}</h5>" }
@@ -81,6 +89,7 @@ private
     @html.gsub!(/==([^<>=]+?)==/) { "<h2>#{$1.strip}</h2>" }
     @html.gsub!(/=([^<>=]+?)=/) { "<h1>#{$1.strip}</h1>" }
   end
+  
   def create_wiki_links
     @html.gsub!(Regex::WikiWord) do |matched_wiki_word|
       matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
@@ -92,6 +101,7 @@ private
       matched_wiki_word.sub("!#{$1}", $1)
     end
   end
+  
   def create_url_links
     @html.gsub!(Regex::UrlWithDescription) do |matched_url|
       %%<a href="#{$1}">#{$2}</a>%
@@ -100,19 +110,23 @@ private
       matched_url.sub($1, %%<a href="#{$1}">#{$1}</a>%)
     end
   end
+  
   def create_images
     @html.gsub!(Regex::ImageUrl) do |matched_image_url|
       matched_image_url.sub($1, %%<img src="#{$1}" />%)
     end
   end
+  
   def create_image_links
     @html.gsub!(Regex::HyperlinkedImage) do |matched_link_and_image_url|
       %%<a href="#{$1}"><img src="#{$2}" /></a>%
     end
   end
+  
   def create_horizontal_rules
     @html.gsub!(/^-{4,}$/, '<hr/>')
   end
+  
   def create_lists
     list_blocks = []
     @html.gsub!(ListBlockRegex) do |list_block|
@@ -124,6 +138,7 @@ private
       @html.gsub!(/LISTBLOCK#{index+1}/, list_block.to_html)
     end
   end
+  
   def create_tables
     tables = []
     @html.gsub!(/\|\|(.*?\|\|)+(\n\|\|(.*?\|\|)+)*/) do |table|
@@ -144,12 +159,15 @@ private
       @html.gsub!(/TABLE#{index+1}/, table_html)
     end
   end
+  
   def remove_newlines_from_the_end_of_wiki_content
     while @html =~ /\n\Z/; @html.chomp!; end
   end
+  
   def remove_newlines_between_code_blocks
     @html.gsub!(/<\/pre>\n<pre>/m, '</pre><pre>')
   end
+  
   def create_remaining_html
     open_tags = []
     @html.gsub!(TokenRegexp) do |matched_token|
@@ -163,6 +181,7 @@ private
       end
     end
   end
+  
   def create_paragraphs
     html_blocks = @html.split(/\n{2,}/m)
     @html = html_blocks.map do |block| 
@@ -174,4 +193,5 @@ private
       end
     end.join
   end
+
 end
