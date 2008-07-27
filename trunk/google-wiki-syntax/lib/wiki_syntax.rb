@@ -6,7 +6,6 @@ class WikiSyntax
   Tokens = {
     '`' => 'code',
     '{{{' => 'code', '}}}' => 'code',
-    ',,' => 'sub',
     '~~' => 'strike'
   }
   # We need to sort the tokens in descending order of length so that the most specific tokens match before the more general (i.e. === matches before == or =)
@@ -51,6 +50,7 @@ class WikiSyntax
     create_italics
     create_bold_tags
     create_superscript_tags
+    create_subscript_tags
     create_remaining_html
 
     insert_code_blocks
@@ -64,6 +64,10 @@ class WikiSyntax
 
 private
   
+  def create_subscript_tags
+    @html.gsub!(/,,(.*?),,/, '<sub>' + '\1' + '</sub>')
+  end
+
   def create_superscript_tags
     @html.gsub!(/\^(.*?)\^/, '<sup>' + '\1' + '</sup>')
   end
