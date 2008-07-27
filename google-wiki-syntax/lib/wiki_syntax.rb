@@ -29,6 +29,8 @@ class WikiSyntax
     Heading3                          = /===([^<>=]+?)===/
     Heading2                          = /==([^<>=]+?)==/
     Heading1                          = /=([^<>=]+?)=/
+    Table                             = /\|\|(.*?\|\|)+(\n\|\|(.*?\|\|)+)*/
+    TableCell                         = /\|\|(.*)\|\|/
   end
   
   def initialize(wiki_content)
@@ -165,7 +167,7 @@ private
   
   def create_tables
     tables = []
-    @html.gsub!(/\|\|(.*?\|\|)+(\n\|\|(.*?\|\|)+)*/) do |table|
+    @html.gsub!(Regex::Table) do |table|
       tables << table
       "TABLE#{tables.length}"
     end
@@ -173,7 +175,7 @@ private
       table_html = ''
       table.each_line do |line|
         line = line.chomp
-        line.gsub!(/\|\|(.*)\|\|/) do |match|
+        line.gsub!(Regex::TableCell) do |match|
           "<tr><td>#{$1}</td></tr>"
         end
         line.gsub!(/\|\|/, '</td><td>')
