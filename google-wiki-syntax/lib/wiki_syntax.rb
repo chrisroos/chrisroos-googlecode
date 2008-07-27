@@ -121,6 +121,9 @@ class WikiSyntax
   def remove_newlines_from_the_end_of_wiki_content
     while @html =~ /\n\Z/; @html.chomp!; end
   end
+  def remove_newlines_between_code_blocks
+    @html.gsub!(/<\/pre>\n<pre>/m, '</pre><pre>')
+  end
   def to_html
     extract_code_blocks
 
@@ -156,7 +159,7 @@ class WikiSyntax
     insert_code_blocks
 
     # Not convinced this is important but it removes the newline between the pre blocks in <pre>..code..</pre>\n<pre>...code...</pre>
-    @html.gsub!(/<\/pre>\n<pre>/m, '</pre><pre>')
+    remove_newlines_between_code_blocks
 
     # Find the 'blocks' of text in the content, and if they arent code then wrap them in P tags
     html_blocks = @html.split(/\n{2,}/m)
