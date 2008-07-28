@@ -42,11 +42,11 @@ class WikiSyntaxTypefaceTest < Test::Unit::TestCase
     assert_equal "<p>_notitalic</p>", WikiSyntax.new('_notitalic').to_html
   end
 
-  def test_should_enclose_text_in_html_bold_tags
-    assert_equal "<p><b>bold</b></p>", WikiSyntax.new('*bold*').to_html
+  def test_should_enclose_text_in_html_strong_tags
+    assert_equal "<p><strong>bold</strong></p>", WikiSyntax.new('*bold*').to_html
   end
 
-  def test_should_not_enclose_text_in_html_bold_tags
+  def test_should_not_enclose_text_in_html_strong_tags
     assert_equal "<p>*not_bold</p>", WikiSyntax.new('*not_bold').to_html
   end
 
@@ -74,16 +74,16 @@ class WikiSyntaxTypefaceTest < Test::Unit::TestCase
     assert_equal "<p>~~not_strikeout</p>", WikiSyntax.new('~~not_strikeout').to_html
   end
 
-  def test_should_enclose_bold_tags_within_italic_tags
-    assert_equal "<p><i><b>bold</b> in italics</i></p>", WikiSyntax.new("_*bold* in italics_").to_html
+  def test_should_enclose_strong_tags_within_italic_tags
+    assert_equal "<p><i><strong>bold</strong> in italics</i></p>", WikiSyntax.new("_*bold* in italics_").to_html
   end
 
-  def test_should_enclose_italic_tags_within_bold_tags
-    assert_equal "<p><b><i>italics</i> in bold</b></p>", WikiSyntax.new("*_italics_ in bold*").to_html
+  def test_should_enclose_italic_tags_within_strong_tags
+    assert_equal "<p><strong><i>italics</i> in bold</strong></p>", WikiSyntax.new("*_italics_ in bold*").to_html
   end
 
-  def test_should_strike_words_within_bold_tags
-    assert_equal "<p><b><strike>strike</strike> works too</b></p>", WikiSyntax.new("*~~strike~~ works too*").to_html
+  def test_should_strike_words_within_strong_tags
+    assert_equal "<p><strong><strike>strike</strike> works too</strong></p>", WikiSyntax.new("*~~strike~~ works too*").to_html
   end
 
   def test_should_italicise_one_of_the_striked_words
@@ -231,7 +231,7 @@ class WikiSyntaxListTest < Test::Unit::TestCase
   end
 
   def test_should_allow_wiki_formatting_within_the_generated_list
-    assert_equal '<ul><li><b>bold</b> list item</li></ul>', WikiSyntax.new(" * *bold* list item").to_html
+    assert_equal '<ul><li><strong>bold</strong> list item</li></ul>', WikiSyntax.new(" * *bold* list item").to_html
   end
 
   def test_should_generate_deep_nested_list
