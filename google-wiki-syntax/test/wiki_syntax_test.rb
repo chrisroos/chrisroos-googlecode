@@ -367,3 +367,78 @@ class WikiSyntaxLabelsTest < Test::Unit::TestCase
   end
 
 end
+
+require 'tidy'
+Tidy.path = '/opt/local/lib/libtidy.dylib'
+
+class WikiSyntaxFullTest < Test::Unit::TestCase
+  
+  def test_should_construct_html_document
+    expected_html = Tidy.new.clean(self.expected_html)
+    actual_html = Tidy.new.clean(WikiSyntax.new(wiki_markup).to_html)
+    assert_equal expected_html, actual_html
+  end
+
+  def wiki_markup
+<<-EndWikiMarkup
+#summary The document.doctype property ...
+#labels about-dom,is-dom-property
+
+== Values ==
+
+The `document.doctype` property returns a string.
+
+This property is read-only.
+
+== Usage ==
+
+== Browser compatibility ==
+
+|| *Test* || *IE8* || *IE7* || *IE6* || *FF3* || *FF2* || *Saf3* ||
+|| [http://doctype.googlecode.com/svn/trunk/tests/js/document/document-doctype-typeof-test.html typeOf(document.doctype) != 'undefined'] || Y || Y || Y || Y || Y || Y ||
+
+== Further reading ==
+
+  * [http://developer.mozilla.org/en/docs/DOM:document.doctype The document.doctype property on Mozilla Developer Center]
+  * [http://msdn2.microsoft.com/en-us/library/ms533737.aspx The document.doctype property on MSDN]
+EndWikiMarkup
+  end
+
+  def expected_html
+<<EndHtml
+<p class="summary">The document.doctype property ...</p>
+<p class="labels">about-dom,is-dom-property</p>
+<h2>Values</h2>
+<p>The <code>document.doctype</code> property returns a string.</p>
+<p>This property is read-only.</p>
+<h2>Usage</h2>
+<h2>Browser compatibility</h2>
+<table>
+  <tr>
+    <td><strong>Test</strong></td>
+    <td><strong>IE8</strong></td>
+    <td><strong>IE7</strong></td>
+    <td><strong>IE6</strong></td>
+    <td><strong>FF3</strong></td>
+    <td><strong>FF2</strong></td>
+    <td><strong>Saf3</strong></td>
+  </tr>
+  <tr>
+    <td><a href="http://doctype.googlecode.com/svn/trunk/tests/js/document/document-doctype-typeof-test.html">typeOf(document.doctype) != 'undefined'</a></td>
+    <td>Y</td>
+    <td>Y</td>
+    <td>Y</td>
+    <td>Y</td>
+    <td>Y</td>
+    <td>Y</td>
+  </tr>
+</table>
+<h2>Further reading</h2>
+<ul>
+  <li><a href="http://developer.mozilla.org/en/docs/DOM:document.doctype">The document.doctype property on Mozilla Developer Center</a></li>
+  <li><a href="http://msdn2.microsoft.com/en-us/library/ms533737.aspx">The document.doctype property on MSDN</a></li>
+</ul>
+EndHtml
+  end
+
+end
