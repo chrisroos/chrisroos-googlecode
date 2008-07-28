@@ -351,3 +351,11 @@ class WikiSyntaxTableTest < Test::Unit::TestCase
   end
 
 end
+
+class WikiSyntaxSummaryTest < Test::Unit::TestCase
+  
+  def test_should_render_the_summary_in_a_paragraph
+    assert_equal '<p class="summary">summary of the page</p>', WikiSyntax.new('#summary summary of the page').to_html
+  end
+
+end

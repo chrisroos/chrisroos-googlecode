@@ -39,6 +39,8 @@ class WikiSyntax
   end
   
   def to_html
+    extract_summary
+
     extract_code_blocks
 
     create_lists
@@ -70,6 +72,10 @@ class WikiSyntax
 
 private
 
+  def extract_summary
+    @html.sub!(/^#summary (.*)$/, '<p class="summary">' + '\1' + '</p>')
+  end
+  
   def create_strike_tags
     @html.gsub!(Regex::StrikeoutText, '<strike>' + '\1' + '</strike>')
   end
@@ -197,7 +203,7 @@ private
   def create_paragraphs
     html_blocks = @html.split(/\n{2,}/m)
     @html = html_blocks.map do |block| 
-      if block =~ /\A<pre|h1|h2|h3|h4|h5|h6|hr\/|ul|ol>/
+      if block =~ /\A<p|pre|h1|h2|h3|h4|h5|h6|hr\/|ul|ol>/
         block
       else
         # remove newlines within normal (non-code) blocks of text
