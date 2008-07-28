@@ -40,6 +40,7 @@ class WikiSyntax
   
   def to_html
     extract_summary
+    extract_labels
 
     extract_code_blocks
 
@@ -72,6 +73,10 @@ class WikiSyntax
 
 private
 
+  def extract_labels
+    @html.sub!(/^#labels (.*)$/, '<p class="labels">' + '\1' + '</p>')
+  end
+  
   def extract_summary
     @html.sub!(/^#summary (.*)$/, '<p class="summary">' + '\1' + '</p>')
   end
