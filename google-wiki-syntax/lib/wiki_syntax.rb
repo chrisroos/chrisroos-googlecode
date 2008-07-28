@@ -69,7 +69,7 @@ class WikiSyntax
   end
 
 private
-  
+
   def create_strike_tags
     @html.gsub!(Regex::StrikeoutText, '<strike>' + '\1' + '</strike>')
   end
@@ -83,7 +83,7 @@ private
   end
 
   def create_bold_tags
-    @html.gsub!(Regex::BoldText, '<b>' + '\1' + '</b>')
+    @html.gsub!(Regex::BoldText, '<strong>' + '\1' + '</strong>')
   end
 
   def create_italics
