@@ -359,3 +359,11 @@ class WikiSyntaxSummaryTest < Test::Unit::TestCase
   end
 
 end
+
+class WikiSyntaxLabelsTest < Test::Unit::TestCase
+  
+  def test_should_render_the_labels_in_a_paragraph
+    assert_equal '<p class="labels">label1, label2</p>', WikiSyntax.new('#labels label1, label2').to_html
+  end
+
+end
