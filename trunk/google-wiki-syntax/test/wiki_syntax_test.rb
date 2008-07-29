@@ -253,10 +253,15 @@ class WikiSyntaxBlockQuoteTest # < Test::Unit::TestCase
 end
 
 class WikiSyntaxLinkTest < Test::Unit::TestCase
+
+  def test_should_add_an_html_extension_to_wiki_words
+    assert_equal '<p><a href="MyLink.html">MyLink</a></p>', WikiSyntax.new('MyLink').to_html
+    assert_equal '<p>Text with a <a href="MyLink.html">MyLink</a> in the middle</p>', WikiSyntax.new('Text with a MyLink in the middle').to_html
+  end
   
   def test_should_generate_a_relative_link_for_a_wiki_word
-    assert_equal '<p><a href="MyLink">MyLink</a></p>', WikiSyntax.new('MyLink').to_html
-    assert_equal '<p>Text with a <a href="MyLink">MyLink</a> in the middle</p>', WikiSyntax.new('Text with a MyLink in the middle').to_html
+    assert_equal '<p><a href="MyLink.html">MyLink</a></p>', WikiSyntax.new('MyLink').to_html
+    assert_equal '<p>Text with a <a href="MyLink.html">MyLink</a> in the middle</p>', WikiSyntax.new('Text with a MyLink in the middle').to_html
   end
 
   def test_should_generate_a_paragraph_containing_the_escaped_wiki_word
@@ -275,8 +280,8 @@ class WikiSyntaxLinkTest < Test::Unit::TestCase
   end
 
   def test_should_generate_a_relative_link_with_specific_anchor_text_for_a_wiki_word
-    assert_equal '<p><a href="MyLink">my link</a></p>', WikiSyntax.new('[MyLink my link]').to_html
-    assert_equal '<p>Click <a href="MyLink">my link</a> to visit</p>', WikiSyntax.new('Click [MyLink my link] to visit').to_html
+    assert_equal '<p><a href="MyLink.html">my link</a></p>', WikiSyntax.new('[MyLink my link]').to_html
+    assert_equal '<p>Click <a href="MyLink.html">my link</a> to visit</p>', WikiSyntax.new('Click [MyLink my link] to visit').to_html
   end
 
   def test_should_generate_a_link_to_external_ftp_urls
