@@ -225,7 +225,7 @@ private
   def create_paragraphs
     html_blocks = @html.split(/\n{2,}/m)
     @html = html_blocks.map do |block| 
-      if block =~ /\A<p|pre|h1|h2|h3|h4|h5|h6|hr\/|ul|ol>/
+      if block =~ /\A<(p|pre|h1|h2|h3|h4|h5|h6|hr\/|ul|ol)/
         block
       else
         # remove newlines within normal (non-code) blocks of text
