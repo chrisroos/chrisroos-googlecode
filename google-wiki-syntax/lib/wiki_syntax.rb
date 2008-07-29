@@ -197,7 +197,8 @@ private
       tables << table
       "TABLE#{tables.length}"
     end
-    tables.each_with_index do |table, index|
+    @html.gsub!(/TABLE(\d+)/) do
+      table = tables[Integer($1)-1]
       table_html = ''
       table.each_line do |line|
         line = line.chomp
@@ -207,8 +208,7 @@ private
         line.gsub!(/\|\|/, '</td><td>')
         table_html << line
       end
-      table_html = "<table>#{table_html}</table>"
-      @html.gsub!(/TABLE#{index+1}/, table_html)
+      "<table>#{table_html}</table>"
     end
   end
   

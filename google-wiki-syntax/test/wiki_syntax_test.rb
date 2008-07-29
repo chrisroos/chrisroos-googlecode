@@ -364,6 +364,14 @@ end
 
 class WikiSyntaxTableTest < Test::Unit::TestCase
   
+  def test_should_deal_with_over_10_tables
+    letters = %w(A B C D E F G H I J K)
+    assert letters.length > 10
+    wiki_content = letters.collect { |letter| "||table-#{letter}||" }.join("\n\n")
+    expected_html = letters.collect { |letter| %%<p><table><tr><td>table-#{letter}</td></tr></table></p>% }.join
+    assert_equal "#{expected_html}", WikiSyntax.new(wiki_content).to_html
+  end
+
   def test_should_not_generate_a_table
     assert_equal "<p>|| no table here</p>", WikiSyntax.new("|| no table here").to_html
   end
