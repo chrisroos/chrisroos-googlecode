@@ -72,7 +72,7 @@ EndHtml
 
     create_headings
 
-    create_italics
+    create_italic_tags
     create_bold_tags
     create_superscript_tags
     create_subscript_tags
@@ -113,7 +113,7 @@ private
     @html.gsub!(Regex::BoldText, '<strong>' + '\1' + '</strong>')
   end
 
-  def create_italics
+  def create_italic_tags
     @html.gsub!(Regex::ItalicText, '<i>' + '\1' + '</i>')
   end
 
