@@ -129,10 +129,10 @@ private
   
   def create_wiki_links
     @html.gsub!(Regex::WikiWord) do |matched_wiki_word|
-      matched_wiki_word.sub($1, %%<a href="/#{$1}">#{$1}</a>%)
+      matched_wiki_word.sub($1, %%<a href="#{$1}">#{$1}</a>%)
     end
     @html.gsub!(Regex::WikiWordWithDescription) do
-      %%<a href="/#{$1}">#{$2}</a>%
+      %%<a href="#{$1}">#{$2}</a>%
     end
     @html.gsub!(Regex::EscapedWikiWord) do |matched_wiki_word|
       matched_wiki_word.sub("!#{$1}", $1)
