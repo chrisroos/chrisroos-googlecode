@@ -38,6 +38,21 @@ class WikiSyntax
     @code_blocks = []
   end
   
+  def to_html_document(page_title)
+<<EndHtml
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>#{page_title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    #{to_html}
+  </body>
+</html>
+EndHtml
+  end
+
   def to_html
     extract_summary
     extract_labels

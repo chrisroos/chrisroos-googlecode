@@ -442,3 +442,37 @@ EndHtml
   end
 
 end
+
+class WikiSyntaxToHtmlDocumentTest < Test::Unit::TestCase
+
+  def test_should_create_a_complete_html_document
+    expected_html = Tidy.new.clean(self.expected_html)
+    actual_html = Tidy.new.clean(WikiSyntax.new(self.wiki_markup).to_html_document('PageTitle'))
+    assert_equal expected_html, actual_html
+  end
+
+  def wiki_markup
+<<EndWikiMarkup
+= My Wiki Page =
+
+Some text on my wiki page
+EndWikiMarkup
+  end
+
+  def expected_html
+<<EndHtml
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>PageTitle</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <h1>My Wiki Page</h1>
+    <p>Some text on my wiki page</p>
+  </body>
+</html>
+EndHtml
+  end
+
+end
