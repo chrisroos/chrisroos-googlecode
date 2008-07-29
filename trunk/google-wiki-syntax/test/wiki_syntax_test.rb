@@ -106,6 +106,14 @@ end
 
 class WikiSyntaxCodeTest < Test::Unit::TestCase
 
+  def test_should_deal_with_over_10_code_blocks
+    letters = %w(A B C D E F G H I J K)
+    assert letters.length > 10
+    wiki_content = letters.collect { |letter| "{{{ code-block-#{letter} }}}" }.join(' ')
+    expected_html = letters.collect { |letter| %%<code>code-block-#{letter}</code>% }.join(' ')
+    assert_equal "<p>#{expected_html}</p>", WikiSyntax.new(wiki_content).to_html
+  end
+
   def test_should_enclose_text_in_backticks_in_html_code_tags
     assert_equal "<p><code>code</code></p>", WikiSyntax.new('`code`').to_html
   end
