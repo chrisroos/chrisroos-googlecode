@@ -28,14 +28,18 @@ module GoogleWiki
   end
 end
 
-wiki_folder = ARGV.shift
+wiki_file_or_folder = ARGV.shift
 html_folder = ARGV.shift
-unless wiki_folder and html_folder
-  puts "Usage: wiki_convertor.rb <wiki_folder> <html_folder>"
+unless wiki_file_or_folder and html_folder
+  puts "Usage: wiki_convertor.rb <wiki_folder or wiki_file> <html_folder>"
   exit
 end
 
-GoogleWiki::WikiFolder.new(wiki_folder).each do |wiki_document|
-  puts "Converting #{wiki_document.filename}..."
-  wiki_document.to_html_document(html_folder)
+if File.directory?(wiki_file_or_folder)
+  GoogleWiki::WikiFolder.new(wiki_file_or_folder).each do |wiki_document|
+    puts "Converting #{wiki_document.filename}..."
+    wiki_document.to_html_document(html_folder)
+  end
+else
+  GoogleWiki::WikiDocument.new(wiki_file_or_folder).to_html_document(html_folder)
 end
