@@ -282,6 +282,18 @@ end
 
 class WikiSyntaxLinkTest < Test::Unit::TestCase
 
+  def test_should_deal_with_over_10_wiki_links
+    letters = %w(A B C D E F G H I J K)
+    assert letters.length > 10
+    wiki_content = letters.collect { |letter| "[Link#{letter}]" }.join(' ')
+    expected_html = letters.collect { |letter| %%<a href="Link#{letter}.html">Link#{letter}</a>% }.join(' ')
+    assert_equal "<p>#{expected_html}</p>", WikiSyntax.new(wiki_content).to_html
+  end
+
+  def test_should_allow_wiki_words_to_be_used_in_the_description_of_wiki_links
+    assert_equal '<p><a href="MyWikiWord.html">MultiWord WikiLinkDescription</a></p>', WikiSyntax.new('[MyWikiWord MultiWord WikiLinkDescription]').to_html
+  end
+
   def test_should_generate_a_relative_link_for_a_wiki_word_that_does_not_follow_wiki_syntax
     assert_equal '<p><a href="Mylink.html">Mylink</a></p>', WikiSyntax.new('[Mylink]').to_html
     assert_equal '<p>Text with a <a href="Mylink.html">Mylink</a> in the middle</p>', WikiSyntax.new('Text with a [Mylink] in the middle').to_html

@@ -141,14 +141,27 @@ private
     @html.gsub!(Regex::Heading1) { "<h1>#{$1.strip}</h1>" }
   end
   
+  def extract_wiki_links
+    @wiki_links = []
+    @html.gsub!(Regex::WikiWordWithOptionalDescription) do
+      link_text = $2 ? $2 : $1
+      @wiki_links << %%<a href="#{$1}.html">#{link_text}</a>%
+      "WIKILINK#{@wiki_links.length}"
+    end
+  end
+
+  def insert_wiki_links
+    @html.gsub!(/WIKILINK(\d+)/) do
+      @wiki_links[Integer($1)-1]
+    end
+  end
+   
   def create_wiki_links
+    extract_wiki_links
     @html.gsub!(Regex::WikiWord) do |matched_wiki_word|
       matched_wiki_word.sub($1, %%<a href="#{$1}.html">#{$1}</a>%)
     end
-    @html.gsub!(Regex::WikiWordWithOptionalDescription) do
-      link_text = $2 ? $2 : $1
-      %%<a href="#{$1}.html">#{link_text}</a>%
-    end
+    insert_wiki_links
     @html.gsub!(Regex::EscapedWikiWord) do |matched_wiki_word|
       matched_wiki_word.sub("!#{$1}", $1)
     end
