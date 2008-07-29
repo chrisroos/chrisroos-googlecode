@@ -254,6 +254,11 @@ end
 
 class WikiSyntaxLinkTest < Test::Unit::TestCase
 
+  def test_should_generate_a_relative_link_for_a_wiki_word_that_does_not_follow_wiki_syntax
+    assert_equal '<p><a href="Mylink.html">Mylink</a></p>', WikiSyntax.new('[Mylink]').to_html
+    assert_equal '<p>Text with a <a href="Mylink.html">Mylink</a> in the middle</p>', WikiSyntax.new('Text with a [Mylink] in the middle').to_html
+  end
+  
   def test_should_add_an_html_extension_to_wiki_words
     assert_equal '<p><a href="MyLink.html">MyLink</a></p>', WikiSyntax.new('MyLink').to_html
     assert_equal '<p>Text with a <a href="MyLink.html">MyLink</a> in the middle</p>', WikiSyntax.new('Text with a MyLink in the middle').to_html

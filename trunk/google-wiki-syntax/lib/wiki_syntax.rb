@@ -9,7 +9,7 @@ class WikiSyntax
     CamelCaseWord                     = /(?:[A-Z][a-z]+){2,}/
     FtpOrHttpUrl                      = /(?:f|ht)tp:\/\/.*?/
     WikiWord                          = /#{AtStartOfStringOrBeginsWithSpaces}(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # A WikiWord on its own. Not preceeded by exclamation mark. One uppercase followed by one or more lowercase. One or more times
-    WikiWordWithDescription           = /\[(#{CamelCaseWord}) (.+?)\]/
+    WikiWordWithOptionalDescription   = /\[(.*?)(?: (.+?))?\]/
     EscapedWikiWord                   = /#{AtStartOfStringOrBeginsWithSpaces}!(#{CamelCaseWord})#{AtEndOfStringOrEndsWithSpaces}/ # As a WikiWord but preceeded by exclamation mark.
     Url                               = /#{AtStartOfStringOrBeginsWithSpaces}(#{FtpOrHttpUrl})#{AtEndOfStringOrEndsWithSpaces}/
     UrlWithDescription                = /\[(#{FtpOrHttpUrl}) (.*?)\]/
@@ -62,10 +62,10 @@ EndHtml
     create_lists
     create_tables
 
-    create_wiki_links
     create_image_links
     create_images
     create_url_links
+    create_wiki_links
 
     create_horizontal_rules
 
@@ -146,8 +146,9 @@ private
     @html.gsub!(Regex::WikiWord) do |matched_wiki_word|
       matched_wiki_word.sub($1, %%<a href="#{$1}.html">#{$1}</a>%)
     end
-    @html.gsub!(Regex::WikiWordWithDescription) do
-      %%<a href="#{$1}.html">#{$2}</a>%
+    @html.gsub!(Regex::WikiWordWithOptionalDescription) do
+      link_text = $2 ? $2 : $1
+      %%<a href="#{$1}.html">#{link_text}</a>%
     end
     @html.gsub!(Regex::EscapedWikiWord) do |matched_wiki_word|
       matched_wiki_word.sub("!#{$1}", $1)
