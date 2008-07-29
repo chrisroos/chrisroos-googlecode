@@ -214,6 +214,14 @@ end
 
 class WikiSyntaxListTest < Test::Unit::TestCase
   
+  def test_should_deal_with_over_10_lists
+    letters = %w(A B C D E F G H I J K)
+    assert letters.length > 10
+    wiki_content = letters.collect { |letter| " * list-item-#{letter}" }.join("\n\n")
+    expected_html = letters.collect { |letter| %%<ul><li>list-item-#{letter}</li></ul>% }.join
+    assert_equal "#{expected_html}", WikiSyntax.new(wiki_content).to_html
+  end
+
   def test_should_generate_a_one_item_ordered_list_with_no_space_between_the_hash_and_list_item
     assert_equal '<ul><li>list item</li></ul>', WikiSyntax.new(' *list item').to_html
   end

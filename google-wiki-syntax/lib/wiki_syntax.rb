@@ -185,9 +185,9 @@ private
       list_blocks << list_block
       "LISTBLOCK#{list_blocks.length}"
     end
-    list_blocks.each_with_index do |list_block, index|
-      list_block = ListBlock.new(list_block)
-      @html.gsub!(/LISTBLOCK#{index+1}/, list_block.to_html)
+    @html.gsub!(/LISTBLOCK(\d+)/) do
+      wiki_list = list_blocks[Integer($1)-1]
+      ListBlock.new(wiki_list).to_html
     end
   end
   
