@@ -126,11 +126,9 @@ private
   end
   
   def insert_code_blocks
-    if @code_blocks.any?
-      @code_blocks.each_with_index do |code_block, index|
-        code_block = code_block =~ /\n/ ? "<pre>" + code_block.strip + "</pre>" : "<code>" + code_block.strip + "</code>"
-        @html.gsub!(/CODEBLOCK#{index+1}/, code_block)
-      end
+    @html.gsub!(/CODEBLOCK(\d+)/) do
+      code_block = @code_blocks[Integer($1)-1]
+      code_block =~ /\n/ ? "<pre>" + code_block.strip + "</pre>" : "<code>" + code_block.strip + "</code>"
     end
   end
   
