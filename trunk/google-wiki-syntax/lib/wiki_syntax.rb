@@ -1,4 +1,5 @@
 require File.join(File.dirname(__FILE__), 'list_block')
+require 'cgi'
 
 class WikiSyntax
 
@@ -34,7 +35,7 @@ class WikiSyntax
   end
   
   def initialize(wiki_content)
-    @wiki_content = @html = wiki_content
+    @html = CGI.escapeHTML(wiki_content)
     @code_blocks = []
   end
   
