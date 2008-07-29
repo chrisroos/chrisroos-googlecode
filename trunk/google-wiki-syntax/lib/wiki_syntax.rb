@@ -36,7 +36,7 @@ class WikiSyntax
   
   def initialize(wiki_content)
     @html = CGI.escapeHTML(wiki_content)
-    @code_blocks = []
+    @code_blocks, @wiki_links = [], []
   end
   
   def to_html_document(page_title)
@@ -142,7 +142,6 @@ private
   end
   
   def extract_wiki_links
-    @wiki_links = []
     @html.gsub!(Regex::WikiWordWithOptionalDescription) do
       link_text = $2 ? $2 : $1
       @wiki_links << %%<a href="#{$1}.html">#{link_text}</a>%
