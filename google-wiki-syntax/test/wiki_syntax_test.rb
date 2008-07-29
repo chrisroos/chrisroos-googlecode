@@ -8,6 +8,14 @@ module Kernel
   end
 end
 
+class WikiSyntaxHtmlEscapingTest < Test::Unit::TestCase
+  
+  def test_should_html_escape_wiki_content
+    assert_equal "<p>this &amp; that. 1 &lt; 2. 2 &gt; 1.</p>", WikiSyntax.new('this & that. 1 < 2. 2 > 1.').to_html
+  end
+
+end
+
 class WikiSyntaxParagraphTest < Test::Unit::TestCase
 
   def test_should_surround_content_on_one_line_in_one_html_paragraph_tag
