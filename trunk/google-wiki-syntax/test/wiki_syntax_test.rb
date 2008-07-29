@@ -38,6 +38,10 @@ class WikiSyntaxParagraphTest < Test::Unit::TestCase
     assert_equal "<p>line 1</p><p>line 2</p>", WikiSyntax.new("line 1\n\n\nline 2\n\n").to_html
   end
 
+  def test_should_xxx
+    assert_equal "<p>paragraph including an html tag: pre</p>", WikiSyntax.new("paragraph including an html tag: pre").to_html
+  end
+
 end
 
 class WikiSyntaxTypefaceTest < Test::Unit::TestCase
