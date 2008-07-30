@@ -1,0 +1,27 @@
+--- 
+:body: |
+  I've created a little script that allows me to convert documents in the "google code":http://code.google.com "wiki format":http://code.google.com/p/support/wiki/WikiSyntax to "HTML":http://en.wikipedia.org/wiki/HTML.
+  
+  The script lives in "my google code repository":http://chrisroos.googlecode.com.  Check it out from subversion:
+  
+  <typo:code>
+  svn co http://chrisroos.googlecode.com/svn/trunk/google-wiki-syntax
+  </typo:code>
+  
+  The wiki_convertor script takes two arguments.  The first is the wiki file, or directory containing multiple wiki files, and the second is the output directory.  So, to use it to create an html copy of the "google-doctype":http://code.google.com/doctype/ wiki content, in my home Sites directory, I'd use the following command:
+  
+  <typo:code>
+  wiki_convertor.rb ~/Code/third-party/google-doctype/wiki/ ~/Sites/google-doctype/
+  </typo:code>
+  
+  This is the first step towards being able to, hopefully, create a "pdf":http://en.wikipedia.org/wiki/Portable_Document_Format copy of the google-doctype content.  Actually, if anyone has any thoughts on this I'd love to hear them: should I output a different format ("docbook":http://en.wikipedia.org/wiki/DocBook, for example) or is it easy enough to convert from (x)html to pdf?
+  
+  The code is covered by quite a few tests but, if peeps find problems converting their own wiki content (for example) then I'd love to hear from you.
+  
+  *Note* There's a chance that this becomes less important "if/when":http://code.google.com/docreader/#p(google-documentation-reader)s(google-documentation-reader)t(OfflineSupport Google use "gears":http://gears.google.com/ in their "google docreader":http://code.google.com/docreader/#p(google-documentation-reader)s(google-documentation-reader)t(google-documentation-reader app to allow offline access.
+  
+  *Note* If you don't want to go through this process then you can use a standalone version of "moinmoin":http://moinmoin.wikiwikiweb.de/ to "view your wiki content offline":http://groups.google.com/group/google-doctype/browse_thread/thread/5fe1d26a0afdc4c7.
+
+:published_at: 2008-07-30 21:53:02.548893 +01:00
+:title: Converting Google Code Wiki Content to Html
+:guid: 2be30c15-b01e-46d7-949c-69218bf4aada
