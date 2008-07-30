@@ -1,0 +1,49 @@
+--- 
+:body: |
+  There's a bunch of stuff that I want to do to this blog to simplify things even further. I'm writing them up to force me to think about them and to see if anyone has any thoughts about my proposals. I'm sure there's lots more I could do but this should keep me busy for quite a while.
+  
+  * Remove the archive pages.  These are the pages that exist so that you can see every post in a given year, month or day.  I don't think I've ever wanted to read these archives on anyone elses site and I can't think that anyone would want to do so here.  They are not linked from anywhere on this site (I removed the links when I switched to a "static site":http://blog.seagul.co.uk/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete) but I know they are still in the "google":http://www.google.co.uk index.  I find it annoying if I click on a link to such an archive page as I then have to do a second search, within the page, to find what I'm looking for.  I guess this might be one of the reasons why google's guidelines state that you should "use robots.txt to prevent crawling of SERPs":http://www.google.com/support/webmasters/bin/answer.py?answer=35769 (more info from "Matt Cutts":http://www.mattcutts.com/blog/search-results-in-search-results/).  It's for this reason that I removed all paging on the site and redirect anyone that follows a link to a paged page (e.g. articles/page/5) to my "contents":/contents page, explaining why they might not be expecting to see that page.  
+  
+  * Change the "URL":http://en.wikipedia.org/wiki/Uniform_Resource_Locator structure to reflect the removal of the archive pages.  My URLs currently look something like /articles/2007/01/01/article-title.  I want to change them to /articles/2007-01-01-title.  This will still allow people, if they really, really wanted, to replicate the functionality of my archive pages by using the google site search functionality (site:blog.seagul.co.uk/articles/2007-05 for all articles in May 2007, for example).  Retaining the date in the URL has two (that I can think of) benefits: I find it really useful to get an idea of the age (and possibly relevancy) of a post, and it provides a neat way to generate permalinks.
+  
+  * Remove the tag pages.  For the same reason that I've removed the paged pages and want to remove the archive pages.  I haven't been tagging any articles since the switch to a static site and only maintain these pages for the legacy tags.  If I really suffer from the lack of tags then I guess I'll just use a tagging service (such as "del.icio.us":http://del.icio.us) to bookmark my posts with relevant tags.
+  
+  * Remove articles from the url, so that /articles/2007-01-01-blurgh becomes /2007-01-01-blurgh.  It doesn't add anything and I'm not worried about namespace clashes (one thing it could potentially solve).
+  
+  * Move all the content from blog.seagul.co.uk to chrisroos.co.uk/blog.  I want to start using this domain as a starting point for my online identity.
+  
+  * Create chrisroos.co.uk/projects in an attempt to record details of the things that I might class as projects.  This might also solve some of the shortfalls of not having tags (if I did have tags then I might be able to implement this projects idea by using them).
+  
+  * Add the ability to search the site from the site itself (using "google site search":http://www.google.com/sitesearch/ or similar). I sometimes find the need to search my own site and having to do site:blog.seagul.co.uk keywords can become frustrating.
+  
+  * Revisit previous articles and add meta descriptions to their pages.  This is the text that google displays in their "SERPs":http://en.wikipedia.org/wiki/Search_engine_results_page and is generally useful as an overview of the content.
+  
+  * Add the permalink of each post in the form of a "link rel=bookmark":http://microformats.org/wiki/rel-bookmark.
+  
+  * Add link tags (prev, next, home?) to describe the "relationship between posts":http://diveintoaccessibility.org/day_9_providing_additional_navigation_aids.html.
+  
+  * Remove the embedded syntax highlighting from some of the posts, preferring, instead, a "javascript solution":http://code.google.com/p/syntaxhighlighter/.
+  
+  * Attempt to clear up any broken links in the content.
+  
+  *Note* A guiding principle behind the removal of composite pages (tags, archives and paged pages) is that a post should only appear at one URL on this site.
+  
+  *Note* I believe there may be benefits of the archive and tag pages in that they allow search engines to effectively spider all your content. I'm fairly happy that my contents page and sitemap mean that I'm covered in this respect.
+  
+  h3. Steps required to move towards the architecture (URL) changes
+  
+  * Add "noindex":http://en.wikipedia.org/wiki/Noindex to all the archive pages, and optionally request their removal, so that they disappear from the search engine indexes.
+  
+  * Add noindex to all the tag pages, and optionally request their removal, so that they disappear from the search engine indexes.
+  
+  * Possibly redirect requests for archive pages to a google search that provides the same functionality.  Alternatively redirect them to my contents page.
+  
+  * Redirect requests for tag pages to my contents page.
+  
+  * Redirect all requests for URLs that start with /articles to the URL without /articles.
+  
+  * Redirect all requests for URLs on the blog.seagul.co.uk domain to chrisroos.co.uk/blog.
+
+:published_at: 2008-07-30 21:24:41.687426 +01:00
+:title: Plans for the my blog
+:guid: 20c1637a-a5ae-43e7-839b-c405a3863fcd
