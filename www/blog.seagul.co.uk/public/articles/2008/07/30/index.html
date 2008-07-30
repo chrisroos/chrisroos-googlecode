@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Posts published on Wed, 30 July 2008 - deferred until inspiration hits</title>
+  </head>
+  
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              
+                <h2>
+                  <a href="/articles/2008/07/30/plans-for-the-my-blog">Plans for the my blog</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Wed, 30 Jul 2008 21:24:41">
+                    Wed, 30 Jul 2008 21:24:41
+                  </span>
+                </p>
+
+                <p>There&#8217;s a bunch of stuff that I want to do to this blog to simplify things even further. I&#8217;m writing them up to force me to think about them and to see if anyone has any thoughts about my proposals. I&#8217;m sure there&#8217;s lots more I could do but this should keep me busy for quite a while.</p>
+
+
+	<ul>
+	<li>Remove the archive pages.  These are the pages that exist so that you can see every post in a given year, month or day.  I don&#8217;t think I&#8217;ve ever wanted to read these archives on anyone elses site and I can&#8217;t think that anyone would want to do so here.  They are not linked from anywhere on this site (I removed the links when I switched to a <a href="http://blog.seagul.co.uk/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete">static site</a>) but I know they are still in the <a href="http://www.google.co.uk">google</a> index.  I find it annoying if I click on a link to such an archive page as I then have to do a second search, within the page, to find what I&#8217;m looking for.  I guess this might be one of the reasons why google&#8217;s guidelines state that you should <a href="http://www.google.com/support/webmasters/bin/answer.py?answer=35769">use robots.txt to prevent crawling of SERPs</a> (more info from <a href="http://www.mattcutts.com/blog/search-results-in-search-results/">Matt Cutts</a>).  It&#8217;s for this reason that I removed all paging on the site and redirect anyone that follows a link to a paged page (e.g. articles/page/5) to my <a href="/contents">contents</a> page, explaining why they might not be expecting to see that page.</li>
+	</ul>
+
+
+	<ul>
+	<li>Change the <a href="http://en.wikipedia.org/wiki/Uniform_Resource_Locator"><span class="caps">URL</span></a> structure to reflect the removal of the archive pages.  My URLs currently look something like /articles/2007/01/01/article-title.  I want to change them to /articles/2007-01-01-title.  This will still allow people, if they really, really wanted, to replicate the functionality of my archive pages by using the google site search functionality (site:blog.seagul.co.uk/articles/2007-05 for all articles in May 2007, for example).  Retaining the date in the <span class="caps">URL</span> has two (that I can think of) benefits: I find it really useful to get an idea of the age (and possibly relevancy) of a post, and it provides a neat way to generate permalinks.</li>
+	</ul>
+
+
+	<ul>
+	<li>Remove the tag pages.  For the same reason that I&#8217;ve removed the paged pages and want to remove the archive pages.  I haven&#8217;t been tagging any articles since the switch to a static site and only maintain these pages for the legacy tags.  If I really suffer from the lack of tags then I guess I&#8217;ll just use a tagging service (such as <a href="http://del.icio.us">del.icio.us</a>) to bookmark my posts with relevant tags.</li>
+	</ul>
+
+
+	<ul>
+	<li>Remove articles from the url, so that /articles/2007-01-01-blurgh becomes /2007-01-01-blurgh.  It doesn&#8217;t add anything and I&#8217;m not worried about namespace clashes (one thing it could potentially solve).</li>
+	</ul>
+
+
+	<ul>
+	<li>Move all the content from blog.seagul.co.uk to chrisroos.co.uk/blog.  I want to start using this domain as a starting point for my online identity.</li>
+	</ul>
+
+
+	<ul>
+	<li>Create chrisroos.co.uk/projects in an attempt to record details of the things that I might class as projects.  This might also solve some of the shortfalls of not having tags (if I did have tags then I might be able to implement this projects idea by using them).</li>
+	</ul>
+
+
+	<ul>
+	<li>Add the ability to search the site from the site itself (using <a href="http://www.google.com/sitesearch/">google site search</a> or similar). I sometimes find the need to search my own site and having to do site:blog.seagul.co.uk keywords can become frustrating.</li>
+	</ul>
+
+
+	<ul>
+	<li>Revisit previous articles and add meta descriptions to their pages.  This is the text that google displays in their <a href="http://en.wikipedia.org/wiki/Search_engine_results_page">SERPs</a> and is generally useful as an overview of the content.</li>
+	</ul>
+
+
+	<ul>
+	<li>Add the permalink of each post in the form of a <a href="http://microformats.org/wiki/rel-bookmark">link rel=bookmark</a>.</li>
+	</ul>
+
+
+	<ul>
+	<li>Add link tags (prev, next, home?) to describe the <a href="http://diveintoaccessibility.org/day_9_providing_additional_navigation_aids.html">relationship between posts</a>.</li>
+	</ul>
+
+
+	<ul>
+	<li>Remove the embedded syntax highlighting from some of the posts, preferring, instead, a <a href="http://code.google.com/p/syntaxhighlighter/">javascript solution</a>.</li>
+	</ul>
+
+
+	<ul>
+	<li>Attempt to clear up any broken links in the content.</li>
+	</ul>
+
+
+	<p><strong>Note</strong> A guiding principle behind the removal of composite pages (tags, archives and paged pages) is that a post should only appear at one <span class="caps">URL</span> on this site.</p>
+
+
+	<p><strong>Note</strong> I believe there may be benefits of the archive and tag pages in that they allow search engines to effectively spider all your content. I&#8217;m fairly happy that my contents page and sitemap mean that I&#8217;m covered in this respect.</p>
+
+
+	<h3>Steps required to move towards the architecture (URL) changes</h3>
+
+
+	<ul>
+	<li>Add <a href="http://en.wikipedia.org/wiki/Noindex">noindex</a> to all the archive pages, and optionally request their removal, so that they disappear from the search engine indexes.</li>
+	</ul>
+
+
+	<ul>
+	<li>Add noindex to all the tag pages, and optionally request their removal, so that they disappear from the search engine indexes.</li>
+	</ul>
+
+
+	<ul>
+	<li>Possibly redirect requests for archive pages to a google search that provides the same functionality.  Alternatively redirect them to my contents page.</li>
+	</ul>
+
+
+	<ul>
+	<li>Redirect requests for tag pages to my contents page.</li>
+	</ul>
+
+
+	<ul>
+	<li>Redirect all requests for URLs that start with /articles to the <span class="caps">URL</span> without /articles.</li>
+	</ul>
+
+
+	<ul>
+	<li>Redirect all requests for URLs on the blog.seagul.co.uk domain to chrisroos.co.uk/blog.</li>
+	</ul>
+
+                
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>
