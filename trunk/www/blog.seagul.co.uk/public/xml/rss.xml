@@ -10,6 +10,116 @@
     <description></description>
     
       <item>
+        <title>Plans for the my blog</title>
+        <description>&lt;p&gt;There&amp;#8217;s a bunch of stuff that I want to do to this blog to simplify things even further. I&amp;#8217;m writing them up to force me to think about them and to see if anyone has any thoughts about my proposals. I&amp;#8217;m sure there&amp;#8217;s lots more I could do but this should keep me busy for quite a while.&lt;/p&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Remove the archive pages.  These are the pages that exist so that you can see every post in a given year, month or day.  I don&amp;#8217;t think I&amp;#8217;ve ever wanted to read these archives on anyone elses site and I can&amp;#8217;t think that anyone would want to do so here.  They are not linked from anywhere on this site (I removed the links when I switched to a &lt;a href=&quot;http://blog.seagul.co.uk/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete&quot;&gt;static site&lt;/a&gt;) but I know they are still in the &lt;a href=&quot;http://www.google.co.uk&quot;&gt;google&lt;/a&gt; index.  I find it annoying if I click on a link to such an archive page as I then have to do a second search, within the page, to find what I&amp;#8217;m looking for.  I guess this might be one of the reasons why google&amp;#8217;s guidelines state that you should &lt;a href=&quot;http://www.google.com/support/webmasters/bin/answer.py?answer=35769&quot;&gt;use robots.txt to prevent crawling of SERPs&lt;/a&gt; (more info from &lt;a href=&quot;http://www.mattcutts.com/blog/search-results-in-search-results/&quot;&gt;Matt Cutts&lt;/a&gt;).  It&amp;#8217;s for this reason that I removed all paging on the site and redirect anyone that follows a link to a paged page (e.g. articles/page/5) to my &lt;a href=&quot;/contents&quot;&gt;contents&lt;/a&gt; page, explaining why they might not be expecting to see that page.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Change the &lt;a href=&quot;http://en.wikipedia.org/wiki/Uniform_Resource_Locator&quot;&gt;&lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt;&lt;/a&gt; structure to reflect the removal of the archive pages.  My URLs currently look something like /articles/2007/01/01/article-title.  I want to change them to /articles/2007-01-01-title.  This will still allow people, if they really, really wanted, to replicate the functionality of my archive pages by using the google site search functionality (site:blog.seagul.co.uk/articles/2007-05 for all articles in May 2007, for example).  Retaining the date in the &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; has two (that I can think of) benefits: I find it really useful to get an idea of the age (and possibly relevancy) of a post, and it provides a neat way to generate permalinks.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Remove the tag pages.  For the same reason that I&amp;#8217;ve removed the paged pages and want to remove the archive pages.  I haven&amp;#8217;t been tagging any articles since the switch to a static site and only maintain these pages for the legacy tags.  If I really suffer from the lack of tags then I guess I&amp;#8217;ll just use a tagging service (such as &lt;a href=&quot;http://del.icio.us&quot;&gt;del.icio.us&lt;/a&gt;) to bookmark my posts with relevant tags.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Remove articles from the url, so that /articles/2007-01-01-blurgh becomes /2007-01-01-blurgh.  It doesn&amp;#8217;t add anything and I&amp;#8217;m not worried about namespace clashes (one thing it could potentially solve).&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Move all the content from blog.seagul.co.uk to chrisroos.co.uk/blog.  I want to start using this domain as a starting point for my online identity.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Create chrisroos.co.uk/projects in an attempt to record details of the things that I might class as projects.  This might also solve some of the shortfalls of not having tags (if I did have tags then I might be able to implement this projects idea by using them).&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Add the ability to search the site from the site itself (using &lt;a href=&quot;http://www.google.com/sitesearch/&quot;&gt;google site search&lt;/a&gt; or similar). I sometimes find the need to search my own site and having to do site:blog.seagul.co.uk keywords can become frustrating.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Revisit previous articles and add meta descriptions to their pages.  This is the text that google displays in their &lt;a href=&quot;http://en.wikipedia.org/wiki/Search_engine_results_page&quot;&gt;SERPs&lt;/a&gt; and is generally useful as an overview of the content.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Add the permalink of each post in the form of a &lt;a href=&quot;http://microformats.org/wiki/rel-bookmark&quot;&gt;link rel=bookmark&lt;/a&gt;.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Add link tags (prev, next, home?) to describe the &lt;a href=&quot;http://diveintoaccessibility.org/day_9_providing_additional_navigation_aids.html&quot;&gt;relationship between posts&lt;/a&gt;.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Remove the embedded syntax highlighting from some of the posts, preferring, instead, a &lt;a href=&quot;http://code.google.com/p/syntaxhighlighter/&quot;&gt;javascript solution&lt;/a&gt;.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Attempt to clear up any broken links in the content.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; A guiding principle behind the removal of composite pages (tags, archives and paged pages) is that a post should only appear at one &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; on this site.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; I believe there may be benefits of the archive and tag pages in that they allow search engines to effectively spider all your content. I&amp;#8217;m fairly happy that my contents page and sitemap mean that I&amp;#8217;m covered in this respect.&lt;/p&gt;
+
+
+	&lt;h3&gt;Steps required to move towards the architecture (URL) changes&lt;/h3&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Add &lt;a href=&quot;http://en.wikipedia.org/wiki/Noindex&quot;&gt;noindex&lt;/a&gt; to all the archive pages, and optionally request their removal, so that they disappear from the search engine indexes.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Add noindex to all the tag pages, and optionally request their removal, so that they disappear from the search engine indexes.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Possibly redirect requests for archive pages to a google search that provides the same functionality.  Alternatively redirect them to my contents page.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Redirect requests for tag pages to my contents page.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Redirect all requests for URLs that start with /articles to the &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; without /articles.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;Redirect all requests for URLs on the blog.seagul.co.uk domain to chrisroos.co.uk/blog.&lt;/li&gt;
+	&lt;/ul&gt;</description>
+
+        <pubDate>Wed, 30 Jul 2008 21:24:41 +0100</pubDate>
+        <guid isPermaLink="false">urn:uuid:20c1637a-a5ae-43e7-839b-c405a3863fcd</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008/07/30/plans-for-the-my-blog</link>
+        
+      </item>
+    
+      <item>
         <title>Asking South Eastern about the high speed trains</title>
         <description>&lt;p&gt;&lt;strong&gt;I noticed, having already written everything below, that there&amp;#8217;s actually quite a lot of information about the high speed proposals on the &lt;a href=&quot;http://en.wikipedia.org/wiki/Southeastern_(train_operating_company)#Future_expansion&quot;&gt;South Eastern&lt;/a&gt; &lt;a href=&quot;http://wikipedia.org/&quot;&gt;wikipedia&lt;/a&gt; page.&lt;/strong&gt;&lt;/p&gt;
 
@@ -292,43 +402,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&amp;quot;POST&amp;quot; -H&am
         <guid isPermaLink="false">urn:uuid:d9caacb2-2920-4ccd-ac3f-f2154258c400</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008/03/29/reference-trackback-server-implementation</link>
-        
-      </item>
-    
-      <item>
-        <title>Files hosted on Google Groups cannot be opened in Safari (or Internet Explorer)</title>
-        <description>&lt;p&gt;I noticed a little while ago that opening a, &lt;a href=&quot;http://groups.google.com&quot;&gt;Google Groups&lt;/a&gt; hosted, file in &lt;a href=&quot;http://www.apple.com/safari/&quot;&gt;Safari&lt;/a&gt; didn&amp;#8217;t work.  I have a file at &lt;a href=&quot;http://delicious-trackbacks.googlegroups.com/web/installation.html&quot;&gt;http://delicious-trackbacks.googlegroups.com/web/installation.html&lt;/a&gt; that you can try out if you&amp;#8217;re so inclined.  Requests for that file result in a page being rendered in Firefox but not in Safari or Internet Explorer (6 at least).  &lt;a href=&quot;http://interblah.net/&quot;&gt;James&lt;/a&gt; noticed that requests for these hosted files were resulting in a 302 response, as we can see from this &lt;a href=&quot;http://curl.haxx.se/&quot;&gt;curl&lt;/a&gt; output.&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;curl &amp;quot;http://delicious-trackbacks.googlegroups.com/web/installation.html&amp;quot; -v -X&amp;quot;HEAD&amp;quot;
-
-&amp;lt; HTTP/1.1 302 Moved Temporarily
-&amp;lt; Content-Type: text/html; charset=UTF-8
-&amp;lt; Content-Length: 0
-&amp;lt; Cache-control: private
-&amp;lt; Server: GFE/1.3
-&amp;lt; Date: Fri, 28 Mar 2008 19:55:58 GMT&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;The response also includes a body that contains a link to the actual file you want with some kind of key in the querystring.  Interestingly the response doesn&amp;#8217;t return a Location header.&lt;/p&gt;
-
-
-	&lt;p&gt;The &lt;a href=&quot;http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3&quot;&gt;&lt;span class=&quot;caps&quot;&gt;HTTP&lt;/span&gt; specification&lt;/a&gt; states the following:&lt;/p&gt;
-
-
-	&lt;blockquote&gt;
-		&lt;p&gt;The temporary &lt;span class=&quot;caps&quot;&gt;URI SHOULD&lt;/span&gt; be given by the Location field in the response. Unless the request method was &lt;span class=&quot;caps&quot;&gt;HEAD&lt;/span&gt;, the entity of the response &lt;span class=&quot;caps&quot;&gt;SHOULD&lt;/span&gt; contain a short hypertext note with a hyperlink to the new &lt;acronym title=&quot;s&quot;&gt;URI&lt;/acronym&gt;.&lt;/p&gt;
-	&lt;/blockquote&gt;
-
-
-	&lt;p&gt;So, it looks like Google are sending a valid response according to the spec (although I&amp;#8217;m not sure whether they&amp;#8217;re intentionally leaving the Location header out) but that Safari and Internet Explorer are unable to deal with it.&lt;/p&gt;
-
-
-	&lt;p&gt;I found an existing report of &lt;a href=&quot;http://bugs.webkit.org/show_bug.cgi?id=15822&quot;&gt;the bug&lt;/a&gt; over at the &lt;a href=&quot;http://webkit.org/&quot;&gt;webkit&lt;/a&gt; &lt;a href=&quot;http://bugs.webkit.org/&quot;&gt;bug tracker&lt;/a&gt; and added this information to it.  I also sent a &lt;a href=&quot;http://groups.google.com/group/Is-Something-Broken/browse_thread/thread/9e9a51c2b6841c8f/28088b462550858e#28088b462550858e&quot;&gt;message&lt;/a&gt; to the &lt;a href=&quot;http://groups.google.com/group/Google-Groups-Guide&quot;&gt;Google Groups: Is Something Broken&lt;/a&gt; group.&lt;/p&gt;</description>
-
-        <pubDate>Sat, 29 Mar 2008 06:06:02 +0000</pubDate>
-        <guid isPermaLink="false">urn:uuid:97bcff83-94f1-4808-a723-2769584d257a</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008/03/29/files-hosted-on-google-groups-cannot-be-opened-in-safari-or-internet-explorer</link>
         
       </item>
     
