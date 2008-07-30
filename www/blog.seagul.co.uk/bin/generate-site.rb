@@ -1,3 +1,5 @@
+#! /usr/bin/env ruby
+
 # Useful data from discarded tables
 # * Ping URLs
 # http://rpc.technorati.com/rpc/ping
