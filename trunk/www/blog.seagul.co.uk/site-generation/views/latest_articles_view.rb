@@ -14,5 +14,7 @@ class LatestArticlesView
   def page_title
     "Most recent posts"
   end
+  def robots_meta_tag
+  end
   public :binding
 end
