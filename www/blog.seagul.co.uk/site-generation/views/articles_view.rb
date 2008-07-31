@@ -11,5 +11,7 @@ class ArticlesView
   def articles
     @articles_container.articles
   end
+  def robots_meta_tag
+  end
   public :binding
 end
