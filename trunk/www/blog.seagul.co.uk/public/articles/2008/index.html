@@ -21,6 +21,20 @@
 
               
                 <h2>
+                  <a href="/articles/2008/08/01/changing-the-repository-of-code-being-managed-by-piston-an-alternative-to-piston-switch">Changing the repository of code being managed by Piston (an alternative to piston switch)</a>
+                </h2>
+                <p class="postedOn">
+                  Posted by Chris Roos
+                  <span class="typo_date" title="Fri, 01 Aug 2008 18:17:35">
+                    Fri, 01 Aug 2008 18:17:35
+                  </span>
+                </p>
+
+                <p>I&#8217;ve been working on a little script that gives us visibility of the state of the <a href="http://piston.rubyforge.org/">pistonised</a> components of <a href="http://www.reevoo.com">our</a> applications.  One of the things I noticed was that we&#8217;d used multiple domains to pistonise content from our own <a href="http://subversion.tigris.org/">repository</a>.  I wanted to standardise them all and thought I&#8217;d be able to use the <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/235517">piston switch</a> command to do just that.  Unfortunately, the piston switch command appears to work only when switching between URLs where the domain remains constant (switching between example.com/tag/1 and example.com/tag/2, for example).  I needed to change the domain part of the <span class="caps">URL</span> (svn.example.com to www.example.com) and in some cases the port (example.com:8080 to example.com).  I figured I could just change the &#8220;piston:root&#8221; <a href="http://svnbook.red-bean.com/en/1.1/ch07s02.html">subversion property</a> and used svn propedit to do just that.  Unfortunately, on committing the change I could no longer piston update, I was getting a &#8216;command not found&#8217; error from the shell.  This was a bit odd so I dug into the code.  It turns out that there was an extra newline in the piston:root property that was screwing up the svn checkout (the bit after the newline was being treated as a new command by the shell, hence the error).  The solution was to use svn propset rather than svn propedit to set the piston:root property: for some reason svn propedit introduces this unwanted newline, where svn propset doesn&#8217;t.</p>
+
+                
+              
+                <h2>
                   <a href="/articles/2008/07/30/converting-google-code-wiki-content-to-html">Converting Google Code Wiki Content to Html</a>
                 </h2>
                 <p class="postedOn">
