@@ -97,7 +97,7 @@ RewriteRule ^(.*)\.html$ $1 [R=301,L]
 # If we receive a request for a tag without a .html extension then let's rewrite internally to render the file with the .html extension
 RewriteCond %{REQUEST_URI} ^/articles/tag/.+$
 RewriteCond %{REQUEST_URI} !\.html$
-RewriteRule ^(.*)$ $1.html [L]
+RewriteRule ^.*$ /tags [R=302,L]
 
 # Redirect /articles/<year>/page to /articles/<year>/
 RewriteCond %{THE_REQUEST} \ /articles/[0-9]{4}/page.*\ HTTP/
