@@ -17,7 +17,8 @@ require 'page'
 require File.join(File.dirname(__FILE__), '..', 'site-generation', 'views')
 require 'page_generator'
 
-latest_articles = Article.find_all[0...10]
+articles = Article.find_all
+latest_articles = articles[0...10]
 
 latest_articles_xml_view = LatestArticlesXmlView.new(latest_articles)
 PageGenerator.new(latest_articles_xml_view, 'articles', 'xml').generate
@@ -26,8 +27,6 @@ Page.find_all.each do |page|
   view = PageView.new(page)
   PageGenerator.new(view, 'page').generate
 end
-
-articles = Article.find_all
 
 articles.each do |article|
   view = ArticleView.new(article)
