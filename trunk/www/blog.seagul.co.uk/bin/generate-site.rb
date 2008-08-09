@@ -17,12 +17,12 @@ require 'page'
 require File.join(File.dirname(__FILE__), '..', 'site-generation', 'views')
 require 'page_generator'
 
-articles = Article.find_all[0...10]
+latest_articles = Article.find_all[0...10]
 
-latest_articles_view = LatestArticlesView.new(articles)
+latest_articles_view = LatestArticlesView.new(latest_articles)
 PageGenerator.new(latest_articles_view, 'articles').generate
 
-latest_articles_xml_view = LatestArticlesXmlView.new(articles)
+latest_articles_xml_view = LatestArticlesXmlView.new(latest_articles)
 PageGenerator.new(latest_articles_xml_view, 'articles', 'xml').generate
 
 Page.find_all.each do |page|
@@ -30,15 +30,15 @@ Page.find_all.each do |page|
   PageGenerator.new(view, 'page').generate
 end
 
-Article.find_all.each do |article|
+articles = Article.find_all
+
+articles.each do |article|
   view = ArticleView.new(article)
   PageGenerator.new(view, 'article').generate
 end
 
-articles = Article.find_all
 articles_view = ContentsView.new(articles)
 PageGenerator.new(articles_view, 'contents').generate
 
-articles = Article.find_all
 view = SitemapView.new(articles)
 PageGenerator.new(view, 'sitemap', 'xml').generate
