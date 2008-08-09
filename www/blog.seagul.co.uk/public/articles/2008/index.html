@@ -32,7 +32,6 @@
 
                 <p>I&#8217;ve been working on a little script that gives us visibility of the state of the <a href="http://piston.rubyforge.org/">pistonised</a> components of <a href="http://www.reevoo.com">our</a> applications.  One of the things I noticed was that we&#8217;d used multiple domains to pistonise content from our own <a href="http://subversion.tigris.org/">repository</a>.  I wanted to standardise them all and thought I&#8217;d be able to use the <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/235517">piston switch</a> command to do just that.  Unfortunately, the piston switch command appears to work only when switching between URLs where the domain remains constant (switching between example.com/tag/1 and example.com/tag/2, for example).  I needed to change the domain part of the <span class="caps">URL</span> (svn.example.com to www.example.com) and in some cases the port (example.com:8080 to example.com).  I figured I could just change the &#8220;piston:root&#8221; <a href="http://svnbook.red-bean.com/en/1.1/ch07s02.html">subversion property</a> and used svn propedit to do just that.  Unfortunately, on committing the change I could no longer piston update, I was getting a &#8216;command not found&#8217; error from the shell.  This was a bit odd so I dug into the code.  It turns out that there was an extra newline in the piston:root property that was screwing up the svn checkout (the bit after the newline was being treated as a new command by the shell, hence the error).  The solution was to use svn propset rather than svn propedit to set the piston:root property: for some reason svn propedit introduces this unwanted newline, where svn propset doesn&#8217;t.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/30/converting-google-code-wiki-content-to-html">Converting Google Code Wiki Content to Html</a>
@@ -68,7 +67,6 @@
 
 	<p><strong>Note</strong> If you don&#8217;t want to go through this process then you can use a standalone version of <a href="http://moinmoin.wikiwikiweb.de/">moinmoin</a> to <a href="http://groups.google.com/group/google-doctype/browse_thread/thread/5fe1d26a0afdc4c7">view your wiki content offline</a>.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/30/plans-for-the-my-blog">Plans for the my blog</a>
@@ -181,7 +179,6 @@
 	<li>Redirect all requests for URLs on the blog.seagul.co.uk domain to chrisroos.co.uk/blog.</li>
 	</ul>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/21/asking-south-eastern-about-the-high-speed-trains">Asking South Eastern about the high speed trains</a>
@@ -265,7 +262,6 @@ Ref: 329980 / 99573
 Southeastern
 </div>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/21/asking-south-eastern-about-their-crappy-seats">Asking South Eastern about their crappy seats</a>
@@ -310,7 +306,6 @@ Ref: 329980 / 93994
 Southeastern Customer Services
 </div>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/21/open-source-optical-character-recognition-ocr-on-the-mac">Open Source Optical Character Recognition (OCR) on the Mac</a>
@@ -324,7 +319,6 @@ Southeastern Customer Services
 
                 <p>I recently received a letter reply to an enquiry I made to <a href="http://southeasternrailway.co.uk/">South Eastern Trains</a>.  I wanted to make the text available (I don&#8217;t like reading text in images) but didn&#8217;t want to type it all out.  Having scanned it in, I looked around for some <a href="http://en.wikipedia.org/wiki/Optical_character_recognition"><span class="caps">OCR</span></a> software, for the <a href="http://www.apple.com/mac/">Mac</a>, that would extract the text for me.  Through the (relatively large amount of) search result noise, I managed to find a reference to <a href="http://code.google.com/p/tesseract-ocr/">tesseract</a>.  Installing from <a href="http://www.macports.org/">Mac Ports</a> was easy but actually getting useful output was slightly tricker.  I was trying to extract the text from <a href="http://www.flickr.com/photos/chrisjroos/2688362397/">this letter</a> but kept getting garbled output.  I tried a few things before stumbling across <a href="https://help.ubuntu.com/community/OCR">this page</a> that suggests making the image greyscale and ensuring that the extension is .tif (not .tiff).  I duly complied, using <a href="http://seashore.sourceforge.net/">Seashore</a> to convert the image to greyscale, and tried again.  This time the text was extracted perfectly (even the addresses, that appear in two columns, were extracted correctly).</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/05/19/pwdhash-widget">Pwdhash Widget</a>
@@ -341,7 +335,6 @@ Southeastern Customer Services
 
 	<p>Anyway, if it sounds useful feel then free to download it <a href="/files/pwdhash.zip">here</a>.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/05/19/a-trip-to-the-tip">A trip to the tip</a>
@@ -361,7 +354,6 @@ Southeastern Customer Services
 
 	<p>Maybe a hybrid alternative would be to train the current tip workers to filter out items of possible reuse from the actual rubbish, thereby allowing the existing site to be use for both purposes.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/04/29/redesigning-my-blog">Redesigning my blog</a>
@@ -381,7 +373,6 @@ Southeastern Customer Services
 
 	<p>There&#8217;s still work to do: the code snippets seem to break <span class="caps">IE6</span> (not sure about <span class="caps">IE7</span>) but in general I&#8217;m pretty happy with the way it&#8217;s looking.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/04/10/exporting-query-results-to-a-remote-machine-with-mysql-an-alternative-to-select-into-outfile">Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)</a>
@@ -419,7 +410,6 @@ Southeastern Customer Services
 
 	<p>It took us a while to figure this out so I thought it might be of some use to others.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/03/31/another-project-public-swimming-pools-in-the-uk">Another project - Public Swimming Pools in the UK</a>
@@ -442,7 +432,6 @@ Southeastern Customer Services
 
 	<p>The initial, and most basic, site will just list all the public swimming pools and, I&#8217;m hoping this is pretty easy with the <a href="http://code.google.com/apis/maps/">Google Maps <span class="caps">API</span></a>, allow you to search for one by location.  As, and indeed if, the site evolves, I&#8217;d like to get lots more useful information about these pools up: I&#8217;m hoping that allowing users to comment will reveal useful info about the best times to visit depending on what you&#8217;re trying to get out of it.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/03/29/reference-trackback-server-implementation">Reference Trackback Server implementation</a>
@@ -494,7 +483,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot; -H&quot;Conte
   &lt;error&gt;0&lt;/error&gt;
 &lt;/response&gt;</code></pre></div>
 
-                
               
                 <h2>
                   <a href="/articles/2008/03/29/files-hosted-on-google-groups-cannot-be-opened-in-safari-or-internet-explorer">Files hosted on Google Groups cannot be opened in Safari (or Internet Explorer)</a>
@@ -534,7 +522,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot; -H&quot;Conte
 
 	<p>I found an existing report of <a href="http://bugs.webkit.org/show_bug.cgi?id=15822">the bug</a> over at the <a href="http://webkit.org/">webkit</a> <a href="http://bugs.webkit.org/">bug tracker</a> and added this information to it.  I also sent a <a href="http://groups.google.com/group/Is-Something-Broken/browse_thread/thread/9e9a51c2b6841c8f/28088b462550858e#28088b462550858e">message</a> to the <a href="http://groups.google.com/group/Google-Groups-Guide">Google Groups: Is Something Broken</a> group.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/03/28/version-control-commit-note-best-practice-or-not-you-decide">Version Control Commit Note Best Practice (or not, you decide)</a>
@@ -576,7 +563,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot; -H&quot;Conte
 
 	<p>Anyone else have any thoughts or alternative approaches?</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension">Version 0.2 of the del.icio.us trackback extension</a>
@@ -610,7 +596,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot; -H&quot;Conte
 
 	<p id="fn1"><sup>1</sup> I don&#8217;t appear to be able to link directly to that page which is a bit odd.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/02/28/national-rail-train-times-by-sms-again">National Rail Train Times by SMS (again)</a>
@@ -635,7 +620,6 @@ $ curl http://trackbacks.seagul.co.uk/trackback -X&quot;POST&quot; -H&quot;Conte
 
 	<p>In order to use this service, you will need to create a twitter account, <a href="http://twitter.com/help/follow">follow</a> the natrailenq user and enable <span class="caps">SMS</span> notifications from natrailenq.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/02/26/tagging-my-del-icio-us-bookmarks-with-the-domain-of-the-url-that-im-bookmarking">Tagging my del.icio.us bookmarks with the domain of the URL that I'm bookmarking</a>
@@ -666,7 +650,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
 
 	<p>I&#8217;ve updated the del.icio.us permalinks extension too but I think you&#8217;ll need to remove and re-add it again from the <a href="http://groups.google.com/group/delicious-permalinks/files">installation page</a>.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/02/18/what-ive-been-up-to-projects-and-ideas">What I've been up to - Projects and Ideas</a>
@@ -833,7 +816,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
 
 	<p>I&#8217;ve found it quite hard to find swimming pools close to work in the past.  I&#8217;d like a site that has a map of all swimming pools in the local area along with info (opening times, costs) and reviews of those pools (when&#8217;s a good time to go).</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/02/18/atom-like-rss-feeds-for-thisiskent-co-uk-news-stories">Atom (like RSS) feeds for thisiskent.co.uk news stories</a>
@@ -850,7 +832,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
 
 	<p>The code&#8217;s over on <a href="http://chrisroos.googlecode.com/svn/trunk/thisis-rss/">google code</a> if you want to see how it all works.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us">Sending trackbacks to the sites that you bookmark in del.icio.us</a>
@@ -897,7 +878,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
 
 	<p>Oh, and I&#8217;ve created a real simple <a href="http://chrisroos.googlecode.com/svn/trunk/scratch/trackback-server/">trackback server</a> (well, a <a href="http://mongrel.rubyforge.org/">mongrel</a> handler) and a dummy page that includes a link to this server so that you can see the trackbacks being sent.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/01/23/migration-from-typo-to-a-static-site-is-complete">Migration from Typo to a static site is complete</a>
@@ -911,7 +891,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
 
                 <p>I&#8217;m tired so I&#8217;ll keep this short&#8230;  If you can see this post then it means that I haven&#8217;t broken anything (well, it means I haven&#8217;t broken the rss feed anyway).  I still have lots to do but <a href="http://en.wikipedia.org/wiki/Eat_one's_own_dog_food">eating my own dogfood</a> should give me a reason to keep improving.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/01/23/migrating-this-blog-from-typo-to-a-static-site">Migrating this blog from Typo to a static site</a>
@@ -928,18 +907,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
 
 	<p>Oh and the code is in the <a href="http://chrisroos.googlecode.com/svn/trunk/migrate-typo-to-static-site/">usual place</a> if you fancy following along.</p>
 
-                
-                  <p>
-                    Tags 
-                    
-                      <a href="/articles/tag/blog" rel="tag">blog</a>, 
-                    
-                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                    
-                      <a href="/articles/tag/typo" rel="tag">typo</a>, 
-                    
-                  </p>
-                
               
                 <h2>
                   <a href="/articles/2008/01/17/emailing-photos-to-flickr-from-my-skypephone">Emailing photos to flickr from my Skypephone</a>
@@ -977,22 +944,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
 
 	<p>I was able to send the message as a picture message to flickr (and my personal email) at a cost of twenty-five pence.  There are two (smallish) downsides to this approach: the pictures are resized to 640&#215;480 before sending and, as it goes through an <a href="http://en.wikipedia.org/wiki/Multimedia_Messaging_Service"><span class="caps">MMS</span></a> to email translation phase, the email you receive doesn&#8217;t have the subject and body set correctly (<a href="http://www.flickr.com/photos/chrisjroos/2199389895/">screenshot</a>).</p>
 
-                
-                  <p>
-                    Tags 
-                    
-                      <a href="/articles/tag/email" rel="tag">email</a>, 
-                    
-                      <a href="/articles/tag/flickr" rel="tag">flickr</a>, 
-                    
-                      <a href="/articles/tag/mms" rel="tag">mms</a>, 
-                    
-                      <a href="/articles/tag/pictures" rel="tag">pictures</a>, 
-                    
-                      <a href="/articles/tag/skypephone" rel="tag">skypephone</a>, 
-                    
-                  </p>
-                
               
                 <h2>
                   <a href="/articles/2008/01/16/testing-my-mod_rewrite-configuration-with-ruby">Testing my mod_rewrite configuration with ruby</a>
@@ -1037,20 +988,6 @@ yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';')
   <span class="keyword">end</span>
 <span class="keyword">end</span></code></pre></div>
 
-                
-                  <p>
-                    Tags 
-                    
-                      <a href="/articles/tag/apache" rel="tag">apache</a>, 
-                    
-                      <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
-                    
-                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                    
-                      <a href="/articles/tag/test" rel="tag">test</a>, 
-                    
-                  </p>
-                
               
                 <h2>
                   <a href="/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha">Chris 1, mod_rewrite 0 (muhahahaha)</a>
@@ -1111,26 +1048,6 @@ RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
 
 	<p id="fn1"><sup>1</sup> This has all been for the <a href="http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers">local paper idea</a> I mentioned a while back.  I&#8217;ve actually <a href="http://twitter.com/chrisroos/statuses/570937102">started</a> to get some content up on <a href="http://the-local-paper.co.uk">the-local-paper.co.uk</a> if you want to play along and see how it&#8217;s shaping up..</p>
 
-                
-                  <p>
-                    Tags 
-                    
-                      <a href="/articles/tag/apache" rel="tag">apache</a>, 
-                    
-                      <a href="/articles/tag/local" rel="tag">local</a>, 
-                    
-                      <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
-                    
-                      <a href="/articles/tag/paper.co.uk" rel="tag">paper.co.uk</a>, 
-                    
-                      <a href="/articles/tag/the" rel="tag">the</a>, 
-                    
-                      <a href="/articles/tag/the-local-paper.co.uk" rel="tag">the-local-paper.co.uk</a>, 
-                    
-                      <a href="/articles/tag/tlpa" rel="tag">tlpa</a>, 
-                    
-                  </p>
-                
               
                 <h2>
                   <a href="/articles/2008/01/14/fun-with-mod_rewrite-and-its-special-variables-request_uri-is_subreq-and-the_request">Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)</a>
@@ -1164,18 +1081,6 @@ RewriteRule ^(.*)index\.html$ $1 [R=301,L]</code></pre></div>
 
 	<p>I&#8217;m guessing that this is because <span class="caps">THE</span>_REQUEST contains the full details (the stuff that appears in the log file) of the request from the client (browser) and will therefore be empty for any &#8216;internal requests&#8217;.  Anyone know if my assumptions are correct?</p>
 
-                
-                  <p>
-                    Tags 
-                    
-                      <a href="/articles/tag/apache" rel="tag">apache</a>, 
-                    
-                      <a href="/articles/tag/mod_rewrite" rel="tag">mod_rewrite</a>, 
-                    
-                      <a href="/articles/tag/url" rel="tag">url</a>, 
-                    
-                  </p>
-                
               
                 <h2>
                   <a href="/articles/2008/01/14/searching-subversion-history">Searching subversion history</a>
@@ -1232,24 +1137,6 @@ RewriteRule ^(.*)index\.html$ $1 [R=301,L]</code></pre></div>
 
 <span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">)</span></code></pre></div>
 
-                
-                  <p>
-                    Tags 
-                    
-                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                    
-                      <a href="/articles/tag/script" rel="tag">script</a>, 
-                    
-                      <a href="/articles/tag/search" rel="tag">search</a>, 
-                    
-                      <a href="/articles/tag/subversion" rel="tag">subversion</a>, 
-                    
-                      <a href="/articles/tag/svn" rel="tag">svn</a>, 
-                    
-                      <a href="/articles/tag/trac" rel="tag">trac</a>, 
-                    
-                  </p>
-                
               
 
             </div>
