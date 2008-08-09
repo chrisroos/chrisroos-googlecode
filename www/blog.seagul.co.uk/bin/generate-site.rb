@@ -19,9 +19,6 @@ require 'page_generator'
 
 latest_articles = Article.find_all[0...10]
 
-latest_articles_view = LatestArticlesView.new(latest_articles)
-PageGenerator.new(latest_articles_view, 'articles').generate
-
 latest_articles_xml_view = LatestArticlesXmlView.new(latest_articles)
 PageGenerator.new(latest_articles_xml_view, 'articles', 'xml').generate
 
