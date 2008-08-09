@@ -2,10 +2,6 @@
 :published_at: 2006-07-05 23:22:00 +01:00
 :trackbacks: []
 
-:tags: 
-- id
-- micro
-- ruby
 :body: |
   I just finished up the initial copy of a Ruby implementation of "Fred Stutzman's":http://chimprawk.blogspot.com/ "Micro Id":http://www.microid.org/ "Verifier":http://chimprawk.blogspot.com/2006/06/simple-microid-verifier.html.
   
@@ -16,7 +12,6 @@
   # svn co svn://dev.seagul.co.uk/micro_id_verifier
   </pre>
   </div>
-  
 
 :guid: 3cad34db-7e46-4f42-8e11-7cf85e3c0d93
 :comments: []

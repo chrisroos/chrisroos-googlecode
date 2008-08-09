@@ -2,15 +2,6 @@
 :published_at: 2007-10-05 08:43:00 +01:00
 :trackbacks: []
 
-:tags: 
-- banking
-- bug
-- crap
-- development
-- hsbc
-- internet
-- ofx
-- wesabe
 :body: |-
   I'm almost 100% certain that there's a "bug":http://twitter.com/chrisroos/statuses/247143372 in the Hsbc Internet Banking site.
   
@@ -23,9 +14,9 @@
   I've gotten so used to dealing with "real":http://www.wesabe.com companies that I'd forgotten how the old world works.
 :guid: bdbb76c5-3530-4613-869c-9bffa7774b03
 :comments: 
-- :article_id: 38339
-  :published_at: 2007-10-05 14:51:41 +01:00
+- :published_at: 2007-10-05 14:51:41 +01:00
   :author: Brad Greenlee
+  :article_id: 38339
   :url: ""
   :body: Chris- if there's anything we can do to fix things on the Wesabe end, let me know. Once your account is no longer overdrawn, things should be fine on our site, as we work backwards from the most recent balance. We could always correct the bad balances manually in the database, too.
 :title: Trying to speak to someone in development at Hsbc - can anyone help?

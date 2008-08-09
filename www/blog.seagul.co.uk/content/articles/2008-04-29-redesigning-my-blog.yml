@@ -1,4 +1,5 @@
 --- 
+:published_at: 2008-04-29 06:17:07.944748 +01:00
 :body: |
   I finally got round to updating my blog template this weekend.  I based the new design on the "yui grids css":http://developer.yahoo.com/yui/grids/ in an attempt to provide the same look to users of different browsers.  In addition I've 'borrowed' some ideas from both the "w3c specification pages":http://www.w3.org/TR/xhtml1/ (the blue colour) and the "copyblogger wordpress theme":http://www.pearsonified.com/theme/copyblogger/ (mainly the header, seen on "Ben's":http://www.techbelly.com blog).
   
@@ -6,6 +7,5 @@
   
   There's still work to do: the code snippets seem to break IE6 (not sure about IE7) but in general I'm pretty happy with the way it's looking.
 
-:published_at: 2008-04-29 06:17:07.944748 +01:00
-:title: Redesigning my blog
 :guid: 1ec429c1-206b-4c2c-87a8-84f0c71db78d
+:title: Redesigning my blog

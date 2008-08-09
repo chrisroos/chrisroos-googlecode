@@ -2,14 +2,6 @@
 :published_at: 2007-12-07 07:26:00 +00:00
 :trackbacks: []
 
-:tags: 
-- apache
-- decenturl
-- mod_rewrite
-- mongrel
-- ruby
-- tinyurl
-- url
 :body: |-
   So, "not being able to sleep":http://twitter.com/chrisroos/statuses/477052802 does have some benefits.  I managed to get started on my latest little "pet project":http://blog.seagul.co.uk/articles/2007/11/27/short-human-friendly-permalinks.
   
@@ -71,14 +63,14 @@
   [2] You probably won't be able to watch as it'll redirect too quickly in the browser - your best bet is to use "curl":http://curl.haxx.se/ or the "Live HTTP Headers":http://livehttpheaders.mozdev.org/ "firefox":http://www.mozilla.com/en-US/firefox/ extension so see what's actually going on.
 :guid: b10a6984-0800-481d-884e-8bb2a798ac6f
 :comments: 
-- :article_id: 60922
-  :published_at: 2007-12-07 09:42:32 +00:00
+- :published_at: 2007-12-07 09:42:32 +00:00
   :author: James Mead
+  :article_id: 60922
   :url: http://blog.floehopper.org
   :body: That's cool. I've probably got something horribly wrong, but would it be possible to set up a publicly available http proxy which could do the same sort of redirecting but for *any* domain. If users had to login to the proxy, you'd be able to discriminate between users and so each user could set up their own rules.
-- :article_id: 60922
-  :published_at: 2007-12-07 10:13:20 +00:00
+- :published_at: 2007-12-07 10:13:20 +00:00
   :author: Chris
+  :article_id: 60922
   :url: ""
   :body: |-
     Hey James,
@@ -88,9 +80,9 @@
     I'm aiming for anyone to be able to point a CNAME at my host, log into the web interface (that doesn't exist yet) and configure their redirections.
     
     Is that what you meant?
-- :article_id: 60922
-  :published_at: 2007-12-07 11:19:18 +00:00
+- :published_at: 2007-12-07 11:19:18 +00:00
   :author: James Mead
+  :article_id: 60922
   :url: http://blog.floehopper.org
   :body: |-
     No I don't think it's the same. Your idea is probably much more sensible and useful.
@@ -104,9 +96,9 @@
     I suspect at least one problem with my idea is that people wouldn't want to connect their browser to the web via a third-party proxy due to privacy concerns. But I wonder if using a local proxy like "Mousehole":http://code.whytheluckystiff.net/mouseHole/  r a browser plugin would be more feasible. You could then provide a redirection sharing mechanism via some central server. You could even make the popular redirections for a particular domain available to the domain owner as valuable feedback on making their URLs better.
     
     Anyway that's enough rambling for one morning ;-)
-- :article_id: 60922
-  :published_at: 2007-12-07 14:36:52 +00:00
+- :published_at: 2007-12-07 14:36:52 +00:00
   :author: Chris
+  :article_id: 60922
   :url: ""
   :body: |-
     Hmm, that's quite a cool idea.  I particularly the idea of feeding back to domain owners.

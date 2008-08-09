@@ -2,11 +2,6 @@
 :published_at: 2008-01-16 09:31:00 +00:00
 :trackbacks: []
 
-:tags: 
-- apache
-- mod_rewrite
-- ruby
-- test
 :body: |-
   In order to ensure that I didn't break anything while setting up my "mod_rewrite rules":http://blog.seagul.co.uk/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha I created a little "ruby script":http://chrisroos.googlecode.com/svn/trunk/the-local-paper/apache_test.rb to test my expectations.  I've cut down the rules in the example below but you should get the idea.  It'd be quite cool to create a little dsl to better express the intentions of the code.
   
@@ -26,13 +21,13 @@
   
   expectations.each do |request_url, expected_attributes|
     puts "Requesting: #{request_url}"
-    
+  
     url = URI.parse(request_url)
     request = Net::HTTP::Get.new(url.path)
     response = Net::HTTP.start(url.host, url.port) do |http|
       http.request(request)
     end
-    
+  
     if redirection_url = expected_attributes[:url]
       raise "Expected '#{redirection_url}' in the Location header but got '#{response['Location']}'." unless redirection_url == response['Location']
     end

@@ -2,10 +2,6 @@
 :published_at: 2007-01-29 21:17:00 +00:00
 :trackbacks: []
 
-:tags: 
-- diff
-- ruby
-- testing
 :body: |-
   By parsing the output of svn diff, we can concisely display the responsibilities that have been added/removed to various objects.  It is based on the assumption that our tests capture these changes.
   
@@ -17,9 +13,9 @@
   --- test/amount_test.rb (revision 2)
   +++ test/amount_test.rb (working copy)
   @@ -2,9 +2,8 @@
-   
+  
    class AmountTest < Test::Unit::TestCase
-     
+  
   -  def test_should_format_amount
   -    formatted_amount = Amount.format(5, '$')
   -    assert_equal '$5.00', formatted_amount

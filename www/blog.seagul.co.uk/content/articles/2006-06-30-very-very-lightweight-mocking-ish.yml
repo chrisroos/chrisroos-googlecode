@@ -2,12 +2,6 @@
 :published_at: 2006-06-30 12:08:00 +01:00
 :trackbacks: []
 
-:tags: 
-- mock
-- mocking
-- objects
-- ruby
-- testing
 :body: |-
   "James":http://www.floehopper.org/ has been developing a great "mocking":http://www.martinfowler.com/articles/mocksArentStubs.html framework at "work":http://www.reevoo.com which makes life real easy when it comes to testing interaction between objects.
   
@@ -21,24 +15,24 @@
   
   <typo:code lang="ruby">
   class Object
-    
+  
     def metaclass
       class << self; self; end
     end
-    
+  
     def define_instance_method(sym, &block)
       metaclass.__send__(:define_method, sym, &block)
     end
-    
+  
     def stub_instance_method(sym, &block)
       raise "#{self} does not respond to <#{sym}> and therefore cannot be stubbed" unless self.respond_to?(sym)
       define_instance_method(sym, &block)
     end
-    
+  
     def __log__
       @__log__ ||= []
     end
-    
+  
   end
   </typo:code>
   
@@ -51,7 +45,7 @@
     net_http.define_instance_method(:get) { |path| __log__ << "get(#{path})" }
     http_client = HttpClient.new
     http_client.get_html(url, net_http)
-    
+  
     assert_equal ['get(/page.htm)'], net_http.__log__
   end
   </typo:code>

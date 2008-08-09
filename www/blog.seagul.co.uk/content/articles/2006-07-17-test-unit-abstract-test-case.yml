@@ -2,10 +2,6 @@
 :published_at: 2006-07-17 09:22:00 +01:00
 :trackbacks: []
 
-:tags: 
-- ruby
-- testing
-- xunit
 :body: |-
   Having found a "new way to structure my tests":http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing, the need for some common setup shared by multiple test cases became apparent.
   

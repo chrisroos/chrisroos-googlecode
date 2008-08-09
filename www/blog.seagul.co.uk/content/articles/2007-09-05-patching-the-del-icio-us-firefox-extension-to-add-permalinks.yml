@@ -1,28 +1,22 @@
 --- 
 :published_at: 2007-09-05 22:41:00 +01:00
 :trackbacks: 
-- :article_id: 29001
+- :ip: 82.138.248.206
   :published_at: 2007-09-29 09:38:37 +01:00
-  :blog_name: deferred until inspiration hits
+  :article_id: 29001
   :url: http://blog.seagul.co.uk/articles/2007/09/29/commenting-on-my-del-icio-us-bookmarks
+  :blog_name: deferred until inspiration hits
   :published: true
   :excerpt: A side effect of my del.icio.us bookmarks having permalinks is that you can, if you really really want, &#8216;comment&#8217; on them. You just need to bookmark my permalinked bookmark, write a comment in the notes field and tag it for:chrisjroos....
-  :ip: 82.138.248.206
   :title: Commenting on my del.icio.us bookmarks
-- :article_id: 29001
+- :ip: 82.138.248.206
   :published_at: 2007-12-18 23:13:14 +00:00
-  :blog_name: deferred until inspiration hits
+  :article_id: 29001
   :url: http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension
+  :blog_name: deferred until inspiration hits
   :published: true
   :excerpt: "My previous implementation amended the del.icio.us bookmarks extension. I spent some time this morning, and evening, extracting the functionality into its own extension. This should mean that I remain decoupled from their extension: I don&#8217;t ..."
-  :ip: 82.138.248.206
   :title: Extracting my del.icio.us permalinks functionality into its own firefox extension
-:tags: 
-- bookmarks
-- del.icio.us
-- extension
-- firefox
-- permalinks
 :body: |-
   I spent some of my train time today hacking around with the "del.icio.us":http://del.icio.us "firefox":http://www.mozilla.com/en-US/firefox/ "extension":https://addons.mozilla.org/en-US/firefox/addon/3615.  Although I'm sure it's bad in many, many ways, I've managed to add the "permalink":http://en.wikipedia.org/wiki/Permalink functionality I "mentioned":http://blog.seagul.co.uk/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts yesterday.  You can either apply the patch yourself, or download the patched jar file.
   

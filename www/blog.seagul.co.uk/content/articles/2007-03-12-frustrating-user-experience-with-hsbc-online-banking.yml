@@ -2,9 +2,6 @@
 :published_at: 2007-03-12 23:13:00 +00:00
 :trackbacks: []
 
-:tags: 
-- crap
-- hsbc
 :body: |-
   I needed to pay some money to "HMRC":http://www.hmrc.gov.uk to cover my tax.  HMRC kindly supply me with their sort code and account number so that I could transfer the money directly from my bank account.  Logged into "Hsbc":http://www.hsbc.co.uk, I entered the relevant details and tried to make the payment.  Instead of going through like a good payment should, I was presented with this useless error message.
   
@@ -21,9 +18,9 @@
   If anyone happens to come across this page while searching for the error above, maybe you could leave details in the comments of the sort code, account number and Hsbc cryptic name, in order to help out any future visitors.
 :guid: aa6af2b3-4a9a-4826-92ef-1cf3da70414c
 :comments: 
-- :article_id: 988
-  :published_at: 2007-07-17 23:09:55 +01:00
+- :published_at: 2007-07-17 23:09:55 +01:00
   :author: J Random
+  :article_id: 988
   :url: ""
   :body: |-
     .... thank foo for that entry,

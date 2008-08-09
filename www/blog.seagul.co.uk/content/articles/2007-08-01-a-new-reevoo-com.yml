@@ -1,19 +1,14 @@
 --- 
 :published_at: 2007-08-01 08:32:00 +01:00
 :trackbacks: 
-- :article_id: 23924
+- :ip: 82.138.248.206
   :published_at: 2007-08-23 15:49:46 +01:00
-  :blog_name: deferred until inspiration hits
+  :article_id: 23924
   :url: http://blog.seagul.co.uk/articles/2007/08/23/responses-to-reevoo-com-feedback
+  :blog_name: deferred until inspiration hits
   :published: true
   :excerpt: First of all I&#8217;d like to thank the 18 people that left feedback about the new reevoo.com, either in the comments on my post or in replies to emails sent out by various people in the company. I&#8217;ve tried to collate the feedback (paraphra...
-  :ip: 82.138.248.206
   :title: Responses to reevoo.com feedback
-:tags: 
-- comments
-- reevoo
-- request
-- reviews
 :body: |-
   This is obviously completely optional but if anyone stumbles across this post, I'd really appreciate it if you'd spend a few minutes checking out the revised "reevoo.com":http://www.reevoo.com.
   
@@ -22,9 +17,9 @@
   Oh, and in case it's not obvious, I work at Reevoo.
 :guid: f089ffbe-8845-4879-b74a-be919e2017c8
 :comments: 
-- :article_id: 23924
-  :published_at: 2007-08-01 10:42:12 +01:00
+- :published_at: 2007-08-01 10:42:12 +01:00
   :author: mikewoodhouse@gmail.com
+  :article_id: 23924
   :url: ""
   :body: |-
     On the face of it, I rather like it. I can't compare it to the old version because, I'm afraid, I never saw it.
@@ -46,22 +41,22 @@
     But I'm a nit-picky geek[1] with time in his hands while I wait for my database server to stop being broken.
     
     fn1. How much of a geek? I just noticed that this box takes Textile, so I had to go back and add a pretty unnecessary list, just because I could. Oh, and a footnote.
-- :article_id: 23924
-  :published_at: 2007-08-01 11:29:21 +01:00
+- :published_at: 2007-08-01 11:29:21 +01:00
   :author: Chris
+  :article_id: 23924
   :url: ""
   :body: |-
     Excellent feedback thanks Mike.  Let's see if we can work on some of the stuff you've raised.
     
     Cheers.
-- :article_id: 23924
-  :published_at: 2007-08-01 19:27:34 +01:00
+- :published_at: 2007-08-01 19:27:34 +01:00
   :author: Doug
+  :article_id: 23924
   :url: http://www.estately.com
   :body: I like it!  Although the constantly updating map quickly became distracting as I looked at the rest of the home page.  Perhaps it could stop after a few reviews with a link over the map saying "see more" or you could add a button to stop it...
-- :article_id: 23924
-  :published_at: 2007-08-02 09:21:38 +01:00
+- :published_at: 2007-08-02 09:21:38 +01:00
   :author: Chris
+  :article_id: 23924
   :url: ""
   :body: |-
     Hey Doug,
@@ -69,22 +64,22 @@
     Thanks for the feedback.  I've personally not found the map distracting - but then I'm not often on the homepage so my views probably shouldn't count :-).  One oversight, in my view, is that it currently takes at least two clicks to get from the homepage to any reviews.  In fact, I might try to sort that today.
     
     Cheers.
-- :article_id: 23924
-  :published_at: 2007-08-02 13:39:50 +01:00
+- :published_at: 2007-08-02 13:39:50 +01:00
   :author: Ben
+  :article_id: 23924
   :url: http://www.slashdotdash.net/
   :body: |-
     One very quick initial comment is that on the homepage the reviews that pop-up need to have a link to the associated product page. The actual product review pages are clearer now, I had to laugh at one reviewer's negative points regarding the Canon EOS 400D...
     
     _"It's not possible to crop pictures on the lcd and then to save them. Quite a drawback if you don't have the time to fiddle around on the computer."_
-- :article_id: 23924
-  :published_at: 2007-08-02 13:46:22 +01:00
+- :published_at: 2007-08-02 13:46:22 +01:00
   :author: Ben
+  :article_id: 23924
   :url: http://www.slashdotdash.net/
   :body: One more point; using light-blue text on the site makes it hard to distinguish where there are hyper-links (darker-blue text). This is especially noticeable on the FAQ page.
-- :article_id: 23924
-  :published_at: 2007-08-03 07:11:05 +01:00
+- :published_at: 2007-08-03 07:11:05 +01:00
   :author: Chris
+  :article_id: 23924
   :url: ""
   :body: |-
     Hey Ben,

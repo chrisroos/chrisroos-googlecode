@@ -2,11 +2,6 @@
 :published_at: 2006-11-27 22:26:00 +00:00
 :trackbacks: []
 
-:tags: 
-- rest
-- rpc
-- ruby
-- soap
 :body: |-
   This post isn't about sleep deprevation.  Instead, the witty title is referring to everyone's newest, favouritist buzzword: "REST":http://www.wikipedia.org/wiki/REST (or Representational State Transfer).
   
@@ -34,17 +29,17 @@
   fn1. I had a few problems when interacting with the adwords api.  I don't, however, feel that I have enough information to know whether the pain was caused by "soap4r":http://dev.ctor.org/soap4r, "soap":http://en.wikipedia.org/wiki/SOAP, the "api":http://www.google.com/apis/adwords/ or just my lack of knowledge.
 :guid: 590ca24e-90f3-4668-a0f8-5972712b55c6
 :comments: 
-- :article_id: 551
-  :published_at: 2006-11-30 10:19:08 +00:00
+- :published_at: 2006-11-30 10:19:08 +00:00
   :author: Iain Buckingham
+  :article_id: 551
   :url: ""
   :body: "I'm thinking that learning REST is like learning OO, and the trick is in seeing what the objects (URL resources) are.\n\
     For currency conversion, a conversion is uniquely specified by the exchange rate and the source amount, and the exchange rate is specified by a date and the source and destination currencies. Therefore a RESTful URL would be /conversions?source=USD&dest=GBP&date=20061130&amount=100, (or /conversions/USD/GBP/20061130/100) The contents of the page would then be the value (\xC2\xA351.45). The URL parameters shouldn't be seen as the parameters to a function, but the parameters of an object 'constructor', which you are then fetching.\n\
     For the syntax highlighting example you might want to construct a code block on the server, by POSTing your code to the /code_blocks page. The server could return a link to the new, highlighted resource (/code_blocks/81782), for later reference, but could also return the results in the body content at the same time.\n\
     The key would seem to be the same as good OO design, decomposing the domain into appropriate collaborating objects. And avoiding the 'global function' thinking that many SOAP examples promote."
-- :article_id: 551
-  :published_at: 2007-06-05 19:48:27 +01:00
+- :published_at: 2007-06-05 19:48:27 +01:00
   :author: Ivanhoe
+  :article_id: 551
   :url: http://www.wondirection.org
   :body: "This is one hell of a post. Although I can't say that I truly agree with everything that you've said as my own personal experiences have told me differently, I still enjoyed it. Keep up the good posts "
 :title: Maybe I need some more REST

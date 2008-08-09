@@ -2,13 +2,6 @@
 :published_at: 2007-07-24 14:40:00 +01:00
 :trackbacks: []
 
-:tags: 
-- cool
-- nationalrail
-- sms
-- timetable
-- twitter
-- twitterbot
 :body: |-
   I was in need of finding some train times at the weekend.  I usually use the "national rail enquiries":http://www.nationalrail.co.uk website but was without Internet access at the time.  Instead, I found myself waiting for about 10 minutes in a telephone queue just to spend about 30 seconds getting the information I was after.  This played on my mind a bit so last night I started "playing around":http://twitter.com/chrisroos/statuses/164273922 with automating the national rail timetable search.  That was relatively painless so I moved on to integrating with "twitter":http://www.twitter.com in order to provide an SMS interface to the service.  Within a couple of hours I had a twitterbot that receives timetable requests, looks up the times and sends them back to you.
   
@@ -27,19 +20,19 @@
   fn1. Well, just as soon as I can at least - it's not automated at the moment.
 :guid: dbf1fc3c-4fb9-4456-8434-18627bf9c1f4
 :comments: 
-- :article_id: 23024
-  :published_at: 2007-07-24 21:20:13 +01:00
+- :published_at: 2007-07-24 21:20:13 +01:00
   :author: James
+  :article_id: 23024
   :url: http://blog.floehopper.org
   :body: Brilliant idea - I'm looking forward to using it! Was it a conscious choice to go for the 3-letter codes? It looks like there is lookup data "here":http://www.nationalrail.co.uk/symlinks/javascript/stationfinder/stationFinder-kb-data.js
-- :article_id: 23024
-  :published_at: 2007-07-25 09:45:57 +01:00
+- :published_at: 2007-07-25 09:45:57 +01:00
   :author: Ricky
+  :article_id: 23024
   :url: ""
   :body: ...you genius!!
-- :article_id: 23024
-  :published_at: 2008-01-07 19:21:32 +00:00
+- :published_at: 2008-01-07 19:21:32 +00:00
   :author: Jon
+  :article_id: 23024
   :url: ""
   :body: |-
     Cool!

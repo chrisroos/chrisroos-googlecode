@@ -2,29 +2,24 @@
 :published_at: 2007-04-20 09:01:00 +01:00
 :trackbacks: []
 
-:tags: 
-- google
-- office
-- powerpoint
-- software
 :body: |-
   I had need to view a powerpoint presentation on my Mac.  In the past, I've uploaded them to "slideshare":http://www.slideshare.net, but that wasn't suitable in this instance.  A quick google reveals some free java software by tonic systems.  Unfortunately (well, fortunately for tonic systems), they've been "bought":http://www.tonicsystems.com/ by google and the link to their software has disappeared.  Luckily, the google cache has a copy of the "original page":http://www.google.co.uk/search?q=cache:4BswR-sgicYJ:www.tonicsystems.com/products/viewer/+tonicsystems+java+viewer&hl=en&ct=clnk&cd=1&gl=uk with a "working link":http://downloads.tonicsystems.com/viewer/TonicPointViewer-1.4-OSX.zip to the download.
   
   This probably won't remain relevant very long, what with the recent "news":http://www.techcrunch.com/2007/04/17/googles-office-suite-complete-google-powerpoint-confirmed/ of google adding a powerpoint clone to their office suite.
 :guid: f720be4b-48bf-4531-be28-dffb187f9a53
 :comments: 
-- :article_id: 2925
-  :published_at: 2007-04-21 03:29:10 +01:00
+- :published_at: 2007-04-21 03:29:10 +01:00
   :author: rashmi
+  :article_id: 2925
   :url: http://www.rashmisinha.com
   :body: |-
     Your post came up in my RSS search feed for "SlideShare". Just curious - why was SlideShare not suitable in this instance. Did you have some features we don't support. Did you know that we recently added ability to upload pdf's? That seems to take care of some corner situations.
     
     rashmi
     the slideshare team
-- :article_id: 2925
-  :published_at: 2007-05-02 23:54:44 +01:00
+- :published_at: 2007-05-02 23:54:44 +01:00
   :author: Chris
+  :article_id: 2925
   :url: ""
   :body: |-
     Rashmi,

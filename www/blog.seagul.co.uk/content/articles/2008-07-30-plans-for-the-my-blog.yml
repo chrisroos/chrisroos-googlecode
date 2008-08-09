@@ -1,4 +1,5 @@
 --- 
+:published_at: 2008-07-30 21:24:41.687426 +01:00
 :body: |
   There's a bunch of stuff that I want to do to this blog to simplify things even further. I'm writing them up to force me to think about them and to see if anyone has any thoughts about my proposals. I'm sure there's lots more I could do but this should keep me busy for quite a while.
   
@@ -44,6 +45,5 @@
   
   * Redirect all requests for URLs on the blog.seagul.co.uk domain to chrisroos.co.uk/blog.
 
-:published_at: 2008-07-30 21:24:41.687426 +01:00
-:title: Plans for the my blog
 :guid: 20c1637a-a5ae-43e7-839b-c405a3863fcd
+:title: Plans for the my blog

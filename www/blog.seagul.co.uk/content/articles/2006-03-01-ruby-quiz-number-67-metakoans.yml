@@ -2,8 +2,6 @@
 :published_at: 2006-03-01 08:40:00 +00:00
 :trackbacks: []
 
-:tags: []
-
 :body: |-
   I just finished my first "rubyquiz":http://www.rubyquiz.com.  Yay.  I take a look every now and then but never seem to find the time to spend on them.
   
@@ -13,9 +11,9 @@
   
   <typo:code lang="ruby">
   class Object
-    
+  
     def attribute(arg, &block)
-    
+  
       if arg.class == Hash
         attribute = arg.keys[0]
         value = arg.values[0]
@@ -23,11 +21,11 @@
         attribute = arg
         value = block ? block : nil
       end
-      
+  
       class_eval do
   
         attr_writer attribute
-        
+  
         define_method(attribute) do
           unless instance_variable_get("@#{attribute}")
             default_value = (value.class == Proc) ? instance_eval(&value) : value
@@ -35,13 +33,13 @@
           end
           instance_variable_get("@#{attribute}")
         end
-      
+  
         define_method("#{attribute}?") do
           instance_variable_get("@#{attribute}") ? true : false
         end
-      
+  
       end
-    
+  
     end
   
   end

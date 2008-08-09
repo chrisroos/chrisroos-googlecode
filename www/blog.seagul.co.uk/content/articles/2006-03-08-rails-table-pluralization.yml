@@ -2,8 +2,6 @@
 :published_at: 2006-03-08 07:48:00 +00:00
 :trackbacks: []
 
-:tags: []
-
 :body: |-
   I was talking to someone recently about the pluralisation of table names in "rails":http://www.rubyonrails.org.  It was grating him because some hand built queries no longer read very naturally.
   

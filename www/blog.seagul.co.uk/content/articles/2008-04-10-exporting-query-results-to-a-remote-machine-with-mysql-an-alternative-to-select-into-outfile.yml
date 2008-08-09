@@ -1,4 +1,5 @@
 --- 
+:published_at: 2008-04-10 16:45:29.584250 +01:00
 :body: |-
   Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)
   
@@ -19,6 +20,5 @@
   Oh, and it's probably worth mentioning that this is only really important if you want to load this data back into mysql (using "LOAD DATA INFILE":http://dev.mysql.com/doc/refman/5.0/en/load-data.html for example).  If you were to load the default output, from redirecting the mysql client, back into mysql then you'd end up with an unwanted header row and NULL strings (or 0 for numeric columns) where you expected actual NULL values.
   
   It took us a while to figure this out so I thought it might be of some use to others.
-:published_at: 2008-04-10 16:45:29.584250 +01:00
-:title: Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)
 :guid: 3ba09b50-ed76-46e9-9179-8655c943c005
+:title: Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)

@@ -1,18 +1,14 @@
 --- 
 :published_at: 2007-02-15 22:49:00 +00:00
 :trackbacks: 
-- :article_id: 682
+- :ip: 67.98.250.15
   :published_at: 2008-01-03 16:18:45 +00:00
-  :blog_name: This site works best in a real browser
+  :article_id: 682
   :url: http://grahamcox.co.uk/serendipity/index.php?/archives/34-Yet-another-IE6-Hang-bug.html
+  :blog_name: This site works best in a real browser
   :published: true
   :excerpt: It appears that I have just discovered yet another IE6 hang bug- though I'm probably not the first person to discover it... I'm not sure of the exact set of circumstances that cause it to happen yet, as I've not been able to reproduce it in a simp...
-  :ip: 67.98.250.15
   :title: Yet another IE6 Hang bug
-:tags: 
-- ie
-- internetexplorer
-- reevoo
 :body: |-
   Over about the last day and a half, if you used "Internet Explorer 6":http://en.wikipedia.org/wiki/Internet_Explorer_6 to browse any of the reviews on "reevoo.com":http://www.reevoo.com, then we should apologise.  It seems that, apart from breaking the layout somewhat, we'd actually managed to cause IE 6 to crash.  Not cool.  A concerted effort this morning got the problem sorted, but it took longer than it should've done, especially when you consider that about 75% of our traffic is from users of IE 6...
   

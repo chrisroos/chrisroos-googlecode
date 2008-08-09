@@ -2,8 +2,6 @@
 :published_at: 2008-02-26 08:49:00 +00:00
 :trackbacks: []
 
-:tags: []
-
 :body: |-
   I've created another "firefox":http://www.mozilla.com/firefox extension that builds on the "del.icio.us":http://del.icio.us "extension":https://addons.mozilla.org/en-US/firefox/addon/3615.  This one finds the domain of the "URL":http://en.wikipedia.org/wiki/Uniform_Resource_Locator you're bookmarking and adds it as a tag to your bookmark.  It's basically just a copy of my "del.icio.us permalinks extension":http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension
   

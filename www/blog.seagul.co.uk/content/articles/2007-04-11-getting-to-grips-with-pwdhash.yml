@@ -2,13 +2,6 @@
 :published_at: 2007-04-11 22:27:00 +01:00
 :trackbacks: []
 
-:tags: 
-- hashing
-- hmac
-- javascript
-- md5
-- pwdhash
-- ruby
 :body: |-
   h3. Overview
   
@@ -108,13 +101,13 @@
   Investigate the whole world of "unicode":http://www.unicode.org a bit more - I definitely don't know as much about it as I should.
 :guid: 1e94dada-3fc9-467a-9d4d-422933d995a9
 :comments: 
-- :article_id: 2296
-  :published_at: 2007-04-13 19:16:00 +01:00
+- :published_at: 2007-04-13 19:16:00 +01:00
   :author: Thanet Blog List
+  :article_id: 2296
   :url: http://www.thanetbloglist.co.uk
   :body: |-
     Congatulations, you have been added to the <a href="http://www.thanetbloglist.co.uk">Thanet Blog List</a>.
     
-     
+    
     Pop along and check out Thanet's other blogs.
 :title: Getting to grips with pwdhash

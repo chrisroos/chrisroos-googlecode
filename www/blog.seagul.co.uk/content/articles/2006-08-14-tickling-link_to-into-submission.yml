@@ -2,10 +2,6 @@
 :published_at: 2006-08-14 23:10:00 +01:00
 :trackbacks: []
 
-:tags: 
-- plugin
-- rails
-- ruby
 :body: |-
   What a crappy title.  Ho hum.
   
@@ -28,14 +24,14 @@
   fn1. She didn't say that.
 :guid: 2c8962ca-90bd-441c-925e-cc037419b148
 :comments: 
-- :article_id: 116
-  :published_at: 2006-08-15 19:20:49 +01:00
+- :published_at: 2006-08-15 19:20:49 +01:00
   :author: Damien Tanner
+  :article_id: 116
   :url: http://iamrice.org
   :body: Nice idea and looks useful. I'm more for having assertions which check for the correct links in your functional tests.
-- :article_id: 116
-  :published_at: 2006-08-16 09:00:10 +01:00
+- :published_at: 2006-08-16 09:00:10 +01:00
   :author: Chris
+  :article_id: 116
   :url: ""
   :body: |-
     Damien,

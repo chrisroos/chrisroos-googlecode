@@ -2,12 +2,6 @@
 :published_at: 2006-08-21 23:30:00 +01:00
 :trackbacks: []
 
-:tags: 
-- perl
-- ruby
-- rubyforge
-- svm
-- svn
 :body: |-
   A couple of days ago I was playing around with "SVN::Mirror":http://search.cpan.org/~clkao/SVN-Mirror-0.68/lib/SVN/Mirror.pm, trying to remove some "dependencies":http://wiki.rubyonrails.org/rails/pages/Plugins on third party repositories not in our control.
   

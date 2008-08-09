@@ -1,17 +1,14 @@
 --- 
 :published_at: 2006-08-14 22:06:00 +01:00
 :trackbacks: 
-- :article_id: 115
+- :ip: 82.138.248.206
   :published_at: 2006-08-14 23:55:00 +01:00
-  :blog_name: deferred until inspiration hits
+  :article_id: 115
   :url: http://blog.seagul.co.uk/articles/2006/08/14/tickling-link_to-into-submission
+  :blog_name: deferred until inspiration hits
   :published: true
   :excerpt: What a crappy title. Ho hum. This bit explains the itch I had. Skip over it if you like. I recently finished re-structuring some of the code at work, in which I namespaced all of the admin type controllers. At the same time, I attempted to split s...
-  :ip: 82.138.248.206
   :title: Tickling link_to into submission
-:tags: 
-- rails
-- ruby
 :body: |-
   I just found this when trying to create a rails project using rails 1.0.0 (having both 1.0.0 and 1.1.6 installed as gems).
   

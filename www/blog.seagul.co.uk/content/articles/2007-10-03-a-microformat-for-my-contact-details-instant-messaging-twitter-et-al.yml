@@ -2,18 +2,6 @@
 :published_at: 2007-10-03 23:52:00 +01:00
 :trackbacks: []
 
-:tags: 
-- aim
-- contact
-- email
-- im
-- messaging
-- microformat
-- msn
-- ruby
-- skype
-- twitter
-- yim
 :body: |-
   I haven't done any research on this so it may have already been proposed over at the "microformats":http://microformats.org/ site.
   
@@ -46,7 +34,7 @@
         <dd class="msn identifier">msn-username</dd>
       </dl>
     </body>
-    
+  
   </html>
   </typo:code>
   

@@ -1,18 +1,14 @@
 --- 
 :published_at: 2007-05-17 22:55:00 +01:00
 :trackbacks: 
-- :article_id: 5513
+- :ip: 82.138.248.206
   :published_at: 2007-06-06 23:26:57 +01:00
-  :blog_name: deferred until inspiration hits
+  :article_id: 5513
   :url: http://blog.seagul.co.uk/articles/2007/06/06/a-little-further-investigation-into-those-pesky-scammers
+  :blog_name: deferred until inspiration hits
   :published: true
   :excerpt: I wrote a short while ago about receiving comments that were not obviously spam. In the few weeks between that post and this, I&#8217;ve received several more legitimate looking comments. Tonight, I finally looked in some detail at the comments I&...
-  :ip: 82.138.248.206
   :title: A little further investigation into those pesky scammers
-:tags: 
-- spam
-- spammed
-- spammedy
 :body: |-
   A couple of days ago, I received a comment to one of my articles.  "Hmm, that looks familiar I thought", and not without good reason.  You see, the comment had been copied verbatim from another comment on the same article.  The only change was the author's name and the url of their 'homepage'.  After a little deliberation I deleted the comment.  I found it interesting for two reasons.
   
