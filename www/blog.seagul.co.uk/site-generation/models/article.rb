@@ -1,12 +1,11 @@
 require 'comment'
 require 'trackback'
-require 'tag'
 require 'syntax_highlighter'
 require 'redcloth'
 
 class Article
   
-  attr_accessor :title, :guid, :body, :published_at, :tags, :comments, :trackbacks
+  attr_accessor :title, :guid, :body, :published_at, :comments, :trackbacks
   
   def initialize(attributes)
     attributes.each do |attribute, value|
@@ -20,9 +19,7 @@ class Article
         articles_dir = File.join(File.dirname(__FILE__), *%w[.. .. content articles])
         Dir[File.join(articles_dir, '*.yml')].collect do |article_filename|
           article_attributes = YAML.load_file(article_filename)
-          article_attributes[:tags] = (article_attributes.delete(:tags) || []).collect { |tag_name| 
-            Tag.new(:name => tag_name) 
-          }
+          article_attributes.delete(:tags)
           article_attributes[:comments] = (article_attributes.delete(:comments)||[]).collect { |comment_attributes|
             Comment.new(comment_attributes)
           }
