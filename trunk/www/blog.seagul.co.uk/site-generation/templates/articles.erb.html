@@ -32,14 +32,6 @@
 
                 <%= article.body_html %>
 
-                <% unless article.tags.empty? %>
-                  <p>
-                    Tags 
-                    <% article.tags.each do |tag| %>
-                      <a href="/articles/tag/<%= tag.name %>" rel="tag"><%= tag.name %></a>, 
-                    <% end %>
-                  </p>
-                <% end %>
               <% end %>
 
             </div>

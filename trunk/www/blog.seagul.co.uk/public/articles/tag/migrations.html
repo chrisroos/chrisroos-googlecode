@@ -95,18 +95,6 @@
 
 	<p>Both methods create AR derived classes in a namespace that isn&#8217;t the root namespace.  We came across a problem where we were serializing the contents of one of these re-defined classes to the database from within our migration.  When we came to read the serialized data in our code, it didn&#8217;t &#8216;know&#8217; what a Migration001::Person was and so raised an exception.  Without thinking about it too much, I think this might cause problems with <span class="caps">STI</span> too (I&#8217;ve seen notes to this effect from the Typo migration solution).</p>
 
-                
-                  <p>
-                    Tags 
-                    
-                      <a href="/articles/tag/migrations" rel="tag">migrations</a>, 
-                    
-                      <a href="/articles/tag/rails" rel="tag">rails</a>, 
-                    
-                      <a href="/articles/tag/ruby" rel="tag">ruby</a>, 
-                    
-                  </p>
-                
               
 
             </div>

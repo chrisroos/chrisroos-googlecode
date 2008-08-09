@@ -32,7 +32,6 @@
 
                 <p>I&#8217;ve been working on a little script that gives us visibility of the state of the <a href="http://piston.rubyforge.org/">pistonised</a> components of <a href="http://www.reevoo.com">our</a> applications.  One of the things I noticed was that we&#8217;d used multiple domains to pistonise content from our own <a href="http://subversion.tigris.org/">repository</a>.  I wanted to standardise them all and thought I&#8217;d be able to use the <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/235517">piston switch</a> command to do just that.  Unfortunately, the piston switch command appears to work only when switching between URLs where the domain remains constant (switching between example.com/tag/1 and example.com/tag/2, for example).  I needed to change the domain part of the <span class="caps">URL</span> (svn.example.com to www.example.com) and in some cases the port (example.com:8080 to example.com).  I figured I could just change the &#8220;piston:root&#8221; <a href="http://svnbook.red-bean.com/en/1.1/ch07s02.html">subversion property</a> and used svn propedit to do just that.  Unfortunately, on committing the change I could no longer piston update, I was getting a &#8216;command not found&#8217; error from the shell.  This was a bit odd so I dug into the code.  It turns out that there was an extra newline in the piston:root property that was screwing up the svn checkout (the bit after the newline was being treated as a new command by the shell, hence the error).  The solution was to use svn propset rather than svn propedit to set the piston:root property: for some reason svn propedit introduces this unwanted newline, where svn propset doesn&#8217;t.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/30/converting-google-code-wiki-content-to-html">Converting Google Code Wiki Content to Html</a>
@@ -68,7 +67,6 @@
 
 	<p><strong>Note</strong> If you don&#8217;t want to go through this process then you can use a standalone version of <a href="http://moinmoin.wikiwikiweb.de/">moinmoin</a> to <a href="http://groups.google.com/group/google-doctype/browse_thread/thread/5fe1d26a0afdc4c7">view your wiki content offline</a>.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/30/plans-for-the-my-blog">Plans for the my blog</a>
@@ -181,7 +179,6 @@
 	<li>Redirect all requests for URLs on the blog.seagul.co.uk domain to chrisroos.co.uk/blog.</li>
 	</ul>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/21/asking-south-eastern-about-the-high-speed-trains">Asking South Eastern about the high speed trains</a>
@@ -265,7 +262,6 @@ Ref: 329980 / 99573
 Southeastern
 </div>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/21/asking-south-eastern-about-their-crappy-seats">Asking South Eastern about their crappy seats</a>
@@ -310,7 +306,6 @@ Ref: 329980 / 93994
 Southeastern Customer Services
 </div>
 
-                
               
                 <h2>
                   <a href="/articles/2008/07/21/open-source-optical-character-recognition-ocr-on-the-mac">Open Source Optical Character Recognition (OCR) on the Mac</a>
@@ -324,7 +319,6 @@ Southeastern Customer Services
 
                 <p>I recently received a letter reply to an enquiry I made to <a href="http://southeasternrailway.co.uk/">South Eastern Trains</a>.  I wanted to make the text available (I don&#8217;t like reading text in images) but didn&#8217;t want to type it all out.  Having scanned it in, I looked around for some <a href="http://en.wikipedia.org/wiki/Optical_character_recognition"><span class="caps">OCR</span></a> software, for the <a href="http://www.apple.com/mac/">Mac</a>, that would extract the text for me.  Through the (relatively large amount of) search result noise, I managed to find a reference to <a href="http://code.google.com/p/tesseract-ocr/">tesseract</a>.  Installing from <a href="http://www.macports.org/">Mac Ports</a> was easy but actually getting useful output was slightly tricker.  I was trying to extract the text from <a href="http://www.flickr.com/photos/chrisjroos/2688362397/">this letter</a> but kept getting garbled output.  I tried a few things before stumbling across <a href="https://help.ubuntu.com/community/OCR">this page</a> that suggests making the image greyscale and ensuring that the extension is .tif (not .tiff).  I duly complied, using <a href="http://seashore.sourceforge.net/">Seashore</a> to convert the image to greyscale, and tried again.  This time the text was extracted perfectly (even the addresses, that appear in two columns, were extracted correctly).</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/05/19/pwdhash-widget">Pwdhash Widget</a>
@@ -341,7 +335,6 @@ Southeastern Customer Services
 
 	<p>Anyway, if it sounds useful feel then free to download it <a href="/files/pwdhash.zip">here</a>.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/05/19/a-trip-to-the-tip">A trip to the tip</a>
@@ -361,7 +354,6 @@ Southeastern Customer Services
 
 	<p>Maybe a hybrid alternative would be to train the current tip workers to filter out items of possible reuse from the actual rubbish, thereby allowing the existing site to be use for both purposes.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/04/29/redesigning-my-blog">Redesigning my blog</a>
@@ -381,7 +373,6 @@ Southeastern Customer Services
 
 	<p>There&#8217;s still work to do: the code snippets seem to break <span class="caps">IE6</span> (not sure about <span class="caps">IE7</span>) but in general I&#8217;m pretty happy with the way it&#8217;s looking.</p>
 
-                
               
                 <h2>
                   <a href="/articles/2008/04/10/exporting-query-results-to-a-remote-machine-with-mysql-an-alternative-to-select-into-outfile">Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)</a>
@@ -419,7 +410,6 @@ Southeastern Customer Services
 
 	<p>It took us a while to figure this out so I thought it might be of some use to others.</p>
 
-                
               
 
             </div>
