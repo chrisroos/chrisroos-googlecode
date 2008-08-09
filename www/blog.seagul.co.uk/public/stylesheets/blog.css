@@ -104,3 +104,10 @@ ul#twitter_update_list li, div#deliciousContainer ul li {
   list-style-type: none;
   margin-bottom: 0.5em;
 }
+
+body.contents ol {
+  margin: 0;
+}
+body.contents ol li {
+  list-style-type: none;
+}

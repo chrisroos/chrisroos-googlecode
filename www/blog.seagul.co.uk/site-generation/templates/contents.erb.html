@@ -8,7 +8,7 @@
     <meta name="robots" content="noindex" />
   </head>
 
-  <body>
+  <body class="contents">
     
     <div id="doc3" class="yui-t4">
       <div id="hd">
@@ -22,26 +22,30 @@
               <h2>Table of Contents (or why you may not have been expecting to see this page)</h2>
               <p>Google and Yahoo have indexed some of my paged articles (e.g. articles/page/50).  Although these paged articles may appear in the <a href="http://en.wikipedia.org/wiki/Search_engine_results_page">search results</a> for a given search term there is no guarantee that the page is still relevant.  In fact, as I only had three articles per page, it would only take the addition of another three articles to render google's index of these pages useless.  I've decided to forwarded requests for any of these paged article resources to this table of contents in an attempt to be more useful to you.</p>
 
-              <% articles.each do |article| %>
-                <h2 class="title">
-                  <a href="<%= h(article.url) %>"><%= h(article.title) %></a>
-                </h2>
-                <p class="postedOn">
-                  Posted by Chris Roos
-                  <span class="typo_date" title="<%= article.formatted_published_date %>">
-                    <%= article.formatted_published_date %>
-                  </span>
-                </p>
+              <ol class="posts">
+                <% articles.each do |article| %>
+                  <li class="post">
+                    <h2 class="title">
+                      <a href="<%= h(article.url) %>"><%= h(article.title) %></a>
+                    </h2>
+                    <p class="postedOn">
+                      Posted by Chris Roos
+                      <span class="typo_date" title="<%= article.formatted_published_date %>">
+                        <%= article.formatted_published_date %>
+                      </span>
+                    </p>
 
-                <% unless article.tags.empty? %>
-                  <p>
-                    Tags 
-                    <% article.tags.each do |tag| %>
-                      <a href="/articles/tag/<%= tag.name %>" rel="tag"><%= tag.name %></a>, 
+                    <% unless article.tags.empty? %>
+                      <p>
+                        Tags 
+                        <% article.tags.each do |tag| %>
+                          <a href="/articles/tag/<%= tag.name %>" rel="tag"><%= tag.name %></a>, 
+                        <% end %>
+                      </p>
                     <% end %>
-                  </p>
+                  </li>
                 <% end %>
-              <% end %>
+              </ol>
 
             </div>
           </div>
