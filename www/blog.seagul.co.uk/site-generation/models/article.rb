@@ -33,15 +33,6 @@ class Article
         end
       )
     end
-    def years_published
-      find_all.collect { |article| article.published_at.year }.uniq
-    end
-    def months_and_years_published
-      find_all.collect { |article| [article.published_at.month, article.published_at.year] }.uniq
-    end
-    def days_months_and_years_published
-      find_all.collect { |article| [article.published_at.day, article.published_at.month, article.published_at.year] }.uniq
-    end
   end
   
   def formatted_published_date
