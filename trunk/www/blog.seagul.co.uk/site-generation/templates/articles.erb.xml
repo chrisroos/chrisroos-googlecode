@@ -17,9 +17,6 @@
         <guid isPermaLink="false">urn:uuid:<%= article.guid %></guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk<%= article.url %></link>
-        <% article.tags.each do |tag| %>
-          <category><%= tag.name %></category>
-        <% end %>
       </item>
     <% end %>
   </channel>
