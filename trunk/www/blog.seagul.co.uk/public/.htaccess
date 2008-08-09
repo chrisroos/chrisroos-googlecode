@@ -146,3 +146,7 @@ RewriteCond %{REQUEST_URI} ^/articles/[0-9]{4}/[0-9]{2}/?$
 RewriteRule ^.*$ /archives [R=301,L]
 RewriteCond %{REQUEST_URI} ^/articles/[0-9]{4}/[0-9]{2}/[0-9]{2}/?$
 RewriteRule ^.*$ /archives [R=301,L]
+
+# Redirect the homepage to the most recent post
+RewriteCond %{THE_REQUEST} \ /\ HTTP/
+RewriteRule .* /articles/2008/08/01/changing-the-repository-of-code-being-managed-by-piston-an-alternative-to-piston-switch [R=302,L] 
