@@ -29,15 +29,6 @@
           
               <%= body_html %>
         
-              <% unless tags.empty? %>
-                <p>
-                  Tags 
-                  <% tags.each do |tag| %>
-                    <a href="/articles/tag/<%= tag.name %>" rel="tag"><%= tag.name %></a>, 
-                  <% end %>
-                </p>
-              <% end %>
-          
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
               <noscript>
