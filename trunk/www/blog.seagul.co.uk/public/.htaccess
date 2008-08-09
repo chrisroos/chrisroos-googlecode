@@ -102,7 +102,7 @@ RewriteRule ^(.*)/page.*$ $1 [R=301,L]
 RewriteCond %{THE_REQUEST} \ /articles/tag/.+\.html\ HTTP/
 RewriteRule ^(.*)\.html$ $1 [R=301,L]
 
-# If we receive a request for a tag without a .html extension then let's rewrite internally to render the file with the .html extension
+# Tag pages are no more!  Let's redirect any requests for them to the page that explains their disapearance
 RewriteCond %{REQUEST_URI} ^/articles/tag/.+$
 RewriteCond %{REQUEST_URI} !\.html$
 RewriteRule ^.*$ /tags [R=301,L]
