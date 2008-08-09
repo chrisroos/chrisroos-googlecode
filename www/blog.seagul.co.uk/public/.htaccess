@@ -74,8 +74,16 @@ RewriteRule ^(.*)$ $1.html [L]
 RewriteCond %{THE_REQUEST} \ /tags\.html\ HTTP/
 RewriteRule ^.*$ /tags [R=301,L]
 
-# If we receive a request for the contents page without a .html extension then let's rewrite internally to render the file with the .html extension
+# If we receive a request for the tags page without a .html extension then let's rewrite internally to render the file with the .html extension
 RewriteCond %{REQUEST_URI} ^/tags$
+RewriteRule ^(.*)$ $1.html [L]
+
+# Redirect /archives.html to /tags
+RewriteCond %{THE_REQUEST} \ /archives\.html\ HTTP/
+RewriteRule ^.*$ /archives [R=301,L]
+
+# If we receive a request for the archives page without a .html extension then let's rewrite internally to render the file with the .html extension
+RewriteCond %{REQUEST_URI} ^/archives$
 RewriteRule ^(.*)$ $1.html [L]
 
 # Redirect /articles/page/<anything> to /articles/contents
