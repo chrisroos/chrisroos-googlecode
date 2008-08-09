@@ -14,26 +14,8 @@
 require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
 require 'article'
 require 'page'
-require 'year'
-require 'month'
-require 'day'
 require File.join(File.dirname(__FILE__), '..', 'site-generation', 'views')
 require 'page_generator'
-
-Day.find_all.each do |day|
-  view = DayView.new(day)
-  PageGenerator.new(view, 'articles').generate
-end
-
-Month.find_all.each do |month|
-  view = MonthView.new(month)
-  PageGenerator.new(view, 'articles').generate
-end
-
-Year.find_all.each do |year|
-  view = YearView.new(year)
-  PageGenerator.new(view, 'articles').generate
-end
 
 articles = Article.find_all[0...10]
 
