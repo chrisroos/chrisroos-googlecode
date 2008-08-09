@@ -35,11 +35,6 @@ Year.find_all.each do |year|
   PageGenerator.new(view, 'articles').generate
 end
 
-Tag.find_all.each do |tag|
-  view = TagView.new(tag)
-  PageGenerator.new(view, 'articles').generate
-end
-
 articles = Article.find_all[0...10]
 
 latest_articles_view = LatestArticlesView.new(articles)
