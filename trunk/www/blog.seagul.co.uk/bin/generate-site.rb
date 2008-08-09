@@ -42,3 +42,10 @@ PageGenerator.new(articles_view, 'contents').generate
 
 view = SitemapView.new(articles)
 PageGenerator.new(view, 'sitemap', 'xml').generate
+
+
+# generate .htaccess with a redirect to the most recent post
+most_recent_article = articles.first
+erb_template = File.join(TEMPLATE_ROOT, "htaccess.erb")
+renderer = ErbRenderer.new(erb_template, binding)
+File.open(File.join(SITE_ROOT, ".htaccess"), 'w') { |io| renderer.render(io) }
