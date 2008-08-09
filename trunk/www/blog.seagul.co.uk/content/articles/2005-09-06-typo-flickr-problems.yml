@@ -2,8 +2,6 @@
 :published_at: 2005-09-06 11:07:00 +01:00
 :trackbacks: []
 
-:tags: []
-
 :body: |-
   I initially had this running on typo 2.5.5 but the flickr integration into the sidebar didn't seem to work - unless I was doing something stupid which is entirely possible.  I applied patches from changesets 596 and 632 to no avail, so decided to export the trunk from svn and try that.  I still have the same problems which is slightly frustrating.  The db migrations built into the admin interface as amazing though.
   

@@ -1,4 +1,5 @@
 --- 
+:published_at: 2008-07-30 21:53:02.548893 +01:00
 :body: |
   I've created a little script that allows me to convert documents in the "google code":http://code.google.com "wiki format":http://code.google.com/p/support/wiki/WikiSyntax to "HTML":http://en.wikipedia.org/wiki/HTML.
   
@@ -22,6 +23,5 @@
   
   *Note* If you don't want to go through this process then you can use a standalone version of "moinmoin":http://moinmoin.wikiwikiweb.de/ to "view your wiki content offline":http://groups.google.com/group/google-doctype/browse_thread/thread/5fe1d26a0afdc4c7.
 
-:published_at: 2008-07-30 21:53:02.548893 +01:00
-:title: Converting Google Code Wiki Content to Html
 :guid: 2be30c15-b01e-46d7-949c-69218bf4aada
+:title: Converting Google Code Wiki Content to Html

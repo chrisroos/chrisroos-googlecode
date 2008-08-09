@@ -1,21 +1,14 @@
 --- 
 :published_at: 2007-06-23 12:34:00 +01:00
 :trackbacks: 
-- :article_id: 18597
+- :ip: 82.138.248.206
   :published_at: 2007-06-23 18:09:14 +01:00
-  :blog_name: deferred until inspiration hits
+  :article_id: 18597
   :url: http://blog.seagul.co.uk/articles/2007/06/23/automatically-downloading-my-ing-direct-transactions
+  :blog_name: deferred until inspiration hits
   :published: true
   :excerpt: I wanted to automate the download of transaction data for my ing direct account. Instead of just pasting up the finished result, I&#8217;ve tried to capture the process I went through, on the off chance it&#8217;s of interest to anyone&#8230; Earl...
-  :ip: 82.138.248.206
   :title: Automatically downloading my Ing Direct transactions
-:tags: 
-- curl
-- egg
-- finance
-- ofx
-- ruby
-- wesabe
 :body: |-
   I've followed in my "previous":http://blog.seagul.co.uk/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb "footsteps":http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions and automated the download of my "egg":http://egg.com credit card transactions and statements.  Using this in combination with my "ofx convertor":http://blog.seagul.co.uk/articles/2007/04/01/converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe makes it easier for me to upload my financial data to "wesabe":http://www.wesabe.com.
   

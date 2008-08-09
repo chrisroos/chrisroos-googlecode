@@ -2,13 +2,6 @@
 :published_at: 2006-07-17 09:19:00 +01:00
 :trackbacks: []
 
-:tags: 
-- agiledox
-- bdd
-- rails
-- rspec
-- ruby
-- tdd
 :body: |-
   Having been predominantly involved in "Rails":http://www.rubyonrails.com development just recently, "fixtures":http://api.rubyonrails.com/classes/Fixtures.html have taken on a slightly different meaning to what I now believe to be the original understanding.  Having recently re-read "Test Driven Development: By Example":http://www.amazon.co.uk/gp/product/0321146530/202-8808398-1811851?v=glance&n=266239 I re-discovered the 'original' meaning of the word (essentially shared objects used by all tests in a test case).
   
@@ -33,23 +26,23 @@
   <typo:code lang="ruby">
   Class.new(Test::Unit::TestCase) do
     # An empty stack
-    
+  
     def setup
       @stack = Stack.new
     end
-    
+  
     def test_should_accept_an_item_when_sent_push
       assert_nothing_raised { @stack.push(1) }
     end
-    
+  
     def test_should_complain_when_sent_top
       assert_raise(StackUnderflowError) { @stack.top }
     end
-    
+  
     def test_should_complain_when_sent_pop
       assert_raise(StackUnderflowError) { @stack.pop }
     end
-    
+  
   end
   </typo:code>
   

@@ -2,10 +2,6 @@
 :published_at: 2006-08-22 10:47:00 +01:00
 :trackbacks: []
 
-:tags: 
-- memoryleak
-- rails
-- ruby
 :body: |-
   I spent some time this morning checking out "Scott Laird's":http://scottstuff.net/blog/ "memory profiler":http://scottstuff.net/blog/articles/2006/08/17/memory-leak-profiling-with-rails against a fresh rails app.
   

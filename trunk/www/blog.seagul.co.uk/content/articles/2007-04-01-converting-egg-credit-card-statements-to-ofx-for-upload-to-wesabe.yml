@@ -1,27 +1,22 @@
 --- 
 :published_at: 2007-04-01 13:48:00 +01:00
 :trackbacks: 
-- :article_id: 1894
+- :ip: 82.138.248.206
   :published_at: 2007-05-04 13:12:01 +01:00
-  :blog_name: deferred until inspiration hits
+  :article_id: 1894
   :url: http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions
+  :blog_name: deferred until inspiration hits
   :published: true
   :excerpt: I&#8217;ve updated my previous curl/ruby script to automatically download my most recent transactions from Hsbc. I created the original script as I had a couple of hours spare and wanted to see if I could do it. The update has been driven by my co...
-  :ip: 82.138.248.206
   :title: Automatically downloading my most recent Hsbc transactions
-- :article_id: 1894
+- :ip: 82.138.248.206
   :published_at: 2007-06-23 12:41:00 +01:00
-  :blog_name: deferred until inspiration hits
+  :article_id: 1894
   :url: http://blog.seagul.co.uk/articles/2007/06/23/automatically-download-egg-credit-card-transactions
+  :blog_name: deferred until inspiration hits
   :published: true
   :excerpt: I&#8217;ve followed in my previous footsteps and automated the download of my egg credit card transactions and statements. Using this in combination with my ofx convertor makes it easier for me to upload my financial data to wesabe. As always, the...
-  :ip: 82.138.248.206
   :title: Automatically download egg credit card transactions
-:tags: 
-- egg.com
-- finance
-- ofx
-- wesabe
 :body: |-
   I've cobbled together some pretty nasty code to convert an "Egg":http://www.egg.com Credit Card statement to "Ofx":http://www.ofx.net.
   
@@ -36,9 +31,9 @@
   I've used the script to upload my last 12 statements to "wesabe":http://www.wesabe.com and everything seems to work Ok. If you have any questions, just post a comment here.
 :guid: e2764d81-1c82-47e7-8a66-51dd711a680f
 :comments: 
-- :article_id: 1894
-  :published_at: 2007-04-01 20:53:11 +01:00
+- :published_at: 2007-04-01 20:53:11 +01:00
   :author: Andrew Donaldson
+  :article_id: 1894
   :url: http://desto.net/
   :body: |-
     Hey,
@@ -48,9 +43,9 @@
     I guess the tricky thing is that you'd be attempting to map a library to a moving target, not to mention it'd be very hard for people to trust a library without fully interrogating the source.
     
     Perhaps thats why there hasn't been one before!
-- :article_id: 1894
-  :published_at: 2007-04-24 12:26:15 +01:00
+- :published_at: 2007-04-24 12:26:15 +01:00
   :author: Tanc
+  :article_id: 1894
   :url: http://tancredi.co.uk
   :body: |-
     Hi Chris,
@@ -68,9 +63,9 @@
     <br/>Can you guide me on what is going wrong? I'd love to get this working. Feel free to email me.
     
     Thanks.
-- :article_id: 1894
-  :published_at: 2007-04-24 16:24:04 +01:00
+- :published_at: 2007-04-24 16:24:04 +01:00
   :author: Tanc
+  :article_id: 1894
   :url: http://tancredi.co.uk
   :body: |-
     Genius! (you are).
@@ -78,9 +73,9 @@
     I got your system working, for some reason my ruby and gems are all messed up, probably from installing different versions around the place. Once I manually installed the Builder and Hpricot code it worked beautifully.
     
     Thank you so much for this, I'm really happy to have my egg account on Wesabe.
-- :article_id: 1894
-  :published_at: 2007-09-05 23:15:11 +01:00
+- :published_at: 2007-09-05 23:15:11 +01:00
   :author: Marc
+  :article_id: 1894
   :url: ""
   :body: |
     Hey Chris,
@@ -92,9 +87,9 @@
     Cheers,
     Marc
 
-- :article_id: 1894
-  :published_at: 2007-09-06 09:07:37 +01:00
+- :published_at: 2007-09-06 09:07:37 +01:00
   :author: Chris
+  :article_id: 1894
   :url: ""
   :body: |-
     Hey Marc,

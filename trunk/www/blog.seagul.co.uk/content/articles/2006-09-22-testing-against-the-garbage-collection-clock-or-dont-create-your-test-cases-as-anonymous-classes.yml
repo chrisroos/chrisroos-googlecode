@@ -2,9 +2,6 @@
 :published_at: 2006-09-22 10:43:00 +01:00
 :trackbacks: []
 
-:tags: 
-- ruby
-- testing
 :body: |-
   I "wrote":http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing a while ago about how I'd started creating my test cases as anonymous classes.
   

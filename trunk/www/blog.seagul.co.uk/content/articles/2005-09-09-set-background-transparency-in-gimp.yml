@@ -2,8 +2,6 @@
 :published_at: 2005-09-09 17:37:00 +01:00
 :trackbacks: []
 
-:tags: []
-
 :body: |-
   I'm very much *not* a graphical person but when forced to dabble in any kind of image manipulation have always tried to use <a href="http://www.gimp.org/">The GIMP</a>, over any commercial offerings.
   
@@ -26,16 +24,16 @@
   _*Update 18:07* It seems that anything over and above simple shapes as I had and this practice fails because it's not easy to initially cut the 'foreground' image out.  But then again, maybe that's just because I don't know how to effectively 'cut' images..._
 :guid: 1643f8615c819aa942f36de82e7aca72
 :comments: 
-- :article_id: 5
-  :published_at: 2007-03-26 11:17:21 +01:00
+- :published_at: 2007-03-26 11:17:21 +01:00
   :author: James
+  :article_id: 5
   :url: ""
   :body: |
     I found that you don't actually need to select anything - I had a png image of a logo, which was some blue text on a white background. I started from step 7 and by default it turns white to alpha which is exactly what I wanted.
 
-- :article_id: 5
-  :published_at: 2007-10-02 21:47:29 +01:00
+- :published_at: 2007-10-02 21:47:29 +01:00
   :author: Ramil
+  :article_id: 5
   :url: ""
   :body: "I still can get it to be transparent. "
 :title: Set background transparency in GIMP

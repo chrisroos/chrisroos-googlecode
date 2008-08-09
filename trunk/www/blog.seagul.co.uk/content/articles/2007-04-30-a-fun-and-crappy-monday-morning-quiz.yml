@@ -2,11 +2,6 @@
 :published_at: 2007-04-30 09:08:00 +01:00
 :trackbacks: []
 
-:tags: 
-- job
-- quiz
-- reevoo
-- ruby
 :body: |-
   <typo:code lang="ruby">
   require 'test/unit'
@@ -71,9 +66,9 @@
   </typo:code>
 :guid: c42c088b-48bd-4580-ba44-7272bad89605
 :comments: 
-- :article_id: 3886
-  :published_at: 2007-04-30 09:50:48 +01:00
+- :published_at: 2007-04-30 09:50:48 +01:00
   :author: warren
+  :article_id: 3886
   :url: http://warrenseen.com/blog/
   :body: you were bored on the train, and I was bored after dinner :-) Thanks for a cute diversion!
 :title: A fun (and crappy) Monday morning quiz

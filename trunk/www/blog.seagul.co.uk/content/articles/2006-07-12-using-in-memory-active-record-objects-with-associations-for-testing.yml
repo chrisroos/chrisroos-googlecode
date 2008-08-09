@@ -2,11 +2,6 @@
 :published_at: 2006-07-12 01:23:00 +01:00
 :trackbacks: []
 
-:tags: 
-- activerecord
-- learning
-- rails
-- ruby
 :body: |-
   Hitting the database in testing is bad.
   

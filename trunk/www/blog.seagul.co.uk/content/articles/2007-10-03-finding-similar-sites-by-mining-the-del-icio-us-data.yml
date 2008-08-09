@@ -2,10 +2,6 @@
 :published_at: 2007-10-03 08:00:00 +01:00
 :trackbacks: []
 
-:tags: 
-- del.icio.us
-- dom
-- javascript
 :body: |-
   So this is very much proof of concept and definitely not very useful in its current form...
   
@@ -30,9 +26,9 @@
   Lots of things to do before this could possibly be deemed useful but I think it's got some potential.
 :guid: e077b11a-f34d-4b07-aded-4d4d9fe8ea0e
 :comments: 
-- :article_id: 37254
-  :published_at: 2007-10-09 19:30:45 +01:00
+- :published_at: 2007-10-09 19:30:45 +01:00
   :author: Scott Fitchet
+  :article_id: 37254
   :url: http://www.figital.com
   :body: Nice .... I was just asking myself "what the heck is this a picture of?".
 :title: Finding similar sites by mining the del.icio.us data

@@ -2,10 +2,6 @@
 :published_at: 2006-05-12 16:32:00 +01:00
 :trackbacks: []
 
-:tags: 
-- migrations
-- rails
-- ruby
 :body: |-
   I seem to remember that "we":http://www.reevoo.com first came across the "migrations out of sync with code" problems around the time that Scott Laird "posted":http://scottstuff.net/blog/articles/2005/10/31/migrating-in-two-dimensions about it regarding "typo":http://www.typosphere.org.
   

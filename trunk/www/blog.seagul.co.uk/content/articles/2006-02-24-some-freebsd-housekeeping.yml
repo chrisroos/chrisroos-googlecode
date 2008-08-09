@@ -2,8 +2,6 @@
 :published_at: 2006-02-24 15:17:00 +00:00
 :trackbacks: []
 
-:tags: []
-
 :body: |-
   I use "exonetric":http://www.exonetric.com/ to host this "typo":http://www.typosphere.org instance.  It's on a "freebsd":http://www.freebsd.org virtual server so I have to maintain everything.  For a long time, I've been using "mysql":http://www.mysql.org 4.  This is fine apart from a problem during initial installation causing it not to start automatically on machine restart.  This meant that whenever the virtual machine was rebooted I had to manually restart mysql, which basically wouldn't happen until I actually noticed it - not cool.
   

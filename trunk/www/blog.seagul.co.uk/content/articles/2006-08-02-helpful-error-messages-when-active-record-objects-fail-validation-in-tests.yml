@@ -2,11 +2,6 @@
 :published_at: 2006-08-02 13:47:00 +01:00
 :trackbacks: []
 
-:tags: 
-- activerecord
-- plugin
-- rails
-- validation
 :body: |-
   I "posted":http://blog.seagul.co.uk/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing a while back about displaying the reasons for an active record model failing validation.
   
@@ -22,14 +17,14 @@
   <typo:code lang="ruby">
   # File record_invalid.rb
   module ActiveRecord
-    
+  
     class RecordInvalid < ActiveRecordError
       def initialize(record)
         @record = record
         super("Validation failed: #{@record.errors.full_messages.join(", ")}")
       end
     end
-    
+  
   end
   </typo:code>
   

@@ -2,8 +2,6 @@
 :published_at: 2006-09-18 22:59:00 +01:00
 :trackbacks: []
 
-:tags: 
-- ruby
 :body: |-
   There are loads of different ways to check whether an object (class or instance) contains a given method.
   
@@ -59,7 +57,7 @@
     def test_class
       assert_method_exists_is_working(Foo)
     end
-    
+  
     def test_instance
       assert_method_exists_is_working(Foo.new)
     end

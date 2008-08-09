@@ -2,16 +2,6 @@
 :published_at: 2007-06-23 18:00:00 +01:00
 :trackbacks: []
 
-:tags: 
-- curl
-- direct
-- finance
-- ing
-- ing-direct
-- ofx
-- ruby
-- transaction
-- wesabe
 :body: |-
   I wanted to "automate":http://blog.seagul.co.uk/articles/2007/06/23/automatically-download-egg-credit-card-transactions the "download":http://blog.seagul.co.uk/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb of "transaction":http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions data for my "ing direct":http://www.ingdirect.co.uk account.  Instead of just pasting up the finished result, I've tried to capture the process I went through, on the off chance it's of interest to anyone...
   
