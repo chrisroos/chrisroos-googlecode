@@ -53,13 +53,12 @@ class Article
   end
   
   def path
-    year, month, day = published_at.to_date.to_s.split('-')
-    File.join(ARTICLES_URL_ROOT, year, month, day)
+    ARTICLES_URL_ROOT
   end
   
   def url
     # Representation agnostic (i.e. doesn't specify .html, .xml)
-    File.join(path, permalink)
+    File.join(path, "#{published_at.to_date}-#{permalink}")
   end
   
   public :binding

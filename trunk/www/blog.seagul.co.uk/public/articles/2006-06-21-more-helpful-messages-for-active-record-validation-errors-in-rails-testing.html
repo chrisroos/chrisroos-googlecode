@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>More helpful messages for Active Record validation errors in Rails testing - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>More helpful messages for Active Record validation errors in Rails testing</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Wed, 21 Jun 2006 08:10:00">
+                  Wed, 21 Jun 2006 08:10:00
+                </span>
+              </p>
+          
+              <p>In testing (and production code) <a href="http://www.reevoo.com">we</a> always try to persist <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> models with the bang variants (save! and create!).  This allows us to <a href="http://www.martinfowler.com/ieeeSoftware/failFast.pdf">fail fast</a> if any of our models fail our  <a href="http://api.rubyonrails.com/classes/ActiveRecord/Validations/ClassMethods.html">validation</a> rules.</p>
+
+
+	<p>The problem is that the standard <a href="http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html">test/unit</a> reporting framework displays the exception without any details of why the validation failed.</p>
+
+
+<div class="typocode">
+<pre>
+ 1) Error:​
+test_should_fail_validation(AardvarkTest):​
+ActiveRecord::RecordInvalid:​ActiveRecord::RecordInvalid
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in 'save!'
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in 'create!'
+   /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in 'test_should_fail_validation'
+
+1 tests, 0 assertions, 0 failures, 1 errors
+</pre>
+</div>
+
+	<p><strong>Note.</strong> This isn&#8217;t the fault of test/unit.  It has to deal with generic exceptions and so cannot &#8216;know&#8217; that Active Record Exceptions can be used to find the reason for the failure.</p>
+
+
+	<p>At this point, it would be very easy to jump into the code of the Active Record model, check out the validations and satisfy them within your code.  However, it&#8217;d be much cooler if we could just add the reason for the failures to the error message that is displayed.</p>
+
+
+	<p>I initially played around with a method that took a block and would wrap the block with a begin/rescue clause to explicitly catch RecordInvalid exceptions, displaying the reason for failure.</p>
+
+
+	<p>Then I thought it&#8217;d be cool if we could integrate slightly more with both test/unit and <a href="http://www.rubyonrails.com">rails</a>.  The result is a <a href="http://wiki.rubyonrails.org/rails/pages/Plugins">plugin</a> (<a href="http://dev.seagul.co.uk/repository/browse/plugins/test_unit_active_record_errors">source</a>) that can be installed as follows.</p>
+
+
+<div class="typocode">
+<pre>
+script/plugin install svn://dev.seagul.co.uk/plugins/test_unit_active_record_errors
+</pre>
+</div>
+
+	<p>The output from a failed validation now includes the validation errors.  Yay.</p>
+
+
+<div class="typocode">
+<pre>
+ 1) Error:​
+test_should_fail_validation(AardvarkTest):​
+ActiveRecord::RecordInvalid: ActiveRecord::RecordInvalid
+   /opt/local/lib//gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in `save!'
+   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in `create!'
+   /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in `__test_should_fail_validation_without_custom_error_handling'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `__send__'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `test_should_fail_validation'
+   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:27:in `test_should_fail_validation'
+ActiveRecord Errors:​Surname can't be blank, Email can't be blank
+
+1 tests, 0 assertions, 0 failures, 1 errors
+</pre>
+</div>
+
+	<p>The code is pretty hacky and includes no tests.  It&#8217;s only been tested on Mac Os <span class="caps">X 10</span>.4.6 with Ruby 1.8.2 and Rails 1.0.0 but please feel free to do what you will with it if you think it might be of some use to you.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

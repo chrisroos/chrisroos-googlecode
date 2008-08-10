@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Boolean method in Ruby (sibling of Array, Float, Integer and String)  - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Boolean method in Ruby (sibling of Array, Float, Integer and String) </h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Fri, 20 Oct 2006 00:19:00">
+                  Fri, 20 Oct 2006 00:19:00
+                </span>
+              </p>
+          
+              <p>I was reading in data from a file and expected one particular column to contain either &#8216;true&#8217; or &#8216;false&#8217;.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada&#8230;</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">module </span><span class="module">Kernel</span>
+
+  <span class="keyword">def </span><span class="method">Boolean</span><span class="punct">(</span><span class="ident">string</span><span class="punct">)</span>
+    <span class="keyword">return</span> <span class="constant">true</span> <span class="keyword">if</span> <span class="ident">string</span> <span class="punct">==</span> <span class="constant">true</span> <span class="punct">||</span> <span class="ident">string</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^true$</span><span class="punct">/</span><span class="ident">i</span>
+    <span class="keyword">return</span> <span class="constant">false</span> <span class="keyword">if</span> <span class="ident">string</span> <span class="punct">==</span> <span class="constant">false</span> <span class="punct">||</span> <span class="ident">string</span><span class="punct">.</span><span class="ident">nil?</span> <span class="punct">||</span> <span class="ident">string</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^false$</span><span class="punct">/</span><span class="ident">i</span>
+    <span class="keyword">raise</span> <span class="constant">ArgumentError</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(&quot;</span><span class="string">invalid value for Boolean: <span class="escape">\&quot;</span><span class="expr">#{string}</span><span class="escape">\&quot;</span></span><span class="punct">&quot;)</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span>
+
+<span class="ident">require</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/../test_helper</span><span class="punct">'</span>
+
+<span class="keyword">class </span><span class="class">KernelTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+
+  <span class="keyword">def </span><span class="method">test_should_return_true</span>
+    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">true</span><span class="punct">')</span>
+    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">TrUe</span><span class="punct">')</span>
+    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">true</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_return_false</span>
+    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">nil</span><span class="punct">)</span>
+    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">false</span><span class="punct">')</span>
+    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">FaLsE</span><span class="punct">')</span>
+    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">false</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+
+  <span class="keyword">def </span><span class="method">test_should_raise_exception</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">true </span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> true</span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> true </span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">false </span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> false</span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> false </span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">BLAH</span><span class="punct">')</span> <span class="punct">}</span>
+    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://remkade.ambitiouslemon.com">Kyle</a>
+                        
+                      </strong>
+                      said on Sat, 08 Dec 2007 22:52:48:
+                    </p>
+                    <p>This is an old post, but how about doing this?:</p>
+
+
+<pre>
+<code>
+Class String
+        def self.to_bool
+                return true if string == true || string =~ /^true$/i
+                return false if string == false || string.nil? || string =~ /^false$/i
+                raise ArgumentError.new("invalid value for to_bool: \"#{string}\"")
+        end
+end
+</code>
+</pre>
+
+	<p>That allows you to just use string.to_bool</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://remkade.ambitiouslemon.com">Kyle</a>
+                        
+                      </strong>
+                      said on Sat, 08 Dec 2007 22:55:15:
+                    </p>
+                    <p>each <code>string</code> item actually should be converted to <code>self</code> instead. Like this:</p>
+
+
+<pre>
+<code>
+Class String
+        def self.to_bool
+                return true if self == true || self =~ /^true$/i
+                return false if self == false || self.nil? || self =~ /^false$/i
+                raise ArgumentError.new("invalid value for to_bool: \"#{self}\"")
+        end
+end
+</code>
+</pre>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Fri, 14 Dec 2007 09:11:06:
+                    </p>
+                    <p>Hey Kyle,</p>
+
+
+	<p>I guess to follow the conventions within ruby (Integer() and to_i, Float() and to_f etc) we should allow both.</p>
+
+
+	<p>Assuming my original Kernel#Boolean method, we could have something like:</p>
+
+
+<typo:code lang="ruby">
+class Object
+  def to_bool
+    Boolean(self)
+  end
+end
+
+	<p>Object.new.to_bool
+=&gt; ArgumentError: invalid value for Boolean: &#8221;#<Object:0x10b0e68>&#8220;</p>
+
+
+	<p>&#8216;true&#8217;.to_bool
+=&gt; true</p>
+
+
+	<p>&#8216;false&#8217;.to_bool
+=&gt; false</p>
+
+
+nil.to_bool
+=&gt; false
+</typo:code>
+                  </li>
+                  
+                </ol>
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

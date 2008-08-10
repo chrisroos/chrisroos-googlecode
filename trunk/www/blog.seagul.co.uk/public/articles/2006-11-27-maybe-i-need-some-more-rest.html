@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Maybe I need some more REST - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Maybe I need some more REST</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Mon, 27 Nov 2006 22:26:00">
+                  Mon, 27 Nov 2006 22:26:00
+                </span>
+              </p>
+          
+              <p>This post isn&#8217;t about sleep deprevation.  Instead, the witty title is referring to everyone&#8217;s newest, favouritist buzzword: <a href="http://www.wikipedia.org/wiki/REST"><span class="caps">REST</span></a> (or Representational State Transfer).</p>
+
+
+	<p>Scene setting with some things that have happened recently (in roughly this order):</p>
+
+
+	<ul>
+	<li><a href="http://www.reevoo.com/blogs/bengriffiths/">Ben</a> mentions that we need to think about splitting our application up to better distribute the load on servers.  I don&#8217;t completely &#8216;get it&#8217;.</li>
+		<li><a href="http://www.rubyonrails.com">Rails</a> gets <a href="http://www.wikipedia.org/wiki/REST"><span class="caps">REST</span></a> support <a href="http://www.ryandaigle.com/articles/2006/08/01/whats-new-in-edge-rails-simply-restful-support-and-how-to-use-it">baked in</a> (Ok, so this is pretty old news now)</li>
+		<li>We spent quite a lot of time at <a href="http://www.reevoo.com">work</a> writing code to access the <a href="http://adwords.google.com">google adwords</a> <a href="http://www.google.com/apis/adwords/">soap api</a></li>
+		<li>I finally got (thanks to <a href="http://blog.floehopper.org">James</a>) why <a href="http://habtm.com/articles/2006/07/01/if-your-models-arent-namespaced-why-should-your-controllers-be-or-how-i-learned-to-stop-worrying-and-love-the-crud">some</a> rails folk have stated that following a RESTful design frees them up from having namespaced admin controllers.</li>
+		<li>I spent quite a bit of time over the last two weeks really looking into the <a href="http://www.ietf.org/rfc/rfc4287.txt">atom syndication format</a> and <a href="http://www.ietf.org/internet-drafts/draft-ietf-atompub-protocol-11.txt">atom publishing protocol</a></li>
+		<li>I spent a few hours at the weekend playing with the <a href="http://www.amazon.com/s3">amazon s3</a> service</li>
+		<li><a href="http://wanderingbarque.com/nonintersecting/2006/11/15/the-s-stands-for-simple/">This</a> popped up recently and got an incredible amount of attention.</li>
+		<li>I read an <a href="http://www.acmqueue.com/modules.php?name=Content&#38;pa=showpage&#38;pid=388">interview</a> with <a href="http://www.allthingsdistributed.com/">Werner Vogel</a> (CTO of Amazon) that talks about everything being a service.  One quote in particular caught my attention.</li>
+	</ul>
+
+
+	<blockquote>
+		<p>If you hit the Amazon.com gateway page, the application calls more than 100 services to collect data and construct the page for you.</p>
+	</blockquote>
+
+
+	<ul>
+	<li>I took the plunge and just about stayed awake through <a href="http://roy.gbiv.com/pubs/dissertation/top.htm">The Document</a>.  I found chapter 6 (and in particular 6.3.4) the most relevant as it explains <span class="caps">REST</span> in the context of the <span class="caps">URI</span> and <span class="caps">HTTP</span>.  I tend to drift off on when things are explained without real examples.</li>
+		<li>I watched <a href="http://nubyonrails.com">Geoffrey Grosenbach&#8217;s</a> <a href="http://www.peepcode.org">peepcode</a> screencast on <a href="http://peepcode.com/articles/2006/10/08/restful-rails">restful rails</a>.</li>
+		<li>I worked out how to use <a href="http://del.icio.us">del.icio.us</a> and subscribed to some of the tags (keywords) mentioned above.</li>
+	</ul>
+
+
+	<p>Wow.  You&#8217;d think with all that reading, listening and viewing I&#8217;d be right up on the subject.  Sadly I don&#8217;t feel as though that&#8217;s quite the case.</p>
+
+
+	<p>Now.  I do see an advantage of a RESTful approach (particular the style currently advocated in <a href="http://www.rubyonrails.com">rails</a>), over <span class="caps">SOAP</span>, when dealing with something like the google adwords api<sup><a href="#fn1">1</a></sup>.  But, what about services like currency conversion and syntax highlighting?  I can&#8217;t get these to fit into a RESTful style in my head (I guess I can&#8217;t find the resource in each case).  Instead, I see them as analogous to unix command line applications: pipe simple data in (an amount with two curencies or ruby code) and get simple data out (an amount in the new currency or syntax-highlighted ruby code).  Actually, I see them as remote procedure calls.  Are these types of services incompatible with the <span class="caps">REST</span> architectural style or have I missed something?  I&#8217;m starting to wonder if I&#8217;m getting too hung up on <span class="caps">REST</span> = <span class="caps">CRUD</span> and therefore missing some of the more fundamental points.  Either way, I definitely feel that it&#8217;d be good to see some more concrete examples in the <span class="caps">REST</span> vs <span class="caps">SOAP</span>/RPC/SOA arguments.  As stated above, I&#8217;m not so great in the abstract.</p>
+
+
+	<p id="fn1"><sup>1</sup> I had a few problems when interacting with the adwords api.  I don&#8217;t, however, feel that I have enough information to know whether the pain was caused by <a href="http://dev.ctor.org/soap4r">soap4r</a>, <a href="http://en.wikipedia.org/wiki/SOAP">soap</a>, the <a href="http://www.google.com/apis/adwords/">api</a> or just my lack of knowledge.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Iain Buckingham
+                        
+                      </strong>
+                      said on Thu, 30 Nov 2006 10:19:08:
+                    </p>
+                    <p>I&#8217;m thinking that learning <span class="caps">REST</span> is like learning OO, and the trick is in seeing what the objects (URL resources) are.
+For currency conversion, a conversion is uniquely specified by the exchange rate and the source amount, and the exchange rate is specified by a date and the source and destination currencies. Therefore a RESTful <span class="caps">URL</span> would be /conversions?source=USD&#38;dest=GBP&#38;date=20061130&#38;amount=100, (or /conversions/USD/GBP/20061130/100) The contents of the page would then be the value (£51.45). The <span class="caps">URL</span> parameters shouldn&#8217;t be seen as the parameters to a function, but the parameters of an object &#8216;constructor&#8217;, which you are then fetching.
+For the syntax highlighting example you might want to construct a code block on the server, by POSTing your code to the /code_blocks page. The server could return a link to the new, highlighted resource (/code_blocks/81782), for later reference, but could also return the results in the body content at the same time.
+The key would seem to be the same as good OO design, decomposing the domain into appropriate collaborating objects. And avoiding the &#8216;global function&#8217; thinking that many <span class="caps">SOAP</span> examples promote.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://www.wondirection.org">Ivanhoe</a>
+                        
+                      </strong>
+                      said on Tue, 05 Jun 2007 19:48:27:
+                    </p>
+                    <p>This is one hell of a post. Although I can&#8217;t say that I truly agree with everything that you&#8217;ve said as my own personal experiences have told me differently, I still enjoyed it. Keep up the good posts</p>
+                  </li>
+                  
+                </ol>
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

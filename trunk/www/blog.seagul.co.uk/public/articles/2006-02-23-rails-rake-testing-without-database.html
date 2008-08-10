@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Rails rake testing without database - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Rails rake testing without database</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Thu, 23 Feb 2006 16:46:00">
+                  Thu, 23 Feb 2006 16:46:00
+                </span>
+              </p>
+          
+              <p>Continuing from the <a href="http://blog.seagul.co.uk/articles/2006/02/23/rails-testing-without-database">previous post</a>, it appears that the rake testing tasks are also tightly coupled to active record.</p>
+
+
+	<p>This feels quite dirty, but I&#8217;ve managed to get round it by manipulating the tasks from the outside (they are buried in the rails libs).</p>
+
+
+	<p>To replicate, create a new file called &#8216;default.rake&#8217; in the lib/tasks/ directory within your rails project, and paste in the following code.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">::</span><span class="constant">TASKS</span><span class="punct">.</span><span class="ident">delete</span><span class="punct">('</span><span class="string">default</span><span class="punct">')</span>
+<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
+<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
+
+<span class="ident">task</span> <span class="symbol">:default</span> <span class="keyword">do</span>
+  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">invoke</span>      <span class="keyword">rescue</span> <span class="ident">got_error</span> <span class="punct">=</span> <span class="constant">true</span>
+  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">invoke</span> <span class="keyword">rescue</span> <span class="ident">got_error</span> <span class="punct">=</span> <span class="constant">true</span>
+  <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Test failures</span><span class="punct">&quot;</span> <span class="keyword">if</span> <span class="ident">got_error</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Because this relies on the internal implementation of rake (instance variable names and <span class="caps">TASKS</span> constant) it might well do very bad things to versions that aren&#8217;t 0.6.2.</p>
+
+
+	<p><strong>Update 17:20</strong></p>
+
+
+	<p>Just realised that I don&#8217;t need most of the code above.  All you actually need in default.rake is as follows.  Stoopid Chris.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
+<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span></code></pre></div>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

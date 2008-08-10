@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Tadalist bookmarklet - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Tadalist bookmarklet</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Sat, 26 Nov 2005 20:30:00">
+                  Sat, 26 Nov 2005 20:30:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve been aware of, and used periodically, <a href="http://www.tadalists.com">tadalist</a> from <a href="http://www.37signals.com">37 signals</a>.</p>
+
+
+	<p>Over about the last week I&#8217;ve started to use tadalist far more.  It&#8217;s great but I really want a way to add items without having to use tada each time.  Apparently there <a href="http://www.keeganjones.com/widgets/tada/">used to be</a> a <a href="http://www.apple.com/uk/downloads/dashboard/">dashboard</a> widget (which would be handy as I use mac&#8217;s at work) but it&#8217;s been long lost.</p>
+
+
+	<p>I&#8217;d eventually like to develop a dashboard widget myself but until I get there I wondered about developing a <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklet</a> to achieve similar effect.</p>
+
+
+	<p>I played around for a bit and came up with the following.</p>
+
+
+<div class="typocode">
+<pre>
+var new_item=prompt('Add Item');
+location.href='http://USERNAME.tadalist.com/item/add?list_id=LISTID&#38;content='+encodeURIComponent(new_item);
+alert('Added');
+location.href='http://USERNAME.tadalist.com/lists/show/LISTID';
+</pre>
+</div>
+
+	<p>It even kinda works, although if you press cancel when it prompts for the list text, it will add a new item of null, obviously&#8230;</p>
+
+
+	<p>If you really feel the need to try this, just copy this <a href="javascript:var new_item=prompt('Add Item'); location.href = 'http://USERNAME.tadalist.com/item/add?list_id=LIST_ID&#38;content='+encodeURIComponent(new_item); alert('Added'); location.href='http://USERNAME.tadalist.com/lists/show/LIST_ID';">link</a> to your bookmarks.  You will need to replace <span class="caps">USERNAME</span> with your username and <span class="caps">LISTID</span> with the id of the list that you want items to be added to.  To find the id (I&#8217;d suggest creating a new list like &#8216;added from browser&#8217;) click on the relevant list in tada and copy the number from the url after lists/show.</p>
+
+
+	<p>Oh yeah, you will also need to be logged into tada for this to work, otherwise you get a nasty looking <a href="http://www.tadalist.com/no_page_here">error page</a>.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Monkey patching rails routing - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Monkey patching rails routing</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Mon, 19 Mar 2007 22:16:00">
+                  Mon, 19 Mar 2007 22:16:00
+                </span>
+              </p>
+          
+              <p>This <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/routing_redirection/">plugin</a> offers the following two features.</p>
+
+
+	<ol>
+	<li>Permanently redirecting requests for urls that end in a slash to the equivalent url with no slash, helping disambiguate urls, as <a href="http://simonwillison.net/2007/Feb/4/urls/">explained</a> by <a href="http://simonwillison.net/">Simon Willison</a>.</li>
+		<li>The addition of ActionController::Routing::RouteSet::Mapper#permanently_redirect, allowing us to declare permanent redirections within our <a href="http://api.rubyonrails.com/classes/ActionController/Routing.html">route config</a>.</li>
+	</ol>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">ActionController</span><span class="punct">::</span><span class="constant">Routing</span><span class="symbol">:Routes</span><span class="punct">.</span><span class="ident">draw</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">map</span><span class="punct">|</span>
+  <span class="ident">map</span><span class="punct">.</span><span class="ident">permanently_redirect</span> <span class="punct">'</span><span class="string">legacy/view/:id</span><span class="punct">',</span> <span class="symbol">:controller</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">current</span><span class="punct">',</span> <span class="symbol">:action</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">show</span><span class="punct">'</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>A quick <a href="http://www.google.co.uk/search?hl=en&#38;q=rails+disambiguated+urls&#38;btnG=Search">google</a> reveals that <a href="http://fleetingideas.com/">Rob McKinnon</a> has an <a href="http://fleetingideas.com/2007/2/6/disambiguated-urls-with-ruby-on-rails">alternative suggestion</a> for removing the trailing slashes.</p>
+
+
+	<p>The plugin is known to work with Rails 1.1.6.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

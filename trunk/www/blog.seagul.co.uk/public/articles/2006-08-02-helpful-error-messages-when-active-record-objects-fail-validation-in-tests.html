@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Helpful error messages when active record objects fail validation (in tests) - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Helpful error messages when active record objects fail validation (in tests)</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Wed, 02 Aug 2006 13:47:00">
+                  Wed, 02 Aug 2006 13:47:00
+                </span>
+              </p>
+          
+              <p>I <a href="http://blog.seagul.co.uk/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing">posted</a> a while back about displaying the reasons for an active record model failing validation.</p>
+
+
+	<p>I knew the code was hacky and nasty but didn&#8217;t realise quite how bad until I noticed how <a href="http://dev.rubyonrails.org/browser/tags/rel_1-1-0/activerecord/lib/active_record/validations.rb">simply</a>  (1 line) the same thing was implemented in <a href="http://weblog.rubyonrails.com/2006/3/28/rails-1-1-rjs-active-record-respond_to-integration-tests-and-500-other-things">Rails 1.1</a> (and above).</p>
+
+
+	<p>Although it&#8217;s only useful for people still on Rails 1.0, I made a quick plugin that backports this change.  I don&#8217;t really want to put it in my subversion repository, so have just pasted the necessary code below.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># File init.rb</span>
+<span class="ident">require</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/lib/record_invalid</span><span class="punct">'</span></code></pre></div>
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># File record_invalid.rb</span>
+<span class="keyword">module </span><span class="module">ActiveRecord</span>
+
+  <span class="keyword">class </span><span class="class">RecordInvalid</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecordError</span>
+    <span class="keyword">def </span><span class="method">initialize</span><span class="punct">(</span><span class="ident">record</span><span class="punct">)</span>
+      <span class="attribute">@record</span> <span class="punct">=</span> <span class="ident">record</span>
+      <span class="keyword">super</span><span class="punct">(&quot;</span><span class="string">Validation failed: <span class="expr">#{@record.errors.full_messages.join(&quot;, &quot;)}</span></span><span class="punct">&quot;)</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></code></pre></div>
+
+	<p>To create a plugin from this, create the following structure in your rails_app/vendor/plugins directory.</p>
+
+
+<pre>
+active_record_validation_error/
+|
+|--init.rb (copy contents of code above)
+|
+|--lib/
+   |
+   |--record_invalid.rb (copy content of code above)
+</pre>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

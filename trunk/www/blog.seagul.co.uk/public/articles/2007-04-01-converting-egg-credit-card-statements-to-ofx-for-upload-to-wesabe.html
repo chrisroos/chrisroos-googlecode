@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Converting Egg Credit Card Statements to Ofx (for upload to wesabe) - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Converting Egg Credit Card Statements to Ofx (for upload to wesabe)</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Sun, 01 Apr 2007 13:48:00">
+                  Sun, 01 Apr 2007 13:48:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve cobbled together some pretty nasty code to convert an <a href="http://www.egg.com">Egg</a> Credit Card statement to <a href="http://www.ofx.net">Ofx</a>.</p>
+
+
+	<p>Grab the <a href="http://chrisroos.googlecode.com/svn/trunk/egg-ofx/">source</a> from <a href="http://code.google.com">google code</a>.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">svn checkout http://chrisroos.googlecode.com/svn/trunk/egg-ofx</code></pre></div>
+
+	<p>As well as requiring <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a>, you will need to edit the StatementsFolder and OfxOutputFolder variables in egg.rb.  These need to point to a directory containing html statements, and an empty output directory respectively.</p>
+
+
+	<p>I&#8217;ve used the script to upload my last 12 statements to <a href="http://www.wesabe.com">wesabe</a> and everything seems to work Ok. If you have any questions, just post a comment here.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://desto.net/">Andrew Donaldson</a>
+                        
+                      </strong>
+                      said on Sun, 01 Apr 2007 20:53:11:
+                    </p>
+                    <p>Hey,</p>
+
+
+	<p>I love what you&#8217;re doing with these things&#8212;it&#8217;d be cool to compile all these scripts into an active-merchant style online-banking gateway library..?</p>
+
+
+	<p>I guess the tricky thing is that you&#8217;d be attempting to map a library to a moving target, not to mention it&#8217;d be very hard for people to trust a library without fully interrogating the source.</p>
+
+
+	<p>Perhaps thats why there hasn&#8217;t been one before!</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://tancredi.co.uk">Tanc</a>
+                        
+                      </strong>
+                      said on Tue, 24 Apr 2007 12:26:15:
+                    </p>
+                    <p>Hi Chris,</p>
+
+
+	<p>I&#8217;m finally getting around to trying out your code to convert my egg statements. I&#8217;ve checked out the svn code and created the statements and ofx output folders (basically put them in with the code to make things easier, didn&#8217;t alter the defaults). I&#8217;ve also installed the hpricot gem with: sudo gem install hpricot</p>
+
+
+	<p>When I run the ruby code egg.rb I get the following error:</p>
+
+
+<code>tanc$ ruby egg.rb</code>
+<br/>
+<code>./lib/ofx.rb:2:in `require': no such file to load -- builder (LoadError)
+        from ./lib/ofx.rb:2
+        from egg.rb:2</code>
+
+	<p><br/>Can you guide me on what is going wrong? I&#8217;d love to get this working. Feel free to email me.</p>
+
+
+	<p>Thanks.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://tancredi.co.uk">Tanc</a>
+                        
+                      </strong>
+                      said on Tue, 24 Apr 2007 16:24:04:
+                    </p>
+                    <p>Genius! (you are).</p>
+
+
+	<p>I got your system working, for some reason my ruby and gems are all messed up, probably from installing different versions around the place. Once I manually installed the Builder and Hpricot code it worked beautifully.</p>
+
+
+	<p>Thank you so much for this, I&#8217;m really happy to have my egg account on Wesabe.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Marc
+                        
+                      </strong>
+                      said on Wed, 05 Sep 2007 23:15:11:
+                    </p>
+                    <p>Hey Chris,</p>
+
+
+	<p>Thanks for the code but I can&#8217;t get it working. It doesn&#8217;t seem to generate a valid <span class="caps">OFX</span> file for me, by which I mean it actually looks like valid <span class="caps">OFX</span> (as far as I can tell) but doesn&#8217;t seem to upload to Wesabe nor validate with the Money <span class="caps">OFX</span> Data Analyzer that I found.</p>
+
+
+	<p>I&#8217;ve got the latest code from your google repository. Any ideas?</p>
+
+
+	<p>Cheers,
+Marc</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Thu, 06 Sep 2007 09:07:37:
+                    </p>
+                    <p>Hey Marc,</p>
+
+
+	<p>Let me take a look at the code and see if I can get it to work.  I&#8217;ll drop you a mail to keep you up to date.</p>
+                  </li>
+                  
+                </ol>
+              
+              
+              
+                <h2>Trackbacks</h2>
+                <ol class="trackbacks">
+                  
+                    <li>
+                      <p class="postedOn">
+                        From <strong>deferred until inspiration hits</strong> on Fri, 04 May 2007 13:12:01
+                      </p>
+                      <a href="http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions" rel="nofollow">Automatically downloading my most recent Hsbc transactions</a><br/>
+                      I&#8217;ve updated my previous curl/ruby script to automatically download my most recent transactions from Hsbc. I created the original script as I had a couple of hours spare and wanted to see if I could do it. The update has been driven by my co...
+                    </li>
+                  
+                    <li>
+                      <p class="postedOn">
+                        From <strong>deferred until inspiration hits</strong> on Sat, 23 Jun 2007 12:41:00
+                      </p>
+                      <a href="http://blog.seagul.co.uk/articles/2007/06/23/automatically-download-egg-credit-card-transactions" rel="nofollow">Automatically download egg credit card transactions</a><br/>
+                      I&#8217;ve followed in my previous footsteps and automated the download of my egg credit card transactions and statements. Using this in combination with my ofx convertor makes it easier for me to upload my financial data to wesabe. As always, the...
+                    </li>
+                  
+                </ol>
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

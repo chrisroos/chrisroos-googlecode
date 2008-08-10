@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Why should it do that? - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Why should it do that?</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Thu, 27 Sep 2007 07:36:00">
+                  Thu, 27 Sep 2007 07:36:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve started looking into my *cough* promise *cough* to do that <a href="http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers">local paper</a> site I mentioned sometime ago.  The code is all in me <a href="http://chrisroos.googlecode.com">google code</a> <a href="http://chrisroos.googlecode.com/svn/trunk/the-local-paper/">repository</a> if you want to see how it&#8217;s going (or finish it when I inevitably get bored again&#8230;).</p>
+
+
+	<p>Anyway, the point of this post is that I realised something about testing that I feel I may have missed in the past.  I&#8217;ve got used to stating the <a href="http://behaviour-driven.org/">behavior</a> of the objects in my system through tests.  So, when I wanted to ensure that an article couldn&#8217;t be created without a title, I added a test like so:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ArticleTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_validate_presence_of_title</span>
+    <span class="punct">...</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>In fact, for an article comprised of a title, an edition, a page number and an author, I wanted to ensure that all were there apart from the author.  It was only once I&#8217;d added tests to <a href="http://api.rubyonrails.org/classes/ActiveRecord/Validations.html">validate</a> the presence of the other three attributes that I realised it was probably important to prove that an author wasn&#8217;t required.  So, I added the relevant test.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ArticleTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_not_validate_presence_of_author</span>
+    <span class="punct">...</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>That&#8217;s all well and good, but I&#8217;ve lost some information: <span class="caps">WHY</span> it shouldn&#8217;t validate the presence of an author.  I know at the moment why it shouldn&#8217;t (because short articles don&#8217;t have an author listed), but will I know at some point the future?  I suspect not.  The same obviously applies for the things that I do want to ensure are present.  Why do I care that an article has a title, edition and page number?  At the moment I care because I&#8217;m planning on making them part of the <span class="caps">URL</span>, but what if I decide not to go down that route, yet leave the tests there?  There&#8217;ll be no easy way for someone in the future to determine whether those things are actually important or not.</p>
+
+
+	<p>I wonder if this issue was highlighted because of my lack of <a href="http://subversion.tigris.org/"><span class="caps">SVN</span></a> access.  I generally like really small checkins to my <a href="http://en.wikipedia.org/wiki/Revision_control">version control software</a> which would&#8217;ve allowed me to have added and committed those validation additions one at a time, and with messages that would have stated the reasons for that change<sup><a href="#fn1">1</a></sup>.  Being disconnected means that I end up with bigger checkins that inevitably lose some information.  Actually, the more I think about it, the more I think that the repository isn&#8217;t the right place for this information anyway &#8211; it&#8217;s too far away from the code that&#8217;s solving the problems.</p>
+
+
+	<p>How do other people solve this potential loss of knowledge?  Am I missing something obvious, or have I really just not noticed this before?</p>
+
+
+	<p>P.S. I spent a few minutes chatting with <a href="http://interblah.net/">James</a> about it today and he had some interesting suggestions, although I&#8217;ll leave it up to him to share those if he wants (no pressure James, I&#8217;m just running out of time right now I&#8217;m afraid).</p>
+
+
+	<p id="fn1"><sup>1</sup> <a href="http://po-ru.com">Paul</a> suggested a while back that we use the commit note to explain the problem that we&#8217;ve solved, rather than just describing the changeset.  Unfortunately, I can&#8217;t find the source of that suggestion so no link I&#8217;m afraid.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://interblah.net">James Adam</a>
+                        
+                      </strong>
+                      said on Thu, 27 Sep 2007 10:16:33:
+                    </p>
+                    <p>Hopefully I&#8217;ll get the change to post some of our discussion to interblah.net soon :)</p>
+
+
+	<p>Incidentally, you might want to investigate using Git as your source control system; since that allows operation without connection to any remote server, you&#8217;d be able to make smaller commits with more detailed information about the &#8220;why&#8221;s. Using git-svn, you can even push those changes back up to an <span class="caps">SVN</span> server for consumption by the masses.</p>
+
+
+	<p>That said, it&#8217;s taken me a few weeks to get my head around the conceptual differences between git and <span class="caps">SVN</span> &#8211; it&#8217;s not for everyone, that&#8217;s for sure.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://po-ru.com/">Paul Battley</a>
+                        
+                      </strong>
+                      said on Thu, 27 Sep 2007 10:16:53:
+                    </p>
+                    <p>I&#8217;ve found the page where I originally read that suggestion: <a href="http://silkandspinach.net/2007/04/28/listing-problems-instead-of-solutions/">listing problems instead of solutions</a>.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Thu, 27 Sep 2007 10:28:14:
+                    </p>
+                    <p>Cheers guys.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          <a href="http://www.techbelly.com">Ben Griffiths</a>
+                        
+                      </strong>
+                      said on Thu, 27 Sep 2007 18:11:11:
+                    </p>
+                    <p>You can name your tests to better express intention, and it&#8217;s best to keep documentation of intentions as close to where you&#8217;re tempted to change things as possible.</p>
+
+
+	<p>What do you think about naming tests along the lines of: &#8220;all attributes used to make up the url should be required&#8221; and &#8220;should allow articles to be created without author&#8221;.</p>
+
+
+	<p>Does that help any?</p>
+
+
+	<p>On another level, you might suggest that there&#8217;s a level of abstraction/modelling missing in the code. You want to validate that fields required for the url are complete, and somewhere declare what fields are required for the url. The routes is one declaration, but it doesn&#8217;t necessarily map from attributes of a model to parts of a route. Hmm.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Fri, 28 Sep 2007 10:47:09:
+                    </p>
+                    <p>Hey Ben,</p>
+
+
+	<p>There&#8217;s definitely something missing in the naming of the tests.  I like your suggestions but they still don&#8217;t capture the reason why an article can&#8217;t be created without an author (for example).</p>
+
+
+	<p>In theory, these reasons would have been captured in user stories, so maybe I just need a higher level test that expresses those stories?  I don&#8217;t think this is foolproof though.  I might have a combination of unit tests to state what an object should do and higher level tests to explain why the object should do it.  Because these tests (at least in traditional rails world) would be separate there&#8217;s the danger that the higher level tests will be removed, yet the unit tests will remain.  Hmm indeed.</p>
+                  </li>
+                  
+                </ol>
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

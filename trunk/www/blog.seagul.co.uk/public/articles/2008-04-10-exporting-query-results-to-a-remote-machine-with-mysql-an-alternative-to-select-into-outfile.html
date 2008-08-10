@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE) - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Thu, 10 Apr 2008 16:45:29">
+                  Thu, 10 Apr 2008 16:45:29
+                </span>
+              </p>
+          
+              <p>Exporting query results to a remote machine with MySql (an alternative to <span class="caps">SELECT INTO OUTFILE</span>)</p>
+
+
+	<p><a href="http://mysql.com">MySql&#8217;s</a> <a href="http://dev.mysql.com/doc/refman/5.0/en/select.html"><span class="caps">SELECT INTO OUTFILE</span></a> syntax provides a nice way to export the results of a query into a tab delimited (by default) text file.  Unfortunately, the file has to be created on the MySql host (by a user with file permissions), rendering it unsuitable for dumping the data to a remote machine.  If you wish to dump the query results to a different machine then the <a href="http://dev.mysql.com/doc/">mysql docs</a> suggest redirecting the output from the mysql command line client:</p>
+
+
+	<blockquote>
+		<p>The <span class="caps">SELECT</span> &#8230; <span class="caps">INTO OUTFILE</span> statement is intended primarily to let you very quickly dump a table to a text file on the server machine. If you want to create the resulting file on some client host other than the server host, you cannot use <span class="caps">SELECT</span> &#8230; <span class="caps">INTO OUTFILE</span>. In that case, you should instead use a command such as mysql -e &#8220;SELECT &#8230;&#8221; &gt;  file_name to generate the file on the client host.</p>
+	</blockquote>
+
+
+	<p>This works great but the default output you&#8217;ll get from redirecting <span class="caps">STDOUT</span> won&#8217;t be the same as using <span class="caps">SELECT INTO OUTFILE</span>.  The two main (only?) differences are, in the redirected output, the addition of the headers and that <span class="caps">NULL</span> values are output as <span class="caps">NULL</span> instead of the special \N (backslash-N) sequence.  We can fix both of these things by specifying an optional switch (skip-column-names) to the mysql client and employing some <a href="http://en.wikipedia.org/wiki/Sed">sed</a> magic.</p>
+
+
+<div class="typocode"><pre><code class="typocode_default">mysql -h&quot;my-host&quot; -u&quot;my-user&quot; -p&quot;my-password&quot; -e&quot;select * from my-database.my-table&quot; --skip-column-names |\
+  sed -e 's/[[:&lt;:]]NULL[[:&gt;:]]/\\N/g' &gt;\
+  my-export-directory/my-table.csv`</code></pre></div>
+
+	<p>That sed magic is replacing instances of <span class="caps">NULL</span>, surrounded by some whitespace, with the special \N escape sequence.</p>
+
+
+	<p>Oh, and it&#8217;s probably worth mentioning that this is only really important if you want to load this data back into mysql (using <a href="http://dev.mysql.com/doc/refman/5.0/en/load-data.html"><span class="caps">LOAD DATA INFILE</span></a> for example).  If you were to load the default output, from redirecting the mysql client, back into mysql then you&#8217;d end up with an unwanted header row and <span class="caps">NULL</span> strings (or 0 for numeric columns) where you expected actual <span class="caps">NULL</span> values.</p>
+
+
+	<p>It took us a while to figure this out so I thought it might be of some use to others.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

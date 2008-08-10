@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Set background transparency in GIMP - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Set background transparency in GIMP</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Fri, 09 Sep 2005 17:37:00">
+                  Fri, 09 Sep 2005 17:37:00
+                </span>
+              </p>
+          
+              <p>I&#8217;m very much <strong>not</strong> a graphical person but when forced to dabble in any kind of image manipulation have always tried to use <a href="http://www.gimp.org/">The <span class="caps">GIMP</span></a>, over any commercial offerings.</p>
+
+
+	<p>Just this afternoon I&#8217;ve spent some time trying to make the background of a very simple image transparent.  The image is a filled shape on a white background.  I wanted the white background to be transparent.</p>
+
+
+	<p>I <em>think</em> I&#8217;ve finally found the best way to achieve this but may be way off mark.</p>
+
+
+	<ol>
+	<li>Open the original image (jpeg image in this case).</li>
+		<li>Use the &#8216;magic wand&#8217; (Select contiguous regions) and select the coloured shape.</li>
+		<li>Move the selected shape to the side of the image.</li>
+		<li>In the Layers view you should now have a new &#8216;Floating Selection (Floated Layer)&#8217;.  Right click on this layer and select &#8216;New layer&#8217;.  This converts the transient layer into a real layer.</li>
+		<li>Click on the background layer to &#8216;select&#8217; the background of the image.</li>
+		<li>Select Layer &gt; Transparency &gt; Add Alpha Channel.</li>
+		<li>We can now set the background to transparent by using Layer &gt; Transparency &gt; Colour to Alpha and selecting our background colour (white in my case) as the From colour.</li>
+		<li>Click Ok to set the background to transparent.</li>
+		<li>Click on the Floated Layer (this is what the layer will be called unless you renamed it) to display it to the side of the image.</li>
+		<li>Click the cross-hair (Move layers &#38; selections) tool and move the shape onto the now transparent background.</li>
+		<li>That&#8217;s it, apart from saving the image in a format that either saves the layers (.xcf at least, maybe more) or at least deals with transparency (.gif and .png).</li>
+	</ol>
+
+
+	<p><em><strong>Update 18:07</strong> It seems that anything over and above simple shapes as I had and this practice fails because it&#8217;s not easy to initially cut the &#8216;foreground&#8217; image out.  But then again, maybe that&#8217;s just because I don&#8217;t know how to effectively &#8216;cut&#8217; images&#8230;</em></p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          James
+                        
+                      </strong>
+                      said on Mon, 26 Mar 2007 11:17:21:
+                    </p>
+                    <p>I found that you don&#8217;t actually need to select anything &#8211; I had a png image of a logo, which was some blue text on a white background. I started from step 7 and by default it turns white to alpha which is exactly what I wanted.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Ramil
+                        
+                      </strong>
+                      said on Tue, 02 Oct 2007 21:47:29:
+                    </p>
+                    <p>I still can get it to be transparent.</p>
+                  </li>
+                  
+                </ol>
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>
