@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>cURL is fast becoming my favourite toy - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>cURL is fast becoming my favourite toy</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Sun, 24 Dec 2006 17:04:00">
+                  Sun, 24 Dec 2006 17:04:00
+                </span>
+              </p>
+          
+              <h3>(or programmatically logging into online banking to retrieve my balance)</h3>
+
+
+	<p>In order to make practical use<sup><a href="#fn1">1</a></sup> of my new found <a href="http://blog.seagul.co.uk/articles/2006/12/14/addicted-to-twitter-com">sms gateway</a>, I&#8217;ve created a ruby script that logs into my hsbc bank account and scrapes the balance from the screen.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">COOKIE_LOCATION</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/hsbc_cookie</span><span class="punct">'</span>
+
+<span class="constant">INTERNET_BANKING_ID</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_INTERNET_BANKING_ID</span><span class="punct">'</span>
+<span class="constant">DATE_OF_BIRTH</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_DATE_OF_BIRTH</span><span class="punct">'</span>
+<span class="constant">SECURITY_CODE</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_SECURITY_CODE</span><span class="punct">'</span>
+<span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">SECURITY_CODE</span>
+  <span class="punct">[</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:second</span><span class="punct">,</span> <span class="symbol">:third</span><span class="punct">,</span> <span class="symbol">:fourth</span><span class="punct">,</span> <span class="symbol">:fifth</span><span class="punct">,</span> <span class="symbol">:sixth</span><span class="punct">,</span> <span class="symbol">:last</span><span class="punct">].</span><span class="ident">each_with_index</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">method</span><span class="punct">,</span> <span class="ident">index</span><span class="punct">|</span>
+    <span class="ident">define_method</span><span class="punct">(</span><span class="ident">method</span><span class="punct">)</span> <span class="keyword">do</span> 
+      <span class="ident">method</span> <span class="punct">==</span> <span class="symbol">:last</span> <span class="punct">?</span> <span class="constant">self</span><span class="punct">.</span><span class="ident">split</span><span class="punct">('</span><span class="string"></span><span class="punct">').</span><span class="ident">last</span> <span class="punct">:</span> <span class="constant">self</span><span class="punct">.</span><span class="ident">split</span><span class="punct">('</span><span class="string"></span><span class="punct">')[</span><span class="ident">index</span><span class="punct">]</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment"># POST Internet Banking ID and store the cookie</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -c&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; -L -d&quot;internetBankingID=<span class="expr">#{INTERNET_BANKING_ID}</span>&quot; &quot;https://www.ebank.hsbc.co.uk/servlet/com.hsbc.ib.app.pib.logon.servlet.OnBrochurewareLogonServlet&quot;</span><span class="punct">]</span>
+`<span class="comment">#{curl_cmd}`</span>
+
+<span class="comment"># GET Login page so that we can work out which characters it wants</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://www.ebank.hsbc.co.uk/main/IBLogon.jsp&quot;</span><span class="punct">]</span>
+<span class="ident">login_page</span> <span class="punct">=</span> `<span class="comment">#{curl_cmd}`</span>
+
+<span class="comment"># p login_page[/Please enter the (.+), (.+) and (.+) digits of your security number/]</span>
+<span class="ident">c1</span> <span class="punct">=</span> <span class="ident">login_page</span><span class="punct">[/</span><span class="regex">Please enter the (.+), (.+) and (.+) digits of your security number</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">].</span><span class="ident">downcase</span>
+<span class="ident">c2</span> <span class="punct">=</span> <span class="ident">login_page</span><span class="punct">[/</span><span class="regex">Please enter the (.+), (.+) and (.+) digits of your security number</span><span class="punct">/,</span> <span class="number">2</span><span class="punct">].</span><span class="ident">downcase</span>
+<span class="ident">c3</span> <span class="punct">=</span> <span class="ident">login_page</span><span class="punct">[/</span><span class="regex">Please enter the (.+), (.+) and (.+) digits of your security number</span><span class="punct">/,</span> <span class="number">3</span><span class="punct">].</span><span class="ident">downcase</span>
+<span class="ident">tsn</span> <span class="punct">=</span> <span class="punct">[</span><span class="ident">c1</span><span class="punct">,</span> <span class="ident">c2</span><span class="punct">,</span> <span class="ident">c3</span><span class="punct">].</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">method</span><span class="punct">|</span> <span class="constant">SECURITY_CODE</span><span class="punct">.</span><span class="ident">__send__</span><span class="punct">(</span><span class="ident">method</span><span class="punct">)</span> <span class="punct">}.</span><span class="ident">join</span>
+<span class="comment"># p tsn</span>
+
+<span class="comment"># POST to login now that we've (hopefully) created the tsn</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; -L -d&quot;dateOfBirth=<span class="expr">#{DATE_OF_BIRTH}</span>&quot; -d&quot;tsn=<span class="expr">#{tsn}</span>&quot; &quot;https://www.ebank.hsbc.co.uk/servlet/com.hsbc.ib.app.pib.logon.servlet.OnLogonVerificationServlet&quot;</span><span class="punct">]</span>
+`<span class="comment">#{curl_cmd}`</span>
+
+<span class="comment"># GET the account overview page to scrape the balance from it</span>
+<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://www.ebank.hsbc.co.uk/main/portmain.jsp&quot;</span><span class="punct">]</span>
+<span class="ident">account_overview_html</span> <span class="punct">=</span> `<span class="comment">#{curl_cmd}`</span>
+
+<span class="comment"># Remove the cookie</span>
+`<span class="ident">rm</span> <span class="comment">#{COOKIE_LOCATION}`</span>
+
+<span class="comment"># Obtain and display the account balance</span>
+<span class="ident">account_balance</span> <span class="punct">=</span> <span class="ident">account_overview_html</span><span class="punct">[/</span><span class="regex">&lt;td.*?&gt;(<span class="escape">\d</span>+.?<span class="escape">\d</span>+?<span class="escape">\s</span>*C|D)&lt;<span class="escape">\/</span>td&gt;</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">]</span>
+<span class="ident">puts</span> <span class="ident">account_balance</span></code></pre></div>
+
+	<p id="fn1"><sup>1</sup>  I will probably never ever use this.  Oh well.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

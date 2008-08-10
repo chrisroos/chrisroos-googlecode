@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>I hope I didn't break rubyforge... - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>I hope I didn't break rubyforge...</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Mon, 21 Aug 2006 23:30:00">
+                  Mon, 21 Aug 2006 23:30:00
+                </span>
+              </p>
+          
+              <p>A couple of days ago I was playing around with <a href="http://search.cpan.org/~clkao/SVN-Mirror-0.68/lib/SVN/Mirror.pm"><span class="caps">SVN</span>::Mirror</a>, trying to remove some <a href="http://wiki.rubyonrails.org/rails/pages/Plugins">dependencies</a> on third party repositories not in our control.</p>
+
+
+	<p>All was going well until I tried to mirror a <a href="http://rubyforge.org/projects/mocha/">project</a> hosted on rubyforge.  On initialising the mirror, I kept receiving the error &#8220;source url not under source root&#8221; from line 72 in Ra.pm.</p>
+
+
+	<p>After some very careful debugging (yeah, like I know anything about perl &#8211; <code>print "1";</code> was about the extent of it) of that perl file; I noticed that the $source_root variable didn&#8217;t contain the double slash<sup><a href="#fn1">1</a></sup>.  This causes a problem for the line <code>if substr($path, 0, length($source_root), '') ne $source_root;</code> as at this point, $path does contain the double slash.</p>
+
+
+	<p>The value of $source_root is returned from a call to RA-&gt;get_repos_root (Subversion Repository Access code).  So; it would seem that the url was being normalised somewhere in the bowels of <a href="http://subversion.tigris.org">Subversion</a>.</p>
+
+
+	<p>This was kinda confirmed by testing the svn client (which uses the code in the RA module just like <span class="caps">SVN</span>::Mirror) with urls containing additional slashes.  The url was always resolved and svn info would always show the normalised variant.  It was additionally(ish) tested by using the <a href="http://www.ruby-lang.org">Ruby</a> <a href="http://svn.collab.net/viewvc/svn/trunk/subversion/bindings/swig/ruby/">bindings</a> (which, as an aside, contain just about the most difficult to read Ruby code I&#8217;ve ever come across!)</p>
+
+
+	<p>I would love to have followed the actual subversion c code to find the normalisation routine but I&#8217;m sadly not clever enough; so my findings had to suffice.</p>
+
+
+	<p>Anyhoo, the outcome of the story is that I emailed Tom Copeland of rubyforge fame to ask about the deal with the double slashes.  Turns out that it was probably just a <a href="http://gforge.org/">gforge</a> default thing and Tom went ahead and promptly changed it.  I suddenly got very nervous that lots of arms would be thrown up with cries of &#8220;Who broke rubyforge?&#8221;, but so far it would appears to be ok.  Phew.</p>
+
+
+	<p id="fn1"><sup>1</sup> Not sure if anyone else had really noticed but the svn repositories on rubyforge used to contain a double slash between the domain and var path (i.e. rubyforge.org//var).</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

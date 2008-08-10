@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Inactive keywords (too high minCpc) when using Google Adwords Api - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Inactive keywords (too high minCpc) when using Google Adwords Api</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Wed, 18 Oct 2006 07:40:00">
+                  Wed, 18 Oct 2006 07:40:00
+                </span>
+              </p>
+          
+              <h3>Short version</h3>
+
+
+	<p><strong><span class="caps">ALWAYS</span></strong> create adverts (creatives) <strong>before</strong> keywords when setting up an ad group using the Adwords Api</p>
+
+
+	<h3>Longer version</h3>
+
+
+	<p>Our first use of the adwords api was to create around 850 ad groups, each with three text ads and one keyword.  Although the creation seemed to go to plan, a quick inspection in the adwords interface revealed that all of our ads were marked as inactive, with most of our keywords having a minimum bid of £2.50!</p>
+
+
+	<p>Adding the exact same keywords and text ads manually resulted in active keywords, so we knew there was nothing wrong with our content.</p>
+
+
+	<p>A few searches on google didn&#8217;t yield any relevant results, but searching the <a href="http://groups.google.com/group/adwords-api">adwords api google group</a> seemed to reveal other people having the same problem.  The solution was (and is) simple &#8211; ensure that you create your keywords <strong>after</strong> you&#8217;ve created your ad content.  Indeed, it is impossible to create them in any other order from within the adwords interface itself.</p>
+
+
+	<p>Right now this is just a pain, as it needlessly wastes api quota &#8211; about 700,000 in our case.  Come  <a href="http://adwordsapi.blogspot.com/2006/09/deadline-for-registration-and-billing.html">November 1st</a> this will cost you hard cash &#8211; around £80.00 &#8211; £90 for our 700,000&#8217;ish.</p>
+
+
+	<p>I&#8217;m hoping google will change their api to warn you when keywords are created before creatives, or, at the very least, make it extremely clear in the docs that there is an order in which the two should be created.  In the meantime, maybe this will help people searching google for an answer to the same problem.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Starr
+                        
+                      </strong>
+                      said on Mon, 30 Oct 2006 03:10:57:
+                    </p>
+                    <p>Thanks &#8211; I just ran up against this and was starting to panic.</p>
+                  </li>
+                  
+                </ol>
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Encapsulation in Active Record objects - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Encapsulation in Active Record objects</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Fri, 12 Jan 2007 01:37:00">
+                  Fri, 12 Jan 2007 01:37:00
+                </span>
+              </p>
+          
+              <p>I&#8217;ve been meaning to finish a post on this subject for ages.  As I probably won&#8217;t finish it in its current incarnation, I thought I&#8217;d at least get something up here.</p>
+
+
+	<p><a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Base.html">Active Record</a> <a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Associations/ClassMethods.html">associations</a> are brilliant for quickly putting together an object graph.  They&#8217;re not so brilliant for testing, or keeping the code particularly tidy.  They quickly lead to (and even encourage) train-wreck expressions in your code.  Diving straight into an example:</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
+<span class="keyword">end</span>
+<span class="keyword">class </span><span class="class">Hobby</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Because the hobbies object is publicly accessible from a person object, it allows us to reach in and touch things we shouldn&#8217;t.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">cycling</span> <span class="punct">=</span> <span class="constant">Hobby</span><span class="punct">.</span><span class="ident">new</span>
+
+<span class="comment"># We shouldn't manipulate the hobbies object directly...</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Uh oh - touching things we shouldn't</span>
+
+<span class="comment"># ...rather, it'd be better to add a wrapper method for the functionality we actually need</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="keyword">def </span><span class="method">add_hobby</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
+<span class="ident">chris</span><span class="punct">.</span><span class="ident">add_hobby</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Ahh, that's much better</span></code></pre></div>
+
+	<p>The revised Person class above follows the <a href="http://en.wikipedia.org/wiki/Law_of_Demeter">law of demeter</a>.  As well as making the code look a little neater (no train-wrecks to see here), it makes it easier to test.  To illustrate the testing point, I&#8217;m going to <a href="http://weblog.jamisbuck.org/2007/1/9/extending-activerecord-associations">extend</a> the <a href="http://ryandaigle.com/articles/2006/12/03/extend-your-activerecord-association-methods">association</a> in this example.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># We end up with a large and not very clear test</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span> <span class="keyword">do</span>
+    <span class="keyword">def </span><span class="method">find_favourite</span>
+      <span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
+    <span class="ident">hobbies</span> <span class="punct">=</span> <span class="ident">mock</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_favourite</span><span class="punct">)</span>
+    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">stub</span><span class="punct">(</span><span class="symbol">:hobbies</span> <span class="punct">=&gt;</span> <span class="ident">hobbies</span><span class="punct">)</span>
+    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment"># This way, we end up with a slightly cleaner looking class (imo) and a smaller, cleaner test</span>
+<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
+  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
+  <span class="keyword">def </span><span class="method">find_my_favourite_hobby</span>
+    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
+    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">mock</span>
+    <span class="ident">person</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_my_favourite_hobby</span><span class="punct">)</span>
+    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
+    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+
+	<p>Interestingly enough, if we had <a href="http://en.wikipedia.org/wiki/Test_driven_development">test driven</a> the development of the above code, we would almost certainly have ended up with something similar (interface-wise) to the example that has a wrapper around the association proxy.</p>
+
+
+	<p>So, with all of this in mind, I&#8217;ve hacked together a real quick <a href="http://chrisroos.googlecode.com/svn/trunk/plugins/private_associations/">plugin</a> that adds a corresponding _private method for each of the four (has_one, has_many, belongs_to and has_and_belongs_to_many) associations.  Using the _private alternative will do exactly the same as the original method but it will make all of the dynamically created methods private.  So.  It&#8217;ll still be possible to write the wrapper around the association (as we did in the test above) but it won&#8217;t be possible to reach in and touch things that we shouldn&#8217;t.[1]</p>
+
+
+	<p>There is at least one problem (there may be many more I&#8217;m not aware of) with using the _private association methods.  If you have validation set-up for one of the associations (e.g. validates_associated) it will fail.  This is because validation happens from outside the instance of the object and therefore needs to access the association.  Although I haven&#8217;t thought this through fully, I&#8217;m actually wondering if validation (in its current form) takes a bit of a back seat under this new world order.  I think that one of the reasons validation is on the object itself is because there are many many ways to create the said object.  However, using these private associations and disabling the persistence methods (create, save, update etc) on an associated object may allow us to have a single point of object creation and persistence.  If we had that, then we wouldn&#8217;t need the Active Record validations anyway.  Just a thought&#8230;</p>
+
+
+	<p>Just one final note.  <a href="http://www.daveastels.com/">Dave Astels</a> has a good <a href="http://blog.daveastels.com/articles/2006/10/24/encapsulation-in-action">article</a> about encapsulation in rails, as <a href="http://www.reevoo.com/blogs/bengriffiths/2006/10/24/rails-like-or-oo/">referred to</a> by <a href="http://www.reevoo.com/blogs/bengriffiths">Ben</a></p>
+
+
+	<p id="fn1"><sup>1</sup>  Ok.  That is, of course, a blatant lie &#8211; we can still access the private association &#8211; this is <a href="http://www.ruby-lang.org">ruby</a> remember.  The important point is that we&#8217;ve made our intentions more explicit.</p>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+                <h2>Legacy Comments</h2>
+                <ol class="comments">
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Jamis
+                        
+                      </strong>
+                      said on Fri, 12 Jan 2007 20:11:45:
+                    </p>
+                    <p>Chris, I&#8217;m not sure why you feel that &#8220;touching&#8221; the hobbies method is a bad thing. It&#8217;s a public method, not a public instance variable. The method provides the abstraction, and you could ultimately replace that implementation with something else, so there is no violation of encapsulation.</p>
+
+
+	<p>Am I misunderstanding your concern? Personally, I find &#8220;my.hobbies &lt;&lt; biking&#8221; more esthetically appealing then &#8220;my.add_hobby(biking)&#8221;.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Sat, 13 Jan 2007 13:21:47:
+                    </p>
+                    <p>Hi Jamis,</p>
+
+
+	<p>I think the problem is that we&#8217;re asking a person for their hobbies object in order to manipulate it directly.  What we really want to do is tell the person to add their own hobby &#8211; we don&#8217;t care how they go about it.</p>
+
+
+	<p>Apologies for the short answer &#8211; I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I&#8217;ll try a follow-up post with more exploration of the issue.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Jamis
+                        
+                      </strong>
+                      said on Sat, 13 Jan 2007 15:35:24:
+                    </p>
+                    <p>Chris, actually, you&#8217;re not getting the hobbies object back. The &#8220;hobbies&#8221; method returns a proxy object, not the array of hobbies directly. When you invoke a method on what is returned, it is hitting the proxy, not the array.</p>
+
+
+	<p>It&#8217;s all nicely encapsulated. Ruby makes it so clean and neat to do these things. The problem is, so many of us are coming from languages like Java, where it is <em>not</em> so easy to do things like that transparently, and since we&#8217;re taught that manipulating the internal object directly is bad, we feel like we have to jump through all kinds of hoops in order to avoid even the <em>appearance</em> of that kind of access.</p>
+
+
+	<p>The fact is, though, that encapsulation is the goal, and what it is attained, there are no more hoops to jump through. And ActiveRecord correctly and safely encapsulates your data, via the association proxy classes.</p>
+
+
+	<p>There&#8217;s no need for Javaisms like &#8220;add_hobby&#8221;, unless you, personally, prefer it that way. Myself, I think Java has taught programmers a lot of very bad habits, and Ruby (and Rails) gives us the chance to unlearn some of those.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Chris
+                        
+                      </strong>
+                      said on Mon, 15 Jan 2007 22:06:11:
+                    </p>
+                    <p>Jamis, I&#8217;m confused as to how this fits in with the &#8220;Tell, don&#8217;t ask&#8221; principle.  I&#8217;m probably missing something, but, it very much seems to me that we&#8217;re <em>asking</em> a person for their hobbies and then <em>telling</em> the hobbies to add a hobby to itself.  The fact that we are getting a proxy that represents their hobbies rather than the hobbies object directly seems irrelevant.</p>
+
+
+	<p>I&#8217;m thinking in terms of testing, and in particular, using mocks and stubs.  By exposing the association proxies publicly, we have to provide more complicated mocks/stubs in our tests.</p>
+
+
+	<p>Assuming we want to test a controller action that adds a hobby to a given person, and we&#8217;re exposing the hobbies object directly, we would have something like:</p>
+
+
+<typo:code lang="ruby">
+hobbies = mock
+hobbies.expects(:&lt;&lt;).with(&#8216;MY_NEW_HOBBY&#8217;)
+person = stub(:hobbies =&gt; hobbies)
+Person.stubs(:find).returns(person)
+
+post :add_hobby, :id =&gt; 99, :hobby =&gt; &#8216;MY_NEW_HOBBY&#8217;
+</typo:code>
+
+	<p>As a slight aside, I feel more uncomfortable because of the aliasing of &lt;&lt; as both push and concat (which of the three methods should we expect?).  However, I&#8217;ll admit that this is more a problem of tightly tying our tests to our implementation.  I would, however, still feel better if there was only one way to do what was required (i.e. one addition method.)</p>
+
+
+	<p>If we were able to tell our person to add their own hobby then the test becomes slightly cleaner.</p>
+
+
+<typo:code lang="ruby">
+person = mock
+person.expects(:add_hobby).with(&#8216;MY_NEW_HOBBY)
+Person.stubs(:find).returns(person)
+
+post :add_hobby, :id =&gt; 99, &#8216;MY_NEW_HOBBY&#8217;
+</typo:code>
+
+	<p>Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it&#8217;s probably all irrelevant?</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          David Chelimsky
+                        
+                      </strong>
+                      said on Tue, 06 Feb 2007 15:51:21:
+                    </p>
+                    <p>It&#8217;s not just a matter of making your tests cleaner. It&#8217;s also a matter of protecting the consumers of your model from changes to the model over time.</p>
+
+
+	<p>Imagine a project management app in which you have Project &gt; Iterations &gt; Stories. All through your controllers and views you have calls like this:</p>
+
+
+	<p>@project.iterations.stories</p>
+
+
+	<p>Later on, you decide that your model is wrong and that it should really be Project &gt; Stories &gt; Iterations. Now you have to change every call to stories or iterations. If, however, you started off with this in Project:</p>
+
+
+	<p>def stories
+  iterations.stories
+end</p>
+
+
+	<p>all you would have to do now is change the Project model.</p>
+
+
+	<p>To me, <span class="caps">THAT</span> is the whole point of Demeter. It&#8217;s about managing dependencies to isolate change.</p>
+                  </li>
+                  
+                  <li>
+                    <p class="postedOn">
+                      <strong>
+                        
+                          Matt Pelletier
+                        
+                      </strong>
+                      said on Wed, 07 Feb 2007 07:50:10:
+                    </p>
+                    <p>Chris,</p>
+
+
+	<p>We&#8217;ve run into similar concerns re. association proxies and object hopping. I wrote a plugin that adds methods that wrap the common find, build and count association proxy methods. You could add &#8216;add&#8217; to this easily.</p>
+
+
+	<p>http://svn.eastmedia.com/svn/code/plugins/model_extensions/lib/associations.rb</p>
+
+
+	<p>We&#8217;ve also become fans of Forwardable&#8217;s def_delegator and def_delegators (roughly the same as Rails&#8217; delegate method, if you want). Using David&#8217;s example:</p>
+
+
+	<p>class Stories &lt; AR:B
+  extend Forwardable
+  def_delegator :iterations, :stories
+end</p>
+
+
+	<p>Matt</p>
+                  </li>
+                  
+                </ol>
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

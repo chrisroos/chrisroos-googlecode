@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Ruby Rake - Invoke vs Execute - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Ruby Rake - Invoke vs Execute</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Thu, 06 Dec 2007 16:26:00">
+                  Thu, 06 Dec 2007 16:26:00
+                </span>
+              </p>
+          
+              <p>First up &#8211; I don&#8217;t know an awful lot about the magic that is <a href="http://rake.rubyforge.org/">Rake</a>.  As such, this is probably common knowledge to most people.</p>
+
+
+	<p>I discovered the difference when trying to execute the db:migrate task from within another rake task (I already knew it worked when declared as a dependency).</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># Rakefile</span>
+<span class="ident">task</span> <span class="symbol">:foo</span> <span class="keyword">do</span>
+  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">['</span><span class="string">db:migrate</span><span class="punct">'].</span><span class="ident">execute</span>
+<span class="keyword">end</span>
+
+<span class="comment">#$ rake foo</span>
+<span class="comment">#=&gt; rake aborted!</span>
+<span class="comment">#=&gt; uninitialized constant ActiveRecord</span></code></pre></div>
+
+	<p>I changed <a href="http://rake.rubyforge.org/classes/Rake/Task.html#M000100">Task#execute</a> to <a href="http://rake.rubyforge.org/classes/Rake/Task.html#M000098">Task#invoke</a> and, voila, it all worked fine.  The rdoc for those methods is actually pretty self explanatory, having seen the differences in action.  Oh well.</p>
+
+
+	<p>I put together a simple example to demonstrate the differences.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># The task (task_1) and its dependency (to_be_run_before_task_1)</span>
+
+<span class="ident">task</span> <span class="symbol">:to_be_run_before_task_1</span> <span class="keyword">do</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">to_be_run_before_task_1</span><span class="punct">&quot;</span>
+<span class="keyword">end</span>
+
+<span class="ident">task</span> <span class="symbol">:task_1</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">to_be_run_before_task_1</span><span class="punct">']</span> <span class="keyword">do</span>
+  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">task_1</span><span class="punct">&quot;</span>
+<span class="keyword">end</span>
+
+<span class="comment"># Three tasks that 'run' task_1</span>
+
+<span class="ident">task</span> <span class="symbol">:invoke_task_1</span> <span class="keyword">do</span>
+  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">['</span><span class="string">task_1</span><span class="punct">'].</span><span class="ident">invoke</span>
+<span class="keyword">end</span>
+
+<span class="ident">task</span> <span class="symbol">:execute_task_1</span> <span class="keyword">do</span>
+  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">['</span><span class="string">task_1</span><span class="punct">'].</span><span class="ident">execute</span>
+<span class="keyword">end</span>
+
+<span class="ident">task</span> <span class="symbol">:run_task_1_using_dependencies</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">task_1</span><span class="punct">']</span>
+
+<span class="comment"># 'Running' the tasks</span>
+
+<span class="comment">#$ rake task_1</span>
+<span class="comment">#=&gt; to_be_run_before_task_1</span>
+<span class="comment">#=&gt; task_1</span>
+
+<span class="comment">#$ rake invoke_task_1</span>
+<span class="comment">#=&gt; to_be_run_before_task_1</span>
+<span class="comment">#=&gt; task_1</span>
+
+<span class="comment">#$ rake execute_task_1</span>
+<span class="comment">#=&gt; task_1 #*** Note that the dependencies are not run</span>
+
+<span class="comment">#$ rake run_task_1_using_dependencies</span>
+<span class="comment">#=&gt; to_be_run_before_task_1</span>
+<span class="comment">#=&gt; task_1</span></code></pre></div>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>

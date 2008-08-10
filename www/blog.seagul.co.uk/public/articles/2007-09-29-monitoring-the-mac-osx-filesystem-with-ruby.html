@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <!--#include virtual="/includes/_head.html"-->
+    <title>Monitoring the Mac OSX Filesystem with ruby - deferred until inspiration hits</title>
+  </head>
+
+  <body>
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <!--#include virtual="/includes/_header.html"-->
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+
+              <h2>Monitoring the Mac OSX Filesystem with ruby</h2>
+            
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="Sat, 29 Sep 2007 09:11:00">
+                  Sat, 29 Sep 2007 09:11:00
+                </span>
+              </p>
+          
+              <p>On Thursday, <a href="http://blog.floehopper.org/">James</a> and I spent some time investigating remote pairing options.  One tiny part of that investigation was finding a way to keep two remote filesystems in sync.  I initially thought of using <a href="http://en.wikipedia.org/wiki/Rsync">rsync</a> at regular intervals with <a href="http://en.wikipedia.org/wiki/Cron">cron</a>.  Unless I&#8217;ve missed something, the smallest interval between cron jobs is one minute which is potentially too long.  We wanted a way to rsync (or sync in general) whenever the filesystem changed.  A little searching brought this <a href="http://www.kernelthread.com/software/fslogger/">fslogger</a> tool to my attention.  It simply writes some event details to <span class="caps">STDOUT</span> every time something changes on the filesystem.  I figured that we could use this, with a little bit of ruby glue, to trigger rsync.  Our glue script continuously reads from <span class="caps">STDIN</span>, tries to match some pre-defined patterns and triggers rsync if those patterns are matched.  It&#8217;s very brittle but it gets the job done.  Well, actually, it only partially gets the job done: I&#8217;m very unfamiliar with rsync but it seemed to take between 10 and 30 seconds to sync even if only one file had changed.  I suspect that I may have been doing something wrong though.</p>
+
+
+<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#!/usr/bin/env ruby</span>
+
+<span class="constant">REMOTE_SERVER</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_REMOTE_SERVER</span><span class="punct">'</span>
+<span class="constant">REMOTE_PATH</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_REMOTE_PATH</span><span class="punct">'</span>
+
+<span class="constant">DIRECTORY_PATTERN</span> <span class="punct">=</span> <span class="constant">ARGV</span><span class="punct">.</span><span class="ident">delete_at</span><span class="punct">(</span><span class="number">0</span><span class="punct">)</span>
+<span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">You must specify a directory_pattern</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="constant">DIRECTORY_PATTERN</span>
+
+<span class="keyword">def </span><span class="method">rsync!</span>
+  `<span class="ident">rsync</span> <span class="punct">-</span><span class="ident">rz</span> <span class="comment">#{File.join(DIRECTORY_PATTERN, '*')} #{REMOTE_SERVER}:#{REMOTE_PATH}`</span>
+<span class="keyword">end</span>
+
+<span class="keyword">while</span> <span class="ident">line</span><span class="punct">=</span><span class="ident">gets</span>
+  <span class="keyword">if</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">FSE_ARG_VNODE</span><span class="punct">/</span> <span class="comment"># CREATE FILE OR DIR</span>
+    <span class="ident">rsync!</span> <span class="keyword">if</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">path<span class="escape">\s</span>+=(.*)</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">].</span><span class="ident">strip</span> <span class="punct">=~</span> <span class="constant">Regexp</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">DIRECTORY_PATTERN</span><span class="punct">)</span>
+  <span class="keyword">elsif</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">FSE_ARG_STRING</span><span class="punct">/</span> <span class="comment"># REMOVE FILE OR DIR</span>
+    <span class="ident">rsync!</span> <span class="keyword">if</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">string<span class="escape">\s</span>+=(.*)</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">].</span><span class="ident">strip</span> <span class="punct">=~</span> <span class="constant">Regexp</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">DIRECTORY_PATTERN</span><span class="punct">)</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></code></pre></div>
+        
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+              
+              
+              
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <!--#include virtual="/includes/_navigation.html"-->
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <!--#include virtual="/includes/_twitter.html" -->
+    <!--#include virtual="/includes/_delicious.html" -->
+    <!--#include virtual="/includes/_google_analytics.html" -->
+  </body>
+
+</html>
