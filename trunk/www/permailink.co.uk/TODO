@@ -2,4 +2,4 @@
 
 * Check that the attachment is a text attachment before saving - see driving license email for reference
 
-
+* keep a log of emailed messages so as to avoid repeatedly sending emails about them (maybe have in/out queues for emails)
