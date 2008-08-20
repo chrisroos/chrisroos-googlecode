@@ -1,15 +1,13 @@
 $:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'pop_ssl' # I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version
-
-username = 'blurgh@permailink.co.uk'
-password = 'p3rm41l1nk'
+require File.join(File.dirname(__FILE__), '..', 'config', 'credentials')
 
 require 'yaml'
 
 Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_NONE)
 pop3 = Net::POP3.new('pop.gmail.com', 995)
 pop3.open_timeout = 120
-pop3.start(username, password) do |pop|
+pop3.start(USERNAME, PASSWORD) do |pop|
   if pop.mails.empty?
     puts 'No mail.'
   else
