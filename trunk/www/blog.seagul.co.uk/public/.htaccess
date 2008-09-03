@@ -147,10 +147,6 @@ RewriteRule ^.*$ /archives [R=301,L]
 RewriteCond %{REQUEST_URI} ^/articles/[0-9]{4}/[0-9]{2}/[0-9]{2}/?$
 RewriteRule ^.*$ /archives [R=301,L]
 
-# Redirect the homepage to the most recent post
-RewriteCond %{THE_REQUEST} \ /\ HTTP/
-RewriteRule .* /articles/2008-08-01-changing-the-repository-of-code-being-managed-by-piston-an-alternative-to-piston-switch [R=302,L] 
-
 # Redirect /articles/<year>-<month>-<day>-<article>.html to /articles/<year>-<month>-</day-<article>
 RewriteCond %{THE_REQUEST} \ /articles/[0-9]{4}-[0-9]{2}-[0-9]{2}-.+\.html\ HTTP/
 RewriteRule ^(.*).html$ $1 [R=301,L]
@@ -163,3 +159,7 @@ RewriteRule ^(.*)$ $1.html [L]
 # Redirect old style article URLs to their new style counterpart
 RewriteCond %{REQUEST_URI} ^/articles/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+$
 RewriteRule ^articles/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)$ /articles/$1-$2-$3-$4 [R=301,L]
+
+# Redirect the homepage to the most recent post
+RewriteCond %{THE_REQUEST} \ /\ HTTP/
+RewriteRule .* /articles/2008-08-01-changing-the-repository-of-code-being-managed-by-piston-an-alternative-to-piston-switch [R=302,L] 
