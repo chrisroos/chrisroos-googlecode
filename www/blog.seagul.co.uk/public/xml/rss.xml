@@ -10,6 +10,39 @@
     <description></description>
     
       <item>
+        <title>Listening to iTunes on my Intempo GX-01</title>
+        <description>&lt;p&gt;I&amp;#8217;ve had the &lt;a href=&quot;http://www.intempodigital.com/GX-01/AJ100008,en_GB,pd.html&quot;&gt;Intempo GX-01&lt;/a&gt; for a while but have only just felt the need to play my &lt;a href=&quot;http://www.apple.com/itunes/&quot;&gt;iTunes&lt;/a&gt; library through it.  It turns out that I needed something that could share my iTunes library using the &lt;a href=&quot;http://en.wikipedia.org/wiki/Universal_Plug_and_Play&quot;&gt;UPnP&lt;/a&gt; protocol.  I tried a few different applications before finally settling on the excellent &lt;a href=&quot;http://www.elgato.com/elgato/na/mainmenu/products/software/EyeConnect.en.html&quot;&gt;EyeConnect&lt;/a&gt; application.  Although it&amp;#8217;s commercial software it&amp;#8217;s offered with a free 30 day trial, and, it would appear that even after the 30 days the audio sharing functionality remains free forever.  Yay.  It installs as a preference pane which means you can install it, configure it, set it running and then forget about it: it does what it needs to and gets out of your way.  I&amp;#8217;ve only really dabbled with it at the moment but I&amp;#8217;m certainly impressed with what I&amp;#8217;ve seen so far.&lt;/p&gt;
+
+
+	&lt;h3&gt;The alternatives (in the interest of fairness)&lt;/h3&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.nullriver.com/products/medialink&quot;&gt;Nullriver MediaLink&lt;/a&gt; &amp;#8211; The first application I tried.  I was immediately hooked on the simplicity and would have been more than willing to pay for it.  Unfortunately, although my radio could see my iTunes library, it refused to play any music: The Intempo responded with &amp;#8220;UPnP Internal Error 113&amp;#8221;.  It took me a while to realise that this software was specifically designed for the &lt;span class=&quot;caps&quot;&gt;PS3&lt;/span&gt; and I can only assume that&amp;#8217;s the reason for the error I received.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.allegrosoft.com/ams.html&quot;&gt;Allegro Media Server&lt;/a&gt; &amp;#8211; This worked fine but it felt a bit kludgy.  I&amp;#8217;d guess this was because of the elegance of the Nullriver offering though.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.twonkyvision.de/Products/TwonkyMedia/index.html&quot;&gt;TwonkyMedia Media Server&lt;/a&gt; &amp;#8211; As with the Allegro offering this worked fine but felt a little kludgy and over-complicated.&lt;/li&gt;
+	&lt;/ul&gt;
+
+
+	&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://xbmc.org/&quot;&gt;&lt;span class=&quot;caps&quot;&gt;XBMC&lt;/span&gt;&lt;/a&gt; &amp;#8211; I&amp;#8217;m afraid I only got as far as downloading, opening the application and immediately closing it.  It was immediately clear that this was far too complicated for what I was after.&lt;/li&gt;
+	&lt;/ul&gt;</description>
+
+        <pubDate>Wed, 03 Sep 2008 22:50:57 +0100</pubDate>
+        <guid isPermaLink="false">urn:uuid:c4456177-2114-4d20-a63e-ac21507de898</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008-09-03-listening-to-itunes-on-my-intempo-gx-01</link>
+      </item>
+    
+      <item>
         <title>Changing the repository of code being managed by Piston (an alternative to piston switch)</title>
         <description>&lt;p&gt;I&amp;#8217;ve been working on a little script that gives us visibility of the state of the &lt;a href=&quot;http://piston.rubyforge.org/&quot;&gt;pistonised&lt;/a&gt; components of &lt;a href=&quot;http://www.reevoo.com&quot;&gt;our&lt;/a&gt; applications.  One of the things I noticed was that we&amp;#8217;d used multiple domains to pistonise content from our own &lt;a href=&quot;http://subversion.tigris.org/&quot;&gt;repository&lt;/a&gt;.  I wanted to standardise them all and thought I&amp;#8217;d be able to use the &lt;a href=&quot;http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/235517&quot;&gt;piston switch&lt;/a&gt; command to do just that.  Unfortunately, the piston switch command appears to work only when switching between URLs where the domain remains constant (switching between example.com/tag/1 and example.com/tag/2, for example).  I needed to change the domain part of the &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; (svn.example.com to www.example.com) and in some cases the port (example.com:8080 to example.com).  I figured I could just change the &amp;#8220;piston:root&amp;#8221; &lt;a href=&quot;http://svnbook.red-bean.com/en/1.1/ch07s02.html&quot;&gt;subversion property&lt;/a&gt; and used svn propedit to do just that.  Unfortunately, on committing the change I could no longer piston update, I was getting a &amp;#8216;command not found&amp;#8217; error from the shell.  This was a bit odd so I dug into the code.  It turns out that there was an extra newline in the piston:root property that was screwing up the svn checkout (the bit after the newline was being treated as a new command by the shell, hence the error).  The solution was to use svn propset rather than svn propedit to set the piston:root property: for some reason svn propedit introduces this unwanted newline, where svn propset doesn&amp;#8217;t.&lt;/p&gt;</description>
 
@@ -334,40 +367,6 @@ Southeastern Customer Services
         <guid isPermaLink="false">urn:uuid:1ec429c1-206b-4c2c-87a8-84f0c71db78d</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008-04-29-redesigning-my-blog</link>
-      </item>
-    
-      <item>
-        <title>Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)</title>
-        <description>&lt;p&gt;Exporting query results to a remote machine with MySql (an alternative to &lt;span class=&quot;caps&quot;&gt;SELECT INTO OUTFILE&lt;/span&gt;)&lt;/p&gt;
-
-
-	&lt;p&gt;&lt;a href=&quot;http://mysql.com&quot;&gt;MySql&amp;#8217;s&lt;/a&gt; &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.0/en/select.html&quot;&gt;&lt;span class=&quot;caps&quot;&gt;SELECT INTO OUTFILE&lt;/span&gt;&lt;/a&gt; syntax provides a nice way to export the results of a query into a tab delimited (by default) text file.  Unfortunately, the file has to be created on the MySql host (by a user with file permissions), rendering it unsuitable for dumping the data to a remote machine.  If you wish to dump the query results to a different machine then the &lt;a href=&quot;http://dev.mysql.com/doc/&quot;&gt;mysql docs&lt;/a&gt; suggest redirecting the output from the mysql command line client:&lt;/p&gt;
-
-
-	&lt;blockquote&gt;
-		&lt;p&gt;The &lt;span class=&quot;caps&quot;&gt;SELECT&lt;/span&gt; &amp;#8230; &lt;span class=&quot;caps&quot;&gt;INTO OUTFILE&lt;/span&gt; statement is intended primarily to let you very quickly dump a table to a text file on the server machine. If you want to create the resulting file on some client host other than the server host, you cannot use &lt;span class=&quot;caps&quot;&gt;SELECT&lt;/span&gt; &amp;#8230; &lt;span class=&quot;caps&quot;&gt;INTO OUTFILE&lt;/span&gt;. In that case, you should instead use a command such as mysql -e &amp;#8220;SELECT &amp;#8230;&amp;#8221; &amp;gt;  file_name to generate the file on the client host.&lt;/p&gt;
-	&lt;/blockquote&gt;
-
-
-	&lt;p&gt;This works great but the default output you&amp;#8217;ll get from redirecting &lt;span class=&quot;caps&quot;&gt;STDOUT&lt;/span&gt; won&amp;#8217;t be the same as using &lt;span class=&quot;caps&quot;&gt;SELECT INTO OUTFILE&lt;/span&gt;.  The two main (only?) differences are, in the redirected output, the addition of the headers and that &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt; values are output as &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt; instead of the special \N (backslash-N) sequence.  We can fix both of these things by specifying an optional switch (skip-column-names) to the mysql client and employing some &lt;a href=&quot;http://en.wikipedia.org/wiki/Sed&quot;&gt;sed&lt;/a&gt; magic.&lt;/p&gt;
-
-
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;mysql -h&amp;quot;my-host&amp;quot; -u&amp;quot;my-user&amp;quot; -p&amp;quot;my-password&amp;quot; -e&amp;quot;select * from my-database.my-table&amp;quot; --skip-column-names |\
-  sed -e 's/[[:&amp;lt;:]]NULL[[:&amp;gt;:]]/\\N/g' &amp;gt;\
-  my-export-directory/my-table.csv`&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-	&lt;p&gt;That sed magic is replacing instances of &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt;, surrounded by some whitespace, with the special \N escape sequence.&lt;/p&gt;
-
-
-	&lt;p&gt;Oh, and it&amp;#8217;s probably worth mentioning that this is only really important if you want to load this data back into mysql (using &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.0/en/load-data.html&quot;&gt;&lt;span class=&quot;caps&quot;&gt;LOAD DATA INFILE&lt;/span&gt;&lt;/a&gt; for example).  If you were to load the default output, from redirecting the mysql client, back into mysql then you&amp;#8217;d end up with an unwanted header row and &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt; strings (or 0 for numeric columns) where you expected actual &lt;span class=&quot;caps&quot;&gt;NULL&lt;/span&gt; values.&lt;/p&gt;
-
-
-	&lt;p&gt;It took us a while to figure this out so I thought it might be of some use to others.&lt;/p&gt;</description>
-
-        <pubDate>Thu, 10 Apr 2008 16:45:29 +0100</pubDate>
-        <guid isPermaLink="false">urn:uuid:3ba09b50-ed76-46e9-9179-8655c943c005</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008-04-10-exporting-query-results-to-a-remote-machine-with-mysql-an-alternative-to-select-into-outfile</link>
       </item>
     
   </channel>
