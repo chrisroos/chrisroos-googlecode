@@ -78,6 +78,14 @@ RewriteRule ^.*$ /tags [R=301,L]
 RewriteCond %{REQUEST_URI} ^/tags$
 RewriteRule ^(.*)$ $1.html [L]
 
+# Redirect /search.html to /search
+RewriteCond %{THE_REQUEST} \ /search\.html\ HTTP/
+RewriteRule ^.*$ /search [R=301,L]
+
+# If we receive a request for the search page without a .html extension then let's rewrite internally to render the file with the .html extension
+RewriteCond %{REQUEST_URI} ^/search$
+RewriteRule ^(.*)$ $1.html [L]
+
 # Redirect /archives.html to /tags
 RewriteCond %{THE_REQUEST} \ /archives\.html\ HTTP/
 RewriteRule ^.*$ /archives [R=301,L]
