@@ -111,3 +111,7 @@ body.contents ol {
 body.contents ol li {
   list-style-type: none;
 }
+
+#hd h1 {
+  float: left
+}
