@@ -12,26 +12,13 @@
 
 * consider xhtml instead of html 4?
 
-* del.icio.us javacsript badge
-
-* flickr javascript badge
-
-* twitter javascript badge
-
 * add a contact page
 
 * Add number of comments to bottom of posts when in 'list' view, i.e. when shown as part of a tag (or on homepage etc)
 
-* IDEA - add a little description to each description that i can use when displaying a long list of articles (e.g. /articles/2007)
+* IDEA - add a little description to each post that i can use when displaying a long list of articles (e.g. /articles/2007)
 
 * Add meta description
-
-* The use of fn1 breaks xhtml (multiple ids with same value) when multiple articles are shown on one page
-
-* What to do for the main articles resource?  i can't sensibly display all articles so i guess i'll need to add some paging.  unless the main articles resource only shows the last X posts.  You must then navigate/search for any older posts.
-** Or, maybe I can display all posts if only a snippet is shown..
-** Or, a contents page with a list of all articles
-*** I think that any request for a paged articles/ resource should go to a contents page.
 
 * Employ compression for html pages
 
@@ -41,12 +28,4 @@
 
 * Move site-generation to app
 
-* A tag 'index page' (that can't be called index because we actually have a tag called index...) that lists all tags.
-
-* Monthly archives in right hand nav
-
 * Store articles as Atom entries (to allow easy storage of metadata)
-
-* Add tags to sitemap??? (One idea is to tag each of my pages in del.icio.us and redirect requests for my tags over there)
-
-* Run each comment/trackback through akismet and see if any of the unpublished ones come up as potential ham
