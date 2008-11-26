@@ -18,6 +18,26 @@
         <div id="yui-main">
           <div class="yui-b">
             <div class="yui-g">
+              
+              <p class="navigation">
+                <% if next_post %>
+                  <span class="nextPost">&larr; 
+                    <a class="nextPost" href="<%= next_post.url %>" title="<%= h(next_post.title) %>">
+                      <% next_post_title = next_post.title.length > 55 ? next_post.title[0..55] + '...' : next_post.title %>
+                      <%= h(next_post_title) %>
+                    </a>
+                  </span>
+                <% end %>
+                <% if previous_post %>
+                  <span class="previousPost">
+                    <a class="previousPost" href="<%= previous_post.url %>" title="<%= h(previous_post.title) %>">
+                      <% previous_post_title = previous_post.title.length > 55 ? previous_post.title[0..55] + '...' : previous_post.title %>
+                      <%= h(previous_post_title) %>
+                    </a> &rarr;
+                  </span>
+                <% end %>
+              </p>
+              <p class="navigationClear"></p>
 
               <h1><%= h(page_title) %></h1>
             

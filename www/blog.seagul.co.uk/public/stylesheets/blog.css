@@ -115,3 +115,17 @@ body.contents ol li {
 .blogTitleContainer {
   float: left
 }
+
+.navigation {
+  font-size: 100%;
+}
+.navigation span.nextPost {
+  float: left;
+}
+.navigation span.previousPost {
+  float: right;
+}
+.navigationClear {
+  clear: both;
+  margin-bottom: 1em;
+}
