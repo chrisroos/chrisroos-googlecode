@@ -13,7 +13,7 @@ body {
   margin: 0 1em;
   line-height: 1.8em;
 }
-h2 {
+h1, h2 {
   color: #005A9C;
   font-size: 167%;
   font-weight: bold;
@@ -112,6 +112,6 @@ body.contents ol li {
   list-style-type: none;
 }
 
-#hd h1 {
+.blogTitleContainer {
   float: left
 }
