@@ -1,6 +1,7 @@
 require 'comment'
 require 'trackback'
 require 'syntax_highlighter'
+gem 'RedCloth', '3.0.4' # I'm not sure why, but 4.x versions of RedCloth result in my typo_code being html escaped
 require 'redcloth'
 
 class Article
