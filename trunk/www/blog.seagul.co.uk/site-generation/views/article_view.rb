@@ -26,5 +26,11 @@ class ArticleView
   def trackbacks
     @article.trackbacks
   end
+  def previous_post
+    @article.previous_article
+  end
+  def next_post
+    @article.next_article
+  end
   public :binding
 end

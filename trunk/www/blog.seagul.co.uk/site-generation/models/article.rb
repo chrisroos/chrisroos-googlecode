@@ -6,7 +6,7 @@ require 'redcloth'
 
 class Article
   
-  attr_accessor :title, :guid, :body, :published_at, :comments, :trackbacks
+  attr_accessor :title, :guid, :body, :published_at, :comments, :trackbacks, :next_article, :previous_article
   
   def initialize(attributes)
     attributes.each do |attribute, value|
@@ -18,7 +18,7 @@ class Article
     def find_all
       @articles ||= (
         articles_dir = File.join(File.dirname(__FILE__), *%w[.. .. content articles])
-        Dir[File.join(articles_dir, '*.yml')].collect do |article_filename|
+        articles = Dir[File.join(articles_dir, '*.yml')].collect do |article_filename|
           article_attributes = YAML.load_file(article_filename)
           article_attributes.delete(:tags)
           article_attributes[:comments] = (article_attributes.delete(:comments)||[]).collect { |comment_attributes|
@@ -32,6 +32,11 @@ class Article
         end.sort do |article_a, article_b| # Sort in descending order of published_at
           article_b.published_at <=> article_a.published_at
         end
+        articles.each_with_index do |article, index|
+          article.next_article = articles[index-1] unless article == articles.first
+          article.previous_article = articles[index+1] unless article == articles.last
+        end
+        articles
       )
     end
   end
