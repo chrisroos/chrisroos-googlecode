@@ -73,14 +73,14 @@ blockquote {
   background-repeat: no-repeat;
   background-position: top left;
 }
-div#hd {
+.header {
   background-color: #005A9C;
   padding: 1em 1em 0.5em 1em;
   text-align: right;
   border-bottom: 0.5em solid #000;
-  margin-bottom: 3em;
+  margin-bottom: 0.5em;
 }
-div#hd .blogTitle {
+.header .blogTitle {
   font-size: 200%;
   color: #fff;
   text-decoration: none;
@@ -118,14 +118,13 @@ body.contents ol li {
 
 .navigation {
   font-size: 100%;
+  overflow: auto;
+  width: 100%;
+  margin-bottom: 1em;
 }
 .navigation span.nextPost {
-  float: left;
-}
-.navigation span.previousPost {
   float: right;
 }
-.navigationClear {
-  clear: both;
-  margin-bottom: 1em;
+.navigation span.previousPost {
+  float: left;
 }
