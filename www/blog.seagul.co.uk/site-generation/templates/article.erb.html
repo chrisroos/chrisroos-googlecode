@@ -30,7 +30,7 @@
               <a class="nextPost" href="<%= next_post.url %>" title="<%= h(next_post.title) %>">
                 <% next_post_title = next_post.title.length > 55 ? next_post.title[0..55] + '...' : next_post.title %>
                 <%= h(next_post_title) %>
-              </a>(newer) &rarr;
+              </a> (newer) &rarr;
             </span>
           <% end %>
         </div>
