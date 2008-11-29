@@ -1,18 +1,8 @@
 * Remove unused css/images
 
-* Print css
-
-* Make the article titles h1
-
-* Move .css files from public/ to public/stylesheets
-
 * Host yui.css locally to avoid any latency issues
 
 * Use javascript syntax highlighter in place of current syntax gem thingy
-
-* consider xhtml instead of html 4?
-
-* add a contact page
 
 * Add number of comments to bottom of posts when in 'list' view, i.e. when shown as part of a tag (or on homepage etc)
 
