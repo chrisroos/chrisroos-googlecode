@@ -10,6 +10,59 @@
     <description></description>
     
       <item>
+        <title>OCR on the Mac with Tesseract</title>
+        <description>&lt;p&gt;I wanted to &lt;a href=&quot;http://en.wikipedia.org/wiki/Optical_character_recognition&quot;&gt;&lt;span class=&quot;caps&quot;&gt;OCR&lt;/span&gt;&lt;/a&gt; another letter this morning and, as &lt;a href=&quot;/articles/2008-07-21-open-source-optical-character-recognition-ocr-on-the-mac&quot;&gt;before&lt;/a&gt;, I used &lt;a href=&quot;http://code.google.com/p/tesseract-ocr/&quot;&gt;tesseract&lt;/a&gt; for the job.&lt;/p&gt;
+
+
+	&lt;p&gt;I ended up spending some time testing the quality of the output (the generated text) against different quality inputs (as defined by the &lt;a href=&quot;http://en.wikipedia.org/wiki/Dots_per_inch&quot;&gt;dpi&lt;/a&gt; setting in my scanner software).  The results were not surprising. The best output, with only a couple of errors in the whole letter, came from the 300dpi scan (the highest I tried). The scan at 150dpi contained a handful of mistakes and at 96dpi the output was, in places, complete gibberish.&lt;/p&gt;
+
+
+	&lt;p&gt;In case this is of use to anyone I have copies of the, smaller, second page of the letter I was scanning, along with the OCRd output.  The scanner is an &lt;a href=&quot;http://www.epson.co.uk/products/all_in_one_products/Stylus_DX4800.htm&quot;&gt;Epson Stylus &lt;span class=&quot;caps&quot;&gt;DX4800&lt;/span&gt;&lt;/a&gt; and I used &lt;a href=&quot;http://seashore.sourceforge.net/&quot;&gt;seashore&lt;/a&gt; to convert the images, from colour jpegs, to greyscale tiffs.&lt;/p&gt;
+
+
+	&lt;h2&gt;At 300dpi&lt;/h2&gt;
+
+
+	&lt;p&gt;&lt;a href=&quot;http://flickr.com/photos/chrisjroos/3076819819/&quot;&gt;&lt;img src=&quot;http://farm4.static.flickr.com/3202/3076819819_d4f1a3f3cd_t.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class=&quot;letter&quot;&gt;
+Nothing is ruled out in terms of further development, and I have met with a representative of mySociety to discuss ways of continuing to improve what we do.
+I am fully supportive of the aims of the Free Our Bills campaign, and I am keen to work with the relevant House authorities to see what can be done to open up the legislative process to a broader audience.
+I hope that this is helpful to your constituent.
+&lt;/div&gt;
+
+	&lt;h2&gt;At 150dpi&lt;/h2&gt;
+
+
+	&lt;p&gt;&lt;a href=&quot;http://flickr.com/photos/chrisjroos/3076622097/&quot;&gt;&lt;img src=&quot;http://farm4.static.flickr.com/3202/3076819819_d4f1a3f3cd_t.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class=&quot;letter&quot;&gt;
+Nothing is ruled out in terms of further development, and I have met with a representative of mySociety to discuss ways of continuing to improve what we do.
+I am fully supportive ofthe aims ofthe Free Our Bills campaign, and I am keen to work with the relevant House authorities to see what can be done to open up the legislative process to a broader audience.
+I hope that this is helpful to your constituent.
+&lt;/div&gt;
+
+	&lt;h2&gt;At 96dpi&lt;/h2&gt;
+
+
+	&lt;p&gt;&lt;a href=&quot;http://flickr.com/photos/chrisjroos/3076624115/&quot;&gt;&lt;img src=&quot;http://farm4.static.flickr.com/3202/3076819819_d4f1a3f3cd_t.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;div class=&quot;letter&quot;&gt;
+Nothing is ruled out in tcmts cI` further develcpntcnt, and I have met with u rcpresentmivc ul&amp;#8217; mysociety tn discuss ways nfccnvsinuing to improve what we dc.
+I am titlly supportive oI&amp;#8217;thc uirns ofthe I-`rce Our Bills campaign, und I urn keen vn work with the relevant House authorities to sec what can he done to open up thc legislative process In at broader audience.
+I hope that this is hclphtl to your constituent.
+&lt;/div&gt;</description>
+
+        <pubDate>Tue, 02 Dec 2008 16:27:18 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:f997836c-86e2-409a-80c7-9601dd3dbfe8</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/articles/2008-12-02-ocr-on-the-mac-with-tesseract</link>
+      </item>
+    
+      <item>
         <title>Listening to iTunes on my Intempo GX-01</title>
         <description>&lt;p&gt;I&amp;#8217;ve had the &lt;a href=&quot;http://www.intempodigital.com/GX-01/AJ100008,en_GB,pd.html&quot;&gt;Intempo GX-01&lt;/a&gt; for a while but have only just felt the need to play my &lt;a href=&quot;http://www.apple.com/itunes/&quot;&gt;iTunes&lt;/a&gt; library through it.  It turns out that I needed something that could share my iTunes library using the &lt;a href=&quot;http://en.wikipedia.org/wiki/Universal_Plug_and_Play&quot;&gt;UPnP&lt;/a&gt; protocol.  I tried a few different applications before finally settling on the excellent &lt;a href=&quot;http://www.elgato.com/elgato/na/mainmenu/products/software/EyeConnect.en.html&quot;&gt;EyeConnect&lt;/a&gt; application.  Although it&amp;#8217;s commercial software it&amp;#8217;s offered with a free 30 day trial, and, it would appear that even after the 30 days the audio sharing functionality remains free forever.  Yay.  It installs as a preference pane which means you can install it, configure it, set it running and then forget about it: it does what it needs to and gets out of your way.  I&amp;#8217;ve only really dabbled with it at the moment but I&amp;#8217;m certainly impressed with what I&amp;#8217;ve seen so far.&lt;/p&gt;
 
@@ -351,22 +404,6 @@ Southeastern Customer Services
         <guid isPermaLink="false">urn:uuid:eae04aef-89a8-4bc6-8e00-08116e516851</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/articles/2008-05-19-a-trip-to-the-tip</link>
-      </item>
-    
-      <item>
-        <title>Redesigning my blog</title>
-        <description>&lt;p&gt;I finally got round to updating my blog template this weekend.  I based the new design on the &lt;a href=&quot;http://developer.yahoo.com/yui/grids/&quot;&gt;yui grids css&lt;/a&gt; in an attempt to provide the same look to users of different browsers.  In addition I&amp;#8217;ve &amp;#8216;borrowed&amp;#8217; some ideas from both the &lt;a href=&quot;http://www.w3.org/TR/xhtml1/&quot;&gt;w3c specification pages&lt;/a&gt; (the blue colour) and the &lt;a href=&quot;http://www.pearsonified.com/theme/copyblogger/&quot;&gt;copyblogger wordpress theme&lt;/a&gt; (mainly the header, seen on &lt;a href=&quot;http://www.techbelly.com&quot;&gt;Ben&amp;#8217;s&lt;/a&gt; blog).&lt;/p&gt;
-
-
-	&lt;p&gt;I&amp;#8217;ve also created a really simple print stylesheet (it just removes the right nav) that should make it possible to print the content out if you so wish.&lt;/p&gt;
-
-
-	&lt;p&gt;There&amp;#8217;s still work to do: the code snippets seem to break &lt;span class=&quot;caps&quot;&gt;IE6&lt;/span&gt; (not sure about &lt;span class=&quot;caps&quot;&gt;IE7&lt;/span&gt;) but in general I&amp;#8217;m pretty happy with the way it&amp;#8217;s looking.&lt;/p&gt;</description>
-
-        <pubDate>Tue, 29 Apr 2008 06:17:07 +0100</pubDate>
-        <guid isPermaLink="false">urn:uuid:1ec429c1-206b-4c2c-87a8-84f0c71db78d</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/articles/2008-04-29-redesigning-my-blog</link>
       </item>
     
   </channel>

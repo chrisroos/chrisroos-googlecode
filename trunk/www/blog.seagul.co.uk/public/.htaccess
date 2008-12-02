@@ -170,4 +170,4 @@ RewriteRule ^articles/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)$ /articles/$1-$2-$3-
 
 # Redirect the homepage to the most recent post
 RewriteCond %{THE_REQUEST} \ /\ HTTP/
-RewriteRule .* /articles/2008-09-03-listening-to-itunes-on-my-intempo-gx-01 [R=302,L] 
+RewriteRule .* /articles/2008-12-02-ocr-on-the-mac-with-tesseract [R=302,L] 

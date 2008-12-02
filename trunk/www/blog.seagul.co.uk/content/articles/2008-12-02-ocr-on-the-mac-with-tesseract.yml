@@ -1,0 +1,40 @@
+--- 
+:body: |-
+  I wanted to "OCR":http://en.wikipedia.org/wiki/Optical_character_recognition another letter this morning and, as "before":/articles/2008-07-21-open-source-optical-character-recognition-ocr-on-the-mac, I used "tesseract":http://code.google.com/p/tesseract-ocr/ for the job.
+  
+  I ended up spending some time testing the quality of the output (the generated text) against different quality inputs (as defined by the "dpi":http://en.wikipedia.org/wiki/Dots_per_inch setting in my scanner software).  The results were not surprising. The best output, with only a couple of errors in the whole letter, came from the 300dpi scan (the highest I tried). The scan at 150dpi contained a handful of mistakes and at 96dpi the output was, in places, complete gibberish.
+  
+  In case this is of use to anyone I have copies of the, smaller, second page of the letter I was scanning, along with the OCRd output.  The scanner is an "Epson Stylus DX4800":http://www.epson.co.uk/products/all_in_one_products/Stylus_DX4800.htm and I used "seashore":http://seashore.sourceforge.net/ to convert the images, from colour jpegs, to greyscale tiffs.
+  
+  h2. At 300dpi
+  
+  "!http://farm4.static.flickr.com/3202/3076819819_d4f1a3f3cd_t.jpg!":http://flickr.com/photos/chrisjroos/3076819819/
+  
+  <div class="letter">
+  Nothing is ruled out in terms of further development, and I have met with a representative of mySociety to discuss ways of continuing to improve what we do.
+  I am fully supportive of the aims of the Free Our Bills campaign, and I am keen to work with the relevant House authorities to see what can be done to open up the legislative process to a broader audience.
+  I hope that this is helpful to your constituent.
+  </div>
+  
+  h2. At 150dpi
+  
+  "!http://farm4.static.flickr.com/3202/3076819819_d4f1a3f3cd_t.jpg!":http://flickr.com/photos/chrisjroos/3076622097/
+  
+  <div class="letter">
+  Nothing is ruled out in terms of further development, and I have met with a representative of mySociety to discuss ways of continuing to improve what we do.
+  I am fully supportive ofthe aims ofthe Free Our Bills campaign, and I am keen to work with the relevant House authorities to see what can be done to open up the legislative process to a broader audience.
+  I hope that this is helpful to your constituent.
+  </div>
+  
+  h2. At 96dpi
+  
+  "!http://farm4.static.flickr.com/3202/3076819819_d4f1a3f3cd_t.jpg!":http://flickr.com/photos/chrisjroos/3076624115/
+  
+  <div class="letter">
+  Nothing is ruled out in tcmts cI` further develcpntcnt, and I have met with u rcpresentmivc ul' mysociety tn discuss ways nfccnvsinuing to improve what we dc.
+  I am titlly supportive oI'thc uirns ofthe I-`rce Our Bills campaign, und I urn keen vn work with the relevant House authorities to sec what can he done to open up thc legislative process In at broader audience.
+  I hope that this is hclphtl to your constituent.
+  </div>
+:published_at: 2008-12-02 16:27:18.828202 +00:00
+:guid: f997836c-86e2-409a-80c7-9601dd3dbfe8
+:title: OCR on the Mac with Tesseract
