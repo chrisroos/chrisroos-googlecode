@@ -77,10 +77,11 @@ blockquote {
 }
 .header {
   background-color: #005A9C;
-  padding: 1em 1em 0.5em 1em;
+  padding: 1em 1em 0 1em;
   text-align: right;
   border-bottom: 0.5em solid #000;
   margin-bottom: 0.5em;
+  overflow: auto;
 }
 .header .blogTitle {
   font-size: 200%;
