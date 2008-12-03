@@ -117,29 +117,68 @@ end
 
 client = Client.new
 
+module Hsbc
+  class Homepage
+    def initialize(client, url)
+      @client, @url = client, url
+    end
+    def url_to_personal_banking_login_page
+      uri = URI.parse(@url)
+      path = link_to_personal_banking_login_page.attributes['href']
+      uri.merge(path)
+    end
+    private
+      def link_to_personal_banking_login_page
+        doc.at('a[@href*=HSBCINTEGRATION]')
+      end
+      def doc
+        @doc ||= Hpricot(html)
+      end
+      def html
+        @client.get(@url)
+      end
+  end
+  class InternetBankingIdPage
+    def initialize(client, url, internet_banking_id)
+      @client, @url, @internet_banking_id = client, url, internet_banking_id
+    end
+    def html_form_action
+      html_form.attributes['action']
+    end
+    def request_body
+      request_body = html_form_hidden_fields.inject({}) { |hash, element| hash[element.attributes['name']] = element.attributes['value']; hash }
+      request_body.merge!(html_form_internet_banking_field_name => @internet_banking_id)
+    end
+    # private
+      def html_form_internet_banking_field
+        html_form.at('input#intbankingID')
+      end
+      def html_form_internet_banking_field_name
+        html_form_internet_banking_field.attributes['name']
+      end
+      def html_form_hidden_fields
+        html_form.search('input[@type=hidden]')
+      end
+      def html_form
+        doc.at('form#IBloginForm')
+      end
+      def doc
+        @doc ||= Hpricot(html)
+      end
+      def html
+        @client.get(@url)
+      end
+  end
+end
+
 ### GET the homepage so that we can get the url (including jsessionid) of the page that asks for our internet banking id
-homepage_url = 'http://www.hsbc.co.uk/1/2/'
-html = client.get(homepage_url)
-File.open('1-get-homepage.html', 'w') { |f| f.puts(html) }
-doc = Hpricot(html)
-link_to_personal_banking_login_page = doc.at('a[@href*=HSBCINTEGRATION]')
-link_to_personal_banking_login_page_href = link_to_personal_banking_login_page.attributes['href']
+homepage = Hsbc::Homepage.new(client, 'http://www.hsbc.co.uk/1/2/')
 
 ### GET the page that asks for our internet banking id
-internet_banking_id_url = 'http://www.hsbc.co.uk' + link_to_personal_banking_login_page_href
-html = client.get(internet_banking_id_url)
-File.open('2-get-logon.html', 'w') { |f| f.puts(html) }
-doc = Hpricot(html)
-html_form = doc.at('form#IBloginForm')
-html_form_action = html_form.attributes['action']
-html_form_internet_banking_field = html_form.at('input#intbankingID')
-html_form_internet_banking_field_name = html_form_internet_banking_field.attributes['name']
-html_form_hidden_fields = html_form.search('input[@type=hidden]')
-request_body = html_form_hidden_fields.inject({}) { |hash, element| hash[element.attributes['name']] = element.attributes['value']; hash }
-request_body.merge!(html_form_internet_banking_field_name => internet_banking_id)
+internet_banking_id_page = Hsbc::InternetBankingIdPage.new(client, homepage.url_to_personal_banking_login_page.to_s, internet_banking_id)
 
 ### POST our internet banking id
-html = client.post(html_form_action, request_body)
+html = client.post(internet_banking_id_page.html_form_action, internet_banking_id_page.request_body)
 File.open('3-post-internet-banking-id.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 html_form = doc.at('form[@action*=idv_cmd=idv.Authentication]') # We can't use the name of the form as I've seen it change
