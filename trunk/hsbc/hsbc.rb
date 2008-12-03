@@ -118,6 +118,7 @@ end
 client = Client.new
 
 module Hsbc
+  
   class Page
     def initialize(client, url)
       @client, @url = client, url
@@ -130,6 +131,7 @@ module Hsbc
         @client.get(@url)
       end
   end
+  
   class Homepage < Page
     def url_to_personal_banking_login_page
       uri = URI.parse(@url)
@@ -141,6 +143,7 @@ module Hsbc
         doc.at('a[@href*=HSBCINTEGRATION]')
       end
   end
+  
   class InternetBankingIdPage < Page
     def initialize(client, url, internet_banking_id)
       super(client, url)
@@ -154,11 +157,8 @@ module Hsbc
       request_body.merge!(html_form_internet_banking_field_name => @internet_banking_id)
     end
     private
-      def html_form_internet_banking_field
-        html_form.at('input#intbankingID')
-      end
       def html_form_internet_banking_field_name
-        html_form_internet_banking_field.attributes['name']
+        html_form.at('input#intbankingID').attributes['name']
       end
       def html_form_hidden_fields
         html_form.search('input[@type=hidden]')
@@ -167,6 +167,7 @@ module Hsbc
         doc.at('form#IBloginForm')
       end
   end
+  
 end
 
 ### GET the homepage so that we can get the url (including jsessionid) of the page that asks for our internet banking id
