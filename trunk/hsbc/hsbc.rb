@@ -47,9 +47,7 @@ class Client
   
   def get(url)
     url = URI.parse(url)
-    request = Net::HTTP::Get.new(url.request_uri)
-    request['User-Agent'] = UserAgent
-    request['Cookie'] = cookie_jar.to_cookie
+    request = initialize_get_request(url)
     http = initialize_http(url)
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
@@ -58,10 +56,7 @@ class Client
   
   def post(url, data)
     url = URI.parse(url)
-    request = Net::HTTP::Post.new(url.request_uri)
-    request.set_form_data(data)
-    request['User-Agent'] = UserAgent
-    request['Cookie'] = cookie_jar.to_cookie
+    request = initialize_post_request(url, data)
     http = initialize_http(url)
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
@@ -78,6 +73,23 @@ class Client
     def initialize_debug_buffer
       @debug_buffer = '';
       @debug_stream = StringIO.new(@debug_buffer)
+    end
+    
+    def initialize_get_request(url)
+      request = Net::HTTP::Get.new(url.request_uri)
+      return request_with_defaults_set(request)
+    end
+    
+    def initialize_post_request(url, data)
+      request = Net::HTTP::Post.new(url.request_uri)
+      request.set_form_data(data)
+      return request_with_defaults_set(request)
+    end
+    
+    def request_with_defaults_set(request)
+      request['User-Agent'] = UserAgent
+      request['Cookie'] = cookie_jar.to_cookie
+      request
     end
     
     def initialize_http(url)
