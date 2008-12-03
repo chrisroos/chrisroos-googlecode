@@ -54,7 +54,7 @@ class Client
     http.use_ssl = true if url.scheme == 'https'
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
-    response # if this client followed redirects then we could get away with just returning the html
+    response
   end
   
   def post(url, data)
@@ -69,7 +69,8 @@ class Client
     http.use_ssl = true if url.scheme == 'https'
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
-    response # if this client followed redirects then we could get away with just returning the html
+    return get(response['Location']) if response.code == '302'
+    response
   end
   
   private
@@ -126,17 +127,11 @@ digits_requested_text =~ /the (.*?) and (.*?) and (.*?) digits/i
 digits_requested = [$1, $2, $3].collect { |d| d.downcase.gsub(/ /, '_') } # 'Next to Last' needs to become 'next_to_last'
 digits_from_password = digits_requested.inject('') { |buffer, digit| buffer + password.send(digit) }
 
-### POST our date of birth and password
+### POST our date of birth and password, and auto follow the redirect to the page that contains a javascript redirect
 response = client.post(html_form_action, 'userid' => internet_banking_id, 'memorableAnswer' => date_of_birth, 'password' => digits_from_password) # Should be able to post hidden fields from previous form, rather than explicitly repost internet_banking_id
 html = response.body
 File.open('4-post-dob-and-password.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('4-post-dob-and-password.html', 'w') { |f| f.puts(html) }
-
-### GET the javascript redirect page that contains the link we must follow to get to the statement
-javascript_redirect_url = response['Location']
-html = client.get(javascript_redirect_url).body
-File.open('5-get-javascript-redirect.txt', 'w') { |f| f.puts(client.debug_buffer) }
-File.open('5-get-javascript-redirect.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 redirect_link = doc.at('a[@title=Click here to continue]')
 redirect_link_url = redirect_link.attributes['href']
