@@ -37,8 +37,6 @@ class Client
   
   UserAgent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.0.4) Gecko/2008102920 Firefox/3.0.4'
   
-  attr_reader :debug_stream, :debug_buffer, :cookie_jar
-  
   def initialize(debug = false)
     @debug = debug
     @cookie_jar = CookieJar.new
@@ -65,7 +63,13 @@ class Client
     response
   end
   
+  def write_debug_data(io)
+    io.puts(debug_buffer)
+  end
+  
   private
+  
+    attr_reader :debug_stream, :debug_buffer, :cookie_jar
   
     def initialize_debug_buffer
       @debug_buffer = '';
@@ -200,4 +204,4 @@ ofx = client.post(statement_download_confirmation_url, request_body).body
 File.open('statement.ofx', 'w') { |f| f.puts(ofx) }
 
 # Output the debug log
-File.open('client-debug.txt', 'w') { |f| f.puts(client.debug_buffer) }
+File.open('client-debug.txt', 'w') { |f| client.write_debug_data(f) }
