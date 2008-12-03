@@ -41,10 +41,10 @@ class Client
   
   def initialize
     @cookie_jar = CookieJar.new
+    initialize_debug_buffer
   end
   
   def get(url)
-    initialize_debug_buffer
     url = URI.parse(url)
     request = Net::HTTP::Get.new(url.request_uri)
     request['User-Agent'] = UserAgent
@@ -58,7 +58,6 @@ class Client
   end
   
   def post(url, data)
-    initialize_debug_buffer
     url = URI.parse(url)
     request = Net::HTTP::Post.new(url.request_uri)
     request.set_form_data(data)
@@ -92,7 +91,6 @@ client = Client.new
 ### GET the homepage so that we can get the url (including jsessionid) of the page that asks for our internet banking id
 homepage_url = 'http://www.hsbc.co.uk/1/2/'
 html = client.get(homepage_url).body
-File.open('1-get-homepage.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('1-get-homepage.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 link_to_personal_banking_login_page = doc.at('a[@href*=HSBCINTEGRATION]')
@@ -101,7 +99,6 @@ link_to_personal_banking_login_page_href = link_to_personal_banking_login_page.a
 ### GET the page that asks for our internet banking id
 internet_banking_id_url = 'http://www.hsbc.co.uk' + link_to_personal_banking_login_page_href
 html = client.get(internet_banking_id_url).body
-File.open('2-get-logon.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('2-get-logon.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 html_form = doc.at('form#IBloginForm')
@@ -114,7 +111,6 @@ request_body.merge!(html_form_internet_banking_field_name => internet_banking_id
 
 ### POST our internet banking id
 html = client.post(html_form_action, request_body).body
-File.open('3-post-internet-banking-id.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('3-post-internet-banking-id.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 html_form = doc.at('form[@action*=idv_cmd=idv.Authentication]') # We can't use the name of the form as I've seen it change
@@ -130,7 +126,6 @@ digits_from_password = digits_requested.inject('') { |buffer, digit| buffer + pa
 ### POST our date of birth and password, and auto follow the redirect to the page that contains a javascript redirect
 response = client.post(html_form_action, 'userid' => internet_banking_id, 'memorableAnswer' => date_of_birth, 'password' => digits_from_password) # Should be able to post hidden fields from previous form, rather than explicitly repost internet_banking_id
 html = response.body
-File.open('4-post-dob-and-password.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('4-post-dob-and-password.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 redirect_link = doc.at('a[@title=Click here to continue]')
@@ -139,7 +134,6 @@ redirect_link_url = redirect_link.attributes['href']
 ### GET the accounts overview page
 accounts_overview_url = 'https://www.hsbc.co.uk' + redirect_link_url # TODO: Determine the host automatically (I spent a while trying to work out what was going wrong because I'd specified http, not https)
 html = client.get(accounts_overview_url).body
-File.open('6-get-accounts-overview.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('6-get-accounts-overview.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 submit_button_to_account_page = doc.at("form//input[@name*=#{sort_code} #{account_number}]")
@@ -151,7 +145,6 @@ request_body = form_to_account_page_hidden_fields.inject({}) { |hash, element| h
 # POST the Recent Transactions page
 statement_url = 'https://www.hsbc.co.uk' + form_to_account_page_action # TODO: Determine the host automatically (I spent a while trying to work out what was going wrong because I'd specified http, not https)
 html = client.post(statement_url, request_body).body
-File.open('7-recent-transactions.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('7-recent-transactions.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 link_to_download_transactions = doc.at('a[@title*=Download the transactions]')
@@ -160,7 +153,6 @@ link_to_download_transactions_href = link_to_download_transactions.attributes['h
 # GET the Download transactions page
 link_to_download_transactions_url = 'https://www.hsbc.co.uk' + link_to_download_transactions_href # TODO: Determine the host automatically (I spent a while trying to work out what was going wrong because I'd specified http, not https)
 html = client.get(link_to_download_transactions_url).body
-File.open('8-statement-download.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('8-statement-download.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 list_of_download_types = doc.at('select#downloadType')
@@ -174,7 +166,6 @@ request_body = {list_of_download_types_name => list_of_download_types_ofx_option
 # POST the statement download options (OFX format)
 statement_download_confirmation_url = 'https://www.hsbc.co.uk' + download_transactions_form_action # TODO: Determine the host automatically (I spent a while trying to work out what was going wrong because I'd specified http, not https)
 html = client.post(statement_download_confirmation_url, request_body).body
-File.open('9-confirm-statement-download.txt', 'w') { |f| f.puts(client.debug_buffer) }
 File.open('9-confirm-statement-download.html', 'w') { |f| f.puts(html) }
 doc = Hpricot(html)
 download_statement_confirmation_form = doc.at('form[@name*=downloadForm]')
@@ -185,5 +176,7 @@ request_body = html_form_hidden_fields.inject({}) { |hash, element| hash[element
 # POST the statement download confirmation
 statement_download_confirmation_url = 'https://www.hsbc.co.uk' + download_statement_confirmation_form_action # TODO: Determine the host automatically (I spent a while trying to work out what was going wrong because I'd specified http, not https)
 ofx = client.post(statement_download_confirmation_url, request_body).body
-File.open('10-statement.txt', 'w') { |f| f.puts(client.debug_buffer) }
-File.open('10-statement.ofx', 'w') { |f| f.puts(ofx) }
+File.open('statement.ofx', 'w') { |f| f.puts(ofx) }
+
+# Output the debug log
+File.open('client-debug.txt', 'w') { |f| f.puts(client.debug_buffer) }
