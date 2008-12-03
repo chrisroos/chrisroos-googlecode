@@ -46,18 +46,18 @@ class Client
   end
   
   def get(url)
-    url = URI.parse(url)
-    request = initialize_get_request(url)
-    http = initialize_http(url)
+    uri = URI.parse(url)
+    request = initialize_get_request(uri)
+    http = initialize_http(uri)
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
     response
   end
   
   def post(url, data)
-    url = URI.parse(url)
-    request = initialize_post_request(url, data)
-    http = initialize_http(url)
+    uri = URI.parse(url)
+    request = initialize_post_request(uri, data)
+    http = initialize_http(uri)
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
     return get(response['Location']) if response.code == '302'
