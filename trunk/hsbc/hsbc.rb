@@ -153,7 +153,7 @@ module Hsbc
       request_body = html_form_hidden_fields.inject({}) { |hash, element| hash[element.attributes['name']] = element.attributes['value']; hash }
       request_body.merge!(html_form_internet_banking_field_name => @internet_banking_id)
     end
-    # private
+    private
       def html_form_internet_banking_field
         html_form.at('input#intbankingID')
       end
