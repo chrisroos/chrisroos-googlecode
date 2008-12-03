@@ -46,21 +46,13 @@ class Client
   def get(url)
     uri = URI.parse(url)
     request = initialize_get_request(uri)
-    http = initialize_http(uri)
-    response = http.start { |http| http.request(request) }
-    response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
-    return get(response['Location']) if response.code == '302'
-    response
+    send_the_request(uri, request)
   end
   
   def post(url, data)
     uri = URI.parse(url)
     request = initialize_post_request(uri, data)
-    http = initialize_http(uri)
-    response = http.start { |http| http.request(request) }
-    response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
-    return get(response['Location']) if response.code == '302'
-    response
+    send_the_request(uri, request)
   end
   
   def write_debug_data(io)
@@ -74,6 +66,18 @@ class Client
     def initialize_debug_buffer
       @debug_buffer = '';
       @debug_stream = StringIO.new(@debug_buffer)
+    end
+    
+    def send_the_request(uri, request)
+      http = initialize_http(uri)
+      response = http.start { |http| http.request(request) }
+      store_the_cookies(response)
+      return get(response['Location']) if response.code == '302'
+      response
+    end
+    
+    def store_the_cookies(response)
+      response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
     end
     
     def initialize_get_request(url)
