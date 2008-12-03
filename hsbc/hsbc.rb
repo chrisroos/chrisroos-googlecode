@@ -33,19 +33,16 @@ require 'hpricot'
 require 'net/https'
 require 'uri'
 
-class CookieJar < Hash
-  def to_cookie
-    collect { |key, value| "#{key}=#{value}" }.join(';')
-  end
-end
-
-# COOKIE_JAR = CookieJar.new
 class Client
+  
   UserAgent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.0.4) Gecko/2008102920 Firefox/3.0.4'
+  
   attr_reader :debug_stream, :debug_buffer, :cookie_jar
+  
   def initialize
     @cookie_jar = CookieJar.new
   end
+  
   def get(url)
     initialize_debug_buffer
     url = URI.parse(url)
@@ -59,6 +56,7 @@ class Client
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
     response # if this client followed redirects then we could get away with just returning the html
   end
+  
   def post(url, data)
     initialize_debug_buffer
     url = URI.parse(url)
@@ -73,10 +71,18 @@ class Client
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
     response # if this client followed redirects then we could get away with just returning the html
   end
+  
   private
+  
     def initialize_debug_buffer
       @debug_buffer = '';
       @debug_stream = StringIO.new(@debug_buffer)
+    end
+  
+    class CookieJar < Hash
+      def to_cookie
+        collect { |key, value| "#{key}=#{value}" }.join(';')
+      end
     end
 end
 
