@@ -39,7 +39,8 @@ class Client
   
   attr_reader :debug_stream, :debug_buffer, :cookie_jar
   
-  def initialize
+  def initialize(debug = false)
+    @debug = debug
     @cookie_jar = CookieJar.new
     initialize_debug_buffer
   end
@@ -49,9 +50,7 @@ class Client
     request = Net::HTTP::Get.new(url.request_uri)
     request['User-Agent'] = UserAgent
     request['Cookie'] = cookie_jar.to_cookie
-    http = Net::HTTP.new(url.host, url.port)
-    http.set_debug_output(debug_stream)
-    http.use_ssl = true if url.scheme == 'https'
+    http = initialize_http(url)
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
     response
@@ -63,13 +62,15 @@ class Client
     request.set_form_data(data)
     request['User-Agent'] = UserAgent
     request['Cookie'] = cookie_jar.to_cookie
-    http = Net::HTTP.new(url.host, url.port)
-    http.set_debug_output(debug_stream)
-    http.use_ssl = true if url.scheme == 'https'
+    http = initialize_http(url)
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
     return get(response['Location']) if response.code == '302'
     response
+  end
+  
+  def debug?
+    @debug
   end
   
   private
@@ -77,6 +78,13 @@ class Client
     def initialize_debug_buffer
       @debug_buffer = '';
       @debug_stream = StringIO.new(@debug_buffer)
+    end
+    
+    def initialize_http(url)
+      http = Net::HTTP.new(url.host, url.port)
+      http.set_debug_output(debug_stream) if debug?
+      http.use_ssl = true if url.scheme == 'https'
+      http
     end
   
     class CookieJar < Hash
