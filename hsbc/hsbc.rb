@@ -51,6 +51,7 @@ class Client
     http = initialize_http(uri)
     response = http.start { |http| http.request(request) }
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
+    return get(response['Location']) if response.code == '302'
     response
   end
   
@@ -62,10 +63,6 @@ class Client
     response.to_hash['set-cookie'].each { |cookie_string| cookie_string =~ /(.*?)=(.*?);/; cookie_jar[$1] = $2 }
     return get(response['Location']) if response.code == '302'
     response
-  end
-  
-  def debug?
-    @debug
   end
   
   private
@@ -97,6 +94,10 @@ class Client
       http.set_debug_output(debug_stream) if debug?
       http.use_ssl = true if url.scheme == 'https'
       http
+    end
+    
+    def debug?
+      @debug
     end
   
     class CookieJar < Hash
