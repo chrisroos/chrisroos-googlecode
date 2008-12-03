@@ -118,10 +118,19 @@ end
 client = Client.new
 
 module Hsbc
-  class Homepage
+  class Page
     def initialize(client, url)
       @client, @url = client, url
     end
+    private
+      def doc
+        @doc ||= Hpricot(html)
+      end
+      def html
+        @client.get(@url)
+      end
+  end
+  class Homepage < Page
     def url_to_personal_banking_login_page
       uri = URI.parse(@url)
       path = link_to_personal_banking_login_page.attributes['href']
@@ -131,16 +140,11 @@ module Hsbc
       def link_to_personal_banking_login_page
         doc.at('a[@href*=HSBCINTEGRATION]')
       end
-      def doc
-        @doc ||= Hpricot(html)
-      end
-      def html
-        @client.get(@url)
-      end
   end
-  class InternetBankingIdPage
+  class InternetBankingIdPage < Page
     def initialize(client, url, internet_banking_id)
-      @client, @url, @internet_banking_id = client, url, internet_banking_id
+      super(client, url)
+      @internet_banking_id = internet_banking_id
     end
     def html_form_action
       html_form.attributes['action']
@@ -161,12 +165,6 @@ module Hsbc
       end
       def html_form
         doc.at('form#IBloginForm')
-      end
-      def doc
-        @doc ||= Hpricot(html)
-      end
-      def html
-        @client.get(@url)
       end
   end
 end
