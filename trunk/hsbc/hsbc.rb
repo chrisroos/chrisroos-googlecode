@@ -115,8 +115,6 @@ class Client
     end
 end
 
-client = Client.new
-
 module Hsbc
   
   class Page
@@ -169,6 +167,8 @@ module Hsbc
   end
   
 end
+
+client = Client.new
 
 ### GET the homepage so that we can get the url (including jsessionid) of the page that asks for our internet banking id
 homepage = Hsbc::Homepage.new(client, 'http://www.hsbc.co.uk/1/2/')
