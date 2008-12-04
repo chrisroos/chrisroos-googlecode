@@ -5,8 +5,10 @@ if ENV['HOSTS'] == 'localhost'
   set :repository, '.'
   set :scm, :none
   set :domain, application.gsub(/\.co\.uk$/, '.local')
+  set :chrisroos, 'chrisroos.local'
 else
   set :domain, application
+  set :chrisroos, 'chrisroos.co.uk'
 end
 
 set :deploy_to, "/u/chrisroos/www/#{domain}"
