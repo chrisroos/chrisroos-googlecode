@@ -1,5 +1,5 @@
 set :application, "chrisroos.co.uk"
-set :repository,  "http://chrisroos.googlecode.com/svn/trunk/www/#{application}"
+set :repository,  "http://chrisroos.googlecode.com/svn/trunk/www/blog.seagul.co.uk"
 
 if ENV['HOSTS'] == 'localhost'
   set :domain, application.gsub(/\.co\.uk$/, '.local')
