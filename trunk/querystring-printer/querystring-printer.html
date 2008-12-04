@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Querystring Printer</title>
+    <style type="text/css" media="screen">
+      body {
+        margin: 2em;
+      }
+      .key {
+        font-weight: bold;
+        margin-right: 2em;
+      }
+      .value {
+        color: #555;
+      }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+    <!--
+    //<![CDATA[
+      var queryStringPrinter = {
+        print: function() {
+          var url = window.location.toString();
+
+          if (url.indexOf('?') == -1) { // No querystring
+            return;
+          }
+
+          var queryString = url.split('?')[1];
+          var keyValuePairs = queryString.split('&');
+
+          if (keyValuePairs.length > 0) {
+            var container = document.getElementById('queryStringVariables');
+
+            for (var i=0; i<keyValuePairs.length; i++) {
+              var keyValuePair = keyValuePairs[i].split('=');
+              var key = decodeURIComponent(keyValuePair[0]);
+              var value = decodeURIComponent(keyValuePair[1]);
+
+              var keySpan = document.createElement('span');
+              keySpan.setAttribute('class', 'key');
+              keySpan.appendChild(document.createTextNode(key));
+
+              var valueSpan = document.createElement('span');
+              valueSpan.setAttribute('class', 'value');
+              valueSpan.appendChild(document.createTextNode(value));
+
+              var p = document.createElement('p');
+              p.setAttribute('class', 'keyValuePair');
+              p.appendChild(keySpan);
+              p.appendChild(valueSpan);
+
+              container.appendChild(p);
+            }
+          }
+        }
+      }
+    //]]>
+    -->
+    </script>
+  </head>
+  <body onload="queryStringPrinter.print()">
+    <h1>Querystring Variables</h1>
+    <div id="queryStringVariables">
+    </div>
+  </body>
+</html>
