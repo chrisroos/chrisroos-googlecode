@@ -10,6 +10,31 @@
     <description></description>
     
       <item>
+        <title>A Javascript QueryString Printer</title>
+        <description>&lt;p&gt;I&amp;#8217;ve used this &lt;a href=&quot;http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html&quot;&gt;mod rewrite&lt;/a&gt; trick in the past to inspect the contents of various &lt;a href=&quot;http://httpd.apache.org/&quot;&gt;apache&lt;/a&gt; variables you have access to.&lt;/p&gt;
+
+
+&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;typocode_default&quot;&gt;# Add this before any other rewrite rules in your apache config or .htaccess
+RewriteRule .* http://foo?request_uri=%{REQUEST_URI}&amp;amp;the_request=%{THE_REQUEST}&amp;amp;host=%{HTTP_HOST}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+	&lt;p&gt;Although useful, it&amp;#8217;s kinda hard to inspect the variables when they&amp;#8217;re in the &lt;a href=&quot;http://en.wikipedia.org/wiki/Uniform_Resource_Locator&quot;&gt;&lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt;&lt;/a&gt;.  It dawned on me that it would be easier to see them if they were in a page in the browser itself.  So, I knocked up a simple little html page that uses javascript to extract the querystring key/value pairs and display them on the page.  It doesn&amp;#8217;t look very pretty but it makes it much easier to see the content of the variables.&lt;/p&gt;
+
+
+	&lt;p&gt;The page is hosted in my &lt;a href=&quot;http://chrisroos.googlecode.com/svn/trunk/querystring-printer/&quot;&gt;google code repository&lt;/a&gt; and there&amp;#8217;s a splendid little screenshot below.&lt;/p&gt;
+
+
+	&lt;p&gt;&lt;img src=&quot;http://farm4.static.flickr.com/3288/3082048735_f76b44712e.jpg?v=0&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+
+	&lt;p&gt;At the moment you&amp;#8217;ll need to host this file yourself, but if there&amp;#8217;s demand then I can probably make it publicly available somewhere.&lt;/p&gt;</description>
+
+        <pubDate>Fri, 05 Dec 2008 10:24:28 +0000</pubDate>
+        <guid isPermaLink="false">urn:uuid:31745701-a13d-40e0-9702-13029cf02ca9</guid>
+        <author>Chris Roos</author>
+        <link>http://blog.seagul.co.uk/blog/2008-12-05-a-javascript-querystring-printer</link>
+      </item>
+    
+      <item>
         <title>OCR on the Mac with Tesseract</title>
         <description>&lt;p&gt;I wanted to &lt;a href=&quot;http://en.wikipedia.org/wiki/Optical_character_recognition&quot;&gt;&lt;span class=&quot;caps&quot;&gt;OCR&lt;/span&gt;&lt;/a&gt; another letter this morning and, as &lt;a href=&quot;/articles/2008-07-21-open-source-optical-character-recognition-ocr-on-the-mac&quot;&gt;before&lt;/a&gt;, I used &lt;a href=&quot;http://code.google.com/p/tesseract-ocr/&quot;&gt;tesseract&lt;/a&gt; for the job.&lt;/p&gt;
 
@@ -388,22 +413,6 @@ Southeastern Customer Services
         <guid isPermaLink="false">urn:uuid:8b08900d-3772-466f-8da4-05cb81f67e40</guid>
         <author>Chris Roos</author>
         <link>http://blog.seagul.co.uk/blog/2008-05-19-pwdhash-widget</link>
-      </item>
-    
-      <item>
-        <title>A trip to the tip</title>
-        <description>&lt;p&gt;A recent trip to the local tip got me thinking.  Shouldn&amp;#8217;t the council be pimping alternative services (freecycle and charity shops come to mind) at the tip?  I saw a couple of things that I struggle to believe couldn&amp;#8217;t have been of use to someone else: a golf bag and computer tower (even if it didn&amp;#8217;t contain a computer &amp;#8211; I just sold a similar case on ebay, proving the demand).  In addition to these two items were the mountain (ok, not a mountain, but a fair number) of discarded fridge/freezers.  I wonder how many of these had actually broken and how many were no longer required for different reasons: maybe England beer fridges are out of fashion now?&lt;/p&gt;
-
-
-	&lt;p&gt;So, at the very least, I think the council should just pop some signs up suggesting alternative fates for your unwanted stuff.  But, taking it further, I wonder whether the council couldn&amp;#8217;t operate a similar sized (to the current tip) site that served as a drop-off/pick-up point for freecycle?  I&amp;#8217;d hope that, after a while, the cost of this second site would be offset by the savings made at the tip by the reduction in use (although that may be wishful thinking).&lt;/p&gt;
-
-
-	&lt;p&gt;Maybe a hybrid alternative would be to train the current tip workers to filter out items of possible reuse from the actual rubbish, thereby allowing the existing site to be use for both purposes.&lt;/p&gt;</description>
-
-        <pubDate>Mon, 19 May 2008 09:42:29 +0100</pubDate>
-        <guid isPermaLink="false">urn:uuid:eae04aef-89a8-4bc6-8e00-08116e516851</guid>
-        <author>Chris Roos</author>
-        <link>http://blog.seagul.co.uk/blog/2008-05-19-a-trip-to-the-tip</link>
       </item>
     
   </channel>
