@@ -1,14 +1,6 @@
 --- 
 :published_at: 2008-01-16 09:08:00 +00:00
-:trackbacks: 
-- :ip: 82.138.248.206
-  :published_at: 2008-01-16 09:33:13 +00:00
-  :article_id: 79593
-  :url: http://blog.seagul.co.uk/articles/2008/01/16/testing-my-mod_rewrite-configuration-with-ruby
-  :blog_name: deferred until inspiration hits
-  :published: true
-  :excerpt: In order to ensure that I didn&#8217;t break anything while setting up my mod_rewrite rules I created a little ruby script to test my expectations. I&#8217;ve cut down the rules in the example below but you should get the idea. It&#8217;d be quite...
-  :title: Testing my mod_rewrite configuration with ruby
+:title: Chris 1, mod_rewrite 0 (muhahahaha)
 :body: |-
   I've now spent quite a considerable amount of time trying to get "mod_rewrite":http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html to do my bidding and I think I might just have cracked it[1].
   
@@ -56,4 +48,3 @@
 :guid: d8b747ec-367b-4ae3-abdc-8acabeef6d17
 :comments: []
 
-:title: Chris 1, mod_rewrite 0 (muhahahaha)

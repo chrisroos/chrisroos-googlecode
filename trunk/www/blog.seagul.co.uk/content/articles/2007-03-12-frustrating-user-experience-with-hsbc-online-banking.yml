@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-03-12 23:13:00 +00:00
-:trackbacks: []
-
+:title: Frustrating user experience with Hsbc online banking
 :body: |-
   I needed to pay some money to "HMRC":http://www.hmrc.gov.uk to cover my tax.  HMRC kindly supply me with their sort code and account number so that I could transfer the money directly from my bank account.  Logged into "Hsbc":http://www.hsbc.co.uk, I entered the relevant details and tried to make the payment.  Instead of going through like a good payment should, I was presented with this useless error message.
   
@@ -19,11 +18,10 @@
 :guid: aa6af2b3-4a9a-4826-92ef-1cf3da70414c
 :comments: 
 - :published_at: 2007-07-17 23:09:55 +01:00
-  :author: J Random
-  :article_id: 988
-  :url: ""
   :body: |-
     .... thank foo for that entry,
     
     was ready to scream when i got that stupid error message at 1650, when a payment had to leave by 5 .... why could they not just describe the problem? urgh.
-:title: Frustrating user experience with Hsbc online banking
+  :url: ""
+  :author: J Random
+  :article_id: 988

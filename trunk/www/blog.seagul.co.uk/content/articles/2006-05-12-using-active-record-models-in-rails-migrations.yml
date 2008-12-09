@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-05-12 16:32:00 +01:00
-:trackbacks: []
-
+:title: Using active record models in rails migrations
 :body: |-
   I seem to remember that "we":http://www.reevoo.com first came across the "migrations out of sync with code" problems around the time that Scott Laird "posted":http://scottstuff.net/blog/articles/2005/10/31/migrating-in-two-dimensions about it regarding "typo":http://www.typosphere.org.
   
@@ -61,4 +60,3 @@
 :guid: e7338fc7-3433-4d3b-a68b-53b1db6c59d8
 :comments: []
 
-:title: Using active record models in rails migrations

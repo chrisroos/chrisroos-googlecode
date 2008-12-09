@@ -1,7 +1,6 @@
 --- 
 :published_at: 2005-10-02 19:51:00 +01:00
-:trackbacks: []
-
+:title: Typo pings
 :body: |-
   I updated Typo last night to run from svn trunk, just to get the added benefit of pinging sites like "weblogs":http://www.weblogs.com and "technorati":http://www.technorati.com whenever I publish an article.  All was running smoothly until I just tried to create the newsreader article.  On saving, I get a not very helpful Rails app error.  The logs didn't help an amazing amount either...
   
@@ -13,4 +12,3 @@
 :guid: 182bf19a-44e5-4356-aac5-a33473641ee6
 :comments: []
 
-:title: Typo pings

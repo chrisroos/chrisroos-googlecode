@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-11-15 17:14:00 +00:00
-:trackbacks: []
-
+:title: HSBC Conclusion
 :body: |-
   I finally received a reply from HSBC to my constant nagging about a possible bug in their Internet Banking software.
   
@@ -58,9 +57,6 @@
 :guid: 9c598cbc-a150-4781-9f6c-7527746cf439
 :comments: 
 - :published_at: 2007-11-16 10:32:48 +00:00
-  :author: Mike Woodhouse
-  :article_id: 55335
-  :url: ""
   :body: |-
     Lordy, the idea that any consultant that HSBC would ever hire would ever recommend open-source is, I dunno, a bit freaky. And I write from having been a consultant in the past, dealing in part with retail banking operations. If you worked for Accenture (to risk unfairly badmouthing what in reality may be a very forward-thinking company) then you'd be a much better corporate servant if you recommended that your comapny be retained to build an in-house alternative. What's best for the consultants is not necessarily best for the client.
     
@@ -73,10 +69,10 @@
     It's not all gloom, though - my place (a German bank whose name sort of means "German" in German) has just made Rails available as an option for intranet sites. So I can now get paid to work in Ruby. Which must be progress.
     
     * Sorry, I've been reading a Peter Kay book recently.
-- :published_at: 2007-11-17 10:45:24 +00:00
-  :author: Chris
-  :article_id: 55335
   :url: ""
+  :author: Mike Woodhouse
+  :article_id: 55335
+- :published_at: 2007-11-17 10:45:24 +00:00
   :body: |-
     Hey Mike,
     
@@ -89,4 +85,6 @@
     PS.  Peter Kay is brilliant.
     
     PPS.  Excellent news that you're able to get paid for writing ruby.
-:title: HSBC Conclusion
+  :url: ""
+  :author: Chris
+  :article_id: 55335

@@ -1,28 +1,26 @@
 --- 
 :published_at: 2006-03-06 09:33:00 +00:00
-:trackbacks: []
-
+:title: Cool google map of the tube network...
 :body: ..."right here":http://tubejp.co.uk/
 :guid: f3d11d45-1bd9-4f5b-bc85-38f63f0624f3
 :comments: 
 - :published_at: 2006-03-06 22:21:07 +00:00
+  :body: "Really cool - but is it *useful*? You can also get the tube map for mp3 players here: <a href='http://www.ipodsubwaymaps.com/download.php#london'>http://www.ipodsubwaymaps.com/download.php#london</a> (the site mentions only iPods but it works fine on my iRiver). "
+  :url: ""
   :author: Kieran
   :article_id: 64
-  :url: ""
-  :body: "Really cool - but is it *useful*? You can also get the tube map for mp3 players here: <a href='http://www.ipodsubwaymaps.com/download.php#london'>http://www.ipodsubwaymaps.com/download.php#london</a> (the site mentions only iPods but it works fine on my iRiver). "
 - :published_at: 2006-03-07 14:06:25 +00:00
+  :body: Err, usefulness needn't apply - it's just cool.  Yeah.
+  :url: ""
   :author: Chris
   :article_id: 64
-  :url: ""
-  :body: Err, usefulness needn't apply - it's just cool.  Yeah.
 - :published_at: 2006-03-15 11:45:10 +00:00
+  :body: Looks very cool and it's got a route planner too.  It must be using the google maps API, there's an article on this on development works too <a href='http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/'>http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/</a>
+  :url: http://null
   :author: Paul
   :article_id: 64
-  :url: http://null
-  :body: Looks very cool and it's got a route planner too.  It must be using the google maps API, there's an article on this on development works too <a href='http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/'>http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/</a>
 - :published_at: 2006-03-16 07:58:46 +00:00
+  :body: It certainly does - I subscribe to the feed at "this":http://googlemapsmania.blogspot.com/ site to get updates on new uses of the google maps api.
+  :url: ""
   :author: Chris
   :article_id: 64
-  :url: ""
-  :body: It certainly does - I subscribe to the feed at "this":http://googlemapsmania.blogspot.com/ site to get updates on new uses of the google maps api.
-:title: Cool google map of the tube network...

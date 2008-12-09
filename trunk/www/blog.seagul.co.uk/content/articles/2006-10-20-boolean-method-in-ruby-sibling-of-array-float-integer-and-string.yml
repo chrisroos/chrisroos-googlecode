@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-10-20 00:19:00 +01:00
-:trackbacks: []
-
+:title: "Boolean method in Ruby (sibling of Array, Float, Integer and String) "
 :body: |-
   I was reading in data from a file and expected one particular column to contain either 'true' or 'false'.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada...
   
@@ -49,9 +48,6 @@
 :guid: 381579d7-3b5c-4a94-bdef-a089e13c137d
 :comments: 
 - :published_at: 2007-12-08 22:52:48 +00:00
-  :author: Kyle
-  :article_id: 319
-  :url: http://remkade.ambitiouslemon.com
   :body: |-
     This is an old post, but how about doing this?:
     
@@ -68,10 +64,10 @@
     </pre>
     
     That allows you to just use string.to_bool
-- :published_at: 2007-12-08 22:55:15 +00:00
+  :url: http://remkade.ambitiouslemon.com
   :author: Kyle
   :article_id: 319
-  :url: http://remkade.ambitiouslemon.com
+- :published_at: 2007-12-08 22:55:15 +00:00
   :body: |-
     each @string@ item actually should be converted to @self@ instead. Like this:
     
@@ -86,10 +82,10 @@
     end
     </code>
     </pre>
-- :published_at: 2007-12-14 09:11:06 +00:00
-  :author: Chris
+  :url: http://remkade.ambitiouslemon.com
+  :author: Kyle
   :article_id: 319
-  :url: ""
+- :published_at: 2007-12-14 09:11:06 +00:00
   :body: |-
     Hey Kyle,
     
@@ -116,4 +112,6 @@
     nil.to_bool
     => false
     </typo:code>
-:title: "Boolean method in Ruby (sibling of Array, Float, Integer and String) "
+  :url: ""
+  :author: Chris
+  :article_id: 319

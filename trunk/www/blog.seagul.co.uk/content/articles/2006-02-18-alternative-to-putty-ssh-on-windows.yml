@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-02-18 12:36:00 +00:00
-:trackbacks: []
-
+:title: Alternative to Putty Ssh on Windows
 :body: |-
   I've used "putty":http://www.chiark.greenend.org.uk/~sgtatham/putty/ for all my ssh needs on windows for a long time now.  It's great but certainly lacks a little polish in some areas.
   
@@ -11,4 +10,3 @@
 :guid: d5f08147-b851-47cc-958c-187f1e6920c2
 :comments: []
 
-:title: Alternative to Putty Ssh on Windows

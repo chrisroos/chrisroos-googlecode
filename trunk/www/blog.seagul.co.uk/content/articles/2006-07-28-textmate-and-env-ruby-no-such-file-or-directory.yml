@@ -1,14 +1,6 @@
 --- 
 :published_at: 2006-07-28 23:06:00 +01:00
-:trackbacks: 
-- :ip: 82.138.248.206
-  :published_at: 2006-08-23 00:04:33 +01:00
-  :article_id: 101
-  :url: http://blog.seagul.co.uk/articles/2006/08/22/textmate-environment-and-ruby-again
-  :blog_name: deferred until inspiration hits
-  :published: true
-  :excerpt: I&#8217;ve recently upgraded the version of ruby on my machine and came up against problems similar to this. The problem previously was that textmate wasn&#8217;t finding ruby at all. This time, textmate was finding the wrong version of ruby. I fo...
-  :title: Textmate environment and ruby (again)
+:title: "TextMate and \"env: ruby: No such file or directory\""
 :body: |-
   So, I was coming up against this problem in TextMate just recently.
   
@@ -58,11 +50,10 @@
 :guid: 5d5c719c-b0be-45d7-8400-12b3c8bb6988
 :comments: 
 - :published_at: 2006-08-15 13:02:26 +01:00
-  :author: Paul Battley
-  :article_id: 101
-  :url: http://po-ru.com/
   :body: |-
     The plist file can be either plain text or XML (maybe binary too); these instructions only work if the file is plain text or if it doesn't exist yet. In my case, I already had an XML format file in that location.
     
     If it does exist, you can either edit it by hand or open it in the property list editor instead (type 'open ~/.MacOSX/environment.plist' in the console) and add a String key called 'PATH' under Root.
-:title: "TextMate and \"env: ruby: No such file or directory\""
+  :url: http://po-ru.com/
+  :author: Paul Battley
+  :article_id: 101

@@ -1,14 +1,6 @@
 --- 
 :published_at: 2006-10-06 09:19:00 +01:00
-:trackbacks: 
-- :ip: 82.138.248.206
-  :published_at: 2006-10-14 10:49:05 +01:00
-  :article_id: 173
-  :url: http://blog.seagul.co.uk/articles/2006/10/14/some-useful-assertions-maybe
-  :blog_name: deferred until inspiration hits
-  :published: true
-  :excerpt: The first is to ensure two arrays contain the same elements not necessarily in the same order. require 'test/unit' require 'set' module AssertEqualArray def assert_equal_array(array_1, array_2) assert_equal array_1.size, array_2.size, &quot;Arrays...
-  :title: Some useful assertions, maybe
+:title: Recording daily spending with a Ruby Dsl
 :body: |-
   I'm very very very bad with money.  Don't get me wrong, I'm very good at -spending- wasting money, just bad at all "the":http://en.wikipedia.org/wiki/Savings "boring":http://en.wikipedia.org/wiki/Investing "stuff":http://en.wikipedia.org/wiki/Pension.
   
@@ -52,4 +44,3 @@
 :guid: f59fe5c0-fe96-4995-9fc9-5153cf7e088c
 :comments: []
 
-:title: Recording daily spending with a Ruby Dsl

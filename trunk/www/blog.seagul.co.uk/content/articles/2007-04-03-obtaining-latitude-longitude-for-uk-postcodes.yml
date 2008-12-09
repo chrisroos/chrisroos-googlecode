@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-04-03 21:33:00 +01:00
-:trackbacks: []
-
+:title: Obtaining latitude/longitude for UK postcodes
 :body: |-
   It turns out that we can use "streetmap.co.uk":http://streetmap.co.uk to "convert":http://streetmap.co.uk/streetmap.dll?GridConvert a UK postcode to latitude/longitude.  It also turns out that a combination of "curl":http://curl.haxx.se/, "ruby":http://www.ruby-lang.org and "hpricot":http://code.whytheluckystiff.net/hpricot/ make it very easy to bypass the streetmap site to perform the conversion.
   
@@ -34,4 +33,3 @@
 :guid: c567c902-bb82-4501-b922-1bad9337e283
 :comments: []
 
-:title: Obtaining latitude/longitude for UK postcodes

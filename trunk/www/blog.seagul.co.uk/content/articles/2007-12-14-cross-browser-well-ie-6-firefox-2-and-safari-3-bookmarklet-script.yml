@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-12-14 21:27:00 +00:00
-:trackbacks: []
-
+:title: Cross browser (well, IE 6, Firefox 2 and Safari 3) bookmarklet script
 :body: |-
   I "mentioned":http://blog.seagul.co.uk/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7 that I'd been playing with bookmarklets in Internet Explorer 6 (among other, proper, browsers).
   
@@ -36,4 +35,3 @@
 :guid: bad3b2d6-3353-4df9-94ed-73df516a11dc
 :comments: []
 
-:title: Cross browser (well, IE 6, Firefox 2 and Safari 3) bookmarklet script

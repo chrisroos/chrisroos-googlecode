@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-10-15 20:13:00 +01:00
-:trackbacks: []
-
+:title: More Hsbc Shenanigans
 :body: |-
   This will be of interest to very few (if any) people - I'd suggest you just move on to something more interesting.
   
@@ -69,9 +68,6 @@
 :guid: c5da6cb9-7a1f-481b-b1db-23f1db4b6a56
 :comments: 
 - :published_at: 2007-12-08 14:25:12 +00:00
-  :author: Tom
-  :article_id: 43380
-  :url: ""
   :body: |-
     Hi Chris,
     
@@ -84,10 +80,10 @@
     Lastly, is there chance that they're actually serving up QFX format? If so, this should be valid OFX, should it not?
     thanks :)
     tom
-- :published_at: 2007-12-10 14:57:31 +00:00
-  :author: Chris
-  :article_id: 43380
   :url: ""
+  :author: Tom
+  :article_id: 43380
+- :published_at: 2007-12-10 14:57:31 +00:00
   :body: |-
     Hi Tom,
     
@@ -100,4 +96,6 @@
     * Spreadsheets - CSV
     
     I've pasted examples of each of "QIF":http://pastie.caboo.se/126490, "OFX":http://pastie.caboo.se/126491 and "CSV":http://pastie.caboo.se/126492 to "pastie":http://pastie.caboo.se.  Let me know if you need anything else.
-:title: More Hsbc Shenanigans
+  :url: ""
+  :author: Chris
+  :article_id: 43380

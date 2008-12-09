@@ -1,7 +1,7 @@
 --- 
 :published_at: 2008-07-21 14:04:56.313436 +01:00
+:title: Open Source Optical Character Recognition (OCR) on the Mac
 :body: |
   I recently received a letter reply to an enquiry I made to "South Eastern Trains":http://southeasternrailway.co.uk/.  I wanted to make the text available (I don't like reading text in images) but didn't want to type it all out.  Having scanned it in, I looked around for some "OCR":http://en.wikipedia.org/wiki/Optical_character_recognition software, for the "Mac":http://www.apple.com/mac/, that would extract the text for me.  Through the (relatively large amount of) search result noise, I managed to find a reference to "tesseract":http://code.google.com/p/tesseract-ocr/.  Installing from "Mac Ports":http://www.macports.org/ was easy but actually getting useful output was slightly tricker.  I was trying to extract the text from "this letter":http://www.flickr.com/photos/chrisjroos/2688362397/ but kept getting garbled output.  I tried a few things before stumbling across "this page":https://help.ubuntu.com/community/OCR that suggests making the image greyscale and ensuring that the extension is .tif (not .tiff).  I duly complied, using "Seashore":http://seashore.sourceforge.net/ to convert the image to greyscale, and tried again.  This time the text was extracted perfectly (even the addresses, that appear in two columns, were extracted correctly).
 
 :guid: 19495a24-8ef5-4c1a-aab1-45d38a8ed548
-:title: Open Source Optical Character Recognition (OCR) on the Mac

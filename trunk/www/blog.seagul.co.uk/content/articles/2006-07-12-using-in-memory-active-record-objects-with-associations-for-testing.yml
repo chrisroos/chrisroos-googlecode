@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-07-12 01:23:00 +01:00
-:trackbacks: []
-
+:title: Using in memory Active Record objects with associations for testing
 :body: |-
   Hitting the database in testing is bad.
   
@@ -64,4 +63,3 @@
 :guid: 34bcbcc9-b592-4a27-9b8f-90027d57bdd6
 :comments: []
 
-:title: Using in memory Active Record objects with associations for testing

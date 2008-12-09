@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-04-14 00:44:00 +01:00
-:trackbacks: []
-
+:title: Small, specific mongrel web servers
 :body: |-
   I've created a simple "mongrel":http://mongrel.rubyforge.org/ server that allows you to upload text files for subsequent deletion and retrieval.  If it sounds pretty pointless, that's because it is...currently.  I wonder though, if the basic premise couldn't be used to create some text-transformation tools.  I'm thinking of really simple tools that might spell-check a text file, or convert text from "textile":http://www.textism.com/tools/textile/ to html.  My end goal would be to have lots of super simple tools that I can chain together to use as a blogging platform, removing my current dependence on "typo":http://trac.typosphere.org/.
   
@@ -13,4 +12,3 @@
 :guid: e4083c46-c100-44f4-8040-45f3295ea1b2
 :comments: []
 
-:title: Small, specific mongrel web servers

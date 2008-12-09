@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-06-26 09:20:00 +01:00
-:trackbacks: []
-
+:title: A great day at work and reevoovision (twittervision for reviews)
 :body: |-
   A few of days ago I "came across":http://twitter.com/chrisroos/statuses/114202552 "twittervision":http://twittervision.com/.  Just ten hours later I had checked some code into "our":http://www.reevoo.com repository that allows us to do the same thing (as twittervision) but for our reviews.  Yup, it was a very good day indeed.  Although the initial code was complete within a few hours, it needed a bit of polishing (kudos to "Paul":http://po-ru.com) which meant that we only got it deployed yesterday.  I guess one working day between proof of concept and deployment isn't that bad...  Anyway, go check it out - "reevoovision":http://www.reevoo.com/vision.html.
   
@@ -21,21 +20,20 @@
 :guid: b2b9da2d-69fa-4285-ad8c-33f4c66f744a
 :comments: 
 - :published_at: 2007-06-26 10:44:26 +01:00
-  :author: Adem
-  :article_id: 19326
-  :url: http://ademblog.blogspot.com
   :body: |-
     Well done mate, that's really good. It's great when one has an idea and is able to get on it and have it done within a day.
     
     Keep up the good work!
-- :published_at: 2007-06-28 09:37:29 +01:00
+  :url: http://ademblog.blogspot.com
   :author: Adem
   :article_id: 19326
-  :url: http://ademblog.blogspot.com
+- :published_at: 2007-06-28 09:37:29 +01:00
   :body: |-
     I've actually just added a <a href="http://prestonhellings.co.uk/e107_plugins/wrap/wrap.php?5">google maps feature to my Preston FC site</a>.
     
     Not as complicated as yours though...
     
     <a href="http://prestonhellings.co.uk/e107_plugins/wrap/wrap.php?5">
-:title: A great day at work and reevoovision (twittervision for reviews)
+  :url: http://ademblog.blogspot.com
+  :author: Adem
+  :article_id: 19326

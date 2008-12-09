@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-01-12 01:37:00 +00:00
-:trackbacks: []
-
+:title: Encapsulation in Active Record objects
 :body: |-
   I've been meaning to finish a post on this subject for ages.  As I probably won't finish it in its current incarnation, I thought I'd at least get something up here.
   
@@ -87,27 +86,24 @@
 :guid: 9c692b70-b1ef-4694-9579-66b1374ffde7
 :comments: 
 - :published_at: 2007-01-12 20:11:45 +00:00
-  :author: Jamis
-  :article_id: 604
-  :url: ""
   :body: |-
     Chris, I'm not sure why you feel that "touching" the hobbies method is a bad thing. It's a public method, not a public instance variable. The method provides the abstraction, and you could ultimately replace that implementation with something else, so there is no violation of encapsulation.
     
     Am I misunderstanding your concern? Personally, I find "my.hobbies << biking" more esthetically appealing then "my.add_hobby(biking)".
-- :published_at: 2007-01-13 13:21:47 +00:00
-  :author: Chris
-  :article_id: 604
   :url: ""
+  :author: Jamis
+  :article_id: 604
+- :published_at: 2007-01-13 13:21:47 +00:00
   :body: |-
     Hi Jamis,
     
     I think the problem is that we're asking a person for their hobbies object in order to manipulate it directly.  What we really want to do is tell the person to add their own hobby - we don't care how they go about it.
     
     Apologies for the short answer - I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I'll try a follow-up post with more exploration of the issue.
-- :published_at: 2007-01-13 15:35:24 +00:00
-  :author: Jamis
-  :article_id: 604
   :url: ""
+  :author: Chris
+  :article_id: 604
+- :published_at: 2007-01-13 15:35:24 +00:00
   :body: |-
     Chris, actually, you're not getting the hobbies object back. The "hobbies" method returns a proxy object, not the array of hobbies directly. When you invoke a method on what is returned, it is hitting the proxy, not the array.
     
@@ -116,10 +112,10 @@
     The fact is, though, that encapsulation is the goal, and what it is attained, there are no more hoops to jump through. And ActiveRecord correctly and safely encapsulates your data, via the association proxy classes.
     
     There's no need for Javaisms like "add_hobby", unless you, personally, prefer it that way. Myself, I think Java has taught programmers a lot of very bad habits, and Ruby (and Rails) gives us the chance to unlearn some of those.
-- :published_at: 2007-01-15 22:06:11 +00:00
-  :author: Chris
-  :article_id: 604
   :url: ""
+  :author: Jamis
+  :article_id: 604
+- :published_at: 2007-01-15 22:06:11 +00:00
   :body: |-
     Jamis, I'm confused as to how this fits in with the "Tell, don't ask" principle.  I'm probably missing something, but, it very much seems to me that we're _asking_ a person for their hobbies and then _telling_ the hobbies to add a hobby to itself.  The fact that we are getting a proxy that represents their hobbies rather than the hobbies object directly seems irrelevant.
     
@@ -149,10 +145,10 @@
     </typo:code>
     
     Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it's probably all irrelevant?
-- :published_at: 2007-02-06 15:51:21 +00:00
-  :author: David Chelimsky
-  :article_id: 604
   :url: ""
+  :author: Chris
+  :article_id: 604
+- :published_at: 2007-02-06 15:51:21 +00:00
   :body: |-
     It's not just a matter of making your tests cleaner. It's also a matter of protecting the consumers of your model from changes to the model over time.
     
@@ -169,10 +165,10 @@
     all you would have to do now is change the Project model.
     
     To me, THAT is the whole point of Demeter. It's about managing dependencies to isolate change.
-- :published_at: 2007-02-07 07:50:10 +00:00
-  :author: Matt Pelletier
-  :article_id: 604
   :url: ""
+  :author: David Chelimsky
+  :article_id: 604
+- :published_at: 2007-02-07 07:50:10 +00:00
   :body: |-
     Chris,
     
@@ -188,4 +184,6 @@
     end
     
     Matt
-:title: Encapsulation in Active Record objects
+  :url: ""
+  :author: Matt Pelletier
+  :article_id: 604

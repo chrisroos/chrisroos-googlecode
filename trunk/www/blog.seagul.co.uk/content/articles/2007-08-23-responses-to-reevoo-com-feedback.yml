@@ -1,14 +1,6 @@
 --- 
 :published_at: 2007-08-23 15:14:00 +01:00
-:trackbacks: 
-- :ip: 82.138.248.206
-  :published_at: 2007-08-31 15:14:59 +01:00
-  :article_id: 26646
-  :url: http://blog.seagul.co.uk/articles/2007/08/31/blue-card-user-stories-coming-out-of-the-reevoo-com-feedback
-  :blog_name: deferred until inspiration hits
-  :published: true
-  :excerpt: It took me a while, but I&#8217;ve come up with some stories to represent the feature requests from the reevoo.com feedback. I (well Paul actuall) even took a photo to prove it. We have a planning game next Tuesday (4th Sep) so we&#8217;ll have to...
-  :title: Blue card user stories coming out of the reevoo.com feedback
+:title: Responses to reevoo.com feedback
 :body: "First of all I'd like to thank the 18 people that left feedback about the new \"reevoo.com\":http://www.reevoo.com, either in the comments on my \"post\":http://blog.seagul.co.uk/articles/2007/08/01/a-new-reevoo-com or in replies to emails sent out by various people in the company.  I've tried to collate the feedback (paraphrasing the points) and provide answers to each point in turn.\r\n\
   \r\n\
   Moving forward, we've created a public \"google group\":http://groups.google.com/group/reevoo-website to discuss \"reevoo.com\":http://www.reevoo.com.  Membership is open to all so feel free to sign-up.  \"Richard\":http://www.reevoo.com/pages/about_us#Richard has a few reservations about exposing ourselves to the potential problems that an open forum can bring, so this is kinda-like a private invite that the \"techcrunch\":http://www.techcrunch.com crowd love so much.  I really appreciate Richard giving us the freedom to experiment with the group and would love to see people joining up to discuss how we can make reevoo.com a better place.\r\n\
@@ -233,18 +225,17 @@
 :guid: 62aeef02-5ba1-4f98-9321-1bde32723cce
 :comments: 
 - :published_at: 2007-08-23 17:03:44 +01:00
-  :author: ricky
-  :article_id: 26646
-  :url: ""
   :body: |-
     Well done in completing this Herculean task!)
     RH
-- :published_at: 2007-08-24 11:19:41 +01:00
-  :author: Adem
+  :url: ""
+  :author: ricky
   :article_id: 26646
-  :url: http://www.ademweb.co.uk/blog
+- :published_at: 2007-08-24 11:19:41 +01:00
   :body: |-
     I've just had a whizz over at Reevoo and I must say it's looking a lot better and cleaner since I was last over there (a while back).
     
     Keep up the good work.
-:title: Responses to reevoo.com feedback
+  :url: http://www.ademweb.co.uk/blog
+  :author: Adem
+  :article_id: 26646

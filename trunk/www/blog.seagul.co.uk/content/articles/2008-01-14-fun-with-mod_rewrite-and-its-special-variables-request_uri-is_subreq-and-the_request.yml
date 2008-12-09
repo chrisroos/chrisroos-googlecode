@@ -1,7 +1,6 @@
 --- 
 :published_at: 2008-01-14 10:14:00 +00:00
-:trackbacks: []
-
+:title: Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)
 :body: |-
   I wasted a few hours of my life, over the weekend, playing with "mod_rewrite":http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html.  I had, what I thought to be, a fairly simple problem to solve: I wanted requests for index.html within any subdirectory of my site to be "redirected":http://en.wikipedia.org/wiki/URL_redirection to the root of that subdirectory.  So, a request for example.com/subdir/index.html would be (301) redirected to example.com/subdir/.
   
@@ -26,9 +25,6 @@
 :guid: 0d80acad-6b51-42bb-b456-1168c8b59302
 :comments: 
 - :published_at: 2008-01-16 17:55:30 +00:00
-  :author: Matt B
-  :article_id: 78799
-  :url: http://thanetstar.com/
   :body: |-
     The thing about mod rewrite is that it is voodoo, damn cool voodoo but voodoo nevertheless (some one more impressive than me said that ages ago but I'm to lazy to look up the actual quote).
     
@@ -43,4 +39,6 @@
     The problem I had was similar in that if I redirected for the "wrong" urls then the internal requests looped forever.  The result is http code 500 - internal server error.
     
     As you can gather there is more than one way to get something to work.  As with all voodoo that it works is important and a congratulations is awarded to anyone able to brew up a solution to a problem.
-:title: Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)
+  :url: http://thanetstar.com/
+  :author: Matt B
+  :article_id: 78799

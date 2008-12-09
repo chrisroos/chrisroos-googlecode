@@ -1,9 +1,7 @@
 --- 
 :published_at: 2005-11-26 21:11:00 +00:00
-:trackbacks: []
-
+:title: Firefox close tabs like Safari
 :body: Having got really used to the location of the close button in "safari":http://www.apple.com/uk/macosx/features/safari/ I had problems getting used to "firefox":http://www.mozilla.org/products/firefox/ again.  Luckily, "some kind soul":https://addons.mozilla.org/extensions/authorprofiles.php?application=firefox&id=2318 has created an extension called "Tab X":https://addons.mozilla.org/extensions/moreinfo.php?application=firefox&id=785 which basically replicates the safari close button behaviour in firefox, albeit at the opposite side of the tab.  That's cool.
 :guid: 9eff0053-1567-4a95-92ea-3e83169ae30c
 :comments: []
 
-:title: Firefox close tabs like Safari

@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-03-08 07:48:00 +00:00
-:trackbacks: []
-
+:title: Rails table pluralization
 :body: |-
   I was talking to someone recently about the pluralisation of table names in "rails":http://www.rubyonrails.org.  It was grating him because some hand built queries no longer read very naturally.
   
@@ -61,4 +60,3 @@
 :guid: 9a1acd4e-57eb-4415-a9fb-71a4324ae83c
 :comments: []
 
-:title: Rails table pluralization

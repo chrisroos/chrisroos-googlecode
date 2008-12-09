@@ -1,14 +1,6 @@
 --- 
 :published_at: 2007-09-04 23:23:00 +01:00
-:trackbacks: 
-- :ip: 82.138.248.206
-  :published_at: 2007-09-05 22:42:35 +01:00
-  :article_id: 28740
-  :url: http://blog.seagul.co.uk/articles/2007/09/05/patching-the-del-icio-us-firefox-extension-to-add-permalinks
-  :blog_name: deferred until inspiration hits
-  :published: true
-  :excerpt: I spent some of my train time today hacking around with the del.icio.us firefox extension. Although I&#8217;m sure it&#8217;s bad in many, many ways, I&#8217;ve managed to add the permalink functionality I mentioned yesterday. You can either apply...
-  :title: Patching the del.icio.us firefox extension to add permalinks
+:title: Permalinks for del.icio.us bookmarks (posts)
 :body: |-
   I've wondered in the "past":http://tech.groups.yahoo.com/group/ydn-delicious/message/1447 about sending "trackbacks":http://en.wikipedia.org/wiki/Trackback (or "pingbacks":http://en.wikipedia.org/wiki/Pingback) to bookmarked resources on "del.icio.us":http://del.icio.us.  As with most things, you can either wait for someone to do it for you, or you can do it yourself...  I started to investigate last Thursday afternoon and soon got sucked into the much more interesting issue of the missing "permalinks":http://en.wikipedia.org/wiki/Permalink for bookmarks.  You see, every time you bookmark something on del.icio.us, you are creating a new "resource":http://en.wikipedia.org/wiki/Representational_State_Transfer#REST.27s_Central_Principle:_Resources.  Unfortunately, it's a very sad :-( resource.  Sad because it doesn't have a "URL":http://www.wikipedia.org/wiki/URL and so can't be linked to.  An anonymous resource floating around the world wide web looking for love.  Boo hoo.  Anyway, enough of that.  I figured that if we could assign a unique tag to each of these resources then they would, as a side effect, get a permalink (you can already get your bookmarks containing a given tag by using http://del.icio.us/USERNAME/MY_TAG).  I experimented with using the url as a tag.  Although there seem to be some limits on what you can use, I found that if you strip the protocol and trailing slash from a url you are generally OK.  So, if we bookmark "BBC News":http://news.bbc.co.uk and tag it with news.bbc.co.uk then we can access that individual bookmark at "http://del.icio.us/chrisjroos/news.bbc.co.uk":http://del.icio.us/chrisjroos/news.bbc.co.uk.
   
@@ -86,4 +78,3 @@
 :guid: 8532ae39-270e-4dbe-85de-9ba263a4964f
 :comments: []
 
-:title: Permalinks for del.icio.us bookmarks (posts)
