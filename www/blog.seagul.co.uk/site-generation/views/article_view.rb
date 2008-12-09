@@ -23,9 +23,6 @@ class ArticleView
   def comments
     @article.comments
   end
-  def trackbacks
-    @article.trackbacks
-  end
   def previous_post
     @article.previous_article
   end
