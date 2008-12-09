@@ -1,14 +1,6 @@
 --- 
 :published_at: 2007-12-14 08:46:00 +00:00
-:trackbacks: 
-- :ip: 82.138.248.206
-  :published_at: 2007-12-14 21:28:35 +00:00
-  :article_id: 63940
-  :url: http://blog.seagul.co.uk/articles/2007/12/14/cross-browser-well-ie-6-firefox-2-and-safari-3-bookmarklet-script
-  :blog_name: deferred until inspiration hits
-  :published: true
-  :excerpt: I mentioned that I&#8217;d been playing with bookmarklets in Internet Explorer 6 (among other, proper, browsers). I thought it might be useful to paste the script that bootstraps the bookmarklet. The concept is that we use the bookmarklet javascri...
-  :title: Cross browser (well, IE 6, Firefox 2 and Safari 3) bookmarklet script
+:title: Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)
 :body: |-
   I wasted quite a bit of time over the last couple of days trying to get a "bookmarklet":http://en.wikipedia.org/wiki/Bookmarklet (or favelet) working in Internet Explorer 6.  It worked perfectly in Firefox and Safari but wasn't doing anything at all in IE.  Through lots of trial and error, I came to the conclusion that it was because of the length of the bookmarklet: it seems that Microsoft "reduced the maximum length of a bookmarklet in IE 6":http://www.squarefree.com/2005/01/12/internet-explorer-drops-support-for-bookmarklets/
   
@@ -62,4 +54,3 @@
 :guid: 958ddabd-4102-4da1-8e3b-18a07bb38d35
 :comments: []
 
-:title: Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)

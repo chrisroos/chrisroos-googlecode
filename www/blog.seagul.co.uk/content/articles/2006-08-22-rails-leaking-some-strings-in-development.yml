@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-08-22 10:47:00 +01:00
-:trackbacks: []
-
+:title: Rails leaking some strings in development
 :body: |-
   I spent some time this morning checking out "Scott Laird's":http://scottstuff.net/blog/ "memory profiler":http://scottstuff.net/blog/articles/2006/08/17/memory-leak-profiling-with-rails against a fresh rails app.
   
@@ -15,4 +14,3 @@
 :guid: 17e3dfab-6ca4-4245-94ad-181079e16b37
 :comments: []
 
-:title: Rails leaking some strings in development

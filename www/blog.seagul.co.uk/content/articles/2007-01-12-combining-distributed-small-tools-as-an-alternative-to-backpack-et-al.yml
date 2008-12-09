@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-01-12 11:53:00 +00:00
-:trackbacks: []
-
+:title: Combining distributed small tools as an alternative to Backpack et al
 :body: |-
   For a while now, I've been thinking/dreaming of having a number of very specific, distributed services.  These would be no more than additions to the single purpose services we already use (notably, in my case, "flickr":http://flickr.com for photos, this blog for articulating thought and "del.icio.us":http://del.icio.us for storing bookmarks).  Some additions I'd like to see[1] are:
   
@@ -59,10 +58,9 @@
 :guid: 98ac9d3f-9709-48ed-b6e2-9899ddb38b89
 :comments: 
 - :published_at: 2007-02-06 14:25:21 +00:00
-  :author: JackyMooll
-  :article_id: 607
-  :url: http://www.google.com
   :body: |-
     Who can help me with .httpaccess ? 
     where i can fined full information about .httpaccess file syntaxis?
-:title: Combining distributed small tools as an alternative to Backpack et al
+  :url: http://www.google.com
+  :author: JackyMooll
+  :article_id: 607

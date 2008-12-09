@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-02-23 16:46:00 +00:00
-:trackbacks: []
-
+:title: Rails rake testing without database
 :body: |-
   Continuing from the "previous post":http://blog.seagul.co.uk/articles/2006/02/23/rails-testing-without-database, it appears that the rake testing tasks are also tightly coupled to active record.
   
@@ -34,4 +33,3 @@
 :guid: 7436c1ad-8856-4b00-8575-83adcce61509
 :comments: []
 
-:title: Rails rake testing without database

@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-07-13 14:41:00 +01:00
-:trackbacks: []
-
+:title: Web service to convert UK Postcodes (outcode) to Latitude and Longitude
 :body: |-
   Using the data supplied in this "article":http://postcodes.easypeasy.com, by "Nik Sargent":http://www.niksargent.com, I've created a simple web service that returns "JSON":http://www.json.org formatted data about UK Outcodes (the first bit of the postcode).
   
@@ -56,9 +55,6 @@
 :guid: eceb8cc6-ff9e-4109-8536-70f23d333f61
 :comments: 
 - :published_at: 2007-07-13 18:11:50 +01:00
-  :author: Ed
-  :article_id: 21678
-  :url: ""
   :body: |+
     Cool stuff. Another way to do this is to use the Nestoria API.
     
@@ -66,4 +62,6 @@
     
     
     
-:title: Web service to convert UK Postcodes (outcode) to Latitude and Longitude
+  :url: ""
+  :author: Ed
+  :article_id: 21678

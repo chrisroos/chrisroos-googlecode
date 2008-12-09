@@ -1,7 +1,6 @@
 --- 
 :published_at: 2005-11-27 08:24:00 +00:00
-:trackbacks: []
-
+:title: Operating systems should be managed by version control
 :body: |-
   I spent from about 09:30 until 15:00 yesterday trying to get some graphics software talking to two output devices (basically printers) on Windows.
   
@@ -19,4 +18,3 @@
 :guid: 5aa190cb-86d6-43fd-aec3-c36e4e8cb404
 :comments: []
 
-:title: Operating systems should be managed by version control

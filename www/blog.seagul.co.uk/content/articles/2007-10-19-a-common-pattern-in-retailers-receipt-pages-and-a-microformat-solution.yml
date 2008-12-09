@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-10-19 07:58:00 +01:00
-:trackbacks: []
-
+:title: A common pattern in retailers' receipt pages (and a microformat solution)
 :body: "We've been looking at embedding a little bit of javascript in one of our partner's receipt pages to send us the details of which products were purchased (using \"SKUs\":http://en.wikipedia.org/wiki/Stock_Keeping_Unit).  A quick glance over the page revealed that nine other providers (\"GA\":http://www.google.com/analytics/, an \"SEO\":http://en.wikipedia.org/wiki/Search_engine_optimization helper and a bunch of price comparators) had the same idea.  That's the same data repeated nine times.  Ten if you include the human readable copy.  Now that seems like a problem waiting to be solved to me.  It also feels like a perfect fit for \"microformats\":http://microformats.org/.  If we had a \"receipt microformat\":http://microformats.org/wiki/receipt then we could use javascript to parse the data rather than having to re-define it each time.  We would also be removing all duplication and creating semantically rich content (I guess that's basically what microformats do anyway) in the process.\r\n\
   \r\n\
   So, something that might currently look like this:\r\n\
@@ -35,4 +34,3 @@
 :guid: 67a24999-5586-4da3-b029-de9730431b37
 :comments: []
 
-:title: A common pattern in retailers' receipt pages (and a microformat solution)

@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-10-18 07:40:00 +01:00
-:trackbacks: []
-
+:title: Inactive keywords (too high minCpc) when using Google Adwords Api
 :body: "h3. Short version\r\n\
   \r\n\
   *ALWAYS* create adverts (creatives) *before* keywords when setting up an ad group using the Adwords Api\r\n\
@@ -20,8 +19,7 @@
 :guid: 56bcf0e5-54ac-4bf7-ba0d-579078f538ad
 :comments: 
 - :published_at: 2006-10-30 03:10:57 +00:00
+  :body: Thanks - I just ran up against this and was starting to panic.
+  :url: ""
   :author: Starr
   :article_id: 304
-  :url: ""
-  :body: Thanks - I just ran up against this and was starting to panic.
-:title: Inactive keywords (too high minCpc) when using Google Adwords Api

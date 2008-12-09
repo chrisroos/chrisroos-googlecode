@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-06-30 12:08:00 +01:00
-:trackbacks: []
-
+:title: Very very lightweight mocking(ish)
 :body: |-
   "James":http://www.floehopper.org/ has been developing a great "mocking":http://www.martinfowler.com/articles/mocksArentStubs.html framework at "work":http://www.reevoo.com which makes life real easy when it comes to testing interaction between objects.
   
@@ -54,4 +53,3 @@
 :guid: 90292477-5dc2-4c47-a76b-b6ec1e6f992f
 :comments: []
 
-:title: Very very lightweight mocking(ish)

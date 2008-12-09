@@ -1,7 +1,6 @@
 --- 
 :published_at: 2007-10-03 08:00:00 +01:00
-:trackbacks: []
-
+:title: Finding similar sites by mining the del.icio.us data
 :body: |-
   So this is very much proof of concept and definitely not very useful in its current form...
   
@@ -27,8 +26,7 @@
 :guid: e077b11a-f34d-4b07-aded-4d4d9fe8ea0e
 :comments: 
 - :published_at: 2007-10-09 19:30:45 +01:00
+  :body: Nice .... I was just asking myself "what the heck is this a picture of?".
+  :url: http://www.figital.com
   :author: Scott Fitchet
   :article_id: 37254
-  :url: http://www.figital.com
-  :body: Nice .... I was just asking myself "what the heck is this a picture of?".
-:title: Finding similar sites by mining the del.icio.us data

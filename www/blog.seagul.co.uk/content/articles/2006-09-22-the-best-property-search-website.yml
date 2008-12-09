@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-09-22 11:16:00 +01:00
-:trackbacks: []
-
+:title: The best property search website
 :body: |-
   The majority of estate agent websites are crap.  Fact[1].
   
@@ -11,9 +10,6 @@
 :guid: 8582dc34-92cc-4050-b89f-4e542308273f
 :comments: 
 - :published_at: 2006-09-22 12:33:07 +01:00
-  :author: Ed Freyfogle
-  :article_id: 165
-  :url: http://blog.nestoria.co.uk
   :body: |+
     Hi Chris,
     
@@ -35,4 +31,6 @@
     
     
     
-:title: The best property search website
+  :url: http://blog.nestoria.co.uk
+  :author: Ed Freyfogle
+  :article_id: 165

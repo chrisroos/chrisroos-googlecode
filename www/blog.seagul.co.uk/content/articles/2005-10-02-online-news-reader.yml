@@ -1,7 +1,6 @@
 --- 
 :published_at: 2005-10-02 19:02:00 +01:00
-:trackbacks: []
-
+:title: Online news reader
 :body: |-
   It's been on my list for quite a while to check out online newsreaders in order to replace my flagging "desktop client of choice":http://www.sharpreader.com.
   
@@ -26,13 +25,12 @@
 :guid: 072034b7-111e-43f8-a8e4-e91dcf240568
 :comments: 
 - :published_at: 2005-10-02 19:40:30 +01:00
+  :body: I know it's a stupid question but.. what does 'opml' means? :-)
+  :url: ""
   :author: endy
   :article_id: 9
-  :url: ""
-  :body: I know it's a stupid question but.. what does 'opml' means? :-)
 - :published_at: 2005-10-07 16:48:12 +01:00
+  :body: "'\"OPML\":http://en.wikipedia.org/wiki/OPML is an XML format for outlines'.  It would appear that it is, currently, most commonly used to exchange lists of RSS feeds.  That is certainly the context in which I was using it - to describe the ability to export a list of RSS feeds from one feed reading application (in my case \"Sharpreader\":http://www.sharpreader.com) to an online alternative."
+  :url: ""
   :author: Chris
   :article_id: 9
-  :url: ""
-  :body: "'\"OPML\":http://en.wikipedia.org/wiki/OPML is an XML format for outlines'.  It would appear that it is, currently, most commonly used to exchange lists of RSS feeds.  That is certainly the context in which I was using it - to describe the ability to export a list of RSS feeds from one feed reading application (in my case \"Sharpreader\":http://www.sharpreader.com) to an online alternative."
-:title: Online news reader

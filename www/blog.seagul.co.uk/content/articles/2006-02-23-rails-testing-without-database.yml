@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-02-23 08:16:00 +00:00
-:trackbacks: []
-
+:title: Rails testing without database
 :body: |-
   Just yesterday I wanted to create a very quick rails app that didn't rely on a database.
   
@@ -46,4 +45,3 @@
 :guid: 18ca96bd-e1e3-4b7f-9029-28cc9cdd1f46
 :comments: []
 
-:title: Rails testing without database

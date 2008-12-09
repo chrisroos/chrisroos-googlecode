@@ -1,22 +1,6 @@
 --- 
 :published_at: 2007-06-01 12:00:00 +01:00
-:trackbacks: 
-- :ip: 82.138.248.206
-  :published_at: 2007-09-27 08:16:28 +01:00
-  :article_id: 8189
-  :url: http://blog.seagul.co.uk/articles/2007/09/27/why-should-it-do-that
-  :blog_name: deferred until inspiration hits
-  :published: true
-  :excerpt: I&#8217;ve started looking into my *cough* promise *cough* to do that local paper site I mentioned sometime ago. The code is all in me google code repository if you want to see how it&#8217;s going (or finish it when I inevitably get bored again&#...
-  :title: Why should it do that?
-- :ip: 82.138.248.206
-  :published_at: 2008-01-16 09:12:21 +00:00
-  :article_id: 8189
-  :url: http://blog.seagul.co.uk/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha
-  :blog_name: deferred until inspiration hits
-  :published: true
-  :excerpt: I&#8217;ve now spent quite a considerable amount of time trying to get mod_rewrite to do my bidding and I think I might just have cracked it1. The requirements Permanently redirect (301) and requests for www.the-local-paper.co.uk to the-local-pape...
-  :title: Chris 1, mod_rewrite 0 (muhahahaha)
+:title: An open letter to my local newspapers
 :body: |-
   I just sent this email to the editors of four local papers.
   
@@ -62,44 +46,43 @@
 :guid: 9db9abce-9f4e-4ae0-b16c-26c7a8ab9fc1
 :comments: 
 - :published_at: 2007-06-04 13:37:57 +01:00
+  :body: Great idea -- might take a leaf out of your book and approach my locals too!
+  :url: http://dies-el.co.uk/
   :author: Andrew
   :article_id: 8189
-  :url: http://dies-el.co.uk/
-  :body: Great idea -- might take a leaf out of your book and approach my locals too!
 - :published_at: 2007-06-04 18:01:57 +01:00
+  :body: Thanet has FOUR newspapers? Blimey. These days we get precisely, er, zero local papers delivered (in Sidcup) which puts me on the wrong side of the can't-be-bothered barrier.
+  :url: ""
   :author: Mike Woodhouse
   :article_id: 8189
-  :url: ""
-  :body: Thanet has FOUR newspapers? Blimey. These days we get precisely, er, zero local papers delivered (in Sidcup) which puts me on the wrong side of the can't-be-bothered barrier.
 - :published_at: 2007-06-05 15:24:49 +01:00
-  :author: Adem
-  :article_id: 8189
-  :url: http://www.ademweb.co.uk/blog
   :body: |-
     Any response yet?? Sadly I believe that it'll be filed under option d)received and ignored.
     
     I'd actually prefer if it had maybe the introductory paragraph to give at least an outline of the article but this obviously runs into some copyright issues etc.
     
     Good luck with this though, and you will be whole-heartedy welcomed on the <a href="http://www.thanetbloglist.co.uk">Thanet Blog List</a>
-- :published_at: 2007-06-06 12:37:51 +01:00
+  :url: http://www.ademweb.co.uk/blog
   :author: Adem
   :article_id: 8189
-  :url: http://www.ademweb.co.uk/blog
+- :published_at: 2007-06-06 12:37:51 +01:00
   :body: Also... have you checked out <a href="http://www.thanetbloglist.co.uk/?p=142">this</a>? They didn't even contact me about it. I guess they don't have to but it would've been nice.
-- :published_at: 2007-06-07 08:09:54 +01:00
-  :author: Chris
+  :url: http://www.ademweb.co.uk/blog
+  :author: Adem
   :article_id: 8189
-  :url: ""
+- :published_at: 2007-06-07 08:09:54 +01:00
   :body: |-
     Adem,
     
     Just had a look at the Thanet Times thing.  It's pretty cool that you got a response from the author of the article in the comments.  In fact, I'm hoping Kathy might still be around in order to promote this post.
-- :published_at: 2007-07-10 12:21:56 +01:00
-  :author: Adem
+  :url: ""
+  :author: Chris
   :article_id: 8189
-  :url: http://ademblog.blogspot.com
+- :published_at: 2007-07-10 12:21:56 +01:00
   :body: |-
     Just found <a href="http://www.holdthefrontpage.co.uk/news/2007/07july/070706buy.shtml">this</a> out on the local blogger circuit.
     
     The Trinity group has been bought out and apparently the new owners run the Daily Mail too. I'm sure they'll add some 'class' to the local rags. I wonder how many Diana stories they'll get in there!
-:title: An open letter to my local newspapers
+  :url: http://ademblog.blogspot.com
+  :author: Adem
+  :article_id: 8189

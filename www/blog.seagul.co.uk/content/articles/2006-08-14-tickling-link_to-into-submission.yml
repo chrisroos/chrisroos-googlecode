@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-08-14 23:10:00 +01:00
-:trackbacks: []
-
+:title: Tickling link_to into submission
 :body: |-
   What a crappy title.  Ho hum.
   
@@ -25,16 +24,15 @@
 :guid: 2c8962ca-90bd-441c-925e-cc037419b148
 :comments: 
 - :published_at: 2006-08-15 19:20:49 +01:00
+  :body: Nice idea and looks useful. I'm more for having assertions which check for the correct links in your functional tests.
+  :url: http://iamrice.org
   :author: Damien Tanner
   :article_id: 116
-  :url: http://iamrice.org
-  :body: Nice idea and looks useful. I'm more for having assertions which check for the correct links in your functional tests.
 - :published_at: 2006-08-16 09:00:10 +01:00
-  :author: Chris
-  :article_id: 116
-  :url: ""
   :body: |-
     Damien,
     
     The intention is not to replace assertions in functional tests but rather aid in the discovery of any invalid assertions.
-:title: Tickling link_to into submission
+  :url: ""
+  :author: Chris
+  :article_id: 116

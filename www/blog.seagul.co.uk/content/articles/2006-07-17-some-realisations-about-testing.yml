@@ -1,7 +1,6 @@
 --- 
 :published_at: 2006-07-17 09:19:00 +01:00
-:trackbacks: []
-
+:title: Some realisations about testing
 :body: |-
   Having been predominantly involved in "Rails":http://www.rubyonrails.com development just recently, "fixtures":http://api.rubyonrails.com/classes/Fixtures.html have taken on a slightly different meaning to what I now believe to be the original understanding.  Having recently re-read "Test Driven Development: By Example":http://www.amazon.co.uk/gp/product/0321146530/202-8808398-1811851?v=glance&n=266239 I re-discovered the 'original' meaning of the word (essentially shared objects used by all tests in a test case).
   
@@ -54,4 +53,3 @@
 :guid: b0ddd5f2-7446-4b4a-9213-b6639f93549c
 :comments: []
 
-:title: Some realisations about testing
