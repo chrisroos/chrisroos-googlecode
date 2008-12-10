@@ -3,19 +3,19 @@
 :thread_id: "8074280"
 :created_at: 2007-01-15T22:06
 :message: |-
-  <p>Jamis, I&#8217;m confused as to how this fits in with the &#8220;Tell, don&#8217;t ask&#8221; principle.  I&#8217;m probably missing something, but, it very much seems to me that we&#8217;re <em>asking</em> a person for their hobbies and then <em>telling</em> the hobbies to add a hobby to itself.  The fact that we are getting a proxy that represents their hobbies rather than the hobbies object directly seems irrelevant.</p><p>I&#8217;m thinking in terms of testing, and in particular, using mocks and stubs.  By exposing the association proxies publicly, we have to provide more complicated mocks/stubs in our tests.</p><p>Assuming we want to test a controller action that adds a hobby to a given person, and we&#8217;re exposing the hobbies object directly, we would have something like:</p><typo:code lang="ruby">
+  <p>Jamis, I&#8217;m confused as to how this fits in with the &#8220;Tell, don&#8217;t ask&#8221; principle.  I&#8217;m probably missing something, but, it very much seems to me that we&#8217;re <em>asking</em> a person for their hobbies and then <em>telling</em> the hobbies to add a hobby to itself.  The fact that we are getting a proxy that represents their hobbies rather than the hobbies object directly seems irrelevant.</p><p>I&#8217;m thinking in terms of testing, and in particular, using mocks and stubs.  By exposing the association proxies publicly, we have to provide more complicated mocks/stubs in our tests.</p><p>Assuming we want to test a controller action that adds a hobby to a given person, and we&#8217;re exposing the hobbies object directly, we would have something like:</p><code>
   hobbies = mock
   hobbies.expects(:&lt;&lt;).with(&#8216;MY_NEW_HOBBY&#8217;)
   person = stub(:hobbies =&gt; hobbies)
   Person.stubs(:find).returns(person)
   
   post :add_hobby, :id =&gt; 99, :hobby =&gt; &#8216;MY_NEW_HOBBY&#8217;
-  </typo:code><p>As a slight aside, I feel more uncomfortable because of the aliasing of &lt;&lt; as both push and concat (which of the three methods should we expect?).  However, I&#8217;ll admit that this is more a problem of tightly tying our tests to our implementation.  I would, however, still feel better if there was only one way to do what was required (i.e. one addition method.)</p><p>If we were able to tell our person to add their own hobby then the test becomes slightly cleaner.</p><typo:code lang="ruby">
+  </code><p>As a slight aside, I feel more uncomfortable because of the aliasing of &lt;&lt; as both push and concat (which of the three methods should we expect?).  However, I&#8217;ll admit that this is more a problem of tightly tying our tests to our implementation.  I would, however, still feel better if there was only one way to do what was required (i.e. one addition method.)</p><p>If we were able to tell our person to add their own hobby then the test becomes slightly cleaner.</p><code>
   person = mock
   person.expects(:add_hobby).with(&#8216;MY_NEW_HOBBY)
   Person.stubs(:find).returns(person)
   
   post :add_hobby, :id =&gt; 99, &#8216;MY_NEW_HOBBY&#8217;
-  </typo:code><p>Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it&#8217;s probably all irrelevant?</p>
+  </code><p>Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it&#8217;s probably all irrelevant?</p>
 :author_name: Chris Roos
 :author_email: chris@seagul.co.uk
