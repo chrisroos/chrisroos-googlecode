@@ -1,6 +1,5 @@
 --- 
 :published_at: 2007-06-23 12:34:00 +01:00
-:title: Automatically download egg credit card transactions
 :body: |-
   I've followed in my "previous":http://blog.seagul.co.uk/articles/2007/05/14/automatically-downloading-my-recent-transactions-from-lloyds-tsb "footsteps":http://blog.seagul.co.uk/articles/2007/05/04/automatically-downloading-my-most-recent-hsbc-transactions and automated the download of my "egg":http://egg.com credit card transactions and statements.  Using this in combination with my "ofx convertor":http://blog.seagul.co.uk/articles/2007/04/01/converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe makes it easier for me to upload my financial data to "wesabe":http://www.wesabe.com.
   
@@ -52,6 +51,5 @@
   
   
   </typo:code>
+:title: Automatically download egg credit card transactions
 :guid: 363cbb26-fe78-42b3-a605-b8a399a73e1d
-:comments: []
-

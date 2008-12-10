@@ -1,12 +1,10 @@
 --- 
 :published_at: 2005-11-18 00:03:00 +00:00
-:title: dabble db initial thoughts
 :body: |-
   I've been following the "blog":http://www.smallthought/blog for "dabbledb":http://dabbledb.com/about/ from "smallthought":http://www.smallthought.com/.  I was initially excited about the promise of this software having read about it in a "post":http://chadfowler.com/index.cgi/Computing/LongTailTriesToWagTheDog by "Chad Fowler":http://www.chadfowler.com.  It intends to replace those custom Excel/Access 'applications' that are so pervasive in organisations of all sizes.
   
   Today I saw a "post":http://smallthought.com/blog/?p=13 on the dabbledb blog containing a link to a movie of the software being used.  Completely initial impression with no real knowledge behind it is that it looks far too complicated to take the market for which it is intended.
   
   Having said that, I'll wait to see more movies and maybe be lucky enough to get to try it in beta before commenting further.
+:title: dabble db initial thoughts
 :guid: 3d609757-2f41-4684-8775-c91de62e5041
-:comments: []
-

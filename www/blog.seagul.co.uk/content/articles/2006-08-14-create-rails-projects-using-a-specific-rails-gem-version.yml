@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-08-14 22:06:00 +01:00
-:title: Create rails projects using a specific rails gem version
 :body: |-
   I just found this when trying to create a rails project using rails 1.0.0 (having both 1.0.0 and 1.1.6 installed as gems).
   
@@ -23,6 +22,5 @@
   </code>
   
   By passing the version argument to the rails command and then placing rails 1.0.0 into the vendor directory, everything works as expected.
+:title: Create rails projects using a specific rails gem version
 :guid: 7f4e04b5-6e29-43ee-a225-898096a42579
-:comments: []
-

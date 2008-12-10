@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-07-12 01:17:00 +01:00
-:title: Ruby hashes with default values
 :body: |-
   I found that on several occasions I've wanted to create a hash that increments the number of instances of a given key.  We could do something manual like.
   
@@ -46,6 +45,5 @@
   </typo:code>
   
   I say I looked it up today but to be fair there's every chance that I was well aware of this at some point in the past...
+:title: Ruby hashes with default values
 :guid: 664f8f79-b0d0-45b8-be0e-ce1afecd56dc
-:comments: []
-

@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-07-17 09:19:00 +01:00
-:title: Some realisations about testing
 :body: |-
   Having been predominantly involved in "Rails":http://www.rubyonrails.com development just recently, "fixtures":http://api.rubyonrails.com/classes/Fixtures.html have taken on a slightly different meaning to what I now believe to be the original understanding.  Having recently re-read "Test Driven Development: By Example":http://www.amazon.co.uk/gp/product/0321146530/202-8808398-1811851?v=glance&n=266239 I re-discovered the 'original' meaning of the word (essentially shared objects used by all tests in a test case).
   
@@ -50,6 +49,5 @@
   Notice that the names of the tests all start 'test_should'.  Not only does this help us think about the responsibilities of the object; but it enables us to maintain living system specifications based on the tests.  I believe this idea first came from "testdox for Java":http://agiledox.sourceforge.net/index.html but was introduced to me by "Ben":http://www.reevoo.com/blogs/bengriffiths/ at "work":http://www.reevoo.com.  In fact Ben has written a cool "Agiledox server":http://www.reevoo.com/blogs/bengriffiths/2006/04/05/rails-agiledox-browser/ that displays the system specifications for your rails project.
   
   The realisations set out above have come at around the same time as my taking more of an interest in "rSpec":http://rspec.rubyforge.org/ (the stack test above has been adapted directly from one of the rSpec examples); a "behaviour driven development":http://behaviour-driven.org/ framework for "ruby":http://www.ruby-lang.org.  I haven't done any real work with rSpec yet but am hoping it might improve the way I think of both testing and OO design in general.
+:title: Some realisations about testing
 :guid: b0ddd5f2-7446-4b4a-9213-b6639f93549c
-:comments: []
-

@@ -1,6 +1,5 @@
 --- 
 :published_at: 2008-03-31 14:18:43 +01:00
-:title: Another project - Public Swimming Pools in the UK
 :body: |-
   Not content with already having a "bunch of unfinished projects":/articles/2008/02/18/what-ive-been-up-to-projects-and-ideas I thought I'd embark upon another.
   
@@ -9,6 +8,5 @@
   According to this "parliamentary question":http://www.theyworkforyou.com/wrans/?id=2008-03-10b.192802.h, the "department for Culture, Media and Sport":http://www.culture.gov.uk/ know the number and type of pools opened and closed since 2004: actually, I've just noticed that they appear to rely on the Active Places database.  There's an email address (actually, a Sport England address) on the Active Places website that I'm going to use to see if I can get hold of this data.
   
   The initial, and most basic, site will just list all the public swimming pools and, I'm hoping this is pretty easy with the "Google Maps API":http://code.google.com/apis/maps/, allow you to search for one by location.  As, and indeed if, the site evolves, I'd like to get lots more useful information about these pools up: I'm hoping that allowing users to comment will reveal useful info about the best times to visit depending on what you're trying to get out of it.
+:title: Another project - Public Swimming Pools in the UK
 :guid: 81049870-4a70-495f-8774-ef1ca3d2f15f
-:comments: []
-

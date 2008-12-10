@@ -1,6 +1,5 @@
 --- 
 :published_at: 2008-02-04 09:53:00 +00:00
-:title: Sending trackbacks to the sites that you bookmark in del.icio.us
 :body: |-
   I know they have their problems (I had 26 good and 38428 spam when they were enabled on my site) but I've always liked the idea of "trackbacks":http://en.wikipedia.org/wiki/Trackback (and the "pingback":http://en.wikipedia.org/wiki/Pingback alternative).
   
@@ -26,6 +25,5 @@
   * Hope it all works and doesn't destroy your computer :-)
   
   Oh, and I've created a real simple "trackback server":http://chrisroos.googlecode.com/svn/trunk/scratch/trackback-server/ (well, a "mongrel":http://mongrel.rubyforge.org/ handler) and a dummy page that includes a link to this server so that you can see the trackbacks being sent.
+:title: Sending trackbacks to the sites that you bookmark in del.icio.us
 :guid: be4e61ba-08ff-4e98-b8f1-81a67147bc4a
-:comments: []
-

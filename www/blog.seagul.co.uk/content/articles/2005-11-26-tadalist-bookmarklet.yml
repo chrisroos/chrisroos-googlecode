@@ -1,6 +1,5 @@
 --- 
 :published_at: 2005-11-26 20:30:00 +00:00
-:title: Tadalist bookmarklet
 :body: |-
   I've been aware of, and used periodically, "tadalist":http://www.tadalists.com from "37 signals":http://www.37signals.com.
   
@@ -24,6 +23,5 @@
   If you really feel the need to try this, just copy this <a href="javascript:var new_item=prompt('Add Item'); location.href = 'http://USERNAME.tadalist.com/item/add?list_id=LIST_ID&content='+encodeURIComponent(new_item); alert('Added'); location.href='http://USERNAME.tadalist.com/lists/show/LIST_ID';">link</a> to your bookmarks.  You will need to replace USERNAME with your username and LISTID with the id of the list that you want items to be added to.  To find the id (I'd suggest creating a new list like 'added from browser') click on the relevant list in tada and copy the number from the url after lists/show.
   
   Oh yeah, you will also need to be logged into tada for this to work, otherwise you get a nasty looking "error page":http://www.tadalist.com/no_page_here.
+:title: Tadalist bookmarklet
 :guid: 35c66656-2270-40b7-a2cb-7b7666011625
-:comments: []
-

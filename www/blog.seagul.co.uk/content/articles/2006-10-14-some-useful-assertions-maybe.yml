@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-10-14 10:27:00 +01:00
-:title: Some useful assertions, maybe
 :body: |-
   The first is to ensure two arrays contain the same elements not necessarily in the same order.
   
@@ -73,6 +72,5 @@
   
   end
   </typo:code>
+:title: Some useful assertions, maybe
 :guid: a332b171-dc34-4382-b88a-8a408ec5806e
-:comments: []
-

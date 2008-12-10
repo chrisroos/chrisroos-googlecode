@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-07-17 09:22:00 +01:00
-:title: Test::Unit abstract test case
 :body: |-
   Having found a "new way to structure my tests":http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing, the need for some common setup shared by multiple test cases became apparent.
   
@@ -84,6 +83,5 @@
     # 'No test were specified' error
   end
   </typo:code>
+:title: Test::Unit abstract test case
 :guid: 5c626e81-8c1f-42ca-afea-2a1e325b1566
-:comments: []
-

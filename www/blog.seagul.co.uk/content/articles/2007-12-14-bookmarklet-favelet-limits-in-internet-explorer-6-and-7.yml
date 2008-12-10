@@ -1,6 +1,5 @@
 --- 
 :published_at: 2007-12-14 08:46:00 +00:00
-:title: Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)
 :body: |-
   I wasted quite a bit of time over the last couple of days trying to get a "bookmarklet":http://en.wikipedia.org/wiki/Bookmarklet (or favelet) working in Internet Explorer 6.  It worked perfectly in Firefox and Safari but wasn't doing anything at all in IE.  Through lots of trial and error, I came to the conclusion that it was because of the length of the bookmarklet: it seems that Microsoft "reduced the maximum length of a bookmarklet in IE 6":http://www.squarefree.com/2005/01/12/internet-explorer-drops-support-for-bookmarklets/
   
@@ -51,6 +50,5 @@
   I've cheated a bit in the 'encoding' above.  IE removes all newlines (I wonder if this happens in the DOM or just when you add it as a favourite?) so that the bookmarklet appears on one line.  I needed to do the same but also needed those newlines in the msg to remain (hence the NEW-LINE replacement stuff).  This is a very naive imlpementation: if you have '\n\n', for example, then it breaks.  The 'encoding' would need to be a little more intelligent in an actual helper (but only if you wanted to report on the size of the bookmarklet).
   
   I couldn't find any reference to source of this 508 character limit in Internet Explorer: all the blog articles just state it as fact.  So, maybe it's not 508.  Maybe it's actually 505...
+:title: Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)
 :guid: 958ddabd-4102-4da1-8e3b-18a07bb38d35
-:comments: []
-

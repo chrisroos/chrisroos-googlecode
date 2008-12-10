@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-02-23 16:46:00 +00:00
-:title: Rails rake testing without database
 :body: |-
   Continuing from the "previous post":http://blog.seagul.co.uk/articles/2006/02/23/rails-testing-without-database, it appears that the rake testing tasks are also tightly coupled to active record.
   
@@ -30,6 +29,5 @@
   Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
   Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
   </typo:code>
+:title: Rails rake testing without database
 :guid: 7436c1ad-8856-4b00-8575-83adcce61509
-:comments: []
-
