@@ -21,11 +21,12 @@ Dir[File.join(PROJECT_ROOT, 'content', 'articles', '*.yml')].each do |post_filen
       
       comment.delete(:article_id)
       comment[:thread_id] = disqus_thread['id']
-      comment[:body] = RedCloth.new(comment[:body]).to_html(:textile).to_s
-      comment[:author_email] = if comment[:author] == 'Chris Roos'
+      comment[:message] = RedCloth.new(comment.delete(:body)).to_html(:textile).to_s
+      comment[:author_name] = comment.delete(:author)
+      comment[:author_email] = if comment[:author_name] == 'Chris Roos'
         'chris@seagul.co.uk'
       else
-        "#{comment[:author].downcase.gsub(/\W/, '')}+#{Time.now.to_i}@seagul.co.uk"
+        "#{comment[:author_name].downcase.gsub(/\W/, '')}+#{Time.now.to_i}@seagul.co.uk"
       end
       comment[:created_at] = comment.delete(:published_at).strftime("%Y-%m-%dT%H:%M")
       comment[:author_url] = comment.delete(:url)
