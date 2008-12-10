@@ -1,11 +1,7 @@
 --- 
-:author_name: Ben
-:author_email: ben+1228905515@seagul.co.uk
+:author_url: ""
 :thread_id: "8148812"
 :created_at: 2006-08-11T17:45
-:message: |-
-  <p>Perhaps this should be improved so it doesn&#8217;t load the entire Rails framework. I think the config parsing and the ActiveRecord module would be enough. Can someone confirm this ?</p>
-  
-  
-  	<p>I only have a pbook g4. Booting Rails entirely takes a few seconds&#8230; I&#8217;d expect something faster for a TextMate tooltip :)</p>
-:author_url: ""
+:message: <p>Perhaps this should be improved so it doesn&#8217;t load the entire Rails framework. I think the config parsing and the ActiveRecord module would be enough. Can someone confirm this ?</p><p>I only have a pbook g4. Booting Rails entirely takes a few seconds&#8230; I&#8217;d expect something faster for a TextMate tooltip :)</p>
+:author_name: Ben
+:author_email: ben+1228905515@seagul.co.uk

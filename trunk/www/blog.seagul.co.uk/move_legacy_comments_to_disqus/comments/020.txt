@@ -1,14 +1,7 @@
 --- 
-:author_name: Edward Ocampo-Gooding
-:author_email: edwardocampogooding+1228905515@seagul.co.uk
+:author_url: ""
 :thread_id: "8148812"
 :created_at: 2006-07-15T20:22
-:message: |-
-  <p>That is pretty darn nifty.</p>
-  
-  
-  	<p>I agree with you in regards to how I think it&#8217;s dangerous to have a plugin copy and paste text into your model, because there&#8217;s nothing that keeps an errant or tired developer from not running the script after every modification from the database.</p>
-  
-  
-  	<p>It would be safer if there was a hook in the plugin that got it to run on every migration, but for larger projects, it might be painful (although I&#8217;d be surprised if it&#8217;s <strong>really</strong> bad).</p>
-:author_url: ""
+:message: <p>That is pretty darn nifty.</p><p>I agree with you in regards to how I think it&#8217;s dangerous to have a plugin copy and paste text into your model, because there&#8217;s nothing that keeps an errant or tired developer from not running the script after every modification from the database.</p><p>It would be safer if there was a hook in the plugin that got it to run on every migration, but for larger projects, it might be painful (although I&#8217;d be surprised if it&#8217;s <strong>really</strong> bad).</p>
+:author_name: Edward Ocampo-Gooding
+:author_email: edwardocampogooding+1228905515@seagul.co.uk

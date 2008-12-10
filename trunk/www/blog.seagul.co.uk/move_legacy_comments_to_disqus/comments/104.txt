@@ -1,11 +1,7 @@
 --- 
-:author_name: Ed
-:author_email: ed+1228905516@seagul.co.uk
+:author_url: ""
 :thread_id: "7977637"
 :created_at: 2007-07-13T18:11
-:message: |-
-  <p>Cool stuff. Another way to do this is to use the Nestoria API.</p>
-  
-  
-  	<p><a href="http://www.nestoria.co.uk/help/api-tech">http://www.nestoria.co.uk/help/api-tech</a></p>
-:author_url: ""
+:message: <p>Cool stuff. Another way to do this is to use the Nestoria API.</p><p><a href="http://www.nestoria.co.uk/help/api-tech">http://www.nestoria.co.uk/help/api-tech</a></p>
+:author_name: Ed
+:author_email: ed+1228905516@seagul.co.uk

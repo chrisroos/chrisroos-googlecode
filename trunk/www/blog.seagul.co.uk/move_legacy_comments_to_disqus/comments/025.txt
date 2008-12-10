@@ -1,14 +1,7 @@
 --- 
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk
+:author_url: ""
 :thread_id: "8148812"
 :created_at: 2006-07-17T18:21
-:message: |-
-  <p>@Chris &#8211; Thanks for mentioning it to Allan.</p>
-  
-  
-  	<p>@Allan &#8211; It&#8217;s great that it&#8217;s included in the rails bundle.</p>
-  
-  
-  	<p>I&#8217;m just glad it&#8217;s proving useful to others too.</p>
-:author_url: ""
+:message: <p>@Chris &#8211; Thanks for mentioning it to Allan.</p><p>@Allan &#8211; It&#8217;s great that it&#8217;s included in the rails bundle.</p><p>I&#8217;m just glad it&#8217;s proving useful to others too.</p>
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk

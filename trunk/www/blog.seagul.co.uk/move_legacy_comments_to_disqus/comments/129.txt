@@ -1,25 +1,10 @@
 --- 
-:author_name: Mike Woodhouse
-:author_email: mikewoodhouse+1228905516@seagul.co.uk
+:author_url: ""
 :thread_id: "2594266"
 :created_at: 2007-11-16T10:32
 :message: |-
-  <p>Lordy, the idea that any consultant that HSBC would ever hire would ever recommend open-source is, I dunno, a bit freaky. And I write from having been a consultant in the past, dealing in part with retail banking operations. If you worked for Accenture (to risk unfairly badmouthing what in reality may be a very forward-thinking company) then you&#8217;d be a much better corporate servant if you recommended that your comapny be retained to build an in-house alternative. What&#8217;s best for the consultants is not necessarily best for the client.</p>
-  
-  
-  	<p>I could be wrong, but I think you&#8217;d be likely to find that the kind of individual working on t&#8217;Internet apps at a retail bank such as HSBC is going to be someone who has been retrained from IBM mainframe COBOL and isn&#8217;t happy about it. In fact, they probably resent the heck out of the whole t&#8217;Internet* thing.</p>
-  
-  
-  	<p>And I can&#8217;t even begin to speculate how awful senior IT management in such a place must be. I suppose I could ask my brother, who deals with them at Lloyds TSB.</p>
-  
-  
-  	<p>Golly, I&#8217;m a cynical, Grumpy Old Man.</p>
-  
-  
-  	<p>It&#8217;s not all gloom, though &#8211; my place (a German bank whose name sort of means &#8220;German&#8221; in German) has just made Rails available as an option for intranet sites. So I can now get paid to work in Ruby. Which must be progress.</p>
-  
-  
-  	<ul>
+  <p>Lordy, the idea that any consultant that HSBC would ever hire would ever recommend open-source is, I dunno, a bit freaky. And I write from having been a consultant in the past, dealing in part with retail banking operations. If you worked for Accenture (to risk unfairly badmouthing what in reality may be a very forward-thinking company) then you&#8217;d be a much better corporate servant if you recommended that your comapny be retained to build an in-house alternative. What&#8217;s best for the consultants is not necessarily best for the client.</p><p>I could be wrong, but I think you&#8217;d be likely to find that the kind of individual working on t&#8217;Internet apps at a retail bank such as HSBC is going to be someone who has been retrained from IBM mainframe COBOL and isn&#8217;t happy about it. In fact, they probably resent the heck out of the whole t&#8217;Internet* thing.</p><p>And I can&#8217;t even begin to speculate how awful senior IT management in such a place must be. I suppose I could ask my brother, who deals with them at Lloyds TSB.</p><p>Golly, I&#8217;m a cynical, Grumpy Old Man.</p><p>It&#8217;s not all gloom, though &#8211; my place (a German bank whose name sort of means &#8220;German&#8221; in German) has just made Rails available as an option for intranet sites. So I can now get paid to work in Ruby. Which must be progress.</p><ul>
   	<li>Sorry, I&#8217;ve been reading a Peter Kay book recently.</li>
   	</ul>
-:author_url: ""
+:author_name: Mike Woodhouse
+:author_email: mikewoodhouse+1228905516@seagul.co.uk

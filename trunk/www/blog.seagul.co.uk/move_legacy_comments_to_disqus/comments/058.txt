@@ -1,11 +1,7 @@
 --- 
-:author_name: Adem
-:author_email: adem+1228905515@seagul.co.uk
+:author_url: http://ademblog.blogspot.com
 :thread_id: "3402579"
 :created_at: 2007-01-15T13:07
-:message: |-
-  <p>Lazy Lazy Lazy.</p>
-  
-  
-  	<p>I bet they do it on purpose.</p>
-:author_url: http://ademblog.blogspot.com
+:message: <p>Lazy Lazy Lazy.</p><p>I bet they do it on purpose.</p>
+:author_name: Adem
+:author_email: adem+1228905515@seagul.co.uk

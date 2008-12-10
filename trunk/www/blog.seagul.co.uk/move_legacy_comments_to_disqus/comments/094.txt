@@ -1,11 +1,7 @@
 --- 
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk
+:author_url: ""
 :thread_id: "7990315"
 :created_at: 2007-06-07T08:09
-:message: |-
-  <p>Adem,</p>
-  
-  
-  	<p>Just had a look at the Thanet Times thing.  It&#8217;s pretty cool that you got a response from the author of the article in the comments.  In fact, I&#8217;m hoping Kathy might still be around in order to promote this post.</p>
-:author_url: ""
+:message: <p>Adem,</p><p>Just had a look at the Thanet Times thing.  It&#8217;s pretty cool that you got a response from the author of the article in the comments.  In fact, I&#8217;m hoping Kathy might still be around in order to promote this post.</p>
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk

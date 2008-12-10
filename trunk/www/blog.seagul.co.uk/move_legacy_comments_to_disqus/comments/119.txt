@@ -1,14 +1,7 @@
 --- 
-:author_name: James Adam
-:author_email: jamesadam+1228905516@seagul.co.uk
+:author_url: http://interblah.net
 :thread_id: "5045648"
 :created_at: 2007-09-27T10:16
-:message: |-
-  <p>Hopefully I&#8217;ll get the change to post some of our discussion to interblah.net soon :)</p>
-  
-  
-  	<p>Incidentally, you might want to investigate using Git as your source control system; since that allows operation without connection to any remote server, you&#8217;d be able to make smaller commits with more detailed information about the &#8220;why&#8221;s. Using git-svn, you can even push those changes back up to an SVN server for consumption by the masses.</p>
-  
-  
-  	<p>That said, it&#8217;s taken me a few weeks to get my head around the conceptual differences between git and SVN &#8211; it&#8217;s not for everyone, that&#8217;s for sure.</p>
-:author_url: http://interblah.net
+:message: <p>Hopefully I&#8217;ll get the change to post some of our discussion to interblah.net soon :)</p><p>Incidentally, you might want to investigate using Git as your source control system; since that allows operation without connection to any remote server, you&#8217;d be able to make smaller commits with more detailed information about the &#8220;why&#8221;s. Using git-svn, you can even push those changes back up to an SVN server for consumption by the masses.</p><p>That said, it&#8217;s taken me a few weeks to get my head around the conceptual differences between git and SVN &#8211; it&#8217;s not for everyone, that&#8217;s for sure.</p>
+:author_name: James Adam
+:author_email: jamesadam+1228905516@seagul.co.uk

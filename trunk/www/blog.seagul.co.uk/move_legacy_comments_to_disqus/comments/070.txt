@@ -1,18 +1,9 @@
 --- 
-:author_name: Marc
-:author_email: marc+1228905515@seagul.co.uk
+:author_url: ""
 :thread_id: "7985361"
 :created_at: 2007-09-05T23:15
 :message: |-
-  <p>Hey Chris,</p>
-  
-  
-  	<p>Thanks for the code but I can&#8217;t get it working. It doesn&#8217;t seem to generate a valid OFX file for me, by which I mean it actually looks like valid OFX (as far as I can tell) but doesn&#8217;t seem to upload to Wesabe nor validate with the Money OFX Data Analyzer that I found.</p>
-  
-  
-  	<p>I&#8217;ve got the latest code from your google repository. Any ideas?</p>
-  
-  
-  	<p>Cheers,
+  <p>Hey Chris,</p><p>Thanks for the code but I can&#8217;t get it working. It doesn&#8217;t seem to generate a valid OFX file for me, by which I mean it actually looks like valid OFX (as far as I can tell) but doesn&#8217;t seem to upload to Wesabe nor validate with the Money OFX Data Analyzer that I found.</p><p>I&#8217;ve got the latest code from your google repository. Any ideas?</p><p>Cheers,
   Marc</p>
-:author_url: ""
+:author_name: Marc
+:author_email: marc+1228905515@seagul.co.uk

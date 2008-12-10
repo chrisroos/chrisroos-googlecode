@@ -1,14 +1,7 @@
 --- 
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk
+:author_url: ""
 :thread_id: "8074280"
 :created_at: 2007-01-13T13:21
-:message: |-
-  <p>Hi Jamis,</p>
-  
-  
-  	<p>I think the problem is that we&#8217;re asking a person for their hobbies object in order to manipulate it directly.  What we really want to do is tell the person to add their own hobby &#8211; we don&#8217;t care how they go about it.</p>
-  
-  
-  	<p>Apologies for the short answer &#8211; I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I&#8217;ll try a follow-up post with more exploration of the issue.</p>
-:author_url: ""
+:message: <p>Hi Jamis,</p><p>I think the problem is that we&#8217;re asking a person for their hobbies object in order to manipulate it directly.  What we really want to do is tell the person to add their own hobby &#8211; we don&#8217;t care how they go about it.</p><p>Apologies for the short answer &#8211; I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I&#8217;ll try a follow-up post with more exploration of the issue.</p>
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk

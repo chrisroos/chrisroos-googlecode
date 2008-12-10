@@ -1,17 +1,7 @@
 --- 
-:author_name: Jon
-:author_email: jon+1228905516@seagul.co.uk
+:author_url: ""
 :thread_id: "3021898"
 :created_at: 2008-01-07T19:21
-:message: |-
-  <p>Cool!</p>
-  
-  
-  	<p>I wondered though, do you know of a way i can create an offline journey planner? Is there a way of downloading the national rail timetables onto my pc to intergrate into a websites hosted on my web server on my pc?</p>
-  
-  
-  	<p>E-Mail me at: jonontheradio@hotmail.co.uk</p>
-  
-  
-  	<p>Thanks</p>
-:author_url: ""
+:message: "<p>Cool!</p><p>I wondered though, do you know of a way i can create an offline journey planner? Is there a way of downloading the national rail timetables onto my pc to intergrate into a websites hosted on my web server on my pc?</p><p>E-Mail me at: jonontheradio@hotmail.co.uk</p><p>Thanks</p>"
+:author_name: Jon
+:author_email: jon+1228905516@seagul.co.uk

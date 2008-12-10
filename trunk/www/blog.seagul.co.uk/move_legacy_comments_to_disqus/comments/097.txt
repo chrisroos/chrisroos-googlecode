@@ -1,11 +1,7 @@
 --- 
-:author_name: Mr F
-:author_email: mrf+1228905515@seagul.co.uk
+:author_url: ""
 :thread_id: "8032199"
 :created_at: 2007-06-14T14:19
-:message: |-
-  <p>How is it mounted to the wall chris, is it on a frame or something.</p>
-  
-  
-  	<p>Shame there&#8217;s not any decent pictures of Ramsgate</p>
-:author_url: ""
+:message: <p>How is it mounted to the wall chris, is it on a frame or something.</p><p>Shame there&#8217;s not any decent pictures of Ramsgate</p>
+:author_name: Mr F
+:author_email: mrf+1228905515@seagul.co.uk

@@ -1,11 +1,7 @@
 --- 
-:author_name: mike
-:author_email: mike+1228905515@seagul.co.uk
+:author_url: ""
 :thread_id: "7927386"
 :created_at: 2007-10-29T17:18
-:message: |-
-  <p>Any updates on where I can get this new pop3 ssl library?  All the links are broken..</p>
-  
-  
-  	<p>thanks</p>
-:author_url: ""
+:message: <p>Any updates on where I can get this new pop3 ssl library?  All the links are broken..</p><p>thanks</p>
+:author_name: mike
+:author_email: mike+1228905515@seagul.co.uk

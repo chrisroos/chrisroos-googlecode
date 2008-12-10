@@ -1,11 +1,7 @@
 --- 
-:author_name: Ryan Allen
-:author_email: ryanallen+1228905515@seagul.co.uk
+:author_url: http://leftjoinrightjoin.com
 :thread_id: "8148812"
 :created_at: 2006-07-18T00:42
-:message: |-
-  <p>Rodney: To make it better, 1. not load the whole rails environment to get the attributes, 2. support set_table_name :)</p>
-  
-  
-  	<p>But nice one! Textmate just updated so I imagine I&#8217;ve already got it!</p>
-:author_url: http://leftjoinrightjoin.com
+:message: "<p>Rodney: To make it better, 1. not load the whole rails environment to get the attributes, 2. support set_table_name :)</p><p>But nice one! Textmate just updated so I imagine I&#8217;ve already got it!</p>"
+:author_name: Ryan Allen
+:author_email: ryanallen+1228905515@seagul.co.uk

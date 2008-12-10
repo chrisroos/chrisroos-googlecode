@@ -1,8 +1,7 @@
 --- 
-:author_name: Allan Odgaard
-:author_email: allanodgaard+1228905515@seagul.co.uk
+:author_url: http://macromates.com/blog/
 :thread_id: "8148812"
 :created_at: 2006-07-17T15:40
-:message: "<p>I added this to the Rails bundle included with TextMate, hopefully you won\xE2\x80\x99t mind :)</p>\n\n\n\
-  \t<p>I gave it a key equivalent of \xE2\x8C\x83\xE2\x87\xA7\xE2\x8C\x98S (a little convoluted, but presumably this isn\xE2\x80\x99t a frequent action) and placed it in the Model submenu. I also added a progress indicator since it took ~1.5s for me for the tool tip to show.</p>"
-:author_url: http://macromates.com/blog/
+:message: "<p>I added this to the Rails bundle included with TextMate, hopefully you won\xE2\x80\x99t mind :)</p><p>I gave it a key equivalent of \xE2\x8C\x83\xE2\x87\xA7\xE2\x8C\x98S (a little convoluted, but presumably this isn\xE2\x80\x99t a frequent action) and placed it in the Model submenu. I also added a progress indicator since it took ~1.5s for me for the tool tip to show.</p>"
+:author_name: Allan Odgaard
+:author_email: allanodgaard+1228905515@seagul.co.uk

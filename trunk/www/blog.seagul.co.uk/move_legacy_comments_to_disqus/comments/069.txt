@@ -1,14 +1,7 @@
 --- 
-:author_name: Tanc
-:author_email: tanc+1228905515@seagul.co.uk
+:author_url: http://tancredi.co.uk
 :thread_id: "7985361"
 :created_at: 2007-04-24T16:24
-:message: |-
-  <p>Genius! (you are).</p>
-  
-  
-  	<p>I got your system working, for some reason my ruby and gems are all messed up, probably from installing different versions around the place. Once I manually installed the Builder and Hpricot code it worked beautifully.</p>
-  
-  
-  	<p>Thank you so much for this, I&#8217;m really happy to have my egg account on Wesabe.</p>
-:author_url: http://tancredi.co.uk
+:message: <p>Genius! (you are).</p><p>I got your system working, for some reason my ruby and gems are all messed up, probably from installing different versions around the place. Once I manually installed the Builder and Hpricot code it worked beautifully.</p><p>Thank you so much for this, I&#8217;m really happy to have my egg account on Wesabe.</p>
+:author_name: Tanc
+:author_email: tanc+1228905515@seagul.co.uk

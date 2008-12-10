@@ -1,14 +1,7 @@
 --- 
-:author_name: Peter
-:author_email: peter+1228905515@seagul.co.uk
+:author_url: ""
 :thread_id: "7931180"
 :created_at: 2007-08-04T01:02
-:message: |-
-  <p>I guess they haven&#8217;t done this to all their customers, but they have changed their online banking to look more like their main site&#8230;and in the process have changed URLs, HTML coding etc. which of course breaks the script.  This is the actual error I get:</p>
-  
-  
-  	<p>hsbc.rb:30: undefined method `downcase&#8217; for nil:NilClass (NoMethodError)</p>
-  
-  
-  	<p>presumably because the regex to extract the security code indices doesn&#8217;t match any more. Since I have access to the new online banking I&#8217;ll see if I can add support for it to the script.</p>
-:author_url: ""
+:message: "<p>I guess they haven&#8217;t done this to all their customers, but they have changed their online banking to look more like their main site&#8230;and in the process have changed URLs, HTML coding etc. which of course breaks the script.  This is the actual error I get:</p><p>hsbc.rb:30: undefined method `downcase&#8217; for nil:NilClass (NoMethodError)</p><p>presumably because the regex to extract the security code indices doesn&#8217;t match any more. Since I have access to the new online banking I&#8217;ll see if I can add support for it to the script.</p>"
+:author_name: Peter
+:author_email: peter+1228905515@seagul.co.uk
