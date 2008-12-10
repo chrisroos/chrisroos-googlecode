@@ -1,7 +1,0 @@
---- 
-:author_url: http://null
-:thread_id: "3617839"
-:created_at: 2005-12-02T10:36
-:message: <p>Did you have a peak at this one at any point?</p><p><a href="http://passwordmaker.org/">http://passwordmaker.org/</a></p>
-:author_name: Paul
-:author_email: paul+1228905515@seagul.co.uk

@@ -1,7 +1,0 @@
---- 
-:author_url: http://po-ru.com/
-:thread_id: "7924273"
-:created_at: 2006-08-15T13:02
-:message: <p>The plist file can be either plain text or XML (maybe binary too); these instructions only work if the file is plain text or if it doesn&#8217;t exist yet. In my case, I already had an XML format file in that location.</p><p>If it does exist, you can either edit it by hand or open it in the property list editor instead (type &#8216;open ~/.MacOSX/environment.plist&#8217; in the console) and add a String key called &#8216;PATH&#8217; under Root.</p>
-:author_name: Paul Battley
-:author_email: paulbattley+1228905515@seagul.co.uk

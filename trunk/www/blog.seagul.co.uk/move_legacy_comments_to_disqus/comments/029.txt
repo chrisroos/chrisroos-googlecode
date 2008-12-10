@@ -1,7 +1,0 @@
---- 
-:author_name: Jamie van Dyke
-:author_email: jamievandyke+1228905515@seagul.co.uk
-:thread_id: "8148812"
-:created_at: 2006-08-10T13:51
-:message: <p>That&#8217;s handy to say the least, opening a console to double check becomes so tiresome&#8230;even if I use Visor.</p>
-:author_url: http://www.fearoffish.co.uk/

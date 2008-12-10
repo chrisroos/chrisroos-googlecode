@@ -1,7 +1,0 @@
---- 
-:author_name: Fred
-:author_email: fred+1228905515@seagul.co.uk
-:thread_id: "2643698"
-:created_at: 2006-12-04T22:51
-:message: <p>Hey, thanks for the nice words!</p>
-:author_url: http://claimid.com

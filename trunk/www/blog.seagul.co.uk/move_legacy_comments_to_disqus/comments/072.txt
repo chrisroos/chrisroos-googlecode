@@ -1,7 +1,0 @@
---- 
-:author_url: http://www.thanetbloglist.co.uk
-:thread_id: "2637337"
-:created_at: 2007-04-13T19:16
-:message: <p>Congatulations, you have been added to the <a href="http://www.thanetbloglist.co.uk">Thanet Blog List</a>.</p><p>Pop along and check out Thanet&#8217;s other blogs.</p>
-:author_name: Thanet Blog List
-:author_email: thanetbloglist+1228905515@seagul.co.uk

@@ -1,7 +1,0 @@
---- 
-:author_name: Luke Redpath
-:author_email: lukeredpath+1228905515@seagul.co.uk
-:thread_id: "8148812"
-:created_at: 2006-07-27T13:18
-:message: <p>Chris &#8211; this is really useful. Finally I can get rid of those crufty annotations &#8211; they served their purpose but its time to say goodbye ;)</p>
-:author_url: http://www.lukeredpath.co.uk

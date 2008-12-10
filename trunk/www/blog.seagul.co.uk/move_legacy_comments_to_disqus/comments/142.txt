@@ -1,7 +1,0 @@
---- 
-:author_name: Matt B
-:author_email: mattb+1228905516@seagul.co.uk
-:thread_id: "8043625"
-:created_at: 2007-12-16T15:53
-:message: <p>With ebay&#8230; I think you are better off just giving up&#8230; unless you bookmarked the auction ID and stripped of the other parameters.  Each auction has a unique number that can be tracked.  You seem to have a grasp of JavaScript so maybe you could build a linklet?</p>
-:author_url: http://thanetstar.com/

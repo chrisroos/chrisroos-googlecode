@@ -1,7 +1,0 @@
---- 
-:author_name: Mike Woodhouse
-:author_email: mikewoodhouse+1228905515@seagul.co.uk
-:thread_id: "7990315"
-:created_at: 2007-06-04T18:01
-:message: <p>Thanet has FOUR newspapers? Blimey. These days we get precisely, er, zero local papers delivered (in Sidcup) which puts me on the wrong side of the can&#8217;t-be-bothered barrier.</p>
-:author_url: ""

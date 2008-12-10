@@ -1,7 +1,0 @@
---- 
-:author_url: ""
-:thread_id: "7958896"
-:created_at: 2007-12-07T14:36
-:message: "<p>Hmm, that&#8217;s quite a cool idea.  I particularly the idea of feeding back to domain owners.</p><p>This made me think of something that <a href=\"http://interblah.net/\">James</a> mentioned the other night: <a href=\"http://redhanded.hobix.com/\">Why</a> created <a href=\"http://redhanded.hobix.com/cult/whoNicDOffWithTheYummyJunkDomains.html\">nic.d</a> for registering domains with traditionally illegal characters.  Similar too, to <a href=\"http://redhanded.hobix.com/-h/hoodwinkDDayOneForcingTheHostToAttendTheParty.html\">hoodwink.d</a>.  Generally subversive &#8211; I like it.</p>"
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk

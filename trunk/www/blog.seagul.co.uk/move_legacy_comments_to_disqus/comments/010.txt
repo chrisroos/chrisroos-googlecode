@@ -1,7 +1,0 @@
---- 
-:author_url: ""
-:thread_id: "7918315"
-:created_at: 2007-04-20T13:55
-:message: <p>Mike and Dean,</p><p>I&#8217;ll need far more details if I&#8217;m to look into the problem.  At least Ruby, Rails, sqlite versions &#8211; probably more that I can&#8217;t think of.  Also, no promises that I&#8217;ll get round to doing anything &#8211; we haven&#8217;t used sqlite with rails for ages so I don&#8217;t have any major interest in getting it to work.</p><p>Chris</p>
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk

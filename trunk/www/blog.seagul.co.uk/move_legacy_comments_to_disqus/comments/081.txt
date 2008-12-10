@@ -1,7 +1,0 @@
---- 
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk
-:thread_id: "7931180"
-:created_at: 2007-07-19T01:06
-:message: <p>The code is all in me google code repository &#8211; <a href="http://chrisroos.googlecode.com/svn/trunk/hsbc/">http://chrisroos.googlecode.com/svn/trunk/hsbc/</a></p>
-:author_url: ""

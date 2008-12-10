@@ -1,7 +1,0 @@
---- 
-:author_url: ""
-:thread_id: "7927386"
-:created_at: 2007-03-13T22:20
-:message: <p>I am having the exact same experience as you. I&#8217;m going to subscribe to your blog and keep checking it to see if you&#8217;ve gotten any updates on this subject.</p><p>I agree.. It simply must be possible to make a web services call over SSL.. It&#8217;s just a matter of finding a working example.</p>
-:author_name: Mike
-:author_email: mike+1228905515@seagul.co.uk

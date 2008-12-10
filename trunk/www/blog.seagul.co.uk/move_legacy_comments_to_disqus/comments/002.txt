@@ -1,7 +1,0 @@
---- 
-:author_name: endy
-:author_email: endy+1228905515@seagul.co.uk
-:thread_id: "7916980"
-:created_at: 2005-10-02T19:40
-:message: <p>I know it&#8217;s a stupid question but.. what does &#8216;opml&#8217; means? :-)</p>
-:author_url: ""

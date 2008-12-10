@@ -1,7 +1,0 @@
---- 
-:author_name: Mike Johnson
-:author_email: mikejohnson+1228905515@seagul.co.uk
-:thread_id: "7918315"
-:created_at: 2007-04-19T21:27
-:message: <p>Dean, for me either</p>
-:author_url: http://www.jayod.info

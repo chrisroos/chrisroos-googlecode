@@ -1,7 +1,0 @@
---- 
-:author_url: ""
-:thread_id: "8074280"
-:created_at: 2007-01-12T20:11
-:message: <p>Chris, I&#8217;m not sure why you feel that &#8220;touching&#8221; the hobbies method is a bad thing. It&#8217;s a public method, not a public instance variable. The method provides the abstraction, and you could ultimately replace that implementation with something else, so there is no violation of encapsulation.</p><p>Am I misunderstanding your concern? Personally, I find &#8220;my.hobbies &lt;&lt; biking&#8221; more esthetically appealing then &#8220;my.add_hobby(biking)&#8221;.</p>
-:author_name: Jamis
-:author_email: jamis+1228905515@seagul.co.uk

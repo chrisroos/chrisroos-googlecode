@@ -1,7 +1,0 @@
---- 
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk
-:thread_id: "2655674"
-:created_at: 2007-07-13T17:12
-:message: <p>Email should now be legible.  Cheers Paul.</p>
-:author_url: ""

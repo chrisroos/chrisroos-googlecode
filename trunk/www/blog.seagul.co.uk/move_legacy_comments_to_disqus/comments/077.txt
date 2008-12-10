@@ -1,7 +1,0 @@
---- 
-:author_url: ""
-:thread_id: "2619543"
-:created_at: 2007-05-02T23:54
-:message: <p>Rashmi,</p><p>I needed to view a private slideshow.  Having just looked at slideshare again, I can see that this is definitely not available at the present time.</p>
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk

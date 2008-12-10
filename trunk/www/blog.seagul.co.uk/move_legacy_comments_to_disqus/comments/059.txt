@@ -1,7 +1,0 @@
---- 
-:author_name: Adem
-:author_email: adem+1228905515@seagul.co.uk
-:thread_id: "2628854"
-:created_at: 2007-03-08T00:11
-:message: <p>Whoops!!</p>
-:author_url: http://ademblog.blogspot.com

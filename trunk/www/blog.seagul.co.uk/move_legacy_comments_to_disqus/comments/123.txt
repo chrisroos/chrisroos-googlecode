@@ -1,7 +1,0 @@
---- 
-:author_url: ""
-:thread_id: "5045648"
-:created_at: 2007-09-28T10:47
-:message: <p>Hey Ben,</p><p>There&#8217;s definitely something missing in the naming of the tests.  I like your suggestions but they still don&#8217;t capture the reason why an article can&#8217;t be created without an author (for example).</p><p>In theory, these reasons would have been captured in user stories, so maybe I just need a higher level test that expresses those stories?  I don&#8217;t think this is foolproof though.  I might have a combination of unit tests to state what an object should do and higher level tests to explain why the object should do it.  Because these tests (at least in traditional rails world) would be separate there&#8217;s the danger that the higher level tests will be removed, yet the unit tests will remain.  Hmm indeed.</p>
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk

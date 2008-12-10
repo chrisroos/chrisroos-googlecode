@@ -1,7 +1,0 @@
---- 
-:author_name: Ed
-:author_email: ed+1228905516@seagul.co.uk
-:thread_id: "4433564"
-:created_at: 2007-11-21T19:13
-:message: <p>liquidweb</p>
-:author_url: ""
