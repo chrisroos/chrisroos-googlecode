@@ -1,6 +1,5 @@
 --- 
 :published_at: 2007-09-05 22:41:00 +01:00
-:title: Patching the del.icio.us firefox extension to add permalinks
 :body: |-
   I spent some of my train time today hacking around with the "del.icio.us":http://del.icio.us "firefox":http://www.mozilla.com/en-US/firefox/ "extension":https://addons.mozilla.org/en-US/firefox/addon/3615.  Although I'm sure it's bad in many, many ways, I've managed to add the "permalink":http://en.wikipedia.org/wiki/Permalink functionality I "mentioned":http://blog.seagul.co.uk/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts yesterday.  You can either apply the patch yourself, or download the patched jar file.
   
@@ -31,6 +30,5 @@
   </typo:code>
   
   Now, anytime you bookmark a site, the tags field will be pre-populated with a url-tag ("url/MD5_OF_URL").  Cool huh.  Oh, and the patched extension uses this javascript "md5":http://pajhome.org.uk/crypt/md5/ library.
+:title: Patching the del.icio.us firefox extension to add permalinks
 :guid: 9d07ba0f-d2c0-425f-be02-9d33160540cb
-:comments: []
-

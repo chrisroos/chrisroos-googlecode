@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-09-11 09:17:00 +01:00
-:title: What's the time google?
 :body: "From this \"article\":http://dmiessler.com/archives/910 (via \"lifehacker\":http://www.lifehacker.com/software/google/google-school--get-the-local-time-for-a-location-199286.php), we can ask google for the time.\r\n\
   \r\n\
   time london\r\n\
@@ -9,6 +8,5 @@
   According to http://www.google.com\r\n\
   \r\n\
   That's pretty cool."
+:title: What's the time google?
 :guid: 55e7f15a-d075-45df-b6d5-4290dd354553
-:comments: []
-

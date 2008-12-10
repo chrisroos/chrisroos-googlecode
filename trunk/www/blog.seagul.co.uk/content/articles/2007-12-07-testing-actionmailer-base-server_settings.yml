@@ -1,6 +1,5 @@
 --- 
 :published_at: 2007-12-07 17:23:00 +00:00
-:title: Testing ActionMailer::Base.server_settings
 :body: |-
   I needed to use an external SMTP server to get mail through to certain providers (notably, hotmail).
   
@@ -15,6 +14,5 @@
     smtp.sendmail(message, from, to)
   end
   </typo:code>
+:title: Testing ActionMailer::Base.server_settings
 :guid: 50584d74-8475-4f21-8326-07f1ed0d3d0b
-:comments: []
-

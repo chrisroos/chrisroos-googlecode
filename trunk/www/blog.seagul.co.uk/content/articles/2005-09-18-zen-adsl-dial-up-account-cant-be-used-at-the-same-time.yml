@@ -1,10 +1,8 @@
 --- 
 :published_at: 2005-09-18 11:47:00 +01:00
-:title: Zen ADSL/Dial-up account can't be used at the same time
 :body: |-
   This may be obvious to others...
   
   Last night I was trying to connect to my home PC remotely via SSH.  This usually works fine but wasn't last night.  I assumed that it was the ADSL connection at home playing up and gave up for the evening.  On arrival home this morning I found that everything was working as expected (from within the Lan).  I then dialled out and experienced the same problems (not being able to connect remotely).  I tried another dial-up connection (which wasn't working last night) and this time the remote access worked fine.  After a few more tests, it appears that by connecting to my ISP (<a href="http://www.zenadsl.co.uk">Zen</a>) via dial-up using the same account as my ADSL, my ADSL Internet connectivity is disrupted.  It doesn't actually drop the connection (according to the status on the router), rather just does not transmit/receive any traffic.  Lesson learned - don't use my Zen dial-up account when I am expecting my ADSL to be active.
+:title: Zen ADSL/Dial-up account can't be used at the same time
 :guid: cf250c9cffe5c05630739c2a8700243e
-:comments: []
-

@@ -1,6 +1,5 @@
 --- 
 :published_at: 2005-11-27 08:24:00 +00:00
-:title: Operating systems should be managed by version control
 :body: |-
   I spent from about 09:30 until 15:00 yesterday trying to get some graphics software talking to two output devices (basically printers) on Windows.
   
@@ -15,6 +14,5 @@
   I know that Windows XP (which this machine was running) offers a kind of 'rollback' functionality; but, to be honest, I don't trust it in the slightest; hence not using it.
   
   Mmm, I think I might install a fresh copy of XP, add all files to version control (which I guess might not even work), change something and then diff between the versions.  I can already think of problems when diffing registry files as they are in binary format so it will not be easy to see differences.. Although, I guess it wouldn't be too difficult to store registry files in a text format, i.e. customize the version control somehow.  Just an idea.
+:title: Operating systems should be managed by version control
 :guid: 5aa190cb-86d6-43fd-aec3-c36e4e8cb404
-:comments: []
-

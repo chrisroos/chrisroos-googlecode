@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-06-25 13:18:00 +01:00
-:title: Generating a MicroId with Ruby
 :body: |-
   Very naive Ruby method to create a "MicroId":http://www.microid.org for a given email and url.
   
@@ -15,6 +14,5 @@
   </typo:code>
   
   Note that there is no validation of the MicroId in this code at all.
+:title: Generating a MicroId with Ruby
 :guid: c74a1ea3-a0c2-46f3-845c-8ecbb11bca2a
-:comments: []
-

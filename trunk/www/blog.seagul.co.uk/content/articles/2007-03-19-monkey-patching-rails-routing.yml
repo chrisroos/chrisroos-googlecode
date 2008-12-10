@@ -1,6 +1,5 @@
 --- 
 :published_at: 2007-03-19 22:16:00 +00:00
-:title: Monkey patching rails routing
 :body: |-
   This "plugin":http://chrisroos.googlecode.com/svn/trunk/plugins/routing_redirection/ offers the following two features.
   
@@ -16,6 +15,5 @@
   A quick "google":http://www.google.co.uk/search?hl=en&q=rails+disambiguated+urls&btnG=Search reveals that "Rob McKinnon":http://fleetingideas.com/ has an "alternative suggestion":http://fleetingideas.com/2007/2/6/disambiguated-urls-with-ruby-on-rails for removing the trailing slashes.
   
   The plugin is known to work with Rails 1.1.6.
+:title: Monkey patching rails routing
 :guid: 43a98faa-7156-495c-873a-d63c3497c2e8
-:comments: []
-

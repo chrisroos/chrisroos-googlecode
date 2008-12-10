@@ -1,6 +1,5 @@
 --- 
 :published_at: 2008-02-26 08:49:00 +00:00
-:title: Tagging my del.icio.us bookmarks with the domain of the URL that I'm bookmarking
 :body: |-
   I've created another "firefox":http://www.mozilla.com/firefox extension that builds on the "del.icio.us":http://del.icio.us "extension":https://addons.mozilla.org/en-US/firefox/addon/3615.  This one finds the domain of the "URL":http://en.wikipedia.org/wiki/Uniform_Resource_Locator you're bookmarking and adds it as a tag to your bookmark.  It's basically just a copy of my "del.icio.us permalinks extension":http://blog.seagul.co.uk/articles/2007/12/18/extracting-my-del-icio-us-permalinks-functionality-into-its-own-firefox-extension
   
@@ -18,6 +17,5 @@
   I reference this script in my "xul":http://en.wikipedia.org/wiki/XUL file which causes it to be evaluated at (I guess) browser start time and the onload event to be modified correctly.
   
   I've updated the del.icio.us permalinks extension too but I think you'll need to remove and re-add it again from the "installation page":http://groups.google.com/group/delicious-permalinks/files.
+:title: Tagging my del.icio.us bookmarks with the domain of the URL that I'm bookmarking
 :guid: 0965ddb3-1309-4dc8-a04f-297cf892aa75
-:comments: []
-

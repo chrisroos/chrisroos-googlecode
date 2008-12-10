@@ -1,6 +1,5 @@
 --- 
 :published_at: 2007-02-15 22:49:00 +00:00
-:title: Crashing IE 6 with style(sheets)
 :body: |-
   Over about the last day and a half, if you used "Internet Explorer 6":http://en.wikipedia.org/wiki/Internet_Explorer_6 to browse any of the reviews on "reevoo.com":http://www.reevoo.com, then we should apologise.  It seems that, apart from breaking the layout somewhat, we'd actually managed to cause IE 6 to crash.  Not cool.  A concerted effort this morning got the problem sorted, but it took longer than it should've done, especially when you consider that about 75% of our traffic is from users of IE 6...
   
@@ -44,6 +43,5 @@
   [1] They're really not interesting.
   
   [2] If there is no doctype declaration, the browser doesn't crash (something to do with standards mode I believe).
+:title: Crashing IE 6 with style(sheets)
 :guid: 6c5db065-41c4-4959-89c0-86a23679cad2
-:comments: []
-

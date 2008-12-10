@@ -1,6 +1,5 @@
 --- 
 :published_at: 2007-08-31 15:13:00 +01:00
-:title: Blue card user stories coming out of the reevoo.com feedback
 :body: |-
   It took me a while, but I've come up with some "stories":http://en.wikipedia.org/wiki/User_story to represent the feature requests from the "reevoo.com":http://www.reevoo.com "feedback":http://blog.seagul.co.uk/articles/2007/08/23/responses-to-reevoo-com-feedback.
   
@@ -43,6 +42,5 @@
   h3. General comments
   
   As a user of reevoo.com, I want to be able to immediately identify that the general comments are indeed general comments, so that I don't waste time trying to work out what they are and whether they're important.
+:title: Blue card user stories coming out of the reevoo.com feedback
 :guid: 5bfd9e04-b345-4087-974d-6971bf8e1810
-:comments: []
-

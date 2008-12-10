@@ -1,10 +1,8 @@
 --- 
 :published_at: 2005-12-13 08:34:17 +00:00
-:title: Patching the rails
 :body: |-
   Yay.  I made my "first patch":http://dev.rubyonrails.org/ticket/3189 for "Rails":http://www.rubyonrails.com.
   
   I'm just waiting for a response along the lines of 'thats by design crazy fool', or similar...
+:title: Patching the rails
 :guid: a272dbca-2a18-429a-a829-0ace5f24dda0
-:comments: []
-

@@ -1,7 +1,5 @@
 --- 
 :published_at: 2005-09-06 09:58:00 +01:00
-:title: Linspire
 :body: Apparently due to confusion caused by the <a href="http://www.freespire.org/">freespire</a> project, <a href="http://www.linspire.com/">Linspire</a> decided to give away <a href="http://info.linspire.com/freespire/index.html">free copies</a> of their Linux distribution.  I downloaded it the other day and just this morning took a look at it running in 'LiveCD' mode within VM Ware.  Initial impression is that it's trying far too hard to look like Windows and hides far too much from the user.  I guess this is for their target audience but it didn't feel right to me.  I may take the time to have a more detailed play in the future.
+:title: Linspire
 :guid: 61067230fb4ac526cc47e7646bf37c02
-:comments: []
-

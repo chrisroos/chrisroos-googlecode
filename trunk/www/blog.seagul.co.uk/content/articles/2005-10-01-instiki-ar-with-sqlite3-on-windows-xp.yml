@@ -1,6 +1,5 @@
 --- 
 :published_at: 2005-10-01 15:39:00 +01:00
-:title: Instiki-AR with sqlite3 on Windows XP
 :body: |-
   I've used "Instiki":http://www.instiki.org quite a bit for storing what are essentially notes.
   
@@ -66,6 +65,5 @@
   # svn export --revision 397 http://svn.instiki.org/instiki/branches/instiki-ar/
   </pre>
   </div>
+:title: Instiki-AR with sqlite3 on Windows XP
 :guid: 9a7fd6be48986165d4710c226c0eb807
-:comments: []
-

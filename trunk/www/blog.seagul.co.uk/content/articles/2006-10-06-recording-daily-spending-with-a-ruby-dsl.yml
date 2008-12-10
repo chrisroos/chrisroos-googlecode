@@ -1,6 +1,5 @@
 --- 
 :published_at: 2006-10-06 09:19:00 +01:00
-:title: Recording daily spending with a Ruby Dsl
 :body: |-
   I'm very very very bad with money.  Don't get me wrong, I'm very good at -spending- wasting money, just bad at all "the":http://en.wikipedia.org/wiki/Savings "boring":http://en.wikipedia.org/wiki/Investing "stuff":http://en.wikipedia.org/wiki/Pension.
   
@@ -41,6 +40,5 @@
   That's about all I have at the moment.  Unfortunately, I'm already getting a bit bored with this project so this may be the last of it and I'll continue spending over my limits.  Or, I'll get those colourful graphs added and it'll be heralded as the best budgeting app in the world ever[1].
   
   fn1. This reminds me of the 'best [dance|rock|urban|insert music genre here] album in the world ever...' type compilations, of which "this":http://www.amazon.co.uk/Worst-Album-World-Ever-Ever-Shirehorses/dp/B000024V87 is undoubtedly the best.
+:title: Recording daily spending with a Ruby Dsl
 :guid: f59fe5c0-fe96-4995-9fc9-5153cf7e088c
-:comments: []
-

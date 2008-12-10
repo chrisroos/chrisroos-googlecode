@@ -1,7 +1,5 @@
 --- 
 :published_at: 2006-06-02 16:41:00 +01:00
-:title: Rails plugin to utilise Sqlite for testing
 :body: I feel pretty honoured that "Geoffrey Grosenbach":http://nubyonrails.com/, of "Rails podcast":http://podcast.rubyonrails.com/ fame (plus so much more) has "used":http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids the stuff "I wrote ":http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing a while back to create a "rails plugin":http://wiki.rubyonrails.com/rails/pages/Plugins, enabling the easy use of sqlite for testing.
+:title: Rails plugin to utilise Sqlite for testing
 :guid: 14bb15b2-1ff2-4c9a-beae-da7c9afe7957
-:comments: []
-

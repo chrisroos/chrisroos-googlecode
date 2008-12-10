@@ -1,12 +1,10 @@
 --- 
 :published_at: 2007-12-18 23:01:00 +00:00
-:title: Extracting my del.icio.us permalinks functionality into its own firefox extension
 :body: |-
   My "previous implementation":http://blog.seagul.co.uk/articles/2007/09/05/patching-the-del-icio-us-firefox-extension-to-add-permalinks amended the "del.icio.us bookmarks extension":https://addons.mozilla.org/en-US/firefox/addon/3615.  I spent some time this morning, and evening, extracting the functionality into its own "extension":http://chrisroos.googlecode.com/svn/trunk/delicious-permalinks/.  This should mean that I remain decoupled from their extension: I don't have to update, or even just apply, my original patch whenever the del.icio.us extension is changed.  It should also make it much easier for anyone else to try (if they so wish).
   
   I've created a "google group":http://groups.google.com/group/delicious-permalinks/ if folks want to chat about it.
   
   To install the extension just visit the (very, very basic) "installation page":http://delicious-permalinks.googlegroups.com/web/installation.html.
+:title: Extracting my del.icio.us permalinks functionality into its own firefox extension
 :guid: c3be6b95-9fd4-4169-84de-faea63703c8b
-:comments: []
-
