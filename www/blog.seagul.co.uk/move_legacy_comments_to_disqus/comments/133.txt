@@ -1,0 +1,21 @@
+--- 
+:author_name: Sam
+:author_email: sam+1228905516@seagul.co.uk
+:thread_id: "2623435"
+:created_at: 2007-12-10T15:58
+:message: |-
+  <p>Hi Chris,</p>
+  
+  
+  	<p>In regard to the issue about being charged or not, linked to whether the web address starts with www. or not, the answer is as you suspected &#8211; charges will be incurred.</p>
+  
+  
+  	<p>The problem with m.twitter.com not showing the message has now been resolved.</p>
+  
+  
+  	<p>Hope this helps,</p>
+  
+  
+  	<p>Sam.
+  www.3mobilebuzz.com</p>
+:author_url: http://www.3mobilebuzz.com

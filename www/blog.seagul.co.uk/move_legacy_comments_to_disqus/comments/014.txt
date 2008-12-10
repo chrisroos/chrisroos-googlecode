@@ -1,0 +1,7 @@
+--- 
+:author_name: Kieran
+:author_email: kieran+1228905515@seagul.co.uk
+:thread_id: "2603784"
+:created_at: 2006-03-06T22:21
+:message: "<p>Really cool &#8211; but is it <strong>useful</strong>? You can also get the tube map for mp3 players here: <a href='http://www.ipodsubwaymaps.com/download.php#london'>http://www.ipodsubwaymaps.com/download.php#london</a> (the site mentions only iPods but it works fine on my iRiver).</p>"
+:author_url: ""

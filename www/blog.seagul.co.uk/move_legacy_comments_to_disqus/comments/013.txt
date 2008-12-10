@@ -1,0 +1,11 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "7918315"
+:created_at: 2007-12-17T13:59
+:message: |-
+  <p>Hey AkitaOnRails,</p>
+  
+  
+  	<p>I&#8217;m afraid that I haven&#8217;t used this plugin for a very long time now and it&#8217;d probably take me a while to work out what was going on.  Sorry I can&#8217;t help.</p>
+:author_url: ""

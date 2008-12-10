@@ -1,0 +1,7 @@
+--- 
+:author_name: Doug
+:author_email: doug+1228905516@seagul.co.uk
+:thread_id: "3789570"
+:created_at: 2007-08-01T19:27
+:message: <p>I like it!  Although the constantly updating map quickly became distracting as I looked at the rest of the home page.  Perhaps it could stop after a few reviews with a link over the map saying &#8220;see more&#8221; or you could add a button to stop it&#8230;</p>
+:author_url: http://www.estately.com

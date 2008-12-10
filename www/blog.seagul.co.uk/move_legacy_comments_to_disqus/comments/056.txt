@@ -1,0 +1,28 @@
+--- 
+:author_name: David Chelimsky
+:author_email: davidchelimsky+1228905515@seagul.co.uk
+:thread_id: "8074280"
+:created_at: 2007-02-06T15:51
+:message: |-
+  <p>It&#8217;s not just a matter of making your tests cleaner. It&#8217;s also a matter of protecting the consumers of your model from changes to the model over time.</p>
+  
+  
+  	<p>Imagine a project management app in which you have Project &gt; Iterations &gt; Stories. All through your controllers and views you have calls like this:</p>
+  
+  
+  	<p>@project.iterations.stories</p>
+  
+  
+  	<p>Later on, you decide that your model is wrong and that it should really be Project &gt; Stories &gt; Iterations. Now you have to change every call to stories or iterations. If, however, you started off with this in Project:</p>
+  
+  
+  	<p>def stories
+    iterations.stories
+  end</p>
+  
+  
+  	<p>all you would have to do now is change the Project model.</p>
+  
+  
+  	<p>To me, <span class="caps">THAT</span> is the whole point of Demeter. It&#8217;s about managing dependencies to isolate change.</p>
+:author_url: ""

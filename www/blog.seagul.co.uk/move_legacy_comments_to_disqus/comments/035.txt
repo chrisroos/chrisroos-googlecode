@@ -1,0 +1,32 @@
+--- 
+:author_name: Ed Freyfogle
+:author_email: edfreyfogle+1228905515@seagul.co.uk
+:thread_id: "7919918"
+:created_at: 2006-09-22T12:33
+:message: |-
+  <p>Hi Chris,</p>
+  
+  
+  	<p>I&#8217;m Ed, one of the founders of Nestoria.</p>
+  
+  
+  	<p>Many thanks for the kind words, we like to think we&#8217;re not crap either ;-).</p>
+  
+  
+  	<p>That being said, we know we still have a lot to do to make searching for property as simple as possible. Any ideas you (or your readers) have are very welcome.</p>
+  
+  
+  	<p>In that sense, from your blog I see that you&#8217;re a Ruby coder. I don&#8217;t suppose I could persuade you to write a Ruby library for using the Nestoria <span class="caps">API</span>? We recently had someone create a python library:</p>
+  
+  
+  	<p>http://blog.nestoria.co.uk/2006/09/21/python-library-for-the-nestoria-api/</p>
+  
+  
+  	<p>and we&#8217;d love to see what clever ideas the Ruby community could come up with for playing with our database.</p>
+  
+  
+  	<p>Thanks again for the vote of confidence,</p>
+  
+  
+  	<p>Ed</p>
+:author_url: http://blog.nestoria.co.uk

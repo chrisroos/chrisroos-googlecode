@@ -1,0 +1,11 @@
+--- 
+:author_name: luke
+:author_email: luke+1228905515@seagul.co.uk
+:thread_id: "8079242"
+:created_at: 2007-01-08T07:21
+:message: |-
+  <p>Seth Godin has justed posted this http://sethgodin.typepad.com/seths_blog/2007/01/hard_to_say_goo.html about making it easy for users to unsubscribe / get out of trials etc.</p>
+  
+  
+  	<p>You&#8217;ve found a great example of how not to do this.</p>
+:author_url: ""

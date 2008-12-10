@@ -1,0 +1,17 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "2623435"
+:created_at: 2007-12-14T08:51
+:message: |-
+  <p>Hey Sam,</p>
+  
+  
+  	<p>I&#8217;ve only just got round to trying m.twitter.com and it does indeed now warn me of Internet access.  Great stuff.</p>
+  
+  
+  	<p>Cheers for the info.</p>
+  
+  
+  	<p>Chris</p>
+:author_url: ""

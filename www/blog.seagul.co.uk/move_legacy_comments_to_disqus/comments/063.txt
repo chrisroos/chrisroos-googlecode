@@ -1,0 +1,11 @@
+--- 
+:author_name: J Random
+:author_email: jrandom+1228905515@seagul.co.uk
+:thread_id: "7933062"
+:created_at: 2007-07-17T23:09
+:message: |-
+  <p>.... thank foo for that entry,</p>
+  
+  
+  	<p>was ready to scream when i got that stupid error message at 1650, when a payment had to leave by 5 &#8230;. why could they not just describe the problem? urgh.</p>
+:author_url: ""

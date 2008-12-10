@@ -1,0 +1,11 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "8043625"
+:created_at: 2007-12-17T13:37
+:message: |-
+  <p>Hey Matt,</p>
+  
+  
+  	<p>I&#8217;ve started to wonder whether a greasemonkey script might do what I need.  The script would just recognise the page you&#8217;re on and look up, in a set of rules, how to find the canonical <span class="caps">URL</span>.  Sadly, I&#8217;m not sure when I might find time to do it.</p>
+:author_url: ""

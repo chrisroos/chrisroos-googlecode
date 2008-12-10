@@ -1,0 +1,11 @@
+--- 
+:author_name: Peter
+:author_email: peter+1228905515@seagul.co.uk
+:thread_id: "7931180"
+:created_at: 2007-08-04T04:04
+:message: |-
+  <p>Here is a new version of the script which is compatible with the new version of the site.  It should also stay compatible with the old version&#8212;since I don&#8217;t have an account which is on the old version I cannot test this.  If you would like to credit me for this please contact me at pcc03 AT doc.ic.ac.uk</p>
+  
+  
+  	<p>http://www.doc.ic.ac.uk/~pcc03/tmp/hsbc.txt (rename to hsbc.rb)</p>
+:author_url: ""

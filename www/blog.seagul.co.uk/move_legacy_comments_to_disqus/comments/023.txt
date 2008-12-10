@@ -1,0 +1,7 @@
+--- 
+:author_name: Chris McGrath
+:author_email: chrismcgrath+1228905515@seagul.co.uk
+:thread_id: "8148812"
+:created_at: 2006-07-17T16:09
+:message: <p><span class="caps">BTW</span>, if you have the Edit in TextMate command installed, you can use it from the bundle editor to open the code in TM itself.</p>
+:author_url: http://octopod.info

@@ -1,0 +1,17 @@
+--- 
+:author_name: Andrew Donaldson
+:author_email: andrewdonaldson+1228905515@seagul.co.uk
+:thread_id: "7985361"
+:created_at: 2007-04-01T20:53
+:message: |-
+  <p>Hey,</p>
+  
+  
+  	<p>I love what you&#8217;re doing with these things&#8212;it&#8217;d be cool to compile all these scripts into an active-merchant style online-banking gateway library..?</p>
+  
+  
+  	<p>I guess the tricky thing is that you&#8217;d be attempting to map a library to a moving target, not to mention it&#8217;d be very hard for people to trust a library without fully interrogating the source.</p>
+  
+  
+  	<p>Perhaps thats why there hasn&#8217;t been one before!</p>
+:author_url: http://desto.net/

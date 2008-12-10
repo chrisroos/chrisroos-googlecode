@@ -1,0 +1,12 @@
+--- 
+:author_name: Dean
+:author_email: dean+1228905515@seagul.co.uk
+:thread_id: "7918315"
+:created_at: 2007-04-13T13:02
+:message: |-
+  <p>ActiveRecord::Base.connection.class  ActiveRecord::ConnectionAdapters::SQLiteAdapter and
+    Rails::Configuration.new.database_configuration['test']['database']  &#8217;:memory:&#8217;</p>
+  
+  
+  	<p>- doesn&#8217;t work at mine</p>
+:author_url: http://www.dlbmux.info

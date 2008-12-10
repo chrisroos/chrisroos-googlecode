@@ -1,0 +1,14 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "3789570"
+:created_at: 2007-08-02T09:21
+:message: |-
+  <p>Hey Doug,</p>
+  
+  
+  	<p>Thanks for the feedback.  I&#8217;ve personally not found the map distracting &#8211; but then I&#8217;m not often on the homepage so my views probably shouldn&#8217;t count :-).  One oversight, in my view, is that it currently takes at least two clicks to get from the homepage to any reviews.  In fact, I might try to sort that today.</p>
+  
+  
+  	<p>Cheers.</p>
+:author_url: ""

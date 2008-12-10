@@ -1,0 +1,11 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "7931180"
+:created_at: 2007-07-30T22:12
+:message: |-
+  <p>Peter,</p>
+  
+  
+  	<p>The script still works fine for me.  What problems are you experiencing?</p>
+:author_url: ""

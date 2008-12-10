@@ -1,0 +1,7 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "2623435"
+:created_at: 2007-11-18T22:24
+:message: <p>Thanks for the info Paul, I&#8217;ll take a look and see if I can get it working.</p>
+:author_url: ""

@@ -1,0 +1,7 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "5045648"
+:created_at: 2007-09-27T10:28
+:message: <p>Cheers guys.</p>
+:author_url: ""
