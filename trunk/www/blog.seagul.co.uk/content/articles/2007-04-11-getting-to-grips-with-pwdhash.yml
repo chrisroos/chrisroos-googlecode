@@ -1,6 +1,4 @@
 --- 
-:published_at: 2007-04-11 22:27:00 +01:00
-:title: Getting to grips with pwdhash
 :body: |-
   h3. Overview
   
@@ -98,14 +96,6 @@
   Rubify the code.  Although I've copied it almost directly from the javascript I think I've actually managed to make it slightly less readable.
   
   Investigate the whole world of "unicode":http://www.unicode.org a bit more - I definitely don't know as much about it as I should.
+:title: Getting to grips with pwdhash
+:published_at: 2007-04-11 22:27:00 +01:00
 :guid: 1e94dada-3fc9-467a-9d4d-422933d995a9
-:comments: 
-- :published_at: 2007-04-13 19:16:00 +01:00
-  :body: |-
-    Congatulations, you have been added to the <a href="http://www.thanetbloglist.co.uk">Thanet Blog List</a>.
-    
-    
-    Pop along and check out Thanet's other blogs.
-  :url: http://www.thanetbloglist.co.uk
-  :author: Thanet Blog List
-  :article_id: 2296

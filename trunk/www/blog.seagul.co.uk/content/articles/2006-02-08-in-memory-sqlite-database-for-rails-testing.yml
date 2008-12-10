@@ -1,6 +1,4 @@
 --- 
-:published_at: 2006-02-08 08:54:00 +00:00
-:title: In memory sqlite database for rails testing
 :body: |-
   *Update 12th June 2006*
   
@@ -85,61 +83,6 @@
   h3. Useless stats
   
   Changing to in-memory testing shaved about 33% off the running time of our unit tests.
+:title: In memory sqlite database for rails testing
+:published_at: 2006-02-08 08:54:00 +00:00
 :guid: b1012d3b-90d4-4d03-a4b6-9cfd6671c2cb
-:comments: 
-- :published_at: 2006-02-13 14:13:44 +00:00
-  :body: Thanks, this was really useful. It looks like this isn't document anywhere, or I suck at reading documentation.
-  :url: ""
-  :author: Manfred Stienstra
-  :article_id: 51
-- :published_at: 2007-04-13 13:02:08 +01:00
-  :body: |-
-    ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
-      Rails::Configuration.new.database_configuration['test']['database'] == ':memory:'
-    
-    - doesn't work at mine
-  :url: http://www.dlbmux.info
-  :author: Dean
-  :article_id: 51
-- :published_at: 2007-04-19 21:27:04 +01:00
-  :body: Dean, for me either
-  :url: http://www.jayod.info
-  :author: Mike Johnson
-  :article_id: 51
-- :published_at: 2007-04-20 13:55:24 +01:00
-  :body: |-
-    Mike and Dean,
-    
-    I'll need far more details if I'm to look into the problem.  At least Ruby, Rails, sqlite versions - probably more that I can't think of.  Also, no promises that I'll get round to doing anything - we haven't used sqlite with rails for ages so I don't have any major interest in getting it to work.
-    
-    Chris
-  :url: ""
-  :author: Chris Roos
-  :article_id: 51
-- :published_at: 2007-08-05 22:04:05 +01:00
-  :body: |
-    This should do
-    
-    ENV['RAILS_ENV'] == 'test' and
-    ActiveRecord::Base.configurations['test'] == {
-      'adapter' => 'sqlite3',
-      'dbfile' => ':memory:'
-    } and
-    ActiveRecord::Migrator.up('db/migrate')
-
-  :url: ""
-  :author: Florian
-  :article_id: 51
-- :published_at: 2007-11-27 15:31:41 +00:00
-  :body: I am trying it but it feels like my fixtures are not being loaded into the in-memory database. Is there something I have to do to force it?
-  :url: http://www.akitaonrails.com
-  :author: AkitaOnRails
-  :article_id: 51
-- :published_at: 2007-12-17 13:59:44 +00:00
-  :body: |-
-    Hey AkitaOnRails,
-    
-    I'm afraid that I haven't used this plugin for a very long time now and it'd probably take me a while to work out what was going on.  Sorry I can't help.
-  :url: ""
-  :author: Chris Roos
-  :article_id: 51

@@ -1,6 +1,4 @@
 --- 
-:published_at: 2007-07-24 14:40:00 +01:00
-:title: Train times by SMS (or, improving national rail enquiries)
 :body: |-
   I was in need of finding some train times at the weekend.  I usually use the "national rail enquiries":http://www.nationalrail.co.uk website but was without Internet access at the time.  Instead, I found myself waiting for about 10 minutes in a telephone queue just to spend about 30 seconds getting the information I was after.  This played on my mind a bit so last night I started "playing around":http://twitter.com/chrisroos/statuses/164273922 with automating the national rail timetable search.  That was relatively painless so I moved on to integrating with "twitter":http://www.twitter.com in order to provide an SMS interface to the service.  Within a couple of hours I had a twitterbot that receives timetable requests, looks up the times and sends them back to you.
   
@@ -17,27 +15,6 @@
   The code is *nasty*.  You can see just how nasty it in the "repository":http://chrisroos.googlecode.com/svn/trunk/nat-rail-enq/.  It feels as though this could go somewhere - unless I'm violating some terms and conditions that I haven't read...  I make no guarantees as to how long the service will stay live, and I will certainly (probably) remove it if asked to.
   
   fn1. Well, just as soon as I can at least - it's not automated at the moment.
+:title: Train times by SMS (or, improving national rail enquiries)
+:published_at: 2007-07-24 14:40:00 +01:00
 :guid: dbf1fc3c-4fb9-4456-8434-18627bf9c1f4
-:comments: 
-- :published_at: 2007-07-24 21:20:13 +01:00
-  :body: Brilliant idea - I'm looking forward to using it! Was it a conscious choice to go for the 3-letter codes? It looks like there is lookup data "here":http://www.nationalrail.co.uk/symlinks/javascript/stationfinder/stationFinder-kb-data.js
-  :url: http://blog.floehopper.org
-  :author: James
-  :article_id: 23024
-- :published_at: 2007-07-25 09:45:57 +01:00
-  :body: ...you genius!!
-  :url: ""
-  :author: Ricky
-  :article_id: 23024
-- :published_at: 2008-01-07 19:21:32 +00:00
-  :body: |-
-    Cool!
-    
-    I wondered though, do you know of a way i can create an offline journey planner? Is there a way of downloading the national rail timetables onto my pc to intergrate into a websites hosted on my web server on my pc?
-    
-    E-Mail me at: jonontheradio@hotmail.co.uk
-    
-    Thanks
-  :url: ""
-  :author: Jon
-  :article_id: 23024

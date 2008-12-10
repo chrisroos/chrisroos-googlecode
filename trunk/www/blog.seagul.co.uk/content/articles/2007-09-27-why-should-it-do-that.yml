@@ -1,6 +1,4 @@
 --- 
-:published_at: 2007-09-27 07:36:00 +01:00
-:title: Why should it do that?
 :body: |-
   I've started looking into my <notextile>*cough*</notextile> promise <notextile>*cough*</notextile> to do that "local paper":http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers site I mentioned sometime ago.  The code is all in me "google code":http://chrisroos.googlecode.com "repository":http://chrisroos.googlecode.com/svn/trunk/the-local-paper/ if you want to see how it's going (or finish it when I inevitably get bored again...).
   
@@ -33,43 +31,6 @@
   P.S. I spent a few minutes chatting with "James":http://interblah.net/ about it today and he had some interesting suggestions, although I'll leave it up to him to share those if he wants (no pressure James, I'm just running out of time right now I'm afraid).
   
   fn1. "Paul":http://po-ru.com suggested a while back that we use the commit note to explain the problem that we've solved, rather than just describing the changeset.  Unfortunately, I can't find the source of that suggestion so no link I'm afraid.
+:title: Why should it do that?
+:published_at: 2007-09-27 07:36:00 +01:00
 :guid: cee9558c-8dc6-4952-bb7b-ee6e5a2a50fd
-:comments: 
-- :published_at: 2007-09-27 10:16:33 +01:00
-  :body: |-
-    Hopefully I'll get the change to post some of our discussion to interblah.net soon :)
-    
-    Incidentally, you might want to investigate using Git as your source control system; since that allows operation without connection to any remote server, you'd be able to make smaller commits with more detailed information about the "why"s. Using git-svn, you can even push those changes back up to an SVN server for consumption by the masses.
-    
-    That said, it's taken me a few weeks to get my head around the conceptual differences between git and SVN - it's not for everyone, that's for sure.
-  :url: http://interblah.net
-  :author: James Adam
-  :article_id: 34376
-- :published_at: 2007-09-27 10:16:53 +01:00
-  :body: "I've found the page where I originally read that suggestion: <a href=\"http://silkandspinach.net/2007/04/28/listing-problems-instead-of-solutions/\">listing problems instead of solutions</a>."
-  :url: http://po-ru.com/
-  :author: Paul Battley
-  :article_id: 34376
-- :published_at: 2007-09-27 10:28:14 +01:00
-  :body: Cheers guys.
-  :url: ""
-  :author: Chris Roos
-  :article_id: 34376
-- :published_at: 2007-09-27 18:11:11 +01:00
-  :body: "You can name your tests to better express intention, and it's best to keep documentation of intentions as close to where you're tempted to change things as possible.\n\n\
-    What do you think about naming tests along the lines of: \"all attributes used to make up the url should be required\" and \"should allow articles to be created without author\". \n\n\
-    Does that help any?\n\n\
-    On another level, you might suggest that there's a level of abstraction/modelling missing in the code. You want to validate that fields required for the url are complete, and somewhere declare what fields are required for the url. The routes is one declaration, but it doesn't necessarily map from attributes of a model to parts of a route. Hmm. "
-  :url: http://www.techbelly.com
-  :author: Ben Griffiths
-  :article_id: 34376
-- :published_at: 2007-09-28 10:47:09 +01:00
-  :body: |-
-    Hey Ben,
-    
-    There's definitely something missing in the naming of the tests.  I like your suggestions but they still don't capture the reason why an article can't be created without an author (for example).
-    
-    In theory, these reasons would have been captured in user stories, so maybe I just need a higher level test that expresses those stories?  I don't think this is foolproof though.  I might have a combination of unit tests to state what an object should do and higher level tests to explain why the object should do it.  Because these tests (at least in traditional rails world) would be separate there's the danger that the higher level tests will be removed, yet the unit tests will remain.  Hmm indeed.
-  :url: ""
-  :author: Chris Roos
-  :article_id: 34376
