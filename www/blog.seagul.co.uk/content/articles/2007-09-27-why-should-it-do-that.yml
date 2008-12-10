@@ -53,7 +53,7 @@
 - :published_at: 2007-09-27 10:28:14 +01:00
   :body: Cheers guys.
   :url: ""
-  :author: Chris
+  :author: Chris Roos
   :article_id: 34376
 - :published_at: 2007-09-27 18:11:11 +01:00
   :body: "You can name your tests to better express intention, and it's best to keep documentation of intentions as close to where you're tempted to change things as possible.\n\n\
@@ -71,5 +71,5 @@
     
     In theory, these reasons would have been captured in user stories, so maybe I just need a higher level test that expresses those stories?  I don't think this is foolproof though.  I might have a combination of unit tests to state what an object should do and higher level tests to explain why the object should do it.  Because these tests (at least in traditional rails world) would be separate there's the danger that the higher level tests will be removed, yet the unit tests will remain.  Hmm indeed.
   :url: ""
-  :author: Chris
+  :author: Chris Roos
   :article_id: 34376
