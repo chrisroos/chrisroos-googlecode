@@ -1,7 +1,0 @@
---- 
-:author_url: ""
-:thread_id: "3789570"
-:created_at: 2007-08-03T07:11
-:message: <p>Hey Ben,</p><p>I completely agree that the reviews need to link through to the product review pages.  Although it&#8217;s very unlikely to be of a product you&#8217;re interested in, it would allow people to get a feel for the product pages immediately.</p><p>As for the links, I see your point too.  The grey visited-link colour isn&#8217;t particular clear either.  Some work to do there I think.</p><p>Cheers</p>
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk

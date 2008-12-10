@@ -1,7 +1,0 @@
---- 
-:author_name: Damien Tanner
-:author_email: damientanner+1228905515@seagul.co.uk
-:thread_id: "2601895"
-:created_at: 2006-08-15T19:20
-:message: <p>Nice idea and looks useful. I&#8217;m more for having assertions which check for the correct links in your functional tests.</p>
-:author_url: http://iamrice.org

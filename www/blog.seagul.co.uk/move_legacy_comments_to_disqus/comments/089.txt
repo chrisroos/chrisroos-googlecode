@@ -1,7 +1,0 @@
---- 
-:author_name: Mark
-:author_email: mark+1228905515@seagul.co.uk
-:thread_id: "7918672"
-:created_at: 2007-12-26T16:30
-:message: <p>So um, what exactly do we do with this (and/or how do we do it) to make LloydsTSB talk to Wesabe automagically?</p>
-:author_url: ""

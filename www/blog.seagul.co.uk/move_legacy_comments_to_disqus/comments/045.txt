@@ -1,7 +1,0 @@
---- 
-:author_name: Ivanhoe
-:author_email: ivanhoe+1228905515@seagul.co.uk
-:thread_id: "3785423"
-:created_at: 2007-06-05T19:48
-:message: <p>This is one hell of a post. Although I can&#8217;t say that I truly agree with everything that you&#8217;ve said as my own personal experiences have told me differently, I still enjoyed it. Keep up the good posts</p>
-:author_url: http://www.wondirection.org

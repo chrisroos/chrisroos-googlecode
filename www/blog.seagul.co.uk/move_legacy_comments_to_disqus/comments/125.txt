@@ -1,7 +1,0 @@
---- 
-:author_name: Brad Greenlee
-:author_email: bradgreenlee+1228905516@seagul.co.uk
-:thread_id: "4270356"
-:created_at: 2007-10-05T14:51
-:message: <p>Chris- if there&#8217;s anything we can do to fix things on the Wesabe end, let me know. Once your account is no longer overdrawn, things should be fine on our site, as we work backwards from the most recent balance. We could always correct the bad balances manually in the database, too.</p>
-:author_url: ""

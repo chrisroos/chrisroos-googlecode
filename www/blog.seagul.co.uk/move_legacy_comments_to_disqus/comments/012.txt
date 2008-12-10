@@ -1,7 +1,0 @@
---- 
-:author_name: AkitaOnRails
-:author_email: akitaonrails+1228905515@seagul.co.uk
-:thread_id: "7918315"
-:created_at: 2007-11-27T15:31
-:message: <p>I am trying it but it feels like my fixtures are not being loaded into the in-memory database. Is there something I have to do to force it?</p>
-:author_url: http://www.akitaonrails.com

@@ -1,7 +1,0 @@
---- 
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk
-:thread_id: "2603784"
-:created_at: 2006-03-16T07:58
-:message: <p>It certainly does &#8211; I subscribe to the feed at <a href="http://googlemapsmania.blogspot.com/">this</a> site to get updates on new uses of the google maps api.</p>
-:author_url: ""

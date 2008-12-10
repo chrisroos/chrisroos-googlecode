@@ -1,7 +1,0 @@
---- 
-:author_name: Manfred Stienstra
-:author_email: manfredstienstra+1228905515@seagul.co.uk
-:thread_id: "7918315"
-:created_at: 2006-02-13T14:13
-:message: <p>Thanks, this was really useful. It looks like this isn&#8217;t document anywhere, or I suck at reading documentation.</p>
-:author_url: ""

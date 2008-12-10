@@ -1,7 +1,0 @@
---- 
-:author_url: ""
-:thread_id: "3789570"
-:created_at: 2007-08-01T11:29
-:message: <p>Excellent feedback thanks Mike.  Let&#8217;s see if we can work on some of the stuff you&#8217;ve raised.</p><p>Cheers.</p>
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk

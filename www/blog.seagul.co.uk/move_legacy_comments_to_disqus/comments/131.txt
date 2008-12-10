@@ -1,7 +1,0 @@
---- 
-:author_name: Paul Battley
-:author_email: paulbattley+1228905516@seagul.co.uk
-:thread_id: "2623435"
-:created_at: 2007-11-18T20:57
-:message: "<p>It would be worth picking apart the stuff on the driver CD: it&#8217;s possibly nothing more complicated than a few text files with AT commands, which seem to be easy enough to replicate on OS X (have a look at <a href=\"http://www.taniwha.org.uk/\">Ross Barkman&#8217;s site</a>).</p>"
-:author_url: http://po-ru.com/

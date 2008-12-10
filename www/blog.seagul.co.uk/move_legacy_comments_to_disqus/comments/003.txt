@@ -1,7 +1,0 @@
---- 
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk
-:thread_id: "7916980"
-:created_at: 2005-10-07T16:48
-:message: <p>&#8216;<a href="http://en.wikipedia.org/wiki/OPML">OPML</a> is an XML format for outlines&#8217;.  It would appear that it is, currently, most commonly used to exchange lists of RSS feeds.  That is certainly the context in which I was using it &#8211; to describe the ability to export a list of RSS feeds from one feed reading application (in my case <a href="http://www.sharpreader.com">Sharpreader</a>) to an online alternative.</p>
-:author_url: ""
