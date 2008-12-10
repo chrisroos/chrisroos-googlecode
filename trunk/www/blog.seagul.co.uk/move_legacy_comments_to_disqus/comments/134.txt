@@ -7,7 +7,7 @@
   <p>Hey Sam,</p>
   
   
-  	<p>I&#8217;ve only just got round to trying m.twitter.com and it does indeed now warn me of Internet access.  Great stuff.</p>
+  	<p>I&#8217;ve only just got round to trying <a href="http://m.twitter.com">m.twitter.com</a> and it does indeed now warn me of Internet access.  Great stuff.</p>
   
   
   	<p>Cheers for the info.</p>
