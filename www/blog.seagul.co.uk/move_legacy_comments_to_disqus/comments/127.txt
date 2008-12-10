@@ -7,17 +7,17 @@
   <p>Hi Tom,</p>
   
   
-  	<p><span class="caps">HSBC</span> offer exports in three different formats.  They actually offer five in the list of options but two are duplicates (the <span class="caps">OFX</span> and <span class="caps">QIF</span> formats).</p>
+  	<p>HSBC offer exports in three different formats.  They actually offer five in the list of options but two are duplicates (the OFX and QIF formats).</p>
   
   
   	<ul>
-  	<li>Money &#8211; <span class="caps">QIF</span></li>
-  		<li>Money 98 &#8211; <span class="caps">OFX</span></li>
-  		<li>Quicken &#8211; <span class="caps">QIF</span></li>
-  		<li>Quicken 2002 &#8211; <span class="caps">OFX</span></li>
-  		<li>Spreadsheets &#8211; <span class="caps">CSV</span></li>
+  	<li>Money &#8211; QIF</li>
+  		<li>Money 98 &#8211; OFX</li>
+  		<li>Quicken &#8211; QIF</li>
+  		<li>Quicken 2002 &#8211; OFX</li>
+  		<li>Spreadsheets &#8211; CSV</li>
   	</ul>
   
   
-  	<p>I&#8217;ve pasted examples of each of <a href="http://pastie.caboo.se/126490"><span class="caps">QIF</span></a>, <a href="http://pastie.caboo.se/126491"><span class="caps">OFX</span></a> and <a href="http://pastie.caboo.se/126492"><span class="caps">CSV</span></a> to <a href="http://pastie.caboo.se">pastie</a>.  Let me know if you need anything else.</p>
+  	<p>I&#8217;ve pasted examples of each of <a href="http://pastie.caboo.se/126490">QIF</a>, <a href="http://pastie.caboo.se/126491">OFX</a> and <a href="http://pastie.caboo.se/126492">CSV</a> to <a href="http://pastie.caboo.se">pastie</a>.  Let me know if you need anything else.</p>
 :author_url: ""

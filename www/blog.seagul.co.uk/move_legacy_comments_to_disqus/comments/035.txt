@@ -16,7 +16,7 @@
   	<p>That being said, we know we still have a lot to do to make searching for property as simple as possible. Any ideas you (or your readers) have are very welcome.</p>
   
   
-  	<p>In that sense, from your blog I see that you&#8217;re a Ruby coder. I don&#8217;t suppose I could persuade you to write a Ruby library for using the Nestoria <span class="caps">API</span>? We recently had someone create a python library:</p>
+  	<p>In that sense, from your blog I see that you&#8217;re a Ruby coder. I don&#8217;t suppose I could persuade you to write a Ruby library for using the Nestoria API? We recently had someone create a python library:</p>
   
   
   	<p>http://blog.nestoria.co.uk/2006/09/21/python-library-for-the-nestoria-api/</p>

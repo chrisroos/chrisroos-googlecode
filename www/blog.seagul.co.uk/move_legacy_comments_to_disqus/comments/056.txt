@@ -24,5 +24,5 @@
   	<p>all you would have to do now is change the Project model.</p>
   
   
-  	<p>To me, <span class="caps">THAT</span> is the whole point of Demeter. It&#8217;s about managing dependencies to isolate change.</p>
+  	<p>To me, THAT is the whole point of Demeter. It&#8217;s about managing dependencies to isolate change.</p>
 :author_url: ""

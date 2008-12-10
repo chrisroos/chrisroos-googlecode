@@ -19,5 +19,5 @@
   	<p>PS.  Peter Kay is brilliant.</p>
   
   
-  	<p><span class="caps">PPS</span>.  Excellent news that you&#8217;re able to get paid for writing ruby.</p>
+  	<p>PPS.  Excellent news that you&#8217;re able to get paid for writing ruby.</p>
 :author_url: ""
