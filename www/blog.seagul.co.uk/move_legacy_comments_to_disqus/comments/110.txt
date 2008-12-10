@@ -19,7 +19,7 @@
   	<p>I went for a look at some reviews for a specific product (the &#8220;Canon 4000 SLR&#8221;, which would more correctly be described by its real name, &#8220;Canon EOS 400D&#8221; &#8211; quality control?) and I&#8217;m baffled how it can score 9/10 yet be &#8220;average&#8221; in every respect. Ah, I went to &#8220;what does this mean&#8221; and I understand it now. Maybe it could be clearer on the page?</p>
   
   
-  Look and feel seems pretty intuitive, which is nice. Here&#8217;s a funny little thing though &#8211; when I wanted to switch back to the site to look at something, I had a moment of trouble finding the tab in Firefox. I realised that there were two contributing factors: 
+  <p>Look and feel seems pretty intuitive, which is nice. Here&#8217;s a funny little thing though &#8211; when I wanted to switch back to the site to look at something, I had a moment of trouble finding the tab in Firefox. I realised that there were two contributing factors: </p>
   	<ul>
   	<li>first, I was on the FAQ, so the tab caption was &#8220;Frequently Ask&#8230;&#8221; </li>
   		<li>second, the icon was the blue-quotes thingy</li>
