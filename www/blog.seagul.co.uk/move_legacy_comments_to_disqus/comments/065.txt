@@ -5,5 +5,5 @@
 :created_at: 2007-03-21T20:51
 :message: |-
   <p>Watchdog just slagged off Orange broadband, one of the major complaints was the difficulty in unsubscribing; sound familiar?
-  http://www.bbc.co.uk/consumer/tv_and_radio/watchdog/reports/internet/internet_20070321.shtml</p>
+  <a href="http://www.bbc.co.uk/consumer/tv_and_radio/watchdog/reports/internet/internet_20070321.shtml">http://www.bbc.co.uk/consumer/tv_and_radio/watchdog/reports/internet/internet_20070321.shtml</a></p>
 :author_url: ""

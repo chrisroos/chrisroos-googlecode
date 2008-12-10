@@ -7,13 +7,13 @@
   <p>No I don&#8217;t think it&#8217;s the same. Your idea is probably much more sensible and useful.</p>
   
   
-  	<p>With your idea, if I understand correctly, you have to be the owner of a domain to be able to set up these friendly URLs (mainly because you have to set up the CNAME). This way if I own www.example.org, I can set up redirections from www.example.org/anything to any URL. The big advantage is that these redirections would work for anybody.</p>
+  	<p>With your idea, if I understand correctly, you have to be the owner of a domain to be able to set up these friendly URLs (mainly because you have to set up the CNAME). This way if I own <a href="www.example.org">www.example.org</a>, I can set up redirections from <a href="www.example.org/anything">www.example.org/anything</a> to any URL. The big advantage is that these redirections would work for anybody.</p>
   
   
   	<p>My poorly thought through suggestion was to set up a publicly accessible HTTP proxy that a user would configure their browser to use. This would allow them to setup redirections from any URL to any other URL (i.e. the source URL would not be restricted to a domain that they own). Initially I was thinking about these redirections being private to each user, but could make them available to share.</p>
   
   
-  	<p>Using Paul&#8217;s comment in your previous post as an example, I could set up http://www.bbc.co.uk/radio-4/ to point to http://www.bbc.co.uk/radio4/ (but this would only be effective for users of the proxy).</p>
+  	<p>Using Paul&#8217;s comment in your previous post as an example, I could set up <a href="http://www.bbc.co.uk/radio-4/">http://www.bbc.co.uk/radio-4/</a> to point to <a href="http://www.bbc.co.uk/radio4/">http://www.bbc.co.uk/radio4/</a> (but this would only be effective for users of the proxy).</p>
   
   
   	<p>I suspect at least one problem with my idea is that people wouldn&#8217;t want to connect their browser to the web via a third-party proxy due to privacy concerns. But I wonder if using a local proxy like <a href="http://code.whytheluckystiff.net/mouseHole/">Mousehole</a>  r a browser plugin would be more feasible. You could then provide a redirection sharing mechanism via some central server. You could even make the popular redirections for a particular domain available to the domain owner as valuable feedback on making their URLs better.</p>

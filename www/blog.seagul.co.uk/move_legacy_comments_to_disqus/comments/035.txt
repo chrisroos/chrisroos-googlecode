@@ -19,7 +19,7 @@
   	<p>In that sense, from your blog I see that you&#8217;re a Ruby coder. I don&#8217;t suppose I could persuade you to write a Ruby library for using the Nestoria API? We recently had someone create a python library:</p>
   
   
-  	<p>http://blog.nestoria.co.uk/2006/09/21/python-library-for-the-nestoria-api/</p>
+  	<p><a href="http://blog.nestoria.co.uk/2006/09/21/python-library-for-the-nestoria-api/">http://blog.nestoria.co.uk/2006/09/21/python-library-for-the-nestoria-api/</a></p>
   
   
   	<p>and we&#8217;d love to see what clever ideas the Ruby community could come up with for playing with our database.</p>

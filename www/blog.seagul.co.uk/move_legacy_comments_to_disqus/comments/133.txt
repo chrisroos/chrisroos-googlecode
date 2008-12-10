@@ -10,12 +10,12 @@
   	<p>In regard to the issue about being charged or not, linked to whether the web address starts with www. or not, the answer is as you suspected &#8211; charges will be incurred.</p>
   
   
-  	<p>The problem with m.twitter.com not showing the message has now been resolved.</p>
+  	<p>The problem with <a href="http://m.twitter.com">m.twitter.com</a> not showing the message has now been resolved.</p>
   
   
   	<p>Hope this helps,</p>
   
   
   	<p>Sam.
-  www.3mobilebuzz.com</p>
+  <a href="http://www.3mobilebuzz.com">www.3mobilebuzz.com</a></p>
 :author_url: http://www.3mobilebuzz.com

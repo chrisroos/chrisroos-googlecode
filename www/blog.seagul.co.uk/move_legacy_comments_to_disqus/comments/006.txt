@@ -7,5 +7,5 @@
   <p>Did you have a peak at this one at any point?</p>
   
   
-  	<p>http://passwordmaker.org/</p>
+  	<p><a href="http://passwordmaker.org/">http://passwordmaker.org/</a></p>
 :author_url: http://null
