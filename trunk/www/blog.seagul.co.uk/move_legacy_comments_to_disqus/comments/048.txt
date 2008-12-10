@@ -3,5 +3,5 @@
 :author_email: nehetesuhasgmailcom+1228905515@seagul.co.uk
 :thread_id: "8113441"
 :created_at: 2007-01-03T05:52
-:message: <p>How to use flickr <span class="caps">API</span> to display photo in RubyOnRails application?</p>
+:message: <p>How to use flickr API to display photo in RubyOnRails application?</p>
 :author_url: ""

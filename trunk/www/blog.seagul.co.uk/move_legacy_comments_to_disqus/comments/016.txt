@@ -3,5 +3,5 @@
 :author_email: paul+1228905515@seagul.co.uk
 :thread_id: "2603784"
 :created_at: 2006-03-15T11:45
-:message: <p>Looks very cool and it&#8217;s got a route planner too.  It must be using the google maps <span class="caps">API</span>, there&#8217;s an article on this on development works too <a href='http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/'>http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/</a></p>
+:message: <p>Looks very cool and it&#8217;s got a route planner too.  It must be using the google maps API, there&#8217;s an article on this on development works too <a href='http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/'>http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/</a></p>
 :author_url: http://null

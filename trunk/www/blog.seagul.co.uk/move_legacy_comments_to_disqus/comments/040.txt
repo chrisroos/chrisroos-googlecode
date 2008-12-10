@@ -7,5 +7,5 @@
   <p>I am having the exact same experience as you. I&#8217;m going to subscribe to your blog and keep checking it to see if you&#8217;ve gotten any updates on this subject.</p>
   
   
-  	<p>I agree.. It simply must be possible to make a web services call over <span class="caps">SSL</span>.. It&#8217;s just a matter of finding a working example.</p>
+  	<p>I agree.. It simply must be possible to make a web services call over SSL.. It&#8217;s just a matter of finding a working example.</p>
 :author_url: ""

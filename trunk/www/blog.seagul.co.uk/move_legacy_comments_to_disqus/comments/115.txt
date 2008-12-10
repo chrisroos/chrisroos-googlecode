@@ -3,5 +3,5 @@
 :author_email: ben+1228905516@seagul.co.uk
 :thread_id: "3789570"
 :created_at: 2007-08-02T13:46
-:message: <p>One more point; using light-blue text on the site makes it hard to distinguish where there are hyper-links (darker-blue text). This is especially noticeable on the <span class="caps">FAQ</span> page.</p>
+:message: <p>One more point; using light-blue text on the site makes it hard to distinguish where there are hyper-links (darker-blue text). This is especially noticeable on the FAQ page.</p>
 :author_url: http://www.slashdotdash.net/

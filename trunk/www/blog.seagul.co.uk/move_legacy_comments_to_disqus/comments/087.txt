@@ -7,5 +7,5 @@
   <p>Great stuff, can you come up with one for Halifax?! :-)</p>
   
   
-  	<p>I am worried about the long term viability of this sort of thing however, given that many UK banks are on track to introduce hardware dongles to perform authentication (in the hope of reducing the damage caused by phishing scams). However as I wrote <a href="http://www.thenewsbeforethenews.com/2006/03/27/where-is-the-web-service-api-for-my-bank-account/">here</a> it would be great if they would just offer me some sort of web service <span class="caps">API</span>; or at least email me my transactions in a machine-readable format every day/week.</p>
+  	<p>I am worried about the long term viability of this sort of thing however, given that many UK banks are on track to introduce hardware dongles to perform authentication (in the hope of reducing the damage caused by phishing scams). However as I wrote <a href="http://www.thenewsbeforethenews.com/2006/03/27/where-is-the-web-service-api-for-my-bank-account/">here</a> it would be great if they would just offer me some sort of web service API; or at least email me my transactions in a machine-readable format every day/week.</p>
 :author_url: http://www.thenewsbeforethenews.com

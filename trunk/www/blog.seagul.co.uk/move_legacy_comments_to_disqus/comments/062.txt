@@ -3,5 +3,5 @@
 :author_email: blog+1228905515@seagul.co.uk
 :thread_id: "3783137"
 :created_at: 2007-07-19T22:38
-:message: <p>m<strong>nd</strong>tory. It&#8217;s a bully boy word. If something is &#8220;m<strong>nd</strong>tory&#8221; it means you <span class="caps">WILL</span> do it because you have no choice. And &#8220;obl<strong>g</strong>tory&#8221; is another one almost as bad.</p>
+:message: <p>m<strong>nd</strong>tory. It&#8217;s a bully boy word. If something is &#8220;m<strong>nd</strong>tory&#8221; it means you WILL do it because you have no choice. And &#8220;obl<strong>g</strong>tory&#8221; is another one almost as bad.</p>
 :author_url: ""

@@ -7,16 +7,16 @@
   <p>Hi Chris,</p>
   
   
-  	<p>I was looking for an online business account which supplied transaction history in <span class="caps">OFX</span> format, and stumbled across your posts re <span class="caps">HSBC</span>.</p>
+  	<p>I was looking for an online business account which supplied transaction history in OFX format, and stumbled across your posts re HSBC.</p>
   
   
-  	<p>When I called them, they said they only supported exports in Quicken format (they didn&#8217;t say whether it was <span class="caps">QIF</span> or <span class="caps">QFX</span>, though), and in <span class="caps">CSV</span> (and declined to tell me what fields would appear in the <span class="caps">CSV</span>).</p>
+  	<p>When I called them, they said they only supported exports in Quicken format (they didn&#8217;t say whether it was QIF or QFX, though), and in CSV (and declined to tell me what fields would appear in the CSV).</p>
   
   
-  	<p>Is there any chance you could show an example of the <span class="caps">OFX</span> format output they provide(with personal information removed of course), along with an example of the same data in the format as you would expect it to appear? I too am going to have to parse whatever they provide, so am very curious about whatever problems you&#8217;ve already found!</p>
+  	<p>Is there any chance you could show an example of the OFX format output they provide(with personal information removed of course), along with an example of the same data in the format as you would expect it to appear? I too am going to have to parse whatever they provide, so am very curious about whatever problems you&#8217;ve already found!</p>
   
   
-  	<p>Lastly, is there chance that they&#8217;re actually serving up <span class="caps">QFX</span> format? If so, this should be valid <span class="caps">OFX</span>, should it not?
+  	<p>Lastly, is there chance that they&#8217;re actually serving up QFX format? If so, this should be valid OFX, should it not?
   thanks :)
   tom</p>
 :author_url: ""

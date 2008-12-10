@@ -15,5 +15,5 @@
           from foobar.rb:8</p>
   
   
-  	<p>Did you do anything besides just downloading pop.rb from the <span class="caps">HEAD</span> and sticking it into your ruby path?</p>
+  	<p>Did you do anything besides just downloading pop.rb from the HEAD and sticking it into your ruby path?</p>
 :author_url: ""

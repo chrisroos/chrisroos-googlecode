@@ -7,5 +7,5 @@
   <p>Hey Matt,</p>
   
   
-  	<p>I&#8217;ve started to wonder whether a greasemonkey script might do what I need.  The script would just recognise the page you&#8217;re on and look up, in a set of rules, how to find the canonical <span class="caps">URL</span>.  Sadly, I&#8217;m not sure when I might find time to do it.</p>
+  	<p>I&#8217;ve started to wonder whether a greasemonkey script might do what I need.  The script would just recognise the page you&#8217;re on and look up, in a set of rules, how to find the canonical URL.  Sadly, I&#8217;m not sure when I might find time to do it.</p>
 :author_url: ""

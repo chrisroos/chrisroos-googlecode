@@ -10,7 +10,7 @@
   	<p>I think I&#8217;m aiming to do exactly what you&#8217;re talking about.</p>
   
   
-  	<p>I&#8217;m aiming for anyone to be able to point a <span class="caps">CNAME</span> at my host, log into the web interface (that doesn&#8217;t exist yet) and configure their redirections.</p>
+  	<p>I&#8217;m aiming for anyone to be able to point a CNAME at my host, log into the web interface (that doesn&#8217;t exist yet) and configure their redirections.</p>
   
   
   	<p>Is that what you meant?</p>

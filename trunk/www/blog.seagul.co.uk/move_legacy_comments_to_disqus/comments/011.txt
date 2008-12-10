@@ -7,7 +7,7 @@
   <p>This should do</p>
   
   
-  	<p><span class="caps">ENV</span>[&#8216;RAILS_ENV&#8217;]  'test' and
+  	<p>ENV[&#8216;RAILS_ENV&#8217;]  'test' and
   ActiveRecord::Base.configurations['test']  {
     &#8216;adapter&#8217; =&gt; &#8216;sqlite3&#8217;,
     &#8216;dbfile&#8217; =&gt; &#8217;:memory:&#8217;
