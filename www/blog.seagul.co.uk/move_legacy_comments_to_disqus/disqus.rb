@@ -11,7 +11,9 @@ COMMENTS_DIR  = File.join(File.dirname(__FILE__), 'comments')
 def curl(cmd)
   cmd = "curl #{cmd} -s"
   # puts cmd
-  `#{cmd}`
+  result = `#{cmd}`
+  # puts result
+  result
 end
   
 require 'json'
@@ -45,4 +47,15 @@ end
 def store_threads(threads)
   puts "Storing threads to: #{THREADS_FILE}"
   File.open(THREADS_FILE, 'w') { |f| f.puts(threads.to_yaml) }
+end
+
+require 'cgi'
+def prepare_comment(comment_data)
+  [:message, :author_name, :author_email, :author_url].each { |key| comment_data[key] = CGI.escape(comment_data[key]) }
+end
+
+def create_comment(forum_key, comment_data)
+  prepare_comment(comment_data)
+  
+  curl %%"#{DISQUS_API}/create_post/" -d"forum_api_key=#{forum_key}" -d"thread_id=#{comment_data[:thread_id]}" -d"message=#{comment_data[:message]}" -d"author_name=#{comment_data[:author_name]}" -d"author_email=#{comment_data[:author_email]}" -d"created_at=#{comment_data[:created_at]}" -d"author_url=#{comment_data[:author_url]}"%
 end
