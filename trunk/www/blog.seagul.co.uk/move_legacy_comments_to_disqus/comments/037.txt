@@ -1,0 +1,23 @@
+--- 
+:author_name: Kyle
+:author_email: kyle+1228905515@seagul.co.uk
+:thread_id: "7917380"
+:created_at: 2007-12-08T22:52
+:message: |-
+  <p>This is an old post, but how about doing this?:</p>
+  
+  
+  <pre>
+  <code>
+  Class String
+          def self.to_bool
+                  return true if string == true || string =~ /^true$/i
+                  return false if string == false || string.nil? || string =~ /^false$/i
+                  raise ArgumentError.new("invalid value for to_bool: \"#{string}\"")
+          end
+  end
+  </code>
+  </pre>
+  
+  	<p>That allows you to just use string.to_bool</p>
+:author_url: http://remkade.ambitiouslemon.com

@@ -1,0 +1,7 @@
+--- 
+:author_name: James
+:author_email: james+1228905516@seagul.co.uk
+:thread_id: "3021898"
+:created_at: 2007-07-24T21:20
+:message: <p>Brilliant idea &#8211; I&#8217;m looking forward to using it! Was it a conscious choice to go for the 3-letter codes? It looks like there is lookup data <a href="http://www.nationalrail.co.uk/symlinks/javascript/stationfinder/stationFinder-kb-data.js">here</a></p>
+:author_url: http://blog.floehopper.org

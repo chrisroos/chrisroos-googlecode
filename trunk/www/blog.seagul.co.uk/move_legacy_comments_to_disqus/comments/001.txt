@@ -1,0 +1,7 @@
+--- 
+:author_name: Ramil
+:author_email: ramil+1228905515@seagul.co.uk
+:thread_id: "7930019"
+:created_at: 2007-10-02T21:47
+:message: <p>I still can get it to be transparent.</p>
+:author_url: ""

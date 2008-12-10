@@ -1,0 +1,7 @@
+--- 
+:author_name: Rodney
+:author_email: rodney+1228905515@seagul.co.uk
+:thread_id: "8148812"
+:created_at: 2006-07-17T18:05
+:message: <p>I&#8217;m hooked already. What could you possibly do to make it better :-) ?</p>
+:author_url: http://www.pinupgeek.com

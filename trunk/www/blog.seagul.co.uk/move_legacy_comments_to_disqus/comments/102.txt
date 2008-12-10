@@ -1,0 +1,7 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "2655674"
+:created_at: 2007-07-13T16:50
+:message: <p>Yeah, I was being lazy and pasted it straight from the email.  I&#8217;ll re-format it shortly.</p>
+:author_url: ""

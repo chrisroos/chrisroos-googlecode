@@ -1,0 +1,11 @@
+--- 
+:author_name: Adem
+:author_email: adem+1228905515@seagul.co.uk
+:thread_id: "3686604"
+:created_at: 2006-08-23T14:11
+:message: |-
+  <p>Hey Chris. This morning I wrote article about <a href="http://www.feedreader.com/">Feedreader</a>, an <span class="caps">RSS</span> aggregator, and then I popped along here and saw this article.</p>
+  
+  
+  	<p>I&#8217;ve now added your blog to it so that I know when you update.</p>
+:author_url: http://https://specialstuff.wordpress.com/

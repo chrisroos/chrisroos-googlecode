@@ -1,0 +1,26 @@
+--- 
+:author_name: Tanc
+:author_email: tanc+1228905515@seagul.co.uk
+:thread_id: "7985361"
+:created_at: 2007-04-24T12:26
+:message: |-
+  <p>Hi Chris,</p>
+  
+  
+  	<p>I&#8217;m finally getting around to trying out your code to convert my egg statements. I&#8217;ve checked out the svn code and created the statements and ofx output folders (basically put them in with the code to make things easier, didn&#8217;t alter the defaults). I&#8217;ve also installed the hpricot gem with: sudo gem install hpricot</p>
+  
+  
+  	<p>When I run the ruby code egg.rb I get the following error:</p>
+  
+  
+  <code>tanc$ ruby egg.rb</code>
+  <br/>
+  <code>./lib/ofx.rb:2:in `require': no such file to load -- builder (LoadError)
+          from ./lib/ofx.rb:2
+          from egg.rb:2</code>
+  
+  	<p><br/>Can you guide me on what is going wrong? I&#8217;d love to get this working. Feel free to email me.</p>
+  
+  
+  	<p>Thanks.</p>
+:author_url: http://tancredi.co.uk

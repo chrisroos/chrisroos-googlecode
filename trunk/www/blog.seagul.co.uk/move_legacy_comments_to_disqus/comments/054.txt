@@ -1,0 +1,17 @@
+--- 
+:author_name: Jamis
+:author_email: jamis+1228905515@seagul.co.uk
+:thread_id: "8074280"
+:created_at: 2007-01-13T15:35
+:message: |-
+  <p>Chris, actually, you&#8217;re not getting the hobbies object back. The &#8220;hobbies&#8221; method returns a proxy object, not the array of hobbies directly. When you invoke a method on what is returned, it is hitting the proxy, not the array.</p>
+  
+  
+  	<p>It&#8217;s all nicely encapsulated. Ruby makes it so clean and neat to do these things. The problem is, so many of us are coming from languages like Java, where it is <em>not</em> so easy to do things like that transparently, and since we&#8217;re taught that manipulating the internal object directly is bad, we feel like we have to jump through all kinds of hoops in order to avoid even the <em>appearance</em> of that kind of access.</p>
+  
+  
+  	<p>The fact is, though, that encapsulation is the goal, and what it is attained, there are no more hoops to jump through. And ActiveRecord correctly and safely encapsulates your data, via the association proxy classes.</p>
+  
+  
+  	<p>There&#8217;s no need for Javaisms like &#8220;add_hobby&#8221;, unless you, personally, prefer it that way. Myself, I think Java has taught programmers a lot of very bad habits, and Ruby (and Rails) gives us the chance to unlearn some of those.</p>
+:author_url: ""

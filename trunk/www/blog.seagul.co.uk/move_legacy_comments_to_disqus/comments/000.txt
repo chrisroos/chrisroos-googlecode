@@ -1,0 +1,7 @@
+--- 
+:author_name: James
+:author_email: james+1228905515@seagul.co.uk
+:thread_id: "7930019"
+:created_at: 2007-03-26T11:17
+:message: <p>I found that you don&#8217;t actually need to select anything &#8211; I had a png image of a logo, which was some blue text on a white background. I started from step 7 and by default it turns white to alpha which is exactly what I wanted.</p>
+:author_url: ""

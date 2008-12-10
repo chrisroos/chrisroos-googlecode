@@ -1,0 +1,7 @@
+--- 
+:author_name: Richard
+:author_email: richard+1228905515@seagul.co.uk
+:thread_id: "7931180"
+:created_at: 2007-07-18T23:04
+:message: <p>Would you mind sharing the code please?</p>
+:author_url: ""

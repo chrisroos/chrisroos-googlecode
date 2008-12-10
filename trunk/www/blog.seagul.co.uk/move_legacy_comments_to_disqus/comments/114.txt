@@ -1,0 +1,11 @@
+--- 
+:author_name: Ben
+:author_email: ben+1228905516@seagul.co.uk
+:thread_id: "3789570"
+:created_at: 2007-08-02T13:39
+:message: |-
+  <p>One very quick initial comment is that on the homepage the reviews that pop-up need to have a link to the associated product page. The actual product review pages are clearer now, I had to laugh at one reviewer&#8217;s negative points regarding the Canon <span class="caps">EOS 400D</span>&#8230;</p>
+  
+  
+  	<p><em>&#8220;It&#8217;s not possible to crop pictures on the lcd and then to save them. Quite a drawback if you don&#8217;t have the time to fiddle around on the computer.&#8221;</em></p>
+:author_url: http://www.slashdotdash.net/

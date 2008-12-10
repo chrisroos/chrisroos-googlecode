@@ -1,0 +1,23 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "2600907"
+:created_at: 2007-12-10T14:57
+:message: |-
+  <p>Hi Tom,</p>
+  
+  
+  	<p><span class="caps">HSBC</span> offer exports in three different formats.  They actually offer five in the list of options but two are duplicates (the <span class="caps">OFX</span> and <span class="caps">QIF</span> formats).</p>
+  
+  
+  	<ul>
+  	<li>Money &#8211; <span class="caps">QIF</span></li>
+  		<li>Money 98 &#8211; <span class="caps">OFX</span></li>
+  		<li>Quicken &#8211; <span class="caps">QIF</span></li>
+  		<li>Quicken 2002 &#8211; <span class="caps">OFX</span></li>
+  		<li>Spreadsheets &#8211; <span class="caps">CSV</span></li>
+  	</ul>
+  
+  
+  	<p>I&#8217;ve pasted examples of each of <a href="http://pastie.caboo.se/126490"><span class="caps">QIF</span></a>, <a href="http://pastie.caboo.se/126491"><span class="caps">OFX</span></a> and <a href="http://pastie.caboo.se/126492"><span class="caps">CSV</span></a> to <a href="http://pastie.caboo.se">pastie</a>.  Let me know if you need anything else.</p>
+:author_url: ""

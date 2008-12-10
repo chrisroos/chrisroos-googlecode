@@ -1,0 +1,7 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "2603784"
+:created_at: 2006-03-07T14:06
+:message: <p>Err, usefulness needn&#8217;t apply &#8211; it&#8217;s just cool.  Yeah.</p>
+:author_url: ""

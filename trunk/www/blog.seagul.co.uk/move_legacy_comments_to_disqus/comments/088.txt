@@ -1,0 +1,14 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "7918672"
+:created_at: 2007-05-16T21:39
+:message: |-
+  <p>Hey James,</p>
+  
+  
+  	<p>I&#8217;d love to help with an implementation for the Halifax but I don&#8217;t have an account with them I&#8217;m afraid.</p>
+  
+  
+  	<p>I agree about the long term viability of this approach.  It&#8217;d be great if just one of the banks understood this stuff and started offering secure rss/atom feeds of transactions.  Then, logging in would only be required when you wanted to do something important, like moving money between account and making payments.</p>
+:author_url: ""

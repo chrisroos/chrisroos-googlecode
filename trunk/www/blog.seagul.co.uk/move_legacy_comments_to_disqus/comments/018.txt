@@ -1,0 +1,14 @@
+--- 
+:author_name: topfunky
+:author_email: topfunky+1228905515@seagul.co.uk
+:thread_id: "3634428"
+:created_at: 2006-06-01T21:51
+:message: |-
+  <p>I made your sqlite in-memory fix into a plugin and am using it with my tests.</p>
+  
+  
+  	<p>Can I publish this plugin, or would you rather have control of it?</p>
+  
+  
+  	<p>Thanks again! This is a great tip!</p>
+:author_url: http://nubyonrails.com

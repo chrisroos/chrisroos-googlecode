@@ -1,0 +1,7 @@
+--- 
+:author_name: Kieran
+:author_email: kieran+1228905515@seagul.co.uk
+:thread_id: "3783137"
+:created_at: 2007-03-09T14:48
+:message: <p>The correct spelling is actually &#8216;txtd&#8217;...  when it&#8217;s being texted.</p>
+:author_url: ""

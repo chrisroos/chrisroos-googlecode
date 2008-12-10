@@ -1,0 +1,23 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "2594266"
+:created_at: 2007-11-17T10:45
+:message: |-
+  <p>Hey Mike,</p>
+  
+  
+  	<p>I guess I&#8217;m thinking of business consultants rather than software consultants.  I assume that at some point they&#8217;ll realise that it&#8217;s even cheaper to get work done for free than to outsource it&#8230;</p>
+  
+  
+  	<p>I actually think the best mix would be a small internal development team that could potentially co-ordinate some open-source efforts too.  I think it&#8217;d be possible to become so far ahead of the competition that they could actually use their Internet banking site as a selling point.  Oh, and they should definitely hire developers that actually use Internet banking &#8211; this is quite clearly not the case at the moment.</p>
+  
+  
+  	<p>Anyway, just some random thoughts.</p>
+  
+  
+  	<p>PS.  Peter Kay is brilliant.</p>
+  
+  
+  	<p><span class="caps">PPS</span>.  Excellent news that you&#8217;re able to get paid for writing ruby.</p>
+:author_url: ""

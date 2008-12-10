@@ -1,0 +1,7 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "8032199"
+:created_at: 2007-06-14T21:58
+:message: <p>Mr F, it just sits on two angled screws in the wall.  It hasn&#8217;t fallen down yet so I guess it&#8217;s ok&#8230;</p>
+:author_url: ""

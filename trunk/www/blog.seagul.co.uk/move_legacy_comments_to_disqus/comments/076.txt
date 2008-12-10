@@ -1,0 +1,12 @@
+--- 
+:author_name: rashmi
+:author_email: rashmi+1228905515@seagul.co.uk
+:thread_id: "2619543"
+:created_at: 2007-04-21T03:29
+:message: |-
+  <p>Your post came up in my <span class="caps">RSS</span> search feed for &#8220;SlideShare&#8221;. Just curious &#8211; why was SlideShare not suitable in this instance. Did you have some features we don&#8217;t support. Did you know that we recently added ability to upload pdf&#8217;s? That seems to take care of some corner situations.</p>
+  
+  
+  	<p>rashmi
+  the slideshare team</p>
+:author_url: http://www.rashmisinha.com

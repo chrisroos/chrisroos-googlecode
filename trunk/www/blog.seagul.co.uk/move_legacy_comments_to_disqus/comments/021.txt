@@ -1,0 +1,11 @@
+--- 
+:author_name: Chris McGrath
+:author_email: chrismcgrath+1228905515@seagul.co.uk
+:thread_id: "8148812"
+:created_at: 2006-07-17T15:40
+:message: |-
+  <p>Very cool and very handy. Thanks!</p>
+  
+  
+  	<p>I mentioned this to Allan in #textmate and he&#8217;s added it to the Rails bundle.</p>
+:author_url: http://octopod.info

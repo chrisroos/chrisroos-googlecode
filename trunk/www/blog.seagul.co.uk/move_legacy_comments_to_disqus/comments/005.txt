@@ -1,0 +1,7 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "3691216"
+:created_at: 2005-11-08T08:10
+:message: <p>Mmm, it would indeed appear so.  Now fixed ta.</p>
+:author_url: ""

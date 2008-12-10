@@ -1,0 +1,11 @@
+--- 
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk
+:thread_id: "2601895"
+:created_at: 2006-08-16T09:00
+:message: |-
+  <p>Damien,</p>
+  
+  
+  	<p>The intention is not to replace assertions in functional tests but rather aid in the discovery of any invalid assertions.</p>
+:author_url: ""

@@ -1,0 +1,7 @@
+--- 
+:author_name: James Mead
+:author_email: jamesmead+1228905516@seagul.co.uk
+:thread_id: "7958896"
+:created_at: 2007-12-07T09:42
+:message: <p>That&#8217;s cool. I&#8217;ve probably got something horribly wrong, but would it be possible to set up a publicly available http proxy which could do the same sort of redirecting but for <strong>any</strong> domain. If users had to login to the proxy, you&#8217;d be able to discriminate between users and so each user could set up their own rules.</p>
+:author_url: http://blog.floehopper.org
