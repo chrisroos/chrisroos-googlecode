@@ -20,9 +20,6 @@ class ArticleView
   def tags
     @article.tags
   end
-  def comments
-    @article.comments
-  end
   def previous_post
     @article.previous_article
   end

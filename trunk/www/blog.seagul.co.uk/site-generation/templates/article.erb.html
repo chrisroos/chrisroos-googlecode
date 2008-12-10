@@ -57,27 +57,6 @@
                 <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
               </noscript>
 
-              <% unless comments.empty? %>
-                <h2>Legacy Comments</h2>
-                <ol class="comments">
-                  <% comments.each do |comment| %>
-                  <li>
-                    <p class="postedOn">
-                      <strong>
-                        <% if comment.url && comment.url != '' %>
-                          <a href="<%= comment.url %>"><%= h(comment.author) %></a>
-                        <% else %>
-                          <%= h(comment.author) %>
-                        <% end %>
-                      </strong>
-                      said on <%= comment.formatted_published_date %>:
-                    </p>
-                    <%= comment.body_html %>
-                  </li>
-                  <% end %>
-                </ol>
-              <% end %>
-
             </div>
           </div>
         </div>
