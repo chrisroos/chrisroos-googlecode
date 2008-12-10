@@ -1,26 +1,11 @@
 --- 
-:author_name: Matt Pelletier
-:author_email: mattpelletier+1228905515@seagul.co.uk
+:author_url: ""
 :thread_id: "8074280"
 :created_at: 2007-02-07T07:50
 :message: |-
-  <p>Chris,</p>
-  
-  
-  	<p>We&#8217;ve run into similar concerns re. association proxies and object hopping. I wrote a plugin that adds methods that wrap the common find, build and count association proxy methods. You could add &#8216;add&#8217; to this easily.</p>
-  
-  
-  	<p><a href="http://svn.eastmedia.com/svn/code/plugins/model_extensions/lib/associations.rb">http://svn.eastmedia.com/svn/code/plugins/model_extensions/lib/associations.rb</a></p>
-  
-  
-  	<p>We&#8217;ve also become fans of Forwardable&#8217;s def_delegator and def_delegators (roughly the same as Rails&#8217; delegate method, if you want). Using David&#8217;s example:</p>
-  
-  
-  	<p>class Stories &lt; AR:B
+  <p>Chris,</p><p>We&#8217;ve run into similar concerns re. association proxies and object hopping. I wrote a plugin that adds methods that wrap the common find, build and count association proxy methods. You could add &#8216;add&#8217; to this easily.</p><p><a href="http://svn.eastmedia.com/svn/code/plugins/model_extensions/lib/associations.rb">http://svn.eastmedia.com/svn/code/plugins/model_extensions/lib/associations.rb</a></p><p>We&#8217;ve also become fans of Forwardable&#8217;s def_delegator and def_delegators (roughly the same as Rails&#8217; delegate method, if you want). Using David&#8217;s example:</p><p>class Stories &lt; AR:B
     extend Forwardable
     def_delegator :iterations, :stories
-  end</p>
-  
-  
-  	<p>Matt</p>
-:author_url: ""
+  end</p><p>Matt</p>
+:author_name: Matt Pelletier
+:author_email: mattpelletier+1228905515@seagul.co.uk

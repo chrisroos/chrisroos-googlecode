@@ -1,17 +1,7 @@
 --- 
-:author_name: Chris Roos
-:author_email: chris@seagul.co.uk
+:author_url: ""
 :thread_id: "7958896"
 :created_at: 2007-12-07T10:13
-:message: |-
-  <p>Hey James,</p>
-  
-  
-  	<p>I think I&#8217;m aiming to do exactly what you&#8217;re talking about.</p>
-  
-  
-  	<p>I&#8217;m aiming for anyone to be able to point a CNAME at my host, log into the web interface (that doesn&#8217;t exist yet) and configure their redirections.</p>
-  
-  
-  	<p>Is that what you meant?</p>
-:author_url: ""
+:message: <p>Hey James,</p><p>I think I&#8217;m aiming to do exactly what you&#8217;re talking about.</p><p>I&#8217;m aiming for anyone to be able to point a CNAME at my host, log into the web interface (that doesn&#8217;t exist yet) and configure their redirections.</p><p>Is that what you meant?</p>
+:author_name: Chris Roos
+:author_email: chris@seagul.co.uk

@@ -1,11 +1,7 @@
 --- 
-:author_name: Ryan Allen
-:author_email: ryanallen+1228905515@seagul.co.uk
+:author_url: http://leftjoinrightjoin.com
 :thread_id: "8148812"
 :created_at: 2006-07-18T00:43
-:message: |-
-  <p>Oh wait, my bad!</p>
-  
-  
-  	<p>You&#8217;re getting the columns from ActiveRecord itself so it does work with set_table_name!</p>
-:author_url: http://leftjoinrightjoin.com
+:message: <p>Oh wait, my bad!</p><p>You&#8217;re getting the columns from ActiveRecord itself so it does work with set_table_name!</p>
+:author_name: Ryan Allen
+:author_email: ryanallen+1228905515@seagul.co.uk

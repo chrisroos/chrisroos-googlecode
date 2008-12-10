@@ -1,11 +1,7 @@
 --- 
-:author_name: Adem
-:author_email: adem+1228905516@seagul.co.uk
+:author_url: http://ademblog.blogspot.com
 :thread_id: "6664609"
 :created_at: 2007-06-26T10:44
-:message: |-
-  <p>Well done mate, that&#8217;s really good. It&#8217;s great when one has an idea and is able to get on it and have it done within a day.</p>
-  
-  
-  	<p>Keep up the good work!</p>
-:author_url: http://ademblog.blogspot.com
+:message: <p>Well done mate, that&#8217;s really good. It&#8217;s great when one has an idea and is able to get on it and have it done within a day.</p><p>Keep up the good work!</p>
+:author_name: Adem
+:author_email: adem+1228905516@seagul.co.uk

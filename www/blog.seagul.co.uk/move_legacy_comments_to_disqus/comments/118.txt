@@ -1,11 +1,7 @@
 --- 
-:author_name: Adem
-:author_email: adem+1228905516@seagul.co.uk
+:author_url: http://www.ademweb.co.uk/blog
 :thread_id: "3017095"
 :created_at: 2007-08-24T11:19
-:message: |-
-  <p>I&#8217;ve just had a whizz over at Reevoo and I must say it&#8217;s looking a lot better and cleaner since I was last over there (a while back).</p>
-  
-  
-  	<p>Keep up the good work.</p>
-:author_url: http://www.ademweb.co.uk/blog
+:message: <p>I&#8217;ve just had a whizz over at Reevoo and I must say it&#8217;s looking a lot better and cleaner since I was last over there (a while back).</p><p>Keep up the good work.</p>
+:author_name: Adem
+:author_email: adem+1228905516@seagul.co.uk
