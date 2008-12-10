@@ -78,39 +78,6 @@ RewriteRule ^(.*)index\.html$ $1 [R=301,L]</code></pre></div>
               </noscript>
 
               
-                <h2>Legacy Comments</h2>
-                <ol class="comments">
-                  
-                  <li>
-                    <p class="postedOn">
-                      <strong>
-                        
-                          <a href="http://thanetstar.com/">Matt B</a>
-                        
-                      </strong>
-                      said on Wed, 16 Jan 2008 17:55:30:
-                    </p>
-                    <p>The thing about mod rewrite is that it is voodoo, damn cool voodoo but voodoo nevertheless (some one more impressive than me said that ages ago but I&#8217;m to lazy to look up the actual quote).</p>
-
-
-	<p>I had a similar situation when I moved a wiki from a sub directory to a sub domain.  The sub domain required that the folder of the SD be in the ht root.  Common cPanel hackishness.  So all requests for lordmatt.co.uk/wiki and wiki.lordmatt.co.uk were exactly the same.</p>
-
-
-	<p>I came up with:</p>
-
-
-<pre>RewriteCond %{HTTP_HOST} !^wiki\.lordmatt\.co\.uk(.*)$ [NC]
-RewriteCond %{REQUEST_URI} ^/wiki/ [NC]
-RewriteRule ^wiki(.*)$  http://wiki.lordmatt.co.uk$1 [R=301,NC,L]</pre>
-
-	<p>The problem I had was similar in that if I redirected for the &#8220;wrong&#8221; urls then the internal requests looped forever.  The result is http code 500 &#8211; internal server error.</p>
-
-
-	<p>As you can gather there is more than one way to get something to work.  As with all voodoo that it works is important and a congratulations is awarded to anyone able to brew up a solution to a problem.</p>
-                  </li>
-                  
-                </ol>
-              
 
             </div>
           </div>
