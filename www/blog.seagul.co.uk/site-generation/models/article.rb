@@ -18,7 +18,6 @@ class Article
         articles_dir = File.join(File.dirname(__FILE__), *%w[.. .. content articles])
         articles = Dir[File.join(articles_dir, '*.yml')].collect do |article_filename|
           article_attributes = YAML.load_file(article_filename)
-          article_attributes.delete(:tags)
           Article.new(article_attributes)
         end.sort do |article_a, article_b| # Sort in descending order of published_at
           article_b.published_at <=> article_a.published_at
