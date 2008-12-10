@@ -3,7 +3,7 @@
 :thread_id: "7917380"
 :created_at: 2007-12-08T22:55
 :message: |-
-  <p>each <code>string</code> item actually should be converted to <code>self</code> instead. Like this:</p><pre>
+  <p>each <code>string</code> item actually should be converted to <code>self</code> instead. Like this:</p>
   <code>
   Class String
           def self.to_bool
@@ -13,6 +13,5 @@
           end
   end
   </code>
-  </pre>
 :author_name: Kyle
 :author_email: kyle+1228905515@seagul.co.uk

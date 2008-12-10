@@ -3,27 +3,24 @@
 :thread_id: "7917380"
 :created_at: 2007-12-14T09:11
 :message: |-
-  <p>Hey Kyle,</p><p>I guess to follow the conventions within ruby (Integer() and to_i, Float() and to_f etc) we should allow both.</p><p>Assuming my original Kernel#Boolean method, we could have something like:</p><typo:code lang="ruby">
+  <p>Hey Kyle,</p><p>I guess to follow the conventions within ruby (Integer() and to_i, Float() and to_f etc) we should allow both.</p><p>Assuming my original Kernel#Boolean method, we could have something like:</p><code>
   class Object
     def to_bool
       Boolean(self)
     end
   end
   
-  	<p>Object.new.to_bool
-  =&gt; ArgumentError: invalid value for Boolean: &#8221;#<object:0x10b0e68>&#8220;</object:0x10b0e68></p>
+  Object.new.to_bool
+  =&gt; ArgumentError: invalid value for Boolean: &#8221;#<object:0x10b0e68>&#8220;</object:0x10b0e68>
   
+  &#8216;true&#8217;.to_bool
+  =&gt; true
   
-  	<p>&#8216;true&#8217;.to_bool
-  =&gt; true</p>
-  
-  
-  	<p>&#8216;false&#8217;.to_bool
-  =&gt; false</p>
-  
+  &#8216;false&#8217;.to_bool
+  =&gt; false
   
   nil.to_bool
   =&gt; false
-  </typo:code>
+  </code>
 :author_name: Chris Roos
 :author_email: chris@seagul.co.uk
