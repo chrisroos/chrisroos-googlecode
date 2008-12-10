@@ -1,11 +1,10 @@
-require 'comment'
 require 'syntax_highlighter'
 gem 'RedCloth', '3.0.4' # I'm not sure why, but 4.x versions of RedCloth result in my typo_code being html escaped
 require 'redcloth'
 
 class Article
   
-  attr_accessor :title, :guid, :body, :published_at, :comments, :next_article, :previous_article
+  attr_accessor :title, :guid, :body, :published_at, :next_article, :previous_article
   
   def initialize(attributes)
     attributes.each do |attribute, value|
@@ -20,9 +19,6 @@ class Article
         articles = Dir[File.join(articles_dir, '*.yml')].collect do |article_filename|
           article_attributes = YAML.load_file(article_filename)
           article_attributes.delete(:tags)
-          article_attributes[:comments] = (article_attributes.delete(:comments)||[]).collect { |comment_attributes|
-            Comment.new(comment_attributes)
-          }
           Article.new(article_attributes)
         end.sort do |article_a, article_b| # Sort in descending order of published_at
           article_b.published_at <=> article_a.published_at
