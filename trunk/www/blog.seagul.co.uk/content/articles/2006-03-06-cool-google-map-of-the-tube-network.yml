@@ -12,7 +12,7 @@
 - :published_at: 2006-03-07 14:06:25 +00:00
   :body: Err, usefulness needn't apply - it's just cool.  Yeah.
   :url: ""
-  :author: Chris
+  :author: Chris Roos
   :article_id: 64
 - :published_at: 2006-03-15 11:45:10 +00:00
   :body: Looks very cool and it's got a route planner too.  It must be using the google maps API, there's an article on this on development works too <a href='http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/'>http://www-128.ibm.com/developerworks/db2/library/techarticle/dm-0602lurie/</a>
@@ -22,5 +22,5 @@
 - :published_at: 2006-03-16 07:58:46 +00:00
   :body: It certainly does - I subscribe to the feed at "this":http://googlemapsmania.blogspot.com/ site to get updates on new uses of the google maps api.
   :url: ""
-  :author: Chris
+  :author: Chris Roos
   :article_id: 64

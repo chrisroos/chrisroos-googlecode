@@ -81,7 +81,7 @@
     
     I agree about the long term viability of this approach.  It'd be great if just one of the banks understood this stuff and started offering secure rss/atom feeds of transactions.  Then, logging in would only be required when you wanted to do something important, like moving money between account and making payments.
   :url: ""
-  :author: Chris
+  :author: Chris Roos
   :article_id: 5032
 - :published_at: 2007-12-26 16:30:16 +00:00
   :body: So um, what exactly do we do with this (and/or how do we do it) to make LloydsTSB talk to Wesabe automagically?

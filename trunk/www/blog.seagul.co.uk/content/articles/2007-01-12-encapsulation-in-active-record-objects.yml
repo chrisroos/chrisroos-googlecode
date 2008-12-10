@@ -101,7 +101,7 @@
     
     Apologies for the short answer - I was trying to expand upon it with examples but found myself rambling a little too much.  Maybe I'll try a follow-up post with more exploration of the issue.
   :url: ""
-  :author: Chris
+  :author: Chris Roos
   :article_id: 604
 - :published_at: 2007-01-13 15:35:24 +00:00
   :body: |-
@@ -146,7 +146,7 @@
     
     Do you not feel that the addition of one method in order to make testing easier is a worthwhile thing to do?  Or, would you err away from testing with mocks/stubs, in which case it's probably all irrelevant?
   :url: ""
-  :author: Chris
+  :author: Chris Roos
   :article_id: 604
 - :published_at: 2007-02-06 15:51:21 +00:00
   :body: |-
