@@ -1,6 +1,4 @@
 --- 
-:published_at: 2006-07-28 23:06:00 +01:00
-:title: "TextMate and \"env: ruby: No such file or directory\""
 :body: |-
   So, I was coming up against this problem in TextMate just recently.
   
@@ -47,13 +45,6 @@
   *Note* You'll want to change the path to the location of the binaries you want found.
   
   Then a quick log out and back in, and all is well with TextMate.  Yay.
+:title: "TextMate and \"env: ruby: No such file or directory\""
+:published_at: 2006-07-28 23:06:00 +01:00
 :guid: 5d5c719c-b0be-45d7-8400-12b3c8bb6988
-:comments: 
-- :published_at: 2006-08-15 13:02:26 +01:00
-  :body: |-
-    The plist file can be either plain text or XML (maybe binary too); these instructions only work if the file is plain text or if it doesn't exist yet. In my case, I already had an XML format file in that location.
-    
-    If it does exist, you can either edit it by hand or open it in the property list editor instead (type 'open ~/.MacOSX/environment.plist' in the console) and add a String key called 'PATH' under Root.
-  :url: http://po-ru.com/
-  :author: Paul Battley
-  :article_id: 101

@@ -1,6 +1,4 @@
 --- 
-:published_at: 2007-11-18 19:15:00 +00:00
-:title: The Skypephone so far
 :body: |-
   I bought the "Skypephone":http://www.skype.com/intl/en/allfeatures/3skypephone/ from "three":http://three.co.uk about a week ago.  I haven't managed to get my number transfered yet and as such I haven't really used it in anger, but thought I'd write some random notes anyway.
   
@@ -15,37 +13,6 @@
   I think I should be able to use the phone as a modem but the supplied CD contains Windows only software.
   
   Hmm, that's about all for now I think.
+:title: The Skypephone so far
+:published_at: 2007-11-18 19:15:00 +00:00
 :guid: 8a95d243-3c99-48ba-bc31-17d733d67ee7
-:comments: 
-- :published_at: 2007-11-18 20:57:24 +00:00
-  :body: "It would be worth picking apart the stuff on the driver CD: it's possibly nothing more complicated than a few text files with AT commands, which seem to be easy enough to replicate on OS X (have a look at \"Ross Barkman's site\":http://www.taniwha.org.uk/)."
-  :url: http://po-ru.com/
-  :author: Paul Battley
-  :article_id: 56275
-- :published_at: 2007-11-18 22:24:55 +00:00
-  :body: Thanks for the info Paul, I'll take a look and see if I can get it working.
-  :url: ""
-  :author: Chris Roos
-  :article_id: 56275
-- :published_at: 2007-12-10 15:58:54 +00:00
-  :body: "Hi Chris,\n\n\
-    In regard to the issue about being charged or not, linked to whether the web address starts with www. or not, the answer is as you suspected - charges will be incurred. \n\n\
-    The problem with m.twitter.com not showing the message has now been resolved.\n\n\
-    Hope this helps,\n\n\
-    Sam.\n\
-    www.3mobilebuzz.com "
-  :url: http://www.3mobilebuzz.com
-  :author: Sam
-  :article_id: 56275
-- :published_at: 2007-12-14 08:51:17 +00:00
-  :body: |-
-    Hey Sam,
-    
-    I've only just got round to trying m.twitter.com and it does indeed now warn me of Internet access.  Great stuff.
-    
-    Cheers for the info.
-    
-    Chris
-  :url: ""
-  :author: Chris Roos
-  :article_id: 56275

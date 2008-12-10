@@ -1,26 +1,10 @@
 --- 
-:published_at: 2006-05-13 07:44:00 +01:00
-:title: Improving search results
 :body: |-
   This will be obvious to most people, especially anyone that's taken the slightest bit of interest in their search engine rankings.  If text in the url matches the search query then that page is likely to get ranked higher than a page where the only the body matches the search query.
   
   There is an "explanation":http://blog.claimid.com/2006/05/tips-and-tricks-your-name-in-the-url/ from the "claimid":http://www.claimid.com folks or you can see it for yourself by "googling for me":http://www.google.co.uk/search?hl=en&q=chris+roos&btnG=Google+Search.  My "odeo":http://www.odeo.com profile appears third in the results (as of right now).  The url contains my name but apart from that it is essentially a blank page containing no info about me.
   
   Anyhoo, the main point of this was to say that I emailed the claimid folks this morning to request they change my username from chrisjroos (my common moniker) to chrisroos.  I'm not even exaggerating when I say that they'd made the change and replied within ten minutes of my request.  That's fantastic service.
+:title: Improving search results
+:published_at: 2006-05-13 07:44:00 +01:00
 :guid: 01c93a6c-245f-408e-88e4-46d87ec81b8e
-:comments: 
-- :published_at: 2006-06-01 21:51:22 +01:00
-  :body: |-
-    I made your sqlite in-memory fix into a plugin and am using it with my tests.
-    
-    Can I publish this plugin, or would you rather have control of it?
-    
-    Thanks again! This is a great tip!
-  :url: http://nubyonrails.com
-  :author: topfunky
-  :article_id: 73
-- :published_at: 2006-06-01 22:43:14 +01:00
-  :body: "topfunky: I'm more than happy for you to release it.  Sounds much more useful than my hacky instructions.  Cool."
-  :url: ""
-  :author: Chris Roos
-  :article_id: 73

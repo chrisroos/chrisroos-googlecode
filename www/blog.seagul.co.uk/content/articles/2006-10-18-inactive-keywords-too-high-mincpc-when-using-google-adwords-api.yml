@@ -1,6 +1,4 @@
 --- 
-:published_at: 2006-10-18 07:40:00 +01:00
-:title: Inactive keywords (too high minCpc) when using Google Adwords Api
 :body: "h3. Short version\r\n\
   \r\n\
   *ALWAYS* create adverts (creatives) *before* keywords when setting up an ad group using the Adwords Api\r\n\
@@ -16,10 +14,6 @@
   Right now this is just a pain, as it needlessly wastes api quota - about 700,000 in our case.  Come  \"November 1st\":http://adwordsapi.blogspot.com/2006/09/deadline-for-registration-and-billing.html this will cost you hard cash - around \xC2\xA380.00 - \xC2\xA390 for our 700,000'ish.\r\n\
   \r\n\
   I'm hoping google will change their api to warn you when keywords are created before creatives, or, at the very least, make it extremely clear in the docs that there is an order in which the two should be created.  In the meantime, maybe this will help people searching google for an answer to the same problem."
+:title: Inactive keywords (too high minCpc) when using Google Adwords Api
+:published_at: 2006-10-18 07:40:00 +01:00
 :guid: 56bcf0e5-54ac-4bf7-ba0d-579078f538ad
-:comments: 
-- :published_at: 2006-10-30 03:10:57 +00:00
-  :body: Thanks - I just ran up against this and was starting to panic.
-  :url: ""
-  :author: Starr
-  :article_id: 304

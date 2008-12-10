@@ -1,6 +1,4 @@
 --- 
-:published_at: 2007-11-15 17:14:00 +00:00
-:title: HSBC Conclusion
 :body: |-
   I finally received a reply from HSBC to my constant nagging about a possible bug in their Internet Banking software.
   
@@ -54,37 +52,6 @@
   </blockquote>
   
   I'm sure that at some point in the future, HSBC will hire some consultants.  Those consultants will tell HSBC how to utilise the open source community to make the world a better place.  HSBC will listen because any advice you pay for has to be true.... Right?
+:title: HSBC Conclusion
+:published_at: 2007-11-15 17:14:00 +00:00
 :guid: 9c598cbc-a150-4781-9f6c-7527746cf439
-:comments: 
-- :published_at: 2007-11-16 10:32:48 +00:00
-  :body: |-
-    Lordy, the idea that any consultant that HSBC would ever hire would ever recommend open-source is, I dunno, a bit freaky. And I write from having been a consultant in the past, dealing in part with retail banking operations. If you worked for Accenture (to risk unfairly badmouthing what in reality may be a very forward-thinking company) then you'd be a much better corporate servant if you recommended that your comapny be retained to build an in-house alternative. What's best for the consultants is not necessarily best for the client.
-    
-    I could be wrong, but I think you'd be likely to find that the kind of individual working on t'Internet apps at a retail bank such as HSBC is going to be someone who has been retrained from IBM mainframe COBOL and isn't happy about it. In fact, they probably resent the heck out of the whole t'Internet* thing.
-    
-    And I can't even begin to speculate how awful senior IT management in such a place must be. I suppose I could ask my brother, who deals with them at Lloyds TSB.
-    
-    Golly, I'm a cynical, Grumpy Old Man.
-    
-    It's not all gloom, though - my place (a German bank whose name sort of means "German" in German) has just made Rails available as an option for intranet sites. So I can now get paid to work in Ruby. Which must be progress.
-    
-    * Sorry, I've been reading a Peter Kay book recently.
-  :url: ""
-  :author: Mike Woodhouse
-  :article_id: 55335
-- :published_at: 2007-11-17 10:45:24 +00:00
-  :body: |-
-    Hey Mike,
-    
-    I guess I'm thinking of business consultants rather than software consultants.  I assume that at some point they'll realise that it's even cheaper to get work done for free than to outsource it...
-    
-    I actually think the best mix would be a small internal development team that could potentially co-ordinate some open-source efforts too.  I think it'd be possible to become so far ahead of the competition that they could actually use their Internet banking site as a selling point.  Oh, and they should definitely hire developers that actually use Internet banking - this is quite clearly not the case at the moment.
-    
-    Anyway, just some random thoughts.
-    
-    PS.  Peter Kay is brilliant.
-    
-    PPS.  Excellent news that you're able to get paid for writing ruby.
-  :url: ""
-  :author: Chris Roos
-  :article_id: 55335
