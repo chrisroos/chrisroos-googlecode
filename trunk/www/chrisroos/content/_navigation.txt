@@ -23,3 +23,10 @@ filter: erb
     <a href="http://www.amazon.co.uk/gp/shops/index.html?ie=UTF8&amp;sellerID=AS1VKYI0VDYE5" title="Books I'm selling on Amazon Marketplace">books i'm selling</a>
   </li>
 </ul>
+
+<div id="twitter_div">
+  <h3><a href="http://twitter.com/chrisroos" title="My twitter profile">what i'm doing</a></h3>
+  <ul id="twitter_update_list">
+    <li></li>
+  </ul>
+</div>

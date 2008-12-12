@@ -1,9 +1,0 @@
----
-filter: erb
----
-<div id="twitter_div">
-  <h3><a href="http://twitter.com/chrisroos" title="My twitter profile">what i'm doing</a></h3>
-  <ul id="twitter_update_list">
-    <li></li>
-  </ul>
-</div>
