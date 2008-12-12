@@ -55,7 +55,7 @@
 	<p>The problem is that the standard <a href="http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html">test/unit</a> reporting framework displays the exception without any details of why the validation failed.</p>
 
 
-<div class="typocode">
+<div class="code">
 <pre>
  1) Error:​
 test_should_fail_validation(AardvarkTest):​
@@ -80,7 +80,7 @@ ActiveRecord::RecordInvalid:​ActiveRecord::RecordInvalid
 	<p>Then I thought it&#8217;d be cool if we could integrate slightly more with both test/unit and <a href="http://www.rubyonrails.com">rails</a>.  The result is a <a href="http://wiki.rubyonrails.org/rails/pages/Plugins">plugin</a> (<a href="http://dev.seagul.co.uk/repository/browse/plugins/test_unit_active_record_errors">source</a>) that can be installed as follows.</p>
 
 
-<div class="typocode">
+<div class="code">
 <pre>
 script/plugin install svn://dev.seagul.co.uk/plugins/test_unit_active_record_errors
 </pre>
@@ -89,7 +89,7 @@ script/plugin install svn://dev.seagul.co.uk/plugins/test_unit_active_record_err
 	<p>The output from a failed validation now includes the validation errors.  Yay.</p>
 
 
-<div class="typocode">
+<div class="code">
 <pre>
  1) Error:​
 test_should_fail_validation(AardvarkTest):​

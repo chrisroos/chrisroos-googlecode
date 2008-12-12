@@ -64,7 +64,7 @@
 	<p>It appears to be available by default (appearing in the example database.yml file) as</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 sqlite3_in_memory_example:
   adapter: sqlite3
   database: ":memory:" 
@@ -82,7 +82,7 @@ sqlite3_in_memory_example:
 	<p>If you wish to use the schema.rb approach then uncomment the following line in your environment.rb file.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 config.active_record.schema_format = :ruby
 </code></pre></div>
 
@@ -92,7 +92,7 @@ config.active_record.schema_format = :ruby
 	<p>Add the following code right below the &#8221;# Include your application configuration below&#8221; line in environment.rb.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 def in_memory_database?
   ENV["RAILS_ENV"] == "test" and 
   ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
@@ -115,7 +115,7 @@ end
 	<p>If you wish to run tests individually (which, of course, you do) and you choose to use the schema to create your test scructure, you must make sure that it first exists.  The easiest way is to run the following rake task.</p>
 
 
-<div class="typocode"><pre><code class="shell">
+<div class="code"><pre><code class="shell">
 rake db_schema_dump
 </code></pre></div>
 

@@ -58,7 +58,7 @@
 	<p>To replicate, create a new file called &#8216;default.rake&#8217; in the lib/tasks/ directory within your rails project, and paste in the following code.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 Rake::Task::TASKS.delete('default')
 Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
 Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
@@ -79,7 +79,7 @@ end
 	<p>Just realised that I don&#8217;t need most of the code above.  All you actually need in default.rake is as follows.  Stoopid Chris.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
 Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
 </code></pre></div>

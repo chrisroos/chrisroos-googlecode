@@ -45,7 +45,7 @@
               <p>I&#8217;ve used this <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod rewrite</a> trick in the past to inspect the contents of various <a href="http://httpd.apache.org/">apache</a> variables you have access to.</p>
 
 
-<div class="typocode"><pre><code>
+<div class="code"><pre><code>
 # Add this before any other rewrite rules in your apache config or .htaccess
 RewriteRule .* http://foo?request_uri=%{REQUEST_URI}&#38;the_request=%{THE_REQUEST}&#38;host=%{HTTP_HOST}
 </code></pre></div>

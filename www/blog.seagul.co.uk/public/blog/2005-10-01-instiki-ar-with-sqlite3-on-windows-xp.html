@@ -67,7 +67,7 @@
 	<p>First off, I installed the sqlite3 gem (sqlite3-ruby 1.1.0 (mswin32)).</p>
 
 
-<div class="typocode">
+<div class="code">
 <pre>
 # gem install sqlite3
 </pre>
@@ -91,7 +91,7 @@
 	<p>In the instiki-ar version I then ran the following (from Alexey&#8217;s original email) to output a sql script that will import all of my wiki content into the database.</p>
 
 
-<div class="typocode">
+<div class="code">
 <pre>
 # ruby script\import_storage -i d:\instiki -t d:\instiki-ar\storage\2500 -o i.sql -d sqlite
 </pre>
@@ -103,7 +103,7 @@
 	<p>Start sqlite3 with the location of the production database as the argument.</p>
 
 
-<div class="typocode">
+<div class="code">
 <pre>
 # sqlite3 db\prod.db
 </pre>
@@ -112,7 +112,7 @@
 	<p>Execute the i.sql script to import all of the data to sqlite.</p>
 
 
-<div class="typocode">
+<div class="code">
 <pre>
 sqlite&gt; .read i.sql
 sqlite&gt; .quit
@@ -125,7 +125,7 @@ sqlite&gt; .quit
 	<p><strong>Note</strong> To get instiki-ar from subversion.</p>
 
 
-<div class="typocode">
+<div class="code">
 <pre>
 # svn export --revision 397 http://svn.instiki.org/instiki/branches/instiki-ar/
 </pre>

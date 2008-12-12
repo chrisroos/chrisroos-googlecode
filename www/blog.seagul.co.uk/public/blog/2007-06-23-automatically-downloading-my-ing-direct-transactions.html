@@ -73,7 +73,7 @@
 	<p>We see that the following information gets POSTed to InitialINGDirect.html</p>
 
 
-<div class="typocode"><pre><code>
+<div class="code"><pre><code>
 command=enterCustomerNumber&#38;locale=en_GB&#38;device=web&#38;ACN=&lt;YOUR_CUSTOMER_NUMBER&gt;&#38;LNAME=&lt;YOUR_LAST_NAME&gt;&#38;GO.x=23&#38;GO.y=12
 </code></pre></div>
 
@@ -86,14 +86,14 @@ command=enterCustomerNumber&#38;locale=en_GB&#38;device=web&#38;ACN=&lt;YOUR_CUS
 	<p>The first use of <a href="http://curl.haxx.se/">curl</a> is to see whether we can get this far from the command line.</p>
 
 
-<div class="typocode"><pre><code class="shell">
+<div class="code"><pre><code class="shell">
 curl -X"POST" -d"command=enterCustomerNumber" -d"locale=en_GB" -d"device=web" -d"ACN=YOUR_CUSTOMER_NUMBER" -d"LNAME=YOUR_LAST_NAME" -d"GO.x=23" -d"GO.y=12" "https://secure.ingdirect.co.uk/InitialINGDirect.html" -o"&lt;FILENAME_FOR_OUTPUT&gt;" 
 </code></pre></div>
 
 	<p>The actual output in this instance is</p>
 
 
-<div class="typocode"><pre><code class="javascript">
+<div class="code"><pre><code class="javascript">
 &lt;SCRIPT&gt;
 location.replace("/INGDirect.html?command=displayValidateCustomer&#38;fill=1");
 &lt;/SCRIPT&gt;
@@ -114,7 +114,7 @@ location.replace("/INGDirect.html?command=displayValidateCustomer&#38;fill=1");
 	<p>Ok, so that&#8217;s not unexpected.  How about, if we store the cookies sent to us in the original response, and then request the page returned in the javascript.</p>
 
 
-<div class="typocode"><pre><code class="shell">
+<div class="code"><pre><code class="shell">
 curl -X"POST" -c"/Users/chrisroos/Desktop/ing-cookie" -d"command=enterCustomerNumber" -d"locale=en_GB" -d"device=web" -d"ACN=YOUR_CUSTOMER_NUMBER" -d"LNAME=YOUR_LAST_NAME" -d"GO.x=23" -d"GO.y=12" "https://secure.ingdirect.co.uk/InitialINGDirect.html" 
 
 curl -b"/Users/chrisroos/Desktop/ing-cookie" "https://secure.ingdirect.co.uk/INGDirect.html?command=displayValidateCustomer&#38;fill=1" -o"/Users/chrisroos/Desktop/ing.html" 
@@ -126,7 +126,7 @@ curl -b"/Users/chrisroos/Desktop/ing-cookie" "https://secure.ingdirect.co.uk/ING
 	<p>Let&#8217;s use firefox to log in and get to the second security page again.  Fill in the details as requested, open live http headers and get hold of the data we are sending.  Right, so we <span class="caps">POST</span> the following details to InitialINGDirect.html</p>
 
 
-<div class="typocode"><pre><code>
+<div class="code"><pre><code>
 command=validateCustomer&#38;locale=en_GB&#38;device=web&#38;PIN_A=5&#38;PIN_B=1&#38;PIN_C=4&#38;DAYS=65&#38;MONTHS=65&#38;YEARS=66&#38;GO.x=41&#38;GO.y=9
 </code></pre></div>
 
@@ -155,7 +155,7 @@ command=validateCustomer&#38;locale=en_GB&#38;device=web&#38;PIN_A=5&#38;PIN_B=1
 	<p>Right, so unless I&#8217;m missing something, the server must &#8216;know&#8217; which three digits we&#8217;re being asked for, along with the order of the keypad.  If we&#8217;re to log in automatically then we&#8217;re going to need to parse the text that asks us for certain digits and determine the order of the keypad.  A little experimentation with <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> yielded the following code.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 require 'rubygems'
 require 'hpricot'
 
@@ -194,7 +194,7 @@ keypad.unshift(keypad.pop)
 	<p>Right, I&#8217;ve cobbled the code together but instead of seeing an account overview page, I&#8217;m actually receiving a page with more javascript relocation magic.</p>
 
 
-<div class="typocode"><pre><code class="javascript">
+<div class="code"><pre><code class="javascript">
 &lt;SCRIPT&gt;
 location.replace("/InitialINGDirect.html?command=displayLoggedOutError&#38;locale=en_GB&#38;device=web");
 &lt;/SCRIPT&gt;
@@ -203,7 +203,7 @@ location.replace("/InitialINGDirect.html?command=displayLoggedOutError&#38;local
 	<p>I&#8217;m wondering if I&#8217;m missing some cookies &#8211; maybe some more cookies get added to the jar on the keypad page.  Using the <a href="https://addons.mozilla.org/en-US/firefox/addon/60">web developer extension</a> this is trivial to check.  Two cookies are set when we first visit the login page&#8230;  Hmm, and there are still two when we get to the keypad page.  So something else is different.  Ok, so I found it.  Somehow, I&#8217;d managed to miss out some data that was required for the login to work correctly.  I was not sending the command=validateCustomer key/pair even though I&#8217;d already pasted it once above.  Oh well.  With this &#8216;command&#8217; added, we still get a page with some javascript relocation but this time we get relocated to the account summary..</p>
 
 
-<div class="typocode"><pre><code class="javascript">
+<div class="code"><pre><code class="javascript">
 &lt;SCRIPT&gt;
 location.replace("/INGDirect.html?command=accountSummary&#38;locale=en_GB&#38;device=web&#38;method=fetchClientAccountSummary");
 &lt;/SCRIPT&gt;
@@ -212,7 +212,7 @@ location.replace("/INGDirect.html?command=accountSummary&#38;locale=en_GB&#38;de
 	<p>If we finally <span class="caps">GET</span> this page then we should be able to &#8216;see&#8217; our account overview on the command line.  Of course it wasn&#8217;t that simple.  This just yields another javascript redirect.</p>
 
 
-<div class="typocode"><pre><code class="javascript">
+<div class="code"><pre><code class="javascript">
 &lt;SCRIPT&gt;
 location.replace("/INGDirect.html?command=displayClientAccountSummary&#38;fill=1");
 &lt;/SCRIPT&gt;
@@ -230,7 +230,7 @@ location.replace("/INGDirect.html?command=displayClientAccountSummary&#38;fill=1
 	<p>GETting that url on the command line yields yet another javascript redirect (really, you do surprise me).</p>
 
 
-<div class="typocode"><pre><code class="javascript">
+<div class="code"><pre><code class="javascript">
 &lt;SCRIPT&gt;
 location.replace("/INGDirect.html?command=displayAccountDetails");
 &lt;/SCRIPT&gt;

@@ -64,7 +64,7 @@
 	<p>The implementation I have at the moment comprises four methods, although we could quite easily do away with &#8216;stub_instance_method&#8217; (it just adds some safety checking to &#8216;define_instance_method&#8217;).</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 class Object
 
   def metaclass
@@ -90,7 +90,7 @@ end
 	<p>A (partially adapted and potentially non-working) example of this code being used in my tests is as follows.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 def test_should_use_net_http_to_get_html_content
   url = 'http://localhost/page.htm'
   net_http = Object.new

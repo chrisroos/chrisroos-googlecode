@@ -55,7 +55,7 @@
 	<p>In doing so recently, I&#8217;ve found it necessary to define the id of the in memory object.  By default this is obviously nil as it has not been persisted.  In addition, it is not possible to set it during normal object construction.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 person = Person.new(:id =&gt; 1)
 p person.id
 #=&gt; nil
@@ -64,7 +64,7 @@ p person.id
 	<p>However, we can give the person constructor a block, setting the id just after creation.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 person = Person.new { |p| p.id = 1 }
 p person.id
 #=&gt; 1

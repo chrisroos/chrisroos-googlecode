@@ -52,7 +52,7 @@
               <p>On Thursday, <a href="http://blog.floehopper.org/">James</a> and I spent some time investigating remote pairing options.  One tiny part of that investigation was finding a way to keep two remote filesystems in sync.  I initially thought of using <a href="http://en.wikipedia.org/wiki/Rsync">rsync</a> at regular intervals with <a href="http://en.wikipedia.org/wiki/Cron">cron</a>.  Unless I&#8217;ve missed something, the smallest interval between cron jobs is one minute which is potentially too long.  We wanted a way to rsync (or sync in general) whenever the filesystem changed.  A little searching brought this <a href="http://www.kernelthread.com/software/fslogger/">fslogger</a> tool to my attention.  It simply writes some event details to <span class="caps">STDOUT</span> every time something changes on the filesystem.  I figured that we could use this, with a little bit of ruby glue, to trigger rsync.  Our glue script continuously reads from <span class="caps">STDIN</span>, tries to match some pre-defined patterns and triggers rsync if those patterns are matched.  It&#8217;s very brittle but it gets the job done.  Well, actually, it only partially gets the job done: I&#8217;m very unfamiliar with rsync but it seemed to take between 10 and 30 seconds to sync even if only one file had changed.  I suspect that I may have been doing something wrong though.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 #!/usr/bin/env ruby
 
 REMOTE_SERVER = 'YOUR_REMOTE_SERVER'

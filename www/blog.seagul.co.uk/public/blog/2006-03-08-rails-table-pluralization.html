@@ -52,7 +52,7 @@
               <p>I was talking to someone recently about the pluralisation of table names in <a href="http://www.rubyonrails.org">rails</a>.  It was grating him because some hand built queries no longer read very naturally.</p>
 
 
-<div class="typocode"><pre><code class="sql">
+<div class="code"><pre><code class="sql">
 -- (in rails) requesting the forename of the 'first' person
 SELECT forename FROM people WHERE people.id = 1;
 
@@ -63,7 +63,7 @@ SELECT forename FROM person WHERE person.id = 1;
 	<p><a href="http://po-ru.com/">Paul</a> (a colleague at <a href="http://www.reevoo.com">reevoo</a>) pointed out that there are two sides to the singular/plural table name debate.  You will always have some queries (as above) that will work better when the table is singular; and others (as below) that will work better when the table is plural.</p>
 
 
-<div class="typocode"><pre><code class="sql">
+<div class="code"><pre><code class="sql">
 -- requesting all people having a country of 'uk'
 SELECT * FROM person WHERE country = 'UK';
 
@@ -77,7 +77,7 @@ SELECT * FROM people WHERE country = 'UK';
 	<p>By default (in Rails), you create a singular (active record) model (person) that maps to the plural table (people).  Although very convenient (it&#8217;s the reason I&#8217;ve rarely had to touch sql), it too suffers from the same problems outlined in the queries above.  I think the two statements below show the same sort of natural vs unnatural language that appears in the sql above.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 # good english (acting on a single person)
 Person.name = 'chris'
 Person.save
@@ -89,7 +89,7 @@ Person.find(:all, :conditions =&gt; "country = 'uk'")
 	<p>The adaptation to active record I was thinking about would allow you to operate on both a Person and People, using the variant that made the code read more naturally.  That is, we could leave the Person.name example above as is, but change the Person.find to People.find<sup><a href="#fn1">1</a></sup>.  There are different ways to go about this but to get some of the way there with a little code (i.e. not having to manually create both singular and plural classes for each table); I came up with the following simple hack.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 class ActiveRecord::Base
   class &lt;&lt; self
     alias_method :__existing_inherited, :inherited
