@@ -23,11 +23,6 @@ class Page
   end
   
   def body_html
-    body = self.body.gsub(/<typo:code(.*?)>(.*?)<\/typo:code>/m) do
-      code = $2
-      lang = $1[/lang="(.*?)"/, 1]
-      SyntaxHighlighter.markup_code(code, lang)
-    end
     RedCloth.new(body).to_html(:textile)
   end
   
