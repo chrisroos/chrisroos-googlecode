@@ -58,20 +58,24 @@
 	<p>Although it&#8217;s only useful for people still on Rails 1.0, I made a quick plugin that backports this change.  I don&#8217;t really want to put it in my subversion repository, so have just pasted the necessary code below.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># File init.rb</span>
-<span class="ident">require</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/lib/record_invalid</span><span class="punct">'</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+# File init.rb
+require File.dirname(__FILE__) + '/lib/record_invalid'
+</code></pre></div>
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># File record_invalid.rb</span>
-<span class="keyword">module </span><span class="module">ActiveRecord</span>
+<div class="typocode"><pre><code class="ruby">
+# File record_invalid.rb
+module ActiveRecord
 
-  <span class="keyword">class </span><span class="class">RecordInvalid</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecordError</span>
-    <span class="keyword">def </span><span class="method">initialize</span><span class="punct">(</span><span class="ident">record</span><span class="punct">)</span>
-      <span class="attribute">@record</span> <span class="punct">=</span> <span class="ident">record</span>
-      <span class="keyword">super</span><span class="punct">(&quot;</span><span class="string">Validation failed: <span class="expr">#{@record.errors.full_messages.join(&quot;, &quot;)}</span></span><span class="punct">&quot;)</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
+  class RecordInvalid &lt; ActiveRecordError
+    def initialize(record)
+      @record = record
+      super("Validation failed: #{@record.errors.full_messages.join(", ")}")
+    end
+  end
 
-<span class="keyword">end</span></code></pre></div>
+end
+</code></pre></div>
 
 	<p>To create a plugin from this, create the following structure in your rails_app/vendor/plugins directory.</p>
 

@@ -64,31 +64,33 @@
 	<p>The code is below.  You&#8217;ll need to add a ruby command in the ruby textmate bundle, setting the intput to &#8216;selected text&#8217; or &#8216;nothing&#8217;, the output to &#8216;show as tooltip&#8217; and preferably a hotkey that isn&#8217;t one of the ones you use every day (however tempting that is).</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#! /usr/local/bin/ruby</span>
+<div class="typocode"><pre><code class="ruby">
+#! /usr/local/bin/ruby
 
-<span class="ident">project</span> <span class="punct">=</span> <span class="constant">ENV</span><span class="punct">['</span><span class="string">TM_PROJECT_DIRECTORY</span><span class="punct">']</span>
-<span class="ident">word</span> <span class="punct">=</span> <span class="constant">ENV</span><span class="punct">['</span><span class="string">TM_CURRENT_WORD</span><span class="punct">']</span>
+project = ENV['TM_PROJECT_DIRECTORY']
+word = ENV['TM_CURRENT_WORD']
 
-<span class="ident">require</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{project}</span>/config/boot</span><span class="punct">&quot;</span>
-<span class="ident">require</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{project}</span>/config/environment</span><span class="punct">&quot;</span>
+require "#{project}/config/boot" 
+require "#{project}/config/environment" 
 
-<span class="ident">klass</span> <span class="punct">=</span> <span class="constant">Object</span><span class="punct">.</span><span class="ident">const_get</span><span class="punct">(</span><span class="ident">word</span><span class="punct">)</span> <span class="keyword">rescue</span> <span class="constant">nil</span>
-<span class="keyword">if</span> <span class="ident">klass</span> <span class="keyword">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="keyword">class </span><span class="class">==</span> <span class="ident">Class</span> <span class="ident">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">ancestors</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">)</span>
-  <span class="ident">columns</span> <span class="punct">=</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">columns_hash</span>
+klass = Object.const_get(word) rescue nil
+if klass and klass.class == Class and klass.ancestors.include?(ActiveRecord::Base)
+  columns = klass.columns_hash
 
-  <span class="ident">data</span> <span class="punct">=</span> <span class="punct">[]</span>
-  <span class="ident">data</span> <span class="punct">+=</span> <span class="punct">[%w[</span><span class="string">column primary sql_type default</span><span class="punct">]]</span>
-  <span class="ident">data</span> <span class="punct">+=</span> <span class="punct">[%w[</span><span class="string">------ ------- -------- -------</span><span class="punct">]]</span>
-  <span class="ident">data</span> <span class="punct">+=</span> <span class="ident">columns</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">col</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">|</span> <span class="punct">[</span><span class="ident">col</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">primary</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">sql_type</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">,</span> <span class="ident">attrs</span><span class="punct">.</span><span class="ident">default</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">]</span> <span class="punct">}</span>
+  data = []
+  data += [%w[column primary sql_type default]]
+  data += [%w[------ ------- -------- -------]]
+  data += columns.collect { |col, attrs| [col, attrs.primary.to_s, attrs.sql_type.to_s, attrs.default.to_s] }
 
-  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="ident">data</span><span class="punct">.</span><span class="ident">inject</span><span class="punct">('</span><span class="string"></span><span class="punct">')</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">output</span><span class="punct">,</span> <span class="ident">array</span><span class="punct">|</span> 
-    <span class="ident">output</span> <span class="punct">+</span> <span class="ident">array</span><span class="punct">.</span><span class="ident">inject</span><span class="punct">('</span><span class="string"></span><span class="punct">')</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">row_str</span><span class="punct">,</span> <span class="ident">value</span><span class="punct">|</span> <span class="ident">row_str</span> <span class="punct">+</span> <span class="ident">value</span><span class="punct">.</span><span class="ident">ljust</span><span class="punct">(</span><span class="number">20</span><span class="punct">)</span> <span class="punct">}</span> <span class="punct">+</span> <span class="punct">&quot;</span><span class="string"><span class="escape">\n</span></span><span class="punct">&quot;</span>
-  <span class="keyword">end</span>
-<span class="keyword">elsif</span> <span class="ident">klass</span> <span class="keyword">and</span> <span class="ident">klass</span><span class="punct">.</span><span class="keyword">class </span><span class="class">==</span> <span class="ident">Class</span> <span class="ident">and</span> <span class="keyword">not</span> <span class="ident">klass</span><span class="punct">.</span><span class="ident">ancestors</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span><span class="punct">)</span>
-  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{word}</span> is not an Active Record derived class</span><span class="punct">&quot;</span>
-<span class="keyword">else</span>
-  <span class="constant">STDOUT</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{word}</span> was not recognised as a class</span><span class="punct">&quot;</span>
-<span class="keyword">end</span></code></pre></div>
+  STDOUT &lt;&lt; data.inject('') do |output, array| 
+    output + array.inject('') { |row_str, value| row_str + value.ljust(20) } + "\n" 
+  end
+elsif klass and klass.class == Class and not klass.ancestors.include?(ActiveRecord::Base)
+  STDOUT &lt;&lt; "#{word} is not an Active Record derived class" 
+else
+  STDOUT &lt;&lt; "#{word} was not recognised as a class" 
+end
+</code></pre></div>
 
 	<p>It relies on you having your entire rails project (the folder right above app, config, script etc) open in textmate (in order to find the config files).  With that, just click on the name of an active record class (it has to be the actual class name at present, it&#8217;d be cool if it also worked based on the class definition you are currently in too) and hit your hotkey of choice (best to use the one you assigned to this command).  Hey presto, a tooltip containing your table structure.</p>
 

@@ -55,44 +55,46 @@
 	<p>Is this useful, or have I missed something obvious in Subversion or Trac that does exactly this?</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">fileutils</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'fileutils'
 
-<span class="ident">stop_at_revision</span> <span class="punct">=</span> <span class="constant">ARGV</span><span class="punct">[</span><span class="number">0</span><span class="punct">]</span>
-<span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Please specify the revision that you wish to go back to as the only argument to this script.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">stop_at_revision</span>
-<span class="ident">stop_at_revision</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">stop_at_revision</span><span class="punct">)</span>
+stop_at_revision = ARGV[0]
+raise "Please specify the revision that you wish to go back to as the only argument to this script." unless stop_at_revision
+stop_at_revision = Integer(stop_at_revision)
 
-<span class="keyword">class </span><span class="class">Time</span>
-  <span class="keyword">def </span><span class="method">friendly_format</span>
-    <span class="ident">strftime</span><span class="punct">(&quot;</span><span class="string">%Y-%m-%d %H:%M:%S</span><span class="punct">&quot;)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+class Time
+  def friendly_format
+    strftime("%Y-%m-%d %H:%M:%S")
+  end
+end
 
-<span class="keyword">def </span><span class="method">msg</span><span class="punct">(</span><span class="ident">message</span><span class="punct">)</span>
-  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{Time.now.friendly_format}</span> - <span class="expr">#{message}</span></span><span class="punct">&quot;</span>
-<span class="keyword">end</span>
+def msg(message)
+  puts "#{Time.now.friendly_format} - #{message}" 
+end
 
-<span class="keyword">def </span><span class="method">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">,</span> <span class="ident">earlier_revision</span> <span class="punct">=</span> <span class="constant">nil</span><span class="punct">)</span>
-  <span class="keyword">if</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">empty?</span>
-    <span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">All finished.</span><span class="punct">&quot;</span>
-    <span class="ident">exit</span>
-  <span class="keyword">end</span>
+def produce_diff(revisions, earlier_revision = nil)
+  if revisions.empty?
+    msg "All finished." 
+    exit
+  end
 
-  <span class="ident">later_revision</span> <span class="punct">=</span> <span class="ident">earlier_revision</span> <span class="punct">?</span> <span class="ident">earlier_revision</span> <span class="punct">:</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">shift</span>
-  <span class="ident">earlier_revision</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">shift</span>
+  later_revision = earlier_revision ? earlier_revision : revisions.shift
+  earlier_revision = revisions.shift
 
-  <span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">Creating diff from revision <span class="expr">#{earlier_revision}</span> to <span class="expr">#{later_revision}</span>.</span><span class="punct">&quot;</span>
-  `<span class="ident">svn</span> <span class="ident">diff</span> <span class="punct">-</span><span class="ident">r</span><span class="comment">#{earlier_revision}:#{later_revision} &gt; patches/#{later_revision}.patch`</span>
-  <span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">,</span> <span class="ident">earlier_revision</span><span class="punct">)</span>
-<span class="keyword">end</span>
+  msg "Creating diff from revision #{earlier_revision} to #{later_revision}." 
+  `svn diff -r#{earlier_revision}:#{later_revision} &gt; patches/#{later_revision}.patch`
+  produce_diff(revisions, earlier_revision)
+end
 
-<span class="constant">FileUtils</span><span class="punct">.</span><span class="ident">mkdir_p</span> <span class="punct">'</span><span class="string">patches</span><span class="punct">'</span>
+FileUtils.mkdir_p 'patches'
 
-<span class="ident">msg</span> <span class="punct">&quot;</span><span class="string">Scanning output of svn log to find all revisions that we care about...</span><span class="punct">&quot;</span>
-<span class="ident">log</span> <span class="punct">=</span> `<span class="ident">svn</span> <span class="ident">log</span> <span class="punct">-</span><span class="ident">rHEAD</span><span class="punct">:</span><span class="comment">#{stop_at_revision} -q`</span>
-<span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">log</span><span class="punct">.</span><span class="ident">scan</span><span class="punct">(/</span><span class="regex">^r(<span class="escape">\d</span>+)</span><span class="punct">/)</span>
-<span class="ident">revisions</span> <span class="punct">=</span> <span class="ident">revisions</span><span class="punct">.</span><span class="ident">flatten</span><span class="punct">.</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">revision</span><span class="punct">|</span> <span class="constant">Integer</span><span class="punct">(</span><span class="ident">revision</span><span class="punct">)</span> <span class="punct">}</span>
+msg "Scanning output of svn log to find all revisions that we care about..." 
+log = `svn log -rHEAD:#{stop_at_revision} -q`
+revisions = log.scan(/^r(\d+)/)
+revisions = revisions.flatten.collect { |revision| Integer(revision) }
 
-<span class="ident">produce_diff</span><span class="punct">(</span><span class="ident">revisions</span><span class="punct">)</span></code></pre></div>
+produce_diff(revisions)
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

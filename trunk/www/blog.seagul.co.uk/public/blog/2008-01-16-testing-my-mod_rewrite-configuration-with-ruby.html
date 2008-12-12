@@ -52,35 +52,37 @@
               <p>In order to ensure that I didn&#8217;t break anything while setting up my <a href="http://blog.seagul.co.uk/articles/2008/01/16/chris-1-mod_rewrite-0-muhahahaha">mod_rewrite rules</a> I created a little <a href="http://chrisroos.googlecode.com/svn/trunk/the-local-paper/apache_test.rb">ruby script</a> to test my expectations.  I&#8217;ve cut down the rules in the example below but you should get the idea.  It&#8217;d be quite cool to create a little dsl to better express the intentions of the code.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">net/http</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'net/http'
 
-<span class="ident">expectations</span> <span class="punct">=</span> <span class="punct">{</span>
-  <span class="comment"># Redirect www. to .</span>
-  <span class="punct">'</span><span class="string">http://www.the-local-paper.co.uk/</span><span class="punct">'</span> <span class="punct">=&gt;</span> <span class="punct">{</span>
-    <span class="symbol">:url</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">http://the-local-paper.co.uk/</span><span class="punct">',</span> <span class="symbol">:code</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">301</span><span class="punct">'</span>
-  <span class="punct">},</span>
-  <span class="comment"># Requests for the-local-paper.co.uk should return a 200 (OK) response</span>
-  <span class="punct">'</span><span class="string">http://the-local-paper.co.uk/</span><span class="punct">'</span> <span class="punct">=&gt;</span> <span class="punct">{</span>
-    <span class="symbol">:code</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">200</span><span class="punct">'</span>
-  <span class="punct">}</span>
-<span class="punct">}</span>
+expectations = {
+  # Redirect www. to .
+  'http://www.the-local-paper.co.uk/' =&gt; {
+    :url =&gt; 'http://the-local-paper.co.uk/', :code =&gt; '301'
+  },
+  # Requests for the-local-paper.co.uk should return a 200 (OK) response
+  'http://the-local-paper.co.uk/' =&gt; {
+    :code =&gt; '200'
+  }
+}
 
-<span class="ident">expectations</span><span class="punct">.</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">request_url</span><span class="punct">,</span> <span class="ident">expected_attributes</span><span class="punct">|</span>
-  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">Requesting: <span class="expr">#{request_url}</span></span><span class="punct">&quot;</span>
+expectations.each do |request_url, expected_attributes|
+  puts "Requesting: #{request_url}" 
 
-  <span class="ident">url</span> <span class="punct">=</span> <span class="constant">URI</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(</span><span class="ident">request_url</span><span class="punct">)</span>
-  <span class="ident">request</span> <span class="punct">=</span> <span class="constant">Net</span><span class="punct">::</span><span class="constant">HTTP</span><span class="punct">::</span><span class="constant">Get</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">url</span><span class="punct">.</span><span class="ident">path</span><span class="punct">)</span>
-  <span class="ident">response</span> <span class="punct">=</span> <span class="constant">Net</span><span class="punct">::</span><span class="constant">HTTP</span><span class="punct">.</span><span class="ident">start</span><span class="punct">(</span><span class="ident">url</span><span class="punct">.</span><span class="ident">host</span><span class="punct">,</span> <span class="ident">url</span><span class="punct">.</span><span class="ident">port</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">http</span><span class="punct">|</span>
-    <span class="ident">http</span><span class="punct">.</span><span class="ident">request</span><span class="punct">(</span><span class="ident">request</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  url = URI.parse(request_url)
+  request = Net::HTTP::Get.new(url.path)
+  response = Net::HTTP.start(url.host, url.port) do |http|
+    http.request(request)
+  end
 
-  <span class="keyword">if</span> <span class="ident">redirection_url</span> <span class="punct">=</span> <span class="ident">expected_attributes</span><span class="punct">[</span><span class="symbol">:url</span><span class="punct">]</span>
-    <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Expected '<span class="expr">#{redirection_url}</span>' in the Location header but got '<span class="expr">#{response['Location']}</span>'.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">redirection_url</span> <span class="punct">==</span> <span class="ident">response</span><span class="punct">['</span><span class="string">Location</span><span class="punct">']</span>
-  <span class="keyword">end</span>
-  <span class="keyword">if</span> <span class="ident">status_code</span> <span class="punct">=</span> <span class="ident">expected_attributes</span><span class="punct">[</span><span class="symbol">:code</span><span class="punct">]</span>
-    <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Expected status code of (<span class="expr">#{status_code}</span>) but got (<span class="expr">#{response.code}</span>).</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">status_code</span> <span class="punct">==</span> <span class="ident">response</span><span class="punct">.</span><span class="ident">code</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+  if redirection_url = expected_attributes[:url]
+    raise "Expected '#{redirection_url}' in the Location header but got '#{response['Location']}'." unless redirection_url == response['Location']
+  end
+  if status_code = expected_attributes[:code]
+    raise "Expected status code of (#{status_code}) but got (#{response.code})." unless status_code == response.code
+  end
+end
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

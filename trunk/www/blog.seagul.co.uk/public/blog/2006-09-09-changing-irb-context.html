@@ -52,7 +52,8 @@
               <p>I picked up on this yesterday and now cannot find the article (it was something to do with manipulating a rails app from the console).  Sorry.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">irb(main):001:0&gt; class Foo
+<div class="typocode"><pre><code>
+irb(main):001:0&gt; class Foo
 irb(main):002:1&gt; private
 irb(main):003:1&gt; def bar
 irb(main):004:2&gt; 'bar'
@@ -65,7 +66,8 @@ NoMethodError: private method `bar' called for #&lt;Foo:0x358304&gt;
         from :0
 irb(main):009:0&gt; irb Foo.new # IMPORTANT BIT
 irb#1(#&lt;Foo:0x31c5fc&gt;):001:0&gt; bar
-=&gt; &quot;bar&quot;</code></pre></div>
+=&gt; "bar" 
+</code></pre></div>
 
 	<p>Although cool, I can&#8217;t think of any situations where this would have been useful.  Ho hum.</p>
         

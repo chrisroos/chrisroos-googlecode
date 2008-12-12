@@ -55,55 +55,59 @@
 	<p>Something that I&#8217;ve found relatively useful at <a href="http://www.reevoo.com">work</a> is to use real <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html">Active Record</a> objects without any persistence (basically use AR#new and not AR#save[!] or AR#create[!]).  When using standard techniques to create the association objects in memory you only get one side of the association at a time.  Consider the following.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
-  <span class="ident">has_many</span> <span class="symbol">:addresses</span>
-<span class="keyword">end</span>
-<span class="keyword">class </span><span class="class">Address</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
-  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
-<span class="keyword">end</span>
+<div class="typocode"><pre><code class="ruby">
+class Person &lt; ActiveRecord::Base
+  has_many :addresses
+end
+class Address &lt; ActiveRecord::Base
+  belongs_to :person
+end
 
-<span class="comment"># One sided relationship with parent getting access to child</span>
-<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
-<span class="ident">home</span> <span class="punct">=</span> <span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">build</span>
+# One sided relationship with parent getting access to child
+chris = Person.new
+home = chris.addresses.build
 
-<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
-<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span>
-<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
-<span class="punct">=&gt;</span> <span class="constant">nil</span>
+chris.addresses.first
+=&gt; #&lt;home&gt;
+home.person
+=&gt; nil
 
-<span class="comment"># One sided relationship with child getting access to parent</span>
-<span class="ident">home</span> <span class="punct">=</span> <span class="constant">Address</span><span class="punct">.</span><span class="ident">new</span>
-<span class="ident">chris</span> <span class="punct">=</span> <span class="ident">home</span><span class="punct">.</span><span class="ident">build_person</span>
+# One sided relationship with child getting access to parent
+home = Address.new
+chris = home.build_person
 
-<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span>
-<span class="punct">=&gt;</span> <span class="punct">[]</span>
-<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
-<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+chris.addresses
+=&gt; []
+home.person
+=&gt; #&lt;chris&gt;
 
-<span class="comment"># The example above that creates the address first could also have been written as.</span>
-<span class="comment"># chris = Person.new</span>
-<span class="comment"># home = Address.new(:person =&gt; chris)</span></code></pre></div>
+# The example above that creates the address first could also have been written as.
+# chris = Person.new
+# home = Address.new(:person =&gt; chris)
+</code></pre></div>
 
 	<p>You can see that in each case, only one side of the relationship has access to the other.  If we were persisting the objects then the relationship would be two way via a database lookup.  We can get a two way relationship in memory; although it has a certain duplication smell about it.  Assuming the same models as above, we can amend the above examples like so.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># First example</span>
-<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
-<span class="ident">home</span> <span class="punct">=</span> <span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">build</span><span class="punct">(</span><span class="symbol">:person</span> <span class="punct">=&gt;</span> <span class="ident">chris</span><span class="punct">)</span>
+<div class="typocode"><pre><code class="ruby">
+# First example
+chris = Person.new
+home = chris.addresses.build(:person =&gt; chris)
 
-<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
-<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span>
-<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
-<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
+chris.addresses.first
+=&gt; #&lt;home&gt;
+home.person
+=&gt; #&lt;chris&gt;
 
-<span class="comment"># Second example</span>
-<span class="ident">home</span> <span class="punct">=</span> <span class="constant">Address</span><span class="punct">.</span><span class="ident">new</span>
-<span class="ident">chris</span> <span class="punct">=</span> <span class="ident">home</span><span class="punct">.</span><span class="ident">build_person</span><span class="punct">(</span><span class="symbol">:addresses</span> <span class="punct">=&gt;</span> <span class="punct">[</span><span class="ident">home</span><span class="punct">])</span>
+# Second example
+home = Address.new
+chris = home.build_person(:addresses =&gt; [home])
 
-<span class="ident">home</span><span class="punct">.</span><span class="ident">person</span>
-<span class="punct">=&gt;</span> <span class="comment">#&lt;chris&gt;</span>
-<span class="ident">chris</span><span class="punct">.</span><span class="ident">addresses</span><span class="punct">.</span><span class="ident">first</span>
-<span class="punct">=&gt;</span> <span class="comment">#&lt;home&gt;</span></code></pre></div>
+home.person
+=&gt; #&lt;chris&gt;
+chris.addresses.first
+=&gt; #&lt;home&gt;
+</code></pre></div>
 
 	<p>I&#8217;ve occasionally used this in place of stubbing methods but am still not 100% convinced of the definite benefits one way or another.  I do have some definite disadvantages of stubbing methods (nothing exciting, they&#8217;ve almost certainly been noted by many others in the past) which I&#8217;ll note down at a later date.</p>
         

@@ -55,69 +55,75 @@
 	<p><a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Base.html">Active Record</a> <a href="http://www.rubyonrails.org/api/classes/ActiveRecord/Associations/ClassMethods.html">associations</a> are brilliant for quickly putting together an object graph.  They&#8217;re not so brilliant for testing, or keeping the code particularly tidy.  They quickly lead to (and even encourage) train-wreck expressions in your code.  Diving straight into an example:</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
-  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
-<span class="keyword">end</span>
-<span class="keyword">class </span><span class="class">Hobby</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
-  <span class="ident">belongs_to</span> <span class="symbol">:person</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+class Person &lt; ActiveRecord::Base
+  has_many :hobbies
+end
+class Hobby &lt; ActiveRecord::Base
+  belongs_to :person
+end
+</code></pre></div>
 
 	<p>Because the hobbies object is publicly accessible from a person object, it allows us to reach in and touch things we shouldn&#8217;t.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">cycling</span> <span class="punct">=</span> <span class="constant">Hobby</span><span class="punct">.</span><span class="ident">new</span>
+<div class="typocode"><pre><code class="ruby">
+cycling = Hobby.new
 
-<span class="comment"># We shouldn't manipulate the hobbies object directly...</span>
-<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
-<span class="ident">chris</span><span class="punct">.</span><span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Uh oh - touching things we shouldn't</span>
+# We shouldn't manipulate the hobbies object directly...
+chris = Person.new
+chris.hobbies.add(cycling) # Uh oh - touching things we shouldn't
 
-<span class="comment"># ...rather, it'd be better to add a wrapper method for the functionality we actually need</span>
-<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
-  <span class="keyword">def </span><span class="method">add_hobby</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
-    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">add</span><span class="punct">(</span><span class="ident">hobby</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-<span class="ident">chris</span> <span class="punct">=</span> <span class="constant">Person</span><span class="punct">.</span><span class="ident">new</span>
-<span class="ident">chris</span><span class="punct">.</span><span class="ident">add_hobby</span><span class="punct">(</span><span class="ident">cycling</span><span class="punct">)</span> <span class="comment"># Ahh, that's much better</span></code></pre></div>
+# ...rather, it'd be better to add a wrapper method for the functionality we actually need
+class Person &lt; ActiveRecord::Base
+  def add_hobby(hobby)
+    hobbies.add(hobby)
+  end
+end
+chris = Person.new
+chris.add_hobby(cycling) # Ahh, that's much better
+</code></pre></div>
 
 	<p>The revised Person class above follows the <a href="http://en.wikipedia.org/wiki/Law_of_Demeter">law of demeter</a>.  As well as making the code look a little neater (no train-wrecks to see here), it makes it easier to test.  To illustrate the testing point, I&#8217;m going to <a href="http://weblog.jamisbuck.org/2007/1/9/extending-activerecord-associations">extend</a> the <a href="http://ryandaigle.com/articles/2006/12/03/extend-your-activerecord-association-methods">association</a> in this example.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># We end up with a large and not very clear test</span>
-<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
-  <span class="ident">has_many</span> <span class="symbol">:hobbies</span> <span class="keyword">do</span>
-    <span class="keyword">def </span><span class="method">find_favourite</span>
-      <span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+<div class="typocode"><pre><code class="ruby">
+# We end up with a large and not very clear test
+class Person &lt; ActiveRecord::Base
+  has_many :hobbies do
+    def find_favourite
+      find(:first, :conditions =&gt; ['favourite = true'])
+    end
+  end
+end
 
-<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
-  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
-    <span class="ident">hobbies</span> <span class="punct">=</span> <span class="ident">mock</span>
-    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_favourite</span><span class="punct">)</span>
-    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">stub</span><span class="punct">(</span><span class="symbol">:hobbies</span> <span class="punct">=&gt;</span> <span class="ident">hobbies</span><span class="punct">)</span>
-    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
-    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+class MyContrivedTest &lt; Test::Unit::TestCase
+  def test_should_find_my_favourite_hobby
+    hobbies = mock
+    hobbies.expects(:find_favourite)
+    person = stub(:hobbies =&gt; hobbies)
+    hobby_finder = HobbyFinder.new
+    hobby_finder.find_favourite(person)
+  end
+end
 
-<span class="comment"># This way, we end up with a slightly cleaner looking class (imo) and a smaller, cleaner test</span>
-<span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
-  <span class="ident">has_many</span> <span class="symbol">:hobbies</span>
-  <span class="keyword">def </span><span class="method">find_my_favourite_hobby</span>
-    <span class="ident">hobbies</span><span class="punct">.</span><span class="ident">find</span><span class="punct">(</span><span class="symbol">:first</span><span class="punct">,</span> <span class="symbol">:conditions</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">favourite = true</span><span class="punct">'])</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+# This way, we end up with a slightly cleaner looking class (imo) and a smaller, cleaner test
+class Person &lt; ActiveRecord::Base
+  has_many :hobbies
+  def find_my_favourite_hobby
+    hobbies.find(:first, :conditions =&gt; ['favourite = true'])
+  end
+end
 
-<span class="keyword">class </span><span class="class">MyContrivedTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
-  <span class="keyword">def </span><span class="method">test_should_find_my_favourite_hobby</span>
-    <span class="ident">person</span> <span class="punct">=</span> <span class="ident">mock</span>
-    <span class="ident">person</span><span class="punct">.</span><span class="ident">expects</span><span class="punct">(</span><span class="symbol">:find_my_favourite_hobby</span><span class="punct">)</span>
-    <span class="ident">hobby_finder</span> <span class="punct">=</span> <span class="constant">HobbyFinder</span><span class="punct">.</span><span class="ident">new</span>
-    <span class="ident">hobby_finder</span><span class="punct">.</span><span class="ident">find_favourite</span><span class="punct">(</span><span class="ident">person</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+class MyContrivedTest &lt; Test::Unit::TestCase
+  def test_should_find_my_favourite_hobby
+    person = mock
+    person.expects(:find_my_favourite_hobby)
+    hobby_finder = HobbyFinder.new
+    hobby_finder.find_favourite(person)
+  end
+end
+</code></pre></div>
 
 	<p>Interestingly enough, if we had <a href="http://en.wikipedia.org/wiki/Test_driven_development">test driven</a> the development of the above code, we would almost certainly have ended up with something similar (interface-wise) to the example that has a wrapper around the association proxy.</p>
 

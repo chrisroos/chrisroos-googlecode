@@ -55,7 +55,9 @@
 	<p>I thought I could do this without using <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html#RewriteCond">RewriteCond</a>.  I tried something like this.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">RewriteRule ^(.*)index\.html$ $1 [R=301]</code></pre></div>
+<div class="typocode"><pre><code>
+RewriteRule ^(.*)index\.html$ $1 [R=301]
+</code></pre></div>
 
 	<p>I would expect this to match requests for URLs that end with index.html and redirect them to the <span class="caps">URL</span> minus index.html.  Although this correctly redirected /subdir/index.html to /subdir/ it would also attempt to redirect /subdir/ to /subdir/ resulting in an infinite loop.  It took me a very long time to work out, what I believe, is going on.  If I understand correctly, <a href="http://httpd.apache.org/">apache</a> will send every request (i.e. not just the request you issue from the browser) through mod_rewrite.  When we request /subdir/, apache will try, and fail, to match that <span class="caps">URL</span> with our regex (/subdir/ doesn&#8217;t end with index.html).  Internally, apache then &#8216;requests&#8217; index.html (since index.html is the <a href="http://httpd.apache.org/docs/1.3/mod/mod_dir.html#directoryindex">DirectoryIndex</a>).  This request matches our regex which results in apache sending the 301 redirect and us ending up with an infinite loop.  If I mis-understand what&#8217;s going on please feel free to correct me.</p>
 
@@ -66,8 +68,10 @@
 	<p>In searching for answers to this problem I kept seeing <span class="caps">THE</span>_REQUEST special variable used in the solution, although never an explanation as to why it&#8217;s used (specifically in preference to <span class="caps">REQUEST</span>_URI).  I ended up using <span class="caps">THE</span>_REQUEST in my solution (not technically my solution as I stole it from a site that I failed to bookmark) and it seems to work OK.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
-RewriteRule ^(.*)index\.html$ $1 [R=301,L]</code></pre></div>
+<div class="typocode"><pre><code>
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
+RewriteRule ^(.*)index\.html$ $1 [R=301,L]
+</code></pre></div>
 
 	<p>I&#8217;m guessing that this is because <span class="caps">THE</span>_REQUEST contains the full details (the stuff that appears in the log file) of the request from the client (browser) and will therefore be empty for any &#8216;internal requests&#8217;.  Anyone know if my assumptions are correct?</p>
         

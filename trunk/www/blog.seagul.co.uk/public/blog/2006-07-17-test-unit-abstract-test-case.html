@@ -58,48 +58,54 @@
 	<p>One solution would be to use a module to contain the common setup and include that in your test case.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">module </span><span class="module">CommonSetup</span>
-  <span class="keyword">def </span><span class="method">setup</span>
-    <span class="attribute">@stack</span> <span class="punct">=</span> <span class="constant">Stack</span><span class="punct">.</span><span class="ident">new</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-<span class="keyword">class </span><span class="class">MyTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
-  <span class="ident">include</span> <span class="constant">CommonSetup</span>
-  <span class="keyword">def </span><span class="method">test_should_accept_an_item_when_sent_push</span>
-    <span class="ident">assert_nothing_raised</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">push</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+module CommonSetup
+  def setup
+    @stack = Stack.new
+  end
+end
+class MyTest &lt; Test::Unit::TestCase
+  include CommonSetup
+  def test_should_accept_an_item_when_sent_push
+    assert_nothing_raised { @stack.push(1) }
+  end
+end
+</code></pre></div>
 
 	<p>Although this is fine, I spent a short while creating an AbstractTestCase that doesn&#8217;t complain if no tests are specified.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
-<span class="keyword">class </span><span class="class">Test::Unit::AbstractTestCase</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
-  <span class="keyword">def </span><span class="method">default_test</span>
-    <span class="ident">klass</span> <span class="punct">=</span> <span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">.</span><span class="ident">to_s</span>
-    <span class="ident">ancestors</span> <span class="punct">=</span> <span class="punct">(</span><span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">.</span><span class="ident">ancestors</span> <span class="punct">-</span> <span class="punct">[</span><span class="constant">self</span><span class="punct">.</span><span class="ident">class</span><span class="punct">]).</span><span class="ident">collect</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">ancestor</span><span class="punct">|</span> <span class="ident">ancestor</span><span class="punct">.</span><span class="ident">to_s</span> <span class="punct">}</span>
-    <span class="keyword">super</span> <span class="keyword">unless</span> <span class="ident">klass</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">AbstractTestCase</span><span class="punct">/</span> <span class="keyword">or</span> <span class="ident">ancestors</span><span class="punct">.</span><span class="ident">first</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">AbstractTestCase</span><span class="punct">/</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+require 'test/unit'
+class Test::Unit::AbstractTestCase &lt; Test::Unit::TestCase
+  def default_test
+    klass = self.class.to_s
+    ancestors = (self.class.ancestors - [self.class]).collect { |ancestor| ancestor.to_s }
+    super unless klass =~ /AbstractTestCase/ or ancestors.first =~ /AbstractTestCase/
+  end
+end
+</code></pre></div>
 
 	<p>Any test case (TestBase in this example) that inherits from AbstractTestCase can now contain setup and teardown methods but not have to worry about missing tests.  In order to maintain expected behaviour, any test case subclassed from TestBase will still complain if tests are missing.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">TestBase</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">AbstractTestCase</span>
-  <span class="comment"># 'No test were specified' error is not thrown</span>
-  <span class="keyword">def </span><span class="method">setup</span>
-    <span class="attribute">@bar</span> <span class="punct">=</span> <span class="punct">{</span> <span class="symbol">:foo</span> <span class="punct">=&gt;</span> <span class="number">123</span> <span class="punct">}</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-<span class="keyword">class </span><span class="class">RealTest</span> <span class="punct">&lt;</span> <span class="constant">TestBase</span>
-  <span class="comment"># Utilises TestBase#setup</span>
-  <span class="keyword">def </span><span class="method">test_example</span>
-    <span class="ident">assert_equal</span> <span class="number">123</span><span class="punct">,</span> <span class="attribute">@bar</span><span class="punct">[</span><span class="symbol">:foo</span><span class="punct">]</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-<span class="keyword">class </span><span class="class">ShouldErrorTest</span> <span class="punct">&lt;</span> <span class="constant">TestBase</span>
-  <span class="comment"># 'No tests were specified' error</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+class TestBase &lt; Test::Unit::AbstractTestCase
+  # 'No test were specified' error is not thrown
+  def setup
+    @bar = { :foo =&gt; 123 }
+  end
+end
+class RealTest &lt; TestBase
+  # Utilises TestBase#setup
+  def test_example
+    assert_equal 123, @bar[:foo]
+  end
+end
+class ShouldErrorTest &lt; TestBase
+  # 'No tests were specified' error
+end
+</code></pre></div>
 
 	<p>I then figured that you may want more than one level of abstract test case, i.e. be able to define at the TestCase class level whether or not a test case was abstract.  This isn&#8217;t properly tested but it seems to work ok.</p>
 
@@ -107,28 +113,32 @@
 	<p><strong>Note</strong> This isn&#8217;t doing exactly what I thought (the default test case is default_test, not test_default).  This works because it just creates an empty test in your test case.  This breaks behaviour in test cases that subclass your abstract test case as they too will already have at least one test defined.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
-<span class="keyword">class </span><span class="class">Test::Unit::TestCase</span>
-  <span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">self</span>
-    <span class="keyword">def </span><span class="method">abstract</span>
-      <span class="constant">self</span><span class="punct">.</span><span class="ident">class_eval</span> <span class="keyword">do</span>
-        <span class="keyword">def </span><span class="method">test_default</span>
-        <span class="keyword">end</span>
-      <span class="keyword">end</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+require 'test/unit'
+class Test::Unit::TestCase
+  class &lt;&lt; self
+    def abstract
+      self.class_eval do
+        def test_default
+        end
+      end
+    end
+  end
+end
+</code></pre></div>
 
 	<p>By sending the abstract message to any TestCase class, no errors will be reported when no tests are specified.  It does this by overriding the test_default method; which is the method that raises the error if no other tests are specified.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">AbstractTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
-  <span class="ident">abstract</span>
-  <span class="comment"># 'No test were specified' error is not thrown</span>
-<span class="keyword">end</span>
-<span class="keyword">class </span><span class="class">NormalTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
-  <span class="comment"># 'No test were specified' error</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+class AbstractTest &lt; Test::Unit::TestCase
+  abstract
+  # 'No test were specified' error is not thrown
+end
+class NormalTest &lt; Test::Unit::TestCase
+  # 'No test were specified' error
+end
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

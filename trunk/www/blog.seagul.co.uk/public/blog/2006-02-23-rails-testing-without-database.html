@@ -58,23 +58,27 @@
 	<p>Just add the code below within the Test::Unit::TestCase declaration in test_helper.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">self.dont_use_fixtures</span>
-  <span class="ident">class_eval</span> <span class="keyword">do</span>
-    <span class="keyword">def </span><span class="method">self.method_added</span><span class="punct">(</span><span class="ident">method</span><span class="punct">);</span> <span class="keyword">end</span>
-    <span class="keyword">def </span><span class="method">setup</span><span class="punct">;</span> <span class="keyword">end</span>
-    <span class="keyword">def </span><span class="method">teardown</span><span class="punct">;</span> <span class="keyword">end</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+def self.dont_use_fixtures
+  class_eval do
+    def self.method_added(method); end
+    def setup; end
+    def teardown; end
+  end
+end
+</code></pre></div>
 
 	<p>This still requires that you add dont_use_fixtures into each test class definition.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">MyTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
-  <span class="ident">dont_use_fixtures</span>
-  <span class="keyword">def </span><span class="method">test_</span>
-    <span class="comment"># my first test</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+class MyTest &lt; Test::Unit::TestCase
+  dont_use_fixtures
+  def test_
+    # my first test
+  end
+end
+</code></pre></div>
 
 	<p>Having just written this it&#8217;s obvious now that it would make more sense to not require the declaration in each test class (as we supposedly don&#8217;t even have access to active record).  We should probably also play fair and pass messages back to our parent if method_added isn&#8217;t being called with either setup or teardown.</p>
 
@@ -82,11 +86,13 @@
 	<p>The new code becomes (again, in Test::Unit::TestCase definition in test_helper).</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">self.method_added</span><span class="punct">(</span><span class="ident">method</span><span class="punct">)</span>
-  <span class="keyword">super</span> <span class="keyword">unless</span> <span class="punct">[</span><span class="symbol">:setup</span><span class="punct">,</span> <span class="symbol">:teardown</span><span class="punct">].</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method</span><span class="punct">.</span><span class="ident">to_sym</span><span class="punct">)</span>
-<span class="keyword">end</span>
-<span class="keyword">def </span><span class="method">setup</span><span class="punct">;</span> <span class="keyword">end</span>
-<span class="keyword">def </span><span class="method">teardown</span><span class="punct">;</span> <span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+def self.method_added(method)
+  super unless [:setup, :teardown].include?(method.to_sym)
+end
+def setup; end
+def teardown; end
+</code></pre></div>
 
 	<p>This appears to work ok&#8230;</p>
         

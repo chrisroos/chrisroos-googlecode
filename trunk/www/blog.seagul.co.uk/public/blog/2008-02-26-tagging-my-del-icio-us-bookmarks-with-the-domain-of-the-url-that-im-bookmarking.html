@@ -58,10 +58,12 @@
 	<p>I came across an interesting problem when trying to get both this and the del.icio.us permalinks extension working together.  Both of the extensions modify the onload attribute of the add bookmark dialog.  When I only had the del.icio.us permalinks extension I was hardcoding the onload attribute to call my function (deliciousPermalinks.addPermalinkTag()) and the original function (yAddBookMark.init()).  This approach fell down as soon as I had two extensions trying to modify the onload attribute: I didn&#8217;t know which extension would be loaded first and therefore one was always overwriting the other.  I&#8217;m sure there&#8217;s a nice way to do this but I hacked together a noddy initialisation script that finds the existing value of the onload attribute and adds to it with the relevant function.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">var yAddBookmarkDialog = document.getElementById('dlg_AddYBookMark');
+<div class="typocode"><pre><code class="javascript">
+var yAddBookmarkDialog = document.getElementById('dlg_AddYBookMark');
 var yAddBookmarkOnload = yAddBookmarkDialog.getAttribute('onload');
 var onload = 'deliciousPermalinks.addPermalinkTag()';
-yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';'))</code></pre></div>
+yAddBookmarkDialog.setAttribute('onload', [yAddBookmarkOnload, onload].join(';'))
+</code></pre></div>
 
 	<p>I reference this script in my <a href="http://en.wikipedia.org/wiki/XUL">xul</a> file which causes it to be evaluated at (I guess) browser start time and the onload event to be modified correctly.</p>
 

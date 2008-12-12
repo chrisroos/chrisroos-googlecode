@@ -70,51 +70,53 @@
 	<p>Combining these two imlpementations provides us with a uniform method to determine whether the receiver contains a method represented by <em>method_sym</em>.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Object</span>
-  <span class="keyword">def </span><span class="method">method_exists?</span><span class="punct">(</span><span class="ident">method_sym</span><span class="punct">)</span>
-    <span class="ident">methods</span> <span class="punct">=</span> <span class="ident">public_methods</span> <span class="punct">+</span> <span class="ident">protected_methods</span> <span class="punct">+</span> <span class="ident">private_methods</span>
-    <span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_sym</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-<span class="keyword">class </span><span class="class">Class</span>
-  <span class="keyword">def </span><span class="method">method_exists?</span><span class="punct">(</span><span class="ident">method_sym</span><span class="punct">)</span>
-    <span class="ident">methods</span> <span class="punct">=</span> <span class="ident">public_instance_methods</span> <span class="punct">+</span> <span class="ident">protected_instance_methods</span> <span class="punct">+</span> <span class="ident">private_instance_methods</span>
-    <span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_sym</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+<div class="typocode"><pre><code class="ruby">
+class Object
+  def method_exists?(method_sym)
+    methods = public_methods + protected_methods + private_methods
+    methods.include?(method_sym.to_s)
+  end
+end
+class Class
+  def method_exists?(method_sym)
+    methods = public_instance_methods + protected_instance_methods + private_instance_methods
+    methods.include?(method_sym.to_s)
+  end
+end
 
-<span class="keyword">class </span><span class="class">Foo</span>
-  <span class="keyword">def </span><span class="method">foo</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">public</span> <span class="symbol">:foo</span>
-  <span class="keyword">def </span><span class="method">bar</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">protected</span> <span class="symbol">:bar</span>
-  <span class="keyword">def </span><span class="method">baz</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">private</span> <span class="symbol">:baz</span>
-<span class="keyword">end</span>
+class Foo
+  def foo; end; public :foo
+  def bar; end; protected :bar
+  def baz; end; private :baz
+end
 
-<span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+require 'test/unit'
 
-<span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+Class.new(Test::Unit::TestCase) do
 
-  <span class="keyword">def </span><span class="method">assert_not</span><span class="punct">(</span><span class="ident">expr</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="punct">!</span> <span class="ident">expr</span>
-  <span class="keyword">end</span>
+  def assert_not(expr)
+    assert ! expr
+  end
 
-  <span class="keyword">def </span><span class="method">assert_method_exists_is_working</span><span class="punct">(</span><span class="ident">receiver</span><span class="punct">)</span>
-    <span class="punct">[</span><span class="symbol">:foo</span><span class="punct">,</span> <span class="symbol">:bar</span><span class="punct">,</span> <span class="symbol">:baz</span><span class="punct">].</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">sym</span><span class="punct">|</span>
-      <span class="ident">assert</span> <span class="ident">receiver</span><span class="punct">.</span><span class="ident">method_exists?</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">)</span>
-      <span class="ident">assert</span> <span class="ident">receiver</span><span class="punct">.</span><span class="ident">method_exists?</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">)</span>
-    <span class="keyword">end</span>
-    <span class="ident">assert_not</span> <span class="ident">receiver</span><span class="punct">.</span><span class="ident">method_exists?</span><span class="punct">(</span><span class="symbol">:made_up_method</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="ident">receiver</span><span class="punct">.</span><span class="ident">method_exists?</span><span class="punct">('</span><span class="string">made_up_method</span><span class="punct">')</span>
-  <span class="keyword">end</span>
+  def assert_method_exists_is_working(receiver)
+    [:foo, :bar, :baz].each do |sym|
+      assert receiver.method_exists?(sym)
+      assert receiver.method_exists?(sym.to_s)
+    end
+    assert_not receiver.method_exists?(:made_up_method)
+    assert_not receiver.method_exists?('made_up_method')
+  end
 
-  <span class="keyword">def </span><span class="method">test_class</span>
-    <span class="ident">assert_method_exists_is_working</span><span class="punct">(</span><span class="constant">Foo</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_class
+    assert_method_exists_is_working(Foo)
+  end
 
-  <span class="keyword">def </span><span class="method">test_instance</span>
-    <span class="ident">assert_method_exists_is_working</span><span class="punct">(</span><span class="constant">Foo</span><span class="punct">.</span><span class="ident">new</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_instance
+    assert_method_exists_is_working(Foo.new)
+  end
 
-<span class="keyword">end</span></code></pre></div>
+end
+</code></pre></div>
 
 	<p>What&#8217;s the point you ask?  I genuinely have no idea.  I&#8217;m sure there was one when I started but then my compulsiveness took over and I had to finish for no other reason than to finish.</p>
         

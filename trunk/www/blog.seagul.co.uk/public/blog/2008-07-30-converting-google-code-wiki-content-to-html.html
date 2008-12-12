@@ -55,12 +55,16 @@
 	<p>The script lives in <a href="http://chrisroos.googlecode.com">my google code repository</a>.  Check it out from subversion:</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">svn co http://chrisroos.googlecode.com/svn/trunk/google-wiki-syntax</code></pre></div>
+<div class="typocode"><pre><code class="shell">
+svn co http://chrisroos.googlecode.com/svn/trunk/google-wiki-syntax
+</code></pre></div>
 
 	<p>The wiki_convertor script takes two arguments.  The first is the wiki file, or directory containing multiple wiki files, and the second is the output directory.  So, to use it to create an html copy of the <a href="http://code.google.com/doctype/">google-doctype</a> wiki content, in my home Sites directory, I&#8217;d use the following command:</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">wiki_convertor.rb ~/Code/third-party/google-doctype/wiki/ ~/Sites/google-doctype/</code></pre></div>
+<div class="typocode"><pre><code class="shell">
+wiki_convertor.rb ~/Code/third-party/google-doctype/wiki/ ~/Sites/google-doctype/
+</code></pre></div>
 
 	<p>This is the first step towards being able to, hopefully, create a <a href="http://en.wikipedia.org/wiki/Portable_Document_Format">pdf</a> copy of the google-doctype content.  Actually, if anyone has any thoughts on this I&#8217;d love to hear them: should I output a different format (<a href="http://en.wikipedia.org/wiki/DocBook">docbook</a>, for example) or is it easy enough to convert from (x)html to pdf?</p>
 

@@ -55,17 +55,19 @@
 	<p>You need to execute this javascript in the context of a webpage.  In <a href="http://getfirebug.com/">firebug</a> (for example), paste it into the console and run.</p>
 
 
-<div class="typocode"><pre><code class="typocode_javascript">// Execute this within an existing webpage, using, for example, firebug console
+<typo:code lang="javascript">
+// Execute this within an existing webpage, using, for example, firebug console
 function includeDelicious() {
   function loadScript(scriptUrl) {
-    var scriptTag = document.createElement('script');
-    scriptTag.setAttribute('type', 'text/javascript');
+    var scriptTag = document.createElement(&#8216;script&#8217;);
+    scriptTag.setAttribute(&#8216;type&#8217;, &#8216;text/javascript&#8217;);
     scriptTag.src = scriptUrl;
     document.body.appendChild(scriptTag);
   }
-  loadScript('http://s3.amazonaws.com/seagul/delicious.js');
+  loadScript(&#8216;http://s3.amazonaws.com/seagul/delicious.js&#8217;);
 }
-if (typeof(getRelatedPosts) != 'function') { includeDelicious(); }</code></pre></div>
+if (typeof(getRelatedPosts) != &#8216;function&#8217;) { includeDelicious(); }
+</code></pre></div>
 
 	<p>The javascript above loads this <a href="http://s3.amazonaws.com/seagul/delicious.js">script</a> that in turn loads <a href="http://s3.amazonaws.com/seagul/md5.js">md5.js</a>,  <a href="http://s3.amazonaws.com/seagul/jquery.js">jquery.js</a>, does some magic with the <a href="http://del.icio.us">del.icio.us</a> <a href="http://www.json.org">json</a> <a href="http://del.icio.us/help/json/">feeds</a> before finally writing some &#8216;similar&#8217; sites to the bottom of the page you&#8217;re currently looking.  At the moment it finds the three most recent sites you&#8217;ve bookmarked for each of the tags that people have used when bookmarking the site you&#8217;re looking at.  It writes all this to the bottom of the current page, as this <a href="http://flickr.com/photos/chrisjroos/1474875125/">screenshot</a> shows.</p>
 

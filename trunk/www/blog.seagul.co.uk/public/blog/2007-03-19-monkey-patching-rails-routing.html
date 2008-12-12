@@ -58,9 +58,11 @@
 	</ol>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">ActionController</span><span class="punct">::</span><span class="constant">Routing</span><span class="symbol">:Routes</span><span class="punct">.</span><span class="ident">draw</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">map</span><span class="punct">|</span>
-  <span class="ident">map</span><span class="punct">.</span><span class="ident">permanently_redirect</span> <span class="punct">'</span><span class="string">legacy/view/:id</span><span class="punct">',</span> <span class="symbol">:controller</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">current</span><span class="punct">',</span> <span class="symbol">:action</span> <span class="punct">=&gt;</span> <span class="punct">'</span><span class="string">show</span><span class="punct">'</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+ActionController::Routing:Routes.draw do |map|
+  map.permanently_redirect 'legacy/view/:id', :controller =&gt; 'current', :action =&gt; 'show'
+end
+</code></pre></div>
 
 	<p>A quick <a href="http://www.google.co.uk/search?hl=en&#38;q=rails+disambiguated+urls&#38;btnG=Search">google</a> reveals that <a href="http://fleetingideas.com/">Rob McKinnon</a> has an <a href="http://fleetingideas.com/2007/2/6/disambiguated-urls-with-ruby-on-rails">alternative suggestion</a> for removing the trailing slashes.</p>
 

@@ -49,32 +49,33 @@
                 </span>
               </p>
           
-              <div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+              <div class="typocode"><pre><code class="ruby">
+require 'test/unit'
 
-<span class="keyword">class </span><span class="class">CandidateTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
-  <span class="keyword">def </span><span class="method">setup</span>
-    <span class="attribute">@candidate</span> <span class="punct">=</span> <span class="constant">Candidate</span><span class="punct">.</span><span class="ident">new</span>
-  <span class="keyword">end</span>
-  <span class="keyword">def </span><span class="method">test_should_love_learning</span>
-    <span class="ident">assert</span> <span class="attribute">@candidate</span><span class="punct">.</span><span class="ident">loves_learning?</span>
-  <span class="keyword">end</span>
-  <span class="keyword">def </span><span class="method">test_should_love_ruby</span>
-    <span class="ident">assert</span> <span class="attribute">@candidate</span><span class="punct">.</span><span class="ident">loves_ruby?</span>
-  <span class="keyword">end</span>
-  <span class="keyword">def </span><span class="method">test_should_love_problem_solving</span>
-    <span class="ident">assert</span> <span class="attribute">@candidate</span><span class="punct">.</span><span class="ident">loves_problem_solving?</span>
-  <span class="keyword">end</span>
-  <span class="keyword">def </span><span class="method">test_should_not_be_a_job_agency</span>
-    <span class="ident">assert</span> <span class="punct">!</span><span class="attribute">@candidate</span><span class="punct">.</span><span class="ident">is_a_job_agency?</span>
-  <span class="keyword">end</span>
-  <span class="keyword">def </span><span class="method">test_should_know_the_secret_password</span>
-    <span class="ident">secret_password</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">hmm, so you think you know the secret password huh?</span><span class="punct">'</span>
-    <span class="ident">candidate</span> <span class="punct">=</span> <span class="constant">Candidate</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">secret_password</span><span class="punct">)</span>
-    <span class="ident">i_know_it_so_please_show_me_the_money</span><span class="punct">(</span><span class="ident">candidate</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+class CandidateTest &lt; Test::Unit::TestCase
+  def setup
+    @candidate = Candidate.new
+  end
+  def test_should_love_learning
+    assert @candidate.loves_learning?
+  end
+  def test_should_love_ruby
+    assert @candidate.loves_ruby?
+  end
+  def test_should_love_problem_solving
+    assert @candidate.loves_problem_solving?
+  end
+  def test_should_not_be_a_job_agency
+    assert !@candidate.is_a_job_agency?
+  end
+  def test_should_know_the_secret_password
+    secret_password = 'hmm, so you think you know the secret password huh?'
+    candidate = Candidate.new(secret_password)
+    i_know_it_so_please_show_me_the_money(candidate)
+  end
+end
 
-<span class="comment">__END__
+__END__
 Y2xhc3MgQ2FuZGlkYXRlCiAgZGVmIGluaXRpYWxpemUodG9wX3NlY3JldF9w
 YXNzd29yZCA9IG5pbCkKICAgIEBzZWNyZXRfbWVzc2FnZSA9IG5pbAogICAg
 aWYgdG9wX3NlY3JldF9wYXNzd29yZCA9PSAncnVieSBpcyBjb29sJwogICAg
@@ -107,7 +108,8 @@ IGRlZiBpX2tub3dfaXRfc29fcGxlYXNlX3Nob3dfbWVfdGhlX21vbmV5KGNh
 bmRpZGF0ZSkKICAgIHJhaXNlICJVaCBvaCwgdGhhdCdzIG5vdCB0aGUgcmln
 aHQgcGFzc3dvcmQiIHVubGVzcyBjYW5kaWRhdGUua25vd3NfdGhlX3NlY3Jl
 dF9wYXNzd29yZD8KICAgIHB1dHMgQ2FuZGlkYXRlLm5ldygncnVieSBpcyBj
-b29sJykuc2VjcmV0X21lc3NhZ2UKICBlbmQKZW5kCg==</span></code></pre></div>
+b29sJykuc2VjcmV0X21lc3NhZ2UKICBlbmQKZW5kCg==
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

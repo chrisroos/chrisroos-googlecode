@@ -55,7 +55,8 @@
 	<p>I had been using <a href="http://httpd.apache.org/">apache</a> and <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a> to redirect &#8220;chrisroos.co.uk/amazonwishlist&#8221; to my actual wishlist.  I had something like this in my apache config.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;VirtualHost *:80&gt;
+<div class="typocode"><pre><code>
+&lt;VirtualHost *:80&gt;
   ServerAdmin webmaster@seagul.co.uk
   ServerName chrisroos.co.uk
   ServerAlias www.chrisroos.co.uk
@@ -65,35 +66,42 @@
   RewriteRule ^/(.*)$ http://chrisroos.co.uk/$1 [R=301,L] 
   # Amazon Wishlist
   RewriteRule ^/amazonwishlist http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD [R]
-&lt;/VirtualHost&gt;</code></pre></div>
+&lt;/VirtualHost&gt;
+</code></pre></div>
 
 	<p>I&#8217;ve replaced that with a much simpler apache config that proxies requests to my new <a href="http://mongrel.rubyforge.org/">mongrel</a> redirection handler thing (<a href="http://chrisroos.co.uk/code/mongrel-redirection">source</a> &#8211; hey, even that <span class="caps">URL</span> passes through my redirection service).</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;VirtualHost *:80&gt;
+<div class="typocode"><pre><code>
+&lt;VirtualHost *:80&gt;
   ServerName www.chrisroos.co.uk
   ServerAlias chrisroos.co.uk
   RewriteEngine On
   RewriteRule (.*) http://localhost:4010$1 [P]
-&lt;/VirtualHost&gt;</code></pre></div>
+&lt;/VirtualHost&gt;
+</code></pre></div>
 
 	<p>Feel free to go run this on your own server if you&#8217;re so inclined.  At the moment you&#8217;ll have to generate the redirection rules by hand.  In irb, you can do something like:</p>
 
 
-<div class="typocode"><pre><code class="typocode_default"># require 'yaml'
+<div class="typocode"><pre><code class="ruby">
+# require 'yaml'
 # # For www.example.com
 # rules = { 'www.example.com' =&gt; 'example.com' }
 # File.open('PATH_TO_RULES_FOLDER' + '/www.example.com', 'w') { |file| file.puts(rules.to_yaml) }
 # # For example.com
 # rules = { '/google' =&gt; 'www.google.com' }
-# File.open('PATH_TO_RULES_FOLDER' + '/example.com', 'w') { |file| file.puts(rules.to_yaml) }</code></pre></div>
+# File.open('PATH_TO_RULES_FOLDER' + '/example.com', 'w') { |file| file.puts(rules.to_yaml) }
+</code></pre></div>
 
 	<p>Start the redirection server.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">$ REDIRECTION_PORT=XXXX ruby mongrel-redir.rb &amp;
+<div class="typocode"><pre><code class="shell">
+$ REDIRECTION_PORT=XXXX ruby mongrel-redir.rb &#38;
 $# Leaving out REDIRECTION_PORT will mean that the server starts on port 4000
-$# Leaving out the final ampersand (&amp;) will mean that server runs in the foreground</code></pre></div>
+$# Leaving out the final ampersand (&#38;) will mean that server runs in the foreground
+</code></pre></div>
 
 	<p>Visit www.example.com/google<sup><a href="#fn1">1</a></sup> and watch<sup><a href="#fn2">2</a></sup> as you&#8217;re redirected first to example.com/google and then onto www.google.com.  Cool huh.</p>
 

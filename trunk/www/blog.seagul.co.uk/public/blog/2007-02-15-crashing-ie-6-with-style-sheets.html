@@ -55,9 +55,11 @@
 	<p>Anyway, with the embarrassment out of the way, I thought I&#8217;d share the remotely interesting<sup><a href="#fn1">1</a></sup> findings of the investigation into the browser crash.  It turns out that a combination of these three little lines of <a href="http://en.wikipedia.org/wiki/CSS">css</a>, and any <a href="http://en.wikipedia.org/wiki/Doctype">doctype</a> declaration<sup><a href="#fn2">2</a></sup>, will cause <span class="caps">IE 6</span> to hang while waiting for the magic <a href="http://en.wikipedia.org/wiki/Control-Alt-Delete#Windows_NT">Windows kiss of life</a>.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">margin-left: 240px;
+<div class="typocode"><pre><code class="css">
+margin-left: 240px;
 margin-right: 10%;
-width: expression(document.body.offsetWidth - 256);</code></pre></div>
+width: expression(document.body.offsetWidth - 256);
+</code></pre></div>
 
 	<p>It is not the specific values (240px, 10% and 256) in the lines above that are of interest &#8211; I was able to express and suppress the problem by altering those.  Unfortunately, I didn&#8217;t spend any time trying to find the threshold of the problem, and am therefore unsure as to the reason for this behaviour.</p>
 
@@ -68,14 +70,15 @@ width: expression(document.body.offsetWidth - 256);</code></pre></div>
 	<p>For the curious, the simplest html page I could come up with that exhibits the crash behaviour in <span class="caps">IE 6</span> is below.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;!-- &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt; --&gt;
-&lt;!-- &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt; --&gt;
-&lt;!-- &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt; --&gt;
-&lt;!-- &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt; --&gt;
+<div class="typocode"><pre><code class="html">
+&lt;!-- &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt; --&gt;
+&lt;!-- &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt; --&gt;
+&lt;!-- &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt; --&gt;
+&lt;!-- &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; --&gt;
 &lt;!-- ANY OF THE ABOVE DOCTYPES CAUSE THE PROBLEM.  NO DOCTYPE = NO PROBLEM --&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
+    &lt;style type="text/css"&gt;
       #content {
         margin-left: 240px;
         margin-right: 10%;
@@ -85,9 +88,10 @@ width: expression(document.body.offsetWidth - 256);</code></pre></div>
     &lt;title&gt;testing ie6&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;div id=&quot;content&quot;&gt;blurgh&lt;/div&gt;
+    &lt;div id="content"&gt;blurgh&lt;/div&gt;
   &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;
+</code></pre></div>
 
 	<p>[1] They&#8217;re really not interesting.</p>
 

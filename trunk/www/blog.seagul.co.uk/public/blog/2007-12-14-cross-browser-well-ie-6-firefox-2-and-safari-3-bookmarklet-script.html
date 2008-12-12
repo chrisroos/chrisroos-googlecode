@@ -58,27 +58,31 @@
 	<h3>The commented, un-compressed, version</h3>
 
 
-<div class="typocode"><pre><code class="typocode_javascript">if (typeof(rvmBM) == 'undefined') { // Best to name rvmBM to something unlikely to clash with pre-defined variables
-  var s = document.createElement('script'); // Use of s versus script saves some precious space
-  s.type = 'text/javascript';
-  s.src = 'http://example.com/my-external-bookmarklet.js'; // The location of your bookmarklet javascript that does all the work
+<typo:code lang="javascript">
+if (typeof(rvmBM) == &#8216;undefined&#8217;) { // Best to name rvmBM to something unlikely to clash with pre-defined variables
+  var s = document.createElement(&#8216;script&#8217;); // Use of s versus script saves some precious space
+  s.type = &#8216;text/javascript&#8217;;
+  s.src = &#8216;http://example.com/my-external-bookmarklet.js&#8217;; // The location of your bookmarklet javascript that does all the work
   void(rvmBM = true); // Prevent the bookmarklet javascript from being loaded multiple times by setting this flag
   void(document.body.appendChild(s)); // Place the script tag in the body of the document
-  // If we don't use void() above then we end up writing either 'true' or some junk to the screen in Internet Explorer (only)
+  // If we don&#8217;t use void() above then we end up writing either &#8216;true&#8217; or some junk to the screen in Internet Explorer (only)
 };
 function addRvm() { // A wrapper function around the actual function we want to call
-  if (typeof(addReevooMark) == 'function') { // We want to make sure our bookmarklet function is defined (there's some delay in it becoming available in Firefox.  It's defined immediately in Internet Explorer.)
+  if (typeof(addReevooMark) == &#8216;function&#8217;) { // We want to make sure our bookmarklet function is defined (there&#8217;s some delay in it becoming available in Firefox.  It&#8217;s defined immediately in Internet Explorer.)
     addReevooMark();
   } else {
-    void(setTimeout(addRvm, 100)); // If our function isn't ready yet we'll just hang on 1/10th of a second and try again
+    void(setTimeout(addRvm, 100)); // If our function isn&#8217;t ready yet we&#8217;ll just hang on 1/10th of a second and try again
   };
 };
-addRvm(); // Ask our wrapper function to call the actual bookmarklet function</code></pre></div>
+addRvm(); // Ask our wrapper function to call the actual bookmarklet function
+</code></pre></div>
 
 	<h3>The compressed version</h3>
 
 
-<div class="typocode"><pre><code class="typocode_javascript">javascript:if(typeof(rvmBM)=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.src='http://example.com/my-external-bookmarklet.js';void(rvmBM=true);void(document.body.appendChild(s));};function addRvm(){if(typeof(addReevooMark)=='function'){addReevooMark();}else{void(setTimeout(addRvm,100));};};addRvm();</code></pre></div>
+<typo:code lang="javascript">
+javascript:if(typeof(rvmBM)==&#8217;undefined&#8217;){var s=document.createElement(&#8216;script&#8217;);s.type=&#8217;text/javascript&#8217;;s.src=&#8217;http://example.com/my-external-bookmarklet.js&#8217;;void(rvmBM=true);void(document.body.appendChild(s));};function addRvm(){if(typeof(addReevooMark)==&#8217;function&#8217;){addReevooMark();}else{void(setTimeout(addRvm,100));};};addRvm();
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

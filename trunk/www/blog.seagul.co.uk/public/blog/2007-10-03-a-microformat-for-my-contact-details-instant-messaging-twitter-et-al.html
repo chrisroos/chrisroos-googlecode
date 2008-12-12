@@ -70,62 +70,66 @@
 	<h4>A semantically marked up contact page.</h4>
 
 
-<div class="typocode"><pre><code class="typocode_html">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;
+<typo:code lang="html">
+&lt;!DOCTYPE html <span class="caps">PUBLIC</span> &#8221;-//W3C//DTD <span class="caps">HTML 4</span>.01//EN&#8221;&gt;
 
-&lt;html&gt;
+<html>
 
-  &lt;head&gt;
-    &lt;title&gt;Contact Details&lt;/title&gt;
-  &lt;/head&gt;
+  <head>
+    <title>Contact Details</title>
+  </head>
 
-  &lt;body&gt;
-    &lt;dl class=&quot;contactDetails&quot;&gt;
-      &lt;dt&gt;Skype&lt;/dt&gt;
-      &lt;dd class=&quot;skype identifier&quot;&gt;skype-username&lt;/dd&gt;
-      &lt;dt&gt;MSN&lt;/dt&gt;
-      &lt;dd class=&quot;msn identifier&quot;&gt;msn-username&lt;/dd&gt;
-    &lt;/dl&gt;
-  &lt;/body&gt;
+  <body>
+    <dl class="contactDetails">
+      <dt>Skype</dt>
+      <dd class="skype identifier">skype-username</dd>
+      <dt><span class="caps">MSN</span></dt>
+      <dd class="msn identifier">msn-username</dd>
+    </dl>
+  </body>
 
-&lt;/html&gt;</code></pre></div>
+</html>
+</code></pre></div>
 
 	<h4>A parser in <a href="http://www.ruby-lang.org/">ruby</a></h4>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
-<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'rubygems'
+require 'hpricot'
 
-<span class="keyword">class </span><span class="class">ContactParser</span>
-  <span class="keyword">def </span><span class="method">self.from_html</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
-    <span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
-    <span class="ident">new</span><span class="punct">(</span><span class="ident">doc</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-  <span class="keyword">def </span><span class="method">initialize</span><span class="punct">(</span><span class="ident">hpricot_doc</span><span class="punct">)</span>
-    <span class="attribute">@hpricot_doc</span> <span class="punct">=</span> <span class="ident">hpricot_doc</span>
-  <span class="keyword">end</span>
-  <span class="keyword">def </span><span class="method">service_identifiers</span>
-    <span class="punct">(</span><span class="attribute">@hpricot_doc</span><span class="punct">/'</span><span class="string">.contactDetails .identifier</span><span class="punct">').</span><span class="ident">inject</span><span class="punct">({})</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">hash</span><span class="punct">,</span> <span class="ident">e</span><span class="punct">|</span>
-       <span class="ident">service</span> <span class="punct">=</span> <span class="punct">(</span><span class="ident">e</span><span class="punct">.</span><span class="ident">classes</span> <span class="punct">-</span> <span class="punct">['</span><span class="string">identifier</span><span class="punct">']).</span><span class="ident">first</span>
-       <span class="ident">identifier</span> <span class="punct">=</span> <span class="ident">e</span><span class="punct">.</span><span class="ident">inner_text</span>
-       <span class="ident">hash</span><span class="punct">[</span><span class="ident">service</span><span class="punct">]</span> <span class="punct">=</span> <span class="ident">identifier</span>
-       <span class="ident">hash</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-  <span class="keyword">def </span><span class="method">identifier</span><span class="punct">(</span><span class="ident">service</span><span class="punct">)</span>
-    <span class="punct">(</span><span class="attribute">@hpricot_doc</span><span class="punct">/&quot;</span><span class="string">.contactDetails .<span class="expr">#{service}</span>.identifier</span><span class="punct">&quot;).</span><span class="ident">inner_text</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+class ContactParser
+  def self.from_html(html)
+    doc = Hpricot(html)
+    new(doc)
+  end
+  def initialize(hpricot_doc)
+    @hpricot_doc = hpricot_doc
+  end
+  def service_identifiers
+    (@hpricot_doc/'.contactDetails .identifier').inject({}) do |hash, e|
+       service = (e.classes - ['identifier']).first
+       identifier = e.inner_text
+       hash[service] = identifier
+       hash
+    end
+  end
+  def identifier(service)
+    (@hpricot_doc/".contactDetails .#{service}.identifier").inner_text
+  end
+end
 
-<span class="ident">contact_details_file</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/contact-details.html</span><span class="punct">'</span>
-<span class="ident">html</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">(</span><span class="ident">contact_details_file</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">}</span>
-<span class="ident">parser</span> <span class="punct">=</span> <span class="constant">ContactParser</span><span class="punct">.</span><span class="ident">from_html</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
+contact_details_file = File.dirname(__FILE__) + '/contact-details.html'
+html = File.open(contact_details_file) { |f| f.read }
+parser = ContactParser.from_html(html)
 
-<span class="ident">p</span> <span class="ident">parser</span><span class="punct">.</span><span class="ident">service_identifiers</span>
-<span class="comment"># =&gt; {&quot;skype&quot;=&gt;&quot;skype-username&quot;, &quot;msn&quot;=&gt;&quot;msn-username&quot;}</span>
-<span class="ident">p</span> <span class="ident">parser</span><span class="punct">.</span><span class="ident">identifier</span><span class="punct">('</span><span class="string">skype</span><span class="punct">')</span>
-<span class="comment"># =&gt; 'skype-username'</span>
-<span class="ident">p</span> <span class="ident">parser</span><span class="punct">.</span><span class="ident">identifier</span><span class="punct">('</span><span class="string">blurgh</span><span class="punct">')</span>
-<span class="comment"># =&gt; ''</span></code></pre></div>
+p parser.service_identifiers
+# =&gt; {"skype"=&gt;"skype-username", "msn"=&gt;"msn-username"}
+p parser.identifier('skype')
+# =&gt; 'skype-username'
+p parser.identifier('blurgh')
+# =&gt; ''
+</code></pre></div>
 
 	<h3>Further considerations</h3>
 

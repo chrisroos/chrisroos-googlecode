@@ -58,38 +58,40 @@
 	<p><strong><span class="caps">UPDATE 2</span></strong>: Surround output filename with quotes.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">cgi</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'cgi'
 
-<span class="constant">API_KEY</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_API_KEY</span><span class="punct">'</span>
-<span class="constant">PHOTOSET_ID</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_PHOTOSET_ID</span><span class="punct">'</span>
-<span class="constant">LOCAL_PHOTO_DIR</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/users/chrisroos/desktop/photos/</span><span class="punct">'</span>
+API_KEY = 'YOUR_API_KEY'
+PHOTOSET_ID = 'YOUR_PHOTOSET_ID'
+LOCAL_PHOTO_DIR = '/users/chrisroos/desktop/photos/'
 
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl &quot;http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&amp;api_key=<span class="expr">#{API_KEY}</span>&amp;photoset_id=<span class="expr">#{PHOTOSET_ID}</span>&quot;</span><span class="punct">]</span>
-<span class="ident">photoset_photos</span> <span class="punct">=</span> `<span class="comment">#{curl_cmd}`</span>
+curl_cmd = %[curl "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&#38;api_key=#{API_KEY}&#38;photoset_id=#{PHOTOSET_ID}"]
+photoset_photos = `#{curl_cmd}`
 
-<span class="ident">number_of_photos</span> <span class="punct">=</span> <span class="ident">photoset_photos</span><span class="punct">.</span><span class="ident">scan</span><span class="punct">(/</span><span class="regex">&lt;photo .*&gt;</span><span class="punct">/).</span><span class="ident">size</span>
-<span class="ident">current_photo</span> <span class="punct">=</span> <span class="number">0</span>
+number_of_photos = photoset_photos.scan(/&lt;photo .*&gt;/).size
+current_photo = 0
 
-<span class="ident">photoset_photos</span><span class="punct">.</span><span class="ident">scan</span><span class="punct">(/</span><span class="regex">&lt;photo .*&gt;</span><span class="punct">/)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">line</span><span class="punct">|</span>
-  <span class="ident">current_photo</span> <span class="punct">+=</span> <span class="number">1</span>
+photoset_photos.scan(/&lt;photo .*&gt;/) do |line|
+  current_photo += 1
 
-  <span class="ident">photo_id</span> <span class="punct">=</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">id=&quot;(<span class="escape">\d</span>+)&quot;</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">]</span>
-  <span class="ident">photo_secret</span> <span class="punct">=</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">secret=&quot;(<span class="escape">\w</span>+)&quot;</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">]</span>
-  <span class="ident">photo_server</span> <span class="punct">=</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">server=&quot;(<span class="escape">\d</span>+)&quot;</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">]</span>
-  <span class="ident">photo_title</span> <span class="punct">=</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">title=&quot;(.+?)&quot;</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">]</span>
+  photo_id = line[/id="(\d+)"/, 1]
+  photo_secret = line[/secret="(\w+)"/, 1]
+  photo_server = line[/server="(\d+)"/, 1]
+  photo_title = line[/title="(.+?)"/, 1]
 
-  <span class="ident">url</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">http://static.flickr.com/<span class="expr">#{photo_server}</span>/<span class="expr">#{photo_id}</span>_<span class="expr">#{photo_secret}</span>_o_d.jpg</span><span class="punct">&quot;</span>
-  <span class="ident">filename</span> <span class="punct">=</span> <span class="constant">CGI</span><span class="punct">.</span><span class="ident">unescapeHTML</span><span class="punct">(</span><span class="ident">photo_title</span><span class="punct">).</span><span class="ident">gsub</span><span class="punct">(/</span><span class="regex"> |&amp;|,|-</span><span class="punct">/,</span> <span class="punct">'</span><span class="string">_</span><span class="punct">').</span><span class="ident">gsub</span><span class="punct">(/</span><span class="regex">'</span><span class="punct">/,</span> <span class="punct">'</span><span class="string"></span><span class="punct">').</span><span class="ident">downcase</span><span class="punct">.</span><span class="ident">squeeze</span><span class="punct">('</span><span class="string">_</span><span class="punct">')</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">_</span><span class="punct">'</span> <span class="punct">+</span> <span class="ident">photo_id</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">.jpg</span><span class="punct">'</span> <span class="comment"># Sanitize title to use as filename</span>
-  <span class="ident">filepath</span> <span class="punct">=</span> <span class="constant">LOCAL_PHOTO_DIR</span> <span class="punct">+</span> <span class="ident">filename</span>
+  url = "http://static.flickr.com/#{photo_server}/#{photo_id}_#{photo_secret}_o_d.jpg" 
+  filename = CGI.unescapeHTML(photo_title).gsub(/ |&#38;|,|-/, '_').gsub(/'/, '').downcase.squeeze('_') + '_' + photo_id + '.jpg' # Sanitize title to use as filename
+  filepath = LOCAL_PHOTO_DIR + filename
 
-  <span class="keyword">if</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">exists?</span><span class="punct">(</span><span class="ident">filepath</span><span class="punct">)</span>
-    <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">Skipping photo (already downloaded) <span class="expr">#{current_photo}</span> of <span class="expr">#{number_of_photos}</span></span><span class="punct">&quot;</span>
-  <span class="keyword">else</span>
-    <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">Retrieving photo <span class="expr">#{current_photo}</span> of <span class="expr">#{number_of_photos}</span></span><span class="punct">&quot;</span>
-    <span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl &quot;<span class="expr">#{url}</span>&quot; &gt; &quot;<span class="expr">#{filepath}</span>&quot;</span><span class="punct">]</span>
-    `<span class="comment">#{curl_cmd}`</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+  if File.exists?(filepath)
+    puts "Skipping photo (already downloaded) #{current_photo} of #{number_of_photos}" 
+  else
+    puts "Retrieving photo #{current_photo} of #{number_of_photos}" 
+    curl_cmd = %[curl "#{url}" &gt; "#{filepath}"]
+    `#{curl_cmd}`
+  end
+end
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
