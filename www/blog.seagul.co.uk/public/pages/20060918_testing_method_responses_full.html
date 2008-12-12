@@ -29,28 +29,29 @@
                 </span>
               </p>
 
-              <div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Foo</span>
-  <span class="keyword">def </span><span class="method">foo</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">public</span> <span class="symbol">:foo</span>
-  <span class="keyword">def </span><span class="method">bar</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">protected</span> <span class="symbol">:bar</span>
-  <span class="keyword">def </span><span class="method">baz</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">private</span> <span class="symbol">:baz</span>
-<span class="keyword">end</span>
+              <div class="typocode"><pre><code class="ruby">
+class Foo
+  def foo; end; public :foo
+  def bar; end; protected :bar
+  def baz; end; private :baz
+end
 
-<span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+require 'test/unit'
 
-<span class="constant">IncludePrivate</span> <span class="punct">=</span> <span class="constant">true</span>
-<span class="constant">IncludeSuper</span> <span class="punct">=</span> <span class="constant">true</span>
+IncludePrivate = true
+IncludeSuper = true
 
-<span class="constant">FooMethod</span> <span class="punct">=</span> <span class="symbol">:foo</span><span class="punct">.</span><span class="ident">to_s</span>
-<span class="constant">BarMethod</span> <span class="punct">=</span> <span class="symbol">:bar</span><span class="punct">.</span><span class="ident">to_s</span>
-<span class="constant">BazMethod</span> <span class="punct">=</span> <span class="symbol">:baz</span><span class="punct">.</span><span class="ident">to_s</span>
+FooMethod = :foo.to_s
+BarMethod = :bar.to_s
+BazMethod = :baz.to_s
 
-<span class="keyword">class </span><span class="class">Test::Unit::TestCase</span>
-  <span class="keyword">def </span><span class="method">assert_not</span><span class="punct">(</span><span class="ident">expr</span><span class="punct">,</span> <span class="ident">msg</span> <span class="punct">=</span> <span class="punct">'</span><span class="string"></span><span class="punct">')</span>
-    <span class="ident">assert</span> <span class="punct">!</span> <span class="ident">expr</span><span class="punct">,</span> <span class="ident">msg</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+class Test::Unit::TestCase
+  def assert_not(expr, msg = '')
+    assert ! expr, msg
+  end
+end
 
-<span class="punct">%%</span><span class="string">
+%%
 Module
 ------
 instance_methods(include_super=true)
@@ -62,143 +63,143 @@ protected_instance_methods(include_super=true)
 protected_method_defined?
 public_instance_methods(include_super=true)
 public_method_defined?
-</span><span class="punct">%</span>
+%
 
-<span class="comment"># Testing a Class.  Module methods. (CM)</span>
-<span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+# Testing a Class.  Module methods. (CM)
+Class.new(Test::Unit::TestCase) do
 
-  <span class="keyword">def </span><span class="method">test_CM_instance_methods</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_CM_instance_methods
+    assert Foo.instance_methods.include?(FooMethod)
+    assert Foo.instance_methods.include?(BarMethod)
+    assert_not Foo.instance_methods.include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_CM_instance_method</span>
-    <span class="ident">assert_not_nil</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_method</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not_nil</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_method</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not_nil</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_method</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_CM_instance_method
+    assert_not_nil Foo.instance_method(FooMethod)
+    assert_not_nil Foo.instance_method(BarMethod)
+    assert_not_nil Foo.instance_method(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_CM_method_defined?</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">method_defined?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">method_defined?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">method_defined?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_CM_method_defined?
+    assert Foo.method_defined?(FooMethod)
+    assert Foo.method_defined?(BarMethod)
+    assert_not Foo.method_defined?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_CM_public_instance_methods</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">foo</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">bar</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">baz</span><span class="punct">')</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">foo</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">bar</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">baz</span><span class="punct">')</span>
-  <span class="keyword">end</span>
+  def test_CM_public_instance_methods
+    assert Foo.public_instance_methods.include?('foo')
+    assert_not Foo.public_instance_methods.include?('bar')
+    assert_not Foo.public_instance_methods.include?('baz')
+    assert Foo.public_instance_methods(IncludeSuper).include?('foo')
+    assert_not Foo.public_instance_methods(IncludeSuper).include?('bar')
+    assert_not Foo.public_instance_methods(IncludeSuper).include?('baz')
+  end
 
-  <span class="keyword">def </span><span class="method">test_CM_protected_instance_methods</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">foo</span><span class="punct">')</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">bar</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">baz</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">foo</span><span class="punct">')</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">bar</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">baz</span><span class="punct">')</span>
-  <span class="keyword">end</span>
+  def test_CM_protected_instance_methods
+    assert_not Foo.protected_instance_methods.include?('foo')
+    assert Foo.protected_instance_methods.include?('bar')
+    assert_not Foo.protected_instance_methods.include?('baz')
+    assert_not Foo.protected_instance_methods(IncludeSuper).include?('foo')
+    assert Foo.protected_instance_methods(IncludeSuper).include?('bar')
+    assert_not Foo.protected_instance_methods(IncludeSuper).include?('baz')
+  end
 
-  <span class="keyword">def </span><span class="method">test_CM_private_instance_methods</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">foo</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">bar</span><span class="punct">')</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">('</span><span class="string">baz</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">foo</span><span class="punct">')</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">bar</span><span class="punct">')</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_instance_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">('</span><span class="string">baz</span><span class="punct">')</span>
-  <span class="keyword">end</span>
+  def test_CM_private_instance_methods
+    assert_not Foo.private_instance_methods.include?('foo')
+    assert_not Foo.private_instance_methods.include?('bar')
+    assert Foo.private_instance_methods.include?('baz')
+    assert_not Foo.private_instance_methods(IncludeSuper).include?('foo')
+    assert_not Foo.private_instance_methods(IncludeSuper).include?('bar')
+    assert Foo.private_instance_methods(IncludeSuper).include?('baz')
+  end
 
-  <span class="keyword">def </span><span class="method">test_CM_public_method_defined?</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_method_defined?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_method_defined?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_method_defined?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_CM_public_method_defined?
+    assert Foo.public_method_defined?(FooMethod)
+    assert_not Foo.public_method_defined?(BarMethod)
+    assert_not Foo.public_method_defined?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_CM_protected_method_defined?</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_method_defined?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_method_defined?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_method_defined?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_CM_protected_method_defined?
+    assert_not Foo.protected_method_defined?(FooMethod)
+    assert Foo.protected_method_defined?(BarMethod)
+    assert_not Foo.protected_method_defined?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_CM_private_method_defined?</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_method_defined?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_method_defined?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_method_defined?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_CM_private_method_defined?
+    assert_not Foo.private_method_defined?(FooMethod)
+    assert_not Foo.private_method_defined?(BarMethod)
+    assert Foo.private_method_defined?(BazMethod)
+  end
 
-<span class="keyword">end</span>
+end
 
-<span class="comment"># # Testing on instance.  Module methods. (IM)</span>
-<span class="comment"># Class.new(Test::Unit::TestCase) do</span>
-<span class="comment">#   </span>
-<span class="comment">#   def setup</span>
-<span class="comment">#     @foo = Foo.new</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment">#   def test_IM_private_instance_methods</span>
-<span class="comment">#     assert_not @foo.private_instance_methods.include?(FooMethod)</span>
-<span class="comment">#     assert_not @foo.private_instance_methods.include?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.private_instance_methods.include?(BazMethod)</span>
-<span class="comment">#     assert_not @foo.private_instance_methods(true).include?(FooMethod)</span>
-<span class="comment">#     assert_not @foo.private_instance_methods(true).include?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.private_instance_methods(true).include?(BazMethod)</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment">#   def test_IM_protected_instance_methods</span>
-<span class="comment">#     assert_not @foo.protected_instance_methods.include?(FooMethod)</span>
-<span class="comment">#     assert_not @foo.protected_instance_methods.include?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.protected_instance_methods.include?(BazMethod)</span>
-<span class="comment">#     assert_not @foo.protected_instance_methods(true).include?(FooMethod)</span>
-<span class="comment">#     assert_not @foo.protected_instance_methods(true).include?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.protected_instance_methods(true).include?(BazMethod)</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment">#   def test_IM_public_instance_methods</span>
-<span class="comment">#     assert_not @foo.public_instance_methods.include?(FooMethod)</span>
-<span class="comment">#     assert_not @foo.public_instance_methods.include?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.public_instance_methods.include?(BazMethod)</span>
-<span class="comment">#     assert_not @foo.public_instance_methods(true).include?(FooMethod)</span>
-<span class="comment">#     assert_not @foo.public_instance_methods(true).include?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.public_instance_methods(true).include?(BazMethod)</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment">#   def test_IM_instance_method</span>
-<span class="comment">#     assert_not_nil @foo.instance_method(FooMethod)</span>
-<span class="comment">#     assert_not_nil @foo.instance_method(BarMethod)</span>
-<span class="comment">#     assert_not_nil @foo.instance_method(BazMethod)</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment">#   def test_IM_method_defined?</span>
-<span class="comment">#     assert @foo.method_defined?(FooMethod)</span>
-<span class="comment">#     assert @foo.method_defined?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.method_defined?(BazMethod)</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment">#   def test_IM_private_method_defined?</span>
-<span class="comment">#     assert_not @foo.private_method_defined?(FooMethod)</span>
-<span class="comment">#     assert_not @foo.private_method_defined?(BarMethod)</span>
-<span class="comment">#     assert @foo.private_method_defined?(BazMethod)</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment">#   def test_IM_protected_method_defined?</span>
-<span class="comment">#     assert_not @foo.protected_method_defined?(FooMethod)</span>
-<span class="comment">#     assert @foo.protected_method_defined?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.protected_method_defined?(BazMethod)</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment">#   def test_IM_public_method_defined?</span>
-<span class="comment">#     assert @foo.public_method_defined?(FooMethod)</span>
-<span class="comment">#     assert_not @foo.public_method_defined?(BarMethod)</span>
-<span class="comment">#     assert_not @foo.public_method_defined?(BazMethod)</span>
-<span class="comment">#   end</span>
-<span class="comment">#   </span>
-<span class="comment"># end</span>
+# # Testing on instance.  Module methods. (IM)
+# Class.new(Test::Unit::TestCase) do
+#   
+#   def setup
+#     @foo = Foo.new
+#   end
+#   
+#   def test_IM_private_instance_methods
+#     assert_not @foo.private_instance_methods.include?(FooMethod)
+#     assert_not @foo.private_instance_methods.include?(BarMethod)
+#     assert_not @foo.private_instance_methods.include?(BazMethod)
+#     assert_not @foo.private_instance_methods(true).include?(FooMethod)
+#     assert_not @foo.private_instance_methods(true).include?(BarMethod)
+#     assert_not @foo.private_instance_methods(true).include?(BazMethod)
+#   end
+#   
+#   def test_IM_protected_instance_methods
+#     assert_not @foo.protected_instance_methods.include?(FooMethod)
+#     assert_not @foo.protected_instance_methods.include?(BarMethod)
+#     assert_not @foo.protected_instance_methods.include?(BazMethod)
+#     assert_not @foo.protected_instance_methods(true).include?(FooMethod)
+#     assert_not @foo.protected_instance_methods(true).include?(BarMethod)
+#     assert_not @foo.protected_instance_methods(true).include?(BazMethod)
+#   end
+#   
+#   def test_IM_public_instance_methods
+#     assert_not @foo.public_instance_methods.include?(FooMethod)
+#     assert_not @foo.public_instance_methods.include?(BarMethod)
+#     assert_not @foo.public_instance_methods.include?(BazMethod)
+#     assert_not @foo.public_instance_methods(true).include?(FooMethod)
+#     assert_not @foo.public_instance_methods(true).include?(BarMethod)
+#     assert_not @foo.public_instance_methods(true).include?(BazMethod)
+#   end
+#   
+#   def test_IM_instance_method
+#     assert_not_nil @foo.instance_method(FooMethod)
+#     assert_not_nil @foo.instance_method(BarMethod)
+#     assert_not_nil @foo.instance_method(BazMethod)
+#   end
+#   
+#   def test_IM_method_defined?
+#     assert @foo.method_defined?(FooMethod)
+#     assert @foo.method_defined?(BarMethod)
+#     assert_not @foo.method_defined?(BazMethod)
+#   end
+#   
+#   def test_IM_private_method_defined?
+#     assert_not @foo.private_method_defined?(FooMethod)
+#     assert_not @foo.private_method_defined?(BarMethod)
+#     assert @foo.private_method_defined?(BazMethod)
+#   end
+#   
+#   def test_IM_protected_method_defined?
+#     assert_not @foo.protected_method_defined?(FooMethod)
+#     assert @foo.protected_method_defined?(BarMethod)
+#     assert_not @foo.protected_method_defined?(BazMethod)
+#   end
+#   
+#   def test_IM_public_method_defined?
+#     assert @foo.public_method_defined?(FooMethod)
+#     assert_not @foo.public_method_defined?(BarMethod)
+#     assert_not @foo.public_method_defined?(BazMethod)
+#   end
+#   
+# end
 
-<span class="punct">%%</span><span class="string">
+%%
 Object
 ------
 method
@@ -207,117 +208,118 @@ private_methods
 protected_methods
 public_methods
 respond_to?(sym, include_private=false)
-</span><span class="punct">%</span>
+%
 
-<span class="comment"># Testing a class.  Object methods. (KO)</span>
-<span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+# Testing a class.  Object methods. (KO)
+Class.new(Test::Unit::TestCase) do
 
-  <span class="keyword">def </span><span class="method">test_KO_method</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">NameError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">NameError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">NameError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span> <span class="punct">}</span>
-  <span class="keyword">end</span>
+  def test_KO_method
+    assert_raise(NameError) { Foo.method(FooMethod) }
+    assert_raise(NameError) { Foo.method(BarMethod) }
+    assert_raise(NameError) { Foo.method(BazMethod) }
+  end
 
-  <span class="keyword">def </span><span class="method">test_KO_methods</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_KO_methods
+    assert_not Foo.methods.include?(FooMethod)
+    assert_not Foo.methods.include?(BarMethod)
+    assert_not Foo.methods.include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_KO_private_methods</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_KO_private_methods
+     assert_not Foo.private_methods.include?(FooMethod)
+     assert_not Foo.private_methods.include?(BarMethod)
+     assert_not Foo.private_methods.include?(BazMethod)
+     assert_not Foo.private_methods(IncludeSuper).include?(FooMethod)
+     assert_not Foo.private_methods(IncludeSuper).include?(BarMethod)
+     assert_not Foo.private_methods(IncludeSuper).include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_KO_protected_methods</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_KO_protected_methods
+     assert_not Foo.protected_methods.include?(FooMethod)
+     assert_not Foo.protected_methods.include?(BarMethod)
+     assert_not Foo.protected_methods.include?(BazMethod)
+     assert_not Foo.protected_methods(IncludeSuper).include?(FooMethod)
+     assert_not Foo.protected_methods(IncludeSuper).include?(BarMethod)
+     assert_not Foo.protected_methods(IncludeSuper).include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_KO_public_methods</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_KO_public_methods
+     assert_not Foo.public_methods.include?(FooMethod)
+     assert_not Foo.public_methods.include?(BarMethod)
+     assert_not Foo.public_methods.include?(BazMethod)
+     assert_not Foo.public_methods(IncludeSuper).include?(FooMethod)
+     assert_not Foo.public_methods(IncludeSuper).include?(BarMethod)
+     assert_not Foo.public_methods(IncludeSuper).include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_KO_respond_to?</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">,</span> <span class="constant">IncludePrivate</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">,</span> <span class="constant">IncludePrivate</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">,</span> <span class="constant">IncludePrivate</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_KO_respond_to?
+    assert_not Foo.respond_to?(FooMethod)
+    assert_not Foo.respond_to?(BarMethod)
+    assert_not Foo.respond_to?(BazMethod)
+    assert_not Foo.respond_to?(FooMethod, IncludePrivate)
+    assert_not Foo.respond_to?(BarMethod, IncludePrivate)
+    assert_not Foo.respond_to?(BazMethod, IncludePrivate)
+  end
 
-<span class="keyword">end</span>
+end
 
-<span class="comment"># Testing an instance.  Object methods. (IO)</span>
-<span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+# Testing an instance.  Object methods. (IO)
+Class.new(Test::Unit::TestCase) do
 
-  <span class="keyword">def </span><span class="method">setup</span>
-    <span class="attribute">@foo</span> <span class="punct">=</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">new</span>
-  <span class="keyword">end</span>
+  def setup
+    @foo = Foo.new
+  end
 
-  <span class="keyword">def </span><span class="method">test_IO_method</span>
-    <span class="ident">assert_not_nil</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not_nil</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not_nil</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_IO_method
+    assert_not_nil @foo.method(FooMethod)
+    assert_not_nil @foo.method(BarMethod)
+    assert_not_nil @foo.method(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_IO_methods</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_IO_methods
+    assert @foo.methods.include?(FooMethod)
+    assert @foo.methods.include?(BarMethod)
+    assert_not @foo.methods.include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_IO_private_methods</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_IO_private_methods
+     assert_not @foo.private_methods.include?(FooMethod)
+     assert_not @foo.private_methods.include?(BarMethod)
+     assert @foo.private_methods.include?(BazMethod)
+     assert_not @foo.private_methods(IncludeSuper).include?(FooMethod)
+     assert_not @foo.private_methods(IncludeSuper).include?(BarMethod)
+     assert @foo.private_methods(IncludeSuper).include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_IO_protected_methods</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_IO_protected_methods
+     assert_not @foo.protected_methods.include?(FooMethod)
+     assert @foo.protected_methods.include?(BarMethod)
+     assert_not @foo.protected_methods.include?(BazMethod)
+     assert_not @foo.protected_methods(IncludeSuper).include?(FooMethod)
+     assert @foo.protected_methods(IncludeSuper).include?(BarMethod)
+     assert_not @foo.protected_methods(IncludeSuper).include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_IO_public_methods</span>
-     <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-     <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-     <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">(</span><span class="constant">IncludeSuper</span><span class="punct">).</span><span class="ident">include?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_IO_public_methods
+     assert @foo.public_methods.include?(FooMethod)
+     assert_not @foo.public_methods.include?(BarMethod)
+     assert_not @foo.public_methods.include?(BazMethod)
+     assert @foo.public_methods(IncludeSuper).include?(FooMethod)
+     assert_not @foo.public_methods(IncludeSuper).include?(BarMethod)
+     assert_not @foo.public_methods(IncludeSuper).include?(BazMethod)
+  end
 
-  <span class="keyword">def </span><span class="method">test_IO_respond_to?</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">)</span>
-    <span class="ident">assert_not</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">FooMethod</span><span class="punct">,</span> <span class="constant">IncludePrivate</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">BarMethod</span><span class="punct">,</span> <span class="constant">IncludePrivate</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="constant">BazMethod</span><span class="punct">,</span> <span class="constant">IncludePrivate</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_IO_respond_to?
+    assert @foo.respond_to?(FooMethod)
+    assert @foo.respond_to?(BarMethod)
+    assert_not @foo.respond_to?(BazMethod)
+    assert @foo.respond_to?(FooMethod, IncludePrivate)
+    assert @foo.respond_to?(BarMethod, IncludePrivate)
+    assert @foo.respond_to?(BazMethod, IncludePrivate)
+  end
 
-<span class="keyword">end</span></code></pre></div>
+end
+</code></pre></div>
 
             </div>
           </div>

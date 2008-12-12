@@ -1,6 +1,6 @@
 --- 
 :body: |-
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'test/unit'
   
   class Foo
@@ -84,7 +84,7 @@
     end
     
   end
-  </typo:code>
+  </code></pre></div>
 :updated_at: 2006-09-18 22:21:41 +01:00
 :name: 20060918_testing_method_responses_compact
 :title: Testing Method Responses - Compact

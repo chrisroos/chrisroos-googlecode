@@ -1,6 +1,6 @@
 --- 
 :body: |-
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   class Foo
     def foo; end; public :foo
     def bar; end; protected :bar
@@ -58,7 +58,7 @@
     end
   
   end
-  </typo:code>
+  </code></pre></div>
 :updated_at: 2006-09-18 22:51:33 +01:00
 :name: 20060918_testing_instance_method_exists
 :title: Testing Object#method_exists?

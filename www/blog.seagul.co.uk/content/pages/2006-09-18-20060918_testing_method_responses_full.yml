@@ -1,6 +1,6 @@
 --- 
 :body: |-
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   class Foo
     def foo; end; public :foo
     def bar; end; protected :bar
@@ -290,7 +290,7 @@
     end
     
   end
-  </typo:code>
+  </code></pre></div>
 :updated_at: 2006-09-18 22:22:09 +01:00
 :name: 20060918_testing_method_responses_full
 :title: Testing Method Responses - Full
