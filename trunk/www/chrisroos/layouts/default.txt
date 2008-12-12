@@ -27,16 +27,7 @@ filter:    erb
         <div class="header">
           <p class="blogTitleContainer"><a class="blogTitle" href="/">deferred until inspiration hits</a></p>
 
-<form action="/search" id="cse-search-box">
-  <div>
-    <input type="hidden" name="cx" value="017216692514631406866:xbxiffq7rno" />
-    <input type="hidden" name="cof" value="FORID:9" />
-    <input type="hidden" name="ie" value="UTF-8" />
-    <input type="text" name="q" size="31" />
-    <input type="submit" name="sa" value="Search" />
-  </div>
-</form>
-<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+          <%= render(:partial => "google-search") %>
 
         </div>
       </div>
@@ -63,18 +54,7 @@ filter:    erb
     
     <%= render(:partial => "twitter") %>
     <%= render(:partial => "delicious") %>
-
-    <script type="text/javascript">
-  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-  if (typeof(_gat) != 'undefined') {
-    var pageTracker = _gat._getTracker("UA-160238-1");
-    pageTracker._initData();
-    pageTracker._trackPageview();
-  }
-</script>
+    <%= render(:partial => "google-analytics") %>
 
   </body>
 
