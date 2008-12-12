@@ -7,7 +7,7 @@
   
   To replicate, create a new file called 'default.rake' in the lib/tasks/ directory within your rails project, and paste in the following code.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   Rake::Task::TASKS.delete('default')
   Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
   Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
@@ -17,7 +17,7 @@
     Rake::Task[:test_functional].invoke rescue got_error = true
     raise "Test failures" if got_error
   end
-  </typo:code>
+  </code></pre></div>
   
   Because this relies on the internal implementation of rake (instance variable names and TASKS constant) it might well do very bad things to versions that aren't 0.6.2.
   
@@ -25,9 +25,9 @@
   
   Just realised that I don't need most of the code above.  All you actually need in default.rake is as follows.  Stoopid Chris.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
   Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
-  </typo:code>
+  </code></pre></div>
 :title: Rails rake testing without database
 :guid: 7436c1ad-8856-4b00-8575-83adcce61509

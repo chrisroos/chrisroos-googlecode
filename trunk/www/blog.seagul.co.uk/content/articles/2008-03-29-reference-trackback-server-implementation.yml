@@ -7,7 +7,7 @@
   
   On the off-chance that someone else might find it useful I'm currently hosting it at "http://trackbacks.seagul.co.uk":http://trackbacks.seagul.co.uk.  You might use it to see the del.icio.us trackbacks extension in action or to test the sending of trackbacks from your blog (the trackback URL is "http://trackbacks.seagul.co.uk/trackback":http://trackbacks.seagul.co.uk/trackback).  Or, you could just play with it using "curl":http://curl.haxx.se.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="shell">
   # Let's just try to GET the trackback URL
   $ curl http://trackbacks.seagul.co.uk/trackback
   <?xml version="1.0" encoding="utf-8"?>
@@ -38,6 +38,6 @@
   <response>
     <error>0</error>
   </response>
-  </typo:code>
+  </code></pre></div>
 :title: Reference Trackback Server implementation
 :guid: d9caacb2-2920-4ccd-ac3f-f2154258c400

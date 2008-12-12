@@ -11,7 +11,7 @@
   
   The implementation I have at the moment comprises four methods, although we could quite easily do away with 'stub_instance_method' (it just adds some safety checking to 'define_instance_method').
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   class Object
   
     def metaclass
@@ -32,11 +32,11 @@
     end
   
   end
-  </typo:code>
+  </code></pre></div>
   
   A (partially adapted and potentially non-working) example of this code being used in my tests is as follows.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   def test_should_use_net_http_to_get_html_content
     url = 'http://localhost/page.htm'
     net_http = Object.new
@@ -46,7 +46,7 @@
   
     assert_equal ['get(/page.htm)'], net_http.__log__
   end
-  </typo:code>
+  </code></pre></div>
   
   I define a 'mock' Net::HTTP object (net_http) that records a message when it gets sent the 'get' message.  I can then check the log to ensure that the expected method was called; and be (hopefully) safe in the knowledge that when I supply an actual Net::HTTP object the code does what I expect.
 :title: Very very lightweight mocking(ish)

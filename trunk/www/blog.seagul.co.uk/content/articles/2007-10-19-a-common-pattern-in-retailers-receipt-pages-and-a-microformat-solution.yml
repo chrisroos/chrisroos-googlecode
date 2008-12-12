@@ -17,7 +17,7 @@
   <script src=\"http://MY-SEO-HELPER\" type=\"text/javascript\" charset=\"utf-8\"></script>\r\n\
   \r\n\
   <!-- And repeat... -->\r\n\
-  </typo:code>\r\n\
+  </code></pre></div>\r\n\
   \r\n\
   Could become much simpler:\r\n\
   \r\n\
@@ -27,7 +27,7 @@
   \r\n\
   <script src=\"http://MY-PRICE-COMPARATOR\" type=\"text/javascript\" charset=\"utf-8\"></script>\r\n\
   <script src=\"http://MY-SEO-HELPER\" type=\"text/javascript\" charset=\"utf-8\"></script>\r\n\
-  </typo:code>\r\n\
+  </code></pre></div>\r\n\
   \r\n\
   There has been discussion of such a \"receipt microformat\":http://microformats.org/wiki/receipt but a quick search seemed to suggest that it hasn't been discussed in the context of this specific problem.  Maybe I'll go add my voice to that discussion..."
 :title: A common pattern in retailers' receipt pages (and a microformat solution)

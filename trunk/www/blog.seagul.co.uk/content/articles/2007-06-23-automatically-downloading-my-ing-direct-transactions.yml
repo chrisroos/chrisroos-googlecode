@@ -17,9 +17,9 @@
   
   We see that the following information gets POSTed to InitialINGDirect.html
   
-  <typo:code>
+  <div class="typocode"><pre><code>
   command=enterCustomerNumber&locale=en_GB&device=web&ACN=<YOUR_CUSTOMER_NUMBER>&LNAME=<YOUR_LAST_NAME>&GO.x=23&GO.y=12
-  </typo:code>
+  </code></pre></div>
   
   We are redirected to a second security page.
   
@@ -27,17 +27,17 @@
   
   The first use of "curl":http://curl.haxx.se/ is to see whether we can get this far from the command line.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="shell">
   curl -X"POST" -d"command=enterCustomerNumber" -d"locale=en_GB" -d"device=web" -d"ACN=YOUR_CUSTOMER_NUMBER" -d"LNAME=YOUR_LAST_NAME" -d"GO.x=23" -d"GO.y=12" "https://secure.ingdirect.co.uk/InitialINGDirect.html" -o"<FILENAME_FOR_OUTPUT>"
-  </typo:code>
+  </code></pre></div>
   
   The actual output in this instance is
   
-  <typo:code>
+  <div class="typocode"><pre><code class="javascript">
   <SCRIPT>
   location.replace("/INGDirect.html?command=displayValidateCustomer&fill=1");
   </SCRIPT>
-  </typo:code>
+  </code></pre></div>
   
   So we amend the curl command to see exactly what's going on (the removal of -o and the addition of -v)
   
@@ -49,19 +49,19 @@
   
   Ok, so that's not unexpected.  How about, if we store the cookies sent to us in the original response, and then request the page returned in the javascript.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="shell">
   curl -X"POST" -c"/Users/chrisroos/Desktop/ing-cookie" -d"command=enterCustomerNumber" -d"locale=en_GB" -d"device=web" -d"ACN=YOUR_CUSTOMER_NUMBER" -d"LNAME=YOUR_LAST_NAME" -d"GO.x=23" -d"GO.y=12" "https://secure.ingdirect.co.uk/InitialINGDirect.html"
   
   curl -b"/Users/chrisroos/Desktop/ing-cookie" "https://secure.ingdirect.co.uk/INGDirect.html?command=displayValidateCustomer&fill=1" -o"/Users/chrisroos/Desktop/ing.html"
-  </typo:code>
+  </code></pre></div>
   
   Ok, this looks promising.  We can now proceed to the second security page.
   
   Let's use firefox to log in and get to the second security page again.  Fill in the details as requested, open live http headers and get hold of the data we are sending.  Right, so we POST the following details to InitialINGDirect.html
   
-  <typo:code>
+  <div class="typocode"><pre><code>
   command=validateCustomer&locale=en_GB&device=web&PIN_A=5&PIN_B=1&PIN_C=4&DAYS=65&MONTHS=65&YEARS=66&GO.x=41&GO.y=9
-  </typo:code>
+  </code></pre></div>
   
   Ah, so this looks interesting.  It seems that each key on the keypad is assigned a number (potentially different to the number displayed on the key).  It is that number that gets sent.  The numbers on the keypad appear in a random order, so I wonder if the same number is always assigned to the same key, or whether something else is required to tell the server the order of the keys.  Let's log in one more time and see if the results differ.  The assumption being that if they do then the server must know what order the keys have been displayed in.
   
@@ -82,7 +82,7 @@
   
   Right, so unless I'm missing something, the server must 'know' which three digits we're being asked for, along with the order of the keypad.  If we're to log in automatically then we're going to need to parse the text that asks us for certain digits and determine the order of the keypad.  A little experimentation with "hpricot":http://code.whytheluckystiff.net/hpricot/ yielded the following code.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'rubygems'
   require 'hpricot'
   
@@ -113,33 +113,33 @@
   # We can then use Array#index to dive in grab the keypad position of a number
   # keypad.index(5) #=> 1
   # keypad.index(7) #=> 5
-  </typo:code>
+  </code></pre></div>
   
   Cool, so we should be able to string together what we have and automatically login to our account, we need to dip into ruby so that we might parse the keypad page using our code above.
   
   Right, I've cobbled the code together but instead of seeing an account overview page, I'm actually receiving a page with more javascript relocation magic.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="javascript">
   <SCRIPT>
   location.replace("/InitialINGDirect.html?command=displayLoggedOutError&locale=en_GB&device=web");
   </SCRIPT>
-  </typo:code>
+  </code></pre></div>
   
   I'm wondering if I'm missing some cookies - maybe some more cookies get added to the jar on the keypad page.  Using the "web developer extension":https://addons.mozilla.org/en-US/firefox/addon/60 this is trivial to check.  Two cookies are set when we first visit the login page...  Hmm, and there are still two when we get to the keypad page.  So something else is different.  Ok, so I found it.  Somehow, I'd managed to miss out some data that was required for the login to work correctly.  I was not sending the command=validateCustomer key/pair even though I'd already pasted it once above.  Oh well.  With this 'command' added, we still get a page with some javascript relocation but this time we get relocated to the account summary..
   
-  <typo:code>
+  <div class="typocode"><pre><code class="javascript">
   <SCRIPT>
   location.replace("/INGDirect.html?command=accountSummary&locale=en_GB&device=web&method=fetchClientAccountSummary");
   </SCRIPT>
-  </typo:code>
+  </code></pre></div>
   
   If we finally GET this page then we should be able to 'see' our account overview on the command line.  Of course it wasn't that simple.  This just yields another javascript redirect.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="javascript">
   <SCRIPT>
   location.replace("/INGDirect.html?command=displayClientAccountSummary&fill=1");
   </SCRIPT>
-  </typo:code>
+  </code></pre></div>
   
   Let's try to GET this page then.  Woohoo, we're finally at the account overview page.  Wow that was hard work, so, so much harder than it should be for a web application.
   
@@ -149,11 +149,11 @@
   
   GETting that url on the command line yields yet another javascript redirect (really, you do surprise me).
   
-  <typo:code>
+  <div class="typocode"><pre><code class="javascript">
   <SCRIPT>
   location.replace("/INGDirect.html?command=displayAccountDetails");
   </SCRIPT>
-  </typo:code>
+  </code></pre></div>
   
   Fine, let's GET that url then (starting to get bored now).  And, wait for it...  Yeah, we have downloaded transactions.  Phew.  Right then, just a little code tidying and I'll get it uploaded to google code and this article can be posted.  Yay.
   

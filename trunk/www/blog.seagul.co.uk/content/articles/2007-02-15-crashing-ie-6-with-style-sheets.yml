@@ -5,11 +5,11 @@
   
   Anyway, with the embarrassment out of the way, I thought I'd share the remotely interesting[1] findings of the investigation into the browser crash.  It turns out that a combination of these three little lines of "css":http://en.wikipedia.org/wiki/CSS, and any "doctype":http://en.wikipedia.org/wiki/Doctype declaration[2], will cause IE 6 to hang while waiting for the magic "Windows kiss of life":http://en.wikipedia.org/wiki/Control-Alt-Delete#Windows_NT.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="css">
   margin-left: 240px;
   margin-right: 10%;
   width: expression(document.body.offsetWidth - 256);
-  </typo:code>
+  </code></pre></div>
   
   It is not the specific values (240px, 10% and 256) in the lines above that are of interest - I was able to express and suppress the problem by altering those.  Unfortunately, I didn't spend any time trying to find the threshold of the problem, and am therefore unsure as to the reason for this behaviour.
   
@@ -17,7 +17,7 @@
   
   For the curious, the simplest html page I could come up with that exhibits the crash behaviour in IE 6 is below.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="html">
   <!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> -->
   <!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
   <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> -->
@@ -38,7 +38,7 @@
       <div id="content">blurgh</div>
     </body>
   </html>
-  </typo:code>
+  </code></pre></div>
   
   [1] They're really not interesting.
   

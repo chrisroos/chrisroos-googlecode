@@ -3,7 +3,7 @@
 :body: |-
   The first is to ensure two arrays contain the same elements not necessarily in the same order.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'test/unit'
   
   require 'set'
@@ -27,11 +27,11 @@
     end
   
   end
-  </typo:code>
+  </code></pre></div>
   
   The second is to test for generated warnings.  In my "current project":http://blog.seagul.co.uk/articles/2006/10/06/recording-daily-spending-with-a-ruby-dsl app, I use method_missing and wanted to warn the user if the unknown message looks like it's supposed to be a payment mechanism...
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   day '25-oct-2006' do
     cash 30.29, beer
   end
@@ -39,11 +39,11 @@
   # Results in NoMethodError and, more importantly, this friendly warning..
   # Maybe you expected 'cash' to be a payment mechanism?
   # Cool huh?
-  </typo:code>
+  </code></pre></div>
   
   Anyway, I wanted a way to test that the warning was being generated and came up with another assertion...
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'test/unit'
   
   require 'stringio'
@@ -71,6 +71,6 @@
     end
   
   end
-  </typo:code>
+  </code></pre></div>
 :title: Some useful assertions, maybe
 :guid: a332b171-dc34-4382-b88a-8a408ec5806e

@@ -1,6 +1,6 @@
 --- 
 :body: |-
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'test/unit'
   
   class CandidateTest < Test::Unit::TestCase
@@ -60,7 +60,7 @@
   aHQgcGFzc3dvcmQiIHVubGVzcyBjYW5kaWRhdGUua25vd3NfdGhlX3NlY3Jl
   dF9wYXNzd29yZD8KICAgIHB1dHMgQ2FuZGlkYXRlLm5ldygncnVieSBpcyBj
   b29sJykuc2VjcmV0X21lc3NhZ2UKICBlbmQKZW5kCg==
-  </typo:code>
+  </code></pre></div>
 :title: A fun (and crappy) Monday morning quiz
 :published_at: 2007-04-30 09:08:00 +01:00
 :guid: c42c088b-48bd-4580-ba44-7272bad89605

@@ -4,9 +4,9 @@
   
   Grab the "source":http://chrisroos.googlecode.com/svn/trunk/egg-ofx/ from "google code":http://code.google.com.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="shell">
   svn checkout http://chrisroos.googlecode.com/svn/trunk/egg-ofx
-  </typo:code>
+  </code></pre></div>
   
   As well as requiring "hpricot":http://code.whytheluckystiff.net/hpricot/, you will need to edit the StatementsFolder and OfxOutputFolder variables in egg.rb.  These need to point to a directory containing html statements, and an empty output directory respectively.
   

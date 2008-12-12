@@ -5,7 +5,7 @@
   
   I discovered the difference when trying to execute the db:migrate task from within another rake task (I already knew it worked when declared as a dependency).
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   # Rakefile
   task :foo do
     Rake::Task['db:migrate'].execute
@@ -14,13 +14,13 @@
   #$ rake foo
   #=> rake aborted!
   #=> uninitialized constant ActiveRecord
-  </typo:code>
+  </code></pre></div>
   
   I changed "Task#execute":http://rake.rubyforge.org/classes/Rake/Task.html#M000100 to "Task#invoke":http://rake.rubyforge.org/classes/Rake/Task.html#M000098 and, voila, it all worked fine.  The rdoc for those methods is actually pretty self explanatory, having seen the differences in action.  Oh well.
   
   I put together a simple example to demonstrate the differences.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   # The task (task_1) and its dependency (to_be_run_before_task_1)
   
   task :to_be_run_before_task_1 do
@@ -59,6 +59,6 @@
   #$ rake run_task_1_using_dependencies
   #=> to_be_run_before_task_1
   #=> task_1
-  </typo:code>
+  </code></pre></div>
 :title: Ruby Rake - Invoke vs Execute
 :guid: 317c603f-c90d-42f0-907d-7f4209591b38

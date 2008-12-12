@@ -19,7 +19,7 @@
   
   * The javascript used to move the links always looks like this.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="javascript">
   var el, el2;
   el = document.getElementById('cbceddfd');
   el2 = document.getElementById('cceedfda');
@@ -27,7 +27,7 @@
   el2.appendChild(el);
   el = document.getElementById('bfabedba');
   el2 = // ... and repeat
-  </typo:code>
+  </code></pre></div>
   
   * Each link is inserted into its own empty span at the bottom of the page.  The spans seem to have the same ids on each of the sites that have these type of links.  The first span is always cceedfda, the second is cecfaabe, with subsequent ids also being the same across different sites.  There doesn't appear to be any other pattern to the ids.
   
