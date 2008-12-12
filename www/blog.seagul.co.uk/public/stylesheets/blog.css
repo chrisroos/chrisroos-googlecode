@@ -135,3 +135,23 @@ body.contents ol li {
 #dsq-content #dsq-comments .dsq-comment .dsq-comment-body p {
   margin-bottom: 0.5em;
 }
+
+.code {
+  background-color:#eee;
+  padding:2px;
+  margin:5px;
+  margin-left:1em;
+  margin-bottom:1em;
+}
+
+.code pre {
+  padding: 0px;
+  margin: 0px;
+  background: transparent;
+  font-family: monospace;
+  overflow:auto;
+}
+
+code {
+  font-size:120%;
+}
