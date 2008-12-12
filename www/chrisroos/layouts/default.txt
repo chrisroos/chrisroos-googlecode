@@ -2,57 +2,117 @@
 extension: html
 filter:    erb
 ---
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title><%= @page.title %></title>
-   <meta name="author" content="<%= @page.author %>" />
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-   <!--- Blueprint CSS Framework -->
-   <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
-   <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />
+  <head>
+    <meta name="microid" content="ff511e16d7108be450fccd6f4611cf8d1d5416d1" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/DeferredUntilInspirationHits" />
+<link rel="stylesheet" href="/stylesheets/yui-reset-fonts-grids.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/stylesheets/blog.css" type="text/css" media="all" charset="utf-8" />
+<link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print" charset="utf-8" />
+<link rel="openid.server" href="http://www.myopenid.com/server" />
+<link rel="openid.delegate" href="http://chrisroos.myopenid.com/" />
 
-   <!-- CodeRay syntax highlighting CSS -->
-   <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
+    <title>deferred until inspiration hits</title>
+    <meta name="robots" content="noindex" />
+  </head>
 
-   <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
-</head>
-<body>
+  <body class="contents">
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <div class="header">
+          <p class="blogTitleContainer"><a class="blogTitle" href="/">deferred until inspiration hits</a></p>
 
-<div class="container">
+<form action="/search" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="017216692514631406866:xbxiffq7rno" />
+    <input type="hidden" name="cof" value="FORID:9" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="31" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
 
-   <div class="column span-20 prepend-2 append-2 first last" id="header">
-     <p class="title">A New Website</p>
-     <hr>
-   </div>
-
-   <div class="column span-15 prepend-2 first">
-      <%= @content %>
-   </div>
-
-   <div class="column span-5 append-2 last">
-      <h4>Sidebar</h4>
-      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue. </p>
-
-      <div class="box">
-         <p class="last">Mauris a lectus. Aliquam erat volutpat. Phasellus ultrices mi a sapien. Nunc rutrum egestas lorem. Duis ac sem sagittis elit tincidunt gravida.</p>
+        </div>
       </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+              
+              <h1>My shiny website</h1>
+              
+              <p>This is a placeholder until I get round to writing a proper introduction.  Hmm, that's really not very helpful is it?  I'll understand if you just leave right now.  If, on the other hand, you're still here then you might want to check out my very sparse <a href="/projects">projects page</a> or my <a href="/contents">blog posts</a>.</p>
 
-      <p class="quiet">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue.</p>
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+          <img class="avatar" src="/images/me.jpg" width="170px" height="111px" alt="Me" />
 
-      <h5>Incremental leading</h5>
-      <p class="incr">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue. sed aliquet vehicula, lectus tellus.</p>
-   </div>
+<ul class="navigation">
+  <li>
+    <a href="mailto:chris@seagul.co.uk" title="Email me">email me</a>
+  </li>
+  <li>
+    <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">subscribe to atom feed</a>
+  </li>
+  <li>
+    <a href="/contents" title="All posts">all posts</a>
+  </li>
+  <li>
+    <a href="/projects" title="Projects">projects</a>
+  </li>
+  <li>
+    <a href="http://flickr.com/photos/chrisjroos" title="Photos at Flickr">photos</a>
+  </li>
+  <li>
+    <a href="http://www.amazon.co.uk/gp/shops/index.html?ie=UTF8&amp;sellerID=AS1VKYI0VDYE5" title="Books I'm selling on Amazon Marketplace">books i'm selling</a>
+  </li>
+</ul>
 
-   <div class="column span-20 prepend-2 append-2 first last" id="footer">
-     <hr />
-     <p>This website was created with <a href="http://webby.rubyforge.org">Webby</a></p>
-   </div>
-
+<div id="twitter_div">
+  <h3><a href="http://twitter.com/chrisroos" title="My twitter profile">what i'm doing</a></h3>
+  <ul id="twitter_update_list">
+    <li></li>
+  </ul>
 </div>
-</body>
+
+<div id="deliciousContainer">
+  <h3><a href="http://del.icio.us/chrisjroos" title="Bookmarks at del.icio.us">bookmarks</a></h3>
+</div>
+
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
+<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/chrisroos.json?callback=twitterCallback2&amp;count=5"></script>
+
+    <script type="text/javascript" src="http://del.icio.us/feeds/json/chrisjroos?count=5"></script>
+<script type="text/javascript" src="/javascripts/delicious.js"></script>
+
+    <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  if (typeof(_gat) != 'undefined') {
+    var pageTracker = _gat._getTracker("UA-160238-1");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+  }
+</script>
+
+  </body>
+
 </html>
