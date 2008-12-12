@@ -10,11 +10,11 @@
   
   This works great but the default output you'll get from redirecting STDOUT won't be the same as using SELECT INTO OUTFILE.  The two main (only?) differences are, in the redirected output, the addition of the headers and that NULL values are output as NULL instead of the special \N (backslash-N) sequence.  We can fix both of these things by specifying an optional switch (skip-column-names) to the mysql client and employing some "sed":http://en.wikipedia.org/wiki/Sed magic.
   
-  <typo:code>
+  <div class="typocode"><pre><code class="shell">
   mysql -h"my-host" -u"my-user" -p"my-password" -e"select * from my-database.my-table" --skip-column-names |\
     sed -e 's/[[:<:]]NULL[[:>:]]/\\N/g' >\
     my-export-directory/my-table.csv`
-  </typo:code>
+  </code></pre></div>
   
   That sed magic is replacing instances of NULL, surrounded by some whitespace, with the special \N escape sequence.
   

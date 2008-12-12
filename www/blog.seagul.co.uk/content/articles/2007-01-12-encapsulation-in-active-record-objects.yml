@@ -4,18 +4,18 @@
   
   "Active Record":http://www.rubyonrails.org/api/classes/ActiveRecord/Base.html "associations":http://www.rubyonrails.org/api/classes/ActiveRecord/Associations/ClassMethods.html are brilliant for quickly putting together an object graph.  They're not so brilliant for testing, or keeping the code particularly tidy.  They quickly lead to (and even encourage) train-wreck expressions in your code.  Diving straight into an example:
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   class Person < ActiveRecord::Base
     has_many :hobbies
   end
   class Hobby < ActiveRecord::Base
     belongs_to :person
   end
-  </typo:code>
+  </code></pre></div>
   
   Because the hobbies object is publicly accessible from a person object, it allows us to reach in and touch things we shouldn't.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   cycling = Hobby.new
   
   # We shouldn't manipulate the hobbies object directly...
@@ -30,11 +30,11 @@
   end
   chris = Person.new
   chris.add_hobby(cycling) # Ahh, that's much better
-  </typo:code>
+  </code></pre></div>
   
   The revised Person class above follows the "law of demeter":http://en.wikipedia.org/wiki/Law_of_Demeter.  As well as making the code look a little neater (no train-wrecks to see here), it makes it easier to test.  To illustrate the testing point, I'm going to "extend":http://weblog.jamisbuck.org/2007/1/9/extending-activerecord-associations the "association":http://ryandaigle.com/articles/2006/12/03/extend-your-activerecord-association-methods in this example.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   # We end up with a large and not very clear test
   class Person < ActiveRecord::Base
     has_many :hobbies do
@@ -70,7 +70,7 @@
       hobby_finder.find_favourite(person)
     end
   end
-  </typo:code>
+  </code></pre></div>
   
   Interestingly enough, if we had "test driven":http://en.wikipedia.org/wiki/Test_driven_development the development of the above code, we would almost certainly have ended up with something similar (interface-wise) to the example that has a wrapper around the association proxy.
   

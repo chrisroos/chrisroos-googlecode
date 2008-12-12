@@ -3,7 +3,7 @@
 :body: |-
   I picked up on this yesterday and now cannot find the article (it was something to do with manipulating a rails app from the console).  Sorry.
   
-  <typo:code>
+  <div class="typocode"><pre><code>
   irb(main):001:0> class Foo
   irb(main):002:1> private
   irb(main):003:1> def bar
@@ -18,7 +18,7 @@
   irb(main):009:0> irb Foo.new # IMPORTANT BIT
   irb#1(#<Foo:0x31c5fc>):001:0> bar
   => "bar"
-  </typo:code>
+  </code></pre></div>
   
   Although cool, I can't think of any situations where this would have been useful.  Ho hum.
 :title: Changing Irb context

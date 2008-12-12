@@ -34,11 +34,11 @@
     </body>
   
   </html>
-  </typo:code>
+  </code></pre></div>
   
   h4. A parser in "ruby":http://www.ruby-lang.org/
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'rubygems'
   require 'hpricot'
   
@@ -73,7 +73,7 @@
   # => 'skype-username'
   p parser.identifier('blurgh')
   # => ''
-  </typo:code>
+  </code></pre></div>
   
   h3. Further considerations
   

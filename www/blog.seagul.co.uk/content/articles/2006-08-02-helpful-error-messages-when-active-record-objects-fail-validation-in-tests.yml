@@ -7,12 +7,12 @@
   
   Although it's only useful for people still on Rails 1.0, I made a quick plugin that backports this change.  I don't really want to put it in my subversion repository, so have just pasted the necessary code below.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   # File init.rb
   require File.dirname(__FILE__) + '/lib/record_invalid'
-  </typo:code>
+  </code></pre></div>
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   # File record_invalid.rb
   module ActiveRecord
   
@@ -24,7 +24,7 @@
     end
   
   end
-  </typo:code>
+  </code></pre></div>
   
   To create a plugin from this, create the following structure in your rails_app/vendor/plugins directory.
   

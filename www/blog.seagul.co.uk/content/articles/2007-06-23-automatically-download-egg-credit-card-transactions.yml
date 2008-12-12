@@ -5,7 +5,7 @@
   
   As always, the code is in "google code":http://chrisroos.googlecode.com/svn/trunk/egg/ and pasted below for your viewing pleasure...
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'egg-credentials'
   
   def execute_curl(cmd)
@@ -50,6 +50,6 @@
   execute_curl curl_cmd
   
   
-  </typo:code>
+  </code></pre></div>
 :title: Automatically download egg credit card transactions
 :guid: 363cbb26-fe78-42b3-a605-b8a399a73e1d

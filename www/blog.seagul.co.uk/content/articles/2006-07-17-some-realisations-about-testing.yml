@@ -7,13 +7,13 @@
   
   I've also started to create my test cases as anonymous classes derived from Test::Unit::TestCase.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   Class.new(Test::Unit::TestCase) do
     def test_
       assert true
     end
   end
-  </typo:code>
+  </code></pre></div>
   
   I find that this helps when trying to determine where a new test should be placed.  If the class has a name I'm tempted to scan that and make a decision as to whether a new test belongs in this case.  By keeping them anonymous, I have to inspect the test fixture in order to understand whether a new test belongs here.
   
@@ -21,7 +21,7 @@
   
   I've chosen a somewhat contrived example to demonstrate my new found test structure.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   Class.new(Test::Unit::TestCase) do
     # An empty stack
   
@@ -42,7 +42,7 @@
     end
   
   end
-  </typo:code>
+  </code></pre></div>
   
   The fixture for this test is an empty stack.  The individual tests prod and query the empty stack to ensure that it behaves as expected.  Although the example above is incredibly simple, I have consistently found that my individual test methods become much smaller.
   

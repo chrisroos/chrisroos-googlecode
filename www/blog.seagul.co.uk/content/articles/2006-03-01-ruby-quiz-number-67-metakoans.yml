@@ -7,7 +7,7 @@
   
   My solution is here, and although it passes all the tests of the quiz it's probably not great as this stuff still confuses me somewhat.  I didn't take a look at any other solutions (although I will shortly) so any similarity is coincidental.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   class Object
   
     def attribute(arg, &block)
@@ -41,6 +41,6 @@
     end
   
   end
-  </typo:code>
+  </code></pre></div>
 :title: Ruby Quiz number 67 (metakoans)
 :guid: 0897105b-8f89-415b-873f-74cb4c13dcbe

@@ -3,7 +3,7 @@
 :body: |-
   Very naive Ruby method to create a "MicroId":http://www.microid.org for a given email and url.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'digest/sha1'
   
   def micro_id(email, url)
@@ -11,7 +11,7 @@
     url_digest = Digest::SHA1.new(url).to_s
     Digest::SHA1.new(email_digest + url_digest).to_s
   end
-  </typo:code>
+  </code></pre></div>
   
   Note that there is no validation of the MicroId in this code at all.
 :title: Generating a MicroId with Ruby

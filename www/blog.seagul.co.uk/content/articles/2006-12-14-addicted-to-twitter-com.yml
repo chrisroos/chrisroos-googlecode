@@ -9,7 +9,7 @@
   * One twitter account that is a friend of the first account (with the mobile)
   * A tiny bit of ruby script
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'rubygems'
   require 'json'
   
@@ -23,7 +23,7 @@
   SENDER_PASSWORD = 'PASSWORD_OF_FRIEND'
   
   `curl -u"#{SENDER_USERNAME}:#{SENDER_PASSWORD}" -d"status=#{text.reverse}" http://twitter.com/statuses/update.xml`
-  </typo:code>
+  </code></pre></div>
   
   The script just reads the most recent message sent to your mobile twitter account, reverses the text and sends it back to your mobile.
   

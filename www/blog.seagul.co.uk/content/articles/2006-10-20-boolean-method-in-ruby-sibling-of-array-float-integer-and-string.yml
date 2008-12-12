@@ -2,7 +2,7 @@
 :body: |-
   I was reading in data from a file and expected one particular column to contain either 'true' or 'false'.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada...
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   module Kernel
   
     def Boolean(string)
@@ -42,7 +42,7 @@
     end
   
   end
-  </typo:code>
+  </code></pre></div>
 :title: "Boolean method in Ruby (sibling of Array, Float, Integer and String) "
 :published_at: 2006-10-20 00:19:00 +01:00
 :guid: 381579d7-3b5c-4a94-bdef-a089e13c137d

@@ -4,7 +4,7 @@
   
   Code is hosted on "google code":http://chrisroos.googlecode.com/svn/trunk/lloydstsb/, and pasted in all its syntax-highlighted glory below.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   require 'lloydstsb_credentials'
   
   require 'rubygems'
@@ -60,7 +60,7 @@
   
   # Remove the cookie
   `rm #{COOKIE_LOCATION}`
-  </typo:code>
+  </code></pre></div>
 :title: Automatically downloading my recent transactions from Lloyds Tsb
 :published_at: 2007-05-14 22:39:00 +01:00
 :guid: 1188bc2b-2b50-4938-923c-aaaca77daa24

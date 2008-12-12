@@ -4,23 +4,23 @@
   
   Anyway, the point of this post is that I realised something about testing that I feel I may have missed in the past.  I've got used to stating the "behavior":http://behaviour-driven.org/ of the objects in my system through tests.  So, when I wanted to ensure that an article couldn't be created without a title, I added a test like so:
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   class ArticleTest < Test::Unit::TestCase
     def test_should_validate_presence_of_title
       ...
     end
   end
-  </typo:code>
+  </code></pre></div>
   
   In fact, for an article comprised of a title, an edition, a page number and an author, I wanted to ensure that all were there apart from the author.  It was only once I'd added tests to "validate":http://api.rubyonrails.org/classes/ActiveRecord/Validations.html the presence of the other three attributes that I realised it was probably important to prove that an author wasn't required.  So, I added the relevant test.
   
-  <typo:code lang="ruby">
+  <div class="typocode"><pre><code class="ruby">
   class ArticleTest < Test::Unit::TestCase
     def test_should_not_validate_presence_of_author
       ...
     end
   end
-  </typo:code>
+  </code></pre></div>
   
   That's all well and good, but I've lost some information: WHY it shouldn't validate the presence of an author.  I know at the moment why it shouldn't (because short articles don't have an author listed), but will I know at some point the future?  I suspect not.  The same obviously applies for the things that I do want to ensure are present.  Why do I care that an article has a title, edition and page number?  At the moment I care because I'm planning on making them part of the URL, but what if I decide not to go down that route, yet leave the tests there?  There'll be no easy way for someone in the future to determine whether those things are actually important or not.
   
