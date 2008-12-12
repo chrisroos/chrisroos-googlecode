@@ -29,89 +29,91 @@
                 </span>
               </p>
 
-              <div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">test/unit</span><span class="punct">'</span>
+              <div class="typocode"><pre><code class="ruby">
+require 'test/unit'
 
-<span class="keyword">class </span><span class="class">Foo</span>
-  <span class="keyword">def </span><span class="method">foo</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">public</span> <span class="symbol">:foo</span>
-  <span class="keyword">def </span><span class="method">bar</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">protected</span> <span class="symbol">:bar</span>
-  <span class="keyword">def </span><span class="method">baz</span><span class="punct">;</span> <span class="keyword">end</span><span class="punct">;</span> <span class="ident">private</span> <span class="symbol">:baz</span>
-<span class="keyword">end</span>
+class Foo
+  def foo; end; public :foo
+  def bar; end; protected :bar
+  def baz; end; private :baz
+end
 
-<span class="comment"># Testing from Class</span>
-<span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+# Testing from Class
+Class.new(Test::Unit::TestCase) do
 
-  <span class="keyword">def </span><span class="method">test_public_method_access</span>
-    <span class="ident">method_name</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">foo</span><span class="punct">'</span>
+  def test_public_method_access
+    method_name = 'foo'
 
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
+    assert Foo.instance_methods.include?(method_name)
+    assert Foo.public_instance_methods.include?(method_name)
 
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">method_defined?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">public_method_defined?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
+    assert Foo.method_defined?(method_name)
+    assert Foo.public_method_defined?(method_name)
 
-    <span class="ident">assert_equal</span> <span class="constant">UnboundMethod</span><span class="punct">,</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_method</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">).</span><span class="keyword">class
-  </span><span class="class">end</span>
+    assert_equal UnboundMethod, Foo.instance_method(method_name).class
+  end
 
-  <span class="keyword">def </span><span class="method">test_protected_method_access</span>
-    <span class="ident">method_name</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">bar</span><span class="punct">'</span>
+  def test_protected_method_access
+    method_name = 'bar'
 
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
+    assert Foo.instance_methods.include?(method_name)
+    assert Foo.protected_instance_methods.include?(method_name)
 
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">method_defined?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">protected_method_defined?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
+    assert Foo.method_defined?(method_name)
+    assert Foo.protected_method_defined?(method_name)
 
-    <span class="ident">assert_equal</span> <span class="constant">UnboundMethod</span><span class="punct">,</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_method</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">).</span><span class="keyword">class
-  </span><span class="class">end</span>
+    assert_equal UnboundMethod, Foo.instance_method(method_name).class
+  end
 
-  <span class="keyword">def </span><span class="method">test_private_method_access</span>
-    <span class="ident">method_name</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">baz</span><span class="punct">'</span>
+  def test_private_method_access
+    method_name = 'baz'
 
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_instance_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">private_method_defined?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert_equal</span> <span class="constant">UnboundMethod</span><span class="punct">,</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">instance_method</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">).</span><span class="keyword">class
-  </span><span class="class">end</span>
+    assert Foo.private_instance_methods.include?(method_name)
+    assert Foo.private_method_defined?(method_name)
+    assert_equal UnboundMethod, Foo.instance_method(method_name).class
+  end
 
-<span class="ident">end</span>
+end
 
-<span class="comment"># Testing from instance</span>
-<span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
+# Testing from instance
+Class.new(Test::Unit::TestCase) do
 
-  <span class="keyword">def </span><span class="method">setup</span>
-    <span class="attribute">@foo</span> <span class="punct">=</span> <span class="constant">Foo</span><span class="punct">.</span><span class="ident">new</span>
-  <span class="keyword">end</span>
+  def setup
+    @foo = Foo.new
+  end
 
-  <span class="keyword">def </span><span class="method">test_public_method_access</span>
-    <span class="ident">method_name</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">foo</span><span class="punct">'</span>
+  def test_public_method_access
+    method_name = 'foo'
 
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">public_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
+    assert @foo.methods.include?(method_name)
+    assert @foo.public_methods.include?(method_name)
 
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
+    assert @foo.respond_to?(method_name)
 
-    <span class="ident">assert_equal</span> <span class="constant">Method</span><span class="punct">,</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">).</span><span class="keyword">class
-  </span><span class="class">end</span>
+    assert_equal Method, @foo.method(method_name).class
+  end
 
-  <span class="keyword">def </span><span class="method">test_protected_method_access</span>
-    <span class="ident">method_name</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">bar</span><span class="punct">'</span>
+  def test_protected_method_access
+    method_name = 'bar'
 
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">protected_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
+    assert @foo.methods.include?(method_name)
+    assert @foo.protected_methods.include?(method_name)
 
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
+    assert @foo.respond_to?(method_name)
 
-    <span class="ident">assert_equal</span> <span class="constant">Method</span><span class="punct">,</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">).</span><span class="keyword">class
-  </span><span class="class">end</span>
+    assert_equal Method, @foo.method(method_name).class
+  end
 
-  <span class="keyword">def </span><span class="method">test_private_method_access</span>
-    <span class="ident">method_name</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">baz</span><span class="punct">'</span>
+  def test_private_method_access
+    method_name = 'baz'
 
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">private_methods</span><span class="punct">.</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">)</span>
-    <span class="ident">assert</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">,</span> <span class="ident">include_private</span><span class="punct">=</span><span class="constant">true</span><span class="punct">)</span>
-    <span class="ident">assert_equal</span> <span class="constant">Method</span><span class="punct">,</span> <span class="attribute">@foo</span><span class="punct">.</span><span class="ident">method</span><span class="punct">(</span><span class="ident">method_name</span><span class="punct">).</span><span class="keyword">class
-  </span><span class="class">end</span>
+    assert @foo.private_methods.include?(method_name)
+    assert @foo.respond_to?(method_name, include_private=true)
+    assert_equal Method, @foo.method(method_name).class
+  end
 
-<span class="ident">end</span></code></pre></div>
+end
+</code></pre></div>
 
             </div>
           </div>
