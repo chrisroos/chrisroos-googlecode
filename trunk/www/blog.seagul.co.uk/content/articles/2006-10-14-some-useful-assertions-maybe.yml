@@ -3,7 +3,7 @@
 :body: |-
   The first is to ensure two arrays contain the same elements not necessarily in the same order.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   require 'test/unit'
   
   require 'set'
@@ -31,7 +31,7 @@
   
   The second is to test for generated warnings.  In my "current project":http://blog.seagul.co.uk/articles/2006/10/06/recording-daily-spending-with-a-ruby-dsl app, I use method_missing and wanted to warn the user if the unknown message looks like it's supposed to be a payment mechanism...
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   day '25-oct-2006' do
     cash 30.29, beer
   end
@@ -43,7 +43,7 @@
   
   Anyway, I wanted a way to test that the warning was being generated and came up with another assertion...
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   require 'test/unit'
   
   require 'stringio'

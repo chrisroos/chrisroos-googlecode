@@ -3,7 +3,7 @@
 :body: |-
   Very naive Ruby method to create a "MicroId":http://www.microid.org for a given email and url.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   require 'digest/sha1'
   
   def micro_id(email, url)

@@ -7,7 +7,7 @@
   
   I've also started to create my test cases as anonymous classes derived from Test::Unit::TestCase.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   Class.new(Test::Unit::TestCase) do
     def test_
       assert true
@@ -21,7 +21,7 @@
   
   I've chosen a somewhat contrived example to demonstrate my new found test structure.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   Class.new(Test::Unit::TestCase) do
     # An empty stack
   

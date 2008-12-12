@@ -4,7 +4,7 @@
   
   The idea is that you can request, for example, /postcodes/se1 and get some json in return.  For se1, we receive the following data.
   
-  <div class="typocode"><pre><code class="javascript">
+  <div class="code"><pre><code class="javascript">
   {"latitude":"51.498","x":"532600","postcode":"SE1","y":"179500","longitude":"51.498"}
   </code></pre></div>
   
@@ -14,7 +14,7 @@
   
   I've created it as a proof of concept but I figure that, given a little love, it may prove useful to some folks.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   require 'rubygems'
   require 'mongrel'
   require 'json'

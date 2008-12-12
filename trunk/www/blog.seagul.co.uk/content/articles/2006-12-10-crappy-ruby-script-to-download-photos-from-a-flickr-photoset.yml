@@ -6,7 +6,7 @@
   
   *UPDATE 2*: Surround output filename with quotes.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   require 'cgi'
   
   API_KEY = 'YOUR_API_KEY'

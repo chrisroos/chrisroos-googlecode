@@ -4,7 +4,7 @@
   \r\n\
   The problem is that the standard \"test/unit\":http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html reporting framework displays the exception without any details of why the validation failed.\r\n\
   \r\n\
-  <div class=\"typocode\">\r\n\
+  <div class=\"code\">\r\n\
   <pre>\r\n 1) Error:\xE2\x80\x8B\r\n\
   test_should_fail_validation(AardvarkTest):\xE2\x80\x8B\r\n\
   ActiveRecord::RecordInvalid:\xE2\x80\x8BActiveRecord::RecordInvalid\r\n   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in 'save!'\r\n   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in 'create!'\r\n   /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in 'test_should_fail_validation'\r\n\
@@ -21,7 +21,7 @@
   \r\n\
   Then I thought it'd be cool if we could integrate slightly more with both test/unit and \"rails\":http://www.rubyonrails.com.  The result is a \"plugin\":http://wiki.rubyonrails.org/rails/pages/Plugins (\"source\":http://dev.seagul.co.uk/repository/browse/plugins/test_unit_active_record_errors) that can be installed as follows.\r\n\
   \r\n\
-  <div class=\"typocode\">\r\n\
+  <div class=\"code\">\r\n\
   <pre>\r\n\
   script/plugin install svn://dev.seagul.co.uk/plugins/test_unit_active_record_errors\r\n\
   </pre>\r\n\
@@ -29,7 +29,7 @@
   \r\n\
   The output from a failed validation now includes the validation errors.  Yay.\r\n\
   \r\n\
-  <div class=\"typocode\">\r\n\
+  <div class=\"code\">\r\n\
   <pre>\r\n 1) Error:\xE2\x80\x8B\r\n\
   test_should_fail_validation(AardvarkTest):\xE2\x80\x8B\r\n\
   ActiveRecord::RecordInvalid: ActiveRecord::RecordInvalid\r\n   /opt/local/lib//gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in `save!'\r\n   /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in `create!'\r\n   /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in `__test_should_fail_validation_without_custom_error_handling'\r\n   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `__send__'\r\n   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `test_should_fail_validation'\r\n   /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:27:in `test_should_fail_validation'\r\n\

@@ -4,7 +4,7 @@
   
   I thought I could do this without using "RewriteCond":http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html#RewriteCond.  I tried something like this.
   
-  <div class="typocode"><pre><code>
+  <div class="code"><pre><code>
   RewriteRule ^(.*)index\.html$ $1 [R=301]
   </code></pre></div>
   
@@ -14,7 +14,7 @@
   
   In searching for answers to this problem I kept seeing THE_REQUEST special variable used in the solution, although never an explanation as to why it's used (specifically in preference to REQUEST_URI).  I ended up using THE_REQUEST in my solution (not technically my solution as I stole it from a site that I failed to bookmark) and it seems to work OK.
   
-  <div class="typocode"><pre><code>
+  <div class="code"><pre><code>
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
   RewriteRule ^(.*)index\.html$ $1 [R=301,L]
   </code></pre></div>

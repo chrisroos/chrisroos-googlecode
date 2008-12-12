@@ -9,7 +9,7 @@
   * One twitter account that is a friend of the first account (with the mobile)
   * A tiny bit of ruby script
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   require 'rubygems'
   require 'json'
   

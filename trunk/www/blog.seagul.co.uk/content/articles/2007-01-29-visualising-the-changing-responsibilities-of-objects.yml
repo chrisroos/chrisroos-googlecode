@@ -5,7 +5,7 @@
   
   Taking a very simple (and partially made up) diff:
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   Index: test/amount_test.rb
   ===================================================================
   --- test/amount_test.rb (revision 2)
@@ -24,7 +24,7 @@
   
   And piping it through the diff_parser, we get:
   
-  <div class="typocode"><pre><code>
+  <div class="code"><pre><code>
   --- Amount
   + should flunk
   - should format amount
@@ -34,7 +34,7 @@
   
   h3. diff_parser.rb
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   #!/usr/bin/env ruby
   
   class Test

@@ -5,7 +5,7 @@
   
   Something that I've found relatively useful at "work":http://www.reevoo.com is to use real "Active Record":http://api.rubyonrails.com/classes/ActiveRecord/Base.html objects without any persistence (basically use AR#new and not AR#save[!] or AR#create[!]).  When using standard techniques to create the association objects in memory you only get one side of the association at a time.  Consider the following.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   class Person < ActiveRecord::Base
     has_many :addresses
   end
@@ -38,7 +38,7 @@
   
   You can see that in each case, only one side of the relationship has access to the other.  If we were persisting the objects then the relationship would be two way via a database lookup.  We can get a two way relationship in memory; although it has a certain duplication smell about it.  Assuming the same models as above, we can amend the above examples like so.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   # First example
   chris = Person.new
   home = chris.addresses.build(:person => chris)

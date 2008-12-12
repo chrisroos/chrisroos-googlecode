@@ -7,7 +7,7 @@
   
   My solution is here, and although it passes all the tests of the quiz it's probably not great as this stuff still confuses me somewhat.  I didn't take a look at any other solutions (although I will shortly) so any similarity is coincidental.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   class Object
   
     def attribute(arg, &block)

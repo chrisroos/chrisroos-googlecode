@@ -15,7 +15,7 @@
   
   * Fire up firebug and execute the following line in the console, substituting your desired suggestion first (the text on the page should change immediately)
   
-  <div class="typocode"><pre><code class="javascript">
+  <div class="code"><pre><code class="javascript">
   document.evaluate('/html/body/p[1]/a/b/i', document, null, XPathResult.ANY_TYPE, null).iterateNext().textContent = 'THE_WORD_YOU_WANT_TO_SUGGEST'
   </code></pre></div>
   

@@ -3,7 +3,7 @@
 :body: |-
   We're not _quite_ at this stage yet...
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   class ActiveRecord::ConnectionAdapters::MysqlAdapter
     alias :execute_before_test_hijack :execute
     def execute(*args)

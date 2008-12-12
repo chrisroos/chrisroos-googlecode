@@ -3,7 +3,7 @@
 :body: |-
   I picked up on this yesterday and now cannot find the article (it was something to do with manipulating a rails app from the console).  Sorry.
   
-  <div class="typocode"><pre><code>
+  <div class="code"><pre><code>
   irb(main):001:0> class Foo
   irb(main):002:1> private
   irb(main):003:1> def bar
