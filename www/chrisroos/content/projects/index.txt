@@ -5,6 +5,6 @@ filter:
   - erb
   - textile
 ---
-h1. Projects
+h1. <%= @page.title %>
 
 * "PwdHash Dashboard Widget":/projects/pwdhash-dashboard-widget
