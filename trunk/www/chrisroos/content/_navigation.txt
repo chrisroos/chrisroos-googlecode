@@ -1,6 +1,8 @@
 ---
 filter: erb
 ---
+<img class="avatar" src="/images/me.jpg" width="170px" height="111px" alt="Me" />
+
 <ul class="navigation">
   <li>
     <a href="mailto:chris@seagul.co.uk" title="Email me">email me</a>
