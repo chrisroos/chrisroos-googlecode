@@ -55,10 +55,7 @@ filter:    erb
 
           <%= render(:partial => "navigation") %>
           <%= render(:partial => "twitter") %>
-
-<div id="deliciousContainer">
-  <h3><a href="http://del.icio.us/chrisjroos" title="Bookmarks at del.icio.us">bookmarks</a></h3>
-</div>
+          <%= render(:partial => "delicious") %>
 
         </div>
       </div>
