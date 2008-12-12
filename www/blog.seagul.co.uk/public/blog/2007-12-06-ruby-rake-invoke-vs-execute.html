@@ -55,14 +55,16 @@
 	<p>I discovered the difference when trying to execute the db:migrate task from within another rake task (I already knew it worked when declared as a dependency).</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># Rakefile</span>
-<span class="ident">task</span> <span class="symbol">:foo</span> <span class="keyword">do</span>
-  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">['</span><span class="string">db:migrate</span><span class="punct">'].</span><span class="ident">execute</span>
-<span class="keyword">end</span>
+<div class="typocode"><pre><code class="ruby">
+# Rakefile
+task :foo do
+  Rake::Task['db:migrate'].execute
+end
 
-<span class="comment">#$ rake foo</span>
-<span class="comment">#=&gt; rake aborted!</span>
-<span class="comment">#=&gt; uninitialized constant ActiveRecord</span></code></pre></div>
+#$ rake foo
+#=&gt; rake aborted!
+#=&gt; uninitialized constant ActiveRecord
+</code></pre></div>
 
 	<p>I changed <a href="http://rake.rubyforge.org/classes/Rake/Task.html#M000100">Task#execute</a> to <a href="http://rake.rubyforge.org/classes/Rake/Task.html#M000098">Task#invoke</a> and, voila, it all worked fine.  The rdoc for those methods is actually pretty self explanatory, having seen the differences in action.  Oh well.</p>
 
@@ -70,44 +72,46 @@
 	<p>I put together a simple example to demonstrate the differences.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment"># The task (task_1) and its dependency (to_be_run_before_task_1)</span>
+<div class="typocode"><pre><code class="ruby">
+# The task (task_1) and its dependency (to_be_run_before_task_1)
 
-<span class="ident">task</span> <span class="symbol">:to_be_run_before_task_1</span> <span class="keyword">do</span>
-  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">to_be_run_before_task_1</span><span class="punct">&quot;</span>
-<span class="keyword">end</span>
+task :to_be_run_before_task_1 do
+  puts "to_be_run_before_task_1" 
+end
 
-<span class="ident">task</span> <span class="symbol">:task_1</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">to_be_run_before_task_1</span><span class="punct">']</span> <span class="keyword">do</span>
-  <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string">task_1</span><span class="punct">&quot;</span>
-<span class="keyword">end</span>
+task :task_1 =&gt; ['to_be_run_before_task_1'] do
+  puts "task_1" 
+end
 
-<span class="comment"># Three tasks that 'run' task_1</span>
+# Three tasks that 'run' task_1
 
-<span class="ident">task</span> <span class="symbol">:invoke_task_1</span> <span class="keyword">do</span>
-  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">['</span><span class="string">task_1</span><span class="punct">'].</span><span class="ident">invoke</span>
-<span class="keyword">end</span>
+task :invoke_task_1 do
+  Rake::Task['task_1'].invoke
+end
 
-<span class="ident">task</span> <span class="symbol">:execute_task_1</span> <span class="keyword">do</span>
-  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">['</span><span class="string">task_1</span><span class="punct">'].</span><span class="ident">execute</span>
-<span class="keyword">end</span>
+task :execute_task_1 do
+  Rake::Task['task_1'].execute
+end
 
-<span class="ident">task</span> <span class="symbol">:run_task_1_using_dependencies</span> <span class="punct">=&gt;</span> <span class="punct">['</span><span class="string">task_1</span><span class="punct">']</span>
+task :run_task_1_using_dependencies =&gt; ['task_1']
 
-<span class="comment"># 'Running' the tasks</span>
+# 'Running' the tasks
 
-<span class="comment">#$ rake task_1</span>
-<span class="comment">#=&gt; to_be_run_before_task_1</span>
-<span class="comment">#=&gt; task_1</span>
+#$ rake task_1
+#=&gt; to_be_run_before_task_1
+#=&gt; task_1
 
-<span class="comment">#$ rake invoke_task_1</span>
-<span class="comment">#=&gt; to_be_run_before_task_1</span>
-<span class="comment">#=&gt; task_1</span>
+#$ rake invoke_task_1
+#=&gt; to_be_run_before_task_1
+#=&gt; task_1
 
-<span class="comment">#$ rake execute_task_1</span>
-<span class="comment">#=&gt; task_1 #*** Note that the dependencies are not run</span>
+#$ rake execute_task_1
+#=&gt; task_1 #*** Note that the dependencies are not run
 
-<span class="comment">#$ rake run_task_1_using_dependencies</span>
-<span class="comment">#=&gt; to_be_run_before_task_1</span>
-<span class="comment">#=&gt; task_1</span></code></pre></div>
+#$ rake run_task_1_using_dependencies
+#=&gt; to_be_run_before_task_1
+#=&gt; task_1
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

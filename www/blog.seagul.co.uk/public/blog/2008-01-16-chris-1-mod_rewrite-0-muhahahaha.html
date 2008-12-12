@@ -67,7 +67,8 @@
 	<h3>The mod_rewrite rules</h3>
 
 
-<div class="typocode"><pre><code class="typocode_default"># Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
+<div class="typocode"><pre><code>
+# Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
 RewriteRule ^(.*)index\.html$ $1 [R=301,L]
 
@@ -86,12 +87,13 @@ RewriteCond %{HTTP_HOST} ^www.the-local-paper.co.uk$ [NC]
 RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
 
 # Block access to the .svn directories
-&lt;DirectoryMatch &quot;^/.*/\.svn/&quot;&gt;
+&lt;DirectoryMatch "^/.*/\.svn/"&gt;
   ErrorDocument 403 /404.html
   Order allow,deny
   Deny from all
   Satisfy All
-&lt;/DirectoryMatch&gt;</code></pre></div>
+&lt;/DirectoryMatch&gt;
+</code></pre></div>
 
 	<p>I figured that there&#8217;s a chance some of these rules might come in useful to someone else.</p>
 

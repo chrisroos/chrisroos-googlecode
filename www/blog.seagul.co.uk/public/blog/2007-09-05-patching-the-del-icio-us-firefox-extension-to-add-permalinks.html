@@ -55,7 +55,8 @@
 	<h3>To apply the patch.</h3>
 
 
-<div class="typocode"><pre><code class="typocode_default"># Install Firefox extension 1.5.43
+<div class="typocode"><pre><code class="shell">
+# Install Firefox extension 1.5.43
 $ cd MY_FIREFOX_PROFILE_DIRECTORY # ~/Library/Application Support/Firefox/Profiles/RAND_CHARS.default for me
 $ cd extensions/{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}/chrome
 $ svn export http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags/delicious-extension-url-tag.patch
@@ -64,17 +65,20 @@ $ rm deliciousBookmarks.jar
 $ patch -p1 &lt; delicious-extension-url-tag.patch
 $ zip -r deliciousBookmarks.jar content/ locale/ skin/ 
 $ rm -rf content/ locale/ skin/
-# Restart Firefox</code></pre></div>
+# Restart Firefox
+</code></pre></div>
 
 	<h3>To use the patched compressed file</h3>
 
 
-<div class="typocode"><pre><code class="typocode_default"># Install Firefox extension 1.5.43
+<div class="typocode"><pre><code class="shell">
+# Install Firefox extension 1.5.43
 $ cd MY_FIREFOX_PROFILE_DIRECTORY # ~/Library/Application Support/Firefox/Profiles/RAND_CHARS.default for me
 $ cd extensions/{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}/chrome
 $ rm deliciousBookmarks.jar
 $ svn export http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags/deliciousBookmarks.jar 
-# Restart Firefox</code></pre></div>
+# Restart Firefox
+</code></pre></div>
 
 	<p>Now, anytime you bookmark a site, the tags field will be pre-populated with a url-tag (&#8220;url/MD5_OF_URL&#8221;).  Cool huh.  Oh, and the patched extension uses this javascript <a href="http://pajhome.org.uk/crypt/md5/">md5</a> library.</p>
         

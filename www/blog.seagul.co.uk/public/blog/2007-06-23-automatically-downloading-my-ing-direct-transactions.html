@@ -73,7 +73,9 @@
 	<p>We see that the following information gets POSTed to InitialINGDirect.html</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">command=enterCustomerNumber&amp;locale=en_GB&amp;device=web&amp;ACN=&lt;YOUR_CUSTOMER_NUMBER&gt;&amp;LNAME=&lt;YOUR_LAST_NAME&gt;&amp;GO.x=23&amp;GO.y=12</code></pre></div>
+<div class="typocode"><pre><code>
+command=enterCustomerNumber&#38;locale=en_GB&#38;device=web&#38;ACN=&lt;YOUR_CUSTOMER_NUMBER&gt;&#38;LNAME=&lt;YOUR_LAST_NAME&gt;&#38;GO.x=23&#38;GO.y=12
+</code></pre></div>
 
 	<p>We are redirected to a second security page.</p>
 
@@ -84,14 +86,18 @@
 	<p>The first use of <a href="http://curl.haxx.se/">curl</a> is to see whether we can get this far from the command line.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">curl -X&quot;POST&quot; -d&quot;command=enterCustomerNumber&quot; -d&quot;locale=en_GB&quot; -d&quot;device=web&quot; -d&quot;ACN=YOUR_CUSTOMER_NUMBER&quot; -d&quot;LNAME=YOUR_LAST_NAME&quot; -d&quot;GO.x=23&quot; -d&quot;GO.y=12&quot; &quot;https://secure.ingdirect.co.uk/InitialINGDirect.html&quot; -o&quot;&lt;FILENAME_FOR_OUTPUT&gt;&quot;</code></pre></div>
+<div class="typocode"><pre><code class="shell">
+curl -X"POST" -d"command=enterCustomerNumber" -d"locale=en_GB" -d"device=web" -d"ACN=YOUR_CUSTOMER_NUMBER" -d"LNAME=YOUR_LAST_NAME" -d"GO.x=23" -d"GO.y=12" "https://secure.ingdirect.co.uk/InitialINGDirect.html" -o"&lt;FILENAME_FOR_OUTPUT&gt;" 
+</code></pre></div>
 
 	<p>The actual output in this instance is</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
-location.replace(&quot;/INGDirect.html?command=displayValidateCustomer&amp;fill=1&quot;);
-&lt;/SCRIPT&gt;</code></pre></div>
+<div class="typocode"><pre><code class="javascript">
+&lt;SCRIPT&gt;
+location.replace("/INGDirect.html?command=displayValidateCustomer&#38;fill=1");
+&lt;/SCRIPT&gt;
+</code></pre></div>
 
 	<p>So we amend the curl command to see exactly what&#8217;s going on (the removal of -o and the addition of -v)</p>
 
@@ -108,9 +114,11 @@ location.replace(&quot;/INGDirect.html?command=displayValidateCustomer&amp;fill=
 	<p>Ok, so that&#8217;s not unexpected.  How about, if we store the cookies sent to us in the original response, and then request the page returned in the javascript.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">curl -X&quot;POST&quot; -c&quot;/Users/chrisroos/Desktop/ing-cookie&quot; -d&quot;command=enterCustomerNumber&quot; -d&quot;locale=en_GB&quot; -d&quot;device=web&quot; -d&quot;ACN=YOUR_CUSTOMER_NUMBER&quot; -d&quot;LNAME=YOUR_LAST_NAME&quot; -d&quot;GO.x=23&quot; -d&quot;GO.y=12&quot; &quot;https://secure.ingdirect.co.uk/InitialINGDirect.html&quot;
+<div class="typocode"><pre><code class="shell">
+curl -X"POST" -c"/Users/chrisroos/Desktop/ing-cookie" -d"command=enterCustomerNumber" -d"locale=en_GB" -d"device=web" -d"ACN=YOUR_CUSTOMER_NUMBER" -d"LNAME=YOUR_LAST_NAME" -d"GO.x=23" -d"GO.y=12" "https://secure.ingdirect.co.uk/InitialINGDirect.html" 
 
-curl -b&quot;/Users/chrisroos/Desktop/ing-cookie&quot; &quot;https://secure.ingdirect.co.uk/INGDirect.html?command=displayValidateCustomer&amp;fill=1&quot; -o&quot;/Users/chrisroos/Desktop/ing.html&quot;</code></pre></div>
+curl -b"/Users/chrisroos/Desktop/ing-cookie" "https://secure.ingdirect.co.uk/INGDirect.html?command=displayValidateCustomer&#38;fill=1" -o"/Users/chrisroos/Desktop/ing.html" 
+</code></pre></div>
 
 	<p>Ok, this looks promising.  We can now proceed to the second security page.</p>
 
@@ -118,7 +126,9 @@ curl -b&quot;/Users/chrisroos/Desktop/ing-cookie&quot; &quot;https://secure.ingd
 	<p>Let&#8217;s use firefox to log in and get to the second security page again.  Fill in the details as requested, open live http headers and get hold of the data we are sending.  Right, so we <span class="caps">POST</span> the following details to InitialINGDirect.html</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">command=validateCustomer&amp;locale=en_GB&amp;device=web&amp;PIN_A=5&amp;PIN_B=1&amp;PIN_C=4&amp;DAYS=65&amp;MONTHS=65&amp;YEARS=66&amp;GO.x=41&amp;GO.y=9</code></pre></div>
+<div class="typocode"><pre><code>
+command=validateCustomer&#38;locale=en_GB&#38;device=web&#38;PIN_A=5&#38;PIN_B=1&#38;PIN_C=4&#38;DAYS=65&#38;MONTHS=65&#38;YEARS=66&#38;GO.x=41&#38;GO.y=9
+</code></pre></div>
 
 	<p>Ah, so this looks interesting.  It seems that each key on the keypad is assigned a number (potentially different to the number displayed on the key).  It is that number that gets sent.  The numbers on the keypad appear in a random order, so I wonder if the same number is always assigned to the same key, or whether something else is required to tell the server the order of the keys.  Let&#8217;s log in one more time and see if the results differ.  The assumption being that if they do then the server must know what order the keys have been displayed in.</p>
 
@@ -145,36 +155,38 @@ curl -b&quot;/Users/chrisroos/Desktop/ing-cookie&quot; &quot;https://secure.ingd
 	<p>Right, so unless I&#8217;m missing something, the server must &#8216;know&#8217; which three digits we&#8217;re being asked for, along with the order of the keypad.  If we&#8217;re to log in automatically then we&#8217;re going to need to parse the text that asks us for certain digits and determine the order of the keypad.  A little experimentation with <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> yielded the following code.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
-<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'rubygems'
+require 'hpricot'
 
-<span class="ident">html</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">('</span><span class="string">/Users/chrisroos/Desktop/ingdirect-b1.html</span><span class="punct">')</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">}</span>
+html = File.open('/Users/chrisroos/Desktop/ingdirect-b1.html') { |f| f.read }
 
-<span class="comment"># The request for our PIN digits appears within the following text</span>
-<span class="comment"># &lt;b&gt;Using the Key Pad, please enter the 3rd, 5th and 2nd digits from your PIN&lt;/b&gt;</span>
-<span class="ident">pin_a</span><span class="punct">,</span> <span class="ident">pin_b</span><span class="punct">,</span> <span class="ident">pin_c</span> <span class="punct">=</span> <span class="ident">html</span><span class="punct">.</span><span class="ident">scan</span><span class="punct">(/</span><span class="regex">Using the Key Pad, please enter the (<span class="escape">\d</span>).+?(<span class="escape">\d</span>).+?(<span class="escape">\d</span>).*?&lt;<span class="escape">\/</span>b&gt;</span><span class="punct">/).</span><span class="ident">flatten</span>
+# The request for our PIN digits appears within the following text
+# &lt;b&gt;Using the Key Pad, please enter the 3rd, 5th and 2nd digits from your PIN&lt;/b&gt;
+pin_a, pin_b, pin_c = html.scan(/Using the Key Pad, please enter the (\d).+?(\d).+?(\d).*?&lt;\/b&gt;/).flatten
 
-<span class="comment"># Ok, now let's find the order of the keypad (hey, it's in a div with id pin-pad - cool)</span>
-<span class="comment"># This has turned out quite trivial.  The keypad is rendered within an html table, where each cell contains a button (input)</span>
-<span class="comment"># that has a value of the number displayed on the button.  Hpricot makes it very easy to say 'get me all buttons (input)</span>
-<span class="comment"># that appear in cells within the table that is in the div with an id of pin-pad'.  As hpricot will parse the html table</span>
-<span class="comment"># 'in order', i.e. from top-left to bottom right, we just have to append each button value into an array, preserving the</span>
-<span class="comment"># order of the keypad.</span>
-<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
-<span class="ident">keypad</span> <span class="punct">=</span> <span class="punct">(</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">div#pin-pad/table/tr/td/input</span><span class="punct">').</span><span class="ident">inject</span><span class="punct">([])</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">array</span><span class="punct">,</span> <span class="ident">btn</span><span class="punct">|</span> <span class="ident">array</span> <span class="punct">&lt;&lt;</span> <span class="ident">btn</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">'].</span><span class="ident">to_i</span><span class="punct">;</span> <span class="ident">array</span> <span class="punct">}</span>
-<span class="comment"># The last value read from the html keypad table will appear at index 9 (our array is 0 based), where we actually want it to </span>
-<span class="comment"># appear at index 0 (keypad is in phone keypad order, i.e. 0 at bottom).  Luckily, we can just pop it off the end and</span>
-<span class="comment"># prepend it to the array</span>
-<span class="ident">keypad</span><span class="punct">.</span><span class="ident">unshift</span><span class="punct">(</span><span class="ident">keypad</span><span class="punct">.</span><span class="ident">pop</span><span class="punct">)</span>
-<span class="comment"># So, we can now convert a keypad like this</span>
-<span class="comment"># 5 1 2</span>
-<span class="comment"># 4 7 3</span>
-<span class="comment"># 0 8 9</span>
-<span class="comment">#   6</span>
-<span class="comment"># into the equivalent ruby array [6, 5, 1, 2, 4, 7, 3, 0, 8, 9]</span>
-<span class="comment"># We can then use Array#index to dive in grab the keypad position of a number</span>
-<span class="comment"># keypad.index(5) #=&gt; 1</span>
-<span class="comment"># keypad.index(7) #=&gt; 5</span></code></pre></div>
+# Ok, now let's find the order of the keypad (hey, it's in a div with id pin-pad - cool)
+# This has turned out quite trivial.  The keypad is rendered within an html table, where each cell contains a button (input)
+# that has a value of the number displayed on the button.  Hpricot makes it very easy to say 'get me all buttons (input)
+# that appear in cells within the table that is in the div with an id of pin-pad'.  As hpricot will parse the html table
+# 'in order', i.e. from top-left to bottom right, we just have to append each button value into an array, preserving the
+# order of the keypad.
+doc = Hpricot(html)
+keypad = (doc/'div#pin-pad/table/tr/td/input').inject([]) { |array, btn| array &lt;&lt; btn.attributes['value'].to_i; array }
+# The last value read from the html keypad table will appear at index 9 (our array is 0 based), where we actually want it to 
+# appear at index 0 (keypad is in phone keypad order, i.e. 0 at bottom).  Luckily, we can just pop it off the end and
+# prepend it to the array
+keypad.unshift(keypad.pop)
+# So, we can now convert a keypad like this
+# 5 1 2
+# 4 7 3
+# 0 8 9
+#   6
+# into the equivalent ruby array [6, 5, 1, 2, 4, 7, 3, 0, 8, 9]
+# We can then use Array#index to dive in grab the keypad position of a number
+# keypad.index(5) #=&gt; 1
+# keypad.index(7) #=&gt; 5
+</code></pre></div>
 
 	<p>Cool, so we should be able to string together what we have and automatically login to our account, we need to dip into ruby so that we might parse the keypad page using our code above.</p>
 
@@ -182,23 +194,29 @@ curl -b&quot;/Users/chrisroos/Desktop/ing-cookie&quot; &quot;https://secure.ingd
 	<p>Right, I&#8217;ve cobbled the code together but instead of seeing an account overview page, I&#8217;m actually receiving a page with more javascript relocation magic.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
-location.replace(&quot;/InitialINGDirect.html?command=displayLoggedOutError&amp;locale=en_GB&amp;device=web&quot;);
-&lt;/SCRIPT&gt;</code></pre></div>
+<div class="typocode"><pre><code class="javascript">
+&lt;SCRIPT&gt;
+location.replace("/InitialINGDirect.html?command=displayLoggedOutError&#38;locale=en_GB&#38;device=web");
+&lt;/SCRIPT&gt;
+</code></pre></div>
 
 	<p>I&#8217;m wondering if I&#8217;m missing some cookies &#8211; maybe some more cookies get added to the jar on the keypad page.  Using the <a href="https://addons.mozilla.org/en-US/firefox/addon/60">web developer extension</a> this is trivial to check.  Two cookies are set when we first visit the login page&#8230;  Hmm, and there are still two when we get to the keypad page.  So something else is different.  Ok, so I found it.  Somehow, I&#8217;d managed to miss out some data that was required for the login to work correctly.  I was not sending the command=validateCustomer key/pair even though I&#8217;d already pasted it once above.  Oh well.  With this &#8216;command&#8217; added, we still get a page with some javascript relocation but this time we get relocated to the account summary..</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
-location.replace(&quot;/INGDirect.html?command=accountSummary&amp;locale=en_GB&amp;device=web&amp;method=fetchClientAccountSummary&quot;);
-&lt;/SCRIPT&gt;</code></pre></div>
+<div class="typocode"><pre><code class="javascript">
+&lt;SCRIPT&gt;
+location.replace("/INGDirect.html?command=accountSummary&#38;locale=en_GB&#38;device=web&#38;method=fetchClientAccountSummary");
+&lt;/SCRIPT&gt;
+</code></pre></div>
 
 	<p>If we finally <span class="caps">GET</span> this page then we should be able to &#8216;see&#8217; our account overview on the command line.  Of course it wasn&#8217;t that simple.  This just yields another javascript redirect.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
-location.replace(&quot;/INGDirect.html?command=displayClientAccountSummary&amp;fill=1&quot;);
-&lt;/SCRIPT&gt;</code></pre></div>
+<div class="typocode"><pre><code class="javascript">
+&lt;SCRIPT&gt;
+location.replace("/INGDirect.html?command=displayClientAccountSummary&#38;fill=1");
+&lt;/SCRIPT&gt;
+</code></pre></div>
 
 	<p>Let&#8217;s try to <span class="caps">GET</span> this page then.  Woohoo, we&#8217;re finally at the account overview page.  Wow that was hard work, so, so much harder than it should be for a web application.</p>
 
@@ -212,9 +230,11 @@ location.replace(&quot;/INGDirect.html?command=displayClientAccountSummary&amp;f
 	<p>GETting that url on the command line yields yet another javascript redirect (really, you do surprise me).</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;SCRIPT&gt;
-location.replace(&quot;/INGDirect.html?command=displayAccountDetails&quot;);
-&lt;/SCRIPT&gt;</code></pre></div>
+<div class="typocode"><pre><code class="javascript">
+&lt;SCRIPT&gt;
+location.replace("/INGDirect.html?command=displayAccountDetails");
+&lt;/SCRIPT&gt;
+</code></pre></div>
 
 	<p>Fine, let&#8217;s <span class="caps">GET</span> that url then (starting to get bored now).  And, wait for it&#8230;  Yeah, we have downloaded transactions.  Phew.  Right then, just a little code tidying and I&#8217;ll get it uploaded to google code and this article can be posted.  Yay.</p>
 

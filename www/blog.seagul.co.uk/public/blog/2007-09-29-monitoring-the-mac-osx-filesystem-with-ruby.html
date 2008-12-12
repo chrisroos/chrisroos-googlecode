@@ -52,25 +52,27 @@
               <p>On Thursday, <a href="http://blog.floehopper.org/">James</a> and I spent some time investigating remote pairing options.  One tiny part of that investigation was finding a way to keep two remote filesystems in sync.  I initially thought of using <a href="http://en.wikipedia.org/wiki/Rsync">rsync</a> at regular intervals with <a href="http://en.wikipedia.org/wiki/Cron">cron</a>.  Unless I&#8217;ve missed something, the smallest interval between cron jobs is one minute which is potentially too long.  We wanted a way to rsync (or sync in general) whenever the filesystem changed.  A little searching brought this <a href="http://www.kernelthread.com/software/fslogger/">fslogger</a> tool to my attention.  It simply writes some event details to <span class="caps">STDOUT</span> every time something changes on the filesystem.  I figured that we could use this, with a little bit of ruby glue, to trigger rsync.  Our glue script continuously reads from <span class="caps">STDIN</span>, tries to match some pre-defined patterns and triggers rsync if those patterns are matched.  It&#8217;s very brittle but it gets the job done.  Well, actually, it only partially gets the job done: I&#8217;m very unfamiliar with rsync but it seemed to take between 10 and 30 seconds to sync even if only one file had changed.  I suspect that I may have been doing something wrong though.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#!/usr/bin/env ruby</span>
+<div class="typocode"><pre><code class="ruby">
+#!/usr/bin/env ruby
 
-<span class="constant">REMOTE_SERVER</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_REMOTE_SERVER</span><span class="punct">'</span>
-<span class="constant">REMOTE_PATH</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_REMOTE_PATH</span><span class="punct">'</span>
+REMOTE_SERVER = 'YOUR_REMOTE_SERVER'
+REMOTE_PATH = 'YOUR_REMOTE_PATH'
 
-<span class="constant">DIRECTORY_PATTERN</span> <span class="punct">=</span> <span class="constant">ARGV</span><span class="punct">.</span><span class="ident">delete_at</span><span class="punct">(</span><span class="number">0</span><span class="punct">)</span>
-<span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">You must specify a directory_pattern</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="constant">DIRECTORY_PATTERN</span>
+DIRECTORY_PATTERN = ARGV.delete_at(0)
+raise "You must specify a directory_pattern" unless DIRECTORY_PATTERN
 
-<span class="keyword">def </span><span class="method">rsync!</span>
-  `<span class="ident">rsync</span> <span class="punct">-</span><span class="ident">rz</span> <span class="comment">#{File.join(DIRECTORY_PATTERN, '*')} #{REMOTE_SERVER}:#{REMOTE_PATH}`</span>
-<span class="keyword">end</span>
+def rsync!
+  `rsync -rz #{File.join(DIRECTORY_PATTERN, '*')} #{REMOTE_SERVER}:#{REMOTE_PATH}`
+end
 
-<span class="keyword">while</span> <span class="ident">line</span><span class="punct">=</span><span class="ident">gets</span>
-  <span class="keyword">if</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">FSE_ARG_VNODE</span><span class="punct">/</span> <span class="comment"># CREATE FILE OR DIR</span>
-    <span class="ident">rsync!</span> <span class="keyword">if</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">path<span class="escape">\s</span>+=(.*)</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">].</span><span class="ident">strip</span> <span class="punct">=~</span> <span class="constant">Regexp</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">DIRECTORY_PATTERN</span><span class="punct">)</span>
-  <span class="keyword">elsif</span> <span class="ident">line</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">FSE_ARG_STRING</span><span class="punct">/</span> <span class="comment"># REMOVE FILE OR DIR</span>
-    <span class="ident">rsync!</span> <span class="keyword">if</span> <span class="ident">line</span><span class="punct">[/</span><span class="regex">string<span class="escape">\s</span>+=(.*)</span><span class="punct">/,</span> <span class="number">1</span><span class="punct">].</span><span class="ident">strip</span> <span class="punct">=~</span> <span class="constant">Regexp</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">DIRECTORY_PATTERN</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+while line=gets
+  if line =~ /FSE_ARG_VNODE/ # CREATE FILE OR DIR
+    rsync! if line[/path\s+=(.*)/, 1].strip =~ Regexp.new(DIRECTORY_PATTERN)
+  elsif line =~ /FSE_ARG_STRING/ # REMOVE FILE OR DIR
+    rsync! if line[/string\s+=(.*)/, 1].strip =~ Regexp.new(DIRECTORY_PATTERN)
+  end
+end
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

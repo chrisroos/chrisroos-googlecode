@@ -55,47 +55,52 @@
 	<p>So, something that might currently look like this:</p>
 
 
-<div class="typocode"><pre><code class="typocode_html">&lt;table&gt;
-  &lt;tr&gt;
-    &lt;th&gt;Order Number&lt;/th&gt;
-    &lt;th&gt;Price&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;1&lt;/td&gt;
-    &lt;td&gt;£19.99&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
+<typo:code lang="html">
+<table>
+  <tr>
+    <th>Order Number</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>£19.99</td>
+  </tr>
+</table>
 
-&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+<script type="text/javascript" charset="utf-8">
   var order_id = 1
   var price = 1999
-&lt;/script&gt;
-&lt;script src=&quot;http://MY-PRICE-COMPARATOR&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+</script>
+<script src="http://MY-PRICE-COMPARATOR" type="text/javascript" charset="utf-8"></script>
 
-&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+<script type="text/javascript" charset="utf-8">
   var orderNumber = 1
   var price = 19.99
-&lt;/script&gt;
-&lt;script src=&quot;http://MY-SEO-HELPER&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+</script>
+<script src="http://MY-SEO-HELPER" type="text/javascript" charset="utf-8"></script>
 
-&lt;!-- And repeat... --&gt;</code></pre></div>
+	<p>&lt;!<del>- And repeat&#8230; -</del>&gt;
+</code></pre></div></p>
+
 
 	<p>Could become much simpler:</p>
 
 
-<div class="typocode"><pre><code class="typocode_html">&lt;table&gt;
-  &lt;tr&gt;
-    &lt;th&gt;Order Number&lt;/th&gt;
-    &lt;th&gt;Price&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class=&quot;orderNumber&quot;&gt;1&lt;/td&gt;
-    &lt;td class=&quot;orderPrice&quot;&gt;&lt;span class=&quot;orderCurrency&quot;&gt;£&lt;/span&gt;19.99&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
+<typo:code lang="html">
+<table>
+  <tr>
+    <th>Order Number</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td class="orderNumber">1</td>
+    <td class="orderPrice"><span class="orderCurrency">£</span>19.99</td>
+  </tr>
+</table>
 
-&lt;script src=&quot;http://MY-PRICE-COMPARATOR&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;http://MY-SEO-HELPER&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</code></pre></div>
+<script src="http://MY-PRICE-COMPARATOR" type="text/javascript" charset="utf-8"></script>
+<script src="http://MY-SEO-HELPER" type="text/javascript" charset="utf-8"></script>
+</code></pre></div>
 
 	<p>There has been discussion of such a <a href="http://microformats.org/wiki/receipt">receipt microformat</a> but a quick search seemed to suggest that it hasn&#8217;t been discussed in the context of this specific problem.  Maybe I&#8217;ll go add my voice to that discussion&#8230;</p>
         

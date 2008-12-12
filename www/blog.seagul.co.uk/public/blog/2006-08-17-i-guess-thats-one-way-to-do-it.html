@@ -52,15 +52,17 @@
               <p>We&#8217;re not <em>quite</em> at this stage yet&#8230;</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">ActiveRecord::ConnectionAdapters::MysqlAdapter</span>
-  <span class="keyword">alias</span> <span class="symbol">:execute_before_test_hijack</span> <span class="symbol">:execute</span>
-  <span class="keyword">def </span><span class="method">execute</span><span class="punct">(*</span><span class="ident">args</span><span class="punct">)</span>
-    <span class="keyword">unless</span> <span class="ident">args</span><span class="punct">.</span><span class="ident">first</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^SHOW FIELDS FROM</span><span class="punct">/</span> <span class="punct">||</span> <span class="punct">%w[</span><span class="string">BEGIN COMMIT ROLLBACK END</span><span class="punct">].</span><span class="ident">include?</span><span class="punct">(</span><span class="ident">args</span><span class="punct">.</span><span class="ident">first</span><span class="punct">)</span>
-      <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">You know you're not allowed to use the database in your tests...</span><span class="punct">&quot;</span> <span class="comment"># We could be more gentle with a warn</span>
-    <span class="keyword">end</span>
-    <span class="ident">execute_before_unit_test_hijack</span><span class="punct">(*</span><span class="ident">args</span><span class="punct">)</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+class ActiveRecord::ConnectionAdapters::MysqlAdapter
+  alias :execute_before_test_hijack :execute
+  def execute(*args)
+    unless args.first =~ /^SHOW FIELDS FROM/ || %w[BEGIN COMMIT ROLLBACK END].include?(args.first)
+      raise "You know you're not allowed to use the database in your tests..." # We could be more gentle with a warn
+    end
+    execute_before_unit_test_hijack(*args)
+  end
+end
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

@@ -58,11 +58,13 @@
 	<p>I&#8217;ve also started to create my test cases as anonymous classes derived from Test::Unit::TestCase.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
-  <span class="keyword">def </span><span class="method">test_</span>
-    <span class="ident">assert</span> <span class="constant">true</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+Class.new(Test::Unit::TestCase) do
+  def test_
+    assert true
+  end
+end
+</code></pre></div>
 
 	<p>I find that this helps when trying to determine where a new test should be placed.  If the class has a name I&#8217;m tempted to scan that and make a decision as to whether a new test belongs in this case.  By keeping them anonymous, I have to inspect the test fixture in order to understand whether a new test belongs here.</p>
 
@@ -73,26 +75,28 @@
 	<p>I&#8217;ve chosen a somewhat contrived example to demonstrate my new found test structure.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Class</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span><span class="punct">)</span> <span class="keyword">do</span>
-  <span class="comment"># An empty stack</span>
+<div class="typocode"><pre><code class="ruby">
+Class.new(Test::Unit::TestCase) do
+  # An empty stack
 
-  <span class="keyword">def </span><span class="method">setup</span>
-    <span class="attribute">@stack</span> <span class="punct">=</span> <span class="constant">Stack</span><span class="punct">.</span><span class="ident">new</span>
-  <span class="keyword">end</span>
+  def setup
+    @stack = Stack.new
+  end
 
-  <span class="keyword">def </span><span class="method">test_should_accept_an_item_when_sent_push</span>
-    <span class="ident">assert_nothing_raised</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">push</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
-  <span class="keyword">end</span>
+  def test_should_accept_an_item_when_sent_push
+    assert_nothing_raised { @stack.push(1) }
+  end
 
-  <span class="keyword">def </span><span class="method">test_should_complain_when_sent_top</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">StackUnderflowError</span><span class="punct">)</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">top</span> <span class="punct">}</span>
-  <span class="keyword">end</span>
+  def test_should_complain_when_sent_top
+    assert_raise(StackUnderflowError) { @stack.top }
+  end
 
-  <span class="keyword">def </span><span class="method">test_should_complain_when_sent_pop</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">StackUnderflowError</span><span class="punct">)</span> <span class="punct">{</span> <span class="attribute">@stack</span><span class="punct">.</span><span class="ident">pop</span> <span class="punct">}</span>
-  <span class="keyword">end</span>
+  def test_should_complain_when_sent_pop
+    assert_raise(StackUnderflowError) { @stack.pop }
+  end
 
-<span class="keyword">end</span></code></pre></div>
+end
+</code></pre></div>
 
 	<p>The fixture for this test is an empty stack.  The individual tests prod and query the empty stack to ensure that it behaves as expected.  Although the example above is incredibly simple, I have consistently found that my individual test methods become much smaller.</p>
 

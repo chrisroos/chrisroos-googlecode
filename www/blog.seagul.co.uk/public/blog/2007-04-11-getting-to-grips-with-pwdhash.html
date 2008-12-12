@@ -61,15 +61,17 @@
 	<p>The first step was to create a basic environment within which I could explore the existing javascript functionality.  Relying on <a href="http://www.getfirebug.com/">Firebug</a> to provide a javascript console, this was as simple as creating a very basic html page.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;html&gt;
+<div class="typocode"><pre><code class="html">
+&lt;html&gt;
   &lt;head&gt;
-    &lt;script type=&quot;text/javascript&quot; src=&quot;md5.js&quot; /&gt;
-    &lt;script type=&quot;text/javascript&quot; src=&quot;hashed-password.js&quot; /&gt;
+    &lt;script type="text/javascript" src="md5.js" /&gt;
+    &lt;script type="text/javascript" src="hashed-password.js" /&gt;
     &lt;title&gt;pwdhash client&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
   &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;
+</code></pre></div>
 
 	<p>It actually took me a good few minutes to get up and running with this environment.  It seems that <a href="http://crypto.stanford.edu/PwdHash/RemotePwdHash/hashed-password.js">hashed-password.js</a> relies on a variable, <span class="caps">SPH</span>_kPasswordPrefix, being defined.  Although defined in <a href="http://crypto.stanford.edu/PwdHash/RemotePwdHash/pwdhash.js">pwdhash.js</a>, it turns out to be our only dependency on that file.  In wanting to keep the environment as simple as possible, I chose to copy the definition of that variable to hashed-password.js, allowing us to remain independent of pwdhash.js.</p>
 
@@ -89,17 +91,21 @@
 	<p>Without thinking about it as much as I should have, I decided that maybe I needed to implement the functionality provided in md5.js in ruby (<a href="http://chrisroos.googlecode.com/svn/trunk/pwdhash-rb/md5-rb/md5.rb">code</a> for reference).  I dived in and started replicating one function at a time.  All was going OK until I came across the <a href="http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Guide:Operators:Bitwise_Operators#Bitwise_Shift_Operators">zero fill right shift</a> bitwise operator in javascript.  There is no standard equivalent in ruby, but a little help from the <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/144877">mailing list</a> allowed me to come up with this implementation.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">class Integer
+<div class="typocode"><pre><code class="ruby">
+class Integer
   def zero_fill_right_shift(count)
-    (self &gt;&gt; count) &amp; ((2 ** (size_in_bits-count))-1) # defined in Integer, size_in_bits is self.size * 8
+    (self &gt;&gt; count) &#38; ((2 ** (size_in_bits-count))-1) # defined in Integer, size_in_bits is self.size * 8
   end
-end</code></pre></div>
+end
+</code></pre></div>
 
 	<p>Although this allowed me to move a little further, progress completely ground to a halt when trying to replicate the bit_rol function.  It seems that bitwise left-shifting by a negative number offers a different result in javascript and ruby.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">javascript: 1 &lt;&lt; -1 = -2147483648
-ruby: 1 &lt;&lt; -1 = 0</code></pre></div>
+<div class="typocode"><pre><code>
+javascript: 1 &lt;&lt; -1 = -2147483648
+ruby: 1 &lt;&lt; -1 = 0
+</code></pre></div>
 
 	<h3>Back to the drawing-board (again) &#8211; using digest/md5 and ruby-hmac to replicate the results given by md5.js</h3>
 
@@ -107,27 +113,35 @@ ruby: 1 &lt;&lt; -1 = 0</code></pre></div>
 	<p>This time, I decided to break the b64_hmac_md5 function down into its component parts and see which, if any, differed between ruby and javascript.  The first step was to compare the hex output of a simple md5 of a string.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">javascript: hex_md5(text) =&gt; &quot;1cb251ec0d568de6a929b520c4aed8d1&quot;
-ruby: Digest::MD5.new(text).hexdigest =&gt; 1cb251ec0d568de6a929b520c4aed8d1</code></pre></div>
+<div class="typocode"><pre><code>
+javascript: hex_md5(text) =&gt; "1cb251ec0d568de6a929b520c4aed8d1" 
+ruby: Digest::MD5.new(text).hexdigest =&gt; 1cb251ec0d568de6a929b520c4aed8d1
+</code></pre></div>
 
 	<p>Next up was a comparison of an <span class="caps">HMAC MD5</span> of a key and some data.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">javascript: hex_hmac_md5(key, data) =&gt; &quot;9d5c73ef85594d34ec4438b7c97e51d8&quot;
-ruby: HMAC::MD5.hexdigest(key, data) =&gt; &quot;9d5c73ef85594d34ec4438b7c97e51d8&quot;</code></pre></div>
+<div class="typocode"><pre><code>
+javascript: hex_hmac_md5(key, data) =&gt; "9d5c73ef85594d34ec4438b7c97e51d8" 
+ruby: HMAC::MD5.hexdigest(key, data) =&gt; "9d5c73ef85594d34ec4438b7c97e51d8" 
+</code></pre></div>
 
 	<p>Although we can easily replicate the result of hex_hmac_md5 in ruby, we actually want to replicate the result of b64_hmac_md5 (i.e. the hashed data encoded in base64 representation.)
 With a bit of thinking, and some trial and error, I realised that I needed to calculate the binary digest of the key and data, and then base64 encode the result.  <strong>Note</strong>.  My original problems arose when comparing the output of the binary string data, what with Javascript being able to display unicode characters and ruby just displaying their code points in octal representation.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">javascript: b64_hmac_md5(key, data) =&gt; &quot;nVxz74VZTTTsRDi3yX5R2A&quot;
+<div class="typocode"><pre><code>
+javascript: b64_hmac_md5(key, data) =&gt; "nVxz74VZTTTsRDi3yX5R2A" 
 ruby: # This requires both ruby-hmac and base64
-ruby: Base64.encode64(HMAC::MD5.digest(key, data)) =&gt; &quot;nVxz74VZTTTsRDi3yX5R2A==&quot;</code></pre></div>
+ruby: Base64.encode64(HMAC::MD5.digest(key, data)) =&gt; "nVxz74VZTTTsRDi3yX5R2A==" 
+</code></pre></div>
 
 	<p>This is the first time we see any difference in the values obtained from javascript and ruby.  It turns out that there&#8217;s a clue to this difference in the md5.js library:</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">var b64pad  = &quot;&quot;; /* base-64 pad character. &quot;=&quot; for strict RFC compliance   */</code></pre></div>
+<div class="typocode"><pre><code class="javascript">
+var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
+</code></pre></div>
 
 	<p>Ok, so it seems I should just be able to remove the pad characters (=) from my generated hash and I&#8217;ll achieve the same value.  Happy that this was a pretty easy difference to resolve, I could move forward with actually implementing the pwdhash magic in ruby&#8230;</p>
 

@@ -72,20 +72,22 @@
 	<p>If you don&#8217;t already have a zero migration, then create one.  The name is important as you will need to create an empty class of the same name in the file itself (for migrations to be happy).  Ours is called 000_rails_ext.rb.  The code is below.  Our code isn&#8217;t identical (yet) as I just realised that we had an ineffective call to super in the inherited method, now replaced with alias_method.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby">  <span class="keyword">class </span><span class="class">RailsExt</span>
-  <span class="keyword">end</span>
+<div class="typocode"><pre><code class="ruby">
+  class RailsExt
+  end
 
-  <span class="keyword">class </span><span class="class">ActiveRecord::Base</span>
-    <span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">self</span>
-      <span class="ident">alias_method</span> <span class="symbol">:__original__inherited</span><span class="punct">,</span> <span class="symbol">:inherited</span>
-      <span class="keyword">def </span><span class="method">inherited</span><span class="punct">(</span><span class="ident">base</span><span class="punct">)</span>
-        <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">You're trying to use an ActiveRecord::Base derived class (--<span class="expr">#{base}</span>--) that is not defined in this migration.</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="ident">base</span><span class="punct">.</span><span class="ident">to_s</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^Migration.*</span><span class="punct">/</span>
-        <span class="ident">__original__inherited</span><span class="punct">(</span><span class="ident">base</span><span class="punct">)</span>
-      <span class="keyword">end</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
+  class ActiveRecord::Base
+    class &lt;&lt; self
+      alias_method :__original__inherited, :inherited
+      def inherited(base)
+        raise "You're trying to use an ActiveRecord::Base derived class (--#{base}--) that is not defined in this migration." unless base.to_s =~ /^Migration.*/
+        __original__inherited(base)
+      end
+    end
+  end
 
-  <span class="constant">Dispatcher</span><span class="punct">.</span><span class="ident">reset_application!</span></code></pre></div>
+  Dispatcher.reset_application!
+</code></pre></div>
 
 	<p>The inherited callback is triggered everytime we define a class that inherits from ActiveRecord::Base.  All we do is check that its name starts with Migration and raise an error if not (failing fast is good).  The name is the fully qualified name and so includes namespaces.  This is good as it allows us to place all re-defined classes in a module named Migration&lt;number&gt;.  This module can then be included in the migration class itself.  Although I can&#8217;t remember exactly now, I think the reason we need to reset_application! is because we have some calls to our models in environment.rb.  These models would already be loaded and therefore any future references to them (in the migrations) would bypass our custom inherited method.  By resetting the app, we are sure that we have no AR models loaded.</p>
 
@@ -93,18 +95,20 @@
 	<p>To re-define the models in the migration, we use something like..</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby">  <span class="keyword">class </span><span class="class">MyFirstMigration</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Migration</span>
-    <span class="keyword">def </span><span class="method">self.up</span>
-    <span class="keyword">end</span>
-    <span class="keyword">def </span><span class="method">self.down</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
+<div class="typocode"><pre><code class="ruby">
+  class MyFirstMigration &lt; ActiveRecord::Migration
+    def self.up
+    end
+    def self.down
+    end
+  end
 
-  <span class="keyword">module </span><span class="module">Migration001</span>
-    <span class="keyword">class </span><span class="class">Person</span> <span class="punct">&lt;</span> <span class="constant">ActiveRecord</span><span class="punct">::</span><span class="constant">Base</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-  <span class="constant">MyFirstMigration</span><span class="punct">.</span><span class="ident">send</span><span class="punct">(</span><span class="symbol">:include</span><span class="punct">,</span> <span class="constant">Migration001</span><span class="punct">)</span></code></pre></div>
+  module Migration001
+    class Person &lt; ActiveRecord::Base
+    end
+  end
+  MyFirstMigration.send(:include, Migration001)
+</code></pre></div>
 
 	<p>Although sending the migration class the include message with the module isn&#8217;t great, we use it as it allows us to re-define all our classes below the actual migration.  If we were to place the module at the top then this wouldn&#8217;t be required but I feel that it gets in the way of being able to read the migration clearly.</p>
 

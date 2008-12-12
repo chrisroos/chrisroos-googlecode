@@ -52,28 +52,30 @@
               <p>It turns out that we can use <a href="http://streetmap.co.uk">streetmap.co.uk</a> to <a href="http://streetmap.co.uk/streetmap.dll?GridConvert">convert</a> a UK postcode to latitude/longitude.  It also turns out that a combination of <a href="http://curl.haxx.se/">curl</a>, <a href="http://www.ruby-lang.org">ruby</a> and <a href="http://code.whytheluckystiff.net/hpricot/">hpricot</a> make it very easy to bypass the streetmap site to perform the conversion.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">postcode</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">SW1A 2AJ</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+postcode = 'SW1A 2AJ'
 
-<span class="ident">html</span> <span class="punct">=</span> `<span class="ident">curl</span> <span class="punct">&quot;</span><span class="string">http://streetmap.co.uk/streetmap.dll</span><span class="punct">&quot;</span> <span class="punct">-</span><span class="ident">d</span><span class="punct">&quot;</span><span class="string">MfcISAPICommand=GridConvert</span><span class="punct">&quot;</span> <span class="punct">-</span><span class="ident">d</span><span class="punct">&quot;</span><span class="string">name=<span class="expr">#{postcode}</span></span><span class="punct">&quot;</span> <span class="punct">-</span><span class="ident">d</span><span class="punct">&quot;</span><span class="string">type=PostCode</span><span class="punct">&quot;`</span>
+html = `curl "http://streetmap.co.uk/streetmap.dll" -d"MfcISAPICommand=GridConvert" -d"name=#{postcode}" -d"type=PostCode"`
 
-<span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
-<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+require 'rubygems'
+require 'hpricot'
 
-<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
+doc = Hpricot(html)
 
-<span class="ident">latitude</span><span class="punct">,</span> <span class="ident">longitude</span> <span class="punct">=</span> <span class="number">0</span><span class="punct">,</span> <span class="number">0</span>
+latitude, longitude = 0, 0
 
-<span class="punct">(</span><span class="ident">doc</span><span class="punct">/&quot;</span><span class="string">div</span><span class="punct">&quot;/&quot;</span><span class="string">center</span><span class="punct">&quot;/&quot;</span><span class="string">table</span><span class="punct">&quot;/&quot;</span><span class="string">tr</span><span class="punct">&quot;).</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">row</span><span class="punct">|</span>
-  <span class="ident">attribute</span> <span class="punct">=</span> <span class="punct">(</span><span class="ident">row</span><span class="punct">/&quot;</span><span class="string">td</span><span class="punct">&quot;).</span><span class="ident">first</span><span class="punct">.</span><span class="ident">inner_text</span>
-  <span class="ident">value</span> <span class="punct">=</span> <span class="punct">(</span><span class="ident">row</span><span class="punct">/&quot;</span><span class="string">td</span><span class="punct">&quot;).</span><span class="ident">last</span><span class="punct">.</span><span class="ident">inner_text</span>
-  <span class="keyword">if</span> <span class="ident">attribute</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">lat</span><span class="punct">/</span><span class="ident">i</span>
-    <span class="ident">latitude</span> <span class="punct">=</span> <span class="constant">Float</span><span class="punct">(</span><span class="ident">value</span><span class="punct">[/</span><span class="regex"><span class="escape">\(</span>(.*)<span class="escape">\)</span></span><span class="punct">/,</span> <span class="number">1</span><span class="punct">])</span>
-  <span class="keyword">elsif</span> <span class="ident">attribute</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">long</span><span class="punct">/</span><span class="ident">i</span>
-    <span class="ident">longitude</span> <span class="punct">=</span> <span class="constant">Float</span><span class="punct">(</span><span class="ident">value</span><span class="punct">[/</span><span class="regex"><span class="escape">\(</span>(.*)<span class="escape">\)</span></span><span class="punct">/,</span> <span class="number">1</span><span class="punct">])</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
+(doc/"div"/"center"/"table"/"tr").each do |row|
+  attribute = (row/"td").first.inner_text
+  value = (row/"td").last.inner_text
+  if attribute =~ /lat/i
+    latitude = Float(value[/\((.*)\)/, 1])
+  elsif attribute =~ /long/i
+    longitude = Float(value[/\((.*)\)/, 1])
+  end
+end
 
-<span class="ident">p</span> <span class="punct">[</span><span class="ident">latitude</span><span class="punct">,</span> <span class="ident">longitude</span><span class="punct">]</span></code></pre></div>
+p [latitude, longitude]
+</code></pre></div>
 
 	<p>Err, this is probably a bit naughty.</p>
         

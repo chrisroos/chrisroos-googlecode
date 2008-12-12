@@ -55,61 +55,63 @@
 	<p>Code is hosted on <a href="http://chrisroos.googlecode.com/svn/trunk/lloydstsb/">google code</a>, and pasted in all its syntax-highlighted glory below.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">lloydstsb_credentials</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'lloydstsb_credentials'
 
-<span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
-<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+require 'rubygems'
+require 'hpricot'
 
-<span class="keyword">def </span><span class="method">execute_curl</span><span class="punct">(</span><span class="ident">cmd</span><span class="punct">)</span>
-  `<span class="comment">#{cmd}`</span>
-<span class="keyword">end</span>
+def execute_curl(cmd)
+  `#{cmd}`
+end
 
-<span class="constant">COOKIE_LOCATION</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/lloydstsb_cookie</span><span class="punct">'</span>
-<span class="constant">DOWNLOADED_STATEMENT_LOCATION</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/Desktop/lloyds.qif</span><span class="punct">'</span>
+COOKIE_LOCATION = '/Users/chrisroos/lloydstsb_cookie'
+DOWNLOADED_STATEMENT_LOCATION = '/Users/chrisroos/Desktop/lloyds.qif'
 
-<span class="comment"># Store some cookies for later</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -c&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/customer.ibc&quot;</span><span class="punct">]</span>
-<span class="ident">html</span> <span class="punct">=</span> <span class="ident">execute_curl</span><span class="punct">(</span><span class="ident">curl_cmd</span><span class="punct">)</span>
+# Store some cookies for later
+curl_cmd = %[curl -s -c"#{COOKIE_LOCATION}" "https://online.lloydstsb.co.uk/customer.ibc"]
+html = execute_curl(curl_cmd)
 
-<span class="comment"># Obtain the key that we need to POST along with our Username and Password</span>
-<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
-<span class="ident">key</span> <span class="punct">=</span> <span class="punct">(</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">input[@name=Key]</span><span class="punct">').</span><span class="ident">first</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">']</span>
+# Obtain the key that we need to POST along with our Username and Password
+doc = Hpricot(html)
+key = (doc/'input[@name=Key]').first.attributes['value']
 
-<span class="comment"># POST the key, userid and password</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/logon.ibc&quot; -d&quot;Java=Off&quot; -d&quot;Key=<span class="expr">#{key}</span>&quot; -d&quot;UserId1=<span class="expr">#{USERID}</span>&quot; -d&quot;Password=<span class="expr">#{PASSWORD}</span>&quot;</span><span class="punct">]</span>
-<span class="ident">html</span> <span class="punct">=</span> <span class="ident">execute_curl</span><span class="punct">(</span><span class="ident">curl_cmd</span><span class="punct">)</span>
+# POST the key, userid and password
+curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" "https://online.lloydstsb.co.uk/logon.ibc" -d"Java=Off" -d"Key=#{key}" -d"UserId1=#{USERID}" -d"Password=#{PASSWORD}"]
+html = execute_curl(curl_cmd)
 
-<span class="comment"># Obtain the three characters from our memorable info that we need to POST</span>
-<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">html</span><span class="punct">)</span>
-<span class="ident">position_of_char1</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">((</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">input[@name=ResponseKey0]</span><span class="punct">').</span><span class="ident">first</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">'])</span>
-<span class="ident">position_of_char2</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">((</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">input[@name=ResponseKey1]</span><span class="punct">').</span><span class="ident">first</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">'])</span>
-<span class="ident">position_of_char3</span> <span class="punct">=</span> <span class="constant">Integer</span><span class="punct">((</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">input[@name=ResponseKey2]</span><span class="punct">').</span><span class="ident">first</span><span class="punct">.</span><span class="ident">attributes</span><span class="punct">['</span><span class="string">value</span><span class="punct">'])</span>
-<span class="ident">char1</span> <span class="punct">=</span> <span class="constant">MEMORABLE</span><span class="punct">.</span><span class="ident">split</span><span class="punct">('</span><span class="string"></span><span class="punct">')[</span><span class="ident">position_of_char1</span> <span class="punct">-</span> <span class="number">1</span><span class="punct">]</span>
-<span class="ident">char2</span> <span class="punct">=</span> <span class="constant">MEMORABLE</span><span class="punct">.</span><span class="ident">split</span><span class="punct">('</span><span class="string"></span><span class="punct">')[</span><span class="ident">position_of_char2</span> <span class="punct">-</span> <span class="number">1</span><span class="punct">]</span>
-<span class="ident">char3</span> <span class="punct">=</span> <span class="constant">MEMORABLE</span><span class="punct">.</span><span class="ident">split</span><span class="punct">('</span><span class="string"></span><span class="punct">')[</span><span class="ident">position_of_char3</span> <span class="punct">-</span> <span class="number">1</span><span class="punct">]</span>
+# Obtain the three characters from our memorable info that we need to POST
+doc = Hpricot(html)
+position_of_char1 = Integer((doc/'input[@name=ResponseKey0]').first.attributes['value'])
+position_of_char2 = Integer((doc/'input[@name=ResponseKey1]').first.attributes['value'])
+position_of_char3 = Integer((doc/'input[@name=ResponseKey2]').first.attributes['value'])
+char1 = MEMORABLE.split('')[position_of_char1 - 1]
+char2 = MEMORABLE.split('')[position_of_char2 - 1]
+char3 = MEMORABLE.split('')[position_of_char3 - 1]
 
-<span class="comment"># POST our memorable info</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -L -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/miheld.ibc&quot; -d&quot;ResponseKey0=<span class="expr">#{position_of_char1}</span>&quot; -d&quot;ResponseValue0=<span class="expr">#{char1}</span>&quot; -d&quot;ResponseKey1=<span class="expr">#{position_of_char2}</span>&quot; -d&quot;ResponseValue1=<span class="expr">#{char2}</span>&quot; -d&quot;ResponseKey2=<span class="expr">#{position_of_char3}</span>&quot; -d&quot;ResponseValue2=<span class="expr">#{char3}</span>&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+# POST our memorable info
+curl_cmd = %[curl -s -L -b"#{COOKIE_LOCATION}" "https://online.lloydstsb.co.uk/miheld.ibc" -d"ResponseKey0=#{position_of_char1}" -d"ResponseValue0=#{char1}" -d"ResponseKey1=#{position_of_char2}" -d"ResponseValue1=#{char2}" -d"ResponseKey2=#{position_of_char3}" -d"ResponseValue2=#{char3}"]
+execute_curl curl_cmd
 
-<span class="comment"># SELECT OUR ACCOUNT</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/account.ibc?Account=<span class="expr">#{SORT_CODE_AND_ACCOUNT_NUMBER}</span>&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+# SELECT OUR ACCOUNT
+curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" "https://online.lloydstsb.co.uk/account.ibc?Account=#{SORT_CODE_AND_ACCOUNT_NUMBER}"]
+execute_curl curl_cmd
 
-<span class="comment"># GET OUR MOST RECENT TRANSACTIONS</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/statement.ibc?Account=<span class="expr">#{SORT_CODE_AND_ACCOUNT_NUMBER}</span>&amp;PageRequired=MostRecent&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+# GET OUR MOST RECENT TRANSACTIONS
+curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" "https://online.lloydstsb.co.uk/statement.ibc?Account=#{SORT_CODE_AND_ACCOUNT_NUMBER}&#38;PageRequired=MostRecent"]
+execute_curl curl_cmd
 
-<span class="comment"># GET THE DOWNLOAD STATEMENT FORM</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/statement.ibc?Account=<span class="expr">#{SORT_CODE_AND_ACCOUNT_NUMBER}</span>&amp;selectbox=6&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+# GET THE DOWNLOAD STATEMENT FORM
+curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" "https://online.lloydstsb.co.uk/statement.ibc?Account=#{SORT_CODE_AND_ACCOUNT_NUMBER}&#38;selectbox=6"]
+execute_curl curl_cmd
 
-<span class="comment"># DOWNLOAD THE MOST RECENT TRANSACTIONS IN QIF FORMAT</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -L -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://online.lloydstsb.co.uk/statementdownload.ibc?Account=<span class="expr">#{SORT_CODE_AND_ACCOUNT_NUMBER}</span>&amp;Download=DownloadLatest&amp;Format=104&quot; -o&quot;<span class="expr">#{DOWNLOADED_STATEMENT_LOCATION}</span>&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+# DOWNLOAD THE MOST RECENT TRANSACTIONS IN QIF FORMAT
+curl_cmd = %[curl -s -L -b"#{COOKIE_LOCATION}" "https://online.lloydstsb.co.uk/statementdownload.ibc?Account=#{SORT_CODE_AND_ACCOUNT_NUMBER}&#38;Download=DownloadLatest&#38;Format=104" -o"#{DOWNLOADED_STATEMENT_LOCATION}"]
+execute_curl curl_cmd
 
-<span class="comment"># Remove the cookie</span>
-`<span class="ident">rm</span> <span class="comment">#{COOKIE_LOCATION}`</span></code></pre></div>
+# Remove the cookie
+`rm #{COOKIE_LOCATION}`
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

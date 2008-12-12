@@ -45,8 +45,10 @@
               <p>I&#8217;ve used this <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod rewrite</a> trick in the past to inspect the contents of various <a href="http://httpd.apache.org/">apache</a> variables you have access to.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default"># Add this before any other rewrite rules in your apache config or .htaccess
-RewriteRule .* http://foo?request_uri=%{REQUEST_URI}&amp;the_request=%{THE_REQUEST}&amp;host=%{HTTP_HOST}</code></pre></div>
+<div class="typocode"><pre><code>
+# Add this before any other rewrite rules in your apache config or .htaccess
+RewriteRule .* http://foo?request_uri=%{REQUEST_URI}&#38;the_request=%{THE_REQUEST}&#38;host=%{HTTP_HOST}
+</code></pre></div>
 
 	<p>Although useful, it&#8217;s kinda hard to inspect the variables when they&#8217;re in the <a href="http://en.wikipedia.org/wiki/Uniform_Resource_Locator"><span class="caps">URL</span></a>.  It dawned on me that it would be easier to see them if they were in a page in the browser itself.  So, I knocked up a simple little html page that uses javascript to extract the querystring key/value pairs and display them on the page.  It doesn&#8217;t look very pretty but it makes it much easier to see the content of the variables.</p>
 

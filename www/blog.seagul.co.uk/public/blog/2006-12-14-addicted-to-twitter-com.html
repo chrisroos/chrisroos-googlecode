@@ -62,19 +62,21 @@
 	</ul>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
-<span class="ident">require</span> <span class="punct">'</span><span class="string">json</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'rubygems'
+require 'json'
 
-<span class="constant">RECEIVER_USERNAME</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">USERNAME_OF_MOBILE_ACCOUNT</span><span class="punct">'</span>
-<span class="constant">RECEIVER_PASSWORD</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">PASSWORD_OF_MOBILE_ACCOUNT</span><span class="punct">'</span>
-<span class="ident">js</span> <span class="punct">=</span> `<span class="ident">curl</span> <span class="punct">-</span><span class="ident">u</span><span class="punct">&quot;</span><span class="string"><span class="expr">#{RECEIVER_USERNAME}</span>:<span class="expr">#{RECEIVER_PASSWORD}</span></span><span class="punct">&quot;</span> <span class="ident">http</span><span class="punct">:/</span><span class="regex"></span><span class="punct">/</span><span class="ident">twitter</span><span class="punct">.</span><span class="ident">com</span><span class="punct">/</span><span class="ident">statuses</span><span class="punct">/</span><span class="ident">friends_timeline</span><span class="punct">.</span><span class="ident">json`</span>
+RECEIVER_USERNAME = 'USERNAME_OF_MOBILE_ACCOUNT'
+RECEIVER_PASSWORD = 'PASSWORD_OF_MOBILE_ACCOUNT'
+js = `curl -u"#{RECEIVER_USERNAME}:#{RECEIVER_PASSWORD}" http://twitter.com/statuses/friends_timeline.json`
 
-<span class="ident">text</span> <span class="punct">=</span> <span class="constant">JSON</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(</span><span class="ident">js</span><span class="punct">).</span><span class="ident">first</span><span class="punct">['</span><span class="string">text</span><span class="punct">']</span>
+text = JSON.parse(js).first['text']
 
-<span class="constant">SENDER_USERNAME</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">USERNAME_OF_FRIEND</span><span class="punct">'</span>
-<span class="constant">SENDER_PASSWORD</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">PASSWORD_OF_FRIEND</span><span class="punct">'</span>
+SENDER_USERNAME = 'USERNAME_OF_FRIEND'
+SENDER_PASSWORD = 'PASSWORD_OF_FRIEND'
 
-`<span class="ident">curl</span> <span class="punct">-</span><span class="ident">u</span><span class="punct">&quot;</span><span class="string"><span class="expr">#{SENDER_USERNAME}</span>:<span class="expr">#{SENDER_PASSWORD}</span></span><span class="punct">&quot;</span> <span class="punct">-</span><span class="ident">d</span><span class="punct">&quot;</span><span class="string">status=<span class="expr">#{text.reverse}</span></span><span class="punct">&quot;</span> <span class="ident">http</span><span class="punct">:/</span><span class="regex"></span><span class="punct">/</span><span class="ident">twitter</span><span class="punct">.</span><span class="ident">com</span><span class="punct">/</span><span class="ident">statuses</span><span class="punct">/</span><span class="ident">update</span><span class="punct">.</span><span class="ident">xml`</span></code></pre></div>
+`curl -u"#{SENDER_USERNAME}:#{SENDER_PASSWORD}" -d"status=#{text.reverse}" http://twitter.com/statuses/update.xml`
+</code></pre></div>
 
 	<p>The script just reads the most recent message sent to your mobile twitter account, reverses the text and sends it back to your mobile.</p>
 

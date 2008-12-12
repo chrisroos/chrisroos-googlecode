@@ -52,13 +52,15 @@
               <p>Very naive Ruby method to create a <a href="http://www.microid.org">MicroId</a> for a given email and url.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">digest/sha1</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'digest/sha1'
 
-<span class="keyword">def </span><span class="method">micro_id</span><span class="punct">(</span><span class="ident">email</span><span class="punct">,</span> <span class="ident">url</span><span class="punct">)</span>
-  <span class="ident">email_digest</span> <span class="punct">=</span> <span class="constant">Digest</span><span class="punct">::</span><span class="constant">SHA1</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">email</span><span class="punct">).</span><span class="ident">to_s</span>
-  <span class="ident">url_digest</span> <span class="punct">=</span> <span class="constant">Digest</span><span class="punct">::</span><span class="constant">SHA1</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">url</span><span class="punct">).</span><span class="ident">to_s</span>
-  <span class="constant">Digest</span><span class="punct">::</span><span class="constant">SHA1</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(</span><span class="ident">email_digest</span> <span class="punct">+</span> <span class="ident">url_digest</span><span class="punct">).</span><span class="ident">to_s</span>
-<span class="keyword">end</span></code></pre></div>
+def micro_id(email, url)
+  email_digest = Digest::SHA1.new(email).to_s
+  url_digest = Digest::SHA1.new(url).to_s
+  Digest::SHA1.new(email_digest + url_digest).to_s
+end
+</code></pre></div>
 
 	<p>Note that there is no validation of the MicroId in this code at all.</p>
         

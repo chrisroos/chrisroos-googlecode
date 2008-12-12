@@ -58,21 +58,23 @@
 	</ul>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">pop_ssl</span><span class="punct">'</span> <span class="comment"># I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version</span>
+<div class="typocode"><pre><code class="ruby">
+require 'pop_ssl' # I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version
 
-<span class="ident">username</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_GMAIL_USERNAME@gmail.com</span><span class="punct">'</span>
-<span class="ident">password</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_GMAIL_PASSWORD</span><span class="punct">'</span>
+username = 'YOUR_GMAIL_USERNAME@gmail.com'
+password = 'YOUR_GMAIL_PASSWORD'
 
-<span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">enable_ssl</span><span class="punct">(</span><span class="constant">OpenSSL</span><span class="punct">::</span><span class="constant">SSL</span><span class="punct">::</span><span class="constant">VERIFY_NONE</span><span class="punct">)</span>
-<span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">start</span><span class="punct">('</span><span class="string">pop.gmail.com</span><span class="punct">',</span> <span class="number">995</span><span class="punct">,</span> <span class="ident">username</span><span class="punct">,</span> <span class="ident">password</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">pop</span><span class="punct">|</span>
-  <span class="keyword">if</span> <span class="ident">pop</span><span class="punct">.</span><span class="ident">mails</span><span class="punct">.</span><span class="ident">empty?</span>
-    <span class="ident">puts</span> <span class="punct">'</span><span class="string">No mail.</span><span class="punct">'</span>
-  <span class="keyword">else</span>
-    <span class="ident">pop</span><span class="punct">.</span><span class="ident">each_mail</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">mail</span><span class="punct">|</span>
-      <span class="ident">p</span> <span class="ident">mail</span><span class="punct">.</span><span class="ident">header</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></code></pre></div>
+Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_NONE)
+Net::POP3.start('pop.gmail.com', 995, username, password) do |pop|
+  if pop.mails.empty?
+    puts 'No mail.'
+  else
+    pop.each_mail do |mail|
+      p mail.header
+    end
+  end
+end
+</code></pre></div>
 
 	<h3>Medium version (or, &#8220;Let me know I&#8217;m connecting to the correct site, Dammit&#8221;)</h3>
 
@@ -87,7 +89,9 @@
 	</ul>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">enable_ssl</span><span class="punct">(</span><span class="constant">OpenSSL</span><span class="punct">::</span><span class="constant">SSL</span><span class="punct">::</span><span class="constant">VERIFY_PEER</span><span class="punct">,</span> <span class="punct">'</span><span class="string">/PATH/TO/DOWNLOADED/cacert.pem</span><span class="punct">')</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, '/PATH/TO/DOWNLOADED/cacert.pem')
+</code></pre></div>
 
 	<h3>Longer version (or, &#8220;Pray tell, how did you find this information sir&#8221;)</h3>
 
@@ -104,7 +108,9 @@
 	<p>Next step was to follow the example on the <a href="http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/classes/Net/POP3.html">net/pop3 page</a>, and, with the addition of the Net::POP3::enable_ssl directive, try to connect.  Hmm, things still weren&#8217;t working quite right.  I was getting the following error.</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">OpenSSL::SSL::SSLError: certificate verify failed</code></pre></div>
+<div class="typocode"><pre><code>
+OpenSSL::SSL::SSLError: certificate verify failed
+</code></pre></div>
 
 	<p>Some more googling led me to <a href="http://ghouston.blogspot.com/2006/03/using-ssl-with-ruby-http-access2.html">this post</a> by <a href="http://ghouston.blogspot.com/">Greg Houston</a>.  It turns out that the error is actually raised in the <a href="http://www.openssl.org">OpenSSL</a> layer.  It is caused by us trying to verify the server certificate without having the correct trusted root certificate.  It turns out that we can either disable the verification (by using <code>Net::POP3::enable_ssl(OpenSSL::SSL::VERIFY_NONE)</code>), or we can verify against a trusted root certificate bundle, like the one <a href="http://curl.haxx.se/docs/caextract.html">supplied</a> by cURL.  To verify using the certificate bundle from cURL (or similar), we would amend the above line of code to <code>Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, File.dirname(__FILE__) + '/PATH/TO/DOWNLOADED/cacert.pem')</code>.</p>
 

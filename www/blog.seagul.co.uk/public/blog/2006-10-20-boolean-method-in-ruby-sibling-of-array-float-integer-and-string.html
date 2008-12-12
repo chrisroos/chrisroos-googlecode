@@ -52,45 +52,47 @@
               <p>I was reading in data from a file and expected one particular column to contain either &#8216;true&#8217; or &#8216;false&#8217;.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada&#8230;</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">module </span><span class="module">Kernel</span>
+<div class="typocode"><pre><code class="ruby">
+module Kernel
 
-  <span class="keyword">def </span><span class="method">Boolean</span><span class="punct">(</span><span class="ident">string</span><span class="punct">)</span>
-    <span class="keyword">return</span> <span class="constant">true</span> <span class="keyword">if</span> <span class="ident">string</span> <span class="punct">==</span> <span class="constant">true</span> <span class="punct">||</span> <span class="ident">string</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^true$</span><span class="punct">/</span><span class="ident">i</span>
-    <span class="keyword">return</span> <span class="constant">false</span> <span class="keyword">if</span> <span class="ident">string</span> <span class="punct">==</span> <span class="constant">false</span> <span class="punct">||</span> <span class="ident">string</span><span class="punct">.</span><span class="ident">nil?</span> <span class="punct">||</span> <span class="ident">string</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^false$</span><span class="punct">/</span><span class="ident">i</span>
-    <span class="keyword">raise</span> <span class="constant">ArgumentError</span><span class="punct">.</span><span class="ident">new</span><span class="punct">(&quot;</span><span class="string">invalid value for Boolean: <span class="escape">\&quot;</span><span class="expr">#{string}</span><span class="escape">\&quot;</span></span><span class="punct">&quot;)</span>
-  <span class="keyword">end</span>
+  def Boolean(string)
+    return true if string == true || string =~ /^true$/i
+    return false if string == false || string.nil? || string =~ /^false$/i
+    raise ArgumentError.new("invalid value for Boolean: \"#{string}\"")
+  end
 
-<span class="keyword">end</span>
+end
 
-<span class="ident">require</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">dirname</span><span class="punct">(</span><span class="constant">__FILE__</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">'</span><span class="string">/../test_helper</span><span class="punct">'</span>
+require File.dirname(__FILE__) + '/../test_helper'
 
-<span class="keyword">class </span><span class="class">KernelTest</span> <span class="punct">&lt;</span> <span class="constant">Test</span><span class="punct">::</span><span class="constant">Unit</span><span class="punct">::</span><span class="constant">TestCase</span>
+class KernelTest &lt; Test::Unit::TestCase
 
-  <span class="keyword">def </span><span class="method">test_should_return_true</span>
-    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">true</span><span class="punct">')</span>
-    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">TrUe</span><span class="punct">')</span>
-    <span class="ident">assert_equal</span> <span class="constant">true</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">true</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_should_return_true
+    assert_equal true, Boolean('true')
+    assert_equal true, Boolean('TrUe')
+    assert_equal true, Boolean(true)
+  end
 
-  <span class="keyword">def </span><span class="method">test_should_return_false</span>
-    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">nil</span><span class="punct">)</span>
-    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">false</span><span class="punct">')</span>
-    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">FaLsE</span><span class="punct">')</span>
-    <span class="ident">assert_equal</span> <span class="constant">false</span><span class="punct">,</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="constant">false</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def test_should_return_false
+    assert_equal false, Boolean(nil)
+    assert_equal false, Boolean('false')
+    assert_equal false, Boolean('FaLsE')
+    assert_equal false, Boolean(false)
+  end
 
-  <span class="keyword">def </span><span class="method">test_should_raise_exception</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">true </span><span class="punct">')</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> true</span><span class="punct">')</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> true </span><span class="punct">')</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">false </span><span class="punct">')</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> false</span><span class="punct">')</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string"> false </span><span class="punct">')</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">('</span><span class="string">BLAH</span><span class="punct">')</span> <span class="punct">}</span>
-    <span class="ident">assert_raise</span><span class="punct">(</span><span class="constant">ArgumentError</span><span class="punct">)</span> <span class="punct">{</span> <span class="constant">Boolean</span><span class="punct">(</span><span class="number">1</span><span class="punct">)</span> <span class="punct">}</span>
-  <span class="keyword">end</span>
+  def test_should_raise_exception
+    assert_raise(ArgumentError) { Boolean('true ') }
+    assert_raise(ArgumentError) { Boolean(' true') }
+    assert_raise(ArgumentError) { Boolean(' true ') }
+    assert_raise(ArgumentError) { Boolean('false ') }
+    assert_raise(ArgumentError) { Boolean(' false') }
+    assert_raise(ArgumentError) { Boolean(' false ') }
+    assert_raise(ArgumentError) { Boolean('BLAH') }
+    assert_raise(ArgumentError) { Boolean(1) }
+  end
 
-<span class="keyword">end</span></code></pre></div>
+end
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

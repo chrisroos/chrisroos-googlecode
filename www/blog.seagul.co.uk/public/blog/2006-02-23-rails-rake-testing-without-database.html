@@ -58,15 +58,17 @@
 	<p>To replicate, create a new file called &#8216;default.rake&#8217; in the lib/tasks/ directory within your rails project, and paste in the following code.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">::</span><span class="constant">TASKS</span><span class="punct">.</span><span class="ident">delete</span><span class="punct">('</span><span class="string">default</span><span class="punct">')</span>
-<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
-<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
+<div class="typocode"><pre><code class="ruby">
+Rake::Task::TASKS.delete('default')
+Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
+Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
 
-<span class="ident">task</span> <span class="symbol">:default</span> <span class="keyword">do</span>
-  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">invoke</span>      <span class="keyword">rescue</span> <span class="ident">got_error</span> <span class="punct">=</span> <span class="constant">true</span>
-  <span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">invoke</span> <span class="keyword">rescue</span> <span class="ident">got_error</span> <span class="punct">=</span> <span class="constant">true</span>
-  <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string">Test failures</span><span class="punct">&quot;</span> <span class="keyword">if</span> <span class="ident">got_error</span>
-<span class="keyword">end</span></code></pre></div>
+task :default do
+  Rake::Task[:test_units].invoke      rescue got_error = true
+  Rake::Task[:test_functional].invoke rescue got_error = true
+  raise "Test failures" if got_error
+end
+</code></pre></div>
 
 	<p>Because this relies on the internal implementation of rake (instance variable names and <span class="caps">TASKS</span> constant) it might well do very bad things to versions that aren&#8217;t 0.6.2.</p>
 
@@ -77,8 +79,10 @@
 	<p>Just realised that I don&#8217;t need most of the code above.  All you actually need in default.rake is as follows.  Stoopid Chris.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_units</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span>
-<span class="constant">Rake</span><span class="punct">::</span><span class="constant">Task</span><span class="punct">[</span><span class="symbol">:test_functional</span><span class="punct">].</span><span class="ident">instance_variable_set</span><span class="punct">(</span><span class="symbol">:@prerequisites</span><span class="punct">,</span> <span class="punct">[])</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
+Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>

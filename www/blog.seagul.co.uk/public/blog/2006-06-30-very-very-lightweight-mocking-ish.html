@@ -64,39 +64,43 @@
 	<p>The implementation I have at the moment comprises four methods, although we could quite easily do away with &#8216;stub_instance_method&#8217; (it just adds some safety checking to &#8216;define_instance_method&#8217;).</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">class </span><span class="class">Object</span>
+<div class="typocode"><pre><code class="ruby">
+class Object
 
-  <span class="keyword">def </span><span class="method">metaclass</span>
-    <span class="keyword">class </span><span class="punct">&lt;&lt;</span> <span class="constant">self</span><span class="punct">;</span> <span class="constant">self</span><span class="punct">;</span> <span class="keyword">end</span>
-  <span class="keyword">end</span>
+  def metaclass
+    class &lt;&lt; self; self; end
+  end
 
-  <span class="keyword">def </span><span class="method">define_instance_method</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">block</span><span class="punct">)</span>
-    <span class="ident">metaclass</span><span class="punct">.</span><span class="ident">__send__</span><span class="punct">(</span><span class="symbol">:define_method</span><span class="punct">,</span> <span class="ident">sym</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">block</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def define_instance_method(sym, &#38;block)
+    metaclass.__send__(:define_method, sym, &#38;block)
+  end
 
-  <span class="keyword">def </span><span class="method">stub_instance_method</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">block</span><span class="punct">)</span>
-    <span class="keyword">raise</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{self}</span> does not respond to &lt;<span class="expr">#{sym}</span>&gt; and therefore cannot be stubbed</span><span class="punct">&quot;</span> <span class="keyword">unless</span> <span class="constant">self</span><span class="punct">.</span><span class="ident">respond_to?</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">)</span>
-    <span class="ident">define_instance_method</span><span class="punct">(</span><span class="ident">sym</span><span class="punct">,</span> <span class="punct">&amp;</span><span class="ident">block</span><span class="punct">)</span>
-  <span class="keyword">end</span>
+  def stub_instance_method(sym, &#38;block)
+    raise "#{self} does not respond to &lt;#{sym}&gt; and therefore cannot be stubbed" unless self.respond_to?(sym)
+    define_instance_method(sym, &#38;block)
+  end
 
-  <span class="keyword">def </span><span class="method">__log__</span>
-    <span class="attribute">@__log__</span> <span class="punct">||=</span> <span class="punct">[]</span>
-  <span class="keyword">end</span>
+  def __log__
+    @__log__ ||= []
+  end
 
-<span class="keyword">end</span></code></pre></div>
+end
+</code></pre></div>
 
 	<p>A (partially adapted and potentially non-working) example of this code being used in my tests is as follows.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="keyword">def </span><span class="method">test_should_use_net_http_to_get_html_content</span>
-  <span class="ident">url</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">http://localhost/page.htm</span><span class="punct">'</span>
-  <span class="ident">net_http</span> <span class="punct">=</span> <span class="constant">Object</span><span class="punct">.</span><span class="ident">new</span>
-  <span class="ident">net_http</span><span class="punct">.</span><span class="ident">define_instance_method</span><span class="punct">(</span><span class="symbol">:get</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">path</span><span class="punct">|</span> <span class="ident">__log__</span> <span class="punct">&lt;&lt;</span> <span class="punct">&quot;</span><span class="string">get(<span class="expr">#{path}</span>)</span><span class="punct">&quot;</span> <span class="punct">}</span>
-  <span class="ident">http_client</span> <span class="punct">=</span> <span class="constant">HttpClient</span><span class="punct">.</span><span class="ident">new</span>
-  <span class="ident">http_client</span><span class="punct">.</span><span class="ident">get_html</span><span class="punct">(</span><span class="ident">url</span><span class="punct">,</span> <span class="ident">net_http</span><span class="punct">)</span>
+<div class="typocode"><pre><code class="ruby">
+def test_should_use_net_http_to_get_html_content
+  url = 'http://localhost/page.htm'
+  net_http = Object.new
+  net_http.define_instance_method(:get) { |path| __log__ &lt;&lt; "get(#{path})" }
+  http_client = HttpClient.new
+  http_client.get_html(url, net_http)
 
-  <span class="ident">assert_equal</span> <span class="punct">['</span><span class="string">get(/page.htm)</span><span class="punct">'],</span> <span class="ident">net_http</span><span class="punct">.</span><span class="ident">__log__</span>
-<span class="keyword">end</span></code></pre></div>
+  assert_equal ['get(/page.htm)'], net_http.__log__
+end
+</code></pre></div>
 
 	<p>I define a &#8216;mock&#8217; Net::HTTP object (net_http) that records a message when it gets sent the &#8216;get&#8217; message.  I can then check the log to ensure that the expected method was called; and be (hopefully) safe in the knowledge that when I supply an actual Net::HTTP object the code does what I expect.</p>
         

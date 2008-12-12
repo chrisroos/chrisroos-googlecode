@@ -55,48 +55,49 @@
 	<p>As always, the code is in <a href="http://chrisroos.googlecode.com/svn/trunk/egg/">google code</a> and pasted below for your viewing pleasure&#8230;</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">require</span> <span class="punct">'</span><span class="string">egg-credentials</span><span class="punct">'</span>
+<div class="typocode"><pre><code class="ruby">
+require 'egg-credentials'
 
-<span class="keyword">def </span><span class="method">execute_curl</span><span class="punct">(</span><span class="ident">cmd</span><span class="punct">)</span>
-  `<span class="comment">#{cmd}`</span>
-<span class="keyword">end</span>
+def execute_curl(cmd)
+  `#{cmd}`
+end
 
-<span class="constant">COOKIE_LOCATION</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">/tmp/egg.cookie</span><span class="punct">&quot;</span>
-<span class="constant">STATEMENT_DATE</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">18 January 2007</span><span class="punct">'</span>
+COOKIE_LOCATION = "/tmp/egg.cookie" 
+STATEMENT_DATE = '18 January 2007'
 
-<span class="constant">RECENT_TRANSACTIONS_FILE</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/Desktop/egg-recent-transactions.html</span><span class="punct">'</span>
-<span class="constant">STATEMENT_FILE</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">/Users/chrisroos/Desktop/egg-statement.html</span><span class="punct">'</span>
+RECENT_TRANSACTIONS_FILE = '/Users/chrisroos/Desktop/egg-recent-transactions.html'
+STATEMENT_FILE = '/Users/chrisroos/Desktop/egg-statement.html'
 
-<span class="comment"># Logging in requires a cookie that is set when we first visit the login page</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -c&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://new.egg.com/security/customer/logon?URI=https://new.egg.com/customer/youraccounts&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+# Logging in requires a cookie that is set when we first visit the login page
+curl_cmd = %[curl -s -c"#{COOKIE_LOCATION}" "https://new.egg.com/security/customer/logon?URI=https://new.egg.com/customer/youraccounts"]
+execute_curl curl_cmd
 
-<span class="comment"># POST our login credentials</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; -c&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; -L &quot;https://logon.egg.com/LoginWebServer/services/CustomerLogin&quot; -d&quot;firstName=<span class="expr">#{FIRST_NAME}</span>&quot; -d&quot;lastName=<span class="expr">#{LAST_NAME}</span>&quot; -d&quot;dobDay=<span class="expr">#{DOB_DAY}</span>&quot; -d&quot;dobMonth=<span class="expr">#{DOB_MONTH}</span>&quot; -d&quot;dobYear=<span class="expr">#{DOB_YEAR}</span>&quot; -d&quot;postcode=<span class="expr">#{POSTCODE}</span>&quot; -d&quot;mmn=<span class="expr">#{MOTHERS_MAIDEN_NAME}</span>&quot; -d&quot;password=<span class="expr">#{PASSWORD}</span>&quot; -d&quot;HiddenURI=https%3A%2F%2Fnew.egg.com%2Fcustomer%2Fyouraccounts&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+# POST our login credentials
+curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" -c"#{COOKIE_LOCATION}" -L "https://logon.egg.com/LoginWebServer/services/CustomerLogin" -d"firstName=#{FIRST_NAME}" -d"lastName=#{LAST_NAME}" -d"dobDay=#{DOB_DAY}" -d"dobMonth=#{DOB_MONTH}" -d"dobYear=#{DOB_YEAR}" -d"postcode=#{POSTCODE}" -d"mmn=#{MOTHERS_MAIDEN_NAME}" -d"password=#{PASSWORD}" -d"HiddenURI=https%3A%2F%2Fnew.egg.com%2Fcustomer%2Fyouraccounts"]
+execute_curl curl_cmd
 
-<span class="comment"># List and save recent transactions</span>
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -o&quot;<span class="expr">#{RECENT_TRANSACTIONS_FILE}</span>&quot; -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://your.egg.com/customer/eggcard/recenttransactions.aspx&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+# List and save recent transactions
+curl_cmd = %[curl -s -o"#{RECENT_TRANSACTIONS_FILE}" -b"#{COOKIE_LOCATION}" "https://your.egg.com/customer/eggcard/recenttransactions.aspx"]
+execute_curl curl_cmd
 
-<span class="comment"># There is no sensible way to get your statements.  I'd hope for something like /statements/18-jun-2007.html but no such luck</span>
-<span class="comment"># Instead, there is a zero indexed array of statement dates.  Selecting one of these statement dates allows us to construct</span>
-<span class="comment"># a uri using the index of the date in the list.  So, if 18 June 2007 is the first date in the list (i.e. index 0) then we can view that</span>
-<span class="comment"># statement at https://your.egg.com/customer/eggcard/statements.aspx?index=0</span>
-<span class="comment"># Interestingly, this is how it works from the recent transactions page, from any actual statement page, it appears that this is</span>
-<span class="comment"># too hard (it's not) and instead the developers have resorted to using some magical .net/javascript voodoo to obtain a different</span>
-<span class="comment"># statement.</span>
-<span class="ident">require</span> <span class="punct">'</span><span class="string">rubygems</span><span class="punct">'</span>
-<span class="ident">require</span> <span class="punct">'</span><span class="string">hpricot</span><span class="punct">'</span>
+# There is no sensible way to get your statements.  I'd hope for something like /statements/18-jun-2007.html but no such luck
+# Instead, there is a zero indexed array of statement dates.  Selecting one of these statement dates allows us to construct
+# a uri using the index of the date in the list.  So, if 18 June 2007 is the first date in the list (i.e. index 0) then we can view that
+# statement at https://your.egg.com/customer/eggcard/statements.aspx?index=0
+# Interestingly, this is how it works from the recent transactions page, from any actual statement page, it appears that this is
+# too hard (it's not) and instead the developers have resorted to using some magical .net/javascript voodoo to obtain a different
+# statement.
+require 'rubygems'
+require 'hpricot'
 
-<span class="ident">recent_transactions</span> <span class="punct">=</span> <span class="constant">File</span><span class="punct">.</span><span class="ident">open</span><span class="punct">(</span><span class="constant">RECENT_TRANSACTIONS_FILE</span><span class="punct">)</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">f</span><span class="punct">|</span> <span class="ident">f</span><span class="punct">.</span><span class="ident">read</span> <span class="punct">}</span>
-<span class="ident">doc</span> <span class="punct">=</span> <span class="constant">Hpricot</span><span class="punct">(</span><span class="ident">recent_transactions</span><span class="punct">)</span>
-<span class="ident">statement_dates</span> <span class="punct">=</span> <span class="punct">[]</span>
-<span class="punct">(</span><span class="ident">doc</span><span class="punct">/'</span><span class="string">select#ctl01_content_recenttransactions_lstPreviousStatements/option</span><span class="punct">').</span><span class="ident">each</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">e</span><span class="punct">|</span> <span class="ident">statement_dates</span> <span class="punct">&lt;&lt;</span> <span class="ident">e</span><span class="punct">.</span><span class="ident">inner_text</span> <span class="punct">}</span>
-<span class="ident">statement_index</span> <span class="punct">=</span> <span class="ident">statement_dates</span><span class="punct">.</span><span class="ident">index</span><span class="punct">(</span><span class="constant">STATEMENT_DATE</span><span class="punct">)</span>
+recent_transactions = File.open(RECENT_TRANSACTIONS_FILE) { |f| f.read }
+doc = Hpricot(recent_transactions)
+statement_dates = []
+(doc/'select#ctl01_content_recenttransactions_lstPreviousStatements/option').each { |e| statement_dates &lt;&lt; e.inner_text }
+statement_index = statement_dates.index(STATEMENT_DATE)
 
-<span class="ident">curl_cmd</span> <span class="punct">=</span> <span class="punct">%[</span><span class="string">curl -s -o&quot;<span class="expr">#{STATEMENT_FILE}</span>&quot; -b&quot;<span class="expr">#{COOKIE_LOCATION}</span>&quot; &quot;https://your.egg.com/customer/eggcard/statements.aspx?index=<span class="expr">#{statement_index}</span>&quot;</span><span class="punct">]</span>
-<span class="ident">execute_curl</span> <span class="ident">curl_cmd</span>
+curl_cmd = %[curl -s -o"#{STATEMENT_FILE}" -b"#{COOKIE_LOCATION}" "https://your.egg.com/customer/eggcard/statements.aspx?index=#{statement_index}"]
+execute_curl curl_cmd
 
 </code></pre></div>
         

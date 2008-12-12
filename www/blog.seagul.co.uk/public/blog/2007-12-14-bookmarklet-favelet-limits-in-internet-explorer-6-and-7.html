@@ -61,21 +61,23 @@
 	<p>I used the html page below to test the limits of Internet Explorer.  This is the longest bookmarklet that I could get to work: one more character (a 2 on the end of those numbers, for example) and the bookmarklet won&#8217;t work (it still works if you click the link in the page &#8211; it only fails when used as an actual bookmarklet).</p>
 
 
-<div class="typocode"><pre><code class="typocode_default">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;
+<div class="typocode"><pre><code class="html">
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;a href=&quot;javascript:
+    &lt;a href="javascript:
       var msg = 'hello world, this is my message.  i\'m trying to see how long i can be until internet explorer blows up in my face.';
       var msg = msg + '\n';
       var msg = msg + 'this is the second line of my long message';
       var msg = msg + '\n';
       var msg = msg + '12345679012345678901';
-      alert(msg);&quot;&gt;bookmarklet&lt;/a&gt;
+      alert(msg);"&gt;bookmarklet&lt;/a&gt;
   &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;
+</code></pre></div>
 
 	<p>I noticed that, once added to Internet Explorer, the bookmarklet appeared to be <a href="http://www.blooberry.com/indexdot/html/topics/urlencoding.htm"><span class="caps">URL</span> encoded</a> (my assumption was based on the conversion of spaces to %20.)</p>
 
@@ -86,15 +88,17 @@
 	<p>I tried to replicate this encoded string in <a href="http://www.ruby-lang.org">ruby</a> but failed:  A simple <span class="caps">URI</span>.escape in ruby was escaping too much.  Inspecting the bookmarklet again seemed to suggest that the only encoding performed is to remove newlines and convert spaces to %20.  Replicating this in irb gave me the same string that Internet Explorer had in its favourites.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="ident">irb</span><span class="punct">)</span> <span class="ident">str</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">javascript:
-  var msg = 'hello world, this is my message.  i<span class="escape">\'</span>m trying to see how long i can be until internet explorer blows up in my face.';
-  var msg = msg + '<span class="escape">\n</span>';
+<div class="typocode"><pre><code class="ruby">
+irb) str = "javascript:
+  var msg = 'hello world, this is my message.  i\'m trying to see how long i can be until internet explorer blows up in my face.';
+  var msg = msg + '\n';
   var msg = msg + 'this is the second line of my long message';
-  var msg = msg + '<span class="escape">\n</span>';
+  var msg = msg + '\n';
   var msg = msg + '12345679012345678901';
-  alert(msg);</span><span class="punct">&quot;</span>
-<span class="ident">irb</span><span class="punct">)</span> <span class="ident">p</span> <span class="ident">str</span><span class="punct">.</span><span class="ident">gsub</span><span class="punct">(&quot;</span><span class="string">'<span class="escape">\n</span>'</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">'--NEW-LINE--'</span><span class="punct">&quot;).</span><span class="ident">gsub</span><span class="punct">(&quot;</span><span class="string"><span class="escape">\n</span></span><span class="punct">&quot;,</span> <span class="punct">'</span><span class="string"></span><span class="punct">').</span><span class="ident">gsub</span><span class="punct">(&quot;</span><span class="string">'--NEW-LINE--'</span><span class="punct">&quot;,</span> <span class="punct">&quot;</span><span class="string">'<span class="escape">\n</span>'</span><span class="punct">&quot;).</span><span class="ident">gsub</span><span class="punct">('</span><span class="string"> </span><span class="punct">',</span> <span class="punct">&quot;</span><span class="string">%20</span><span class="punct">&quot;).</span><span class="ident">length</span>
-<span class="punct">=&gt;</span> <span class="number">505</span></code></pre></div>
+  alert(msg);" 
+irb) p str.gsub("'\n'", "'--NEW-LINE--'").gsub("\n", '').gsub("'--NEW-LINE--'", "'\n'").gsub(' ', "%20").length
+=&gt; 505
+</code></pre></div>
 
 	<p>Everything I&#8217;d read about these bookmarklets in Internet Explorer suggested that the limit was 508 characters: the length of the bookmarklet above (once encoded) is only 505 characters.  Adding one more character makes it fail as a bookmarklet.  Hmm, maybe I&#8217;m doing something dumb?</p>
 

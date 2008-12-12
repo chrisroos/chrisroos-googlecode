@@ -55,10 +55,12 @@
 	<p>I found the following script useful in determining exactly which ruby binary textmate was using.</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="comment">#!/usr/bin/env ruby</span>
+<div class="typocode"><pre><code class="ruby">
+#!/usr/bin/env ruby
 
-<span class="ident">require</span> <span class="punct">'</span><span class="string">rbconfig</span><span class="punct">'</span>
-<span class="ident">puts</span> <span class="constant">Config</span><span class="punct">::</span><span class="constant">CONFIG</span><span class="punct">['</span><span class="string">bindir</span><span class="punct">']</span></code></pre></div>
+require 'rbconfig'
+puts Config::CONFIG['bindir']
+</code></pre></div>
 
 	<p>Simply paste that into a textmate document, select it and hit Ctrl-r.  The path of the ruby binary should print right there in the window.</p>
 
@@ -66,9 +68,11 @@
 	<p>To see far more info than you&#8217;ll ever likely need, replace the line starting <code>puts</code> above, with the following..</p>
 
 
-<div class="typocode"><pre><code class="typocode_ruby"><span class="constant">Config</span><span class="punct">::</span><span class="constant">CONFIG</span><span class="punct">.</span><span class="ident">sort</span><span class="punct">.</span><span class="ident">each</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">key</span><span class="punct">,</span> <span class="ident">value</span><span class="punct">|</span>
-    <span class="ident">puts</span> <span class="punct">&quot;</span><span class="string"><span class="expr">#{key}</span> = <span class="expr">#{value}</span></span><span class="punct">&quot;</span>
-<span class="keyword">end</span></code></pre></div>
+<div class="typocode"><pre><code class="ruby">
+Config::CONFIG.sort.each do |key, value|
+    puts "#{key} = #{value}" 
+end
+</code></pre></div>
         
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
