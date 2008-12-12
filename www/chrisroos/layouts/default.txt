@@ -18,7 +18,6 @@ filter:    erb
 <link rel="openid.delegate" href="http://chrisroos.myopenid.com/" />
 
     <title>deferred until inspiration hits</title>
-    <meta name="robots" content="noindex" />
   </head>
 
   <body class="contents">
