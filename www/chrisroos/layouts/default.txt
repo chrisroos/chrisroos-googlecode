@@ -53,26 +53,7 @@ filter:    erb
         <div class="yui-b">
           <img class="avatar" src="/images/me.jpg" width="170px" height="111px" alt="Me" />
 
-<ul class="navigation">
-  <li>
-    <a href="mailto:chris@seagul.co.uk" title="Email me">email me</a>
-  </li>
-  <li>
-    <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">subscribe to atom feed</a>
-  </li>
-  <li>
-    <a href="/contents" title="All posts">all posts</a>
-  </li>
-  <li>
-    <a href="/projects" title="Projects">projects</a>
-  </li>
-  <li>
-    <a href="http://flickr.com/photos/chrisjroos" title="Photos at Flickr">photos</a>
-  </li>
-  <li>
-    <a href="http://www.amazon.co.uk/gp/shops/index.html?ie=UTF8&amp;sellerID=AS1VKYI0VDYE5" title="Books I'm selling on Amazon Marketplace">books i'm selling</a>
-  </li>
-</ul>
+          <%= render(:partial => "navigation") %>
 
 <div id="twitter_div">
   <h3><a href="http://twitter.com/chrisroos" title="My twitter profile">what i'm doing</a></h3>
