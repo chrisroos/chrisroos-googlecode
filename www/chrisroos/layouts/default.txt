@@ -54,13 +54,7 @@ filter:    erb
           <img class="avatar" src="/images/me.jpg" width="170px" height="111px" alt="Me" />
 
           <%= render(:partial => "navigation") %>
-
-<div id="twitter_div">
-  <h3><a href="http://twitter.com/chrisroos" title="My twitter profile">what i'm doing</a></h3>
-  <ul id="twitter_update_list">
-    <li></li>
-  </ul>
-</div>
+          <%= render(:partial => "twitter") %>
 
 <div id="deliciousContainer">
   <h3><a href="http://del.icio.us/chrisjroos" title="Bookmarks at del.icio.us">bookmarks</a></h3>
