@@ -51,7 +51,6 @@ filter:    erb
           </div>
         </div>
         <div class="yui-b">
-          <img class="avatar" src="/images/me.jpg" width="170px" height="111px" alt="Me" />
 
           <%= render(:partial => "navigation") %>
           <%= render(:partial => "delicious") %>
