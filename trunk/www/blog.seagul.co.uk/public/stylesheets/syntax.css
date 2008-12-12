@@ -14,14 +14,6 @@
   overflow:auto;
 }
 
-
-.typocode .lineno {
-  text-align: right;
-  color: #B00;
-  font-family: monospace;
-  padding-right: 1em;
-}
-
 code {
   font-size:120%;
 }
