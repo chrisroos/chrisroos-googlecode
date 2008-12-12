@@ -62,9 +62,7 @@ filter:    erb
     </div>
     
     <%= render(:partial => "twitter") %>
-
-    <script type="text/javascript" src="http://del.icio.us/feeds/json/chrisjroos?count=5"></script>
-<script type="text/javascript" src="/javascripts/delicious.js"></script>
+    <%= render(:partial => "delicious") %>
 
     <script type="text/javascript">
   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

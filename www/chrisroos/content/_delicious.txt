@@ -1,0 +1,5 @@
+---
+filter: erb
+---
+<script type="text/javascript" src="http://del.icio.us/feeds/json/chrisjroos?count=5"></script>
+<script type="text/javascript" src="/javascripts/delicious.js"></script>
