@@ -5,7 +5,7 @@
   
   I discovered the difference when trying to execute the db:migrate task from within another rake task (I already knew it worked when declared as a dependency).
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   # Rakefile
   task :foo do
     Rake::Task['db:migrate'].execute
@@ -20,7 +20,7 @@
   
   I put together a simple example to demonstrate the differences.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   # The task (task_1) and its dependency (to_be_run_before_task_1)
   
   task :to_be_run_before_task_1 do

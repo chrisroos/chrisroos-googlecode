@@ -4,7 +4,7 @@
   
   Grab the "source":http://chrisroos.googlecode.com/svn/trunk/egg-ofx/ from "google code":http://code.google.com.
   
-  <div class="typocode"><pre><code class="shell">
+  <div class="code"><pre><code class="shell">
   svn checkout http://chrisroos.googlecode.com/svn/trunk/egg-ofx
   </code></pre></div>
   

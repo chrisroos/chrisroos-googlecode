@@ -5,7 +5,7 @@
   
   As always, the code is in "google code":http://chrisroos.googlecode.com/svn/trunk/egg/ and pasted below for your viewing pleasure...
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   require 'egg-credentials'
   
   def execute_curl(cmd)

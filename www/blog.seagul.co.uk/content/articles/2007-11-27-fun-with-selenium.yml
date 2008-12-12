@@ -15,7 +15,7 @@
   
   It was around this time that James noticed that we were seeing a pop-up window more than we should have been, i.e. we were seeing a pop-up window when we were expecting to see a lightbox.  This discovery made me happy as up until this stage I'd been blaming selenium for throwing out useless error messages.  In actual fact selenium was reporting the errors correctly: it really couldn't find the element we were looking for (the iframe in the error above) and was therefore timing out.  OK, so if the pop-up was showing in place of the lightbox then it meant that the browser window couldn't be big enough for the lightbox.  Yet we explicitly resize the browser in our test to ensure that the lightbox will fit.
   
-  <div class="typocode"><pre><code class="javascript">
+  <div class="code"><pre><code class="javascript">
   get_eval("this.browserbot.getCurrentWindow().resizeTo(800,800)")
   </code></pre></div>
   

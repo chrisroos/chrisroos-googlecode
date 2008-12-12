@@ -6,13 +6,13 @@
   
   The script lives in "my google code repository":http://chrisroos.googlecode.com.  Check it out from subversion:
   
-  <div class="typocode"><pre><code class="shell">
+  <div class="code"><pre><code class="shell">
   svn co http://chrisroos.googlecode.com/svn/trunk/google-wiki-syntax
   </code></pre></div>
   
   The wiki_convertor script takes two arguments.  The first is the wiki file, or directory containing multiple wiki files, and the second is the output directory.  So, to use it to create an html copy of the "google-doctype":http://code.google.com/doctype/ wiki content, in my home Sites directory, I'd use the following command:
   
-  <div class="typocode"><pre><code class="shell">
+  <div class="code"><pre><code class="shell">
   wiki_convertor.rb ~/Code/third-party/google-doctype/wiki/ ~/Sites/google-doctype/
   </code></pre></div>
   

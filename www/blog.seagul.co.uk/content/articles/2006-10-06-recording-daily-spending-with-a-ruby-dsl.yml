@@ -7,7 +7,7 @@
   
   Anyhoo.  What I really need is a something that illustrates (preferably with big colourful graphs) the amount going out vs the amount coming in.  This needs to be as un-intrusive as possible or I'm not going to use it.  I'd also kinda like to see what sort of things I'm spending on, so that I can maybe shock myself into stopping.  So, I need a record of what I spend my money on.  Enter... The little dsl to do just that.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   payment_mechanisms :cash, :cheque
   
   day '6-oct-2006' do
@@ -21,7 +21,7 @@
   
   There's also a budgeting counterpart.  The idea being that my colourful graphs can show (very clearly) when I go over budget for a given day/week/month etc.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   weekly do
     outgoing 18.00, lunch
     outgoing 40.00, 'train travel'

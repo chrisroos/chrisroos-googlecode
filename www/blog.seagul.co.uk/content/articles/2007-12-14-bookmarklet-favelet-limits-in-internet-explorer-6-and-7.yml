@@ -9,7 +9,7 @@
   
   I used the html page below to test the limits of Internet Explorer.  This is the longest bookmarklet that I could get to work: one more character (a 2 on the end of those numbers, for example) and the bookmarklet won't work (it still works if you click the link in the page - it only fails when used as an actual bookmarklet).
   
-  <div class="typocode"><pre><code class="html">
+  <div class="code"><pre><code class="html">
   <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
   <html>
     <head>
@@ -33,7 +33,7 @@
   
   I tried to replicate this encoded string in "ruby":http://www.ruby-lang.org but failed:  A simple URI.escape in ruby was escaping too much.  Inspecting the bookmarklet again seemed to suggest that the only encoding performed is to remove newlines and convert spaces to %20.  Replicating this in irb gave me the same string that Internet Explorer had in its favourites.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   irb) str = "javascript:
     var msg = 'hello world, this is my message.  i\'m trying to see how long i can be until internet explorer blows up in my face.';
     var msg = msg + '\n';

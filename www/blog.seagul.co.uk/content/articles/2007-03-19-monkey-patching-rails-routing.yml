@@ -6,7 +6,7 @@
   # Permanently redirecting requests for urls that end in a slash to the equivalent url with no slash, helping disambiguate urls, as "explained":http://simonwillison.net/2007/Feb/4/urls/ by "Simon Willison":http://simonwillison.net/.
   # The addition of ActionController::Routing::RouteSet::Mapper#permanently_redirect, allowing us to declare permanent redirections within our "route config":http://api.rubyonrails.com/classes/ActionController/Routing.html.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   ActionController::Routing:Routes.draw do |map|
     map.permanently_redirect 'legacy/view/:id', :controller => 'current', :action => 'show'
   end

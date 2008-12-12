@@ -4,7 +4,7 @@
   
   Code is hosted on "google code":http://chrisroos.googlecode.com/svn/trunk/lloydstsb/, and pasted in all its syntax-highlighted glory below.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   require 'lloydstsb_credentials'
   
   require 'rubygems'

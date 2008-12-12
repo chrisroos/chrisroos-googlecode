@@ -2,7 +2,7 @@
 :body: |-
   I was reading in data from a file and expected one particular column to contain either 'true' or 'false'.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada...
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   module Kernel
   
     def Boolean(string)

@@ -10,7 +10,7 @@
   
   The code is below.  You'll need to add a ruby command in the ruby textmate bundle, setting the intput to 'selected text' or 'nothing', the output to 'show as tooltip' and preferably a hotkey that isn't one of the ones you use every day (however tempting that is).
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   #! /usr/local/bin/ruby
   
   project = ENV['TM_PROJECT_DIRECTORY']

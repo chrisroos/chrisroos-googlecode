@@ -7,7 +7,7 @@
   
   I dug into the code and found the lines that were responsible for sending the email.  Replaying that code in the console allowed me to identify the problem immediately (a missing domain in my case).  I thought I'd paste those few lines here in case they're of some use to someone else.
   
-  <div class="typocode"><pre><code class="ruby">
+  <div class="code"><pre><code class="ruby">
   message, from, to = 'test message', 'sender-email', 'recipient-email'
   s = ActionMailer::Base.server_settings
   Net::SMTP.start(s[:address], s[:port], s[:domain], s[:user_name], s[:password], s[:authentication]) do |smtp| 

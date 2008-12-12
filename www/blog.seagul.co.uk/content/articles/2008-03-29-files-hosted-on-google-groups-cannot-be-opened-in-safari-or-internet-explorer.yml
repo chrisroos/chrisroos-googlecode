@@ -3,7 +3,7 @@
 :body: |-
   I noticed a little while ago that opening a, "Google Groups":http://groups.google.com hosted, file in "Safari":http://www.apple.com/safari/ didn't work.  I have a file at "http://delicious-trackbacks.googlegroups.com/web/installation.html":http://delicious-trackbacks.googlegroups.com/web/installation.html that you can try out if you're so inclined.  Requests for that file result in a page being rendered in Firefox but not in Safari or Internet Explorer (6 at least).  "James":http://interblah.net/ noticed that requests for these hosted files were resulting in a 302 response, as we can see from this "curl":http://curl.haxx.se/ output.
   
-  <div class="typocode"><pre><code class="shell">
+  <div class="code"><pre><code class="shell">
   curl "http://delicious-trackbacks.googlegroups.com/web/installation.html" -v -X"HEAD"
   
   < HTTP/1.1 302 Moved Temporarily

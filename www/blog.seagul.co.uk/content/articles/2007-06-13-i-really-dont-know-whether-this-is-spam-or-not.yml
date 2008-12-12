@@ -19,7 +19,7 @@
   
   * The javascript used to move the links always looks like this.
   
-  <div class="typocode"><pre><code class="javascript">
+  <div class="code"><pre><code class="javascript">
   var el, el2;
   el = document.getElementById('cbceddfd');
   el2 = document.getElementById('cceedfda');
