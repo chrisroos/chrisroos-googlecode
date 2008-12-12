@@ -55,7 +55,7 @@
 	<p>I had been using <a href="http://httpd.apache.org/">apache</a> and <a href="http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html">mod_rewrite</a> to redirect &#8220;chrisroos.co.uk/amazonwishlist&#8221; to my actual wishlist.  I had something like this in my apache config.</p>
 
 
-<div class="typocode"><pre><code>
+<div class="code"><pre><code>
 &lt;VirtualHost *:80&gt;
   ServerAdmin webmaster@seagul.co.uk
   ServerName chrisroos.co.uk
@@ -72,7 +72,7 @@
 	<p>I&#8217;ve replaced that with a much simpler apache config that proxies requests to my new <a href="http://mongrel.rubyforge.org/">mongrel</a> redirection handler thing (<a href="http://chrisroos.co.uk/code/mongrel-redirection">source</a> &#8211; hey, even that <span class="caps">URL</span> passes through my redirection service).</p>
 
 
-<div class="typocode"><pre><code>
+<div class="code"><pre><code>
 &lt;VirtualHost *:80&gt;
   ServerName www.chrisroos.co.uk
   ServerAlias chrisroos.co.uk
@@ -84,7 +84,7 @@
 	<p>Feel free to go run this on your own server if you&#8217;re so inclined.  At the moment you&#8217;ll have to generate the redirection rules by hand.  In irb, you can do something like:</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 # require 'yaml'
 # # For www.example.com
 # rules = { 'www.example.com' =&gt; 'example.com' }
@@ -97,7 +97,7 @@
 	<p>Start the redirection server.</p>
 
 
-<div class="typocode"><pre><code class="shell">
+<div class="code"><pre><code class="shell">
 $ REDIRECTION_PORT=XXXX ruby mongrel-redir.rb &#38;
 $# Leaving out REDIRECTION_PORT will mean that the server starts on port 4000
 $# Leaving out the final ampersand (&#38;) will mean that server runs in the foreground

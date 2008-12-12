@@ -63,7 +63,7 @@
 	<p>This works great but the default output you&#8217;ll get from redirecting <span class="caps">STDOUT</span> won&#8217;t be the same as using <span class="caps">SELECT INTO OUTFILE</span>.  The two main (only?) differences are, in the redirected output, the addition of the headers and that <span class="caps">NULL</span> values are output as <span class="caps">NULL</span> instead of the special \N (backslash-N) sequence.  We can fix both of these things by specifying an optional switch (skip-column-names) to the mysql client and employing some <a href="http://en.wikipedia.org/wiki/Sed">sed</a> magic.</p>
 
 
-<div class="typocode"><pre><code class="shell">
+<div class="code"><pre><code class="shell">
 mysql -h"my-host" -u"my-user" -p"my-password" -e"select * from my-database.my-table" --skip-column-names |\
   sed -e 's/[[:&lt;:]]NULL[[:&gt;:]]/\\N/g' &gt;\
   my-export-directory/my-table.csv`

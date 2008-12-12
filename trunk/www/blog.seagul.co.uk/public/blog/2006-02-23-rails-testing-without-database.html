@@ -58,7 +58,7 @@
 	<p>Just add the code below within the Test::Unit::TestCase declaration in test_helper.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 def self.dont_use_fixtures
   class_eval do
     def self.method_added(method); end
@@ -71,7 +71,7 @@ end
 	<p>This still requires that you add dont_use_fixtures into each test class definition.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 class MyTest &lt; Test::Unit::TestCase
   dont_use_fixtures
   def test_
@@ -86,7 +86,7 @@ end
 	<p>The new code becomes (again, in Test::Unit::TestCase definition in test_helper).</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 def self.method_added(method)
   super unless [:setup, :teardown].include?(method.to_sym)
 end

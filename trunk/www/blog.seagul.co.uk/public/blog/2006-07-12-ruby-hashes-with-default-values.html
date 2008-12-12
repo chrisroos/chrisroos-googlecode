@@ -52,7 +52,7 @@
               <p>I found that on several occasions I&#8217;ve wanted to create a hash that increments the number of instances of a given key.  We could do something manual like.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 hash = Hash.new
 def increment_count(hash, key)
   hash[key] ||= 0 # Sets any new keys to 0.
@@ -63,7 +63,7 @@ end
 	<p>This is fine; but can be written more concisely.  If we supply an object to Hash::new then that object becomes the default value for all missing keys in the hash.  The above example is shortened by one line.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 hash = Hash.new(0)
 def increment_count(hash, key)
   hash[key] += 1
@@ -73,7 +73,7 @@ end
 	<p>A problem arises when we want to use an object that isn&#8217;t immutable (in this case, basically anything other than a Fixnum) as the default value.  The example that I came across a couple of times today was using an empty array as the default value.  If we try to use the same method as above, we experience problems.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 hash = Hash.new(Array.new)
 hash[:key_one]
 =&gt; []
@@ -86,7 +86,7 @@ hash[:key_one]
 	<p>I&#8217;ve known that there was a way around this for a long time but have never bothered to look it up.  I finally got round to looking at it today, and it is, unsurprisingly, very simple.  We supply the hash constructor with a block.  This block is called for any missing key and supplied with the hash and said key.  The example above becomes.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 hash = Hash.new { |hash, key| hash[key] = Array.new }
 hash[:key_one]
 =&gt; []

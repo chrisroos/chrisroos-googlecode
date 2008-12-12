@@ -14,7 +14,7 @@
         <description>&lt;p&gt;I&amp;#8217;ve used this &lt;a href=&quot;http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html&quot;&gt;mod rewrite&lt;/a&gt; trick in the past to inspect the contents of various &lt;a href=&quot;http://httpd.apache.org/&quot;&gt;apache&lt;/a&gt; variables you have access to.&lt;/p&gt;
 
 
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code&gt;
+&lt;div class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code&gt;
 # Add this before any other rewrite rules in your apache config or .htaccess
 RewriteRule .* http://foo?request_uri=%{REQUEST_URI}&amp;#38;the_request=%{THE_REQUEST}&amp;#38;host=%{HTTP_HOST}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -140,14 +140,14 @@ I hope that this is hclphtl to your constituent.
 	&lt;p&gt;The script lives in &lt;a href=&quot;http://chrisroos.googlecode.com&quot;&gt;my google code repository&lt;/a&gt;.  Check it out from subversion:&lt;/p&gt;
 
 
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;
+&lt;div class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;
 svn co http://chrisroos.googlecode.com/svn/trunk/google-wiki-syntax
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 	&lt;p&gt;The wiki_convertor script takes two arguments.  The first is the wiki file, or directory containing multiple wiki files, and the second is the output directory.  So, to use it to create an html copy of the &lt;a href=&quot;http://code.google.com/doctype/&quot;&gt;google-doctype&lt;/a&gt; wiki content, in my home Sites directory, I&amp;#8217;d use the following command:&lt;/p&gt;
 
 
-&lt;div class=&quot;typocode&quot;&gt;&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;
+&lt;div class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;
 wiki_convertor.rb ~/Code/third-party/google-doctype/wiki/ ~/Sites/google-doctype/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 

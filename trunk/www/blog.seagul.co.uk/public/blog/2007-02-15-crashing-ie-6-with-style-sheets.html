@@ -55,7 +55,7 @@
 	<p>Anyway, with the embarrassment out of the way, I thought I&#8217;d share the remotely interesting<sup><a href="#fn1">1</a></sup> findings of the investigation into the browser crash.  It turns out that a combination of these three little lines of <a href="http://en.wikipedia.org/wiki/CSS">css</a>, and any <a href="http://en.wikipedia.org/wiki/Doctype">doctype</a> declaration<sup><a href="#fn2">2</a></sup>, will cause <span class="caps">IE 6</span> to hang while waiting for the magic <a href="http://en.wikipedia.org/wiki/Control-Alt-Delete#Windows_NT">Windows kiss of life</a>.</p>
 
 
-<div class="typocode"><pre><code class="css">
+<div class="code"><pre><code class="css">
 margin-left: 240px;
 margin-right: 10%;
 width: expression(document.body.offsetWidth - 256);
@@ -70,7 +70,7 @@ width: expression(document.body.offsetWidth - 256);
 	<p>For the curious, the simplest html page I could come up with that exhibits the crash behaviour in <span class="caps">IE 6</span> is below.</p>
 
 
-<div class="typocode"><pre><code class="html">
+<div class="code"><pre><code class="html">
 &lt;!-- &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt; --&gt;
 &lt;!-- &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt; --&gt;
 &lt;!-- &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt; --&gt;

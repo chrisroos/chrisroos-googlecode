@@ -58,7 +58,7 @@
 	</ul>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 require 'pop_ssl' # I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version
 
 username = 'YOUR_GMAIL_USERNAME@gmail.com'
@@ -89,7 +89,7 @@ end
 	</ul>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, '/PATH/TO/DOWNLOADED/cacert.pem')
 </code></pre></div>
 
@@ -108,7 +108,7 @@ Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, '/PATH/TO/DOWNLOADED/cacert.pem'
 	<p>Next step was to follow the example on the <a href="http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/classes/Net/POP3.html">net/pop3 page</a>, and, with the addition of the Net::POP3::enable_ssl directive, try to connect.  Hmm, things still weren&#8217;t working quite right.  I was getting the following error.</p>
 
 
-<div class="typocode"><pre><code>
+<div class="code"><pre><code>
 OpenSSL::SSL::SSLError: certificate verify failed
 </code></pre></div>
 

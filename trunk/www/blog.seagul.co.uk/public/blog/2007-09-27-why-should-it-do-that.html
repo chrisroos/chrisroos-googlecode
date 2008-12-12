@@ -55,7 +55,7 @@
 	<p>Anyway, the point of this post is that I realised something about testing that I feel I may have missed in the past.  I&#8217;ve got used to stating the <a href="http://behaviour-driven.org/">behavior</a> of the objects in my system through tests.  So, when I wanted to ensure that an article couldn&#8217;t be created without a title, I added a test like so:</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 class ArticleTest &lt; Test::Unit::TestCase
   def test_should_validate_presence_of_title
     ...
@@ -66,7 +66,7 @@ end
 	<p>In fact, for an article comprised of a title, an edition, a page number and an author, I wanted to ensure that all were there apart from the author.  It was only once I&#8217;d added tests to <a href="http://api.rubyonrails.org/classes/ActiveRecord/Validations.html">validate</a> the presence of the other three attributes that I realised it was probably important to prove that an author wasn&#8217;t required.  So, I added the relevant test.</p>
 
 
-<div class="typocode"><pre><code class="ruby">
+<div class="code"><pre><code class="ruby">
 class ArticleTest &lt; Test::Unit::TestCase
   def test_should_not_validate_presence_of_author
     ...

@@ -52,7 +52,7 @@
               <p>I noticed a little while ago that opening a, <a href="http://groups.google.com">Google Groups</a> hosted, file in <a href="http://www.apple.com/safari/">Safari</a> didn&#8217;t work.  I have a file at <a href="http://delicious-trackbacks.googlegroups.com/web/installation.html">http://delicious-trackbacks.googlegroups.com/web/installation.html</a> that you can try out if you&#8217;re so inclined.  Requests for that file result in a page being rendered in Firefox but not in Safari or Internet Explorer (6 at least).  <a href="http://interblah.net/">James</a> noticed that requests for these hosted files were resulting in a 302 response, as we can see from this <a href="http://curl.haxx.se/">curl</a> output.</p>
 
 
-<div class="typocode"><pre><code class="shell">
+<div class="code"><pre><code class="shell">
 curl "http://delicious-trackbacks.googlegroups.com/web/installation.html" -v -X"HEAD" 
 
 &lt; HTTP/1.1 302 Moved Temporarily

@@ -1,4 +1,4 @@
-.typocode {
+.code {
   background-color:#eee;
   padding:2px;
   margin:5px;
@@ -6,7 +6,7 @@
   margin-bottom:1em;
 }
 
-.typocode pre {
+.code pre {
   padding: 0px;
   margin: 0px;
   background: transparent;
