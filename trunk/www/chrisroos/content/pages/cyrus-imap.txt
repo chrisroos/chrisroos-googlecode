@@ -4,16 +4,8 @@ filter:
 - erb
 - textile
 created_at: 2005-10-02 20:16:58 +01:00
+layout: page
 ---
-h1. <%= h(@page.title) %>
-
-<p class="postedOn">
-  Posted by Chris Roos
-  <span title="<%= formatted_created_date(@page) %>">
-    <%= formatted_created_date(@page) %>
-  </span>
-</p>
-
 I've spent some time today looking into getting "Cyrus Imap":http://asg.web.cmu.edu/cyrus/ installed on "FreeBsd":http://www.freebsd.org 5.3R.
 
 I haven't got too far yet but think I've probably learned a few things I didn't know.
