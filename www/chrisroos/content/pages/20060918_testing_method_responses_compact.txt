@@ -5,6 +5,15 @@ filter:
 - textile
 created_at: 2006-09-18 21:47:00 +01:00
 ---
+h1. <%= h(@page.title) %>
+
+<p class="postedOn">
+  Posted by Chris Roos
+  <span title="<%= formatted_created_date(@page) %>">
+    <%= formatted_created_date(@page) %>
+  </span>
+</p>
+
 <div class="code"><pre><code class="ruby">
 require 'test/unit'
 
