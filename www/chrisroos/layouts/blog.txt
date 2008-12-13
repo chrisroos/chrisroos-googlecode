@@ -22,6 +22,28 @@ filter:    erb
           <%= render(:partial => "/google-search") %>
 
         </div>
+        <div class="navigation">
+          <% posts = @pages.find(:all, :in_directory => "blog", :sort_by => "created_at") %>
+          <% post_index = posts.index(@page) %>
+        
+          <% if previous_post = posts[post_index - 1] %>
+            <span class="previousPost">
+              &larr; (older)
+              <a class="previousPost" href="<%= previous_post.url %>" title="<%= h(previous_post.title) %>">
+                <% previous_post_title = previous_post.title.length > 55 ? previous_post.title[0..55] + '...' : previous_post.title %>
+                <%= h(previous_post_title) %>
+              </a> 
+            </span>
+          <% end %>
+          <% if next_post = posts[post_index + 1] %>
+            <span class="nextPost">
+              <a class="nextPost" href="<%= next_post.url %>" title="<%= h(next_post.title) %>">
+                <% next_post_title = next_post.title.length > 55 ? next_post.title[0..55] + '...' : next_post.title %>
+                <%= h(next_post_title) %>
+              </a> (newer) &rarr;
+            </span>
+          <% end %>
+        </div>
       </div>
       <div id="bd">
         <div id="yui-main">
