@@ -4,16 +4,8 @@ filter:
 - erb
 - textile
 created_at: 2006-09-18 21:45:42 +01:00
+layout: page
 ---
-h1. <%= h(@page.title) %>
-
-<p class="postedOn">
-  Posted by Chris Roos
-  <span title="<%= formatted_created_date(@page) %>">
-    <%= formatted_created_date(@page) %>
-  </span>
-</p>
-
 <div class="code"><pre><code class="ruby">
 class Foo
   def foo; end; public :foo
