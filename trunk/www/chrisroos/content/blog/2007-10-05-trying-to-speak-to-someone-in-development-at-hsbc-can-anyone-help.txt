@@ -1,0 +1,18 @@
+--- 
+guid: bdbb76c5-3530-4613-869c-9bffa7774b03
+title: Trying to speak to someone in development at Hsbc - can anyone help?
+filter: 
+- erb
+- textile
+created_at: 2007-10-05 08:43:00 +01:00
+layout: blog
+---
+I'm almost 100% certain that there's a "bug":http://twitter.com/chrisroos/statuses/247143372 in the Hsbc Internet Banking site.
+
+My account is overdrawn yet the balance shows as positive when I download my transactions in either 'Money 98 onwards (ofx)' or 'Quicken 2002 (ofx)'.  I believe that section 3.2.9.2 of the "Ofx":http://www.ofx.net 2.1.1 spec explains that these balances should be shown as negative.
+
+I've tried to "email":http://www.flickr.com/search/?w=31365693@N00&q=hsbc+AND+ofx&m=tags and I've "tried":http://twitter.com/chrisroos/statuses/279942352 "to":http://twitter.com/chrisroos/statuses/279956472 "call":http://twitter.com/chrisroos/statuses/313632312 "hsbc":http://twitter.com/chrisroos/statuses/313656682.  Both to no avail.
+
+Does anyone know anyone that works at Hsbc and might be able to get a message to someone in development?  If not, what's the etiquette on facebook groups?  I notice that there a few hsbc groups - can I just post messages to them asking for help?
+
+I've gotten so used to dealing with "real":http://www.wesabe.com companies that I'd forgotten how the old world works.

@@ -1,0 +1,32 @@
+--- 
+guid: 4c56508e-363a-4446-8526-470ee95be326
+title: Asking South Eastern about their crappy seats
+filter: 
+- erb
+- textile
+created_at: 2008-07-21 21:08:55.257556 +01:00
+layout: blog
+---
+I regularly travel on the "South Eastern":http://southeasternrailway.co.uk/ service from "Waterloo East":http://en.wikipedia.org/wiki/Waterloo_East_railway_station to "Ramsgate":http://en.wikipedia.org/wiki/Ramsgate.  The train splits at "Ashford":http://en.wikipedia.org/wiki/Ashford_International and I end up having to sit in the shitty commuter seats for the last 45 minutes (or so) of the journey.  I emailed South Eastern to ask if they couldn't reconfigure the train so that, of the eight cars that go to Dover, four could have commuter seats and four could have real seats.  They could then send the other four cars, with real seats, to Ramsgate.  I don't think I have the original email that I sent (feedback forms in general suffer from the problem that the sender doesn't retain a copy of what's been sent) but their reply is below ("original here":http://flickr.com/photos/chrisjroos/2688362397/).
+
+<div class="letter">
+Ref: 329980 / 93994
+
+Dear Mr Roos
+
+Formation of 17.59 Waterloo East to Ramsgate Service
+
+Thank you for your email of 2nd May
+
+I am sorry that you have found the seating on the rear four carriages of the above service to be uncomfortable. These are the higher density carriages that have 2+3 seating across the coach, rather than 2+2 seating, and are intended to deal with the heavy demand we face during the busy peak periods. We know that everyone would prefer all our trains to have 2+2 seating throughout. However, we have to utilise the higher density seating layout in order to provide enough seats for our London commuters.
+
+For a number of operational factors (for example, rolling stock maintenance), it is difficult to locate a set of four higher density carriages in the middle of a twelve-coach train, where the front and rear portions are formed of 2+2 seating. The usual procedure is to have four or eight carriages which are the same, and to have an additonai four carriages of either the higher density or 2+2 rolling stock. In addition to this, we have to look at the wider picture and consider what is needed for later services or on the following morning (as a rule, it is not possible to "mix-and-match" rolling stock to it each journey).
+
+For these reasons, it is unlikely that we will be able to make the change that to have requested. Thank you, however, for sharing your concerns with us. Passenger feedback, whether good or bad, is always appreciated so that we can continue to improve on the service we offer, and I hope you can be reassured that we take all issues very seriously.
+
+Yours sincerely
+
+David Eustace
+
+Southeastern Customer Services
+</div>

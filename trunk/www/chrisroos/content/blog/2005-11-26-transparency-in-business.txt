@@ -1,0 +1,20 @@
+--- 
+guid: 906607c8-9b89-4cbb-8394-2a8fed59610b
+title: Transparency in business
+filter: 
+- erb
+- textile
+created_at: 2005-11-26 22:55:00 +00:00
+layout: blog
+---
+This started out as a few paragraphs at the end of the "previous post":http://blog.seagul.co.uk/articles/2005/11/26/it-should-be-easy-to-cancel-online-accounts but I thought it better suited on it's own.
+
+In my current thinking, I basically equate transparency with confidence.  Traditionally, people don't tell you how much things cost (a sweeping statement I know).  They may have example prices that can be negotiated on, advertised prices with small print (that alters the same) or just try very hard to hide the pricing altogether[1].  I believe that if you're confident in your product/service you will have no reason to obfuscate the price (in these and other ways).  If you don't have to disguise your price then you are able to place it very prominently on your site.  It turns out to be the same folks prominently "displaying":http://www.strongspace.com/plans "their":http://www.basecamphq.com/signup "pricing":http://www.dropsend.com/pricingsignup.php also making it very easy to cancel your account (see now how it links to the previous post?).
+
+I'm thinking that you have to be pretty confident to offer this level of transparency in your product/service; hence my initial statement.  As a slight aside/addition, most of the services that are following this style (is it coincidence they seem to be web 2.0/agile folks?) also offer free versions of their services which again indicates their confidence.
+
+Transparency as a buzzword seems to increasing in popularity with the folks at "riffs":http://www.riffs.com even using it to describe their "privacy policy":http://www.riffs.com/doc.cgi?section=privacy.
+
+I'm sure there's probably meaning somewhere in this disjointed ramble but having just re-read it I'm not so sure.  Maybe I'll revisit it at some point, but then again, maybe I wont; we'll see.
+
+fn1. This was particularly annoying just recently when I was looking for a new broadband provider.  Of all the websites I visited, I don't recall being able to find conclusive pricing on any of them.  Some would quote a monthly price but actually expect a year up front while other's might quote a genuine monthly cost but then make it very difficult to find minimum contract terms, and even more difficult to find the cost of breaking those terms.

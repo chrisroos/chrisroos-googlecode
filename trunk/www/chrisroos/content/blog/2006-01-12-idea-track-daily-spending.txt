@@ -1,0 +1,14 @@
+--- 
+guid: a734d2e5-8c67-4bb2-8a9d-44bbe85d105e
+title: Idea - Track daily spending...
+filter: 
+- erb
+- textile
+created_at: 2006-01-12 10:16:58 +00:00
+layout: blog
+---
+... and aggregate the data.  Compare average daily spend between people.
+
+Doesn't ask for any personal data, including what it was spent on, just how much.  May or (most likely) may not be useful in a social kinda way.
+
+Probably not.

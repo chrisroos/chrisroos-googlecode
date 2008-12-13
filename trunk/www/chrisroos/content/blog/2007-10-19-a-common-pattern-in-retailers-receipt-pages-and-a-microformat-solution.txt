@@ -1,0 +1,59 @@
+--- 
+guid: 67a24999-5586-4da3-b029-de9730431b37
+title: A common pattern in retailers' receipt pages (and a microformat solution)
+filter: 
+- erb
+- textile
+created_at: 2007-10-19 07:58:00 +01:00
+layout: blog
+---
+We've been looking at embedding a little bit of javascript in one of our partner's receipt pages to send us the details of which products were purchased (using "SKUs":http://en.wikipedia.org/wiki/Stock_Keeping_Unit).  A quick glance over the page revealed that nine other providers ("GA":http://www.google.com/analytics/, an "SEO":http://en.wikipedia.org/wiki/Search_engine_optimization helper and a bunch of price comparators) had the same idea.  That's the same data repeated nine times.  Ten if you include the human readable copy.  Now that seems like a problem waiting to be solved to me.  It also feels like a perfect fit for "microformats":http://microformats.org/.  If we had a "receipt microformat":http://microformats.org/wiki/receipt then we could use javascript to parse the data rather than having to re-define it each time.  We would also be removing all duplication and creating semantically rich content (I guess that's basically what microformats do anyway) in the process.
+
+So, something that might currently look like this:
+
+<typo:code lang="html">
+<table>
+  <tr>
+    <th>Order Number</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>£19.99</td>
+  </tr>
+</table>
+
+<script type="text/javascript" charset="utf-8">
+  var order_id = 1
+  var price = 1999
+</script>
+<script src="http://MY-PRICE-COMPARATOR" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+  var orderNumber = 1
+  var price = 19.99
+</script>
+<script src="http://MY-SEO-HELPER" type="text/javascript" charset="utf-8"></script>
+
+<!-- And repeat... -->
+</code></pre></div>
+
+Could become much simpler:
+
+<typo:code lang="html">
+<table>
+  <tr>
+    <th>Order Number</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td class="orderNumber">1</td>
+    <td class="orderPrice"><span class="orderCurrency">£</span>19.99</td>
+  </tr>
+</table>
+
+<script src="http://MY-PRICE-COMPARATOR" type="text/javascript" charset="utf-8"></script>
+<script src="http://MY-SEO-HELPER" type="text/javascript" charset="utf-8"></script>
+</code></pre></div>
+
+There has been discussion of such a "receipt microformat":http://microformats.org/wiki/receipt but a quick search seemed to suggest that it hasn't been discussed in the context of this specific problem.  Maybe I'll go add my voice to that discussion...

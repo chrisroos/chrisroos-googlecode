@@ -1,0 +1,39 @@
+--- 
+guid: bad3b2d6-3353-4df9-94ed-73df516a11dc
+title: Cross browser (well, IE 6, Firefox 2 and Safari 3) bookmarklet script
+filter: 
+- erb
+- textile
+created_at: 2007-12-14 21:27:00 +00:00
+layout: blog
+---
+I "mentioned":http://blog.seagul.co.uk/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7 that I'd been playing with bookmarklets in Internet Explorer 6 (among other, proper, browsers).
+
+I thought it might be useful to paste the script that bootstraps the bookmarklet.  The concept is that we use the bookmarklet javascript to insert a script tag into the page that links to the full javascript file containing the function(s) that we wish to execute.  I know this has been documented elsewhere and I've probably missed some important stuff out but it may prove useful to someone.
+
+h3. The commented, un-compressed, version
+
+<typo:code lang="javascript">
+if (typeof(rvmBM) == 'undefined') { // Best to name rvmBM to something unlikely to clash with pre-defined variables
+  var s = document.createElement('script'); // Use of s versus script saves some precious space
+  s.type = 'text/javascript';
+  s.src = 'http://example.com/my-external-bookmarklet.js'; // The location of your bookmarklet javascript that does all the work
+  void(rvmBM = true); // Prevent the bookmarklet javascript from being loaded multiple times by setting this flag
+  void(document.body.appendChild(s)); // Place the script tag in the body of the document
+  // If we don't use void() above then we end up writing either 'true' or some junk to the screen in Internet Explorer (only)
+};
+function addRvm() { // A wrapper function around the actual function we want to call
+  if (typeof(addReevooMark) == 'function') { // We want to make sure our bookmarklet function is defined (there's some delay in it becoming available in Firefox.  It's defined immediately in Internet Explorer.)
+    addReevooMark();
+  } else {
+    void(setTimeout(addRvm, 100)); // If our function isn't ready yet we'll just hang on 1/10th of a second and try again
+  };
+};
+addRvm(); // Ask our wrapper function to call the actual bookmarklet function
+</code></pre></div>
+
+h3. The compressed version
+
+<typo:code lang="javascript">
+javascript:if(typeof(rvmBM)=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.src='http://example.com/my-external-bookmarklet.js';void(rvmBM=true);void(document.body.appendChild(s));};function addRvm(){if(typeof(addReevooMark)=='function'){addReevooMark();}else{void(setTimeout(addRvm,100));};};addRvm();
+</code></pre></div>

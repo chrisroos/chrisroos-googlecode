@@ -1,0 +1,105 @@
+--- 
+guid: 1e94dada-3fc9-467a-9d4d-422933d995a9
+title: Getting to grips with pwdhash
+filter: 
+- erb
+- textile
+created_at: 2007-04-11 22:27:00 +01:00
+layout: blog
+---
+h3. Overview
+
+Having used "pwdhash":http://www.pwdhash.com for a while, I decided it was about time I dived into the implementation to see what was actually going on.  I figured that the best way for me to get an understanding of the library was to translate it from "javascript":http://en.wikipedia.org/wiki/Javascript to "ruby":http://www.ruby-lang.org.
+
+h3. Investigating the javascript libraries
+
+The first step was to create a basic environment within which I could explore the existing javascript functionality.  Relying on "Firebug":http://www.getfirebug.com/ to provide a javascript console, this was as simple as creating a very basic html page.
+
+<div class="code"><pre><code class="html">
+<html>
+  <head>
+    <script type="text/javascript" src="md5.js" />
+    <script type="text/javascript" src="hashed-password.js" />
+    <title>pwdhash client</title>
+  </head>
+  <body>
+  </body>
+</html>
+</code></pre></div>
+
+It actually took me a good few minutes to get up and running with this environment.  It seems that "hashed-password.js":http://crypto.stanford.edu/PwdHash/RemotePwdHash/hashed-password.js relies on a variable, SPH_kPasswordPrefix, being defined.  Although defined in "pwdhash.js":http://crypto.stanford.edu/PwdHash/RemotePwdHash/pwdhash.js, it turns out to be our only dependency on that file.  In wanting to keep the environment as simple as possible, I chose to copy the definition of that variable to hashed-password.js, allowing us to remain independent of pwdhash.js.
+
+h3. Starting to implement the javascript functions in ruby
+
+Knowing that "md5.js":http://pajhome.org.uk/crypt/md5/md5src.html implemented pretty standard "md5":http://en.wikipedia.org/wiki/Md5 ("rfc":http://www.faqs.org/rfcs/rfc1321.html) and "hmac":http://en.wikipedia.org/wiki/Hmac ("rfc":http://www.faqs.org/rfcs/rfc2104.html) routines, for which there are equivalents in ruby, I chose to concentrate on translating hashed-password.js.  Although the code is pretty simple, it took me a while to understand because of my limited javascript knowledge.  We essentially construct an object (SPH_HashedPassword), supplying it with password and realm (domain), that generates, and represents, the hashed password.
+
+The very first thing that a newly created SPH_HashedPassword does, is to use the b64_hmac_md5 function, supplied in the md5.js library, to generate the initial hash.  I really didn't expect to be tripped up quite this early on, but I just couldn't replicate the value obtained from b64_hmac_md5 (using "digest/md5":http://ruby-doc.org/stdlib/libdoc/digest/rdoc/index.html and "ruby-hmac":http://deisui.org/~ueno/ruby/hmac.html.)  I now realise that I didn't fully understand what I was actually trying to replicate - I really should have paid more attention to those three little letters (b64 / "base64":http://www.faqs.org/rfcs/rfc3548.html) at the beginning of the function name...
+
+h3. Back to the drawing-board - starting to implement the md5.js library in ruby
+
+Without thinking about it as much as I should have, I decided that maybe I needed to implement the functionality provided in md5.js in ruby ("code":http://chrisroos.googlecode.com/svn/trunk/pwdhash-rb/md5-rb/md5.rb for reference).  I dived in and started replicating one function at a time.  All was going OK until I came across the "zero fill right shift":http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Guide:Operators:Bitwise_Operators#Bitwise_Shift_Operators bitwise operator in javascript.  There is no standard equivalent in ruby, but a little help from the "mailing list":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/144877 allowed me to come up with this implementation.
+
+<div class="code"><pre><code class="ruby">
+class Integer
+  def zero_fill_right_shift(count)
+    (self >> count) & ((2 ** (size_in_bits-count))-1) # defined in Integer, size_in_bits is self.size * 8
+  end
+end
+</code></pre></div>
+
+Although this allowed me to move a little further, progress completely ground to a halt when trying to replicate the bit_rol function.  It seems that bitwise left-shifting by a negative number offers a different result in javascript and ruby.
+
+<div class="code"><pre><code>
+javascript: 1 << -1 = -2147483648
+ruby: 1 << -1 = 0
+</code></pre></div>
+
+h3. Back to the drawing-board (again) - using digest/md5 and ruby-hmac to replicate the results given by md5.js
+
+This time, I decided to break the b64_hmac_md5 function down into its component parts and see which, if any, differed between ruby and javascript.  The first step was to compare the hex output of a simple md5 of a string.
+
+<div class="code"><pre><code>
+javascript: hex_md5(text) => "1cb251ec0d568de6a929b520c4aed8d1"
+ruby: Digest::MD5.new(text).hexdigest => 1cb251ec0d568de6a929b520c4aed8d1
+</code></pre></div>
+
+Next up was a comparison of an HMAC MD5 of a key and some data.
+
+<div class="code"><pre><code>
+javascript: hex_hmac_md5(key, data) => "9d5c73ef85594d34ec4438b7c97e51d8"
+ruby: HMAC::MD5.hexdigest(key, data) => "9d5c73ef85594d34ec4438b7c97e51d8"
+</code></pre></div>
+
+Although we can easily replicate the result of hex_hmac_md5 in ruby, we actually want to replicate the result of b64_hmac_md5 (i.e. the hashed data encoded in base64 representation.)
+With a bit of thinking, and some trial and error, I realised that I needed to calculate the binary digest of the key and data, and then base64 encode the result.  *Note*.  My original problems arose when comparing the output of the binary string data, what with Javascript being able to display unicode characters and ruby just displaying their code points in octal representation.
+
+<div class="code"><pre><code>
+javascript: b64_hmac_md5(key, data) => "nVxz74VZTTTsRDi3yX5R2A"
+ruby: # This requires both ruby-hmac and base64
+ruby: Base64.encode64(HMAC::MD5.digest(key, data)) => "nVxz74VZTTTsRDi3yX5R2A=="
+</code></pre></div>
+
+This is the first time we see any difference in the values obtained from javascript and ruby.  It turns out that there's a clue to this difference in the md5.js library:
+
+<div class="code"><pre><code class="javascript">
+var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
+</code></pre></div>
+
+Ok, so it seems I should just be able to remove the pad characters (=) from my generated hash and I'll achieve the same value.  Happy that this was a pretty easy difference to resolve, I could move forward with actually implementing the pwdhash magic in ruby...
+
+h3. Implementing the pwdhash magic in ruby
+
+The pwdhash specific stuff is actually very simple.  It alters the initial base 64 encoded hash to ensure that we have:
+
+* One upper case char
+* One lower case char
+* One non alpha-numeric char
+* One number
+
+So, having got over the first hurdle, the remainder of the translation was pretty simple.  In fact, in its current "incarnation":http://chrisroos.googlecode.com/svn/trunk/pwdhash-rb/pwdhash.rb (revision 62), there are only a few small syntactical differences between the javascript and ruby versions.
+
+h3. Next steps
+
+Rubify the code.  Although I've copied it almost directly from the javascript I think I've actually managed to make it slightly less readable.
+
+Investigate the whole world of "unicode":http://www.unicode.org a bit more - I definitely don't know as much about it as I should.
