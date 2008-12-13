@@ -1,6 +1,6 @@
 class Page
   
-  attr_accessor :name, :title, :body, :created_at, :updated_at
+  attr_accessor :name, :title, :body, :created_at
   
   def initialize(attributes)
     attributes.each do |attribute, value|
