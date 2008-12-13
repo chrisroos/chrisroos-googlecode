@@ -9,7 +9,7 @@ filter:    erb
 
   <head>
     <%= render(:partial => "/html-header") %>
-    <title>deferred until inspiration hits</title>
+    <title><%= @page.title %> - deferred until inspiration hits</title>
   </head>
 
   <body class="contents">
