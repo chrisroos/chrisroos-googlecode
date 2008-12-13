@@ -1,0 +1,43 @@
+--- 
+guid: 2e2b020d-7a31-49c6-a7ed-945f600c37f3
+title: Fun with Selenium
+filter: 
+- erb
+- textile
+created_at: 2007-11-27 09:36:00 +00:00
+layout: blog
+---
+"James":http://interblah.net/ and I spent a frustrating, but rewarding, day last Tuesday trying to fix what, for at least four hours, seemed to be a non-reproducible error.  "We've":http://www.reevoo.com used "selenium":http://www.openqa.org/selenium/ for a while to test that our reevoomark application is working as expected.  Every so often, some of these reevoomark tests would fail, with either of the following two messages:
+
+<pre>
+Message: SeleniumCommandError: Timed out after 30000ms
+Message: SeleniumCommandError: ERROR: Element xpath=//iframe/ not found
+</pre>
+
+To my knowledge it was never possible to get these tests to fail on any machine apart from our "continuous integration":http://en.wikipedia.org/wiki/Continuous_Integration box.  And even then the failures were intermittent.  Because these failures were so intermittent no-one had invested any real time in trying to find their cause.  Tuesday seemed a bit different though: the tests were failing almost all the time and we decided to do something about it.
+
+I'll leave out all of the dead-ends we found and, instead, home-in on the patterns we started to see that led to the eventual resolution.
+
+One of the reevoomarks we offer opens the reviews up in a "lightbox":http://en.wikipedia.org/wiki/Lightbox_%28JavaScript%29.  However, if the screen isn't quite large enough for our content we open it in a standard pop-up window instead.  I'll pop an example reevoomark at the bottom of this post so you can see exactly what I mean (you'll obviously have to resize your browser to see the effect).  We noticed that our tests would fail when another copy of firefox was already open on our continuous integration box.  Toggling this on and off gave us some confidence that this was, at least one of, the causes of the failures.  We were still unable to reproduce this locally though.
+
+It was around this time that James noticed that we were seeing a pop-up window more than we should have been, i.e. we were seeing a pop-up window when we were expecting to see a lightbox.  This discovery made me happy as up until this stage I'd been blaming selenium for throwing out useless error messages.  In actual fact selenium was reporting the errors correctly: it really couldn't find the element we were looking for (the iframe in the error above) and was therefore timing out.  OK, so if the pop-up was showing in place of the lightbox then it meant that the browser window couldn't be big enough for the lightbox.  Yet we explicitly resize the browser in our test to ensure that the lightbox will fit.
+
+<div class="code"><pre><code class="javascript">
+get_eval("this.browserbot.getCurrentWindow().resizeTo(800,800)")
+</code></pre></div>
+
+We used the one and only javascript debugging technique (<code>alert(msg)</code>) to determine that the window was indeed too small for our lightbox.  But hang on, if there wasn't another Firefox instance open then the browser *was* big enough.  So somehow, the presence of another Firefox browser was affecting the maximum size that we could resize our browser to.  It turns out it's all to do with the maximum height that Firefox thinks it can expand to.  On a Mac with a hidden dock (or with the dock positioned to the side) the maximum height will be from the status bar at the top of the screen to the bottom of the screen.  With a dock visible at the bottom of the screen the maximum height will be from the status bar at the top of the screen to the top of the dock.  It's not quite this simple though: Firefox appears to look at the height of the oldest open firefox window to make its decision too.  Although we had the dock at the bottom of the screen our tests were actually passing on some occasions.  This was due to selenium opening its browser at almost full screen, allowing subsequent windows to be resized to these same dimensions which happen to be plenty big enough for our lightbox.  If we already had another firefox instance open (which by default would open at a maximum height of status bar to top of dock) then our selenium browser could only resize to this height, which wasn't big enough for our lightbox to appear.  Phew.
+
+So, the result of this entire day's work?  Moving the dock to the right hand side of the screen.  Excellent.
+
+h3. Sample lightbox reevoomark
+
+<notextile>
+<script type="text/javascript" charset="utf-8">
+  rvo_format='image_horizontal250x40';
+  rvo_product_id='1'
+  rvo_retailer_ref='rev';
+  rvo_version = 2;
+</script>
+<script type="text/javascript" src='http://www.revieworld.com/javascripts/reevoomark.js'></script>
+</notextile>

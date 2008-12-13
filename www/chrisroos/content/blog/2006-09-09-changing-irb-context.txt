@@ -1,0 +1,29 @@
+--- 
+guid: 553ca94e-9491-4803-8238-e2a6479a9c27
+title: Changing Irb context
+filter: 
+- erb
+- textile
+created_at: 2006-09-09 12:16:00 +01:00
+layout: blog
+---
+I picked up on this yesterday and now cannot find the article (it was something to do with manipulating a rails app from the console).  Sorry.
+
+<div class="code"><pre><code>
+irb(main):001:0> class Foo
+irb(main):002:1> private
+irb(main):003:1> def bar
+irb(main):004:2> 'bar'
+irb(main):005:2> end
+irb(main):006:1> end
+=> nil
+irb(main):007:0> Foo.new.bar
+NoMethodError: private method `bar' called for #<Foo:0x358304>
+        from (irb):7
+        from :0
+irb(main):009:0> irb Foo.new # IMPORTANT BIT
+irb#1(#<Foo:0x31c5fc>):001:0> bar
+=> "bar"
+</code></pre></div>
+
+Although cool, I can't think of any situations where this would have been useful.  Ho hum.

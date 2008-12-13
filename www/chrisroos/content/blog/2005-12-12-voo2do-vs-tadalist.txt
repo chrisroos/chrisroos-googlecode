@@ -1,0 +1,16 @@
+--- 
+guid: ca03363d-ef79-4221-afec-54febbb66552
+title: voo2do vs tadalist
+filter: 
+- erb
+- textile
+created_at: 2005-12-12 08:36:00 +00:00
+layout: blog
+---
+I was taking a look at the "best web 2.0 software":http://web2.wsj2.com/the_best_web_20_software_of_2005.htm when I came across a to do list alternative to "tada":http://www.tadalist.com called "voo2do":http://voo2do.com/.
+
+I just signed up to take a look, but unfortunately wasn't amazingly impressed.  Fortunately it is easy to "cancel your account":http://blog.seagul.co.uk/articles/2005/11/26/it-should-be-easy-to-cancel-online-accounts.
+
+It is obviously subjective but the interface to voo2do isn't amazing, although there is some great use of Ajax to let you tab between input fields when entering tasks.  I also found it too complicated for my simple mind.  I guess I think a to do list should literally be a list of one line items that need to be done at some/any point in time (which is exactly what tada offers, nothing more and nothing less).  I think that once you need something more than that, it probably doesn't live on a todo list but in something slightly more structured.
+
+I certainly think there are improvements that could be made to tada (some of which can be overcome with the use of "greasemonkey":http://greasemonkey.mozdev.org/ and this "tada user script":http://userscripts.org/scripts/show/754) but for now it's going to be what I stick with.

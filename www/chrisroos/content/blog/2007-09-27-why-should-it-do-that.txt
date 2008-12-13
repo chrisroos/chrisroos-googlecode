@@ -1,0 +1,40 @@
+--- 
+guid: cee9558c-8dc6-4952-bb7b-ee6e5a2a50fd
+title: Why should it do that?
+filter: 
+- erb
+- textile
+created_at: 2007-09-27 07:36:00 +01:00
+layout: blog
+---
+I've started looking into my <notextile>*cough*</notextile> promise <notextile>*cough*</notextile> to do that "local paper":http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers site I mentioned sometime ago.  The code is all in me "google code":http://chrisroos.googlecode.com "repository":http://chrisroos.googlecode.com/svn/trunk/the-local-paper/ if you want to see how it's going (or finish it when I inevitably get bored again...).
+
+Anyway, the point of this post is that I realised something about testing that I feel I may have missed in the past.  I've got used to stating the "behavior":http://behaviour-driven.org/ of the objects in my system through tests.  So, when I wanted to ensure that an article couldn't be created without a title, I added a test like so:
+
+<div class="code"><pre><code class="ruby">
+class ArticleTest < Test::Unit::TestCase
+  def test_should_validate_presence_of_title
+    ...
+  end
+end
+</code></pre></div>
+
+In fact, for an article comprised of a title, an edition, a page number and an author, I wanted to ensure that all were there apart from the author.  It was only once I'd added tests to "validate":http://api.rubyonrails.org/classes/ActiveRecord/Validations.html the presence of the other three attributes that I realised it was probably important to prove that an author wasn't required.  So, I added the relevant test.
+
+<div class="code"><pre><code class="ruby">
+class ArticleTest < Test::Unit::TestCase
+  def test_should_not_validate_presence_of_author
+    ...
+  end
+end
+</code></pre></div>
+
+That's all well and good, but I've lost some information: WHY it shouldn't validate the presence of an author.  I know at the moment why it shouldn't (because short articles don't have an author listed), but will I know at some point the future?  I suspect not.  The same obviously applies for the things that I do want to ensure are present.  Why do I care that an article has a title, edition and page number?  At the moment I care because I'm planning on making them part of the URL, but what if I decide not to go down that route, yet leave the tests there?  There'll be no easy way for someone in the future to determine whether those things are actually important or not.
+
+I wonder if this issue was highlighted because of my lack of "SVN":http://subversion.tigris.org/ access.  I generally like really small checkins to my "version control software":http://en.wikipedia.org/wiki/Revision_control which would've allowed me to have added and committed those validation additions one at a time, and with messages that would have stated the reasons for that change[1].  Being disconnected means that I end up with bigger checkins that inevitably lose some information.  Actually, the more I think about it, the more I think that the repository isn't the right place for this information anyway - it's too far away from the code that's solving the problems.
+
+How do other people solve this potential loss of knowledge?  Am I missing something obvious, or have I really just not noticed this before?
+
+P.S. I spent a few minutes chatting with "James":http://interblah.net/ about it today and he had some interesting suggestions, although I'll leave it up to him to share those if he wants (no pressure James, I'm just running out of time right now I'm afraid).
+
+fn1. "Paul":http://po-ru.com suggested a while back that we use the commit note to explain the problem that we've solved, rather than just describing the changeset.  Unfortunately, I can't find the source of that suggestion so no link I'm afraid.

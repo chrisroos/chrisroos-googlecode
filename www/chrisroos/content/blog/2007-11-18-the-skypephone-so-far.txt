@@ -1,0 +1,22 @@
+--- 
+guid: 8a95d243-3c99-48ba-bc31-17d733d67ee7
+title: The Skypephone so far
+filter: 
+- erb
+- textile
+created_at: 2007-11-18 19:15:00 +00:00
+layout: blog
+---
+I bought the "Skypephone":http://www.skype.com/intl/en/allfeatures/3skypephone/ from "three":http://three.co.uk about a week ago.  I haven't managed to get my number transfered yet and as such I haven't really used it in anger, but thought I'd write some random notes anyway.
+
+I didn't get off too a good start with "Skype":http://www.skype.com "not working":http://3skypephone.com/forum/viewtopic.php?t=154 on the phone for two or three days after purchase.  Although Skype now works fine, it doesn't seem to remember my password, which makes it a bit of a pain each time you want to log in.  I've used skype for text chatting but haven't actually used it for voice yet so can't comment on the quality.
+
+The phone is an "AMOI":http://www.amoi.com (I'm not 100% sure that's the correct site as this phone doesn't appear there) WP-S1.  It feels remarkably similar to "Nokia":http://www.nokia.com phones I've used in the past.  In fact, the only difference I've found so far is the keys you press to lock the keypad (star then top-left button, rather than top-left button then start).
+
+If you try to visit a website beginning with www then a popup appears telling you that you'll be charged for data used.  If you visit a website that doesn't start www (e.g. "m.twitter.com":http://m.twitter.com) then you don't get this message.  This made me wonder whether I was still being charged for the data I was using - I guess I must be, right?
+
+I've connected the phone to my computer successfully using bluetooth and used it to transfer some "photos":http://flickr.com/photos/chrisjroos/sets/72157603224666780/ I took yesterday with the 2 megapixel camera.
+
+I think I should be able to use the phone as a modem but the supplied CD contains Windows only software.
+
+Hmm, that's about all for now I think.

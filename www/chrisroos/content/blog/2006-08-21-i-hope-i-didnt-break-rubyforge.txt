@@ -1,0 +1,24 @@
+--- 
+guid: 93b1bb52-be20-47b0-a4eb-f7f637910cd5
+title: I hope I didn't break rubyforge...
+filter: 
+- erb
+- textile
+created_at: 2006-08-21 23:30:00 +01:00
+layout: blog
+---
+A couple of days ago I was playing around with "SVN::Mirror":http://search.cpan.org/~clkao/SVN-Mirror-0.68/lib/SVN/Mirror.pm, trying to remove some "dependencies":http://wiki.rubyonrails.org/rails/pages/Plugins on third party repositories not in our control.
+
+All was going well until I tried to mirror a "project":http://rubyforge.org/projects/mocha/ hosted on rubyforge.  On initialising the mirror, I kept receiving the error "source url not under source root" from line 72 in Ra.pm.
+
+After some very careful debugging (yeah, like I know anything about perl - <code>print "1";</code> was about the extent of it) of that perl file; I noticed that the $source_root variable didn't contain the double slash[1].  This causes a problem for the line <code>if substr($path, 0, length($source_root), '') ne $source_root;</code> as at this point, $path does contain the double slash.
+
+The value of $source_root is returned from a call to RA->get_repos_root (Subversion Repository Access code).  So; it would seem that the url was being normalised somewhere in the bowels of "Subversion":http://subversion.tigris.org.
+
+This was kinda confirmed by testing the svn client (which uses the code in the RA module just like SVN::Mirror) with urls containing additional slashes.  The url was always resolved and svn info would always show the normalised variant.  It was additionally(ish) tested by using the "Ruby":http://www.ruby-lang.org "bindings":http://svn.collab.net/viewvc/svn/trunk/subversion/bindings/swig/ruby/ (which, as an aside, contain just about the most difficult to read Ruby code I've ever come across!)
+
+I would love to have followed the actual subversion c code to find the normalisation routine but I'm sadly not clever enough; so my findings had to suffice.
+
+Anyhoo, the outcome of the story is that I emailed Tom Copeland of rubyforge fame to ask about the deal with the double slashes.  Turns out that it was probably just a "gforge":http://gforge.org/ default thing and Tom went ahead and promptly changed it.  I suddenly got very nervous that lots of arms would be thrown up with cries of "Who broke rubyforge?", but so far it would appears to be ok.  Phew.
+
+fn1. Not sure if anyone else had really noticed but the svn repositories on rubyforge used to contain a double slash between the domain and var path (i.e. rubyforge.org//var).

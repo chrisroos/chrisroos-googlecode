@@ -1,0 +1,38 @@
+--- 
+guid: 9d07ba0f-d2c0-425f-be02-9d33160540cb
+title: Patching the del.icio.us firefox extension to add permalinks
+filter: 
+- erb
+- textile
+created_at: 2007-09-05 22:41:00 +01:00
+layout: blog
+---
+I spent some of my train time today hacking around with the "del.icio.us":http://del.icio.us "firefox":http://www.mozilla.com/en-US/firefox/ "extension":https://addons.mozilla.org/en-US/firefox/addon/3615.  Although I'm sure it's bad in many, many ways, I've managed to add the "permalink":http://en.wikipedia.org/wiki/Permalink functionality I "mentioned":http://blog.seagul.co.uk/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts yesterday.  You can either apply the patch yourself, or download the patched jar file.
+
+h3. To apply the patch.
+
+<div class="code"><pre><code class="shell">
+# Install Firefox extension 1.5.43
+$ cd MY_FIREFOX_PROFILE_DIRECTORY # ~/Library/Application Support/Firefox/Profiles/RAND_CHARS.default for me
+$ cd extensions/{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}/chrome
+$ svn export http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags/delicious-extension-url-tag.patch
+$ unzip deliciousBookmarks.jar
+$ rm deliciousBookmarks.jar
+$ patch -p1 < delicious-extension-url-tag.patch
+$ zip -r deliciousBookmarks.jar content/ locale/ skin/ 
+$ rm -rf content/ locale/ skin/
+# Restart Firefox
+</code></pre></div>
+
+h3. To use the patched compressed file
+
+<div class="code"><pre><code class="shell">
+# Install Firefox extension 1.5.43
+$ cd MY_FIREFOX_PROFILE_DIRECTORY # ~/Library/Application Support/Firefox/Profiles/RAND_CHARS.default for me
+$ cd extensions/{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}/chrome
+$ rm deliciousBookmarks.jar
+$ svn export http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags/deliciousBookmarks.jar 
+# Restart Firefox
+</code></pre></div>
+
+Now, anytime you bookmark a site, the tags field will be pre-populated with a url-tag ("url/MD5_OF_URL").  Cool huh.  Oh, and the patched extension uses this javascript "md5":http://pajhome.org.uk/crypt/md5/ library.

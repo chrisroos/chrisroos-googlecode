@@ -1,0 +1,16 @@
+--- 
+guid: 05aa6c3baeb7f9d8db82919e5eca01e0
+title: Remote Control Software
+filter: 
+- erb
+- textile
+created_at: 2005-09-06 16:45:00 +01:00
+layout: blog
+---
+I've always preferred <a href="http://www.tightvnc.com">TightVNC</a> for remote control of other machines.  When run through an SSH tunnel it provides secure, free, remote access.  The only problem is that it's not amazingly easy to talk someone through installing it remotely, what with the need to configure suitable SSH software, firewall and TightVNC.
+
+<a href="http://www.fogcreek.com">Fogcreek</a> <a href="http://www.copilot.com">Copilot</a> offers a commercial solution to this by having both parties communicate via a mediator.  This is fine but I'm not keen on the cost.
+
+In a search for a free (potentially open source) alternative I stumbled across <a href="http://www.teamviewer.com">Team Viewer</a>.  I've just tested this over the Internet, connecting two computers, both of which are behind firewalls, and it works fine.
+
+I then started thinking that if there was a very simple P2P VPN, we could just use standard TightVNC and get round the cost and difficulty problems.  It turns out that there is a free P2P VPN in the form of <a href="http://www.hamachi.cc">Hamachi</a>.  Although I've not managed to test this over the Internet I have tested it connecting two different computers on a LAN (one of which is in VM Ware).  I also managed to successfully get TightVNC working, after opening the relevant port (5900) in the target machine.  For some reason Remote Desktop wouldn't work - it seemed to connect but just left me with a black screen - but I was happy enough with Tight VNC anyway.

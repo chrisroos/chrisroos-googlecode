@@ -1,0 +1,59 @@
+--- 
+guid: 15bb8604-3169-4328-a4d0-b6a166c60436
+title: cURL is fast becoming my favourite toy
+filter: 
+- erb
+- textile
+created_at: 2006-12-24 17:04:00 +00:00
+layout: blog
+---
+h3. (or programmatically logging into online banking to retrieve my balance)
+
+In order to make practical use[1] of my new found "sms gateway":http://blog.seagul.co.uk/articles/2006/12/14/addicted-to-twitter-com, I've created a ruby script that logs into my hsbc bank account and scrapes the balance from the screen.
+
+<div class="code"><pre><code class="ruby">
+COOKIE_LOCATION = '/Users/chrisroos/hsbc_cookie'
+
+INTERNET_BANKING_ID = 'YOUR_INTERNET_BANKING_ID'
+DATE_OF_BIRTH = 'YOUR_DATE_OF_BIRTH'
+SECURITY_CODE = 'YOUR_SECURITY_CODE'
+class << SECURITY_CODE
+  [:first, :second, :third, :fourth, :fifth, :sixth, :last].each_with_index do |method, index|
+    define_method(method) do 
+      method == :last ? self.split('').last : self.split('')[index]
+    end
+  end
+end
+
+# POST Internet Banking ID and store the cookie
+curl_cmd = %[curl -s -c"#{COOKIE_LOCATION}" -L -d"internetBankingID=#{INTERNET_BANKING_ID}" "https://www.ebank.hsbc.co.uk/servlet/com.hsbc.ib.app.pib.logon.servlet.OnBrochurewareLogonServlet"]
+`#{curl_cmd}`
+
+# GET Login page so that we can work out which characters it wants
+curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" "https://www.ebank.hsbc.co.uk/main/IBLogon.jsp"]
+login_page = `#{curl_cmd}`
+
+# p login_page[/Please enter the (.+), (.+) and (.+) digits of your security number/]
+c1 = login_page[/Please enter the (.+), (.+) and (.+) digits of your security number/, 1].downcase
+c2 = login_page[/Please enter the (.+), (.+) and (.+) digits of your security number/, 2].downcase
+c3 = login_page[/Please enter the (.+), (.+) and (.+) digits of your security number/, 3].downcase
+tsn = [c1, c2, c3].collect { |method| SECURITY_CODE.__send__(method) }.join
+# p tsn
+
+# POST to login now that we've (hopefully) created the tsn
+curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" -L -d"dateOfBirth=#{DATE_OF_BIRTH}" -d"tsn=#{tsn}" "https://www.ebank.hsbc.co.uk/servlet/com.hsbc.ib.app.pib.logon.servlet.OnLogonVerificationServlet"]
+`#{curl_cmd}`
+
+# GET the account overview page to scrape the balance from it
+curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" "https://www.ebank.hsbc.co.uk/main/portmain.jsp"]
+account_overview_html = `#{curl_cmd}`
+
+# Remove the cookie
+`rm #{COOKIE_LOCATION}`
+
+# Obtain and display the account balance
+account_balance = account_overview_html[/<td.*?>(\d+.?\d+?\s*C|D)<\/td>/, 1]
+puts account_balance
+</code></pre></div>
+
+fn1.  I will probably never ever use this.  Oh well.
