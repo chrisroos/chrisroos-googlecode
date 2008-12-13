@@ -1,0 +1,26 @@
+---
+title:       Table of Contents
+created_at:  2008-08-02 14:06:40.000000 -06:00
+filter:
+  - erb
+  - textile
+---
+h1. <%= @page.title %>
+
+<p>Google and Yahoo have indexed some of my paged articles (e.g. articles/page/50).  Although these paged articles may appear in the <a href="http://en.wikipedia.org/wiki/Search_engine_results_page">search results</a> for a given search term there is no guarantee that the page is still relevant.  In fact, as I only had three articles per page, it would only take the addition of another three articles to render google's index of these pages useless.  I've decided to forwarded requests for any of these paged article resources to this table of contents in an attempt to be more useful to you.</p>
+              
+<ol class="posts">
+  <% @pages.find(:all, :in_directory => "blog", :sort_by => "created_at", :reverse => true).each do |post| %>
+    <li class="post">
+      <h2 class="title">
+        <a href="<%= h(post.url) %>"><%= h(post.title) %></a>
+      </h2>
+      <p class="postedOn">
+        Posted by Chris Roos
+        <span title="<%= formatted_created_date(post) %>">
+          <%= formatted_created_date(post) %>
+        </span>
+      </p>
+    </li>
+  <% end %>
+</ol>
