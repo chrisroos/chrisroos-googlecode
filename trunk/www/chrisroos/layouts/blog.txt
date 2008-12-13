@@ -1,0 +1,68 @@
+---
+extension: html
+filter:    erb
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <%= render(:partial => "/html-header") %>
+    <title><%= @page.title %> - deferred until inspiration hits</title>
+  </head>
+
+  <body class="contents">
+    
+    <div id="doc3" class="yui-t4">
+      <div id="hd">
+        <div class="header">
+          <p class="blogTitleContainer"><a class="blogTitle" href="/">deferred until inspiration hits</a></p>
+          
+          <%= render(:partial => "/google-search") %>
+
+        </div>
+      </div>
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+            <div class="yui-g">
+            
+              <h1><%= h(@page.title) %></h1>
+
+              <p class="postedOn">
+                Posted by Chris Roos
+                <span title="<%= formatted_created_date(@page) %>">
+                  <%= formatted_created_date(@page) %>
+                </span>
+              </p>
+              
+              <%= @content %>
+              
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
+              <noscript>
+                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
+              </noscript>
+
+            </div>
+          </div>
+        </div>
+        <div class="yui-b">
+
+          <%= render(:partial => "/navigation") %>
+
+        </div>
+      </div>
+    </div>
+    <div id="ft">
+      <!-- Footer -->
+    </div>
+    
+    <%= render(:partial => "/twitter") %>
+    <%= render(:partial => "/delicious") %>
+    <%= render(:partial => "/google-analytics") %>
+
+  </body>
+
+</html>
