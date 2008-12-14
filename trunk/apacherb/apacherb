@@ -1,6 +1,12 @@
 #! /usr/bin/env ruby
 
+require 'erb'
+require 'fileutils'
+
 module Apacherb
+  APACHE_CONFIG_DIR   = File.join('/', 'etc', 'apache2')
+  APACHE_CONFIG       = File.join(APACHE_CONFIG_DIR, 'httpd.conf')
+  APACHERB_VHOSTS_DIR = File.join(APACHE_CONFIG_DIR, 'apacherb_vhosts')
   class Options
     attr_reader :action, :domain, :directory
     def initialize(action=nil, domain=nil, directory=nil)
@@ -36,49 +42,60 @@ module Apacherb
 EndBanner
       end
   end
+  class VirtualHost
+    def initialize(options)
+      @options = options
+    end
+    def execute!
+      __send__(@options.action)
+    end
+    def create
+      setup_apache_config
+      create_vhost_directory
+      system "dscl localhost -create /Local/Default/Hosts/#{@options.domain} IPAddress 127.0.0.1"
+      File.open(config_filename, 'w') { |f| f.puts(vhost_config) }
+    end
+    def delete
+      system "dscl localhost -delete /Local/Default/Hosts/#{@options.domain}"
+      File.delete(config_filename)
+    end
+    def list
+      Dir[File.join(APACHERB_VHOSTS_DIR, '*.conf')].each do |config_file|
+        puts File.basename(config_file, '.conf')
+      end
+    end
+    def help
+      @options.display_banner_and_return
+    end
+    private
+      def vhost_config
+        domain, directory = @options.domain, @options.directory
+        ERB.new(DATA.read).result(binding)
+      end
+      def config_filename
+        File.join(APACHERB_VHOSTS_DIR, "#{@options.domain}.conf")
+      end
+      def setup_apache_config
+        unless File.read(APACHE_CONFIG).include?("Include #{File.join(APACHERB_VHOSTS_DIR, '*.conf')}")
+          File.open(APACHE_CONFIG, 'a') do |file|
+            file.puts ""
+            file.puts ""
+            file.puts "# Line added by apacherb"
+            file.puts "Include #{File.join(APACHERB_VHOSTS_DIR, '*.conf')}"
+          end
+        end
+      end
+      def create_vhost_directory
+        FileUtils.mkdir_p(APACHERB_VHOSTS_DIR)
+      end
+  end
 end
 
 options = Apacherb::Options.new(*ARGV)
 options.display_banner_and_return unless options.valid?
 
-# APACHE_CONFIG_DIR   = File.join('/', 'etc', 'apache2')
-# APACHE_CONFIG       = File.join(APACHE_CONFIG_DIR, 'httpd.conf')
-# APACHERB_VHOSTS_DIR = File.join(APACHE_CONFIG_DIR, 'apacherb_vhosts')
-# 
-# require 'fileutils'
-# 
-# # Create the directory that will contain our vhost config files
-# FileUtils.mkdir_p(APACHERB_VHOSTS_DIR)
-# 
-# # Append an Include directive to the apache config in order to load our vhost config files (but only append if it's not already there)
-# unless File.read(APACHE_CONFIG).include?("Include #{File.join(APACHERB_VHOSTS_DIR, '*.conf')}")
-#   File.open(APACHE_CONFIG, 'a') do |file|
-#     file.puts "# Line added by apacherb"
-#     file.puts "Include #{File.join(APACHERB_VHOSTS_DIR, '*.conf')}"
-#   end
-# end
-# 
-# # require 'socket'
-# # # a = Socket.gethostbyname('chrisroos.local')
-# # # `dscl localhost -delete /Local/Default/Hosts/chrisroos.local`
-# # begin
-# #   p IPSocket.getaddress('chrisroos.local')
-# # rescue SocketError
-# #   puts 'unknown'
-# # end
-# # 
-# # require 'erb'
-# # 
-# # domain = 'chrisroos.local'
-# # directory = '/Users/chrisroos/Code/personal/chrisroos/www/chrisroos/output'
-# # 
-# # config = ERB.new(DATA.read).result
-# # File.open("/etc/apache2/other/#{domain}.conf", 'w') { |f| f.puts(config) }
-# # 
-# # system "dscl localhost -create /Local/Default/Hosts/#{domain} IPAddress 127.0.0.1"
-# # 
-# # #sudo dscl localhost -delete /Local/Default/Hosts/chrisroos.local
-# # 
+Apacherb::VirtualHost.new(options).execute!
+
 __END__
 <VirtualHost *:80>
   ServerName <%= domain %>
