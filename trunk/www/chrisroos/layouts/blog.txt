@@ -29,7 +29,7 @@ filter:    erb
           <% if previous_post = posts[post_index - 1] %>
             <span class="previousPost">
               &larr; (older)
-              <a class="previousPost" href="<%= previous_post.url %>" title="<%= h(previous_post.title) %>">
+              <a class="previousPost" href="<%= friendly_url(previous_post) %>" title="<%= h(previous_post.title) %>">
                 <% previous_post_title = previous_post.title.length > 55 ? previous_post.title[0..55] + '...' : previous_post.title %>
                 <%= h(previous_post_title) %>
               </a> 
@@ -37,7 +37,7 @@ filter:    erb
           <% end %>
           <% if next_post = posts[post_index + 1] %>
             <span class="nextPost">
-              <a class="nextPost" href="<%= next_post.url %>" title="<%= h(next_post.title) %>">
+              <a class="nextPost" href="<%= friendly_url(next_post) %>" title="<%= h(next_post.title) %>">
                 <% next_post_title = next_post.title.length > 55 ? next_post.title[0..55] + '...' : next_post.title %>
                 <%= h(next_post_title) %>
               </a> (newer) &rarr;
