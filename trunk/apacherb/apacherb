@@ -50,12 +50,14 @@ EndBanner
       __send__(@options.action)
     end
     def create
+      warn_and_return unless sudoer?
       setup_apache_config
       create_vhost_directory
       system "dscl localhost -create /Local/Default/Hosts/#{@options.domain} IPAddress 127.0.0.1"
       File.open(config_filename, 'w') { |f| f.puts(vhost_config) }
     end
     def delete
+      warn_and_return unless sudoer?
       system "dscl localhost -delete /Local/Default/Hosts/#{@options.domain}"
       File.delete(config_filename)
     end
@@ -68,6 +70,14 @@ EndBanner
       @options.display_banner_and_return
     end
     private
+      def warn_and_return
+        puts "Please use sudo to use this utility to create or delete virtual hosts"
+        exit
+      end
+      def sudoer?
+        # A proxy for actually knowing whether or not the user has all required privileges
+        File.stat(APACHE_CONFIG).writable?
+      end
       def vhost_config
         domain, directory = @options.domain, @options.directory
         ERB.new(DATA.read).result(binding)
