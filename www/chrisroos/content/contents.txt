@@ -13,7 +13,7 @@ h1. <%= @page.title %>
   <% @pages.find(:all, :in_directory => "blog", :sort_by => "created_at", :reverse => true).each do |post| %>
     <li class="post">
       <h2 class="title">
-        <a href="<%= h(post.url) %>"><%= h(post.title) %></a>
+        <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
       </h2>
       <p class="postedOn">
         Posted by Chris Roos
