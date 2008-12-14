@@ -11,7 +11,7 @@ layout: blog
 
 There is now a "plugin":http://nubyonrails.com/articles/2006/06/01/san-francisco-sqlite3-memory-tests-asteroids from "Geoffrey Grosenbach":http://nubyonrails.com/ that encapsulates this hack.
 
----
+<hr/>
 
 I finally took some time to get the "sqlite":http://www.sqlite.org in memory database working correctly for testing "Rails":http://www.rubyonrails.com apps.
 
