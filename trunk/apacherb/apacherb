@@ -53,6 +53,7 @@ EndBanner
       warn_and_return unless sudoer?
       setup_apache_config
       create_vhost_directory
+      create_apache_log_directory
       system "dscl localhost -create /Local/Default/Hosts/#{@options.domain} IPAddress 127.0.0.1"
       File.open(config_filename, 'w') { |f| f.puts(vhost_config) }
     end
@@ -70,6 +71,12 @@ EndBanner
       @options.display_banner_and_return
     end
     private
+      def apache_log_directory
+        File.join(@options.directory, 'log')
+      end
+      def create_apache_log_directory
+        FileUtils.mkdir_p(apache_log_directory)
+      end
       def warn_and_return
         puts "Please use sudo to use this utility to create or delete virtual hosts"
         exit
@@ -120,8 +127,8 @@ __END__
     Deny from all
     Satisfy All
   </DirectoryMatch>
-  #ErrorLog /Users/chrisroos/Code/personal/chrisroos/www/chrisroos/
-  #CustomLog /Users/chrisroos/Code/personal/chrisroos/www/blog.seagul.co.uk/log/access_log common
+  ErrorLog <%= File.join(apache_log_directory, 'error_log') %>
+  CustomLog <%= File.join(apache_log_directory, 'access_log') %> common
   #RewriteLogLevel 3
-  #RewriteLog /Users/chrisroos/Code/personal/chrisroos/www/blog.seagul.co.uk/log/rewrite_log
+  RewriteLog <%= File.join(apache_log_directory, 'rewrite_log') %>
 </VirtualHost>
