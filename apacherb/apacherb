@@ -1,0 +1,100 @@
+#! /usr/bin/env ruby
+
+module Apacherb
+  class Options
+    attr_reader :action, :domain, :directory
+    def initialize(action=nil, domain=nil, directory=nil)
+      @action, @domain, @directory = action, domain, directory
+    end
+    def display_banner_and_return
+      puts banner
+      exit
+    end
+    def valid?
+      valid_create? or valid_delete? or valid_list? or valid_help?
+    end
+    private
+      def valid_create?
+        @action == 'create' and domain and directory
+      end
+      def valid_delete?
+        @action == 'delete' and domain
+      end
+      def valid_list?
+        @action == 'list'
+      end
+      def valid_help?
+        @action == 'help'
+      end
+      def banner
+<<EndBanner
+  Usage:
+    apacherb create domain directory - create a new virtual host
+    apacherb delete domain           - delete a virtual host
+    apacherb list                    - list apacherb virtual hosts
+    apacherb help                    - this info
+EndBanner
+      end
+  end
+end
+
+options = Apacherb::Options.new(*ARGV)
+options.display_banner_and_return unless options.valid?
+
+# APACHE_CONFIG_DIR   = File.join('/', 'etc', 'apache2')
+# APACHE_CONFIG       = File.join(APACHE_CONFIG_DIR, 'httpd.conf')
+# APACHERB_VHOSTS_DIR = File.join(APACHE_CONFIG_DIR, 'apacherb_vhosts')
+# 
+# require 'fileutils'
+# 
+# # Create the directory that will contain our vhost config files
+# FileUtils.mkdir_p(APACHERB_VHOSTS_DIR)
+# 
+# # Append an Include directive to the apache config in order to load our vhost config files (but only append if it's not already there)
+# unless File.read(APACHE_CONFIG).include?("Include #{File.join(APACHERB_VHOSTS_DIR, '*.conf')}")
+#   File.open(APACHE_CONFIG, 'a') do |file|
+#     file.puts "# Line added by apacherb"
+#     file.puts "Include #{File.join(APACHERB_VHOSTS_DIR, '*.conf')}"
+#   end
+# end
+# 
+# # require 'socket'
+# # # a = Socket.gethostbyname('chrisroos.local')
+# # # `dscl localhost -delete /Local/Default/Hosts/chrisroos.local`
+# # begin
+# #   p IPSocket.getaddress('chrisroos.local')
+# # rescue SocketError
+# #   puts 'unknown'
+# # end
+# # 
+# # require 'erb'
+# # 
+# # domain = 'chrisroos.local'
+# # directory = '/Users/chrisroos/Code/personal/chrisroos/www/chrisroos/output'
+# # 
+# # config = ERB.new(DATA.read).result
+# # File.open("/etc/apache2/other/#{domain}.conf", 'w') { |f| f.puts(config) }
+# # 
+# # system "dscl localhost -create /Local/Default/Hosts/#{domain} IPAddress 127.0.0.1"
+# # 
+# # #sudo dscl localhost -delete /Local/Default/Hosts/chrisroos.local
+# # 
+__END__
+<VirtualHost *:80>
+  ServerName <%= domain %>
+  DocumentRoot <%= directory %>
+  <Directory <%= directory %>>
+    AllowOverride All
+    allow from all
+  </Directory>
+  <DirectoryMatch "^/.*/\.svn/">
+    ErrorDocument 403 /404.html
+    Order allow,deny
+    Deny from all
+    Satisfy All
+  </DirectoryMatch>
+  #ErrorLog /Users/chrisroos/Code/personal/chrisroos/www/chrisroos/
+  #CustomLog /Users/chrisroos/Code/personal/chrisroos/www/blog.seagul.co.uk/log/access_log common
+  #RewriteLogLevel 3
+  #RewriteLog /Users/chrisroos/Code/personal/chrisroos/www/blog.seagul.co.uk/log/rewrite_log
+</VirtualHost>
