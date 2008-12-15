@@ -4,7 +4,6 @@ extension: xml
 filter: erb
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css" href="/stylesheets/rss.css"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
   <channel>
     <title>deferred until inspiration hits</title>
