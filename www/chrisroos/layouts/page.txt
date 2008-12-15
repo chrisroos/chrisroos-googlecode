@@ -12,7 +12,7 @@ filter:    erb
     <title><%= @page.title %> - deferred until inspiration hits</title>
   </head>
 
-  <body class="contents">
+  <body>
     
     <div id="doc3" class="yui-t4">
       <div id="hd">
