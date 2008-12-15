@@ -4,7 +4,13 @@ SITE.remote_dir = "/home/chrisroos/my-blog"
 
 task :default => :build
 
+namespace :deploy do
+  task :custom_ssh do
+    `scp -rq output/* output/.htaccess #{SITE.user}@#{SITE.host}:#{SITE.remote_dir}`
+  end
+end
+
 desc 'deploy the site to the webserver'
-task :deploy => [:build, 'deploy:ssh']
+task :deploy => [:build, 'deploy:custom_ssh']
 
 # EOF
