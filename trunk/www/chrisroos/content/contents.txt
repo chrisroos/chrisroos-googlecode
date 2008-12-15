@@ -15,11 +15,7 @@ h1. <%= @page.title %>
       <h2 class="title">
         <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
       </h2>
-      <p class="postedOn">
-        Posted by Chris Roos
-        <span title="<%= formatted_created_date(post) %>">
-          <%= formatted_created_date(post) %>
-        </span>
+      <%= render(:partial => "/post_author_and_date") %>
       </p>
     </li>
   <% end %>
