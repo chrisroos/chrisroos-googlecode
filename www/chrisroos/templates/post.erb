@@ -1,0 +1,9 @@
+---
+title:      <%= title %>
+created_at: <%= Time.now.to_y %>
+guid:       <%= UUID.random_create %>
+layout:     blog
+filter:
+  - erb
+  - textile
+---
