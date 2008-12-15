@@ -26,7 +26,7 @@ filter:    erb
           <% posts = @pages.find(:all, :in_directory => "blog", :sort_by => "created_at") %>
           <% post_index = posts.index(@page) %>
         
-          <% if previous_post = posts[post_index - 1] %>
+          <% if post_index > 0 && previous_post = posts[post_index - 1] %>
             <span class="previousPost">
               &larr; (older)
               <a class="previousPost" href="<%= friendly_url(previous_post) %>" title="<%= h(previous_post.title) %>">
