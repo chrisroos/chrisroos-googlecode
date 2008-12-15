@@ -1,7 +1,10 @@
+SITE.user       = "chrisroos"
+SITE.host       = "seagul.co.uk"
+SITE.remote_dir = "/home/chrisroos/my-blog"
 
 task :default => :build
 
 desc 'deploy the site to the webserver'
-task :deploy => [:build, 'deploy:rsync']
+task :deploy => [:build, 'deploy:ssh']
 
 # EOF
