@@ -1,6 +1,6 @@
 SITE.user       = "chrisroos"
 SITE.host       = "seagul.co.uk"
-SITE.remote_dir = "/home/chrisroos/my-blog"
+SITE.remote_dir = "/home/chrisroos/www/chrisroos.co.uk/current/public/"
 
 task :default => :build
 
