@@ -30,12 +30,7 @@ filter:    erb
             
               <h1><%= h(@page.title) %></h1>
 
-              <p class="postedOn">
-                Posted by Chris Roos
-                <span title="<%= formatted_created_date(@page) %>">
-                  <%= formatted_created_date(@page) %>
-                </span>
-              </p>
+              <%= render(:partial => "/post_author_and_date") %>
               
               <%= @content %>
 
