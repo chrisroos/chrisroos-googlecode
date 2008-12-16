@@ -9,7 +9,7 @@ layout: none
   <url><loc>http://chrisroos.co.uk/</loc></url>
   <url><loc>http://chrisroos.co.uk/contents</loc></url>
   <url><loc>http://chrisroos.co.uk/projects</loc></url>
-  <% @pages.find(:all, :in_directory => "blog", :sort_by => "created_at", :reverse => true).each do |post| %>
+  <% @pages.find(:all, :in_directory => "blog", :sort_by => "created_at", :reverse => true, :blog_post => true).each do |post| %>
     <url><loc>http://chrisroos.co.uk<%= h(friendly_url(post)) %></loc></url>
   <% end %>
 </urlset>
