@@ -5,7 +5,7 @@ filter: erb
 
 <ul class="navigation">
   <li>
-    <a href="mailto:chris@seagul.co.uk" title="Email me">email me</a>
+    <a href="/contact" title="Contact me">contact me</a>
   </li>
   <li>
     <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">subscribe to atom feed</a>
