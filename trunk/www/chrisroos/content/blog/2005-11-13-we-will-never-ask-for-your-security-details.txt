@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: e79e0912-ae64-47cb-bc7c-6c9ff731686a
 title: "'We will never ask for your security details...'"
 filter: 

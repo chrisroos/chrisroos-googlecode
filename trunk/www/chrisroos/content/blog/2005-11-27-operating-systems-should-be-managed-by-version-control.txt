@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 5aa190cb-86d6-43fd-aec3-c36e4e8cb404
 title: Operating systems should be managed by version control
 filter: 

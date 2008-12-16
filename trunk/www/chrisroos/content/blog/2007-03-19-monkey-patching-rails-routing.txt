@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 43a98faa-7156-495c-873a-d63c3497c2e8
 title: Monkey patching rails routing
 filter: 

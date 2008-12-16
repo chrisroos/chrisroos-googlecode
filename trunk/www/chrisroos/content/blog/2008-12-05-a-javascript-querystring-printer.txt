@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 31745701-a13d-40e0-9702-13029cf02ca9
 title: A Javascript QueryString Printer
 filter: 

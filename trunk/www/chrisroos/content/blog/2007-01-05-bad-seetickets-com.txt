@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: a90aec62-0dbd-4f72-90c7-f42cef31a582
 title: Bad seetickets.com
 filter: 

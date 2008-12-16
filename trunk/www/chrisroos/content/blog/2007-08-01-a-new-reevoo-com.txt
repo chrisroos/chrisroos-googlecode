@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: f089ffbe-8845-4879-b74a-be919e2017c8
 title: A new reevoo.com
 filter: 

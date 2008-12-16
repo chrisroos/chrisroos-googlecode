@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 25810606-a3e0-4558-bc8c-310e2fddc17a
 title: Windows Adobe Acrobat Reader alternative
 filter: 

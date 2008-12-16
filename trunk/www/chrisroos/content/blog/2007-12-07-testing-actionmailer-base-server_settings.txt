@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 50584d74-8475-4f21-8326-07f1ed0d3d0b
 title: Testing ActionMailer::Base.server_settings
 filter: 

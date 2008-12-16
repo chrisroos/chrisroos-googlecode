@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: a272dbca-2a18-429a-a829-0ace5f24dda0
 title: Patching the rails
 filter: 

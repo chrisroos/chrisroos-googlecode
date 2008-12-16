@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c7b18aa8-99d9-4d79-b7e6-2c644463e288
 title: Connecting to gmail with Ruby (or Connecting to POP3 servers over SSL with Ruby)
 filter: 

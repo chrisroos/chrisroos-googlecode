@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: f2bfa8dd-5dc6-4daa-a97c-87c2a32fcc61
 title: Reviews Reevoos Reviews
 filter: 

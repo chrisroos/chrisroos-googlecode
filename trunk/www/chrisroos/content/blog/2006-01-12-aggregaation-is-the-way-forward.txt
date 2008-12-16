@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: dbdcbf81-20c1-48fd-b00d-a1df14511c2f
 title: Aggregaation is the way forward...
 filter: 

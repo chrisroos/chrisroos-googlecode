@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 20c1637a-a5ae-43e7-839b-c405a3863fcd
 title: Plans for the my blog
 filter: 

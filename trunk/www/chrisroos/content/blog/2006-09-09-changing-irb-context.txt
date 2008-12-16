@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 553ca94e-9491-4803-8238-e2a6479a9c27
 title: Changing Irb context
 filter: 

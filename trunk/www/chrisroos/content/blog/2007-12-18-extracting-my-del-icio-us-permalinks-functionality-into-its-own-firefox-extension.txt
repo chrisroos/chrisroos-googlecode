@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c3be6b95-9fd4-4169-84de-faea63703c8b
 title: Extracting my del.icio.us permalinks functionality into its own firefox extension
 filter: 

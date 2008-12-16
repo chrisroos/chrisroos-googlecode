@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 7939eda1-7934-4a76-b170-e044a178e061
 title: Rojo replaces bloglines (for me at least)
 filter: 

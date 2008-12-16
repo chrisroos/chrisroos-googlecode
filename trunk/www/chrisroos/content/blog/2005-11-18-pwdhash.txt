@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 40ce8c63-ac97-4903-ad97-25a975ff13e0
 title: PwdHash
 filter: 

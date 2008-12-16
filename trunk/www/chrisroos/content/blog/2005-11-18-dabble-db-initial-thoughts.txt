@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 3d609757-2f41-4684-8775-c91de62e5041
 title: dabble db initial thoughts
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 9258db37-0b21-4684-8d7c-bec5c2d8b3e6
 title: Commenting on my del.icio.us bookmarks
 filter: 

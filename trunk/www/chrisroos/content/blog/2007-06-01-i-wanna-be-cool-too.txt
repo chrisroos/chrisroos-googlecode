@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 4901f172-94e7-4d67-9f31-51585219032b
 title: I wanna be cool too
 filter: 

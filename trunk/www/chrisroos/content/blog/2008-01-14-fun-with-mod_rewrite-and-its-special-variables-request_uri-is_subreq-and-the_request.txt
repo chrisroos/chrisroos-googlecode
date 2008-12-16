@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 0d80acad-6b51-42bb-b456-1168c8b59302
 title: Fun with mod_rewrite (and its special variables REQUEST_URI, IS_SUBREQ and THE_REQUEST)
 filter: 

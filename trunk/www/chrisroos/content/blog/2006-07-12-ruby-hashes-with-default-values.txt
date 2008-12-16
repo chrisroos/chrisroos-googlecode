@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 664f8f79-b0d0-45b8-be0e-ce1afecd56dc
 title: Ruby hashes with default values
 filter: 

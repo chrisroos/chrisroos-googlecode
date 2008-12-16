@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 34a7d349-977d-4f94-8d29-88af932f92e5
 title: Cyrus Imap
 filter: 

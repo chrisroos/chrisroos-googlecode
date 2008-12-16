@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 97bcff83-94f1-4808-a723-2769584d257a
 title: Files hosted on Google Groups cannot be opened in Safari (or Internet Explorer)
 filter: 

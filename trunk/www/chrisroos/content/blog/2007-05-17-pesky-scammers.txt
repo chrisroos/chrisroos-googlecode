@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 6677280b-8db0-40d8-9841-87bc0fcef5b2
 title: Pesky Scammers
 filter: 

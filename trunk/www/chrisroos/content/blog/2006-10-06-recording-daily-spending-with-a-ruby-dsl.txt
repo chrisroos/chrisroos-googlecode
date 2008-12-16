@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: f59fe5c0-fe96-4995-9fc9-5153cf7e088c
 title: Recording daily spending with a Ruby Dsl
 filter: 

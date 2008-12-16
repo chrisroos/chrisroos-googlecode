@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: e31cf39d-afba-42b3-971c-3e84c0fc7b3a
 title: Asking South Eastern about the high speed trains
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 5574c221-04cf-408d-b367-f86172f9bda0
 title: Holiday in Newqay
 filter: 

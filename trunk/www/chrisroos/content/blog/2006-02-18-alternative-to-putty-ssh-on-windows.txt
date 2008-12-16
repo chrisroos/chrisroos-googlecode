@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: d5f08147-b851-47cc-958c-187f1e6920c2
 title: Alternative to Putty Ssh on Windows
 filter: 

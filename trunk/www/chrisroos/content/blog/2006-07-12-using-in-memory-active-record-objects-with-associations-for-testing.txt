@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 34bcbcc9-b592-4a27-9b8f-90027d57bdd6
 title: Using in memory Active Record objects with associations for testing
 filter: 

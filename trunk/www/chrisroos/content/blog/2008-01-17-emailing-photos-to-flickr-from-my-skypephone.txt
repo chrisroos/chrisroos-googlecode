@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 82cf9da3-d148-4708-81ad-cb2aa419ff12
 title: Emailing photos to flickr from my Skypephone
 filter: 

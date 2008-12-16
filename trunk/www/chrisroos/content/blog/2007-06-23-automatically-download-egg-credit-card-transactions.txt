@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 363cbb26-fe78-42b3-a605-b8a399a73e1d
 title: Automatically download egg credit card transactions
 filter: 

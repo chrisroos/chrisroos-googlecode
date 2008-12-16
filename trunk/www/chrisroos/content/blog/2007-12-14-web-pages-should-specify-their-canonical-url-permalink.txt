@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 1fc52fd3-6ca6-4fa9-9822-bd0dd0161af7
 title: Web pages should specify their canonical URL (permalink)
 filter: 

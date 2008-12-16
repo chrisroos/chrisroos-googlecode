@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 940994f6-21c3-4f85-b400-c876124d7b13
 title: Reevoo.com and Seo
 filter: 

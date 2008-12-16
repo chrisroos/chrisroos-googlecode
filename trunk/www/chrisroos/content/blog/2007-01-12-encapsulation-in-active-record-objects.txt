@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 9c692b70-b1ef-4694-9579-66b1374ffde7
 title: Encapsulation in Active Record objects
 filter: 

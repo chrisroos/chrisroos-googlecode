@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 590ca24e-90f3-4668-a0f8-5972712b55c6
 title: Maybe I need some more REST
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 35c66656-2270-40b7-a2cb-7b7666011625
 title: Tadalist bookmarklet
 filter: 

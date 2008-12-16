@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 9d07ba0f-d2c0-425f-be02-9d33160540cb
 title: Patching the del.icio.us firefox extension to add permalinks
 filter: 

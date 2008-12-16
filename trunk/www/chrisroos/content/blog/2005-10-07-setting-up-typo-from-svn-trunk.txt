@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: a8792b94-ea94-49b1-bc88-c95fa5fcc02a
 title: Setting up Typo from SVN Trunk
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 7dc806f8-d9d6-490e-8865-a456e05374ec
 title: Inland Revenue as bad as Ticket Master
 filter: 

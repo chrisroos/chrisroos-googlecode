@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 0897105b-8f89-415b-873f-74cb4c13dcbe
 title: Ruby Quiz number 67 (metakoans)
 filter: 

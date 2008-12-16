@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 9a7fd6be48986165d4710c226c0eb807
 title: Instiki-AR with sqlite3 on Windows XP
 filter: 

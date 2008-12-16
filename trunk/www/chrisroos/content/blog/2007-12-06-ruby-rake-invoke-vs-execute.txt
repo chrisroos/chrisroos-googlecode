@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 317c603f-c90d-42f0-907d-7f4209591b38
 title: Ruby Rake - Invoke vs Execute
 filter: 

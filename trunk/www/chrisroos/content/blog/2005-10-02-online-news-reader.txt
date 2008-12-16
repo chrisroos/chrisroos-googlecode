@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 072034b7-111e-43f8-a8e4-e91dcf240568
 title: Online news reader
 filter: 

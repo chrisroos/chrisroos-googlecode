@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: f997836c-86e2-409a-80c7-9601dd3dbfe8
 title: OCR on the Mac with Tesseract
 filter: 

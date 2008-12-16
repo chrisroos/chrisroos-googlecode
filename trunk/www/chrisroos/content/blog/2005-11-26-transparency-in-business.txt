@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 906607c8-9b89-4cbb-8394-2a8fed59610b
 title: Transparency in business
 filter: 

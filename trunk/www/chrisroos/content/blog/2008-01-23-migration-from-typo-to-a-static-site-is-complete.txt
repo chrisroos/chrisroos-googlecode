@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: e26ad0cb-1403-4961-801d-e3192495cc97
 title: Migration from Typo to a static site is complete
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c26d93e8-9832-4a7b-b4fd-b258b52acb7a
 title: Print to Pdf in Windows without Acrobat Writer
 filter: 

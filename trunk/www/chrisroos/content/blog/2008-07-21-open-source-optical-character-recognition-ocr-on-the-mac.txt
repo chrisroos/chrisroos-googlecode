@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 19495a24-8ef5-4c1a-aab1-45d38a8ed548
 title: Open Source Optical Character Recognition (OCR) on the Mac
 filter: 

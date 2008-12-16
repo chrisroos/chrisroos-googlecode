@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: be4e61ba-08ff-4e98-b8f1-81a67147bc4a
 title: Sending trackbacks to the sites that you bookmark in del.icio.us
 filter: 

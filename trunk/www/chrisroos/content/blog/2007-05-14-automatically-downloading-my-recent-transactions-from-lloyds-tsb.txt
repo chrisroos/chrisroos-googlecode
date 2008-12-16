@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 1188bc2b-2b50-4938-923c-aaaca77daa24
 title: Automatically downloading my recent transactions from Lloyds Tsb
 filter: 

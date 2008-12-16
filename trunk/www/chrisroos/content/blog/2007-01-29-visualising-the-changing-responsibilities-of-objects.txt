@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: d8c7bb3d-65b6-4003-999c-e0853f686f6f
 title: Visualising the changing responsibilities of objects
 filter: 

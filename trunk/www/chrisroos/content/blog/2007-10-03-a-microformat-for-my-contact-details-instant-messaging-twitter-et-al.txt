@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 874b338e-23aa-4494-94da-5464ccce7cca
 title: A microformat for my contact details (instant messaging, twitter et al)
 filter: 

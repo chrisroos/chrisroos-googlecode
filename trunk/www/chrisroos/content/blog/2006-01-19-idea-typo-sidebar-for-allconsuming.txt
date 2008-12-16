@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: f54cb4e5-2a48-416c-b526-f5391a94620c
 title: Idea - Typo sidebar for allconsuming
 filter: 

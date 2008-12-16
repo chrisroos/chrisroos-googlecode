@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 6f82d1cd-59c4-414f-8b35-a3a1d5160e3e
 title: National Rail Train Times by SMS (again)
 filter: 

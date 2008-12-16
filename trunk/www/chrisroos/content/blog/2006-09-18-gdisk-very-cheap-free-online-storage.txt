@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: ece9a725-7aff-4eb3-b62c-0924ca5460ba
 title: gDisk - very cheap (free) online storage
 filter: 

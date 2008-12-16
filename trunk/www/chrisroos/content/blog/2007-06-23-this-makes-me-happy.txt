@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 9087711b-7ffa-4f06-ae45-268b9d5e20de
 title: This makes me happy
 filter: 

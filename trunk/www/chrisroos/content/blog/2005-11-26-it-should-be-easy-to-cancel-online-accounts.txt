@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: ab7c52fa-8bba-4294-b60f-cb3887f184d1
 title: It should be easy to cancel online accounts
 filter: 

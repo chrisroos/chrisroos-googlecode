@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: bd22fb53-efae-46f4-82fc-14f43bb1c63f
 title: I want fast trains
 filter: 

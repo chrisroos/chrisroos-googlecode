@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: b2b9da2d-69fa-4285-ad8c-33f4c66f744a
 title: A great day at work and reevoovision (twittervision for reviews)
 filter: 

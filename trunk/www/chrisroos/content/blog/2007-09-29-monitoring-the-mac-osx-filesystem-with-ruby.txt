@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 86e74ab7-047f-4670-bf35-3753c3f2bb4a
 title: Monitoring the Mac OSX Filesystem with ruby
 filter: 

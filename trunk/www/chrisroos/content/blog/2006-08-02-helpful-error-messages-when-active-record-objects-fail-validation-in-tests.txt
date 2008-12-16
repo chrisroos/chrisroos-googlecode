@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 38a62231-a604-4dbe-8611-bbb3c2edc0ff
 title: Helpful error messages when active record objects fail validation (in tests)
 filter: 

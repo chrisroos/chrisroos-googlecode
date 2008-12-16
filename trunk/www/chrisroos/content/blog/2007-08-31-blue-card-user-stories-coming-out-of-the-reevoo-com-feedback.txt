@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 5bfd9e04-b345-4087-974d-6971bf8e1810
 title: Blue card user stories coming out of the reevoo.com feedback
 filter: 

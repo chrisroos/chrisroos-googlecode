@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 8582dc34-92cc-4050-b89f-4e542308273f
 title: The best property search website
 filter: 

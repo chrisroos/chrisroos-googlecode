@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 2e2b020d-7a31-49c6-a7ed-945f600c37f3
 title: Fun with Selenium
 filter: 

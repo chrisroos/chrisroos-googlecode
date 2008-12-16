@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: aa79db1f-8c41-431f-8105-c81eaea9027d
 title: My first reevoo!
 filter: 

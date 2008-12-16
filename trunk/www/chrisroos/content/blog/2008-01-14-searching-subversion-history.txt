@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: fd5f813c-6d6f-488a-bcfa-46ea5a7b37f0
 title: Searching subversion history
 filter: 

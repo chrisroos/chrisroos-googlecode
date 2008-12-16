@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 05aa6c3baeb7f9d8db82919e5eca01e0
 title: Remote Control Software
 filter: 

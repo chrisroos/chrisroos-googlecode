@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 1643f8615c819aa942f36de82e7aca72
 title: Set background transparency in GIMP
 filter: 

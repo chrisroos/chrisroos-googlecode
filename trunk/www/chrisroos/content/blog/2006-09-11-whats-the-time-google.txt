@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 55e7f15a-d075-45df-b6d5-4290dd354553
 title: What's the time google?
 filter: 

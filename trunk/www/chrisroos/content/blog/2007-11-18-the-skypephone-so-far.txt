@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 8a95d243-3c99-48ba-bc31-17d733d67ee7
 title: The Skypephone so far
 filter: 

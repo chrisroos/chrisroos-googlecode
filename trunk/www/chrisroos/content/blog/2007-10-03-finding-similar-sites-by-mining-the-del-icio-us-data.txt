@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: e077b11a-f34d-4b07-aded-4d4d9fe8ea0e
 title: Finding similar sites by mining the del.icio.us data
 filter: 

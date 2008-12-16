@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 2a3426c6-ab30-4fc5-bc2d-b897aea18e35
 title: Wow.  Google must really love Chris.
 filter: 

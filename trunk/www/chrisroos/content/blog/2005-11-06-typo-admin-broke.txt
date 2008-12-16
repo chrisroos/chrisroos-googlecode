@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 377ed1c8-f1b7-4fef-bfaf-d74b1e60f9d1
 title: Typo admin broke!
 filter: 

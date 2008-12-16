@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: ea74e6a2-7dbc-4f36-a487-bda91e6d07cb
 title: I really don't know whether this is spam or not...
 filter: 

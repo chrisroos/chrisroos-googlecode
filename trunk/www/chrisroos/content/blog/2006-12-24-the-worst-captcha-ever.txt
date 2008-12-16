@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 3e325981-6370-4fd6-931e-b96509250edf
 title: The worst captcha... ever.
 filter: 

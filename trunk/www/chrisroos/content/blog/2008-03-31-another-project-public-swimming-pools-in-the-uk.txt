@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 81049870-4a70-495f-8774-ef1ca3d2f15f
 title: Another project - Public Swimming Pools in the UK
 filter: 

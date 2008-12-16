@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 56bcf0e5-54ac-4bf7-ba0d-579078f538ad
 title: Inactive keywords (too high minCpc) when using Google Adwords Api
 filter: 
