@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: eceb8cc6-ff9e-4109-8536-70f23d333f61
 title: Web service to convert UK Postcodes (outcode) to Latitude and Longitude
 filter: 

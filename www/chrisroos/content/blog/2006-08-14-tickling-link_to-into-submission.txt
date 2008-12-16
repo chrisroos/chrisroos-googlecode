@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 2c8962ca-90bd-441c-925e-cc037419b148
 title: Tickling link_to into submission
 filter: 

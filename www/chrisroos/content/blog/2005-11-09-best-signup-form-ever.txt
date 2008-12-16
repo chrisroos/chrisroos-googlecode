@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: b06243b1-d1ce-4708-ae75-35c83cfc0309
 title: Best signup form... ever.
 filter: 

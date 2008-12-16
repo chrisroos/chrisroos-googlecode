@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 92474f38-31b4-4247-bc47-af786b4577bb
 title: Testing my mod_rewrite configuration with ruby
 filter: 

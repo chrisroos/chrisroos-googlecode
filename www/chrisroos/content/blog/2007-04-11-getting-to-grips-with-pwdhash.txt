@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 1e94dada-3fc9-467a-9d4d-422933d995a9
 title: Getting to grips with pwdhash
 filter: 

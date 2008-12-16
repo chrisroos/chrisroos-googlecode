@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: fdf12d8e-10e6-4cea-b339-ab4a40545336
 title: Bye bye feedshow...
 filter: 

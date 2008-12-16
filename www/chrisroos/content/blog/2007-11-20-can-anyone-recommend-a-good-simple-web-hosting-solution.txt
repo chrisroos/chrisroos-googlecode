@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 8036fd36-57e7-4bee-9fa0-0b8b5b03b061
 title: Can anyone recommend a good simple web hosting solution?
 filter: 

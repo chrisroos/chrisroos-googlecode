@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: b1012d3b-90d4-4d03-a4b6-9cfd6671c2cb
 title: In memory sqlite database for rails testing
 filter: 

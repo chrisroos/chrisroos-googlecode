@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 185128fa-7400-4685-b909-6a94fa0fca87
 title: More helpful messages for Active Record validation errors in Rails testing
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: ddd20dc2-f3fb-428e-b17d-8a25c74f563b
 title: Testing against the (Garbage Collection) Clock, or, Don't create your Test Cases as anonymous classes
 filter: 

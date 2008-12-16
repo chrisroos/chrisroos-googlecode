@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 4af00046-ace3-4e59-8b46-fb2b7bf89c6d
 title: Free google website optimizer isn't actually free
 filter: 

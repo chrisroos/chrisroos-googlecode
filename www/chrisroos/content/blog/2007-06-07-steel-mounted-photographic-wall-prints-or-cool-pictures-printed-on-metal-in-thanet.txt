@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 2176d996-fc18-45f1-acfb-6a3c5829cc5c
 title: Steel mounted photographic wall prints (or, cool pictures printed on metal) in Thanet
 filter: 

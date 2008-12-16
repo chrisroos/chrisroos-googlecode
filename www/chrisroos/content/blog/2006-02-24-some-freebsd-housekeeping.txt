@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 0a1ea791-3669-4975-847f-28335e7fe729
 title: Some Freebsd housekeeping
 filter: 

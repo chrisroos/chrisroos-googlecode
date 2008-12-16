@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 3ba09b50-ed76-46e9-9179-8655c943c005
 title: Exporting query results to a remote machine with MySql (an alternative to SELECT INTO OUTFILE)
 filter: 

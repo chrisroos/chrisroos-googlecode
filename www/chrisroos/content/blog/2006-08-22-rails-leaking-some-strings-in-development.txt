@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 17e3dfab-6ca4-4245-94ad-181079e16b37
 title: Rails leaking some strings in development
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: ed9cd68e-1944-4d30-9919-da37c33fd2a7
 title: Migrating this blog from Typo to a static site
 filter: 

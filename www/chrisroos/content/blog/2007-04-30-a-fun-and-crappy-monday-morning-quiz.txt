@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c42c088b-48bd-4580-ba44-7272bad89605
 title: A fun (and crappy) Monday morning quiz
 filter: 

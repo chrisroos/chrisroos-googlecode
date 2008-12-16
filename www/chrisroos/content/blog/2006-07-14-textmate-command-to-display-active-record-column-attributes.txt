@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: bdad36d1-fc62-4c97-bfdc-c910ee33a466
 title: Textmate command to display Active Record column attributes
 filter: 

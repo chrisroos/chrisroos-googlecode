@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 75742655-9a50-44e7-85a7-d6f3d2e34313
 title: Test post from dashblog
 filter: 

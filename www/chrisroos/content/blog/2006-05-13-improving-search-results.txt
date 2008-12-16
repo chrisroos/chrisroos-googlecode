@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 01c93a6c-245f-408e-88e4-46d87ec81b8e
 title: Improving search results
 filter: 

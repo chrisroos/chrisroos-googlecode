@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 8b08900d-3772-466f-8da4-05cb81f67e40
 title: Pwdhash Widget
 filter: 

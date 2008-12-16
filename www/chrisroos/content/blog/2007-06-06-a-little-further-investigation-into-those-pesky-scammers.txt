@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 6bb761b0-c2ca-4547-894c-83ac3c701cd5
 title: A little further investigation into those pesky scammers
 filter: 

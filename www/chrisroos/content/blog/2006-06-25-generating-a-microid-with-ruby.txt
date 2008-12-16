@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c74a1ea3-a0c2-46f3-845c-8ecbb11bca2a
 title: Generating a MicroId with Ruby
 filter: 

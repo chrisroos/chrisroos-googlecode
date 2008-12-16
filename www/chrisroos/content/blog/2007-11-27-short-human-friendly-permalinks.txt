@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: ffb5b1fc-23ce-4c9a-91aa-354b2a5ff75f
 title: Short, Human Friendly, Permalinks
 filter: 

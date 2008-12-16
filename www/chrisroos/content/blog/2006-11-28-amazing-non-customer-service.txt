@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c4aa4d10-0fed-4730-9c95-8aad4d30e199
 title: Amazing non-customer service
 filter: 

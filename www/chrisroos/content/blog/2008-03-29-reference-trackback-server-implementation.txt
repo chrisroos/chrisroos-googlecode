@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: d9caacb2-2920-4ccd-ac3f-f2154258c400
 title: Reference Trackback Server implementation
 filter: 

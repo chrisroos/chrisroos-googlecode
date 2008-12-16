@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 381579d7-3b5c-4a94-bdef-a089e13c137d
 title: "Boolean method in Ruby (sibling of Array, Float, Integer and String) "
 filter: 

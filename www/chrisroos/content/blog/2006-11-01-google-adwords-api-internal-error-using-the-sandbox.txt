@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: f5c74636-8e53-4d07-934d-f282ffde8b68
 title: Google AdWords Api Internal Error using the Sandbox
 filter: 

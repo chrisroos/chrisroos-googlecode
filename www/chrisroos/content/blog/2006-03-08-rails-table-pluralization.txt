@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 9a1acd4e-57eb-4415-a9fb-71a4324ae83c
 title: Rails table pluralization
 filter: 

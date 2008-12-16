@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: e4083c46-c100-44f4-8040-45f3295ea1b2
 title: Small, specific mongrel web servers
 filter: 

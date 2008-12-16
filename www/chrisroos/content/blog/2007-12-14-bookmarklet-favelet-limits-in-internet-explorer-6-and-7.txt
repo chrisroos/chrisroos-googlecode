@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 958ddabd-4102-4da1-8e3b-18a07bb38d35
 title: Bookmarklet (Favelet) limits in Internet Explorer 6 (and 7?)
 filter: 

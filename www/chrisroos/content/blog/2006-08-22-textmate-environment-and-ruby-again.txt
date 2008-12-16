@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: eae3fed9-0d74-489b-87c3-2034ae1d178b
 title: Textmate environment and ruby (again)
 filter: 

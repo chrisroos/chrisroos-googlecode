@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: aa6af2b3-4a9a-4826-92ef-1cf3da70414c
 title: Frustrating user experience with Hsbc online banking
 filter: 

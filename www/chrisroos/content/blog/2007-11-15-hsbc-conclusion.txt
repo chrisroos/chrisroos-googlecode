@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 9c598cbc-a150-4781-9f6c-7527746cf439
 title: HSBC Conclusion
 filter: 

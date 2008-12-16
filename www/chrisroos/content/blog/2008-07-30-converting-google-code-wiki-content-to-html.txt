@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 2be30c15-b01e-46d7-949c-69218bf4aada
 title: Converting Google Code Wiki Content to Html
 filter: 

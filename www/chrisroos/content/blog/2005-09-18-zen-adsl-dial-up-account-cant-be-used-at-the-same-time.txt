@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: cf250c9cffe5c05630739c2a8700243e
 title: Zen ADSL/Dial-up account can't be used at the same time
 filter: 

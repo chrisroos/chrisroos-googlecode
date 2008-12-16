@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 61067230fb4ac526cc47e7646bf37c02
 title: Linspire
 filter: 

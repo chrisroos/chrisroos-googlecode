@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 6c5db065-41c4-4959-89c0-86a23679cad2
 title: Crashing IE 6 with style(sheets)
 filter: 

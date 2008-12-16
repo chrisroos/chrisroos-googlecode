@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: dbf1fc3c-4fb9-4456-8434-18627bf9c1f4
 title: Train times by SMS (or, improving national rail enquiries)
 filter: 

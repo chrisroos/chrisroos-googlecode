@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c7c0173b-2e98-4632-a904-f7b3401944e5
 title: Move over seetickets.com - you've got nothing on orange.co.uk
 filter: 

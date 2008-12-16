@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 3cad34db-7e46-4f42-8e11-7cf85e3c0d93
 title: Very simple Micro Id Verifier
 filter: 

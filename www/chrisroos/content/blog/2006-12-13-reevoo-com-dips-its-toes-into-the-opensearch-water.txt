@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c6b5c598-b808-4080-b0e0-4c31c72e3e72
 title: Reevoo.com dips its toes into the opensearch water
 filter: 

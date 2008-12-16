@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: e41e4af3-93de-47af-be84-596ae4acf110
 title: Installing Collaboa
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: b6f3e70a-1126-48cf-8b4c-4d29c64c0d74
 title: Feed reading feature requests
 filter: 

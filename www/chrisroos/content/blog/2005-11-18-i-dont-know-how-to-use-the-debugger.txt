@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: fe559494-2085-48d6-8ac1-0a5b3534bc22
 title: I don't know how to use the debugger
 filter: 

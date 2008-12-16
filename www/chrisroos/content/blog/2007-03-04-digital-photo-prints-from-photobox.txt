@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 4de2dcc6-84bc-47da-90aa-5118bc175434
 title: Digital Photo Prints from PhotoBox
 filter: 

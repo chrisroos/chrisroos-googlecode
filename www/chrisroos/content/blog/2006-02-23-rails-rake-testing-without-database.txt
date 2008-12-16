@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 7436c1ad-8856-4b00-8575-83adcce61509
 title: Rails rake testing without database
 filter: 

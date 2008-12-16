@@ -1,4 +1,5 @@
 ---
+blog_post: true
 title:      A Utility to Manage Apache Virtual Hosts on a Mac (Like the Passenger Pref Pane but for Simple Static Sites)
 created_at: 2008-12-15 20:21:47.221105 +00:00
 guid:       aa8632ff-c37c-46db-9482-502915ac5259

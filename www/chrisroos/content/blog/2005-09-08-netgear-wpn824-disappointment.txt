@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 03e1f64256a47b265ae0c91d75c19df7
 title: Netgear WPN824 disappointment
 filter: 

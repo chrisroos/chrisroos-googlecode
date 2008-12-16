@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 0bc7deea-9617-4220-aa9d-745cb903b5c2
 title: Repairing an Hp Pavilion N5241 laptop
 filter: 

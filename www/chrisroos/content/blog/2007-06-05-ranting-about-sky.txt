@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: d15fdc80-ed24-4451-8c27-d484f86ad91a
 title: Ranting about Sky
 filter: 

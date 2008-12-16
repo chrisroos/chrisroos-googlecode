@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 83e603e5-15ad-413f-9d1a-c30a2895e114
 title: Automatically downloading my Ing Direct transactions
 filter: 

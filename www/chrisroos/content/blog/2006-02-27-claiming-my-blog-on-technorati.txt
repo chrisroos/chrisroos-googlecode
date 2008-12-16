@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 5d01f68c-5604-4cb3-8274-dadd6a6e188f
 title: Claiming my blog on technorati
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 90292477-5dc2-4c47-a76b-b6ec1e6f992f
 title: Very very lightweight mocking(ish)
 filter: 

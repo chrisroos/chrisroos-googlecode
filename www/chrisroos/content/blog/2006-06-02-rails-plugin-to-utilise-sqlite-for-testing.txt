@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 14bb15b2-1ff2-4c9a-beae-da7c9afe7957
 title: Rails plugin to utilise Sqlite for testing
 filter: 

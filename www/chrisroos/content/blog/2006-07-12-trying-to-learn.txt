@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 135e6eda-b6ee-4965-9fa0-1d2f0735a98e
 title: Trying to learn
 filter: 

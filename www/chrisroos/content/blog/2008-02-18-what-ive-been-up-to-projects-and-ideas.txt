@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: cf1cb765-edb9-4db9-aab3-08e439b97047
 title: What I've been up to - Projects and Ideas
 filter: 

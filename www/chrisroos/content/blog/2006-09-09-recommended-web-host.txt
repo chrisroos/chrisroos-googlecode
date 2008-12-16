@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 585b660b-4990-44fa-a6c1-50cd2ed4eb4a
 title: Recommended web host
 filter: 

@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 5c626e81-8c1f-42ca-afea-2a1e325b1566
 title: Test::Unit abstract test case
 filter: 

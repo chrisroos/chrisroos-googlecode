@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: bfabc321-1654-46e0-9ce1-ddc03c4047a0
 title: Backpack sms reminders to orange uk
 filter: 

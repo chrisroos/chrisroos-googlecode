@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: cbc54651-5c93-4b66-965e-f904916cfb21
 title: Unified method_exists method for ruby
 filter: 

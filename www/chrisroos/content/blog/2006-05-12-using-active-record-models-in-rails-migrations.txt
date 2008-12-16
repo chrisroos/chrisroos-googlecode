@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: e7338fc7-3433-4d3b-a68b-53b1db6c59d8
 title: Using active record models in rails migrations
 filter: 

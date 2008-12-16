@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 67a24999-5586-4da3-b029-de9730431b37
 title: A common pattern in retailers' receipt pages (and a microformat solution)
 filter: 

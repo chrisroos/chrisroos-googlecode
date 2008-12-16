@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 41f0d19b-a1ab-433a-bd84-e1ef4d123d0f
 title: ClaimId for managing online identity
 filter: 

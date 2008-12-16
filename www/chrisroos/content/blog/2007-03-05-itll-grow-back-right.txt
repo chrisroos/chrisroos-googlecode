@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 12b9a9e0-2015-4ee4-a695-63b6328a5c7f
 title: It'll grow back, right?
 filter: 

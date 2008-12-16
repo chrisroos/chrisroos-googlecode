@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: fa0443e665eac702741d9c0efe7c1873
 title: Typo flickr problems
 filter: 

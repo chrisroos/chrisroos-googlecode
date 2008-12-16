@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: bad3b2d6-3353-4df9-94ed-73df516a11dc
 title: Cross browser (well, IE 6, Firefox 2 and Safari 3) bookmarklet script
 filter: 

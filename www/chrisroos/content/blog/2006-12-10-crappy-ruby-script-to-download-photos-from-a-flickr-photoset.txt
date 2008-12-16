@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 628ea6d6-384e-45e9-b54d-ebfd0d93d23f
 title: Crappy ruby script to download photos from a flickr photoset
 filter: 

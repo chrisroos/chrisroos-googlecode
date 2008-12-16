@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 8c0cc51d-6665-4475-9af7-6cf6ad593b09
 title: Might as well aim high...
 filter: 

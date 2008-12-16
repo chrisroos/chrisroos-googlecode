@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: 93b1bb52-be20-47b0-a4eb-f7f637910cd5
 title: I hope I didn't break rubyforge...
 filter: 

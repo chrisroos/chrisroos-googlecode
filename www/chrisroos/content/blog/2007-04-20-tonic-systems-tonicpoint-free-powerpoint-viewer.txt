@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: f720be4b-48bf-4531-be28-dffb187f9a53
 title: Tonic Systems TonicPoint free Powerpoint viewer
 filter: 

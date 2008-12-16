@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: c567c902-bb82-4501-b922-1bad9337e283
 title: Obtaining latitude/longitude for UK postcodes
 filter: 

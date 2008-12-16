@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: a332b171-dc34-4382-b88a-8a408ec5806e
 title: Some useful assertions, maybe
 filter: 

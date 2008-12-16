@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: a268904a-6779-4135-8fd8-91f0987d6185
 title: The worst word in the world... ever
 filter: 

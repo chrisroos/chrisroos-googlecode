@@ -1,4 +1,5 @@
 --- 
+blog_post: true
 guid: d71126eb-8c87-49ac-9567-334d87e2d4c6
 title: ebay feedback
 filter: 
