@@ -8,7 +8,7 @@ filter:
 created_at: 2007-09-27 07:36:00 +01:00
 layout: blog
 ---
-I've started looking into my <notextile>*cough*</notextile> promise <notextile>*cough*</notextile> to do that "local paper":http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers site I mentioned sometime ago.  The code is all in me "google code":http://chrisroos.googlecode.com "repository":http://chrisroos.googlecode.com/svn/trunk/the-local-paper/ if you want to see how it's going (or finish it when I inevitably get bored again...).
+I've started looking into my <notextile>*cough*</notextile> promise <notextile>*cough*</notextile> to do that "local paper":/blog/2007-06-01-an-open-letter-to-my-local-newspapers site I mentioned sometime ago.  The code is all in me "google code":http://chrisroos.googlecode.com "repository":http://chrisroos.googlecode.com/svn/trunk/the-local-paper/ if you want to see how it's going (or finish it when I inevitably get bored again...).
 
 Anyway, the point of this post is that I realised something about testing that I feel I may have missed in the past.  I've got used to stating the "behavior":http://behaviour-driven.org/ of the objects in my system through tests.  So, when I wanted to ensure that an article couldn't be created without a title, I added a test like so:
 

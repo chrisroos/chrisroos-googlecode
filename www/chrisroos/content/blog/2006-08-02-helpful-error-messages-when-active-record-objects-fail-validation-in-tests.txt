@@ -8,7 +8,7 @@ filter:
 created_at: 2006-08-02 13:47:00 +01:00
 layout: blog
 ---
-I "posted":http://blog.seagul.co.uk/articles/2006/06/21/more-helpful-messages-for-active-record-validation-errors-in-rails-testing a while back about displaying the reasons for an active record model failing validation.
+I "posted":/blog/2006-06-21-more-helpful-messages-for-active-record-validation-errors-in-rails-testing a while back about displaying the reasons for an active record model failing validation.
 
 I knew the code was hacky and nasty but didn't realise quite how bad until I noticed how "simply":http://dev.rubyonrails.org/browser/tags/rel_1-1-0/activerecord/lib/active_record/validations.rb  (1 line) the same thing was implemented in "Rails 1.1":http://weblog.rubyonrails.com/2006/3/28/rails-1-1-rjs-active-record-respond_to-integration-tests-and-500-other-things (and above).
 

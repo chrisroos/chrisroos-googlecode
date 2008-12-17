@@ -8,7 +8,7 @@ filter:
 created_at: 2006-07-17 09:22:00 +01:00
 layout: blog
 ---
-Having found a "new way to structure my tests":http://blog.seagul.co.uk/articles/2006/07/17/some-realisations-about-testing, the need for some common setup shared by multiple test cases became apparent.
+Having found a "new way to structure my tests":/blog/2006-07-17-some-realisations-about-testing, the need for some common setup shared by multiple test cases became apparent.
 
 I think the traditional way to do this was to create a subclass of TestCase to contain the common setup code and then subclass that for your individual test cases.  This is fine, but in "test/unit":http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html, a TestCase with no tests causes an error.
 

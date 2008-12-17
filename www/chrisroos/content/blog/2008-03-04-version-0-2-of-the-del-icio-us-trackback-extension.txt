@@ -8,7 +8,7 @@ filter:
 created_at: 2008-03-04 09:30:00 +00:00
 layout: blog
 ---
-I finally got round to compiling the "del.icio.us trackback extension":http://blog.seagul.co.uk/articles/2008/02/04/sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us I wrote about a while back.
+I finally got round to compiling the "del.icio.us trackback extension":/blog/2008-02-04-sending-trackbacks-to-the-sites-that-you-bookmark-in-del-icio-us I wrote about a while back.
 
 You can install it from the installation.html[1] page on the "del.icio.us trackbacks google group":http://groups.google.com/group/delicious-trackbacks.  Feel free to use that group to post any questions you have too.
 

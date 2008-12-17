@@ -50,4 +50,4 @@ RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
 
 I figured that there's a chance some of these rules might come in useful to someone else.
 
-fn1. This has all been for the "local paper idea":http://blog.seagul.co.uk/articles/2007/06/01/an-open-letter-to-my-local-newspapers I mentioned a while back.  I've actually "started":http://twitter.com/chrisroos/statuses/570937102 to get some content up on "the-local-paper.co.uk":http://the-local-paper.co.uk if you want to play along and see how it's shaping up..
+fn1. This has all been for the "local paper idea":/blog/2007-06-01-an-open-letter-to-my-local-newspapers I mentioned a while back.  I've actually "started":http://twitter.com/chrisroos/statuses/570937102 to get some content up on "the-local-paper.co.uk":http://the-local-paper.co.uk if you want to play along and see how it's shaping up..

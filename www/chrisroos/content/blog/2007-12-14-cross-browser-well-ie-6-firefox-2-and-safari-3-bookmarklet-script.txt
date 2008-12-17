@@ -8,7 +8,7 @@ filter:
 created_at: 2007-12-14 21:27:00 +00:00
 layout: blog
 ---
-I "mentioned":http://blog.seagul.co.uk/articles/2007/12/14/bookmarklet-favelet-limits-in-internet-explorer-6-and-7 that I'd been playing with bookmarklets in Internet Explorer 6 (among other, proper, browsers).
+I "mentioned":/blog/2007-12-14-bookmarklet-favelet-limits-in-internet-explorer-6-and-7 that I'd been playing with bookmarklets in Internet Explorer 6 (among other, proper, browsers).
 
 I thought it might be useful to paste the script that bootstraps the bookmarklet.  The concept is that we use the bookmarklet javascript to insert a script tag into the page that links to the full javascript file containing the function(s) that we wish to execute.  I know this has been documented elsewhere and I've probably missed some important stuff out but it may prove useful to someone.
 

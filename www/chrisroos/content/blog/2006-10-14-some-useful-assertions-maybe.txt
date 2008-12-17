@@ -36,7 +36,7 @@ class MyTest < Test::Unit::TestCase
 end
 </code></pre></div>
 
-The second is to test for generated warnings.  In my "current project":http://blog.seagul.co.uk/articles/2006/10/06/recording-daily-spending-with-a-ruby-dsl app, I use method_missing and wanted to warn the user if the unknown message looks like it's supposed to be a payment mechanism...
+The second is to test for generated warnings.  In my "current project":/blog/2006-10-06-recording-daily-spending-with-a-ruby-dsl app, I use method_missing and wanted to warn the user if the unknown message looks like it's supposed to be a payment mechanism...
 
 <div class="code"><pre><code class="ruby">
 day '25-oct-2006' do

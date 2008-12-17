@@ -8,7 +8,7 @@ filter:
 created_at: 2005-11-26 22:55:00 +00:00
 layout: blog
 ---
-This started out as a few paragraphs at the end of the "previous post":http://blog.seagul.co.uk/articles/2005/11/26/it-should-be-easy-to-cancel-online-accounts but I thought it better suited on it's own.
+This started out as a few paragraphs at the end of the "previous post":/blog/2005-11-26-it-should-be-easy-to-cancel-online-accounts but I thought it better suited on it's own.
 
 In my current thinking, I basically equate transparency with confidence.  Traditionally, people don't tell you how much things cost (a sweeping statement I know).  They may have example prices that can be negotiated on, advertised prices with small print (that alters the same) or just try very hard to hide the pricing altogether[1].  I believe that if you're confident in your product/service you will have no reason to obfuscate the price (in these and other ways).  If you don't have to disguise your price then you are able to place it very prominently on your site.  It turns out to be the same folks prominently "displaying":http://www.strongspace.com/plans "their":http://www.basecamphq.com/signup "pricing":http://www.dropsend.com/pricingsignup.php also making it very easy to cancel your account (see now how it links to the previous post?).
 

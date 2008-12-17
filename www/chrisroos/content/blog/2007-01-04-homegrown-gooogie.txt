@@ -8,7 +8,7 @@ filter:
 created_at: 2007-01-04 14:37:00 +00:00
 layout: blog
 ---
-So, I just saw a "post":http://blog.outer-court.com/archive/2007-01-04.html#n31 about "gooogie":http://www.gooogie.co.uk, and it reminded me of my "own":http://blog.seagul.co.uk/articles/2006/12/15/might-as-well-aim-high, 'did you mean', page[1].
+So, I just saw a "post":http://blog.outer-court.com/archive/2007-01-04.html#n31 about "gooogie":http://www.gooogie.co.uk, and it reminded me of my "own":/blog/2006-12-15-might-as-well-aim-high, 'did you mean', page[1].
 
 You can achieve the same effect as gooogie by using the excellent "firebug":https://addons.mozilla.org/firefox/1843/ firefox extension to execute javascript in the context of the page you are viewing.
 

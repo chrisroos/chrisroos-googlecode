@@ -8,7 +8,7 @@ filter:
 created_at: 2008-03-29 06:27:05 +00:00
 layout: blog
 ---
-To aid my development of the "del.icio.us trackbacks firefox extension":http://blog.seagul.co.uk/articles/2008/03/04/version-0-2-of-the-del-icio-us-trackback-extension I created a reference "trackback":http://en.wikipedia.org/wiki/Trackback server implementation based on the "trackback specification":http://www.sixapart.com/pronet/docs/trackback_spec.
+To aid my development of the "del.icio.us trackbacks firefox extension":/blog/2008-03-04-version-0-2-of-the-del-icio-us-trackback-extension I created a reference "trackback":http://en.wikipedia.org/wiki/Trackback server implementation based on the "trackback specification":http://www.sixapart.com/pronet/docs/trackback_spec.
 
 It's written in "Ruby":http://www.ruby-lang.org as a "Mongrel":http://mongrel.rubyforge.org/ handler and stores the trackbacks serialized to "YAML":http://en.wikipedia.org/wiki/YAML on the filesystem.  The code is over in "my google code repository":http://code.google.com/p/chrisroos/ (no direct link as I plan to move the trackback-server from its current home in /trunk/scratch to /trunk/www/trackbacks.seagul.co.uk).
 
