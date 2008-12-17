@@ -12,13 +12,13 @@ There are loads of different ways to check whether an object (class or instance)
 
 In fact, there are so many different ways that I spent some time working out what was what.
 
-I started out testing each of the relevant Module methods on both a class and instance.  This was followed up by testing each of the relevant Object methods on both a class and instance.  The full test suite is "here":http://blog.seagul.co.uk/pages/20060918_testing_method_responses_full.
+I started out testing each of the relevant Module methods on both a class and instance.  This was followed up by testing each of the relevant Object methods on both a class and instance.  The full test suite is "here":/pages/20060918_testing_method_responses_full.
 
-I summarised the results into a more compact test suite "here":http://blog.seagul.co.uk/pages/20060918_testing_method_responses_compact.
+I summarised the results into a more compact test suite "here":/pages/20060918_testing_method_responses_compact.
 
-I think I'm correct in stating that there's no one way to check for the existence of a method (be it public, protected or private) on a class.  However, the test results make it slightly easier to scan and create such a method - "three variants":http://blog.seagul.co.uk/pages/20060918_testing_class_method_exists none-the-less.
+I think I'm correct in stating that there's no one way to check for the existence of a method (be it public, protected or private) on a class.  However, the test results make it slightly easier to scan and create such a method - "three variants":/pages/20060918_testing_class_method_exists none-the-less.
 
-The same statement goes for uniformly determining the existence of a method on an instance.  Once again the tests helped derive the three implementations "here":http://blog.seagul.co.uk/pages/20060918_testing_instance_method_exists.
+The same statement goes for uniformly determining the existence of a method on an instance.  Once again the tests helped derive the three implementations "here":/pages/20060918_testing_instance_method_exists.
 
 Combining these two imlpementations provides us with a uniform method to determine whether the receiver contains a method represented by _method_sym_.
 
