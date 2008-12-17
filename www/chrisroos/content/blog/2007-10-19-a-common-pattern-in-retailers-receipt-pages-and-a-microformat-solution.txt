@@ -12,7 +12,7 @@ We've been looking at embedding a little bit of javascript in one of our partner
 
 So, something that might currently look like this:
 
-<div class="code"><pre><code class="html">
+<pre class="code html">
 <table>
   <tr>
     <th>Order Number</th>
@@ -37,11 +37,11 @@ So, something that might currently look like this:
 <script src="http://MY-SEO-HELPER" type="text/javascript" charset="utf-8"></script>
 
 <!-- And repeat... -->
-</code></pre></div>
+</pre>
 
 Could become much simpler:
 
-<div class="code"><pre><code class="html">
+<pre class="code html">
 <table>
   <tr>
     <th>Order Number</th>
@@ -55,6 +55,6 @@ Could become much simpler:
 
 <script src="http://MY-PRICE-COMPARATOR" type="text/javascript" charset="utf-8"></script>
 <script src="http://MY-SEO-HELPER" type="text/javascript" charset="utf-8"></script>
-</code></pre></div>
+</pre>
 
 There has been discussion of such a "receipt microformat":http://microformats.org/wiki/receipt but a quick search seemed to suggest that it hasn't been discussed in the context of this specific problem.  Maybe I'll go add my voice to that discussion...

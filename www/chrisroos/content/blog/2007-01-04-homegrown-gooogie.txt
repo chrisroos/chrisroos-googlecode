@@ -22,9 +22,9 @@ To achieve the effect:
 
 * Fire up firebug and execute the following line in the console, substituting your desired suggestion first (the text on the page should change immediately)
 
-<div class="code"><pre><code class="javascript">
+<pre class="code javascript">
 document.evaluate('/html/body/p[1]/a/b/i', document, null, XPathResult.ANY_TYPE, null).iterateNext().textContent = 'THE_WORD_YOU_WANT_TO_SUGGEST'
-</code></pre></div>
+</pre>
 
 * Finish by typing a new word into the search box and taking a screenshot to impress your friends (or not, as the case may be).
 

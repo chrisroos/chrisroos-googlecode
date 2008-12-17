@@ -16,14 +16,12 @@ I'd eventually like to develop a dashboard widget myself but until I get there I
 
 I played around for a bit and came up with the following.
 
-<div class="code">
-<pre>
+<pre class="code javascript">
 var new_item=prompt('Add Item');
 location.href='http://USERNAME.tadalist.com/item/add?list_id=LISTID&content='+encodeURIComponent(new_item);
 alert('Added');
 location.href='http://USERNAME.tadalist.com/lists/show/LISTID';
 </pre>
-</div>
 
 It even kinda works, although if you press cancel when it prompts for the list text, it will add a new item of null, obviously...
 

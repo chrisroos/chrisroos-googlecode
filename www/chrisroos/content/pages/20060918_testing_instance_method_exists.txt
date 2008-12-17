@@ -6,7 +6,7 @@ filter:
 created_at: 2006-09-18 22:51:33 +01:00
 layout: page
 ---
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 class Foo
   def foo; end; public :foo
   def bar; end; protected :bar
@@ -64,4 +64,4 @@ Class.new(Test::Unit::TestCase) do
   end
 
 end
-</code></pre></div>
+</pre>

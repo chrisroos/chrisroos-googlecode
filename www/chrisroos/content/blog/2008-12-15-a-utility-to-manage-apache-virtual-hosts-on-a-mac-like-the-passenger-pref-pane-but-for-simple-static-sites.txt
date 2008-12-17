@@ -13,9 +13,9 @@ I really like the "Passenger preference pane":http://www.fngtps.com/2008/06/putt
 
 You can get it by checking out the "source":http://chrisroos.googlecode.com/svn/trunk/apacherb/:
 
-<div class="code"><pre><code>
+<pre class="code">
 svn co http://chrisroos.googlecode.com/svn/trunk/apacherb
-</code></pre></div>
+</pre>
 
 It works in a very similar way to the Passenger preference pane: you give it a domain and directory (<code>sudo apacherb create chrisroos.local /path/to/chrisroos.local</code>) and it'll create the necessary config (in /etc/apache2/apacherb_vhosts/) and register the domain with directory services.  You can also delete (<code>sudo apacherb delete chrisroos.local</code>) and list (<code>apacherb list</code>) these vhosts.  Just execute the script to see the help message (or look at the code).
 

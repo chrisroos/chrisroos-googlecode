@@ -13,7 +13,7 @@ h2. Short version (or, "I want to connect to gmail NOW")
 * Download the "pop3 library":http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/index.html from "Ruby HEAD":http://www.ruby-lang.org/cgi-bin/cvsweb.cgi//?only_with_tag=HEAD (Ruby 1.9) ("download file":http://www.ruby-lang.org/cgi-bin/cvsweb.cgi/~checkout~/ruby/lib/net/pop.rb?rev=1.73;content-type=application%2Fx-ruby;only_with_tag=HEAD)
 * Use the following script to get started (making sure that you explicitly reference the downloaded pop3 file)...
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 require 'pop_ssl' # I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version
 
 username = 'YOUR_GMAIL_USERNAME@gmail.com'
@@ -29,7 +29,7 @@ Net::POP3.start('pop.gmail.com', 995, username, password) do |pop|
     end
   end
 end
-</code></pre></div>
+</pre>
 
 h2. Medium version (or, "Let me know I'm connecting to the correct site, Dammit")
 
@@ -39,9 +39,9 @@ This is identical to the short version except that we verify the ssl certificate
 * Download the CA Root Certificates bundle from "cURL site":http://curl.haxx.se/ ("download file":http://curl.haxx.se/ca/cacert.pem)
 * Copy the code above but change the Net::POP3.enable_ssl line to read...
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, '/PATH/TO/DOWNLOADED/cacert.pem')
-</code></pre></div>
+</pre>
 
 h2. Longer version (or, "Pray tell, how did you find this information sir")
 
@@ -53,9 +53,9 @@ You see, gmail only accepts "POP3":http://en.wikipedia.org/wiki/POP3 connections
 
 Next step was to follow the example on the "net/pop3 page":http://ruby-doc.org/stdlib-1.9/libdoc/net/pop/rdoc/classes/Net/POP3.html, and, with the addition of the Net::POP3::enable_ssl directive, try to connect.  Hmm, things still weren't working quite right.  I was getting the following error.
 
-<div class="code"><pre><code>
+<pre class="code">
 OpenSSL::SSL::SSLError: certificate verify failed
-</code></pre></div>
+</pre>
 
 Some more googling led me to "this post":http://ghouston.blogspot.com/2006/03/using-ssl-with-ruby-http-access2.html by "Greg Houston":http://ghouston.blogspot.com/.  It turns out that the error is actually raised in the "OpenSSL":http://www.openssl.org layer.  It is caused by us trying to verify the server certificate without having the correct trusted root certificate.  It turns out that we can either disable the verification (by using <code>Net::POP3::enable_ssl(OpenSSL::SSL::VERIFY_NONE)</code>), or we can verify against a trusted root certificate bundle, like the one "supplied":http://curl.haxx.se/docs/caextract.html by cURL.  To verify using the certificate bundle from cURL (or similar), we would amend the above line of code to <code>Net::POP3.enable_ssl(OpenSSL::SSL::VERIFY_PEER, File.dirname(__FILE__) + '/PATH/TO/DOWNLOADED/cacert.pem')</code>.
 

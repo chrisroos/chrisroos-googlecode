@@ -14,7 +14,7 @@ I removed :active_record from the frameworks loaded in evironment, but apparentl
 
 Just add the code below within the Test::Unit::TestCase declaration in test_helper.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 def self.dont_use_fixtures
   class_eval do
     def self.method_added(method); end
@@ -22,29 +22,29 @@ def self.dont_use_fixtures
     def teardown; end
   end
 end
-</code></pre></div>
+</pre>
 
 This still requires that you add dont_use_fixtures into each test class definition.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 class MyTest < Test::Unit::TestCase
   dont_use_fixtures
   def test_
     # my first test
   end
 end
-</code></pre></div>
+</pre>
 
 Having just written this it's obvious now that it would make more sense to not require the declaration in each test class (as we supposedly don't even have access to active record).  We should probably also play fair and pass messages back to our parent if method_added isn't being called with either setup or teardown.
 
 The new code becomes (again, in Test::Unit::TestCase definition in test_helper).
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 def self.method_added(method)
   super unless [:setup, :teardown].include?(method.to_sym)
 end
 def setup; end
 def teardown; end
-</code></pre></div>
+</pre>
 
 This appears to work ok...

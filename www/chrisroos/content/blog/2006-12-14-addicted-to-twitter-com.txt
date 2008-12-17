@@ -16,7 +16,7 @@ To play along, you will need:
 * One twitter account that is a friend of the first account (with the mobile)
 * A tiny bit of ruby script
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 require 'rubygems'
 require 'json'
 
@@ -30,7 +30,7 @@ SENDER_USERNAME = 'USERNAME_OF_FRIEND'
 SENDER_PASSWORD = 'PASSWORD_OF_FRIEND'
 
 `curl -u"#{SENDER_USERNAME}:#{SENDER_PASSWORD}" -d"status=#{text.reverse}" http://twitter.com/statuses/update.xml`
-</code></pre></div>
+</pre>
 
 The script just reads the most recent message sent to your mobile twitter account, reverses the text and sends it back to your mobile.
 

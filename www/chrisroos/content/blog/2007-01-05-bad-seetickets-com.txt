@@ -20,9 +20,9 @@ Oh well, might as well fill it in and submit.  But wait.  What's this?
 
 Wow, an email server that takes upto 60 seconds to:
 
-<div class="code"><pre><code class="sql">
+<pre class="code sql">
 DELETE FROM newsletters WHERE email = 'MY_EMAIL';
-</code></pre></div>
+</pre>
 
 Oh well, I best click OK and wait.  Oh.
 
