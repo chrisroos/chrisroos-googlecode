@@ -37,7 +37,6 @@ strong {
   font-weight: bold;
 }
 ol, ul {
-  font-size: 116%;
   margin-left: 3em;
   margin-bottom: 1em;
 }
@@ -152,4 +151,8 @@ body.contents ol li {
   background: transparent;
   font-family: monospace;
   overflow:auto;
+}
+
+body.contents abbr.createdAt {
+  color: #5C5A9C;
 }
