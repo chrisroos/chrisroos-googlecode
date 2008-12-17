@@ -10,7 +10,7 @@ h1. <%= @page.title %>
 A nice list of all my previous blog posts with, where I've been bothered, a little summary to entice you in.
 
 <ol class="posts">
-  <% @pages.find(:all, :in_directory => "blog", :sort_by => "created_at", :reverse => true, :blog_post => true).each do |post| %>
+  <% blog_posts.each do |post| %>
     <li class="post">
       <h2 class="title">
         <%= short_date(post) %> - <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
