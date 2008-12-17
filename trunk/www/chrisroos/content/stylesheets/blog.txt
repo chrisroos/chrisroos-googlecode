@@ -163,3 +163,10 @@ body.contents ol li {
 abbr.createdAt {
   color: <%= @page.color['purple'] %>;
 }
+
+body.contents h2.title {
+  margin-bottom: 0;
+}
+body.contents li.post {
+  margin-bottom: 2em;
+}
