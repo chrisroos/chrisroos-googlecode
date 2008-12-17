@@ -1,4 +1,5 @@
 ---
+summary: I'm begging for work.  That's it.
 blog_post:  true
 title:      Please Sir Can I Have a Job
 created_at: 2008-12-17 10:30:37.219441 +00:00
