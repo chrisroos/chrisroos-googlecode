@@ -184,14 +184,3 @@ body.contents li.post {
 #dsq-content #dsq-comments .dsq-comment .dsq-comment-body p {
   margin-bottom: 0.5em;
 }
-
-
-/**********************************************************/
-/* Unused???                                              */
-ol.comments, ol.trackbacks {
-  font-size: 100%;
-  margin-left: 0;
-}
-ol.comments li, ol.trackbacks li, ul.navigation li {
-  list-style-type: none;
-}
