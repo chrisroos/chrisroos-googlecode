@@ -1,5 +1,5 @@
 ---
-title:       Table of Contents
+title:       All posts
 created_at:  2008-08-02 14:06:40.000000 -06:00
 filter:
   - erb
@@ -7,14 +7,15 @@ filter:
 ---
 h1. <%= @page.title %>
 
-<p>Google and Yahoo have indexed some of my paged articles (e.g. articles/page/50).  Although these paged articles may appear in the <a href="http://en.wikipedia.org/wiki/Search_engine_results_page">search results</a> for a given search term there is no guarantee that the page is still relevant.  In fact, as I only had three articles per page, it would only take the addition of another three articles to render google's index of these pages useless.  I've decided to forwarded requests for any of these paged article resources to this table of contents in an attempt to be more useful to you.</p>
-              
+A nice list of all my previous blog posts with, where I've been bothered, a little summary to entice you in.
+
 <ol class="posts">
   <% @pages.find(:all, :in_directory => "blog", :sort_by => "created_at", :reverse => true, :blog_post => true).each do |post| %>
     <li class="post">
       <h2 class="title">
         <%= short_date(post) %> - <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
       </h2>
+      <%= post.summary %>
     </li>
   <% end %>
 </ol>
