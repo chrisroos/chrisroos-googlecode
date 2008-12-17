@@ -66,7 +66,7 @@ rake db_schema_dump
 
 That should be all there is to it; although I must confess that I've seen additional strange problems when running certain tests against the sqlite in-memory database.  In certain cases I think these may be fixture related.  Where, in "MySql":http://www.mysql.org, you seem to be able to omit required fields (not null) from a fixtures file, sqlite requires their presence.  In other cases; who knows...
 
-h3. Testing your sqlite installation
+h2. Testing your sqlite installation
 
 One final note that may be of interest.  When I first started playing with sqlite3 with Ruby it seems that I didn't have it installed correctly (relying on pre-installed sqlite and the sqlite3-ruby gem).  As per "this article":http://wiki.rubyonrails.org/rails/pages/HowtoUseSQLite I had to un-install sqlite3-ruby gem and first install the swig port before re-installing sqlite3-ruby gem.  You can test for the correct installation by running the "Active Record":http://wiki.rubyonrails.com/rails/pages/ActiveRecord tests against sqlite by following these steps.
 
@@ -88,6 +88,6 @@ You can also run the tests using the sqlite3 in memory connection.  To do so, pe
 
 I'd suggest doing this against an svn checked out copy of rails, purely due to the these at which the changes can be reverted.
 
-h3. Useless stats
+h2. Useless stats
 
 Changing to in-memory testing shaved about 33% off the running time of our unit tests.

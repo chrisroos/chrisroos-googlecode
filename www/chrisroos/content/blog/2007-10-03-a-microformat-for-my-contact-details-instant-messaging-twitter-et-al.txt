@@ -10,11 +10,11 @@ layout: blog
 ---
 I haven't done any research on this so it may have already been proposed over at the "microformats":http://microformats.org/ site.
 
-h3. The problem
+h2. The problem
 
 Sometimes I want to communicate with the author of a webpage.  I don't want to have to hunt around to find contact details and I probably don't want to fill in a form.
 
-h3. A proposal to fix part of the problem
+h2. A proposal to fix part of the problem
 
 If the author's contact details were semantically marked up, either on the page I was looking at or linked to elsewhere on the web, then I could use a simple parser to extract those details and select the best communication tool to use manually.
 
@@ -82,7 +82,7 @@ p parser.identifier('blurgh')
 # => ''
 </code></pre></div>
 
-h3. Further considerations
+h2. Further considerations
 
 * If existing communication tools[1] were to integrate this parser then it would be easy to add a contact by giving the url of, for example, their blog.
 * Author's should be able to specify the order of the tools that they wish to use for communication.  We could just assume that the list of contact details is in the author's preferred order.

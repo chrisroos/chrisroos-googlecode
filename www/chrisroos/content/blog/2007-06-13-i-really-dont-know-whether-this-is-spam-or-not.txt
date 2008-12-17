@@ -16,11 +16,11 @@ I did some investigation to see if I could find the provider of the porn links. 
 
 * The porn links are embedded within the body of the page and then moved to the bottom with the help of javascript.  I assume that this is an "SEO":http://www.wikipedia.org/wiki/SEO trick, based on the understanding that links in content are granted higher ratings than links just for navigation.
 
-h3. Site without javascript enabled
+h2. Site without javascript enabled
 
 !http://farm2.static.flickr.com/1208/544423293_cdf567e9a2_o.jpg!
 
-h3. Site with javascript enabled
+h2. Site with javascript enabled
 
 !http://farm2.static.flickr.com/1040/544325496_41bc3cb742_o.jpg!
 

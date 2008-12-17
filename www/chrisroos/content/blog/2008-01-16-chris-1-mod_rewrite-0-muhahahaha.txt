@@ -10,7 +10,7 @@ layout: blog
 ---
 I've now spent quite a considerable amount of time trying to get "mod_rewrite":http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html to do my bidding and I think I might just have cracked it[1].
 
-h3. The requirements
+h2. The requirements
 
 * Permanently redirect (301) and requests for www.the-local-paper.co.uk to the-local-paper.co.uk
 * Permanently redirect any requests for <code>/index.html</code> to <code>/</code>
@@ -18,7 +18,7 @@ h3. The requirements
 * Render the corresponding <code>/<article>.html</code> for any requests for <code>/<article></code>
 * Hide .svn directories as the entire site is checked out from "subversion":http://subversion.tigris.org/
 
-h3. The mod_rewrite rules
+h2. The mod_rewrite rules
 
 <div class="code"><pre><code>
 # Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)

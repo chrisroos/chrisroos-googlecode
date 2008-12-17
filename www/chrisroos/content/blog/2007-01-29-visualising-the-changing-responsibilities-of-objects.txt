@@ -39,7 +39,7 @@ And piping it through the diff_parser, we get:
 
 The output is in a diff-like format so that we can pipe it straight into "TextMate":http://www.macromates.com and benefit from the colour formatting therein.
 
-h3. diff_parser.rb
+h2. diff_parser.rb
 
 <div class="code"><pre><code class="ruby">
 #!/usr/bin/env ruby
