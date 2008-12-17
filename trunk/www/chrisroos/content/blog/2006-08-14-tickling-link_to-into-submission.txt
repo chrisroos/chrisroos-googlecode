@@ -22,7 +22,7 @@ I'm getting tired and a little bored now so I'll wrap this post up.  I've create
 
 !http://farm1.static.flickr.com/192/460075342_987c127e66_o.jpg!
 
-The code is pretty poor/naive, works with rails 1.0.0 (hence my trying to "set-up a rails 1.0.0 app":http://blog.seagul.co.uk/articles/2006/08/14/create-rails-projects-using-a-specific-rails-gem-version earlier), doesn't work with rails 1.1.6 (not sure about versions in between) and may or may not work for you.  I kinda think it's a good idea but there's every chance that a) it's not or b) there's already a simple solution to this problem.
+The code is pretty poor/naive, works with rails 1.0.0 (hence my trying to "set-up a rails 1.0.0 app":/blog/2006-08-14-create-rails-projects-using-a-specific-rails-gem-version earlier), doesn't work with rails 1.1.6 (not sure about versions in between) and may or may not work for you.  I kinda think it's a good idea but there's every chance that a) it's not or b) there's already a simple solution to this problem.
 
 Let me know how you get on if you decide to risk the health of your project by trying this plugin.
 

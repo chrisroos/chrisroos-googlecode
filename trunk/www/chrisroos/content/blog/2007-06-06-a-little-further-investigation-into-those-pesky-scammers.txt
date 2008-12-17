@@ -8,7 +8,7 @@ filter:
 created_at: 2007-06-06 23:11:00 +01:00
 layout: blog
 ---
-I "wrote":http://blog.seagul.co.uk/articles/2007/05/17/pesky-scammers a short while ago about receiving comments that were not obviously spam.  In the few weeks  between that post and this, I've received several more legitimate looking comments.  Tonight, I finally looked in some detail at the comments I'd received.  The comments were either very generic ('nice post' or 'thanks for the info') or were copied from previous comments on the site.  The 'homepages' came in four different flavours.
+I "wrote":/blog/2007-05-17-pesky-scammers a short while ago about receiving comments that were not obviously spam.  In the few weeks  between that post and this, I've received several more legitimate looking comments.  Tonight, I finally looked in some detail at the comments I'd received.  The comments were either very generic ('nice post' or 'thanks for the info') or were copied from previous comments on the site.  The 'homepages' came in four different flavours.
 
 h3. Look like legitimate blogs but contain hidden content and porn links at the bottom of the page.
 

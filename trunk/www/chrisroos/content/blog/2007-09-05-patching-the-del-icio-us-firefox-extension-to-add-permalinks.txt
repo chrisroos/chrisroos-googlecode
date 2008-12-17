@@ -8,7 +8,7 @@ filter:
 created_at: 2007-09-05 22:41:00 +01:00
 layout: blog
 ---
-I spent some of my train time today hacking around with the "del.icio.us":http://del.icio.us "firefox":http://www.mozilla.com/en-US/firefox/ "extension":https://addons.mozilla.org/en-US/firefox/addon/3615.  Although I'm sure it's bad in many, many ways, I've managed to add the "permalink":http://en.wikipedia.org/wiki/Permalink functionality I "mentioned":http://blog.seagul.co.uk/articles/2007/09/04/permalinks-for-del-icio-us-bookmarks-posts yesterday.  You can either apply the patch yourself, or download the patched jar file.
+I spent some of my train time today hacking around with the "del.icio.us":http://del.icio.us "firefox":http://www.mozilla.com/en-US/firefox/ "extension":https://addons.mozilla.org/en-US/firefox/addon/3615.  Although I'm sure it's bad in many, many ways, I've managed to add the "permalink":http://en.wikipedia.org/wiki/Permalink functionality I "mentioned":/blog/2007-09-04-permalinks-for-del-icio-us-bookmarks-posts yesterday.  You can either apply the patch yourself, or download the patched jar file.
 
 h3. To apply the patch.
 

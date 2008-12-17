@@ -10,7 +10,7 @@ layout: blog
 ---
 I've received another innocent looking comment, "Hey man, thanks for article!", this time from gribitonline.com.
 
-I followed the same procedure as "last time":http://blog.seagul.co.uk/articles/2007/06/06/a-little-further-investigation-into-those-pesky-scammers  and found that this site contains  the same style porn links at the bottom of the page.  The site looks more genuine than all the others, hence the title - I'm really not sure whether this is intentional spam or whether it's been hijacked.
+I followed the same procedure as "last time":/blog/2007-06-06-a-little-further-investigation-into-those-pesky-scammers  and found that this site contains  the same style porn links at the bottom of the page.  The site looks more genuine than all the others, hence the title - I'm really not sure whether this is intentional spam or whether it's been hijacked.
 
 I did some investigation to see if I could find the provider of the porn links.  Unfortunately I've not found anything obvious, although I have noticed some patterns.
 
