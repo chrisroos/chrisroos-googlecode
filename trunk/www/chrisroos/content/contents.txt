@@ -13,9 +13,8 @@ h1. <%= @page.title %>
   <% @pages.find(:all, :in_directory => "blog", :sort_by => "created_at", :reverse => true, :blog_post => true).each do |post| %>
     <li class="post">
       <h2 class="title">
-        <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
+        <%= short_date(post) %> - <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
       </h2>
-      <%= render(:partial => "/post_author_and_date", :locals => {:post => post}) %>
     </li>
   <% end %>
 </ol>
