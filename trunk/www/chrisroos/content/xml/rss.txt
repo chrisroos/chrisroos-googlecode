@@ -12,7 +12,7 @@ filter: erb
     <ttl>40</ttl>
 
     <description></description>
-    <% @pages.find(10, :in_directory => "blog", :sort_by => "created_at", :reverse => true, :blog_post => true).each do |post| %>
+    <% blog_posts(10).each do |post| %>
       <item>
         <title><%= post.title %></title>
         <description><%= h(post.render) %></description>
