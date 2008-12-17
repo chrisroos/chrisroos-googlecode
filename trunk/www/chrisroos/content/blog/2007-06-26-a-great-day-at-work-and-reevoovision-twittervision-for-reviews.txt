@@ -10,7 +10,7 @@ layout: blog
 ---
 A few of days ago I "came across":http://twitter.com/chrisroos/statuses/114202552 "twittervision":http://twittervision.com/.  Just ten hours later I had checked some code into "our":http://www.reevoo.com repository that allows us to do the same thing (as twittervision) but for our reviews.  Yup, it was a very good day indeed.  Although the initial code was complete within a few hours, it needed a bit of polishing (kudos to "Paul":http://po-ru.com) which meant that we only got it deployed yesterday.  I guess one working day between proof of concept and deployment isn't that bad...  Anyway, go check it out - "reevoovision":http://www.reevoo.com/vision.html.
 
-h3. The days events
+h2. The days events
 
 I started the morning by creating an "xml":http://en.wikipedia.org/wiki/Xml feed of the ten most recently published reviews.  On filling a review, the reviewer is asked to enter their town, which needed to be converted to latitude/longitude to allow us to plot a point on the map.  Luckily, a little googling revealed the "geonames":http://www.geonames.org/ web service that did exactly what I wanted.  So, using a combination of "ruby":http://www.ruby-lang.org/en/, "rails":http://rubyonrails.com/, "curl":http://curl.haxx.se/, "hpricot":http://code.whytheluckystiff.net/hpricot/ and "mongrel":http://mongrel.rubyforge.org/ I had a simple web server that downloaded and parsed the reviews, converted place name to lat/long, and plotted the results on a google map (with help from the "fridays":http://pragmaticprogrammer.com/fridays.html "google map book":http://pragmaticprogrammer.com/titles/sdgmapi2/index.html).  A good proof of concept but not quite right.
 

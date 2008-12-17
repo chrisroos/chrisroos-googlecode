@@ -60,6 +60,6 @@ To re-define the models in the migration, we use something like..
 
 Although sending the migration class the include message with the module isn't great, we use it as it allows us to re-define all our classes below the actual migration.  If we were to place the module at the top then this wouldn't be required but I feel that it gets in the way of being able to read the migration clearly.
 
-h3. A problem with this method and re-defining classes directly in the migration
+h2. A problem with this method and re-defining classes directly in the migration
 
 Both methods create AR derived classes in a namespace that isn't the root namespace.  We came across a problem where we were serializing the contents of one of these re-defined classes to the database from within our migration.  When we came to read the serialized data in our code, it didn't 'know' what a Migration001::Person was and so raised an exception.  Without thinking about it too much, I think this might cause problems with STI too (I've seen notes to this effect from the Typo migration solution).

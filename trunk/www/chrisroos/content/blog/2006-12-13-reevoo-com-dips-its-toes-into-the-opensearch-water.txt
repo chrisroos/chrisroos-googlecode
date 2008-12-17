@@ -18,7 +18,7 @@ IE 7 changes the little arrow to a goldy, orangey, yellowy type colour to indica
 
 While Firefox 2 opts for a blue surround and additionally chooses to add our logo.  Woot.
 
-h3. I appreciate that I can now easily search reevoo from anywhere but was it really worth a blog post?
+h2. I appreciate that I can now easily search reevoo from anywhere but was it really worth a blog post?
 
 Hmm, interesting question (that wasn't an actual question, I just made it up).
 

@@ -14,7 +14,7 @@ Moving forward, we've created a public "google group":http://groups.google.com/g
 
 Anyway, on with the feedback...
 
-h3. Points raised by four different people
+h2. Points raised by four different people
 
 h4. I want it to be obvious when you couldn't find any products for my search query.  Currently, as no message is displayed, it's unclear whether my search didn't work or the site is broken.
 
@@ -25,7 +25,7 @@ h4. I question whether the google map, on the homepage, is useful.
 Hmm, this is obviously a bit subjective.  While four people have questioned its usefulness (including one person that wanted to kill the individual that came up with it - err, yeah, sorry about that), three people have said that it really helps to understand where the reviews come from.  I'm open-minded but think we'll probably keep it there for now and possibly remove it in the future if the bounce rate (from the homepage) becomes something that we care about.
 
 
-h3. Points raised by three different people
+h2. Points raised by three different people
 
 h4. I like the google map.
 
@@ -48,7 +48,7 @@ h4. I want to know what order the products appear in on the search results and c
 They appear in the top-secret reevoo ranking order.  Muhahaha.  Actually, it's not that top secret.  It's a combination of the review score over time (how 'good' it is), the number of times people see the reevoomark for that product on our partner sites (how 'popular' it is) and the number of prices we get from "shopping.com":http://www.shopping.com (how 'current' it is).
 
 
-h3. Points raised by two different people
+h2. Points raised by two different people
 
 h4. I want to understand the relationship between the overall score and the score breakdown for a product.  For example, the "Ericsson K800i":http://www.reevoo.com/reviews/mpn/ericsson/k800i is rated 9/10 yet it only scored above average in one category ('features').
 
@@ -108,7 +108,7 @@ h4. I find it difficult to navigate the super category pages due to the long lis
 As mentioned in one of the responses above, we now only display the five most popular categories (as decided by the reevoo gods) when you first visit the page, giving you the option to show all if you wish.  This should hopefully make it a little more manageable.
 
 
-h3. Points raised by individuals
+h2. Points raised by individuals
 
 h4. I don't like the spelling errors in the reviews.
 

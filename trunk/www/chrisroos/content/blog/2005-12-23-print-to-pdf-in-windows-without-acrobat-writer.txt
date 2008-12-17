@@ -16,7 +16,7 @@ The basic premise is that you print to "PostScript":http://en.wikipedia.org/wiki
 
 These instructions work in Windows XP but should be very similar in all versions of Windows.
 
-h3. Install PostScript compatible printer.
+h2. Install PostScript compatible printer.
 
 # Add a Printer.
 # Choose 'Local printer' and do not 'automatically detect'.
@@ -24,24 +24,24 @@ h3. Install PostScript compatible printer.
 # Choose a PS printer.  I'm currently using HP Color LaserJet PS.
 # Select whether you want to use this as your default printer and choose no to printing a test page.
 
-h3. Download and install AFPL Ghostscript
+h2. Download and install AFPL Ghostscript
 
 # Visit the "Ghostscript site":http://www.cs.wisc.edu/~ghost/ and follow the 'Obtaining AFPL Ghostscript <version>' link.
 # Download the version for Windows, which at the time of writing is called  gs853w32.exe.
 # Double click the downloaded file to install.  Use the defaults during installation.
 
-h3. Download and install GSview
+h2. Download and install GSview
 
 # Visit the "GSview site":http://www.cs.wisc.edu/~ghost/gsview/index.htm and follow the 'Obtaining GSview 4.7 link'.
 # Download the version for Windows, which at the time of writing is called  gsv47w32.exe.
 # Double click the downloaded file to install.  Use the defaults during installation.
 
-h3. Print something
+h2. Print something
 
 # Open a file and choose to print to your PostScript printer.
 # On clicking the Print button, you will be prompted to specify a filename to save the PostScript document to.  Supply the full path to the file here, for example 'c:\page.ps'.  Although the .ps extension is optional it makes it easier to open directly in GSview if this is supplied.
 
-h3. Convert the PostScript file to Pdf
+h2. Convert the PostScript file to Pdf
 
 # Double click on the 'c:\page.ps' file to open it in GSview.
 # Click OK to close the software registration prompt and you will see the PostScript interpretation of your file on the screen.

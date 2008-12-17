@@ -38,7 +38,7 @@ There's a bunch of stuff that I want to do to this blog to simplify things even 
 
 *Note* I believe there may be benefits of the archive and tag pages in that they allow search engines to effectively spider all your content. I'm fairly happy that my contents page and sitemap mean that I'm covered in this respect.
 
-h3. Steps required to move towards the architecture (URL) changes
+h2. Steps required to move towards the architecture (URL) changes
 
 * Add "noindex":http://en.wikipedia.org/wiki/Noindex to all the archive pages, and optionally request their removal, so that they disappear from the search engine indexes.
 
