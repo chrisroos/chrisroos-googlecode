@@ -15,7 +15,7 @@ A nice list of all my previous blog posts with, where I've been bothered, a litt
       <h2 class="title">
         <%= short_date(post) %> - <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
       </h2>
-      <%= post.summary %>
+      <p><%= post.summary %></p>
     </li>
   <% end %>
 </ol>
