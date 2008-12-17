@@ -1,4 +1,5 @@
 --- 
+summary: I use EyeConnect in order to share my iTunes library on my Mac with my Intempo GX-01.
 blog_post: true
 guid: c4456177-2114-4d20-a63e-ac21507de898
 title: Listening to iTunes on my Intempo GX-01
