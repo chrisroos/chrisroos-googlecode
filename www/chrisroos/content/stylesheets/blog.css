@@ -13,21 +13,21 @@ body {
   margin: 0 1em;
   line-height: 1.8em;
 }
-h1, h2 {
-  color: #005A9C;
+h1 {
   font-size: 167%;
+}
+h2 {
+  font-size: 161.6%;
+}
+h3 {
+  font-size: 153.9%;
+}
+h1, h2, h3 {
+  color: #005A9C;
   font-weight: bold;
   margin-bottom: 1em;
 }
-h2 a {
-  color: #005A9C;
-  text-decoration: none;
-}
-h3 {
-  color: #005A9C;
-  font-size: 153.9%;
-}
-h3 a {
+h2 a, h3 a {
   color: #005A9C;
   text-decoration: none;
 }
