@@ -55,6 +55,8 @@ ul li {
 }
 p {
   margin-bottom: 1.5em;
+}
+p, li, span {
   font-size: 116%;
 }
 blockquote {
@@ -120,13 +122,18 @@ ul.navigation {
 
 
 /**********************************************************/
-/* Twitter status list                                    */
+/* Twitter and delicious containers                       */
+#twitter_div p, #twitter_div span, #twitter_div li {
+  font-size: 100%;
+}
+#deliciousContainer p, #deliciousContainer span, #deliciousContainer li {
+  font-size: 100%;
+}
 div#twitter_div h3, div#deliciousContainer h3 {
   margin-bottom: 0.2em;
 }
 ul#twitter_update_list, div#deliciousContainer ul {
   margin-left: 0;
-  font-size:100%;
   line-height: 1.1em;
 }
 ul#twitter_update_list li, div#deliciousContainer ul li {
@@ -150,6 +157,7 @@ ul#twitter_update_list li, div#deliciousContainer ul li {
   margin:5px;
   margin-left:1em;
   margin-bottom:1em;
+  font-size: 116%;
 }
 .code pre {
   padding: 0px;
@@ -170,6 +178,7 @@ body.contents ol {
 }
 body.contents ol li {
   list-style-type: none;
+  font-size: 100%;
 }
 body.contents h2.title {
   margin-bottom: 0;
