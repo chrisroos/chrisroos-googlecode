@@ -20,7 +20,7 @@ If the author's contact details were semantically marked up, either on the page 
 
 Maybe some code can help explain what I mean.
 
-h4. A semantically marked up contact page.
+h3. A semantically marked up contact page.
 
 <div class="code"><pre><code class="html">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
@@ -43,7 +43,7 @@ h4. A semantically marked up contact page.
 </html>
 </code></pre></div>
 
-h4. A parser in "ruby":http://www.ruby-lang.org/
+h3. A parser in "ruby":http://www.ruby-lang.org/
 
 <div class="code"><pre><code class="ruby">
 require 'rubygems'
