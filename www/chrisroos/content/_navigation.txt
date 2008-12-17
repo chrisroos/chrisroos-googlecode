@@ -8,9 +8,6 @@ filter: erb
     <a href="/contact" title="Contact me">contact me</a>
   </li>
   <li>
-    <a href="http://feeds.feedburner.com/DeferredUntilInspirationHits" title="Subscribe to my feed, deferred until inspiration hits" rel="alternate" type="application/rss+xml">subscribe to atom feed</a>
-  </li>
-  <li>
     <a href="/contents" title="All posts">all posts</a>
   </li>
   <li>
