@@ -3,7 +3,7 @@ filter: erb
 ---
 <p class="postedOn">
   Posted by Chris Roos
-  <span title="<%= formatted_created_date(@page) %>">
-    <%= formatted_created_date(@page) %>
+  <span title="<%= formatted_created_date(post) %>">
+    <%= formatted_created_date(post) %>
   </span>
 </p>
