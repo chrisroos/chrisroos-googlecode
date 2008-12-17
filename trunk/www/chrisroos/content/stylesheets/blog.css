@@ -15,16 +15,18 @@ body {
 }
 h1 {
   font-size: 167%;
+  font-weight: bold;
+  color: #005A9C;
 }
 h2 {
   font-size: 161.6%;
+  color: #005A9C;
 }
 h3 {
   font-size: 153.9%;
+  color: #5C5A9C;
 }
 h1, h2, h3 {
-  color: #005A9C;
-  font-weight: bold;
   margin-bottom: 1em;
 }
 h2 a, h3 a {
