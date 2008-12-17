@@ -29,8 +29,13 @@ h3 {
 h1, h2, h3 {
   margin-bottom: 1em;
 }
-h2 a, h3 a {
+h2 a {
   color: #005A9C;
+}
+h3 a {
+  color: #5C5A9C;
+}
+h2 a, h3 a {
   text-decoration: none;
 }
 strong {
