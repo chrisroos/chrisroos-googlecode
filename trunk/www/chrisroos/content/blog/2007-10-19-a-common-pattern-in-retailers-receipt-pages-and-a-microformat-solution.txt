@@ -12,7 +12,7 @@ We've been looking at embedding a little bit of javascript in one of our partner
 
 So, something that might currently look like this:
 
-<typo:code lang="html">
+<div class="code"><pre><code class="html">
 <table>
   <tr>
     <th>Order Number</th>
@@ -41,7 +41,7 @@ So, something that might currently look like this:
 
 Could become much simpler:
 
-<typo:code lang="html">
+<div class="code"><pre><code class="html">
 <table>
   <tr>
     <th>Order Number</th>

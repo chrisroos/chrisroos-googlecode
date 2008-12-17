@@ -14,7 +14,7 @@ I thought it might be useful to paste the script that bootstraps the bookmarklet
 
 h3. The commented, un-compressed, version
 
-<typo:code lang="javascript">
+<div class="code"><pre><code class="javascript">
 if (typeof(rvmBM) == 'undefined') { // Best to name rvmBM to something unlikely to clash with pre-defined variables
   var s = document.createElement('script'); // Use of s versus script saves some precious space
   s.type = 'text/javascript';
@@ -35,6 +35,6 @@ addRvm(); // Ask our wrapper function to call the actual bookmarklet function
 
 h3. The compressed version
 
-<typo:code lang="javascript">
+<div class="code"><pre><code class="javascript">
 javascript:if(typeof(rvmBM)=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.src='http://example.com/my-external-bookmarklet.js';void(rvmBM=true);void(document.body.appendChild(s));};function addRvm(){if(typeof(addReevooMark)=='function'){addReevooMark();}else{void(setTimeout(addRvm,100));};};addRvm();
 </code></pre></div>

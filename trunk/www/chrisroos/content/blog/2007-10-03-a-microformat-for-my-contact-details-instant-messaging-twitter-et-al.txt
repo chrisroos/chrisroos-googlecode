@@ -22,7 +22,7 @@ Maybe some code can help explain what I mean.
 
 h4. A semantically marked up contact page.
 
-<typo:code lang="html">
+<div class="code"><pre><code class="html">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 
 <html>
