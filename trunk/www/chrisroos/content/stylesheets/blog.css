@@ -153,6 +153,6 @@ body.contents ol li {
   overflow:auto;
 }
 
-body.contents abbr.createdAt {
+abbr.createdAt {
   color: #5C5A9C;
 }
