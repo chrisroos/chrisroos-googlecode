@@ -8,7 +8,7 @@ filter:
 created_at: 2007-04-30 09:08:00 +01:00
 layout: blog
 ---
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 require 'test/unit'
 
 class CandidateTest < Test::Unit::TestCase
@@ -68,4 +68,4 @@ bmRpZGF0ZSkKICAgIHJhaXNlICJVaCBvaCwgdGhhdCdzIG5vdCB0aGUgcmln
 aHQgcGFzc3dvcmQiIHVubGVzcyBjYW5kaWRhdGUua25vd3NfdGhlX3NlY3Jl
 dF9wYXNzd29yZD8KICAgIHB1dHMgQ2FuZGlkYXRlLm5ldygncnVieSBpcyBj
 b29sJykuc2VjcmV0X21lc3NhZ2UKICBlbmQKZW5kCg==
-</code></pre></div>
+</pre>

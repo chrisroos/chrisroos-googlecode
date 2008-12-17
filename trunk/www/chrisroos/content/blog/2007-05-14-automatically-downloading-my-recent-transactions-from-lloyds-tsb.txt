@@ -12,7 +12,7 @@ In my continuing quest to cut down my use of banking websites (and increase my u
 
 Code is hosted on "google code":http://chrisroos.googlecode.com/svn/trunk/lloydstsb/, and pasted in all its syntax-highlighted glory below.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 require 'lloydstsb_credentials'
 
 require 'rubygems'
@@ -68,4 +68,4 @@ execute_curl curl_cmd
 
 # Remove the cookie
 `rm #{COOKIE_LOCATION}`
-</code></pre></div>
+</pre>

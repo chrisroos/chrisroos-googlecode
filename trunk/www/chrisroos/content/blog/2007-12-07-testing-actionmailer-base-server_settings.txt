@@ -14,10 +14,10 @@ I was sending my "action mailer":http://api.rubyonrails.org/classes/ActionMailer
 
 I dug into the code and found the lines that were responsible for sending the email.  Replaying that code in the console allowed me to identify the problem immediately (a missing domain in my case).  I thought I'd paste those few lines here in case they're of some use to someone else.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 message, from, to = 'test message', 'sender-email', 'recipient-email'
 s = ActionMailer::Base.server_settings
 Net::SMTP.start(s[:address], s[:port], s[:domain], s[:user_name], s[:password], s[:authentication]) do |smtp| 
   smtp.sendmail(message, from, to)
 end
-</code></pre></div>
+</pre>

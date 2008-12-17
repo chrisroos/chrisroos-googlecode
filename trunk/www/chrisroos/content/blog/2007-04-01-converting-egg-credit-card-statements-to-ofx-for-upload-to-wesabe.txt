@@ -12,9 +12,9 @@ I've cobbled together some pretty nasty code to convert an "Egg":http://www.egg.
 
 Grab the "source":http://chrisroos.googlecode.com/svn/trunk/egg-ofx/ from "google code":http://code.google.com.
 
-<div class="code"><pre><code class="shell">
+<pre class="code shell">
 svn checkout http://chrisroos.googlecode.com/svn/trunk/egg-ofx
-</code></pre></div>
+</pre>
 
 As well as requiring "hpricot":http://code.whytheluckystiff.net/hpricot/, you will need to edit the StatementsFolder and OfxOutputFolder variables in egg.rb.  These need to point to a directory containing html statements, and an empty output directory respectively.
 

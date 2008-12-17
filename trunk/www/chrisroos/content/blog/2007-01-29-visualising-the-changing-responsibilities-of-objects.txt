@@ -12,7 +12,7 @@ By parsing the output of svn diff, we can concisely display the responsibilities
 
 Taking a very simple (and partially made up) diff:
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 Index: test/amount_test.rb
 ===================================================================
 --- test/amount_test.rb (revision 2)
@@ -27,21 +27,21 @@ Index: test/amount_test.rb
 +  def test_should_flunk
 +    flunk
    end
-</code></pre></div>
+</pre>
 
 And piping it through the diff_parser, we get:
 
-<div class="code"><pre><code>
+<pre class="code">
 --- Amount
 + should flunk
 - should format amount
-</code></pre></div>
+</pre>
 
 The output is in a diff-like format so that we can pipe it straight into "TextMate":http://www.macromates.com and benefit from the colour formatting therein.
 
 h2. diff_parser.rb
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 #!/usr/bin/env ruby
 
 class Test
@@ -100,4 +100,4 @@ tests.sort.each do |test_name, test|
     puts ''
   end
 end
-</code></pre></div>
+</pre>

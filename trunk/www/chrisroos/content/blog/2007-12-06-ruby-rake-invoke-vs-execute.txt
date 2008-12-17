@@ -12,7 +12,7 @@ First up - I don't know an awful lot about the magic that is "Rake":http://rake.
 
 I discovered the difference when trying to execute the db:migrate task from within another rake task (I already knew it worked when declared as a dependency).
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 # Rakefile
 task :foo do
   Rake::Task['db:migrate'].execute
@@ -21,13 +21,13 @@ end
 #$ rake foo
 #=> rake aborted!
 #=> uninitialized constant ActiveRecord
-</code></pre></div>
+</pre>
 
 I changed "Task#execute":http://rake.rubyforge.org/classes/Rake/Task.html#M000100 to "Task#invoke":http://rake.rubyforge.org/classes/Rake/Task.html#M000098 and, voila, it all worked fine.  The rdoc for those methods is actually pretty self explanatory, having seen the differences in action.  Oh well.
 
 I put together a simple example to demonstrate the differences.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 # The task (task_1) and its dependency (to_be_run_before_task_1)
 
 task :to_be_run_before_task_1 do
@@ -66,4 +66,4 @@ task :run_task_1_using_dependencies => ['task_1']
 #$ rake run_task_1_using_dependencies
 #=> to_be_run_before_task_1
 #=> task_1
-</code></pre></div>
+</pre>

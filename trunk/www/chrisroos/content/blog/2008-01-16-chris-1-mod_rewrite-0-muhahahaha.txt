@@ -20,7 +20,7 @@ h2. The requirements
 
 h2. The mod_rewrite rules
 
-<div class="code"><pre><code>
+<pre class="code">
 # Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
 RewriteRule ^(.*)index\.html$ $1 [R=301,L]
@@ -46,7 +46,7 @@ RewriteRule ^(.*)$ http://the-local-paper.co.uk/$1 [R=301,L]
   Deny from all
   Satisfy All
 </DirectoryMatch>
-</code></pre></div>
+</pre>
 
 I figured that there's a chance some of these rules might come in useful to someone else.
 

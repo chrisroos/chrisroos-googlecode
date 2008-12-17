@@ -12,7 +12,7 @@ I've followed in my "previous":/blog/2007-05-14-automatically-downloading-my-rec
 
 As always, the code is in "google code":http://chrisroos.googlecode.com/svn/trunk/egg/ and pasted below for your viewing pleasure...
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 require 'egg-credentials'
 
 def execute_curl(cmd)
@@ -57,4 +57,4 @@ curl_cmd = %[curl -s -o"#{STATEMENT_FILE}" -b"#{COOKIE_LOCATION}" "https://your.
 execute_curl curl_cmd
 
 
-</code></pre></div>
+</pre>

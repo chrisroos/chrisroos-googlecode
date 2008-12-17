@@ -151,18 +151,11 @@ ul#twitter_update_list li, div#deliciousContainer ul li {
   padding: 1em;
   margin-bottom: 1em;
 }
-.code {
+pre.code {
   background-color:#eee;
-  padding:2px;
-  margin:5px;
-  margin-left:1em;
+  padding:1em;
   margin-bottom:1em;
   font-size: 116%;
-}
-.code pre {
-  padding: 0px;
-  margin: 0px;
-  background: transparent;
   font-family: monospace;
   overflow:auto;
 }

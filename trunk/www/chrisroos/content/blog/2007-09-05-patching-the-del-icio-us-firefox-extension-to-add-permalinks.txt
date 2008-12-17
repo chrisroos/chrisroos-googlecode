@@ -12,7 +12,7 @@ I spent some of my train time today hacking around with the "del.icio.us":http:/
 
 h2. To apply the patch.
 
-<div class="code"><pre><code class="shell">
+<pre class="code shell">
 # Install Firefox extension 1.5.43
 $ cd MY_FIREFOX_PROFILE_DIRECTORY # ~/Library/Application Support/Firefox/Profiles/RAND_CHARS.default for me
 $ cd extensions/{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}/chrome
@@ -23,17 +23,17 @@ $ patch -p1 < delicious-extension-url-tag.patch
 $ zip -r deliciousBookmarks.jar content/ locale/ skin/ 
 $ rm -rf content/ locale/ skin/
 # Restart Firefox
-</code></pre></div>
+</pre>
 
 h2. To use the patched compressed file
 
-<div class="code"><pre><code class="shell">
+<pre class="code shell">
 # Install Firefox extension 1.5.43
 $ cd MY_FIREFOX_PROFILE_DIRECTORY # ~/Library/Application Support/Firefox/Profiles/RAND_CHARS.default for me
 $ cd extensions/{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}/chrome
 $ rm deliciousBookmarks.jar
 $ svn export http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags/deliciousBookmarks.jar 
 # Restart Firefox
-</code></pre></div>
+</pre>
 
 Now, anytime you bookmark a site, the tags field will be pre-populated with a url-tag ("url/MD5_OF_URL").  Cool huh.  Oh, and the patched extension uses this javascript "md5":http://pajhome.org.uk/crypt/md5/ library.

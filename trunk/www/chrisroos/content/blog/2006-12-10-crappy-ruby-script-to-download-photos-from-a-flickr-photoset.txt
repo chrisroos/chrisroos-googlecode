@@ -14,7 +14,7 @@ So, it seems far more difficult than it should be to retrieve a bunch of *my* ph
 
 *UPDATE 2*: Surround output filename with quotes.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 require 'cgi'
 
 API_KEY = 'YOUR_API_KEY'
@@ -47,4 +47,4 @@ photoset_photos.scan(/<photo .*>/) do |line|
     `#{curl_cmd}`
   end
 end
-</code></pre></div>
+</pre>

@@ -14,7 +14,7 @@ I think the traditional way to do this was to create a subclass of TestCase to c
 
 One solution would be to use a module to contain the common setup and include that in your test case.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 module CommonSetup
   def setup
     @stack = Stack.new
@@ -26,11 +26,11 @@ class MyTest < Test::Unit::TestCase
     assert_nothing_raised { @stack.push(1) }
   end
 end
-</code></pre></div>
+</pre>
 
 Although this is fine, I spent a short while creating an AbstractTestCase that doesn't complain if no tests are specified.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 require 'test/unit'
 class Test::Unit::AbstractTestCase < Test::Unit::TestCase
   def default_test
@@ -39,11 +39,11 @@ class Test::Unit::AbstractTestCase < Test::Unit::TestCase
     super unless klass =~ /AbstractTestCase/ or ancestors.first =~ /AbstractTestCase/
   end
 end
-</code></pre></div>
+</pre>
 
 Any test case (TestBase in this example) that inherits from AbstractTestCase can now contain setup and teardown methods but not have to worry about missing tests.  In order to maintain expected behaviour, any test case subclassed from TestBase will still complain if tests are missing.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 class TestBase < Test::Unit::AbstractTestCase
   # 'No test were specified' error is not thrown
   def setup
@@ -59,13 +59,13 @@ end
 class ShouldErrorTest < TestBase
   # 'No tests were specified' error
 end
-</code></pre></div>
+</pre>
 
 I then figured that you may want more than one level of abstract test case, i.e. be able to define at the TestCase class level whether or not a test case was abstract.  This isn't properly tested but it seems to work ok.
 
 *Note* This isn't doing exactly what I thought (the default test case is default_test, not test_default).  This works because it just creates an empty test in your test case.  This breaks behaviour in test cases that subclass your abstract test case as they too will already have at least one test defined.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 require 'test/unit'
 class Test::Unit::TestCase
   class << self
@@ -77,11 +77,11 @@ class Test::Unit::TestCase
     end
   end
 end
-</code></pre></div>
+</pre>
 
 By sending the abstract message to any TestCase class, no errors will be reported when no tests are specified.  It does this by overriding the test_default method; which is the method that raises the error if no other tests are specified.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 class AbstractTest < Test::Unit::TestCase
   abstract
   # 'No test were specified' error is not thrown
@@ -89,4 +89,4 @@ end
 class NormalTest < Test::Unit::TestCase
   # 'No test were specified' error
 end
-</code></pre></div>
+</pre>

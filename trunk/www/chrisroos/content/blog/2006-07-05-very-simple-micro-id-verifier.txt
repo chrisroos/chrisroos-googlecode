@@ -12,8 +12,6 @@ I just finished up the initial copy of a Ruby implementation of "Fred Stutzman's
 
 View the source "on-line":http://dev.seagul.co.uk/repository/browse/micro_id_verifier or checkout from anonymous subversion.
 
-<div class="code">
-<pre>
+<pre class="code">
 # svn co svn://dev.seagul.co.uk/micro_id_verifier
 </pre>
-</div>

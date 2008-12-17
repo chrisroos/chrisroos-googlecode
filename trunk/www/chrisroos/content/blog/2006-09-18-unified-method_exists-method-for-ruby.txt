@@ -22,7 +22,7 @@ The same statement goes for uniformly determining the existence of a method on a
 
 Combining these two imlpementations provides us with a uniform method to determine whether the receiver contains a method represented by _method_sym_.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 class Object
   def method_exists?(method_sym)
     methods = public_methods + protected_methods + private_methods
@@ -68,6 +68,6 @@ Class.new(Test::Unit::TestCase) do
   end
 
 end
-</code></pre></div>
+</pre>
 
 What's the point you ask?  I genuinely have no idea.  I'm sure there was one when I started but then my compulsiveness took over and I had to finish for no other reason than to finish.

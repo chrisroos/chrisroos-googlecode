@@ -12,9 +12,9 @@ A while back I "hacked":/blog/2007-07-24-train-times-by-sms-or-improving-nationa
 
 The new interface is simply in the format of SOURCE_STATION to DESTINATION_STATION.  So, to find the next few trains from "Ramsgate":http://en.wikipedia.org/wiki/Ramsgate_railway_station to "London Waterloo East":http://en.wikipedia.org/wiki/Waterloo_East_railway_station we can send the following "direct message":http://help.twitter.com/index.php?pg=kb.page&id=15 to the "natrailenq":http://twitter.com/natrailenq user on "twitter":http://twitter.com
 
-<div class="code"><pre><code>
+<pre class="code">
 d natrailenq ramsgate to london waterloo east
-</code></pre></div>
+</pre>
 
 Although you can now use the full station name it will only, currently, work if you know the exact name of the station (so, waterloo east wouldn't work in that above example, but london waterloo east will).  It will still work if you supply the three digit station code.
 

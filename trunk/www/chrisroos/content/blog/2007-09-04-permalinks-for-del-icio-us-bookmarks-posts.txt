@@ -23,7 +23,7 @@ It looks as though it's part of del.icio.us itself doesn't it?  Cool huh.  It'd 
 
 I've created a crappy script that will add this url/MD5_OF_URL tag to each of your posts.  It's hosted on "google code":http://chrisroos.googlecode.com/svn/trunk/delicious_url_tags and pasted below.  Err, use at your own risk by the way.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 USERNAME = 'YOUR_USERNAME'
 PASSWORD = 'YOUR_PASSWORD'
 POSTS_CACHE = 'FILE_TO_STORE_YOUR_EXISTING_DELICIOUS_POSTS_IN'
@@ -80,4 +80,4 @@ count = 1
   add_url_hash_to_post(post_xml.attributes)
   count += 1
 end
-</code></pre></div>
+</pre>

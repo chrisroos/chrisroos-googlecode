@@ -16,7 +16,7 @@ I started to think that it might be nice to have a bookmarklet "rails":http://ww
 
 I used the html page below to test the limits of Internet Explorer.  This is the longest bookmarklet that I could get to work: one more character (a 2 on the end of those numbers, for example) and the bookmarklet won't work (it still works if you click the link in the page - it only fails when used as an actual bookmarklet).
 
-<div class="code"><pre><code class="html">
+<pre class="code html">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
   <head>
@@ -32,7 +32,7 @@ I used the html page below to test the limits of Internet Explorer.  This is the
       alert(msg);">bookmarklet</a>
   </body>
 </html>
-</code></pre></div>
+</pre>
 
 I noticed that, once added to Internet Explorer, the bookmarklet appeared to be "URL encoded":http://www.blooberry.com/indexdot/html/topics/urlencoding.htm (my assumption was based on the conversion of spaces to %20.)
 
@@ -40,7 +40,7 @@ I noticed that, once added to Internet Explorer, the bookmarklet appeared to be 
 
 I tried to replicate this encoded string in "ruby":http://www.ruby-lang.org but failed:  A simple URI.escape in ruby was escaping too much.  Inspecting the bookmarklet again seemed to suggest that the only encoding performed is to remove newlines and convert spaces to %20.  Replicating this in irb gave me the same string that Internet Explorer had in its favourites.
 
-<div class="code"><pre><code class="ruby">
+<pre class="code ruby">
 irb) str = "javascript:
   var msg = 'hello world, this is my message.  i\'m trying to see how long i can be until internet explorer blows up in my face.';
   var msg = msg + '\n';
@@ -50,7 +50,7 @@ irb) str = "javascript:
   alert(msg);"
 irb) p str.gsub("'\n'", "'--NEW-LINE--'").gsub("\n", '').gsub("'--NEW-LINE--'", "'\n'").gsub(' ', "%20").length
 => 505
-</code></pre></div>
+</pre>
 
 Everything I'd read about these bookmarklets in Internet Explorer suggested that the limit was 508 characters: the length of the bookmarklet above (once encoded) is only 505 characters.  Adding one more character makes it fail as a bookmarklet.  Hmm, maybe I'm doing something dumb?
 
