@@ -47,4 +47,4 @@ h3. Convert the PostScript file to Pdf
 # Click OK to close the software registration prompt and you will see the PostScript interpretation of your file on the screen.
 # Click File > Convert and choose 'pdfwrite' as the device, a suitable resolution (default of 600 should be fine) and click OK.  You will be prompted to save the converted Pdf file somewhere
 # Enter the filename to save the file with, noting that .pdf doesn't get added automatically, e.g. specify page.pdf.
-# Open the new .pdf file in either "Adobe Reader":http://www.adobe.com/products/acrobat/readstep2.html or "an alternative":http://blog.seagul.co.uk/articles/2005/11/13/windows-adobe-acrobat-reader-alternative
+# Open the new .pdf file in either "Adobe Reader":http://www.adobe.com/products/acrobat/readstep2.html or "an alternative":/blog/2005-11-13-windows-adobe-acrobat-reader-alternative
