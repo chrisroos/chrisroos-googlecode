@@ -4,7 +4,14 @@ SITE.remote_dir = "/home/chrisroos/www/chrisroos.co.uk/current/public/"
 
 task :default => :build
 
+desc 'clear the output directory and rebuild, ensuring that no crap is left in there before a deploy'
+task :clean_build do
+  `rm -rf output`
+  `svn up`
+  Rake::Task[:rebuild].invoke
+end
+
 desc 'deploy the site to the webserver'
-task :deploy => [:build, 'deploy:rsync']
+task :deploy => [:clean_build, 'deploy:rsync']
 
 # EOF
