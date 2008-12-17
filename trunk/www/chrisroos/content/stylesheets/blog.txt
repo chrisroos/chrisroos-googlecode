@@ -6,14 +6,8 @@ color:
   dark_blue: "#005A9C"
   purple:    "#5C5A9C"
 ---
-.email, .letter {
-  font-family: monospace;
-  font-size: smaller;
-  background-color: #ffc;
-  padding: 1em;
-  margin-bottom: 1em;
-}
-
+/**********************************************************/
+/* Default styles (redefining the style reset by yui css) */
 a:hover {
   text-decoration: underline;
 }
@@ -59,18 +53,6 @@ ol li {
 ul li {
   list-style-type: disc;
 }
-ul.navigation {
-  margin-left: 0;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-ol.comments, ol.trackbacks {
-  font-size: 100%;
-  margin-left: 0;
-}
-ol.comments li, ol.trackbacks li, ul.navigation li {
-  list-style-type: none;
-}
 p {
   margin-bottom: 1.5em;
   font-size: 116%;
@@ -83,6 +65,10 @@ blockquote {
   background-repeat: no-repeat;
   background-position: top left;
 }
+
+
+/**********************************************************/
+/* Header                                                 */
 .header {
   background-color: <%= @page.color['dark_blue'] %>;
   padding: 1em 1em 0 1em;
@@ -96,6 +82,13 @@ blockquote {
   color: #fff;
   text-decoration: none;
 }
+.blogTitleContainer {
+  float: left
+}
+
+
+/**********************************************************/
+/* Footer                                                 */
 div#ft {
   background-color: <%= @page.color['dark_blue'] %>;
   padding: 0.5em 1em 1em 1em;
@@ -103,30 +96,15 @@ div#ft {
   border-top: 0.5em solid #000;
   margin-top: 3em;
 }
-div#twitter_div h3, div#deliciousContainer h3 {
-  margin-bottom: 0.2em;
-}
-ul#twitter_update_list, div#deliciousContainer ul {
+
+
+/**********************************************************/
+/* Navigation                                             */
+ul.navigation {
   margin-left: 0;
-  font-size:100%;
-  line-height: 1.1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
-ul#twitter_update_list li, div#deliciousContainer ul li {
-  list-style-type: none;
-  margin-bottom: 0.5em;
-}
-
-body.contents ol {
-  margin: 0;
-}
-body.contents ol li {
-  list-style-type: none;
-}
-
-.blogTitleContainer {
-  float: left
-}
-
 .navigation {
   font-size: 100%;
   overflow: auto;
@@ -140,10 +118,32 @@ body.contents ol li {
   float: left;
 }
 
-#dsq-content #dsq-comments .dsq-comment .dsq-comment-body p {
+
+/**********************************************************/
+/* Twitter status list                                    */
+div#twitter_div h3, div#deliciousContainer h3 {
+  margin-bottom: 0.2em;
+}
+ul#twitter_update_list, div#deliciousContainer ul {
+  margin-left: 0;
+  font-size:100%;
+  line-height: 1.1em;
+}
+ul#twitter_update_list li, div#deliciousContainer ul li {
+  list-style-type: none;
   margin-bottom: 0.5em;
 }
 
+
+/**********************************************************/
+/* Custom classes                                         */
+.email, .letter {
+  font-family: monospace;
+  font-size: smaller;
+  background-color: #ffc;
+  padding: 1em;
+  margin-bottom: 1em;
+}
 .code {
   background-color:#eee;
   padding:2px;
@@ -151,7 +151,6 @@ body.contents ol li {
   margin-left:1em;
   margin-bottom:1em;
 }
-
 .code pre {
   padding: 0px;
   margin: 0px;
@@ -159,14 +158,40 @@ body.contents ol li {
   font-family: monospace;
   overflow:auto;
 }
-
 abbr.createdAt {
   color: <%= @page.color['purple'] %>;
 }
 
+
+/**********************************************************/
+/* Content page specific                                  */
+body.contents ol {
+  margin: 0;
+}
+body.contents ol li {
+  list-style-type: none;
+}
 body.contents h2.title {
   margin-bottom: 0;
 }
 body.contents li.post {
   margin-bottom: 2em;
+}
+
+
+/**********************************************************/
+/* Disqus specific                                        */
+#dsq-content #dsq-comments .dsq-comment .dsq-comment-body p {
+  margin-bottom: 0.5em;
+}
+
+
+/**********************************************************/
+/* Unused???                                              */
+ol.comments, ol.trackbacks {
+  font-size: 100%;
+  margin-left: 0;
+}
+ol.comments li, ol.trackbacks li, ul.navigation li {
+  list-style-type: none;
 }
