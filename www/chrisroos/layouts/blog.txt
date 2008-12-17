@@ -22,7 +22,7 @@ filter:    erb
 
         </div>
         <div class="navigation">
-          <% posts = @pages.find(:all, :in_directory => "blog", :sort_by => "created_at") %>
+          <% posts = @pages.find(:all, :in_directory => "blog", :sort_by => "created_at", :blog_post => true) %>
           <% post_index = posts.index(@page) %>
         
           <% if post_index > 0 && previous_post = posts[post_index - 1] %>
