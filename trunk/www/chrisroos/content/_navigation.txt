@@ -8,7 +8,7 @@ filter: erb
     <a href="/contact" title="Contact me">contact me</a>
   </li>
   <li>
-    <a href="/contents" title="All posts">all posts</a>
+    <a href="/blog" title="Blog">blog</a>
   </li>
   <li>
     <a href="/projects" title="Projects">projects</a>

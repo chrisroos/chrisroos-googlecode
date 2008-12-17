@@ -1,5 +1,5 @@
 ---
-title:       Hmm, what to put here?
+title:       Blog
 created_at:  2008-08-02 14:06:40.000000 -06:00
 filter:
   - erb
@@ -7,4 +7,15 @@ filter:
 ---
 h1. <%= @page.title %>
 
-I used to redirect requests for the blog root (which was previously /articles) to the most recent article.  I liked the idea at the time, but have kinda gone off it (it screws with analytics for a start).  So, although I've decided to remove that redirection, I'm not yet decided what to do instead.  Hence this rambling placeholder page thingy.  If you want to view the blog content, it's probably best to start at the "contents":/contents.
+A nice list of all my previous blog posts with, where I've been bothered, a little summary to entice you in.
+
+<ol class="posts">
+  <% blog_posts.each do |post| %>
+    <li class="post">
+      <h2 class="title">
+        <%= short_date(post) %> - <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
+      </h2>
+      <p><%= post.summary %></p>
+    </li>
+  <% end %>
+</ol>
