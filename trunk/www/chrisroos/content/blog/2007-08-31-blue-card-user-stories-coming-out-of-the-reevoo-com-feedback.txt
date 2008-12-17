@@ -8,7 +8,7 @@ filter:
 created_at: 2007-08-31 15:13:00 +01:00
 layout: blog
 ---
-It took me a while, but I've come up with some "stories":http://en.wikipedia.org/wiki/User_story to represent the feature requests from the "reevoo.com":http://www.reevoo.com "feedback":http://blog.seagul.co.uk/articles/2007/08/23/responses-to-reevoo-com-feedback.
+It took me a while, but I've come up with some "stories":http://en.wikipedia.org/wiki/User_story to represent the feature requests from the "reevoo.com":http://www.reevoo.com "feedback":/blog/2007-08-23-responses-to-reevoo-com-feedback.
 
 I (well "Paul":http://www.po-ru.com actually) even took a photo to prove it.
 
