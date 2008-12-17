@@ -27,9 +27,7 @@ filter:    erb
           <div class="yui-b">
             <div class="yui-g">
             
-              <h1><%= h(@page.title) %></h1>
-
-              <%= render(:partial => "/post_author_and_date", :locals => {:post => @page}) %>
+              <h1><%= short_date(@page) %> - <%= h(@page.title) %></h1>
               
               <%= @content %>
 
