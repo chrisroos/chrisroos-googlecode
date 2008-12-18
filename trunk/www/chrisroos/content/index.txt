@@ -7,4 +7,4 @@ filter:
 ---
 h1. <%= @page.title %>
 
-This is a placeholder until I get round to writing a proper introduction.  Hmm, that's really not very helpful is it?  I'll understand if you just leave right now.  If, on the other hand, you're still here then you might want to check out my very sparse "projects page":/projects or my "blog posts":/contents.
+This is a placeholder until I get round to writing a proper introduction.  Hmm, that's really not very helpful is it?  I'll understand if you just leave right now.  If, on the other hand, you're still here then you might want to check out my very sparse "projects page":/projects or my "blog posts":/blog.
