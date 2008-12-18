@@ -1,0 +1,25 @@
+---
+filter: erb
+---
+<div class="navigation">
+  <% posts = blog_posts(:all, :reverse => false) %>
+  <% post_index = posts.index(@page) %>
+
+  <% if post_index > 0 && previous_post = posts[post_index - 1] %>
+    <span class="previousPost">
+      &larr; (older)
+      <a class="previousPost" href="<%= friendly_url(previous_post) %>" title="<%= h(previous_post.title) %>">
+        <% previous_post_title = previous_post.title.length > 55 ? previous_post.title[0..55] + '...' : previous_post.title %>
+        <%= h(previous_post_title) %>
+      </a> 
+    </span>
+  <% end %>
+  <% if next_post = posts[post_index + 1] %>
+    <span class="nextPost">
+      <a class="nextPost" href="<%= friendly_url(next_post) %>" title="<%= h(next_post.title) %>">
+        <% next_post_title = next_post.title.length > 55 ? next_post.title[0..55] + '...' : next_post.title %>
+        <%= h(next_post_title) %>
+      </a> (newer) &rarr;
+    </span>
+  <% end %>
+</div>
