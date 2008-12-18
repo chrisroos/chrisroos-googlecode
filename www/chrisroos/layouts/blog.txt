@@ -19,28 +19,7 @@ filter:    erb
           <%= render(:partial => "/header") %>
           <%= render(:partial => "/google-search") %>
         </div>
-        <div class="navigation">
-          <% posts = blog_posts(:all, :reverse => false) %>
-          <% post_index = posts.index(@page) %>
-        
-          <% if post_index > 0 && previous_post = posts[post_index - 1] %>
-            <span class="previousPost">
-              &larr; (older)
-              <a class="previousPost" href="<%= friendly_url(previous_post) %>" title="<%= h(previous_post.title) %>">
-                <% previous_post_title = previous_post.title.length > 55 ? previous_post.title[0..55] + '...' : previous_post.title %>
-                <%= h(previous_post_title) %>
-              </a> 
-            </span>
-          <% end %>
-          <% if next_post = posts[post_index + 1] %>
-            <span class="nextPost">
-              <a class="nextPost" href="<%= friendly_url(next_post) %>" title="<%= h(next_post.title) %>">
-                <% next_post_title = next_post.title.length > 55 ? next_post.title[0..55] + '...' : next_post.title %>
-                <%= h(next_post_title) %>
-              </a> (newer) &rarr;
-            </span>
-          <% end %>
-        </div>
+        <%= render(:partial => "/blog_post_navigation") %>
       </div>
       <div id="bd">
         <div id="yui-main">
@@ -51,11 +30,7 @@ filter:    erb
               
               <%= @content %>
               
-              <div id="disqus_thread"></div>
-              <script type="text/javascript" src="http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"></script>
-              <noscript>
-                <p><a href="http://deferred-until-inspiration-hits.disqus.com/?url=ref">View the forum thread.</a></p>
-              </noscript>
+              <%= render(:partial => "/blog_post_disqus_js") %>
 
             </div>
           </div>
