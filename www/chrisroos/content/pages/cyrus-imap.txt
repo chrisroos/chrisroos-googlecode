@@ -4,7 +4,7 @@ filter:
 - erb
 - textile
 created_at: 2005-10-02 20:16:58 +01:00
-layout: page
+layout: blog
 ---
 I've spent some time today looking into getting "Cyrus Imap":http://asg.web.cmu.edu/cyrus/ installed on "FreeBsd":http://www.freebsd.org 5.3R.
 
