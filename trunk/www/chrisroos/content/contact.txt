@@ -9,13 +9,13 @@ h1. <%= h(@page.title) %>
 
 h2. Email, twitter and instant messenger
 
-Email: "chris@seagul.co.uk":mailto:chris@seagul.co.uk
-"Twitter":http://twitter.com: "chrisroos":http://twitter.com/chrisroos
-"Skype":http://skype.com: "chrisjroos":skype:chrisjroos?add
-"GTalk":http://www.google.com/talk/: chrisjroos@gmail.com
-"MSN":http://im.live.com: chrisjroos@hotmail.com
-"Y!M":http://messenger.yahoo.com/: chrisjroos
-"AIM":http://aim.com: chrisjroos
+* Email: "chris@seagul.co.uk":mailto:chris@seagul.co.uk
+* "Twitter":http://twitter.com: "chrisroos":http://twitter.com/chrisroos
+* "Skype":http://skype.com: "chrisjroos":skype:chrisjroos?add
+* "GTalk":http://www.google.com/talk/: chrisjroos@gmail.com
+* "MSN":http://im.live.com: chrisjroos@hotmail.com
+* "Y!M":http://messenger.yahoo.com/: chrisjroos
+* "AIM":http://aim.com: chrisjroos
 
 h2. Elsewhere on the web
 
