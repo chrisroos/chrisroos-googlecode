@@ -5,6 +5,9 @@ filter: erb
 
 <ul class="navigation">
   <li>
+    <a href="/about" title="About me">about me</a>
+  </li>
+  <li>
     <a href="/contact" title="Contact me">contact me</a>
   </li>
   <li>

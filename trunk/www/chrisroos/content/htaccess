@@ -83,6 +83,14 @@ RewriteRule ^.*$ /contact [R=301,L]
 RewriteCond %{REQUEST_URI} ^/contact$
 RewriteRule ^(.*)$ $1.html [L]
 
+# Redirect /about.html to /about
+RewriteCond %{THE_REQUEST} \ /about\.html\ HTTP/
+RewriteRule ^.*$ /about [R=301,L]
+
+# If we receive a request for the about page without a .html extension then let's rewrite internally to render the file with the .html extension
+RewriteCond %{REQUEST_URI} ^/about$
+RewriteRule ^(.*)$ $1.html [L]
+
 # Redirect /tags.html to /tags
 RewriteCond %{THE_REQUEST} \ /tags\.html\ HTTP/
 RewriteRule ^.*$ /tags [R=301,L]
