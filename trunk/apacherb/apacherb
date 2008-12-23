@@ -98,6 +98,7 @@ EndBanner
             file.puts ""
             file.puts ""
             file.puts "# Line added by apacherb"
+            file.puts "NameVirtualHost *:80"
             file.puts "Include #{File.join(APACHERB_VHOSTS_DIR, '*.conf')}"
           end
         end
