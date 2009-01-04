@@ -1,0 +1,49 @@
+---
+summary:    Some thoughts about the T-Mobile G1 now that I've had it in my possession for a couple of days.
+blog_post:  true
+title:      Initial Thoughts About the T-Mobile G1 (the Google Android Phone)
+created_at: 2009-01-04 17:12:22.552720 +00:00
+guid:       3ced4cae-8538-491f-a54a-2a9ac0472135
+layout:     blog
+filter:
+  - erb
+  - textile
+---
+I've been debating whether or not to get the "T-Mobile G1":http://www.t-mobile.co.uk/g1-with-google-phone/ for a couple of months.  I finally made a decision and signed up to an 18 month contract a couple of days ago.
+
+I'm still waiting for my number to be ported so I haven't used the phone in anger just yet.  I've only really got as far as connecting it to my wireless network, installing some applications and using it to read email and browse the web.  Still, I figured that some of the things I've found might be useful for others considering the phone.
+
+The short version is, in my opinion, that if you use "iTunes":http://www.apple.com/itunes/ and you've experienced the "iPhone":http://www.apple.com/uk/iphone/ then this handset won't live up to your expectations.  To expand a little, I'll list in no particular order some of the problems I've run into during my very limited test followed by some of the cooler features of the phone.  Before I do that though, a little aside, if I may.  Playing with the "Android":http://www.android.com/ handset reminds me of when I installed "rockbox":http://www.rockbox.org/ on my iPod Nano.  There was clearly a lot of power/flexibility in there but in the end the simplicity and comfort of the iPod firmware won out.
+
+h2. Annoyances
+
+* I can't play songs from my iTunes library (more specifically, the songs that have been downloaded from iTunes).  This will result in me carrying two devices: this phone and an iPod (I guess this annoyance only applies when you consider that the iPhone will replace two devices with one, most other mobiles would suffer the same problem).
+* There's no video playback functionality out of the box.
+* The battery life is very, very poor.  I've installed the "Watts":http://code.google.com/p/watts/ application to track battery life over time.  It appears to indicate that my handset goes from 100% charge to 0% in just over a day (like, around 26 hours).  As I mention, this is only with very light use with "WiFi":http://en.wikipedia.org/wiki/Wi-Fi enabled but no phone calls or text messages.  I wonder if I'd think slightly differently if I was to treat the handset as a computer rather than a mobile (26 hours battery life for a computer, even the new "netbooks":http://en.wikipedia.org/wiki/Netbook is unheard of, or at least I think it is).
+* The handset relies on you having one "google account":https://www.google.com/accounts.  Although I'm trying to consolidate mine, I currently still have services split across two google accounts.
+* I'm finding it hard to know which apps to install.  The comments are often useless and there doesn't seem to be quite enough information to allow me to make a decision.  A related annoyance is that the market app is only available from the phone: I wonder if it'd be easier to browse if it was available from a computer.
+* The supplied instant messenger client is "Google Talk":http://www.google.com/talk/ only.  That happens to be one of the services that I haven't moved from one google account to the other so I'm currently unable to use that functionality.  I also have contacts on other instant messenger networks that I'd like to be able to chat to when mobile.  Maybe there's an "adium":http://www.adiumx.com/ like app that I can install, or even some kind of bridge between google talk and the other protocols that I can configure.
+* There's no ability to read "PDFs":http://en.wikipedia.org/wiki/Portable_Document_Format out of the box.  I've installed the "Jetcet PDF app":http://www.westtek.com/android/ which, although it does the job, isn't great.
+* I've found it difficult to find further information about apps I've installed.  Specifically, the movie player.  The author is listed as Jeff Hamilton and with the help of Google I think I've found that he's an Android developer.  The fact that he's an android developer is probably important (I'm likely to trust his creations more than I might a third party developer) and I'd just like to be able to find that stuff out more easily.
+* There doesn't appear to be a way of storing my bookmarks in the cloud, or (more importantly) a "delicious":http://delicious.com/ plugin for the mobile Safari browser supplied.
+* There's no ["headphone jack":http://en.wikipedia.org/wiki/Jack_(connector)].  The headphones supplied have a "mini USB":http://en.wikipedia.org/wiki/Universal_Serial_Bus#Mini.2C_Micro connection.  I guess that's OK but as I mentioned above I'm going to have to keep my iPod with me which will currently mean two sets of headphones.  I think I can probably buy a mini USB adapter so that I can cut out one pair of headphones.
+* Trying to use the "accelerometer":http://en.wikipedia.org/wiki/Accelerometer to play "Pac Man":http://en.wikipedia.org/wiki/Pacman just doesn't appear to work at all.
+
+h2. Annoyances that I've solved while writing this post
+
+* I didn't think it was possible to stop a page loading in the browser, which is a pain if you accidentally follow a link that you didn't intend to.  I've just found that this ability is available behind a click of the menu button.
+* I didn't think there was any way to hit 'ctrl-c' in the terminal application.  This led me to close the app after issuing a 'ping a.b.c.d' command.  I realise now that the ctrl key is implemented as a click on the scroll wheel.
+
+h2. Things to consider
+
+* The handset is only supplied with a 2GB "Micro SD":http://en.wikipedia.org/wiki/MicroSD card.  I may well not run into a problem with this but it seems a bit stingy when you consider the 8GB and 16GB iPhones.
+
+h2. Good points
+
+I wouldn't be surprised if most of these good points apply to the other large screen, internet enabled phones available at the moment.
+
+* Copy and paste.  If this had been missing (as it is in the iPhone) it would've been very difficult for me to log into most of the websites I use frequently, as I use "pwdhash":https://www.pwdhash.com/ to generate a unique password for each site.  Although it's not ideal, the copy/paste functionality allows me to generate my password on pwdhash.com, copy it and then paste it into the site I'm trying to access.
+* Having contacts synced immediately.  I've never had this on any phone I've owned so I consider it to be a great feature.  This is especially useful because I recently spent some time organising my google contacts and syncing them (using "soocial":http://www.soocial.com/) with my Mac Address book.
+* Having my calendar immediately available on my phone and on the web.  I would previously rely on "SMS":http://en.wikipedia.org/wiki/Short_message_service notifications from my google calendar to tell me when I was supposed to do something.  That worked fine but this is just a whole lot better.
+* Mobile email and web access.  This sounds obvious, but I've not had an Internet enabled mobile (or at least not one that I've kept long enough) before so it's a real plus.
+* Notifications.  I don't know whether the iPhone has something similar but having chats/tweets/emails/calendar reminders/downloads etc pop up when they're ready is really useful.
