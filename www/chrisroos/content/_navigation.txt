@@ -17,6 +17,9 @@ filter: erb
     <a href="/projects" title="Projects">projects</a>
   </li>
   <li>
+    <a href="/utilities" title="Utilities">utilities</a>
+  </li>
+  <li>
     <a href="http://flickr.com/photos/chrisjroos" title="Photos at Flickr">photos</a>
   </li>
   <li>
