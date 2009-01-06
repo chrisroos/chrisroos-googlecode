@@ -7,4 +7,4 @@ filter:
 ---
 h1. <%= @page.title %>
 
-* "Http Request Headers":/utilities/http-request-headers
+* "Http Request Headers":/utilities/http-request-headers - A page that clearly displays the HTTP Request Headers sent by your browser.
