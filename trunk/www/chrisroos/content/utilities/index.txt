@@ -7,6 +7,6 @@ filter:
 ---
 h1. <%= @page.title %>
 
-* "Http Request Headers":/utilities/http-request-headers - A page that clearly displays the HTTP Request Headers sent by your browser.
+* "Http Request Headers":/utilities/http-request-headers - A page that clearly displays the HTTP Request Headers sent by your browser.  See "Using SSI to expose Http request headers sent by your browser":/blog/2009-01-06-using-ssi-to-expose-http-request-headers-sent-by-your-browser for more info.
 
 * "Querystring printer":/utilities/querystring-printer - A little utility that I used to help me debug Apache mod_rewrite rules.  See "A Javascript Querystring printer":/blog/2008-12-05-a-javascript-querystring-printer for more info.
