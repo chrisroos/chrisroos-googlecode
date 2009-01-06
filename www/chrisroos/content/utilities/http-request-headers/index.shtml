@@ -10,7 +10,7 @@
         line-height: 1.5em;
         font-size: 0.8em;
       }
-      table {
+      body, table {
         font-family: sans-serif;
       }
       th {
@@ -28,6 +28,7 @@
     </style>
   </head>
   <body>
+    <h1>Http Request Headers</h1>
     <table>
       <thead>
         <tr>
