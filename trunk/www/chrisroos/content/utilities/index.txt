@@ -14,3 +14,7 @@ A page that clearly displays the HTTP Request Headers sent by your browser.  See
 h2. "Querystring printer":/utilities/querystring-printer
 
 A little utility that I used to help me debug Apache mod_rewrite rules.  See "A Javascript Querystring printer":/blog/2008-12-05-a-javascript-querystring-printer for more info.
+
+h2. "Html Generator":/utilities/html-generator
+
+A very simple little html editor thingy.  Type some html into a textbox, select the doctype and view the complete source along with a rendered preview.
