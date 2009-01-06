@@ -18,8 +18,8 @@ RewriteRule .* http://foo?request_uri=%{REQUEST_URI}&the_request=%{THE_REQUEST}&
 
 Although useful, it's kinda hard to inspect the variables when they're in the "URL":http://en.wikipedia.org/wiki/Uniform_Resource_Locator.  It dawned on me that it would be easier to see them if they were in a page in the browser itself.  So, I knocked up a simple little html page that uses javascript to extract the querystring key/value pairs and display them on the page.  It doesn't look very pretty but it makes it much easier to see the content of the variables.
 
-The page is hosted in my "google code repository":http://chrisroos.googlecode.com/svn/trunk/querystring-printer/ and there's a splendid little screenshot below.
+<del>The page is hosted in my "google code repository":http://chrisroos.googlecode.com/svn/trunk/querystring-printer/</del> and there's a splendid little screenshot below.
 
 !http://farm4.static.flickr.com/3288/3082048735_f76b44712e.jpg?v=0!
 
-At the moment you'll need to host this file yourself, but if there's demand then I can probably make it publicly available somewhere.
+<del>At the moment you'll need to host this file yourself, but if there's demand then I can probably make it publicly available somewhere.</del>  You can either host this file yourself or point at the "version in my utilities":/utilities/querystring-printer.
