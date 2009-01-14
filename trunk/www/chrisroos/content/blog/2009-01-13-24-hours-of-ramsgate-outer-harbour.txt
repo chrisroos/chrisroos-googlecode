@@ -11,13 +11,15 @@ filter:
 ---
 One Friday in September 2008 I had the bright idea (I don't remember where the inspiration came from) of slurping down images from the "webcam that points at Ramsgate's outer harbour":http://www.portoframsgate.co.uk/portoframsgate/welcome_to_the_marina/web_cam.aspx.  I used a combination of "curl":http://curl.haxx.se/ and "cron":http://en.wikipedia.org/wiki/Cron to download one image a minute for 24 hours starting around 14:30 on the Friday (2,678 images in total).  My intention was always to combine these into a little "time-lapse":http://en.wikipedia.org/wiki/Time-lapse movie and I finally got around to it last week (just the three months late then).  I played around with various ways to produce the movie (including "iMovie":http://www.apple.com/ilife/imovie/, "ffmpeg":http://ffmpeg.mplayerhq.hu/ and others that I no longer remember) but couldn't get the output I was after.  A little more searching revealed that "Quicktime Pro":http://www.apple.com/quicktime/pro/ could do exactly what I was after (I'm afraid I can't find the original post I read about it) so I stumped up the £20 and made my video.  I opted for 60 frames per second which results in a video of around 45 seconds which seems OK to me.  I chose to host it at "vimeo":http://vimeo.com because I prefer the simplicity of their interface over "youtube":http://youtube.com (as I'm writing this I realised I probably could've hosted it at "flickr":http://flickr.com too).
 
-I'm embedding it below (or you can see it at "vimeo":http://vimeo.com/2743072) but you'll have to excuse the large amount of whitespace between this paragraph and the video.  I've had a real quick look but I'm tired and really can't work out what's causing it.
+I'm embedding it below (or you can see it at "vimeo":http://vimeo.com/2743072) -but you'll have to excuse the large amount of whitespace between this paragraph and the video.  I've had a real quick look but I'm tired and really can't work out what's causing it.-  "Adem":http://www.ademweb.co.uk/blog spotted what I'd done wrong and the whitespace has now been removed.
 
+<notextile>
 <object width="400" height="300">
   <param name="allowfullscreen" value="true" />
   <param name="allowscriptaccess" value="always" />
   <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=2743072&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" />
   <embed src="http://vimeo.com/moogaloop.swf?clip_id=2743072&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="400" height="300"></embed>
 </object>
+</notextile>
 
 I love being able to see the massive volume of water that moves in and out of the harbour entrance raising and lowering the boats as it pleases.
