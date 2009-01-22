@@ -60,7 +60,6 @@ filter:    erb
       <!-- Footer -->
     </div>
     
-    <%= render(:partial => "/delicious") %>
     <%= render(:partial => "/google-analytics") %>
 
   </body>

@@ -23,13 +23,12 @@ filter: erb
     <a href="http://twitter.com/chrisroos" title="Follow what I'm up to on twitter">twitter</a>
   </li>
   <li>
+    <a href="http://delicious.com/chrisjroos" title="See what I've been reading at delicious">delicious</a>
+  </li>
+  <li>
     <a href="http://flickr.com/photos/chrisjroos" title="See my photos at Flickr">photos</a>
   </li>
   <li>
     <a href="http://www.amazon.co.uk/gp/shops/index.html?ie=UTF8&amp;sellerID=AS1VKYI0VDYE5" title="Books I'm selling on Amazon Marketplace">books i'm selling</a>
   </li>
 </ul>
-
-<div id="deliciousContainer">
-  <h3><a href="http://del.icio.us/chrisjroos" title="Bookmarks at del.icio.us">bookmarks</a></h3>
-</div>
