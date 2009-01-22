@@ -122,24 +122,6 @@ ul.navigation {
 
 
 /**********************************************************/
-/* delicious containers                       */
-#deliciousContainer p, #deliciousContainer span, #deliciousContainer li {
-  font-size: 100%;
-}
-div#deliciousContainer h3 {
-  margin-bottom: 0.2em;
-}
-div#deliciousContainer ul {
-  margin-left: 0;
-  line-height: 1.1em;
-}
-div#deliciousContainer ul li {
-  list-style-type: none;
-  margin-bottom: 0.5em;
-}
-
-
-/**********************************************************/
 /* Custom classes                                         */
 .email, .letter {
   font-family: monospace;
