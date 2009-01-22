@@ -122,21 +122,18 @@ ul.navigation {
 
 
 /**********************************************************/
-/* Twitter and delicious containers                       */
-#twitter_div p, #twitter_div span, #twitter_div li {
-  font-size: 100%;
-}
+/* delicious containers                       */
 #deliciousContainer p, #deliciousContainer span, #deliciousContainer li {
   font-size: 100%;
 }
-div#twitter_div h3, div#deliciousContainer h3 {
+div#deliciousContainer h3 {
   margin-bottom: 0.2em;
 }
-ul#twitter_update_list, div#deliciousContainer ul {
+div#deliciousContainer ul {
   margin-left: 0;
   line-height: 1.1em;
 }
-ul#twitter_update_list li, div#deliciousContainer ul li {
+div#deliciousContainer ul li {
   list-style-type: none;
   margin-bottom: 0.5em;
 }
