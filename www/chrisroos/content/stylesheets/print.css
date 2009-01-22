@@ -4,7 +4,7 @@
 div#ft {
   display: none;
 }
-.yui-b img.avatar, .yui-b ul.navigation, .yui-b div#twitter_div, .yui-b div#deliciousContainer {
+.yui-b img.avatar, .yui-b ul.navigation, .yui-b div#deliciousContainer {
   display: none;
 }
 .navigation {
