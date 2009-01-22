@@ -2,10 +2,9 @@
 extension: html
 filter:    erb
 ---
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 
   <head>
     <%= render(:partial => "/html-header") %>
@@ -38,7 +37,7 @@ filter:    erb
       </div>
     </div>
     <div id="ft">
-      <!-- Footer -->
+      <%= render(:partial => "/footer") %>
     </div>
     
     <%= render(:partial => "/google-analytics") %>

@@ -99,6 +99,14 @@ div#ft {
   margin-top: 3em;
 }
 
+div#ft a {
+  color: #fff;
+}
+
+div#ft .license span {
+  font-size: 100%;
+}
+
 
 /**********************************************************/
 /* Navigation                                             */
