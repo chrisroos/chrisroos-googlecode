@@ -162,7 +162,8 @@ pre.code {
 abbr.createdAt {
   color: <%= @page.color['purple'] %>;
 }
-h2.utility a {
+h2.utility a,
+h2.project a {
   text-decoration: underline;
 }
 
