@@ -13,12 +13,14 @@ filter:    erb
     <% if @page.blog_post %>
       <% posts = blog_posts(:all, :reverse => false) %>
       <% post_index = posts.index(@page) %>
+      <link rel="first" href="<%= friendly_url(posts.first) %>" />
       <% if post_index > 0 && previous_post = posts[post_index - 1] %>
         <link rel="prev" href="<%= friendly_url(previous_post) %>" />
       <% end %>
       <% if next_post = posts[post_index + 1] %>
         <link rel="next" href="<%= friendly_url(next_post) %>" />
       <% end %>
+      <link rel="last" href="<%= friendly_url(posts.last) %>" />
       <link rel="index" href="/blog" />
     <% end %>
   </head>
