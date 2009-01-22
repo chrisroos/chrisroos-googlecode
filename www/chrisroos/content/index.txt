@@ -9,11 +9,11 @@ h1. <%= @page.title %>
 
 h2. A little about me
 
-I'm a software developer based in "Ramsgate":http://en.wikipedia.org/wiki/Ramsgate in the UK.  I was employed at "reevoo":http://www.reevoo.com until recently being made redundant and am now looking for another job (permanent or contract).  Feel free to read a little more "about me":/about to see if I might be able to help out.
+I'm a software developer living in "Ramsgate":http://en.wikipedia.org/wiki/Ramsgate in the UK.  I'm currently employed at "Headshift":http://www.headshift.com after being made redundant from "reevoo":http://www.reevoo.com.
 
 h2. A little about this site
 
-This started out as a "typo":http://typosphere.org/ powered blog hosted at blog.seagul.co.uk.  I wanted to migrate it from a plain blog to a more general site that serves as a central place for my digital life.  To that end, I've slowly migrated away from typo (first to some "homegrown software":http://chrisroos.co.uk/blog/2008-01-23-migration-from-typo-to-a-static-site-is-complete and then to "webby":http://webby.rubyforge.org/), I've moved from blog.seagul.co.uk to chrisroos.co.uk and my "blog":/blog now sits at the same level as my "projects":/projects and "contact":/contact info.
+This started out as a "typo":http://typosphere.org/ powered blog hosted at blog.seagul.co.uk.  I wanted to migrate it from a plain blog to a more general site that serves as a central place for my digital life.  To that end, I've slowly migrated away from typo (first to some "homegrown software":/blog/2008-01-23-migration-from-typo-to-a-static-site-is-complete and then to "webby":http://webby.rubyforge.org/), I've moved from blog.seagul.co.uk to chrisroos.co.uk and my "blog":/blog now sits at the same level as my "projects":/projects, "utilities":/utilities and "contact":/contact info.
 
 h2. Recent blog posts
 
