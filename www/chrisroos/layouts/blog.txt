@@ -9,6 +9,18 @@ filter:    erb
 
   <head>
     <%= render(:partial => "/html-header") %>
+    
+    <% if @page.blog_post %>
+      <% posts = blog_posts(:all, :reverse => false) %>
+      <% post_index = posts.index(@page) %>
+      <% if post_index > 0 && previous_post = posts[post_index - 1] %>
+        <link rel="prev" href="<%= friendly_url(previous_post) %>" />
+      <% end %>
+      <% if next_post = posts[post_index + 1] %>
+        <link rel="next" href="<%= friendly_url(next_post) %>" />
+      <% end %>
+      <link rel="index" href="/blog" />
+    <% end %>
   </head>
 
   <body>
