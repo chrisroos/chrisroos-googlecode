@@ -32,6 +32,7 @@ h3. Frequent use
 
 h3. Infrequent use
 
+* "Vimeo":http://vimeo.com/chrisroos
 * "Amazon seller account":http://www.amazon.co.uk/gp/shops/index.html?sellerID=AS1VKYI0VDYE5
 * "Working with Rails":http://www.workingwithrails.com/person/973-chris-roos
 * "Rubyforge":http://rubyforge.org/users/chrisjroos/
