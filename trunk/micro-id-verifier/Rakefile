@@ -1,0 +1,15 @@
+require 'rake/testtask'
+
+task :default => :tests
+
+desc 'Run all tests'
+Rake::TestTask.new(:tests) do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/*_test.rb']
+  t.verbose = true
+end
+
+desc 'Start webserver hosting micro_id sample page and check against it'
+task :webserver_example do
+  require "#{File.dirname(__FILE__)}/example/example"
+end

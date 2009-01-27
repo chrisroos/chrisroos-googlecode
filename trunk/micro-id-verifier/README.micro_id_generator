@@ -1,0 +1,13 @@
+In addition to the micro_id verifier there is also a micro_id generator.
+
+It is very naive, containing no validation at all.
+
+It just takes an email and url and generates a micro_id as per the spec[1].
+
+irb> micro_id_generator = MicroIdGenerator.new('mailto:chris@seagul.co.uk', 'http://blog.seagul.co.uk')
+=> #<MicroIdGenerator:0x3441d8 @url="http://blog.seagul.co.uk", @email="mailto:chris@seagul.co.uk">
+
+irb> micro_id_generator.micro_id
+=> "ee2eec3a7b9ca83ae3a0f821327b0de0059dafa4"
+
+[1] http://www.microid.org/
