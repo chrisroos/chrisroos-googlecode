@@ -1,3 +1,11 @@
+* forward myself emails from other web based email clients and test them out.
+
+* Think about dealing with emails forwarded inline (ala gmail forwarded fellas)
+
+* Maybe only support 'forwarded-as-attachment' emails in the first place
+
+* Which clients forward inline vs as-attachment
+
 * Content-Type - driving license email contains £ that isn't displayed correctly
 
 * Check that the attachment is a text attachment before saving - see driving license email for reference
