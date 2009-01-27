@@ -426,7 +426,13 @@ class WikiSyntaxLabelsTest < Test::Unit::TestCase
 
 end
 
-require 'tidy'
+begin
+  require 'tidy'
+rescue LoadError
+  warn "Skipping the next couple of tests because the tidy gem or binary wasn't found"
+  exit
+end
+
 Tidy.path = '/opt/local/lib/libtidy.dylib'
 
 class WikiSyntaxFullTest < Test::Unit::TestCase
