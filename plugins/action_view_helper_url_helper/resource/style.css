@@ -1,0 +1,3 @@
+a.invalid_href_target:before, a.invalid_href_target:after {
+  content: url('/images/cross.png')
+}

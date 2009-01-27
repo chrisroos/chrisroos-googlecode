@@ -1,0 +1,1 @@
+require 'test_unit_active_record_errors' if RAILS_ENV == 'test'
