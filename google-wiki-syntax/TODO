@@ -1,0 +1,7 @@
+== To do ==
+
+* Namespace the classes (GoogleWiki, maybe?)
+
+* ==heading2==\nnew paragraph should result in a h2 followed by a new paragraph
+
+* create a helper method for html tags
