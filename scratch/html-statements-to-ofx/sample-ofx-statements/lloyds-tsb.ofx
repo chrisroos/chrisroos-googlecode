@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?OFX OFXHEADER="200" VERSION="200" SECURITY="NONE" OLDFILEUID="NONE" NEWFILEUID="NONE"?>
+<OFX>
+  <BANKMSGSRSV1>
+    <STMTTRNRS>
+      <STMTRS>
+        <CURDEF>GBP</CURDEF>
+        <BANKACCTFROM>
+          <BANKID>12-34-56</BANKID>
+          <ACCTID>12345678</ACCTID>
+          <ACCTTYPE>CHECKING</ACCTTYPE>
+        </BANKACCTFROM>
+        <BANKTRANLIST>
+          <DTSTART>20080826</DTSTART>
+          <DTEND>20080826</DTEND>
+          <STMTTRN>
+            <TRNTYPE>CREDIT</TRNTYPE>
+            <DTPOSTED>20080826</DTPOSTED>
+            <NAME>E ADAMS</NAME>
+            <TRNAMT>200.00</TRNAMT>
+            <FITID>UNIQUE ID HERE</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>CREDIT</TRNTYPE>
+            <DTPOSTED>20080826</DTPOSTED>
+            <NAME>ROOS CJ</NAME>
+            <MEMO>1234123412341234 CAR INSURANCE</MEMO>
+            <TRNAMT>100.00</TRNAMT>
+            <FITID>UNIQUE ID HERE</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>DEBIT</TRNTYPE>
+            <DTPOSTED>20080826</DTPOSTED>
+            <NAME>THANET DC</NAME>
+            <MEMO>123412341234</MEMO>
+            <TRNAMT>-124.00</TRNAMT>
+            <FITID>UNIQUE ID HERE</FITID>
+          </STMTTRN>
+        </BANKTRANLIST>
+        <LEDGERBAL>
+          <BALAMT>885.68</BALAMT>
+          <DTASOF>20080826</DTASOF>
+        </LEDGERBAL>
+      </STMTRS>
+    </STMTTRNRS>
+  </BANKMSGSRSV1>
+</OFX>
