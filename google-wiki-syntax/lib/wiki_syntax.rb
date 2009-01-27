@@ -192,25 +192,13 @@ private
   end
   
   def create_lists
-    list_blocks = []
     @html.gsub!(Regex::ListBlock) do |list_block|
-      list_blocks << list_block
-      "LISTBLOCK#{list_blocks.length}"
-    end
-    @html.gsub!(/LISTBLOCK(\d+)/) do
-      wiki_list = list_blocks[Integer($1)-1]
-      ListBlock.new(wiki_list).to_html
+      ListBlock.new(list_block).to_html
     end
   end
   
   def create_tables
-    tables = []
     @html.gsub!(Regex::Table) do |table|
-      tables << table
-      "TABLE#{tables.length}"
-    end
-    @html.gsub!(/TABLE(\d+)/) do
-      table = tables[Integer($1)-1]
       table_html = ''
       table.each_line do |line|
         line = line.chomp
