@@ -1,0 +1,293 @@
+Delivered-To: collectionator@permailink.co.uk
+Received: by 10.142.57.18 with SMTP id f18cs124372wfa;
+        Wed, 20 Aug 2008 13:43:23 -0700 (PDT)
+Received: by 10.214.26.20 with SMTP id 20mr918710qaz.18.1219265002961;
+        Wed, 20 Aug 2008 13:43:22 -0700 (PDT)
+Return-Path: <chris@seagul.co.uk>
+Received: from mail-gx0-f19.google.com (mail-gx0-f19.google.com [209.85.217.19])
+        by mx.google.com with ESMTP id 5si4048316ywl.4.2008.08.20.13.43.22;
+        Wed, 20 Aug 2008 13:43:22 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.217.19 is neither permitted nor denied by best guess record for domain of chris@seagul.co.uk) client-ip=209.85.217.19;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 209.85.217.19 is neither permitted nor denied by best guess record for domain of chris@seagul.co.uk) smtp.mail=chris@seagul.co.uk
+Received: by gxk12 with SMTP id 12so147612gxk.10
+        for <collectionator@permailink.co.uk>; Wed, 20 Aug 2008 13:43:22 -0700 (PDT)
+Received: by 10.150.181.11 with SMTP id d11mr726648ybf.217.1219265001063;
+        Wed, 20 Aug 2008 13:43:21 -0700 (PDT)
+Return-Path: <chris@seagul.co.uk>
+Received: from chris-rooss-macbook.local ( [80.175.164.249])
+        by mx.google.com with ESMTPS id 58sm6328839rnw.7.2008.08.20.13.43.17
+        (version=SSLv3 cipher=RC4-MD5);
+        Wed, 20 Aug 2008 13:43:19 -0700 (PDT)
+Message-ID: <48AC81E0.2000204@seagul.co.uk>
+Date: Wed, 20 Aug 2008 21:43:12 +0100
+From: Chris Roos <chris@seagul.co.uk>
+User-Agent: Thunderbird 2.0.0.14 (Macintosh/20080421)
+MIME-Version: 1.0
+To: collectionator@permailink.co.uk
+Subject: [Fwd: Re: National Rail Enquiries]
+Content-Type: multipart/mixed;
+ boundary="------------010309030504000302080903"
+
+This is a multi-part message in MIME format.
+--------------010309030504000302080903
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+--------------010309030504000302080903
+Content-Type: message/rfc822;
+ name="Re: National Rail Enquiries.eml"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline;
+ filename="Re: National Rail Enquiries.eml"
+
+Delivered-To: chris@seagul.co.uk
+Received: by 10.141.86.19 with SMTP id o19cs8076rvl;
+        Mon, 10 Mar 2008 23:52:05 -0700 (PDT)
+Received: by 10.35.67.18 with SMTP id u18mr9441775pyk.10.1205218320109;
+        Mon, 10 Mar 2008 23:52:00 -0700 (PDT)
+Return-Path: <Alastair.Ross@atoc.org>
+Received: from mail1.atoc.org (mail1.atoc.org [146.82.111.253])
+        by mx.google.com with ESMTP id f75si12290238pye.2.2008.03.10.23.51.58;
+        Mon, 10 Mar 2008 23:52:00 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of Alastair.Ross@atoc.org designates 146.82.111.253 as permitted sender) client-ip=146.82.111.253;
+Authentication-Results: mx.google.com; spf=pass (google.com: best guess record for domain of Alastair.Ross@atoc.org designates 146.82.111.253 as permitted sender) smtp.mail=Alastair.Ross@atoc.org
+Received: from apollo.atoc.local (unverified) by mail1.atoc.org
+ (Clearswift SMTPRS 5.2.9) with ESMTP id <T85a90b13d3ac101404b80@mail1.atoc.org> for <chris@seagul.co.uk>;
+ Tue, 11 Mar 2008 06:58:45 +0000
+Content-class: urn:content-classes:message
+MIME-Version: 1.0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+Subject: RE: National Rail Enquiries
+X-MimeOLE: Produced By Microsoft Exchange V6.5
+Date: Tue, 11 Mar 2008 06:51:58 -0000
+Message-ID: <F3B5FF2DCA1B294C869FBD5CC939A7560100A71B@apollo.atoc.local>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: National Rail Enquiries
+Thread-Index: Ach/ft5ljfOf8/LQSrKA+kQRPjVg2gDxCZRg
+References: <F3B5FF2DCA1B294C869FBD5CC939A756EE0692@apollo.atoc.local> <47C80D1D.30109@seagul.co.uk> <F3B5FF2DCA1B294C869FBD5CC939A756EE06EA@apollo.atoc.local> <47CFD81B.5060907@seagul.co.uk>
+From: "Ross, Alastair" <Alastair.Ross@atoc.org>
+To: "Chris Roos" <chris@seagul.co.uk>
+
+Chris,
+
+Apologies for not getting back sooner - I spotted your mail this morning
+whilst doing a trawl for unread mail.
+
+This is where the world of railways gets complicated even for me - the
+data we have isn't ours, we licence it from RSP like anyone else -
+despite it being a sister company of the same parent (ATOC Ltd).
+
+We are actively considering opening up our feeds for not-for-profits,
+the problem is from my point of view is that if we are to do it at all,
+we need to do it properly, e.g. create documentation, provide forums,
+have the time to monitor those forums and also respond to developer
+comments.  If we do it half cocked, I think it will create more problems
+than it solves.  There is also the argument that you have alluded to, of
+abstraction of revenue from our site.
+
+Best wishes,
+
+Alastair
+
+=20
+Alastair Ross
+Service Delivery Manager - National Rail Enquiries
+
+-----Original Message-----
+From: Chris Roos [mailto:chris@seagul.co.uk]=20
+Sent: 06 March 2008 11:40
+To: Ross, Alastair
+Subject: Re: National Rail Enquiries
+
+Hi Alastair,
+
+I was initially going to reply asking why you were so restrictive in=20
+your terms and conditions but having done a little reading I notice that
+
+you actually sell the timetable data[1]: I'm guessing that has a big=20
+part to play in the decision.
+
+Out of interest what are the target markets for this data?  Do Deutsche=20
+Bahn buy the data from you?  Anyone else?
+
+I wonder if you'd ever consider opening up your data for non-profit=20
+services?  I can see that you'd argue against my SMS service as it could
+
+potentially take revenue away from your own offering, but I had another=20
+idea: I was planning to create a Google Subscribed Link[2] that would=20
+allow me to search timetables right from the google search box.=20
+Although harder to argue that this would negatively impact your revenue=20
+I can still see that it could potentially deprive nationalrail.co.uk of=20
+visitors and therefore potentially lower your advertising revenue.
+
+Great work on the widgets you're creating btw: I only knew about the=20
+google widget because of the footer on your email.
+
+Looking forward to hearing from you.
+
+Cheers,
+
+Chris
+
+[1] http://www.atoc.org/rsp/Data_Feeds/01_Types_of_Data.asp
+[2] http://www.google.com/coop/subscribedlinks/
+
+Ross, Alastair wrote:
+> Hello,
+>=20
+> I'm afraid so...but a couple of Google searches later I found it
+myself
+> ;o)
+>=20
+> You could try the DBahn website - but I do suspect that the same
+> limitation of usage would apply.  Also the DBahn site doesn't follow a
+> thing called the National Routeing Guide, so it can give invalid
+> journeys.
+>=20
+> I've got numerous Google Alerts set up - and your recent posts got
+sent
+> to me from that.
+>=20
+> We're probably savvier than a lot of people give us credit for - we've
+> got Vista Gadgets, iGoogle developments and more on the go.
+>=20
+> Sorry that I've had to ask you to pull the plug - you're obviously
+very
+> passionate about what you do.
+>=20
+> Best wishes,
+>=20
+> A.
+> =20
+> Alastair Ross
+> Service Delivery Manager - National Rail Enquiries
+>=20
+> -----Original Message-----
+> From: Chris Roos [mailto:chris@seagul.co.uk]=20
+> Sent: 29 February 2008 13:48
+> To: Ross, Alastair
+> Subject: Re: National Rail Enquiries
+>=20
+> Ahh, so that's why you wanted my email address :-)
+>=20
+> I'm a bit disappointed that I have to stop the service as it's
+something
+>=20
+> that I find genuinely useful.
+>=20
+> Do you know of any other source of train timetabling information so
+that
+>=20
+> I might start the service again?
+>=20
+> Out of interest, how did you come across my blog post (do you use=20
+> technorati or google blog search or similar)?  Don't take this the
+wrong
+>=20
+> way but I'm genuinely impressed that ATOC are web-savvy enough to be=20
+> doing that kind of thing.
+>=20
+> Cheers,
+>=20
+> Chris
+>=20
+>=20
+> Ross, Alastair wrote:
+>> Chris,
+>>
+>> =20
+>>
+>> Just came across your blog and the integration work that you've done=20
+>> with Twitter and our website.  Unfortunately our terms and conditions
+
+>> <http://www.nationalrail.co.uk/contact/tandc/> prohibit the use of
+our
+>=20
+>> site in the manner you are using it and I have to ask you to stop,
+> close=20
+>> down and remove any software of yours that uses information from=20
+>> nationalrial.co.uk.
+>>
+>> =20
+>>
+>> Many thanks,
+>>
+>> =20
+>>
+>> =20
+>>
+>>
+>
+------------------------------------------------------------------------
+>> *Alastair Ross**
+>> *Service Delivery Manager - National Rail Enquiries
+>>
+>> Add National Rail Enquiries to your iGoogle Home Page! - Click Here=20
+>>
+>
+<http://www.google.com/ig/adde?source=3Dignsrc1&moduleurl=3Dhttp%3A//host=
+ing
+> .gmodules.com/ig/gadgets/file/114104797270144350469/ojp.xml>
+>> Most Innovative Approach to Cycle-Rail Integration - National Rail
+> Cycle=20
+>> Awards 2007
+>> Best Use of Technology Partnership - CCA Excellence Awards 2007
+>> TrainTracker(tm) - Innovation of the Year - Transport Innovations
+2007
+>> Rail Supplier of the Year - Rail Business Awards 2006
+>> Best Outsourced Call Centre - CCA Excellence Awards 2005
+>> TrainTracker(tm) - Product of the Year, European Call Centre Awards
+> 2005
+>> TrainTracker(tm):** **0871 200 49 50
+>> TrainTracker Text(tm): SMS your station name to 8 49 50
+>>
+>> Web: www.nationalrail.co.uk <http://www.nationalrail.co.uk>
+>> WAP: wap.nationalrail.co.uk
+>>
+>>
+>> P/ /Please consider the environment. Print less, recycle more, travel
+> by=20
+>> train.
+>>
+>> =20
+>>
+>>
+>
+************************************************************************
+> ****
+>> The contents of this email and any associated files are for the=20
+>> addressee only and should be treated as confidential. Unless you are
+> the=20
+>> named addressee you cannot copy, use or disclose it to anyone else.
+If
+>=20
+>> you have received this email in error please notify the sender=20
+>> immediately. The email has originated from the Association of Train=20
+>> Operating Companies (an unincorporated trade association) or one of
+> it's=20
+>> corporate entities: ATOC Limited (3069033), Rail Settlement Plan
+> Limited=20
+>> (3069042), Rail Staff Travel Limited (3069020) or NRES Limited
+> (3691898)=20
+>> each of these companies are registered in England and Wales and with
+a
+>=20
+>> common registered address - 3rd Floor, 40 Bernard Street, London WC1N
+
+>> 1BY. Neither entity listed herein shall be liable for any defamatory=20
+>> statements. Outbound messages are checked for all currently known
+> viruses.
+>>
+>
+************************************************************************
+> ****
+>> =20
+>>
+>=20
+
+
+--------------010309030504000302080903--
