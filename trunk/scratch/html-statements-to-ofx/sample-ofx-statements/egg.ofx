@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?OFX OFXHEADER="200" VERSION="200" SECURITY="NONE" OLDFILEUID="NONE" NEWFILEUID="NONE"?>
+<OFX>
+  <CREDITCARDMSGSRSV1>
+    <CCSTMTTRNRS>
+      <CCSTMTRS>
+        <CURDEF>GBP</CURDEF>
+        <CCACCTFROM>
+          <ACCTID>1234 1234 1234 1234</ACCTID>
+        </CCACCTFROM>
+        <BANKTRANLIST>
+          <DTSTART>20080314</DTSTART>
+          <DTEND>20080801</DTEND>
+          <STMTTRN>
+            <TRNTYPE>INT</TRNTYPE>
+            <DTPOSTED>20080314</DTPOSTED>
+            <NAME>T/FER 0.00 AT 0.000% INT PER MONTH</NAME>
+            <MEMO></MEMO>
+            <TRNAMT>0.00</TRNAMT>
+            <FITID>1</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>INT</TRNTYPE>
+            <DTPOSTED>20080818</DTPOSTED>
+            <NAME>CASH INTEREST AT 1.805 PER MONTH</NAME>
+            <MEMO></MEMO>
+            <TRNAMT>-4.68</TRNAMT>
+            <FITID>2</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>INT</TRNTYPE>
+            <DTPOSTED>20080818</DTPOSTED>
+            <NAME>MERCHANDISE INTEREST AT 1.385 PER MONTH</NAME>
+            <MEMO></MEMO>
+            <TRNAMT>-10.60</TRNAMT>
+            <FITID>3</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>CREDIT</TRNTYPE>
+            <DTPOSTED>20080801</DTPOSTED>
+            <NAME>PAYMENT 2 EGG . GB</NAME>
+            <MEMO></MEMO>
+            <TRNAMT>400.00</TRNAMT>
+            <FITID>4</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>DEBIT</TRNTYPE>
+            <DTPOSTED>20080801</DTPOSTED>
+            <NAME>AMZN PMTS 866-216-1072 WA</NAME>
+            <MEMO>1.58 USD @ 1.926829268</MEMO>
+            <TRNAMT>-0.82</TRNAMT>
+            <FITID>5</FITID>
+          </STMTTRN>
+        </BANKTRANLIST>
+        <LEDGERBAL>
+          <BALAMT>-1016.95</BALAMT>
+          <DTASOF>20080801</DTASOF>
+        </LEDGERBAL>
+      </CCSTMTRS>
+    </CCSTMTTRNRS>
+  </CREDITCARDMSGSRSV1>
+</OFX>

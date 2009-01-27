@@ -1,0 +1,20 @@
+INTRO
+-----
+I've just rediscovered this code in an old 'scratch' directory I had laying about.  I think I was planning to re-implement my ofx magic in a more test-driven way.  The Lloyds tests look kinda OK so I'm going to pop this in my google code repos for now and maybe one day I'll revisit it.
+
+
+TODO
+----
+* convert hsbc.html to hsbc.ofx
+* convert paypal.html to paypal.ofx
+
+NOTES
+-----
+* auto-login for ing-direct on wesabe doesn't work (doesn't even ask for memorable date)
+
+HAND-ROLLED WORKING OFX UPLOADS
+-------------------------------
+* egg
+* ing-direct
+* lloyds-tsb
+* smile

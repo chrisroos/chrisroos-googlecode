@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?OFX OFXHEADER="200" VERSION="200" SECURITY="NONE" OLDFILEUID="NONE" NEWFILEUID="NONE"?>
+<OFX>
+  <BANKMSGSRSV1>
+    <STMTTRNRS>
+      <STMTRS>
+        <CURDEF>GBP</CURDEF>
+        <BANKACCTFROM>
+          <BANKID>123456</BANKID>
+          <ACCTID>12345678</ACCTID>
+          <ACCTTYPE>CHECKING</ACCTTYPE>
+        </BANKACCTFROM>
+        <BANKTRANLIST>
+          <DTSTART>20080729</DTSTART>
+          <DTEND>20080826</DTEND>
+          <STMTTRN>
+            <TRNTYPE>DEBIT</TRNTYPE>
+            <DTPOSTED>20080729</DTPOSTED>
+            <NAME>TESCO STORES</NAME>
+            <TRNAMT>-63.60</TRNAMT>
+            <FITID>1</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>CREDIT</TRNTYPE>
+            <DTPOSTED>20080805</DTPOSTED>
+            <NAME>ROOS CJ</NAME>
+            <MEMO>SHOPPING</MEMO>
+            <TRNAMT>100.00</TRNAMT>
+            <FITID>2</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>INT</TRNTYPE>
+            <DTPOSTED>20080821</DTPOSTED>
+            <NAME>INTEREST TAX PAID</NAME>
+            <TRNAMT>0.12</TRNAMT>
+            <FITID>3</FITID>
+          </STMTTRN>
+          <STMTTRN>
+            <TRNTYPE>DEBIT</TRNTYPE>
+            <DTPOSTED>20080826</DTPOSTED>
+            <NAME>DEBENHAMS</NAME>
+            <TRNAMT>-15.00</TRNAMT>
+            <FITID>4</FITID>
+          </STMTTRN>
+        </BANKTRANLIST>
+        <LEDGERBAL>
+          <BALAMT>-24.43</BALAMT>
+          <DTASOF>20080826</DTASOF>
+        </LEDGERBAL>
+      </STMTRS>
+    </STMTTRNRS>
+  </BANKMSGSRSV1>
+</OFX>
