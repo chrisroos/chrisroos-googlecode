@@ -10,8 +10,8 @@ layout: blog
 ---
 I just finished up the initial copy of a Ruby implementation of "Fred Stutzman's":http://chimprawk.blogspot.com/ "Micro Id":http://www.microid.org/ "Verifier":http://chimprawk.blogspot.com/2006/06/simple-microid-verifier.html.
 
-View the source "on-line":http://dev.seagul.co.uk/repository/browse/micro_id_verifier or checkout from anonymous subversion.
+View the source "on-line":http://chrisroos.googlecode.com/svn/trunk/micro-id-verifier/ or checkout from anonymous subversion.
 
 <pre class="code">
-# svn co svn://dev.seagul.co.uk/micro_id_verifier
+# svn co http://chrisroos.googlecode.com/svn/trunk/micro-id-verifier/
 </pre>

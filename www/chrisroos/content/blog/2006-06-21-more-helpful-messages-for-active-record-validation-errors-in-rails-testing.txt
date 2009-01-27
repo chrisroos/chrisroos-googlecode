@@ -29,10 +29,10 @@ At this point, it would be very easy to jump into the code of the Active Record 
 
 I initially played around with a method that took a block and would wrap the block with a begin/rescue clause to explicitly catch RecordInvalid exceptions, displaying the reason for failure.
 
-Then I thought it'd be cool if we could integrate slightly more with both test/unit and "rails":http://www.rubyonrails.com.  The result is a "plugin":http://wiki.rubyonrails.org/rails/pages/Plugins ("source":http://dev.seagul.co.uk/repository/browse/plugins/test_unit_active_record_errors) that can be installed as follows.
+Then I thought it'd be cool if we could integrate slightly more with both test/unit and "rails":http://www.rubyonrails.com.  The result is a "plugin":http://wiki.rubyonrails.org/rails/pages/Plugins ("source":http://chrisroos.googlecode.com/svn/trunk/plugins/test_unit_active_record_errors/) that can be installed as follows.
 
 <pre class="code">
-script/plugin install svn://dev.seagul.co.uk/plugins/test_unit_active_record_errors
+script/plugin install http://chrisroos.googlecode.com/svn/trunk/plugins/test_unit_active_record_errors/
 </pre>
 
 The output from a failed validation now includes the validation errors.  Yay.
