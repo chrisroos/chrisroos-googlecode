@@ -1,0 +1,43 @@
+Very Simple Micro Id Verifier
+-----------------------------
+
+== Synopsis ==
+This is, essentially, a straight port of Fred Stutzman's[1] (perl) micro_id verifier[2], written in Ruby[3].
+
+The basic component is a Link.  A Link comprises a url, expected micro_id and status.  When we send a link the verify_micro_id! message; it attempts to grab the html for the page at <url> and compare the <expected_micro_id> with a micro_id (if found) on that page.  The <status> for a link is updated according to the outcome of this process.
+
+To process all unverified links in the database, use Link::verify_all
+
+== Link status values ==
+Unprocessed = 1
+Verification Success = 2
+Verification Failure = 3
+Verification Error = 4
+
+== Pre-requisites ==
+Ruby 1.8.4 (will probably work with previous versions but I haven't tried)
+Rubygems [4]
+ActiveRecord [5]
+RubyfulSoup [6]
+Database compatible with ActiveRecord (tested with MySql)
+
+== Optional ==
+Rake [7] (to run tests)
+
+== Setup database ==
+Configure config/database.yml and create the database and table.  Table structure (for mysql) is in config/database.mysql.sql.
+
+== Run tests ==
+# rake
+
+== Run example webserver and perform simple verifications against it ==
+# rake webserver_example
+
+
+[1] http://chimprawk.blogspot.com/
+[2] http://chimprawk.blogspot.com/2006/06/simple-microid-verifier.html
+[3] http://ruby-lang.org/en/
+[4] http://docs.rubygems.org/
+[5] http://api.rubyonrails.com/classes/ActiveRecord/Base.html
+[6] http://www.crummy.com/software/RubyfulSoup/
+[7] http://rake.rubyforge.org/

@@ -1,0 +1,5 @@
+database:
+  adapter: mysql
+  host: localhost
+  username: root
+  database: micro_id_verification

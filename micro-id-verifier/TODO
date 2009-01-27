@@ -1,0 +1,4 @@
+http_client logs method calls to test integration - would be nice to have a very very simple expects method that auto logs method calls and argument values.
+-- doesn't expect method - can raise error
+
+maybe expand error recording - at the moment just changing state.
