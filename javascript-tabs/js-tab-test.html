@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Javascript tabs test</title>
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <style type="text/css" media="screen">
+      body {
+        margin: 50px;
+        width: 600px;
+      }
+      ul li {
+        border: 1px solid #f55;
+      }
+      ul.contents {
+        overflow: auto;
+      }
+      ul.contents li {
+        float: left;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="tabbed-list">
+      <ul class="contents">
+        <li><a href="#list1">List 1</a></li>
+        <li><a href="#list2">List 2</a></li>
+        <li><a href="#list3">List 3</a></li>
+      </ul>
+  
+      <div id="list1" class="container">
+        <h2 class="heading">List 1</h2>
+        <ul class="list1-things">
+          <li class="list1-thing">
+            <h3>List 1 thing title</h3>
+            <p>List 1 thing excerpt...</p>
+          </li>
+        </ul>
+      </div>
+
+      <div id="list2" class="container">
+        <h2 class="heading">List 2</h2>
+        <ul class="list2-things">
+          <li class="list2-thing">
+            <h3>List 2 thing title</h3>
+            <p>List 2 thing excerpt...</p>
+          </li>
+        </ul>
+      </div>
+
+      <div id="list3" class="container">
+        <h2 class="heading">List 3</h2>
+        <ul class="list3-things">
+          <li class="list3-thing">
+            <h3>List 3 thing title</h3>
+            <p>List 3 thing excerpt...</p>
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+
+    <script src="/javascripts/js-tab-test.js" type="text/javascript"></script>
+  </body>
+</html>
