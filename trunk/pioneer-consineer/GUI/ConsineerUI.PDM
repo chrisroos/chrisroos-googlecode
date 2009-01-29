@@ -1,0 +1,139 @@
+[Root]
+Most Recent Package=Consineer
+
+
+[Package|Consineer|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=d:\Pioneer\Temp\Consineer
+
+[Package|Consineer|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Consineer|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Consineer|Files Found]
+
+[Package|Consineer|Files Released]
+consineer.mdb=
+
+[Package|Consineer|Missing Dependency Information]
+C:\Pioneer\Temp\Consineer.dll=
+C:\Program Files\Common Files\System\ado\msado25.tlb=
+D:\Pioneer\Pioneer v1\Bin\Consineer=
+
+[Package|Consineer|Out-of-Date Dependency Information]
+C:\WINNT\system32\msadodc.ocx=
+C:\WINNT\system32\mshflxgd.ocx=
+C:\WINDOWS\system32\Mscomct2.ocx=
+
+[Package|Consineer|Files Added]
+consineer.mdb=
+
+[Package|Consineer|Files Removed]
+
+[Package|Consineer|Files In Project]
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Program Files\Common Files\System\ado\msado25.tlb=Yes
+C:\Program Files\Common Files\Designer\MSDERUN.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+D:\Pioneer\Pioneer v1\Bin\Consineer.exe=Yes
+C:\WINDOWS\system32\msvbvm60.dll=Yes
+C:\WINDOWS\system32\oleaut32.dll=Yes
+C:\WINDOWS\system32\olepro32.dll=Yes
+C:\WINDOWS\system32\asycfilt.dll=Yes
+C:\WINDOWS\system32\stdole2.tlb=Yes
+C:\WINDOWS\system32\MSBIND.DLL=Yes
+C:\WINDOWS\system32\MSSTDFMT.DLL=Yes
+C:\WINDOWS\system32\MSDBRPTR.DLL=Yes
+D:\Pioneer\Pioneer v1\Bin\Consineer=Yes
+C:\WINDOWS\system32\MSCOMCTL.OCX=Yes
+C:\WINDOWS\system32\MSHFLXGD.OCX=Yes
+C:\WINDOWS\system32\MSDATGRD.OCX=Yes
+C:\WINDOWS\system32\Mscomct2.ocx=Yes
+C:\WINDOWS\system32\VB6STKIT.DLL=Yes
+
+[Package|Consineer|Configure Registry Files]
+Applicable=No
+
+[Package|Consineer|Configure Remote Servers]
+Applicable=No
+
+[Package|Consineer|Install Locations]
+C:\Pioneer\Temp\Consineer.exe=$(AppPath)
+C:\WINNT\system32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\WINNT\system32\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\WINNT\system32\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Common Files\System\ado\msado25.tlb=$(WinSysPath)
+C:\WINNT\system32\MSBIND.DLL=$(WinSysPath)
+C:\WINNT\system32\MSSTDFMT.DLL=$(WinSysPath)
+C:\WINNT\system32\MSDBRPTR.DLL=$(WinSysPath)
+C:\Program Files\Common Files\Designer\MSDERUN.DLL=$(CommonFiles)\designer
+C:\Pioneer\Temp\Consineer.dll=$(AppPath)
+C:\WINNT\system32\MSCOMCTL.OCX=$(WinSysPath)
+C:\WINNT\system32\msadodc.ocx=$(WinSysPath)
+C:\WINNT\system32\MSDATGRD.OCX=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINNT\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Pioneer\Database\consineer.mdb=$(AppPath)
+C:\WINNT\system32\mshflxgd.ocx=$(WinSysPath)
+C:\WINNT\system32\MSCOMCT2.OCX=$(WinSysPath)
+D:\Pioneer\Pioneer v1\Bin\Consineer.exe=$(AppPath)
+C:\WINDOWS\system32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\oleaut32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\olepro32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\asycfilt.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\stdole2.tlb=$(WinSysPathSysFile)
+C:\WINDOWS\system32\MSBIND.DLL=$(WinSysPath)
+C:\WINDOWS\system32\MSSTDFMT.DLL=$(WinSysPath)
+C:\WINDOWS\system32\MSDBRPTR.DLL=$(WinSysPath)
+D:\Pioneer\Pioneer v1\Bin\Consineer=$(WinSysPath)
+C:\WINDOWS\system32\MSCOMCTL.OCX=$(WinSysPath)
+C:\WINDOWS\system32\MSHFLXGD.OCX=$(WinSysPath)
+C:\WINDOWS\system32\MSDATGRD.OCX=$(WinSysPath)
+C:\WINDOWS\system32\Mscomct2.ocx=$(WinSysPath)
+C:\WINDOWS\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+
+[Package|Consineer|Configure Shared Files]
+Applicable=Yes
+C:\Pioneer\Temp\Consineer.exe=No
+C:\Pioneer\Temp\Consineer.dll=No
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+C:\Pioneer\Database\consineer.mdb=No
+D:\Pioneer\Pioneer v1\Bin\Consineer.exe=No
+
+[Package|Consineer|Distribution]
+Type=single
+Size=
+Title=Consineer
+
+[Package|Consineer|IconGroups]
+Group0=$(Start Menu)
+PrivateGroup0=True
+Parent0=
+
+[Package|Consineer|$(Start Menu)]
+Icon1=Consineer.exe
+Title1=Consineer
+StartIn1=$(AppPath)
+Key1=Icon3
+
+[Package|Consineer|Package]
+PackageFolder=d:\Pioneer\Temp\Consineer
+ProjectFolder=D:\Pioneer\Pioneer v1\GUI
+ServerSideCab=
+File1=d:\Pioneer\Temp\Consineer\setup.exe
+File2=d:\Pioneer\Temp\Consineer\Setup.Lst
+File3=d:\Pioneer\Temp\Consineer\Consineer.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz

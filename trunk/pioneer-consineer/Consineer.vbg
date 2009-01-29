@@ -1,0 +1,4 @@
+VBGROUP 5.0
+Project=Business\Consineer.vbp
+StartupProject=GUI\ConsineerUI.vbp
+Project=Test Logic\Consineer_Test.vbp
