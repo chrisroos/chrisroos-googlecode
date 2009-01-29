@@ -1,0 +1,6 @@
+Thu 29th Jan 2009
+-----------------
+I've finally got around to going through my old backups in an attempt to find the source code of the consineer software that Michael runs at Pioneer.
+I believe this is the same version that they're running.  I've loaded it into VB6 on WinXp running under Parallels on my Macbook and it appears to compile and run successfully.  I pointed the database path at a location containing an actual Pioneer backup so I was able to see the reports and everything else function as I'd expect.
+I don't want to commit a database full with data but I do want the schema so I've committed the consineer-empty.mdb access database.
+I was hoping not to have to commit the Bin folder (containing .exe and .dll among others) but when I renamed it and opened the project, VB6 complained about not being able to find the .dll and proceeded to error with strange messages.  I'm certain this is something I've come across long in the past but it's not something I need to worry about right now.
