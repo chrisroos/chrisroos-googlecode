@@ -1,39 +1,52 @@
-// Get the URL fragment without the leading hash (#)
-var fragment = window.location.hash.replace('#', '');
-
-// Find the first container and use that as the default 'tab'
-var firstContainer = $('.tabbed-list .container:first')[0];
-var tabToDisplay = ($(firstContainer).attr('id'));
-
-// Move the container ids to the container class so that we are OK to use the fragments without navigating down the page to the element with the Id
-$('.tabbed-list .container').each(function() {
-  var containerId = $(this).attr('id');
-  $(this).attr('id', null);
-  $(this).addClass(containerId);
-});
-
-// Determine the container that we should be showing
-$('.tabbed-list .container').each(function() {
-  if (fragment && $(this).hasClass(fragment)) {
-    tabToDisplay = fragment;
+var Tabs = {
+  init : function() {
+    this.tabContainers = $('.tabbed-list .container');
+    this.tabContainerHeadings = $('.tabbed-list .container .heading');
+    this.tabLinks = $('.tabbed-list .contents a');
+    var firstContainer = this.tabContainers[0];
+    this.defaultContainerToDisplay = ($(firstContainer).attr('id'));
+    this.setupContainers();
+    this.hideContainerHeadings();
+  },
+  setupContainers : function() {
+    this.tabContainers.each(function() {
+      var containerId = $(this).attr('id');
+      $(this).attr('id', null);
+      $(this).addClass(containerId);
+    });
+  },
+  containerToDisplay : function() {
+    var fragment = window.location.hash.replace('#', '');
+    var selectedContainer = null;
+    this.tabContainers.each(function() {
+      if (fragment && $(this).hasClass(fragment)) {
+        selectedContainer = fragment;
+      }
+    })
+    if (selectedContainer) { return selectedContainer; };
+    return this.defaultContainerToDisplay;
+  },
+  hideContainerHeadings : function() {
+    this.tabContainerHeadings.each(function() {
+      $(this).hide();
+    })
+  },
+  displaySelectedContainer : function() {
+    var containerToDisplay = this.containerToDisplay();
+    this.tabContainers.each(function() {
+      if ($(this).hasClass(containerToDisplay)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    })
   }
-})
+}
 
-// Hide the non-selected containers
-$('.tabbed-list .container').each(function() {
-  if ($(this).hasClass(tabToDisplay)) {
-    $(this).show();
-  } else {
-    $(this).hide();
-  }
-})
+Tabs.init();
+Tabs.displaySelectedContainer();
 
-// Hide all the headings
-$('.tabbed-list .container .heading').each(function() {
-  $(this).hide();
-})
-
-// Override the anchor click events to display the selected container
+/* I can't get this to work when defined as a function in my 'Tabs' object - I think I'm being naive in my understanding of what 'this' points to.
 $('.tabbed-list .contents a').each(function() {
   $(this).click(function() { 
     var tabToDisplay = $(this).attr('href').replace('#', '');
@@ -46,3 +59,4 @@ $('.tabbed-list .contents a').each(function() {
     })
   })
 })
+*/
