@@ -7,6 +7,8 @@ var Tabs = {
     this.defaultContainerToDisplay = ($(firstContainer).attr('id'));
     this.setupContainers();
     this.hideContainerHeadings();
+    this.setupLinks();
+    this.displaySelectedContainer();
   },
   setupContainers : function() {
     this.tabContainers.each(function() {
@@ -31,32 +33,25 @@ var Tabs = {
       $(this).hide();
     })
   },
-  displaySelectedContainer : function() {
-    var containerToDisplay = this.containerToDisplay();
+  displaySelectedContainer : function(container) {
+    if (!container) { container = this.containerToDisplay() }
     this.tabContainers.each(function() {
-      if ($(this).hasClass(containerToDisplay)) {
+      if ($(this).hasClass(container)) {
         $(this).show();
       } else {
         $(this).hide();
       }
+    })
+  },
+  setupLinks : function() {
+    var tabs = this;
+    this.tabLinks.each(function() {
+      $(this).click(function() { 
+        var hash = this.href.split('#')[1];
+        tabs.displaySelectedContainer(hash);
+      })
     })
   }
 }
 
-Tabs.init();
-Tabs.displaySelectedContainer();
-
-/* I can't get this to work when defined as a function in my 'Tabs' object - I think I'm being naive in my understanding of what 'this' points to.
-$('.tabbed-list .contents a').each(function() {
-  $(this).click(function() { 
-    var tabToDisplay = $(this).attr('href').replace('#', '');
-    $('.tabbed-list .container').each(function() {
-      if ($(this).hasClass(tabToDisplay)) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    })
-  })
-})
-*/
+$(document).ready(function() { Tabs.init() });
