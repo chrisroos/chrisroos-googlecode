@@ -10,7 +10,7 @@ module Apacherb
   class Options
     attr_reader :action, :domain, :directory
     def initialize(action=nil, domain=nil, directory=nil)
-      @action, @domain, @directory = action, domain, directory
+      @action, @domain, @directory = action, domain, File.expand_path(directory)
     end
     def display_banner_and_return
       puts banner
