@@ -153,6 +153,13 @@ h2.utility a,
 h2.project a {
   text-decoration: underline;
 }
+.notice {
+  background-color: #ffc;
+  border: 1px solid #ff0;
+  margin-bottom: 1em;
+  font-size: 120%;
+  padding: 0.4em;
+}
 
 
 /**********************************************************/

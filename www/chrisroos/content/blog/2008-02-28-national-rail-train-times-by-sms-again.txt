@@ -8,6 +8,8 @@ filter:
 created_at: 2008-02-28 17:45:00 +00:00
 layout: blog
 ---
+div(notice). This service is no longer running.  Please see "this post":/blog/2009-01-31-turning-off-my-national-rail-twitter-bot if you're interested to find out why.
+
 A while back I "hacked":/blog/2007-07-24-train-times-by-sms-or-improving-national-rail-enquiries a simple "SMS":http://en.wikipedia.org/wiki/Short_message_service interface onto the "national rail enquiries":http://www.nationalrail.co.uk/ website.  It turned out to be more gimmicky than functional and I left it to die.  Over the past couple of weeks I've found myself, once again, in need of such a service and so spent a couple of hours last night reviving it: making it work, making it simpler and tidying the code.  The previous interface required the source station and destination station as well as the date and time of travel.  The format was very strict (requiring you to use the unique three digit station codes) and, as I found, overly complex (I could never remember what it was).  All I really wanted to do was specify the source and destination stations and get a list of the next few departures/arrival times.
 
 The new interface is simply in the format of SOURCE_STATION to DESTINATION_STATION.  So, to find the next few trains from "Ramsgate":http://en.wikipedia.org/wiki/Ramsgate_railway_station to "London Waterloo East":http://en.wikipedia.org/wiki/Waterloo_East_railway_station we can send the following "direct message":http://help.twitter.com/index.php?pg=kb.page&id=15 to the "natrailenq":http://twitter.com/natrailenq user on "twitter":http://twitter.com
