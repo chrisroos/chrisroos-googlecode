@@ -1,0 +1,11 @@
+#!/usr/local/bin/ruby
+
+wget_path        = File.join('/', 'usr', 'local', 'bin', 'wget')
+image_url        = "http://82.69.41.142/axis-cgi/jpg/image.cgi?resolution=640x480&compression=50"
+
+output_directory = File.join('/', 'home', 'chrisroos', 'ramsgate-harbour-webcam-images')
+image_name       = "#{Time.now.strftime('%Y%m%dT%H%M%S')}.jpg"
+image_path       = File.join(output_directory, image_name)
+
+cmd = %%#{wget_path} "#{image_url}" -O"#{image_path}" --quiet%
+system(cmd)
