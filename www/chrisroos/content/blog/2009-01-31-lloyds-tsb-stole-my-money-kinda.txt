@@ -1,0 +1,18 @@
+---
+summary:    A little rant about Lloyds TSB
+blog_post:  true
+title:      Lloyds TSB Stole My Money (Kinda)
+created_at: 2009-01-31 10:46:49.081933 +00:00
+guid:       cfa34d64-3838-4789-b8c5-27a5d5d8b27e
+layout:     blog
+filter:
+  - erb
+  - textile
+---
+I received a letter dated the 21st January to state that I'd tried to make a transfer, on that day, and that I didn't have the funds to cover it.  Lloyds TSB earned themselves £20 out of the matter (I guess stealing is cheaper than physically printing the money).  I'm willing to take some of the responsibility but at the same time I find the Lloyds TSB online statements to be confusing.  A snippet of the transactions in question are below.
+
+"!http://farm4.static.flickr.com/3356/3240320685_12a1280ecc.jpg!":http://www.flickr.com/photos/chrisjroos/3240320685/
+
+I paid a cheque in on Fri 16th Jan and tried to transfer most of it to another account on Weds 21st Jan (having convinced myself that I had enough in the account because of the deposit appearing on the statement).  Unfortunately, even though the deposit was listed on the statement the cheque hadn't actually cleared.  You can see the transfer was actually made on Thurs 22nd Jan so I was obviously one day premature.  I spoke to Lloyds this morning to see if I could get the £20 back but apparently it was my own fault for not waiting five days and there was nothing they could do.  Maybe everyone else knows to ignore the items that appear in the transaction list but it really doesn't seem very intuitive to me.
+
+Rant over.
