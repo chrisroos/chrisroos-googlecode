@@ -11,37 +11,21 @@ filter:    erb
   </head>
 
   <body class="contents">
-    
-    <div id="doc3" class="yui-t4">
-      <div id="hd">
-        <div class="header">
-          <%= render(:partial => "/header") %>
-          <%= render(:partial => "/google-search") %>
-        </div>
+    <div id="doc3" class="yui-t7">
+      <div id="hd" class="header">
+        <%= render(:partial => "/header") %>
+        <%= render(:partial => "/google-search") %>
+        <%= render(:partial => "/navigation") %>
       </div>
       <div id="bd">
-        <div id="yui-main">
-          <div class="yui-b">
-            <div class="yui-g">
-              
-              <%= @content %>
-
-            </div>
-          </div>
-        </div>
-        <div class="yui-b">
-
-          <%= render(:partial => "/navigation") %>
-
+        <div class="yui-g">
+          <%= @content %>
         </div>
       </div>
+      <div id="ft">
+        <%= render(:partial => "/footer") %>
+      </div>
     </div>
-    <div id="ft">
-      <%= render(:partial => "/footer") %>
-    </div>
-    
     <%= render(:partial => "/google-analytics") %>
-
   </body>
-
 </html>
