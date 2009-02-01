@@ -21,6 +21,9 @@ filter:    erb
       <% end %>
       <link rel="last" href="<%= friendly_url(posts.last) %>" />
       <link rel="index" href="/blog" />
+      <% if @page.summary %>
+        <meta name="description" content="<%= h(@page.summary) %>" />
+      <% end %>
     <% end %>
   </head>
 
