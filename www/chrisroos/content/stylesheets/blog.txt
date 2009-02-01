@@ -116,13 +116,13 @@ ul.navigation {
   text-align: left;
   margin-top: 0;
   margin-bottom: 0;
-  overflow: auto;
+  overflow: hidden;
 }
 .navigation {
   font-size: 100%;
-  overflow: auto;
   width: 100%;
   margin-bottom: 1em;
+  overflow: auto;
 }
 .navigation li {
   display: inline;
