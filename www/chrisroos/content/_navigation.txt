@@ -30,6 +30,9 @@ filter: erb
     <a href="http://flickr.com/photos/chrisjroos" title="See my photos at Flickr">photos</a>
   </li>
   <li>
+    <a href="http://life.chrisroos.co.uk" title="All my feeds aggregated at tumblr">everything</a>
+  </li>
+  <li>
     <a href="http://www.amazon.co.uk/gp/shops/index.html?ie=UTF8&amp;sellerID=AS1VKYI0VDYE5" title="Books I'm selling on Amazon Marketplace">books i'm selling</a>
   </li>
 </ul>
