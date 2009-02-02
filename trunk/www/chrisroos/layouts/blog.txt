@@ -30,8 +30,10 @@ filter:    erb
   <body>
     <div id="doc3" class="yui-t7">
       <div id="hd" class="header">
-        <%= render(:partial => "/header") %>
-        <%= render(:partial => "/google-search") %>
+        <div id="headerAndSearchContainer">
+          <%= render(:partial => "/header") %>
+          <%= render(:partial => "/google-search") %>
+        </div>
         <%= render(:partial => "/navigation") %>
       </div>
       <div id="bd">

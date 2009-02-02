@@ -88,6 +88,9 @@ blockquote {
   float: left;
   margin-bottom: 1em;
 }
+#headerAndSearchContainer {
+  overflow: hidden;
+}
 
 
 /**********************************************************/
