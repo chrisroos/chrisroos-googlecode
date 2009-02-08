@@ -16,7 +16,7 @@ I mentioned to a signal man friend at the weekend and he was of the impression t
 
 My email (submitted through their "contact form":http://southeasternrailway.co.uk/contact.php)
 
-<div class="email">
+<div class="emailBody">
 Hi,
 
 I wonder if you’d be able to let me know your plans for services between Ramsgate and London when the new high speed trains are introduced?  Although there’s been a great deal of speculation about a high speed service between Ramsgate and St Pancras, I’ve never seen anything concrete.  Indeed, from what I’ve read so far, I’m guessing that there won’t be a direct high speed link between Ramsgate and London (I’d love to hear otherwise though).  Rather, I suspect that it’ll be possible to get a traditional train from Ramsgate to Ashford and then to join a high speed train to St Pancras (so the journey time will be about 77 minutes on the train with a change at Ashford).  Is this the plan?

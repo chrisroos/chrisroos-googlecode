@@ -5,17 +5,18 @@ filter:
   - erb
   - textile
 ---
-h1. <%= h(@page.title) %>
+<div id="hcard-Chris-Roos" class="vcard">
+
+h1. <%= h(@page.title) %> for me, <a class="url fn" href="http://chrisroos.co.uk">Chris Roos</a>
 
 h2. Email, twitter and instant messenger
 
-* Email: "chris@seagul.co.uk":mailto:chris@seagul.co.uk
-* "Twitter":http://twitter.com: "chrisroos":http://twitter.com/chrisroos
-* "Skype":http://skype.com: "chrisjroos":skype:chrisjroos?add
-* "GTalk":http://www.google.com/talk/: chris@seagul.co.uk
-* "MSN":http://im.live.com: chrisjroos@hotmail.com
-* "Y!M":http://messenger.yahoo.com/: chrisjroos
-* "AIM":http://aim.com: chrisjroos
+* Email: <a class="email" href="mailto:chris@seagul.co.uk">chris@seagul.co.uk</a>
+* Skype: <a class="url" href="skype:chrisjroos?add">chrisjroos</a>
+* Jabber/GTalk: <a class="url" href="xmpp:chris@seagul.co.uk">chris@seagul.co.uk</a>
+* MSN: <a class="url" href="msn:chrisjroos@hotmail.com">chrisjroos@hotmail.com</a>
+* YIM: <a class="url" href="ymsgr:sendIM?chrisjroos">chrisjroos</a>
+* AIM: <a class="url" href="aim:goim?screenname=chrisjroos">chrisjroos</a>
 
 h2. Elsewhere on the web
 
@@ -23,26 +24,28 @@ In no particular order, these are my profiles at various other sites.  If it's n
 
 h3. Frequent use
 
-* "Twitter":http://twitter.com/chrisroos
-* "Delicious":http://delicious.com/chrisjroos
-* "Flickr":http://flickr.com/photos/chrisjroos
-* "Last.fm":http://www.last.fm/user/chrisroos
-* "Google code":http://code.google.com/u/chrisjroos/
-* "Get Satisfaction":http://getsatisfaction.com/people/chrisroos
+* <a class="url" href="http://twitter.com/chrisroos">Twitter</a>
+* <a class="url" href="http://delicious.com/chrisjroos">Delicious</a>
+* <a class="url" href="http://flickr.com/photos/chrisjroos">Flickr</a>
+* <a class="url" href="http://www.last.fm/user/chrisroos">Last.fm</a>
+* <a class="url" href="http://code.google.com/u/chrisjroos">Google code</a>
+* <a class="url" href="http://getsatisfaction.com/people/chrisroos">Get Satisfaction</a>
 
 h3. Infrequent use
 
-* "Vimeo":http://vimeo.com/chrisroos
-* "Amazon seller account":http://www.amazon.co.uk/gp/shops/index.html?sellerID=AS1VKYI0VDYE5
-* "Working with Rails":http://www.workingwithrails.com/person/973-chris-roos
-* "Rubyforge":http://rubyforge.org/users/chrisjroos/
-* "Ruby forum":http://www.ruby-forum.com/user/show/463
-* "Wesabe":https://www.wesabe.com/users/chris-roos
-* "Bkkeepr":http://bkkeepr.com/people/chrisroos/
-* "Github":http://github.com/chrisroos
-* "Beer in the evening":http://www.beerintheevening.com/user_profile.shtml?username=chrisroos
-* "ClaimId":http://claimid.com/chrisroos
-* "43 things":http://www.43things.com/person/chrisjroos
-* "43 places":http://www.43places.com/person/chrisjroos
-* "All consuming":http://allconsuming.net/person/chrisjroos
-* "Yahoo":http://profiles.yahoo.com/chrisjroos
+* <a class="url" href="http://vimeo.com/chrisroos">Vimeo</a>
+* <a class="url" href="http://www.amazon.co.uk/gp/shops/index.html?sellerID=AS1VKYI0VDYE5">Amazon seller account</a>
+* <a class="url" href="http://www.workingwithrails.com/person/973-chris-roos">Working with Rails</a>
+* <a class="url" href="http://rubyforge.org/users/chrisjroos">Rubyforge</a>
+* <a class="url" href="http://www.ruby-forum.com/user/show/463">Ruby forum</a>
+* <a class="url" href="https://www.wesabe.com/users/chris-roos">Wesabe</a>
+* <a class="url" href="http://bkkeepr.com/people/chrisroos">Bkkeepr</a>
+* <a class="url" href="http://github.com/chrisroos">Github</a>
+* <a class="url" href="http://www.beerintheevening.com/user_profile.shtml?username=chrisroos">Beer in the evening</a>
+* <a class="url" href="http://claimid.com/chrisroos">ClaimId</a>
+* <a class="url" href="http://www.43things.com/person/chrisjroos">43 things</a>
+* <a class="url" href="http://www.43places.com/person/chrisjroos">43 places</a>
+* <a class="url" href="http://allconsuming.net/person/chrisjroos">All consuming</a>
+* <a class="url" href="http://profiles.yahoo.com/chrisjroos">Yahoo</a>
+
+</div>
