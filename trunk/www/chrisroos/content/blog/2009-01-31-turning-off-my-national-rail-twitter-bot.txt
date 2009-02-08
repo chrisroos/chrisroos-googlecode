@@ -15,7 +15,7 @@ I first wrote about a "national rail twitter bot":/blog/2007-07-24-train-times-b
 
 Unfortunately, I received an email towards the end of Feb 2008 asking me to turn the service off because it contravened the "terms and conditions":http://nationalrail.co.uk/contact/tandc/ on the "national rail":http://nationalrail.co.uk website.  Oh well, it was fun while it lasted.
 
-<div class="email">
+<div class="emailBody">
 Chris,
 
 Just came across your blog and the integration work that you’ve done with Twitter and our website.  Unfortunately our terms and conditions prohibit the use of our site in the manner you are using it and I have to ask you to stop, close down and remove any software of yours that uses information from nationalrial.co.uk.
