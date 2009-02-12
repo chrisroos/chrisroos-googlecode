@@ -30,6 +30,8 @@ h3. Frequent use
 * <a class="url" href="http://www.last.fm/user/chrisroos">Last.fm</a>
 * <a class="url" href="http://code.google.com/u/chrisjroos">Google code</a>
 * <a class="url" href="http://getsatisfaction.com/people/chrisroos">Get Satisfaction</a>
+* <a class="url" href="http://www.dailymugshot.com/main/show/13817">Daily Mug Show</a>
+* <a class="url" href="http://upcoming.yahoo.com/user/486473/">Upcoming</a>
 
 h3. Infrequent use
 
