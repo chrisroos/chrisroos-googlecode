@@ -2,63 +2,66 @@
 blog_post: true
 guid: 9a7fd6be48986165d4710c226c0eb807
 title: Instiki-AR with sqlite3 on Windows XP
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2005-10-01 15:39:00 +01:00
 layout: blog
 ---
-I've used "Instiki":http://www.instiki.org quite a bit for storing what are essentially notes.
+:textile
+  I've used "Instiki":http://www.instiki.org quite a bit for storing what are essentially notes.
 
-Although it's been a true "Rails":http://www.rubyonrails.com app for a while, due to it's use of "Madeleine":http://madeleine.sourceforge.net/ for object persistence, it required a couple of workarounds to host it using "apache":http://httpd.apache.org.  Namely, run Instiki on "WEBrick":http://www.webrick.org and then use mod_proxy in apache to forward requests for a given url to the webrick server.
+  Although it's been a true "Rails":http://www.rubyonrails.com app for a while, due to it's use of "Madeleine":http://madeleine.sourceforge.net/ for object persistence, it required a couple of workarounds to host it using "apache":http://httpd.apache.org.  Namely, run Instiki on "WEBrick":http://www.webrick.org and then use mod_proxy in apache to forward requests for a given url to the webrick server.
 
-Just a couple of days ago Alexey Verkhovsky (Instiki maintainer) "announced":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/158000 that a beta version of Instiki ("Instiki-AR":http://rubyforge.org/frs/download.php/6258/instiki-ar-beta1.zip) running on "Active Record":http://ar.rubyonrails.com/ was available.  This basically means that Instiki can now be run directly via apache using "fast cgi":http://www.fastcgi.com/, negating the need for mod_proxy and running in 'production' on WEBrick.
+  Just a couple of days ago Alexey Verkhovsky (Instiki maintainer) "announced":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/158000 that a beta version of Instiki ("Instiki-AR":http://rubyforge.org/frs/download.php/6258/instiki-ar-beta1.zip) running on "Active Record":http://ar.rubyonrails.com/ was available.  This basically means that Instiki can now be run directly via apache using "fast cgi":http://www.fastcgi.com/, negating the need for mod_proxy and running in 'production' on WEBrick.
 
-I downloaded the beta this morning and had a quick play.  Initially I created a "MySQL":http://www.mysql.org database and ran script/create_db to create the relevant tables in the database.  Everything worked as expected, although I didn't actually try to import any existing data.
+  I downloaded the beta this morning and had a quick play.  Initially I created a "MySQL":http://www.mysql.org database and ran script/create_db to create the relevant tables in the database.  Everything worked as expected, although I didn't actually try to import any existing data.
 
-I've read about "sqlite":http://sqlite.org/ quite a few times but have never got round to actually playing with it.  As such, I spent a short time getting Instiki-AR to use sqlite as it's backend.
+  I've read about "sqlite":http://sqlite.org/ quite a few times but have never got round to actually playing with it.  As such, I spent a short time getting Instiki-AR to use sqlite as it's backend.
 
-First off, I installed the sqlite3 gem (sqlite3-ruby 1.1.0 (mswin32)).
+  First off, I installed the sqlite3 gem (sqlite3-ruby 1.1.0 (mswin32)).
 
-<pre class="code">
-# gem install sqlite3
-</pre>
+%pre.code
+  :preserve
+    $ gem install sqlite3
 
-This was followed by downloading the "sqlite dll":http://www.sqlite.org/sqlitedll-3_2_7.zip and placing it in a directory in my path environment variable.  This was all that was actually required.
+:textile
+  This was followed by downloading the "sqlite dll":http://www.sqlite.org/sqlitedll-3_2_7.zip and placing it in a directory in my path environment variable.  This was all that was actually required.
 
-I used script/create_db to create the database files and tables as with the mysql implementation and everything just worked.
+  I used script/create_db to create the database files and tables as with the mysql implementation and everything just worked.
 
-*_Update 17:30_*
+  *_Update 17:30_*
 
-I've just played a little further and actually imported data from an existing instiki instance to the sqlite database.
+  I've just played a little further and actually imported data from an existing instiki instance to the sqlite database.
 
-First of all, I created a copy of my original instiki with the madeleine storage in the storage directory.
+  First of all, I created a copy of my original instiki with the madeleine storage in the storage directory.
 
-In the instiki-ar version I then ran the following (from Alexey's original email) to output a sql script that will import all of my wiki content into the database.
+  In the instiki-ar version I then ran the following (from Alexey's original email) to output a sql script that will import all of my wiki content into the database.
 
-<pre class="code">
-# ruby script\import_storage -i d:\instiki -t d:\instiki-ar\storage\2500 -o i.sql -d sqlite
-</pre>
+%pre.code
+  :preserve
+    $ ruby script\import_storage -i d:\instiki -t d:\instiki-ar\storage\2500 -o i.sql -d sqlite
 
-I then downloaded the "sqlite3":http://sqlite.org/sqlite-3_2_7.zip utility to administer sqlite databases.  I placed this in a directory included in my path environment variable.
+:textile
+  I then downloaded the "sqlite3":http://sqlite.org/sqlite-3_2_7.zip utility to administer sqlite databases.  I placed this in a directory included in my path environment variable.
 
-Start sqlite3 with the location of the production database as the argument.
+  Start sqlite3 with the location of the production database as the argument.
 
-<pre class="code">
-# sqlite3 db\prod.db
-</pre>
+%pre.code
+  :preserve
+    $ sqlite3 db\prod.db
 
-Execute the i.sql script to import all of the data to sqlite.
+:textile
+  Execute the i.sql script to import all of the data to sqlite.
 
-<pre class="code">
-sqlite> .read i.sql
-sqlite> .quit
-</pre>
+%pre.code
+  :preserve
+    sqlite> .read i.sql
+    sqlite> .quit
 
-That's it.  My original wiki content is now in the AR version and everything seems to work great.
+:textile
+  That's it.  My original wiki content is now in the AR version and everything seems to work great.
 
-*Note* To get instiki-ar from subversion.
+  *Note* To get instiki-ar from subversion.
 
-<pre class="code">
-# svn export --revision 397 http://svn.instiki.org/instiki/branches/instiki-ar/
-</pre>
+%pre.code
+  :preserve
+    $ svn export --revision 397 http://svn.instiki.org/instiki/branches/instiki-ar/

@@ -2,30 +2,29 @@
 blog_post: true
 guid: 40ce8c63-ac97-4903-ad97-25a975ff13e0
 title: PwdHash
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2005-11-18 00:34:00 +00:00
 layout: blog
 ---
-I read about this "concept":https://www.pwdhash.com and associated "firefox plugin":https://addons.mozilla.org/extensions/moreinfo.php?id=1033 a while back but then promptly forgot about it.  I came across it again recently and decided to take a more detailed look.
+:textile
+  I read about this "concept":https://www.pwdhash.com and associated "firefox plugin":https://addons.mozilla.org/extensions/moreinfo.php?id=1033 a while back but then promptly forgot about it.  I came across it again recently and decided to take a more detailed look.
 
-Currently, you probably either have...
+  Currently, you probably either have...
 
-# a different password for each website to which you have membership.
-# a handful of passwords, some more secure than others depending on the type of websites they are for.
-# one password for all of the websites that you are a member of.
+  # a different password for each website to which you have membership.
+  # a handful of passwords, some more secure than others depending on the type of websites they are for.
+  # one password for all of the websites that you are a member of.
 
-In the first and second instance, purely due to the volume, there's a good chance that these passwords are written down somewhere.  This is bad.
+  In the first and second instance, purely due to the volume, there's a good chance that these passwords are written down somewhere.  This is bad.
 
-In the third instance, you are opening yourself up to lots of problems if your single password is compromised.
+  In the third instance, you are opening yourself up to lots of problems if your single password is compromised.
 
-PwdHash is a solution that allows you to have a different password for each of the websites that you are subscribed to, whilst allowing you to remember just one.  It does this by creating a hash based on your 'password' and the url of the site you are visiting.
+  PwdHash is a solution that allows you to have a different password for each of the websites that you are subscribed to, whilst allowing you to remember just one.  It does this by creating a hash based on your 'password' and the url of the site you are visiting.
 
-It is perfectly possible to do this manually and use a desktop app or command line tool to generate the hashed password for a given site.  However, this would be a real pain if you are constantly visiting different sites that require authentication.  The firefox plugin with this service basically takes the pain out of this manual process.  Once installed, just press F2 or enter @@ in a password field and the hashed password will be created before submitting to the site.
+  It is perfectly possible to do this manually and use a desktop app or command line tool to generate the hashed password for a given site.  However, this would be a real pain if you are constantly visiting different sites that require authentication.  The firefox plugin with this service basically takes the pain out of this manual process.  Once installed, just press F2 or enter @@ in a password field and the hashed password will be created before submitting to the site.
 
-If the plugin doesn't work or you are on a shared computer, you can always just use the javascript utility on the pwdhash.com site to generate the same hashed password.
+  If the plugin doesn't work or you are on a shared computer, you can always just use the javascript utility on the pwdhash.com site to generate the same hashed password.
 
-To summarise, I've installed the plugin and have started changing some of my passwords over to their hashed counterpart.  I've only changed a couple of passwords and haven't yet had to use the javascript util but so far it seems pretty good.
+  To summarise, I've installed the plugin and have started changing some of my passwords over to their hashed counterpart.  I've only changed a couple of passwords and haven't yet had to use the javascript util but so far it seems pretty good.
 
-I'm just going to grab a copy of the javascript source and place it "some place safe":http://www.strongspace.com just in case...
+  I'm just going to grab a copy of the javascript source and place it "some place safe":http://www.strongspace.com just in case...
