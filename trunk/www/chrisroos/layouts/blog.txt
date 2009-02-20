@@ -40,6 +40,7 @@ filter:    erb
         <div class="yui-g">
           <h1><%= short_date(@page) %> - <%= h(@page.title) %></h1>
           <%= @content %>
+          <hr />
           <%= render(:partial => "/blog_post_navigation") %>
           <%= render(:partial => "/blog_post_disqus_js") %>
         </div>
