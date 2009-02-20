@@ -10,4 +10,4 @@ layout: blog
 ---
 Not entirely sure what this does...
 
-<a href="http://technorati.com/claim/yvtpcjveej">Technorati Profile</a>
+"Technorati Profile":http://technorati.com/claim/yvtpcjveej

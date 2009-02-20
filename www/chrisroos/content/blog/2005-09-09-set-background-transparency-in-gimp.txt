@@ -8,7 +8,7 @@ filter:
 created_at: 2005-09-09 17:37:00 +01:00
 layout: blog
 ---
-I'm very much *not* a graphical person but when forced to dabble in any kind of image manipulation have always tried to use <a href="http://www.gimp.org/">The GIMP</a>, over any commercial offerings.
+I'm very much *not* a graphical person but when forced to dabble in any kind of image manipulation have always tried to use "The GIMP":http://www.gimp.org/, over any commercial offerings.
 
 Just this afternoon I've spent some time trying to make the background of a very simple image transparent.  The image is a filled shape on a white background.  I wanted the white background to be transparent.
 
