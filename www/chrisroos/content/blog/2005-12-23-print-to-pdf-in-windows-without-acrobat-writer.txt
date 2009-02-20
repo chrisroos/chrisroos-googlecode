@@ -2,49 +2,48 @@
 blog_post: true
 guid: c26d93e8-9832-4a7b-b4fd-b258b52acb7a
 title: Print to Pdf in Windows without Acrobat Writer
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2005-12-23 10:57:00 +00:00
 layout: blog
 ---
-(Probably) the standard way to print to "Pdf":http://en.wikipedia.org/wiki/PDF in Windows is to buy "Adobe Acrobat":http://www.adobe.com/products/acrobat/main.html or use one of the alternatives (which come with various different licences and are of varying quality; from experience over the last couple of years).
+:textile
+  (Probably) the standard way to print to "Pdf":http://en.wikipedia.org/wiki/PDF in Windows is to buy "Adobe Acrobat":http://www.adobe.com/products/acrobat/main.html or use one of the alternatives (which come with various different licences and are of varying quality; from experience over the last couple of years).
 
-There is, however, a completely free alternative, providing you don't mind going through a couple of steps to implement it (which I don't).
+  There is, however, a completely free alternative, providing you don't mind going through a couple of steps to implement it (which I don't).
 
-The basic premise is that you print to "PostScript":http://en.wikipedia.org/wiki/PostScript using a PostScript compatible printer driver and then use "Ghostscript":http://www.cs.wisc.edu/~ghost/ to convert from PostScript to Pdf.
+  The basic premise is that you print to "PostScript":http://en.wikipedia.org/wiki/PostScript using a PostScript compatible printer driver and then use "Ghostscript":http://www.cs.wisc.edu/~ghost/ to convert from PostScript to Pdf.
 
-These instructions work in Windows XP but should be very similar in all versions of Windows.
+  These instructions work in Windows XP but should be very similar in all versions of Windows.
 
-h2. Install PostScript compatible printer.
+  h2. Install PostScript compatible printer.
 
-# Add a Printer.
-# Choose 'Local printer' and do not 'automatically detect'.
-# Select 'FILE: (Print to File)' in the list next to 'Use the following port'.
-# Choose a PS printer.  I'm currently using HP Color LaserJet PS.
-# Select whether you want to use this as your default printer and choose no to printing a test page.
+  # Add a Printer.
+  # Choose 'Local printer' and do not 'automatically detect'.
+  # Select 'FILE: (Print to File)' in the list next to 'Use the following port'.
+  # Choose a PS printer.  I'm currently using HP Color LaserJet PS.
+  # Select whether you want to use this as your default printer and choose no to printing a test page.
 
-h2. Download and install AFPL Ghostscript
+  h2. Download and install AFPL Ghostscript
 
-# Visit the "Ghostscript site":http://www.cs.wisc.edu/~ghost/ and follow the 'Obtaining AFPL Ghostscript <version>' link.
-# Download the version for Windows, which at the time of writing is called  gs853w32.exe.
-# Double click the downloaded file to install.  Use the defaults during installation.
+  # Visit the "Ghostscript site":http://www.cs.wisc.edu/~ghost/ and follow the 'Obtaining AFPL Ghostscript <version>' link.
+  # Download the version for Windows, which at the time of writing is called  gs853w32.exe.
+  # Double click the downloaded file to install.  Use the defaults during installation.
 
-h2. Download and install GSview
+  h2. Download and install GSview
 
-# Visit the "GSview site":http://www.cs.wisc.edu/~ghost/gsview/index.htm and follow the 'Obtaining GSview 4.7 link'.
-# Download the version for Windows, which at the time of writing is called  gsv47w32.exe.
-# Double click the downloaded file to install.  Use the defaults during installation.
+  # Visit the "GSview site":http://www.cs.wisc.edu/~ghost/gsview/index.htm and follow the 'Obtaining GSview 4.7 link'.
+  # Download the version for Windows, which at the time of writing is called  gsv47w32.exe.
+  # Double click the downloaded file to install.  Use the defaults during installation.
 
-h2. Print something
+  h2. Print something
 
-# Open a file and choose to print to your PostScript printer.
-# On clicking the Print button, you will be prompted to specify a filename to save the PostScript document to.  Supply the full path to the file here, for example 'c:\page.ps'.  Although the .ps extension is optional it makes it easier to open directly in GSview if this is supplied.
+  # Open a file and choose to print to your PostScript printer.
+  # On clicking the Print button, you will be prompted to specify a filename to save the PostScript document to.  Supply the full path to the file here, for example 'c:\page.ps'.  Although the .ps extension is optional it makes it easier to open directly in GSview if this is supplied.
 
-h2. Convert the PostScript file to Pdf
+  h2. Convert the PostScript file to Pdf
 
-# Double click on the 'c:\page.ps' file to open it in GSview.
-# Click OK to close the software registration prompt and you will see the PostScript interpretation of your file on the screen.
-# Click File > Convert and choose 'pdfwrite' as the device, a suitable resolution (default of 600 should be fine) and click OK.  You will be prompted to save the converted Pdf file somewhere
-# Enter the filename to save the file with, noting that .pdf doesn't get added automatically, e.g. specify page.pdf.
-# Open the new .pdf file in either "Adobe Reader":http://www.adobe.com/products/acrobat/readstep2.html or "an alternative":/blog/2005-11-13-windows-adobe-acrobat-reader-alternative
+  # Double click on the 'c:\page.ps' file to open it in GSview.
+  # Click OK to close the software registration prompt and you will see the PostScript interpretation of your file on the screen.
+  # Click File > Convert and choose 'pdfwrite' as the device, a suitable resolution (default of 600 should be fine) and click OK.  You will be prompted to save the converted Pdf file somewhere
+  # Enter the filename to save the file with, noting that .pdf doesn't get added automatically, e.g. specify page.pdf.
+  # Open the new .pdf file in either "Adobe Reader":http://www.adobe.com/products/acrobat/readstep2.html or "an alternative":/blog/2005-11-13-windows-adobe-acrobat-reader-alternative

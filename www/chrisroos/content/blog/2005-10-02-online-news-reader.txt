@@ -2,29 +2,28 @@
 blog_post: true
 guid: 072034b7-111e-43f8-a8e4-e91dcf240568
 title: Online news reader
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2005-10-02 19:02:00 +01:00
 layout: blog
 ---
-It's been on my list for quite a while to check out online newsreaders in order to replace my flagging "desktop client of choice":http://www.sharpreader.com.
+:textile
+  It's been on my list for quite a while to check out online newsreaders in order to replace my flagging "desktop client of choice":http://www.sharpreader.com.
 
-This has been pushed up the list by my recent contract taking me away from my main machine for the best part of the week.  As such, I spent last night looking at some of the alternatives listed on "this":http://en.wikipedia.org/wiki/List_of_news_aggregators#Online_news_aggregators "wikipedia":http://www.wikipedia.org article.
+  This has been pushed up the list by my recent contract taking me away from my main machine for the best part of the week.  As such, I spent last night looking at some of the alternatives listed on "this":http://en.wikipedia.org/wiki/List_of_news_aggregators#Online_news_aggregators "wikipedia":http://www.wikipedia.org article.
 
-I'm currently torn between "bloglines":http://www.bloglines.com and "blox0r":http://www.bloxor.com and although bloxor was slightly ahead last night I've actually been using bloglines more during the day today.
+  I'm currently torn between "bloglines":http://www.bloglines.com and "blox0r":http://www.bloxor.com and although bloxor was slightly ahead last night I've actually been using bloglines more during the day today.
 
-Blox0r is a XUL(XML User interface Language) app which means that it only runs in Mozilla browsers (I think).  This provides for a very rich and clean interface which suits me perfectly.  Unfortunately, I'm just not 100% sure that it's doing exactly what I expect it to be doing - a handful of feeds are not rendering as they should which makes me wonder what else may not be working correctly.  Hence my current persuasion toward bloglines, which although looks a little too 'full featured' for my needs is at least rendering all of my feeds correctly.
+  Blox0r is a XUL(XML User interface Language) app which means that it only runs in Mozilla browsers (I think).  This provides for a very rich and clean interface which suits me perfectly.  Unfortunately, I'm just not 100% sure that it's doing exactly what I expect it to be doing - a handful of feeds are not rendering as they should which makes me wonder what else may not be working correctly.  Hence my current persuasion toward bloglines, which although looks a little too 'full featured' for my needs is at least rendering all of my feeds correctly.
 
-I also tested the following services last night, none of which seemed to come up to scratch.  Feed lounge actually looks very promising but is currently in a non public alpha so I'll have to wait a little longer on that one.
+  I also tested the following services last night, none of which seemed to come up to scratch.  Feed lounge actually looks very promising but is currently in a non public alpha so I'll have to wait a little longer on that one.
 
-* "bloogz":http://reader.bloogz.com - no opml import
-* "newsgator":http://www.newsgator.com - maybe too 'commercial' looking
-* "2rss":http://www.2rss.com - too complicated, didn't actually know what to do
-* "bean rocket":http://beanrocket.com - didn't import opml
-* "feed-tank":http://feed-tank.com - rails, no categories, didn't import correctly
-* "news is free":http://www.newsisfree.com - slightly too complicated
-* "rss-feed":http://www.rss-feed.org - no opml import
-* "rss freaks":http://www.rssfreaks.com - no opml import
-* "waggr":http://www.waggr.com - pretty good, slight interface problems, import opml but no categories
-* "feed lounge":http://www.feedlounge.com - looks good, still in alpha.
+  * "bloogz":http://reader.bloogz.com - no opml import
+  * "newsgator":http://www.newsgator.com - maybe too 'commercial' looking
+  * "2rss":http://www.2rss.com - too complicated, didn't actually know what to do
+  * "bean rocket":http://beanrocket.com - didn't import opml
+  * "feed-tank":http://feed-tank.com - rails, no categories, didn't import correctly
+  * "news is free":http://www.newsisfree.com - slightly too complicated
+  * "rss-feed":http://www.rss-feed.org - no opml import
+  * "rss freaks":http://www.rssfreaks.com - no opml import
+  * "waggr":http://www.waggr.com - pretty good, slight interface problems, import opml but no categories
+  * "feed lounge":http://www.feedlounge.com - looks good, still in alpha.

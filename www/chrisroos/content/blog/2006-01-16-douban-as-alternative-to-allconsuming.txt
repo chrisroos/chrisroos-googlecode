@@ -2,10 +2,9 @@
 blog_post: true
 guid: b7d7c119-748d-4ed3-b797-362611b59f89
 title: douban as alternative to allconsuming?
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-01-16 11:52:05 +00:00
 layout: blog
 ---
-Looks to me like "douban":http://www.douban.net is very similar to "all consuming":http://www.allconsuming.net.  I think the difference may be the ability to add more structured rating to the content in douban.  Not sure though.
+:textile
+  Looks to me like "douban":http://www.douban.net is very similar to "all consuming":http://www.allconsuming.net.  I think the difference may be the ability to add more structured rating to the content in douban.  Not sure though.
