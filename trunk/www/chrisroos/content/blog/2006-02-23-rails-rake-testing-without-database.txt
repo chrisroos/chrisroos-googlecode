@@ -2,37 +2,36 @@
 blog_post: true
 guid: 7436c1ad-8856-4b00-8575-83adcce61509
 title: Rails rake testing without database
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-02-23 16:46:00 +00:00
 layout: blog
 ---
-Continuing from the "previous post":/blog/2006-02-23-rails-testing-without-database, it appears that the rake testing tasks are also tightly coupled to active record.
+:textile
+  Continuing from the "previous post":/blog/2006-02-23-rails-testing-without-database, it appears that the rake testing tasks are also tightly coupled to active record.
 
-This feels quite dirty, but I've managed to get round it by manipulating the tasks from the outside (they are buried in the rails libs).
+  This feels quite dirty, but I've managed to get round it by manipulating the tasks from the outside (they are buried in the rails libs).
 
-To replicate, create a new file called 'default.rake' in the lib/tasks/ directory within your rails project, and paste in the following code.
+  To replicate, create a new file called 'default.rake' in the lib/tasks/ directory within your rails project, and paste in the following code.
 
-<pre class="code ruby">
-Rake::Task::TASKS.delete('default')
-Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
-Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
+%pre.code.ruby
+  :preserve
+    Rake::Task::TASKS.delete('default')
+    Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
+    Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
 
-task :default do
-  Rake::Task[:test_units].invoke      rescue got_error = true
-  Rake::Task[:test_functional].invoke rescue got_error = true
-  raise "Test failures" if got_error
-end
-</pre>
+    task :default do
+      Rake::Task[:test_units].invoke      rescue got_error = true
+      Rake::Task[:test_functional].invoke rescue got_error = true
+      raise "Test failures" if got_error
+    end
 
-Because this relies on the internal implementation of rake (instance variable names and TASKS constant) it might well do very bad things to versions that aren't 0.6.2.
+:textile
+  Because this relies on the internal implementation of rake (instance variable names and TASKS constant) it might well do very bad things to versions that aren't 0.6.2.
 
-*Update 17:20*
+  *Update 17:20*
 
-Just realised that I don't need most of the code above.  All you actually need in default.rake is as follows.  Stoopid Chris.
+  Just realised that I don't need most of the code above.  All you actually need in default.rake is as follows.  Stoopid Chris.
 
-<pre class="code ruby">
-Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
-Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
-</pre>
+%pre.code.ruby
+  Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
+  Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
