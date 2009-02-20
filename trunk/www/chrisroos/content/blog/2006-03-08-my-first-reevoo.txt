@@ -14,7 +14,16 @@ layout: blog
   <div class='item'>
     <span class='fn'>Apple Ipod Shuffle 1 Gb</span>
     <ul class='identifiers' style='display: none'>
-      <li><a class='url' href='http://www.reevoo.com/pages/apple_ipodshuffle1gb'>http://www.reevoo.com/pages/apple_ipodshuffle1gb</a></li><li><a class='url' href='urn:ean.ucc:718908929278'>urn:ean.ucc:718908929278</a></li>
+      <li>
+        <a class='url' href='http://www.reevoo.com/pages/apple_ipodshuffle1gb'>
+          http://www.reevoo.com/pages/apple_ipodshuffle1gb
+        </a>
+      </li>
+      <li>
+        <a class='url' href='urn:ean.ucc:718908929278'>
+          urn:ean.ucc:718908929278
+        </a>
+      </li>
     </ul>
   </div>
   <div class='description'>
