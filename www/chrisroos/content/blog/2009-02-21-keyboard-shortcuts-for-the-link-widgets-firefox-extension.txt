@@ -1,0 +1,25 @@
+---
+summary:    Shortcut keys for the Link Widgets firefox extension
+blog_post:  true
+title:      Keyboard Shortcuts for the Link Widgets Firefox Extension
+created_at: 2009-02-21 09:49:51.507321 +00:00
+guid:       32db3a80-9d4e-4e7c-9f05-d74332425859
+layout:     blog
+filter: haml
+---
+:textile
+  I'm posting this because I couldn't find the keyboard shortcuts listed anywhere and ended up having to dig into the source of the "Link Widgets":https://addons.mozilla.org/en-US/firefox/addon/2933 extension to find them.
+  
+  * First - Shift + Alt + Page Up
+  * Previous - Alt + Page Up
+  * Next - Alt + Page Down
+  * Last - Shift + Alt + Page Down
+  * Up a level - Alt + Up
+  * Up to root level - Shift + Alt + Up
+
+  These certainly work on the Mac.  There are another set of shortcuts that make use of the "accel key":http://www.mozilla.org/unix/customizing.html#keys but I didn't play around trying to get them to work.
+  
+  * First - Shift + Accel + ,
+  * Previous - Accel + ,
+  * Next - Accel + .
+  * Last - Shift + Accel + .
