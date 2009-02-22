@@ -2,24 +2,23 @@
 blog_post: true
 guid: 56bcf0e5-54ac-4bf7-ba0d-579078f538ad
 title: Inactive keywords (too high minCpc) when using Google Adwords Api
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-10-18 07:40:00 +01:00
 layout: blog
 ---
-h2. Short version
+:textile
+  h2. Short version
 
-*ALWAYS* create adverts (creatives) *before* keywords when setting up an ad group using the Adwords Api
+  *ALWAYS* create adverts (creatives) *before* keywords when setting up an ad group using the Adwords Api
 
-h2. Longer version
+  h2. Longer version
 
-Our first use of the adwords api was to create around 850 ad groups, each with three text ads and one keyword.  Although the creation seemed to go to plan, a quick inspection in the adwords interface revealed that all of our ads were marked as inactive, with most of our keywords having a minimum bid of £2.50!
+  Our first use of the adwords api was to create around 850 ad groups, each with three text ads and one keyword.  Although the creation seemed to go to plan, a quick inspection in the adwords interface revealed that all of our ads were marked as inactive, with most of our keywords having a minimum bid of £2.50!
 
-Adding the exact same keywords and text ads manually resulted in active keywords, so we knew there was nothing wrong with our content.
+  Adding the exact same keywords and text ads manually resulted in active keywords, so we knew there was nothing wrong with our content.
 
-A few searches on google didn't yield any relevant results, but searching the "adwords api google group":http://groups.google.com/group/adwords-api seemed to reveal other people having the same problem.  The solution was (and is) simple - ensure that you create your keywords *after* you've created your ad content.  Indeed, it is impossible to create them in any other order from within the adwords interface itself.
+  A few searches on google didn't yield any relevant results, but searching the "adwords api google group":http://groups.google.com/group/adwords-api seemed to reveal other people having the same problem.  The solution was (and is) simple - ensure that you create your keywords *after* you've created your ad content.  Indeed, it is impossible to create them in any other order from within the adwords interface itself.
 
-Right now this is just a pain, as it needlessly wastes api quota - about 700,000 in our case.  Come  "November 1st":http://adwordsapi.blogspot.com/2006/09/deadline-for-registration-and-billing.html this will cost you hard cash - around £80.00 - £90 for our 700,000'ish.
+  Right now this is just a pain, as it needlessly wastes api quota - about 700,000 in our case.  Come  "November 1st":http://adwordsapi.blogspot.com/2006/09/deadline-for-registration-and-billing.html this will cost you hard cash - around £80.00 - £90 for our 700,000'ish.
 
-I'm hoping google will change their api to warn you when keywords are created before creatives, or, at the very least, make it extremely clear in the docs that there is an order in which the two should be created.  In the meantime, maybe this will help people searching google for an answer to the same problem.
+  I'm hoping google will change their api to warn you when keywords are created before creatives, or, at the very least, make it extremely clear in the docs that there is an order in which the two should be created.  In the meantime, maybe this will help people searching google for an answer to the same problem.

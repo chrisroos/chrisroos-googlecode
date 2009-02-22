@@ -2,52 +2,51 @@
 blog_post: true
 guid: 381579d7-3b5c-4a94-bdef-a089e13c137d
 title: "Boolean method in Ruby (sibling of Array, Float, Integer and String) "
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-10-20 00:19:00 +01:00
 layout: blog
 ---
-I was reading in data from a file and expected one particular column to contain either 'true' or 'false'.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada...
+:textile
+  I was reading in data from a file and expected one particular column to contain either 'true' or 'false'.  I wanted a nice way to convert the string representation into its object counterpart.  I thought to the Kernel#Float (and kin) and decided I wanted a Kernel#Boolean method.  So I made one.  Tada...
 
-<pre class="code ruby">
-module Kernel
+%pre.code.ruby
+  :code
+    module Kernel
 
-  def Boolean(string)
-    return true if string == true || string =~ /^true$/i
-    return false if string == false || string.nil? || string =~ /^false$/i
-    raise ArgumentError.new("invalid value for Boolean: \"#{string}\"")
-  end
+      def Boolean(string)
+        return true if string == true || string =~ /^true$/i
+        return false if string == false || string.nil? || string =~ /^false$/i
+        raise ArgumentError.new("invalid value for Boolean: \"\#{string}\"")
+      end
 
-end
+    end
 
-require File.dirname(__FILE__) + '/../test_helper'
+    require File.dirname(__FILE__) + '/../test_helper'
 
-class KernelTest < Test::Unit::TestCase
+    class KernelTest < Test::Unit::TestCase
 
-  def test_should_return_true
-    assert_equal true, Boolean('true')
-    assert_equal true, Boolean('TrUe')
-    assert_equal true, Boolean(true)
-  end
+      def test_should_return_true
+        assert_equal true, Boolean('true')
+        assert_equal true, Boolean('TrUe')
+        assert_equal true, Boolean(true)
+      end
 
-  def test_should_return_false
-    assert_equal false, Boolean(nil)
-    assert_equal false, Boolean('false')
-    assert_equal false, Boolean('FaLsE')
-    assert_equal false, Boolean(false)
-  end
+      def test_should_return_false
+        assert_equal false, Boolean(nil)
+        assert_equal false, Boolean('false')
+        assert_equal false, Boolean('FaLsE')
+        assert_equal false, Boolean(false)
+      end
 
-  def test_should_raise_exception
-    assert_raise(ArgumentError) { Boolean('true ') }
-    assert_raise(ArgumentError) { Boolean(' true') }
-    assert_raise(ArgumentError) { Boolean(' true ') }
-    assert_raise(ArgumentError) { Boolean('false ') }
-    assert_raise(ArgumentError) { Boolean(' false') }
-    assert_raise(ArgumentError) { Boolean(' false ') }
-    assert_raise(ArgumentError) { Boolean('BLAH') }
-    assert_raise(ArgumentError) { Boolean(1) }
-  end
+      def test_should_raise_exception
+        assert_raise(ArgumentError) { Boolean('true ') }
+        assert_raise(ArgumentError) { Boolean(' true') }
+        assert_raise(ArgumentError) { Boolean(' true ') }
+        assert_raise(ArgumentError) { Boolean('false ') }
+        assert_raise(ArgumentError) { Boolean(' false') }
+        assert_raise(ArgumentError) { Boolean(' false ') }
+        assert_raise(ArgumentError) { Boolean('BLAH') }
+        assert_raise(ArgumentError) { Boolean(1) }
+      end
 
-end
-</pre>
+    end
