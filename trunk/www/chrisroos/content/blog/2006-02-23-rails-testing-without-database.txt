@@ -14,7 +14,7 @@ layout: blog
   Just add the code below within the Test::Unit::TestCase declaration in test_helper.
 
 %pre.code.ruby
-  :preserve
+  :code
     def self.dont_use_fixtures
       class_eval do
         def self.method_added(method); end
@@ -27,7 +27,7 @@ layout: blog
   This still requires that you add dont_use_fixtures into each test class definition.
 
 %pre.code.ruby
-  :preserve
+  :code
     class MyTest < Test::Unit::TestCase
       dont_use_fixtures
       def test_
@@ -41,7 +41,7 @@ layout: blog
   The new code becomes (again, in Test::Unit::TestCase definition in test_helper).
 
 %pre.code.ruby
-  :preserve
+  :code
     def self.method_added(method)
       super unless [:setup, :teardown].include?(method.to_sym)
     end

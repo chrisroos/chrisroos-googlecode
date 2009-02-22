@@ -14,7 +14,7 @@ layout: blog
   So (with 1.0.0 and 1.1.6 gems installed)..
 
 %pre.code
-  :preserve
+  :code
     $ rails _1.0.0_ my-rails-proj
     #-> uses rails version 1
 
@@ -25,7 +25,7 @@ layout: blog
   Although you can normally place the rails libraries into the vendor directory of a given rails app (to use that specific rails version); I had problems when placing rails 1.0.0 into a rails 1.1.6 generated app.  An error is encountered when trying to boot webrick..
 
 %pre.code
-  :preserve
+  :code
     ./script/../config/../vendor/rails/railties/lib/initializer.rb:256:in `send': undefined method `cache_template_extensions=' for ActionView::Base:Class (NoMethodError)
 
 :textile

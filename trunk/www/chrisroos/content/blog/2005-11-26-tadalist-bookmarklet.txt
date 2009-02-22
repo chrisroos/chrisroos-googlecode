@@ -16,7 +16,7 @@ layout: blog
   I played around for a bit and came up with the following.
 
 %pre.code.javascript
-  :preserve
+  :code
     var new_item=prompt('Add Item');
     location.href='http://USERNAME.tadalist.com/item/add?list_id=LISTID&content='+encodeURIComponent(new_item);
     alert('Added');

@@ -14,7 +14,7 @@ layout: blog
   To replicate, create a new file called 'default.rake' in the lib/tasks/ directory within your rails project, and paste in the following code.
 
 %pre.code.ruby
-  :preserve
+  :code
     Rake::Task::TASKS.delete('default')
     Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
     Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])

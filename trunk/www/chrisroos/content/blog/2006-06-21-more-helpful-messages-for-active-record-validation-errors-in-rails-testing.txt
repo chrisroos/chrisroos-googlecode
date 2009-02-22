@@ -12,7 +12,7 @@ layout: blog
   The problem is that the standard "test/unit":http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html reporting framework displays the exception without any details of why the validation failed.
 
 %pre.code
-  :preserve
+  :code
      1) Error:​
     test_should_fail_validation(AardvarkTest):​
     ActiveRecord::RecordInvalid:​ActiveRecord::RecordInvalid
@@ -32,14 +32,14 @@ layout: blog
   Then I thought it'd be cool if we could integrate slightly more with both test/unit and "rails":http://www.rubyonrails.com.  The result is a "plugin":http://wiki.rubyonrails.org/rails/pages/Plugins ("source":http://chrisroos.googlecode.com/svn/trunk/plugins/test_unit_active_record_errors/) that can be installed as follows.
 
 %pre.code
-  :preserve
+  :code
     $ script/plugin install http://chrisroos.googlecode.com/svn/trunk/plugins/test_unit_active_record_errors/
 
 :textile
   The output from a failed validation now includes the validation errors.  Yay.
 
 %pre.code
-  :preserve
+  :code
      1) Error:​
     test_should_fail_validation(AardvarkTest):​
     ActiveRecord::RecordInvalid: ActiveRecord::RecordInvalid
