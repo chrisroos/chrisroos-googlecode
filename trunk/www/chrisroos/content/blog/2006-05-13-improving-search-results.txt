@@ -2,14 +2,13 @@
 blog_post: true
 guid: 01c93a6c-245f-408e-88e4-46d87ec81b8e
 title: Improving search results
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-05-13 07:44:00 +01:00
 layout: blog
 ---
-This will be obvious to most people, especially anyone that's taken the slightest bit of interest in their search engine rankings.  If text in the url matches the search query then that page is likely to get ranked higher than a page where the only the body matches the search query.
+:textile
+  This will be obvious to most people, especially anyone that's taken the slightest bit of interest in their search engine rankings.  If text in the url matches the search query then that page is likely to get ranked higher than a page where the only the body matches the search query.
 
-There is an "explanation":http://blog.claimid.com/2006/05/tips-and-tricks-your-name-in-the-url/ from the "claimid":http://www.claimid.com folks or you can see it for yourself by "googling for me":http://www.google.co.uk/search?hl=en&q=chris+roos&btnG=Google+Search.  My "odeo":http://www.odeo.com profile appears third in the results (as of right now).  The url contains my name but apart from that it is essentially a blank page containing no info about me.
+  There is an "explanation":http://blog.claimid.com/2006/05/tips-and-tricks-your-name-in-the-url/ from the "claimid":http://www.claimid.com folks or you can see it for yourself by "googling for me":http://www.google.co.uk/search?hl=en&q=chris+roos&btnG=Google+Search.  My "odeo":http://www.odeo.com profile appears third in the results (as of right now).  The url contains my name but apart from that it is essentially a blank page containing no info about me.
 
-Anyhoo, the main point of this was to say that I emailed the claimid folks this morning to request they change my username from chrisjroos (my common moniker) to chrisroos.  I'm not even exaggerating when I say that they'd made the change and replied within ten minutes of my request.  That's fantastic service.
+  Anyhoo, the main point of this was to say that I emailed the claimid folks this morning to request they change my username from chrisjroos (my common moniker) to chrisroos.  I'm not even exaggerating when I say that they'd made the change and replied within ten minutes of my request.  That's fantastic service.
