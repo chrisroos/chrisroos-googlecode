@@ -2,14 +2,13 @@
 blog_post: true
 guid: ece9a725-7aff-4eb3-b62c-0924ca5460ba
 title: gDisk - very cheap (free) online storage
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-09-18 20:17:00 +01:00
 layout: blog
 ---
-I've used "this":http://gdisk.sourceforge.net/ for a while but haven't got round to mentioning it.
+:textile
+  I've used "this":http://gdisk.sourceforge.net/ for a while but haven't got round to mentioning it.
 
-Basically, it uses a "gmail":http://mail.google.com account (curently offering around 2.7GB space) as online storage, accessed seamlessly from this app.  Mac Os X only I'm afraid although I'm sure I've heard of Windows alternatives.
+  Basically, it uses a "gmail":http://mail.google.com account (curently offering around 2.7GB space) as online storage, accessed seamlessly from this app.  Mac Os X only I'm afraid although I'm sure I've heard of Windows alternatives.
 
-I'm not sure if gmail is still invite only, but if it is, and if someone reading doesn't have a gmail account, let me know as I have plenty of invites.
+  I'm not sure if gmail is still invite only, but if it is, and if someone reading doesn't have a gmail account, let me know as I have plenty of invites.
