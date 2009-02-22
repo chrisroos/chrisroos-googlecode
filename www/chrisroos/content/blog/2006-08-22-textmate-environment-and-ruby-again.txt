@@ -12,7 +12,7 @@ layout: blog
   I found the following script useful in determining exactly which ruby binary textmate was using.
 
 %pre.code.ruby
-  :preserve
+  :code
     #!/usr/bin/env ruby
 
     require 'rbconfig'
@@ -24,7 +24,7 @@ layout: blog
   To see far more info than you'll ever likely need, replace the line starting <code>puts</code> above, with the following..
 
 %pre.code.ruby
-  :preserve
+  :code
     Config::CONFIG.sort.each do |key, value|
       puts "\#{key} = \#{value}"
     end

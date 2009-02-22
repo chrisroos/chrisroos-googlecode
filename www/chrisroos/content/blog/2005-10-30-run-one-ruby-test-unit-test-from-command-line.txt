@@ -10,7 +10,7 @@ layout: blog
   Summary..
 
 %pre.code
-  :preserve
+  :code
     $ ruby [programfile] -n [testmethod]
 
 :textile
