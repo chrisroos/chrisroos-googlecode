@@ -2,30 +2,31 @@
 blog_post: true
 guid: 7f4e04b5-6e29-43ee-a225-898096a42579
 title: Create rails projects using a specific rails gem version
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-08-14 22:06:00 +01:00
 layout: blog
 ---
-I just found this when trying to create a rails project using rails 1.0.0 (having both 1.0.0 and 1.1.6 installed as gems).
+:textile
+  I just found this when trying to create a rails project using rails 1.0.0 (having both 1.0.0 and 1.1.6 installed as gems).
 
-If the first argument to the rails command is a valid (i.e. installed) version number and surrounded by underscores then that version of the gem is used to create the rails application structure.
+  If the first argument to the rails command is a valid (i.e. installed) version number and surrounded by underscores then that version of the gem is used to create the rails application structure.
 
-So (with 1.0.0 and 1.1.6 gems installed)..
+  So (with 1.0.0 and 1.1.6 gems installed)..
 
-<pre>
-$ rails _1.0.0_ my-rails-proj
-#-> uses rails version 1
+%pre.code
+  :preserve
+    $ rails _1.0.0_ my-rails-proj
+    #-> uses rails version 1
 
-$ rails my-rails-proj
-#-> uses latest rails version (1.1.6)
-</pre>
+    $ rails my-rails-proj
+    #-> uses latest rails version (1.1.6)
 
-Although you can normally place the rails libraries into the vendor directory of a given rails app (to use that specific rails version); I had problems when placing rails 1.0.0 into a rails 1.1.6 generated app.  An error is encountered when trying to boot webrick..
+:textile
+  Although you can normally place the rails libraries into the vendor directory of a given rails app (to use that specific rails version); I had problems when placing rails 1.0.0 into a rails 1.1.6 generated app.  An error is encountered when trying to boot webrick..
 
-<code>
-./script/../config/../vendor/rails/railties/lib/initializer.rb:256:in `send': undefined method `cache_template_extensions=' for ActionView::Base:Class (NoMethodError)
-</code>
+%pre.code
+  :preserve
+    ./script/../config/../vendor/rails/railties/lib/initializer.rb:256:in `send': undefined method `cache_template_extensions=' for ActionView::Base:Class (NoMethodError)
 
-By passing the version argument to the rails command and then placing rails 1.0.0 into the vendor directory, everything works as expected.
+:textile
+  By passing the version argument to the rails command and then placing rails 1.0.0 into the vendor directory, everything works as expected.
