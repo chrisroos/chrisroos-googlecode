@@ -2,32 +2,31 @@
 blog_post: true
 guid: 585b660b-4990-44fa-a6c1-50cd2ed4eb4a
 title: Recommended web host
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-09-09 11:32:00 +01:00
 layout: blog
 ---
-I can't recommend "A Small Orange":http://www.asmallorange.com enough.  They offer very competitive shared hosting and don't charge for "upgrades" like the majority of hosts.  From their site..
+:textile
+  I can't recommend "A Small Orange":http://www.asmallorange.com enough.  They offer very competitive shared hosting and don't charge for "upgrades" like the majority of hosts.  From their site..
 
-Many hosts put artificial limits on what you can do in order to force you to upgrade your account, just so you will buy that one extra MySQL database or extra email account you need. At A Small Orange, we don't believe in artificial limitations so we offer the following unlimited features on all our hosting accounts:
+  Many hosts put artificial limits on what you can do in order to force you to upgrade your account, just so you will buy that one extra MySQL database or extra email account you need. At A Small Orange, we don't believe in artificial limitations so we offer the following unlimited features on all our hosting accounts:
 
-    * Unlimited POP3/IMAP Mail Accounts
-    * Unlimited MySQL Databases
-    * Unlimited Mailing Lists
-    * Unlimited Email Forwarders
-    * Unlimited Subdomains
-    * Unlimited Parked and Addon Domains
-    * Unlimited FTP Accounts
+  * Unlimited POP3/IMAP Mail Accounts
+  * Unlimited MySQL Databases
+  * Unlimited Mailing Lists
+  * Unlimited Email Forwarders
+  * Unlimited Subdomains
+  * Unlimited Parked and Addon Domains
+  * Unlimited FTP Accounts
 
-I have been offering web and email hosting for a couple of local firms (harking back to me self-[un]employed days).  I wanted to get them moved to someone else (to relieve me of the burden) but felt responsible for getting them a good deal.  They only have small static sites so I was reluctant to pay for expensive hosting that offered unnecessary features.  I found "dataflame":http://www.dataflame.co.uk to be relatively cheap.  Unfortunately the 'cheapness' soon disappears once we look at 'upgrading' our account with such 'features' as parked domains.  In fairness, most hosts seem to charge for these automated extras, making me very happy to discover ASO.
+  I have been offering web and email hosting for a couple of local firms (harking back to me self-[un]employed days).  I wanted to get them moved to someone else (to relieve me of the burden) but felt responsible for getting them a good deal.  They only have small static sites so I was reluctant to pay for expensive hosting that offered unnecessary features.  I found "dataflame":http://www.dataflame.co.uk to be relatively cheap.  Unfortunately the 'cheapness' soon disappears once we look at 'upgrading' our account with such 'features' as parked domains.  In fairness, most hosts seem to charge for these automated extras, making me very happy to discover ASO.
 
-I've moved the accounts over to ASO and have had no problems to date.
+  I've moved the accounts over to ASO and have had no problems to date.
 
-I actually had reason to contact ASO yesterday (enable ssh access and one other matter).  Ssh access was configured within five minutes of my sending the email.  The other matter was resolved within one hour.  That's some good supportin' they got goin' on.
+  I actually had reason to contact ASO yesterday (enable ssh access and one other matter).  Ssh access was configured within five minutes of my sending the email.  The other matter was resolved within one hour.  That's some good supportin' they got goin' on.
 
-They also boast "rails":http://www.rubyonrails.com support but I haven't got round to testing this yet.
+  They also boast "rails":http://www.rubyonrails.com support but I haven't got round to testing this yet.
 
-In fairness, I actually moved hosting for one of the firms to "bluehost":http://www.bluehost.com originally.  These guys also offer great rates and features (not quite as great as ASO).  We just had one problem - there are consistent network failures between us (at least parts of the UK) and them (somewhere in the States).  They can see the problem but as it lies with one of their upstream providers apparently there is not much they can do about it.  Hmmm.
+  In fairness, I actually moved hosting for one of the firms to "bluehost":http://www.bluehost.com originally.  These guys also offer great rates and features (not quite as great as ASO).  We just had one problem - there are consistent network failures between us (at least parts of the UK) and them (somewhere in the States).  They can see the problem but as it lies with one of their upstream providers apparently there is not much they can do about it.  Hmmm.
 
-That's enough praising for now.  Go ASO.
+  That's enough praising for now.  Go ASO.
