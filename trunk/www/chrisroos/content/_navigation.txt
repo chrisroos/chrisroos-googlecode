@@ -1,26 +1,18 @@
 ---
-filter: erb
+filter: haml
 ---
-<ul class="navigation">
-  <li>
-    <a href="/" title="Home">home</a>
-  </li>
-  <li>
-    <a href="/about" title="About me">about me</a>
-  </li>
-  <li>
-    <a href="/contact" title="Contact me">contact me</a>
-  </li>
-  <li>
-    <a href="/blog" title="Blog">blog</a>
-  </li>
-  <li>
-    <a href="/projects" title="Projects">projects</a>
-  </li>
-  <li>
-    <a href="/utilities" title="Utilities">utilities</a>
-  </li>
-  <li>
-    <a href="http://life.chrisroos.co.uk" title="All my feeds aggregated at tumblr">everything</a>
-  </li>
-</ul>
+%ul.navigation
+  %li
+    %a{:href => "/", :title => "Home"} home
+  %li
+    %a{:href => "/about", :title => "About me"} about me
+  %li
+    %a{:href => "/contact", :title => "Contact me"} contact me
+  %li
+    %a{:href => "/blog", :title => "Blog"} blog
+  %li
+    %a{:href => "/projects", :title => "Projects"} projects
+  %li
+    %a{:href => "/utilities", :title => "Utilities"} utilities
+  %li
+    %a{:href => "http://life.chrisroos.co.uk", :title => "All my feeds aggregated at tumblr"} everything
