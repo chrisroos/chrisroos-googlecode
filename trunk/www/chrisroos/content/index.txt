@@ -1,29 +1,27 @@
 ---
 title:       Welcome
 created_at:  2008-08-02 14:06:40.000000 -06:00
-filter:
-  - erb
-  - textile
+filter:      haml
 ---
-h1. <%= @page.title %>
+:textile
+  h1. #{h(@page.title)}
 
-h2. A little about me
+  h2. A little about me
 
-I'm a software developer living in "Ramsgate":http://en.wikipedia.org/wiki/Ramsgate in the UK.  I'm currently employed at "Headshift":http://www.headshift.com after being made redundant from "reevoo":http://www.reevoo.com.
+  I'm a software developer living in "Ramsgate":http://en.wikipedia.org/wiki/Ramsgate in the UK.  I'm currently employed at "Headshift":http://www.headshift.com after being made redundant from "reevoo":http://www.reevoo.com.
 
-h2. A little about this site
+  h2. A little about this site
 
-This started out as a "typo":http://typosphere.org/ powered blog hosted at blog.seagul.co.uk.  I wanted to migrate it from a plain blog to a more general site that serves as a central place for my digital life.  To that end, I've slowly migrated away from typo (first to some "homegrown software":/blog/2008-01-23-migration-from-typo-to-a-static-site-is-complete and then to "webby":http://webby.rubyforge.org/), I've moved from blog.seagul.co.uk to chrisroos.co.uk and my "blog":/blog now sits at the same level as my "projects":/projects, "utilities":/utilities and "contact":/contact info.
+  This started out as a "typo":http://typosphere.org/ powered blog hosted at blog.seagul.co.uk.  I wanted to migrate it from a plain blog to a more general site that serves as a central place for my digital life.  To that end, I've slowly migrated away from typo (first to some "homegrown software":/blog/2008-01-23-migration-from-typo-to-a-static-site-is-complete and then to "webby":http://webby.rubyforge.org/), I've moved from blog.seagul.co.uk to chrisroos.co.uk and my "blog":/blog now sits at the same level as my "projects":/projects, "utilities":/utilities and "contact":/contact info.
 
-h2. Recent blog posts
+  h2. Recent blog posts
 
-<ol class="posts">
-  <% blog_posts(3).each do |post| %>
-    <li class="post">
-      <h2 class="title">
-        <%= short_date(post) %> - <a href="<%= h(friendly_url(post)) %>"><%= h(post.title) %></a>
-      </h2>
-      <p><%= post.summary %></p>
-    </li>
-  <% end %>
-</ol>
+%ol.posts
+  - blog_posts(3).each do |post|
+    %li.post
+      %h2.title
+        = short_date(post)
+        \-
+        %a{ :href => "#{h(friendly_url(post))}" }
+        = h(post.title)
+      %p= h(post.summary)
