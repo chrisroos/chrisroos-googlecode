@@ -2,32 +2,31 @@
 blog_post: true
 guid: c863ac6e-e373-4897-a4bd-bb479990f4ca
 title: Homegrown gooogie
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-01-04 14:37:00 +00:00
 layout: blog
 ---
-So, I just saw a "post":http://blog.outer-court.com/archive/2007-01-04.html#n31 about "gooogie":http://www.gooogie.co.uk, and it reminded me of my "own":/blog/2006-12-15-might-as-well-aim-high, 'did you mean', page[1].
+:textile
+  So, I just saw a "post":http://blog.outer-court.com/archive/2007-01-04.html#n31 about "gooogie":http://www.gooogie.co.uk, and it reminded me of my "own":/blog/2006-12-15-might-as-well-aim-high, 'did you mean', page[1].
 
-You can achieve the same effect as gooogie by using the excellent "firebug":https://addons.mozilla.org/firefox/1843/ firefox extension to execute javascript in the context of the page you are viewing.
+  You can achieve the same effect as gooogie by using the excellent "firebug":https://addons.mozilla.org/firefox/1843/ firefox extension to execute javascript in the context of the page you are viewing.
 
-To achieve the effect:
+  To achieve the effect:
 
-* Open up "google":http://www.google.co.uk
+  * Open up "google":http://www.google.co.uk
 
-* Type something into the search box that will generate a 'did you mean' response (tip. use any "misspelled":http://www.google.co.uk/search?hl=en&q=mispeled&btnG=Google+Search word)
+  * Type something into the search box that will generate a 'did you mean' response (tip. use any "misspelled":http://www.google.co.uk/search?hl=en&q=mispeled&btnG=Google+Search word)
 
-* Use the handy "XPather":https://addons.mozilla.org/firefox/1192/ firefox extension to find the XPath expression of the suggested word (in italics).  At this time, the relevant xpath seems to be '/html/body/p[1]/a/b/i'
+  * Use the handy "XPather":https://addons.mozilla.org/firefox/1192/ firefox extension to find the XPath expression of the suggested word (in italics).  At this time, the relevant xpath seems to be '/html/body/p[1]/a/b/i'
 
-* Fire up firebug and execute the following line in the console, substituting your desired suggestion first (the text on the page should change immediately)
+  * Fire up firebug and execute the following line in the console, substituting your desired suggestion first (the text on the page should change immediately)
 
-<pre class="code javascript">
-document.evaluate('/html/body/p[1]/a/b/i', document, null, XPathResult.ANY_TYPE, null).iterateNext().textContent = 'THE_WORD_YOU_WANT_TO_SUGGEST'
-</pre>
+  <pre class="code javascript">
+  document.evaluate('/html/body/p[1]/a/b/i', document, null, XPathResult.ANY_TYPE, null).iterateNext().textContent = 'THE_WORD_YOU_WANT_TO_SUGGEST'
+  </pre>
 
-* Finish by typing a new word into the search box and taking a screenshot to impress your friends (or not, as the case may be).
+  * Finish by typing a new word into the search box and taking a screenshot to impress your friends (or not, as the case may be).
 
-On second thoughts, just use gooogie, it's much quicker and cross-browser compatible.
+  On second thoughts, just use gooogie, it's much quicker and cross-browser compatible.
 
-fn1. A handful of people have stated that they don't get the 'did you mean reevoo' message when typing 'review' into google.  Well, no, they wouldn't.  It's completely made up.  He he.
+  fn1. A handful of people have stated that they don't get the 'did you mean reevoo' message when typing 'review' into google.  Well, no, they wouldn't.  It's completely made up.  He he.

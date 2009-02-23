@@ -9,58 +9,54 @@ layout: blog
 :textile
   I was talking to someone recently about the pluralisation of table names in "rails":http://www.rubyonrails.org.  It was grating him because some hand built queries no longer read very naturally.
 
-%pre.code.sql
-  :code
-    -- (in rails) requesting the forename of the 'first' person
-    SELECT forename FROM people WHERE people.id = 1;
+  <pre class="code sql">
+  -- (in rails) requesting the forename of the 'first' person
+  SELECT forename FROM people WHERE people.id = 1;
 
-    -- would read better as
-    SELECT forename FROM person WHERE person.id = 1;
+  -- would read better as
+  SELECT forename FROM person WHERE person.id = 1;
+  </pre>
 
-:textile
   "Paul":http://po-ru.com/ (a colleague at "reevoo":http://www.reevoo.com) pointed out that there are two sides to the singular/plural table name debate.  You will always have some queries (as above) that will work better when the table is singular; and others (as below) that will work better when the table is plural.
 
-%pre.code.sql
-  :code
-    -- requesting all people having a country of 'uk'
-    SELECT * FROM person WHERE country = 'UK';
+  <pre class="code sql">
+  -- requesting all people having a country of 'uk'
+  SELECT * FROM person WHERE country = 'UK';
 
-    -- (in rails) would read better as
-    SELECT * FROM people WHERE country = 'UK';
+  -- (in rails) would read better as
+  SELECT * FROM people WHERE country = 'UK';
+  </pre>
 
-:textile
   Personally, because of the very small amount of hand written sql I've had to use with Rails this has never been an issue to me.  However, it did make me think about a slight adaptation to Active Record...
 
   By default (in Rails), you create a singular (active record) model (person) that maps to the plural table (people).  Although very convenient (it's the reason I've rarely had to touch sql), it too suffers from the same problems outlined in the queries above.  I think the two statements below show the same sort of natural vs unnatural language that appears in the sql above.
 
-%pre.code.ruby
-  :code
-    # good english (acting on a single person)
-    Person.name = 'chris'
-    Person.save
+  <pre class="code ruby">
+  # good english (acting on a single person)
+  Person.name = 'chris'
+  Person.save
 
-    # bad english (we are asking for multiple people)
-    Person.find(:all, :conditions => "country = 'uk'")
+  # bad english (we are asking for multiple people)
+  Person.find(:all, :conditions => "country = 'uk'")
+  </pre>
 
-:textile
   The adaptation to active record I was thinking about would allow you to operate on both a Person and People, using the variant that made the code read more naturally.  That is, we could leave the Person.name example above as is, but change the Person.find to People.find[1].  There are different ways to go about this but to get some of the way there with a little code (i.e. not having to manually create both singular and plural classes for each table); I came up with the following simple hack.
 
-%pre.code.ruby
-  :code
-    class ActiveRecord::Base
-      class << self
-        alias_method :__existing_inherited, :inherited
-        def inherited(child)
-          __existing_inherited(child)
-          plural_class = child.to_s.pluralize
-          unless plural_class =~ /#<Class:./ or Object.constants.include?(plural_class)
-            Object.const_set(plural_class, Class.new(child))
-          end
+  <pre class="code ruby">
+  class ActiveRecord::Base
+    class << self
+      alias_method :__existing_inherited, :inherited
+      def inherited(child)
+        __existing_inherited(child)
+        plural_class = child.to_s.pluralize
+        unless plural_class =~ /#<Class:./ or Object.constants.include?(plural_class)
+          Object.const_set(plural_class, Class.new(child))
         end
       end
     end
+  end
+  </pre>
 
-:textile
   Just add it to the bottom of your environment.rb file and when you first reference one of your singular classes it will automatically descend a plural class from it.
 
   There are lots of things wrong with this code and many better ways for it to be implemented but it was really just for me to see if I could do it.

@@ -13,40 +13,37 @@ layout: blog
 
   Just add the code below within the Test::Unit::TestCase declaration in test_helper.
 
-%pre.code.ruby
-  :code
-    def self.dont_use_fixtures
-      class_eval do
-        def self.method_added(method); end
-        def setup; end
-        def teardown; end
-      end
+  <pre class="code ruby">
+  def self.dont_use_fixtures
+    class_eval do
+      def self.method_added(method); end
+      def setup; end
+      def teardown; end
     end
+  end
+  </pre>
 
-:textile
   This still requires that you add dont_use_fixtures into each test class definition.
 
-%pre.code.ruby
-  :code
-    class MyTest < Test::Unit::TestCase
-      dont_use_fixtures
-      def test_
-        # my first test
-      end
+  <pre class="code ruby">
+  class MyTest < Test::Unit::TestCase
+    dont_use_fixtures
+    def test_
+      # my first test
     end
+  end
+  </pre>
 
-:textile
   Having just written this it's obvious now that it would make more sense to not require the declaration in each test class (as we supposedly don't even have access to active record).  We should probably also play fair and pass messages back to our parent if method_added isn't being called with either setup or teardown.
 
   The new code becomes (again, in Test::Unit::TestCase definition in test_helper).
 
-%pre.code.ruby
-  :code
-    def self.method_added(method)
-      super unless [:setup, :teardown].include?(method.to_sym)
-    end
-    def setup; end
-    def teardown; end
+  <pre class="code ruby">
+  def self.method_added(method)
+    super unless [:setup, :teardown].include?(method.to_sym)
+  end
+  def setup; end
+  def teardown; end
+  </pre>
 
-:textile
   This appears to work ok...

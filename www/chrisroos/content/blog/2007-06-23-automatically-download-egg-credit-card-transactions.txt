@@ -2,59 +2,56 @@
 blog_post: true
 guid: 363cbb26-fe78-42b3-a605-b8a399a73e1d
 title: Automatically download egg credit card transactions
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-06-23 12:34:00 +01:00
 layout: blog
 ---
-I've followed in my "previous":/blog/2007-05-14-automatically-downloading-my-recent-transactions-from-lloyds-tsb "footsteps":/blog/2007-05-04-automatically-downloading-my-most-recent-hsbc-transactions and automated the download of my "egg":http://egg.com credit card transactions and statements.  Using this in combination with my "ofx convertor":/blog/2007-04-01-converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe makes it easier for me to upload my financial data to "wesabe":http://www.wesabe.com.
+:textile
+  I've followed in my "previous":/blog/2007-05-14-automatically-downloading-my-recent-transactions-from-lloyds-tsb "footsteps":/blog/2007-05-04-automatically-downloading-my-most-recent-hsbc-transactions and automated the download of my "egg":http://egg.com credit card transactions and statements.  Using this in combination with my "ofx convertor":/blog/2007-04-01-converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe makes it easier for me to upload my financial data to "wesabe":http://www.wesabe.com.
 
-As always, the code is in "google code":http://chrisroos.googlecode.com/svn/trunk/egg/ and pasted below for your viewing pleasure...
+  As always, the code is in "google code":http://chrisroos.googlecode.com/svn/trunk/egg/ and pasted below for your viewing pleasure...
 
-<pre class="code ruby">
-require 'egg-credentials'
+  <pre class="code ruby">
+  require 'egg-credentials'
 
-def execute_curl(cmd)
-  `#{cmd}`
-end
+  def execute_curl(cmd)
+    `\#{cmd}`
+  end
 
-COOKIE_LOCATION = "/tmp/egg.cookie"
-STATEMENT_DATE = '18 January 2007'
+  COOKIE_LOCATION = "/tmp/egg.cookie"
+  STATEMENT_DATE = '18 January 2007'
 
-RECENT_TRANSACTIONS_FILE = '/Users/chrisroos/Desktop/egg-recent-transactions.html'
-STATEMENT_FILE = '/Users/chrisroos/Desktop/egg-statement.html'
+  RECENT_TRANSACTIONS_FILE = '/Users/chrisroos/Desktop/egg-recent-transactions.html'
+  STATEMENT_FILE = '/Users/chrisroos/Desktop/egg-statement.html'
 
-# Logging in requires a cookie that is set when we first visit the login page
-curl_cmd = %[curl -s -c"#{COOKIE_LOCATION}" "https://new.egg.com/security/customer/logon?URI=https://new.egg.com/customer/youraccounts"]
-execute_curl curl_cmd
+  # Logging in requires a cookie that is set when we first visit the login page
+  curl_cmd = %[curl -s -c"\#{COOKIE_LOCATION}" "https://new.egg.com/security/customer/logon?URI=https://new.egg.com/customer/youraccounts"]
+  execute_curl curl_cmd
 
-# POST our login credentials
-curl_cmd = %[curl -s -b"#{COOKIE_LOCATION}" -c"#{COOKIE_LOCATION}" -L "https://logon.egg.com/LoginWebServer/services/CustomerLogin" -d"firstName=#{FIRST_NAME}" -d"lastName=#{LAST_NAME}" -d"dobDay=#{DOB_DAY}" -d"dobMonth=#{DOB_MONTH}" -d"dobYear=#{DOB_YEAR}" -d"postcode=#{POSTCODE}" -d"mmn=#{MOTHERS_MAIDEN_NAME}" -d"password=#{PASSWORD}" -d"HiddenURI=https%3A%2F%2Fnew.egg.com%2Fcustomer%2Fyouraccounts"]
-execute_curl curl_cmd
+  # POST our login credentials
+  curl_cmd = %[curl -s -b"\#{COOKIE_LOCATION}" -c"\#{COOKIE_LOCATION}" -L "https://logon.egg.com/LoginWebServer/services/CustomerLogin" -d"firstName=\#{FIRST_NAME}" -d"lastName=\#{LAST_NAME}" -d"dobDay=\#{DOB_DAY}" -d"dobMonth=\#{DOB_MONTH}" -d"dobYear=\#{DOB_YEAR}" -d"postcode=\#{POSTCODE}" -d"mmn=\#{MOTHERS_MAIDEN_NAME}" -d"password=\#{PASSWORD}" -d"HiddenURI=https%3A%2F%2Fnew.egg.com%2Fcustomer%2Fyouraccounts"]
+  execute_curl curl_cmd
 
-# List and save recent transactions
-curl_cmd = %[curl -s -o"#{RECENT_TRANSACTIONS_FILE}" -b"#{COOKIE_LOCATION}" "https://your.egg.com/customer/eggcard/recenttransactions.aspx"]
-execute_curl curl_cmd
+  # List and save recent transactions
+  curl_cmd = %[curl -s -o"\#{RECENT_TRANSACTIONS_FILE}" -b"\#{COOKIE_LOCATION}" "https://your.egg.com/customer/eggcard/recenttransactions.aspx"]
+  execute_curl curl_cmd
 
-# There is no sensible way to get your statements.  I'd hope for something like /statements/18-jun-2007.html but no such luck
-# Instead, there is a zero indexed array of statement dates.  Selecting one of these statement dates allows us to construct
-# a uri using the index of the date in the list.  So, if 18 June 2007 is the first date in the list (i.e. index 0) then we can view that
-# statement at https://your.egg.com/customer/eggcard/statements.aspx?index=0
-# Interestingly, this is how it works from the recent transactions page, from any actual statement page, it appears that this is
-# too hard (it's not) and instead the developers have resorted to using some magical .net/javascript voodoo to obtain a different
-# statement.
-require 'rubygems'
-require 'hpricot'
+  # There is no sensible way to get your statements.  I'd hope for something like /statements/18-jun-2007.html but no such luck
+  # Instead, there is a zero indexed array of statement dates.  Selecting one of these statement dates allows us to construct
+  # a uri using the index of the date in the list.  So, if 18 June 2007 is the first date in the list (i.e. index 0) then we can view that
+  # statement at https://your.egg.com/customer/eggcard/statements.aspx?index=0
+  # Interestingly, this is how it works from the recent transactions page, from any actual statement page, it appears that this is
+  # too hard (it's not) and instead the developers have resorted to using some magical .net/javascript voodoo to obtain a different
+  # statement.
+  require 'rubygems'
+  require 'hpricot'
 
-recent_transactions = File.open(RECENT_TRANSACTIONS_FILE) { |f| f.read }
-doc = Hpricot(recent_transactions)
-statement_dates = []
-(doc/'select#ctl01_content_recenttransactions_lstPreviousStatements/option').each { |e| statement_dates << e.inner_text }
-statement_index = statement_dates.index(STATEMENT_DATE)
+  recent_transactions = File.open(RECENT_TRANSACTIONS_FILE) { |f| f.read }
+  doc = Hpricot(recent_transactions)
+  statement_dates = []
+  (doc/'select#ctl01_content_recenttransactions_lstPreviousStatements/option').each { |e| statement_dates << e.inner_text }
+  statement_index = statement_dates.index(STATEMENT_DATE)
 
-curl_cmd = %[curl -s -o"#{STATEMENT_FILE}" -b"#{COOKIE_LOCATION}" "https://your.egg.com/customer/eggcard/statements.aspx?index=#{statement_index}"]
-execute_curl curl_cmd
-
-
-</pre>
+  curl_cmd = %[curl -s -o"\#{STATEMENT_FILE}" -b"\#{COOKIE_LOCATION}" "https://your.egg.com/customer/eggcard/statements.aspx?index=\#{statement_index}"]
+  execute_curl curl_cmd
+  </pre>

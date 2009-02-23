@@ -5,50 +5,49 @@ title:      Implementing Version 2 of the Amazon AWS HTTP Request Signature in R
 created_at: 2009-01-31 18:46:39.799577 +00:00
 guid:       d3ec8873-65d1-4536-872d-b164016b7dfc
 layout:     blog
-filter:
-  - erb
-  - textile
+filter:     haml
 ---
-This took me a long time to work out this afternoon so I guess it might be useful to others.  I couldn't find an implementation (of version 2 of the request signing) in any of the existing Amazon AWS libraries and although I did find a promising looking post "here":http://www.jamesmurty.com/2008/12/31/aws-query-signature-version-2/ it just didn't work for me.  I ended up using the "Simple DB PHP sample code":http://developer.amazonwebservices.com/connect/entry.jspa?externalID=1135 to obtain some test data[1] that I could use to debug my own code[2] and eventually got it working.
+:textile
+  This took me a long time to work out this afternoon so I guess it might be useful to others.  I couldn't find an implementation (of version 2 of the request signing) in any of the existing Amazon AWS libraries and although I did find a promising looking post "here":http://www.jamesmurty.com/2008/12/31/aws-query-signature-version-2/ it just didn't work for me.  I ended up using the "Simple DB PHP sample code":http://developer.amazonwebservices.com/connect/entry.jspa?externalID=1135 to obtain some test data[1] that I could use to debug my own code[2] and eventually got it working.
 
-fn1. I plan to post some test data (to help others attempting to write a client) in a follow up post.
+  fn1. I plan to post some test data (to help others attempting to write a client) in a follow up post.
 
-fn2. I printed the parameters and signature at various stages of the request so that I could compare it to the output from my client.
+  fn2. I printed the parameters and signature at various stages of the request so that I could compare it to the output from my client.
 
-<pre class="code">
-require 'rubygems'
-require 'cgi'
-require 'time'
-require 'hmac'
-require 'hmac-sha2'
-require 'base64'
+  <pre class="code">
+  require 'rubygems'
+  require 'cgi'
+  require 'time'
+  require 'hmac'
+  require 'hmac-sha2'
+  require 'base64'
 
-ACCESS_IDENTIFIER = 'your-access-identifier'
-SECRET_IDENTIFIER = 'your-secret-identifier'
+  ACCESS_IDENTIFIER = 'your-access-identifier'
+  SECRET_IDENTIFIER = 'your-secret-identifier'
 
-AMAZON_ENDPOINT = 'https://sdb.amazonaws.com/'
+  AMAZON_ENDPOINT = 'https://sdb.amazonaws.com/'
 
-params = {
-  'Action' => 'ListDomains',
-  'AWSAccessKeyId' => ACCESS_IDENTIFIER,
-  'SignatureMethod' => 'HmacSHA256',
-  'SignatureVersion' => 2,
-  'Timestamp' => Time.now.iso8601,
-  'Version' => '2007-11-07'
-}
+  params = {
+    'Action' => 'ListDomains',
+    'AWSAccessKeyId' => ACCESS_IDENTIFIER,
+    'SignatureMethod' => 'HmacSHA256',
+    'SignatureVersion' => 2,
+    'Timestamp' => Time.now.iso8601,
+    'Version' => '2007-11-07'
+  }
 
-canonical_querystring = params.sort.collect { |key, value| [CGI.escape(key.to_s), CGI.escape(value.to_s)].join('=') }.join('&')
-string_to_sign = "GET
-sdb.amazonaws.com
-/
-#{canonical_querystring}"
+  canonical_querystring = params.sort.collect { |key, value| [CGI.escape(key.to_s), CGI.escape(value.to_s)].join('=') }.join('&')
+  string_to_sign = "GET
+  sdb.amazonaws.com
+  /
+  \#{canonical_querystring}"
                                 
-hmac = HMAC::SHA256.new(SECRET_IDENTIFIER)
-hmac.update(string_to_sign)
-signature = Base64.encode64(hmac.digest).chomp # chomp is important!  the base64 encoded version will have a newline at the end
+  hmac = HMAC::SHA256.new(SECRET_IDENTIFIER)
+  hmac.update(string_to_sign)
+  signature = Base64.encode64(hmac.digest).chomp # chomp is important!  the base64 encoded version will have a newline at the end
 
-params['Signature'] = signature
-querystring = params.collect { |key, value| [CGI.escape(key.to_s), CGI.escape(value.to_s)].join('=') }.join('&') # order doesn't matter for the actual request
+  params['Signature'] = signature
+  querystring = params.collect { |key, value| [CGI.escape(key.to_s), CGI.escape(value.to_s)].join('=') }.join('&') # order doesn't matter for the actual request
 
-puts `curl -X"GET" "#{AMAZON_ENDPOINT}?#{querystring}" -A"simple ruby aws sdb wrapper"`
-</pre>
+  puts `curl -X"GET" "\#{AMAZON_ENDPOINT}?\#{querystring}" -A"simple ruby aws sdb wrapper"`
+  </pre>

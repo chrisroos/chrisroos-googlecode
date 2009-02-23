@@ -13,20 +13,18 @@ layout: blog
 
   So (with 1.0.0 and 1.1.6 gems installed)..
 
-%pre.code
-  :code
-    $ rails _1.0.0_ my-rails-proj
-    #-> uses rails version 1
+  <pre class="code shell">
+  $ rails _1.0.0_ my-rails-proj
+  #-> uses rails version 1
 
-    $ rails my-rails-proj
-    #-> uses latest rails version (1.1.6)
+  $ rails my-rails-proj
+  #-> uses latest rails version (1.1.6)
+  </pre>
 
-:textile
   Although you can normally place the rails libraries into the vendor directory of a given rails app (to use that specific rails version); I had problems when placing rails 1.0.0 into a rails 1.1.6 generated app.  An error is encountered when trying to boot webrick..
 
-%pre.code
-  :code
-    ./script/../config/../vendor/rails/railties/lib/initializer.rb:256:in `send': undefined method `cache_template_extensions=' for ActionView::Base:Class (NoMethodError)
+  <pre class="code">
+  ./script/../config/../vendor/rails/railties/lib/initializer.rb:256:in `send': undefined method `cache_template_extensions=' for ActionView::Base:Class (NoMethodError)
+  </pre>
 
-:textile
   By passing the version argument to the rails command and then placing rails 1.0.0 into the vendor directory, everything works as expected.

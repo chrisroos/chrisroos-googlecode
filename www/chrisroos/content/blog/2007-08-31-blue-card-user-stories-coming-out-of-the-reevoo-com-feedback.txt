@@ -2,50 +2,49 @@
 blog_post: true
 guid: 5bfd9e04-b345-4087-974d-6971bf8e1810
 title: Blue card user stories coming out of the reevoo.com feedback
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-08-31 15:13:00 +01:00
 layout: blog
 ---
-It took me a while, but I've come up with some "stories":http://en.wikipedia.org/wiki/User_story to represent the feature requests from the "reevoo.com":http://www.reevoo.com "feedback":/blog/2007-08-23-responses-to-reevoo-com-feedback.
+:textile
+  It took me a while, but I've come up with some "stories":http://en.wikipedia.org/wiki/User_story to represent the feature requests from the "reevoo.com":http://www.reevoo.com "feedback":/blog/2007-08-23-responses-to-reevoo-com-feedback.
 
-I (well "Paul":http://www.po-ru.com actually) even took a photo to prove it.
+  I (well "Paul":http://www.po-ru.com actually) even took a photo to prove it.
 
-"!http://farm2.static.flickr.com/1175/1284248507_c7d8653554_m.jpg!":http://flickr.com/photos/chrisjroos/1284248507
+  "!http://farm2.static.flickr.com/1175/1284248507_c7d8653554_m.jpg!":http://flickr.com/photos/chrisjroos/1284248507
 
-We have a "planning game":http://en.wikipedia.org/wiki/Extreme_Programming_Practices#Planning_game next Tuesday (4th Sep) so we'll have to wait to see if any of them get in.
+  We have a "planning game":http://en.wikipedia.org/wiki/Extreme_Programming_Practices#Planning_game next Tuesday (4th Sep) so we'll have to wait to see if any of them get in.
 
-I've written the cards out in full below.  If anyone recognises one of their requests and thinks I've misrepresented it then feel free to let me know.
+  I've written the cards out in full below.  If anyone recognises one of their requests and thinks I've misrepresented it then feel free to let me know.
 
-h2. Remove search filters
+  h2. Remove search filters
 
-As a user of reevoo.com, I want to be able to remove filters in the same way that I can add them, so that I don't have to start my search again if I want to change my search criteria.
+  As a user of reevoo.com, I want to be able to remove filters in the same way that I can add them, so that I don't have to start my search again if I want to change my search criteria.
 
-h2. Display scores of related products
+  h2. Display scores of related products
 
-As a user of reevoo.com, I want to see the scores of 'related products', so that I can instantly decide whether those products might be of interest to me.
+  As a user of reevoo.com, I want to see the scores of 'related products', so that I can instantly decide whether those products might be of interest to me.
 
-h2. Display usefulness of reviews
+  h2. Display usefulness of reviews
 
-As a user of reevoo.com, I want to know how useful the reviews are, so that I can get a feel for the 'importance' of a review.
+  As a user of reevoo.com, I want to know how useful the reviews are, so that I can get a feel for the 'importance' of a review.
 
-h2. Favicon
+  h2. Favicon
 
-As a user of reevoo.com, I want to immediately identify your favicon with reevoo branding, so that I can immediately pick it out in my search history and browser tabs.
+  As a user of reevoo.com, I want to immediately identify your favicon with reevoo branding, so that I can immediately pick it out in my search history and browser tabs.
 
-h2. Recently viewed products
+  h2. Recently viewed products
 
-As a user of reevoo.com, I want to see a list of my recently viewed products, so that I can easily find my way back to the products I'm interested in.
+  As a user of reevoo.com, I want to see a list of my recently viewed products, so that I can easily find my way back to the products I'm interested in.
 
-h2. Scores obviously out of 10
+  h2. Scores obviously out of 10
 
-As a user of reevoo.com, I want it to be obvious that the review scores are out of 10, so that I don't waste time trying to work it out and can, instead, find the products that I'm interested in.
+  As a user of reevoo.com, I want it to be obvious that the review scores are out of 10, so that I don't waste time trying to work it out and can, instead, find the products that I'm interested in.
 
-h2. Product count on supercategory pages
+  h2. Product count on supercategory pages
 
-As a user of reevoo.com, I always want to see the number of products appear next to the product category, so that I can easily scan down the list of categories.
+  As a user of reevoo.com, I always want to see the number of products appear next to the product category, so that I can easily scan down the list of categories.
 
-h2. General comments
+  h2. General comments
 
-As a user of reevoo.com, I want to be able to immediately identify that the general comments are indeed general comments, so that I don't waste time trying to work out what they are and whether they're important.
+  As a user of reevoo.com, I want to be able to immediately identify that the general comments are indeed general comments, so that I don't waste time trying to work out what they are and whether they're important.

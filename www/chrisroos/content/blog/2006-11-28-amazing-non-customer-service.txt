@@ -27,6 +27,6 @@ layout: blog
 
   Feel free to email me, why not.
 
-  [1] There's a little white lie there to be fair.  Of course I _could've_ signed up.  They didn't put a spell on me (although that'd be cool) or anything.  It's just that I feel uncomfortable giving out the answers to real questions (mother's maiden name) and there's zero chance of me remembering the answer to made up questions (favourite colour/day/smell).
+  fn1. There's a little white lie there to be fair.  Of course I _could've_ signed up.  They didn't put a spell on me (although that'd be cool) or anything.  It's just that I feel uncomfortable giving out the answers to real questions (mother's maiden name) and there's zero chance of me remembering the answer to made up questions (favourite colour/day/smell).
 
-  [2] I was going to cleverly protect my email addresses from prying robot eyes...  but really can't be bothered.
+  fn2. I was going to cleverly protect my email addresses from prying robot eyes...  but really can't be bothered.

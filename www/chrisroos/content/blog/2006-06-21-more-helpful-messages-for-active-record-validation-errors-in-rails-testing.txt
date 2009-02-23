@@ -11,18 +11,17 @@ layout: blog
 
   The problem is that the standard "test/unit":http://ruby-doc.org/stdlib/libdoc/test/unit/rdoc/index.html reporting framework displays the exception without any details of why the validation failed.
 
-%pre.code
-  :code
-     1) Error:​
-    test_should_fail_validation(AardvarkTest):​
-    ActiveRecord::RecordInvalid:​ActiveRecord::RecordInvalid
-       /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in 'save!'
-       /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in 'create!'
-       /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in 'test_should_fail_validation'
+  <pre class="code">
+   1) Error:​
+  test_should_fail_validation(AardvarkTest):​
+  ActiveRecord::RecordInvalid:​ActiveRecord::RecordInvalid
+     /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in 'save!'
+     /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in 'create!'
+     /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in 'test_should_fail_validation'
 
-    1 tests, 0 assertions, 0 failures, 1 errors
+  1 tests, 0 assertions, 0 failures, 1 errors
+  </pre>
 
-:textile
   *Note.* This isn't the fault of test/unit.  It has to deal with generic exceptions and so cannot 'know' that Active Record Exceptions can be used to find the reason for the failure.
 
   At this point, it would be very easy to jump into the code of the Active Record model, check out the validations and satisfy them within your code.  However, it'd be much cooler if we could just add the reason for the failures to the error message that is displayed.
@@ -31,27 +30,25 @@ layout: blog
 
   Then I thought it'd be cool if we could integrate slightly more with both test/unit and "rails":http://www.rubyonrails.com.  The result is a "plugin":http://wiki.rubyonrails.org/rails/pages/Plugins ("source":http://chrisroos.googlecode.com/svn/trunk/plugins/test_unit_active_record_errors/) that can be installed as follows.
 
-%pre.code
-  :code
-    $ script/plugin install http://chrisroos.googlecode.com/svn/trunk/plugins/test_unit_active_record_errors/
+  <pre class="code shell">
+  $ script/plugin install http://chrisroos.googlecode.com/svn/trunk/plugins/test_unit_active_record_errors/
+  </pre>
 
-:textile
   The output from a failed validation now includes the validation errors.  Yay.
 
-%pre.code
-  :code
-     1) Error:​
-    test_should_fail_validation(AardvarkTest):​
-    ActiveRecord::RecordInvalid: ActiveRecord::RecordInvalid
-       /opt/local/lib//gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in `save!'
-       /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in `create!'
-       /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in `__test_should_fail_validation_without_custom_error_handling'
-       /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `__send__'
-       /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `test_should_fail_validation'
-       /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:27:in `test_should_fail_validation'
-    ActiveRecord Errors:​Surname can't be blank, Email can't be blank
+  <pre class="code">
+   1) Error:​
+  test_should_fail_validation(AardvarkTest):​
+  ActiveRecord::RecordInvalid: ActiveRecord::RecordInvalid
+     /opt/local/lib//gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:711:in `save!'
+     /opt/local/lib/ruby/gems/1.8/gems/activerecord-1.13.2/lib/active_record/validations.rb:673:in `create!'
+     /Users/chrisroos/dev/example_rails/test/unit/aardvark_test.rb:22:in `__test_should_fail_validation_without_custom_error_handling'
+     /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `__send__'
+     /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:29:in `test_should_fail_validation'
+     /Users/chrisroos/dev/example_rails/config/../vendor/plugins/test_unit_active_record_errors/lib/test_unit_active_record_errors.rb:27:in `test_should_fail_validation'
+  ActiveRecord Errors:​Surname can't be blank, Email can't be blank
 
-    1 tests, 0 assertions, 0 failures, 1 errors
+  1 tests, 0 assertions, 0 failures, 1 errors
+  </pre>
 
-:textile
   The code is pretty hacky and includes no tests.  It's only been tested on Mac Os X 10.4.6 with Ruby 1.8.2 and Rails 1.0.0 but please feel free to do what you will with it if you think it might be of some use to you.

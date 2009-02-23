@@ -5,17 +5,18 @@ title:      Please Publish Full Content in Your RSS and Atom Feeds
 created_at: 2009-02-19 13:42:03.949925 +00:00
 guid:       54052ce7-0520-411d-b065-12e6de8aa9d9
 layout:     blog
-filter:
-  - erb
-  - textile
+filter:     haml
 ---
-Just a polite request to those that publish only partial content in their feeds.  Please don't do it.
+:textile
+  Just a polite request to those that publish only partial content in their feeds.  Please don't do it.
 
-I used to read my feeds offline in "Google Reader":http://www.google.com/reader.  Partial feeds are frustrating because they suck me in with a teaser and then leave me hanging until I get back to an Internet connection: where I'll often forget about the feed and leave it forever.  Alternatively, I'll visit said page offline, bookmark it in delicious ("firefox extension":https://addons.mozilla.org/en-US/firefox/addon/3615) with a to-read tag and still never read it[1].
+  I used to read my feeds offline in "Google Reader":http://www.google.com/reader.  Partial feeds are frustrating because they suck me in with a teaser and then leave me hanging until I get back to an Internet connection: where I'll often forget about the feed and leave it forever.  Alternatively, I'll visit said page offline, bookmark it in delicious ("firefox extension":https://addons.mozilla.org/en-US/firefox/addon/3615) with a to-read tag and still never read it[1].
 
-I now tend to read feeds on my "G1":http://www.t-mobileg1.com/ (still in Google Reader).  Switching between interfaces on the G1 isn't quite as seamless as switching between tabs in a browser: It disrupts my flow.  I think the same argument applies to google reader in a standard browser: I'm happily reading things that look the same until I come across some partial content, click a link and go blind because someone's decided that white on black in easy to read.
+  I now tend to read feeds on my "G1":http://www.t-mobileg1.com/ (still in Google Reader).  Switching between interfaces on the G1 isn't quite as seamless as switching between tabs in a browser: It disrupts my flow.  I think the same argument applies to google reader in a standard browser: I'm happily reading things that look the same until I come across some partial content, click a link and go blind because someone's decided that white on black in easy to read.
 
-So there you have it.  The evidence[2] supports the fact that you should publish full content in your feeds.  Now go do it.
+  So there you have it.  The evidence[2] supports the fact that you should publish full content in your feeds.  Now go do it.
 
-[1] This is worse because I end up with a whole bunch of bookmarks that say 'page could not be loaded', or similar, and I then have to worry about fixing them up to make them pretty (I've been doing this for over a year so just imagine how heavy this is on my shoulders right now).
-[2] Fact.
+  fn1. This is worse because I end up with a whole bunch of bookmarks that say 'page could not be loaded', or similar, and I then have to worry about fixing them up to make them pretty (I've been doing this for over a year so just imagine how heavy this is on my shoulders right now).
+  
+  fn2. Fact.
+  

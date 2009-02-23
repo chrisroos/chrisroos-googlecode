@@ -2,16 +2,15 @@
 blog_post: true
 guid: b4536d88-439b-4cc6-8ec1-e02396f58bb6
 title: Orange, orange, orange
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-03-16 19:58:00 +00:00
 layout: blog
 ---
-Tuttety tut tut tut.  I unsubscribed from you guys, don't you "remember":/blog/2007-01-12-move-over-seetickets-com-youve-got-nothing-on-orange-co-uk?  Obviously not, as you've just emailed me again.  Oh well, might as well hit that unsubscribe link one more time...
+:textile
+  Tuttety tut tut tut.  I unsubscribed from you guys, don't you "remember":/blog/2007-01-12-move-over-seetickets-com-youve-got-nothing-on-orange-co-uk?  Obviously not, as you've just emailed me again.  Oh well, might as well hit that unsubscribe link one more time...
 
-!http://farm1.static.flickr.com/157/423345893_fa4f1d707b_o.jpg!
+  !http://farm1.static.flickr.com/157/423345893_fa4f1d707b_o.jpg!
 
-Unless I'm very much mistaken, there have been about two months between the 12th January and now, one month more than the, err, very reasonable[1], 28 days they say it should take.
+  Unless I'm very much mistaken, there have been about two months between the 12th January and now, one month more than the, err, very reasonable[1], 28 days they say it should take.
 
-fn1. It's not reasonable.  In fact, I may go as far as to say it's unjustifiable.
+  fn1. It's not reasonable.  In fact, I may go as far as to say it's unjustifiable.

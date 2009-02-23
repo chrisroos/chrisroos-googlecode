@@ -2,14 +2,13 @@
 blog_post: true
 guid: c7c0173b-2e98-4632-a904-f7b3401944e5
 title: Move over seetickets.com - you've got nothing on orange.co.uk
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-01-12 00:03:00 +00:00
 layout: blog
 ---
-!http://farm1.static.flickr.com/160/353838276_1b4a5b6ecf_o.jpg!
+:textile
+  !http://farm1.static.flickr.com/160/353838276_1b4a5b6ecf_o.jpg!
 
-*"The unsubscribe process may take up to 28 working days"*
+  *"The unsubscribe process may take up to 28 working days"*
 
-Hmmm.
+  Hmmm.
