@@ -1,67 +1,66 @@
 --- 
 title: Testing Object#method_exists?
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2006-09-18 22:51:33 +01:00
 layout: blog
 ---
-<pre class="code ruby">
-class Foo
-  def foo; end; public :foo
-  def bar; end; protected :bar
-  def baz; end; private :baz
-end
-
-require 'test/unit'
-
-Class.new(Test::Unit::TestCase) do
-
-  def assert_not(expr)
-    assert ! expr
+:textile
+  <pre class="code ruby">
+  class Foo
+    def foo; end; public :foo
+    def bar; end; protected :bar
+    def baz; end; private :baz
   end
 
-  def assert_method_exists_is_working
-    [:foo, :bar, :baz].each do |sym|
-      assert @foo.method_exists?(sym)
-      assert @foo.method_exists?(sym.to_s)
-    end
-    assert_not @foo.method_exists?(:made_up_method)
-    assert_not @foo.method_exists?('made_up_method')
-  end
+  require 'test/unit'
 
-  def setup
-    @foo = Foo.new
-  end
+  Class.new(Test::Unit::TestCase) do
 
-  def test_implementation_1
-    def @foo.method_exists?(method_sym)
-      method(method_sym)
-      true
-    rescue
-      false
+    def assert_not(expr)
+      assert ! expr
     end
 
-    assert_method_exists_is_working
-  end
-
-  def test_implementation_2
-    def @foo.method_exists?(method_sym)
-      methods = public_methods + protected_methods + private_methods
-      methods.include?(method_sym.to_s)
+    def assert_method_exists_is_working
+      [:foo, :bar, :baz].each do |sym|
+        assert @foo.method_exists?(sym)
+        assert @foo.method_exists?(sym.to_s)
+      end
+      assert_not @foo.method_exists?(:made_up_method)
+      assert_not @foo.method_exists?('made_up_method')
     end
 
-    assert_method_exists_is_working
-  end
-
-  def test_implementation_3
-    def @foo.method_exists?(method_sym)
-      method_sym = method_sym.to_s
-      respond_to?(method_sym, include_private=true)
+    def setup
+      @foo = Foo.new
     end
 
-    assert_method_exists_is_working
-  end
+    def test_implementation_1
+      def @foo.method_exists?(method_sym)
+        method(method_sym)
+        true
+      rescue
+        false
+      end
 
-end
-</pre>
+      assert_method_exists_is_working
+    end
+
+    def test_implementation_2
+      def @foo.method_exists?(method_sym)
+        methods = public_methods + protected_methods + private_methods
+        methods.include?(method_sym.to_s)
+      end
+
+      assert_method_exists_is_working
+    end
+
+    def test_implementation_3
+      def @foo.method_exists?(method_sym)
+        method_sym = method_sym.to_s
+        respond_to?(method_sym, include_private=true)
+      end
+
+      assert_method_exists_is_working
+    end
+
+  end
+  </pre>
