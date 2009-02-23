@@ -9,14 +9,14 @@ layout: blog
 :textile
   We're not _quite_ at this stage yet...
 
-%pre.code.ruby
-  :code
-    class ActiveRecord::ConnectionAdapters::MysqlAdapter
-      alias :execute_before_test_hijack :execute
-      def execute(*args)
-        unless args.first =~ /^SHOW FIELDS FROM/ || %w[BEGIN COMMIT ROLLBACK END].include?(args.first)
-          raise "You know you're not allowed to use the database in your tests..." # We could be more gentle with a warn
-        end
-        execute_before_unit_test_hijack(*args)
+  <pre class="code ruby">
+  class ActiveRecord::ConnectionAdapters::MysqlAdapter
+    alias :execute_before_test_hijack :execute
+    def execute(*args)
+      unless args.first =~ /^SHOW FIELDS FROM/ || %w[BEGIN COMMIT ROLLBACK END].include?(args.first)
+        raise "You know you're not allowed to use the database in your tests..." # We could be more gentle with a warn
       end
+      execute_before_unit_test_hijack(*args)
     end
+  end
+  </pre>

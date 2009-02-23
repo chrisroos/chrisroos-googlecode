@@ -13,25 +13,25 @@ layout: blog
 
   To replicate, create a new file called 'default.rake' in the lib/tasks/ directory within your rails project, and paste in the following code.
 
-%pre.code.ruby
-  :code
-    Rake::Task::TASKS.delete('default')
-    Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
-    Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
+  <pre class="code ruby">
+  Rake::Task::TASKS.delete('default')
+  Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
+  Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
 
-    task :default do
-      Rake::Task[:test_units].invoke      rescue got_error = true
-      Rake::Task[:test_functional].invoke rescue got_error = true
-      raise "Test failures" if got_error
-    end
+  task :default do
+    Rake::Task[:test_units].invoke      rescue got_error = true
+    Rake::Task[:test_functional].invoke rescue got_error = true
+    raise "Test failures" if got_error
+  end
+  </pre>
 
-:textile
   Because this relies on the internal implementation of rake (instance variable names and TASKS constant) it might well do very bad things to versions that aren't 0.6.2.
 
   *Update 17:20*
 
   Just realised that I don't need most of the code above.  All you actually need in default.rake is as follows.  Stoopid Chris.
 
-%pre.code.ruby
+  <pre class="code ruby">
   Rake::Task[:test_units].instance_variable_set(:@prerequisites, [])
   Rake::Task[:test_functional].instance_variable_set(:@prerequisites, [])
+  </pre>

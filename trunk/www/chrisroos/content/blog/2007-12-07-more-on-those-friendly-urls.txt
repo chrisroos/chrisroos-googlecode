@@ -2,67 +2,66 @@
 blog_post: true
 guid: b10a6984-0800-481d-884e-8bb2a798ac6f
 title: More on those friendly URLs
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-12-07 07:26:00 +00:00
 layout: blog
 ---
-So, "not being able to sleep":http://twitter.com/chrisroos/statuses/477052802 does have some benefits.  I managed to get started on my latest little "pet project":/blog/2007-11-27-short-human-friendly-permalinks.
+:textile
+  So, "not being able to sleep":http://twitter.com/chrisroos/statuses/477052802 does have some benefits.  I managed to get started on my latest little "pet project":/blog/2007-11-27-short-human-friendly-permalinks.
 
-I had been using "apache":http://httpd.apache.org/ and "mod_rewrite":http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html to redirect "chrisroos.co.uk/amazonwishlist" to my actual wishlist.  I had something like this in my apache config.
+  I had been using "apache":http://httpd.apache.org/ and "mod_rewrite":http://httpd.apache.org/docs/1.3/mod/mod_rewrite.html to redirect "chrisroos.co.uk/amazonwishlist" to my actual wishlist.  I had something like this in my apache config.
 
-<pre class="code">
-<VirtualHost *:80>
-  ServerAdmin webmaster@seagul.co.uk
-  ServerName chrisroos.co.uk
-  ServerAlias www.chrisroos.co.uk
-  RewriteEngine On
-  # <anything>.chrisroos.co.uk -> chrisroos.co.uk
-  RewriteCond %{HTTP_HOST} !^chrisroos.co.uk$ [NC]
-  RewriteRule ^/(.*)$ http://chrisroos.co.uk/$1 [R=301,L] 
-  # Amazon Wishlist
-  RewriteRule ^/amazonwishlist http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD [R]
-</VirtualHost>
-</pre>
+  <pre class="code">
+  <VirtualHost *:80>
+    ServerAdmin webmaster@seagul.co.uk
+    ServerName chrisroos.co.uk
+    ServerAlias www.chrisroos.co.uk
+    RewriteEngine On
+    # <anything>.chrisroos.co.uk -> chrisroos.co.uk
+    RewriteCond %{HTTP_HOST} !^chrisroos.co.uk$ [NC]
+    RewriteRule ^/(.*)$ http://chrisroos.co.uk/$1 [R=301,L] 
+    # Amazon Wishlist
+    RewriteRule ^/amazonwishlist http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD [R]
+  </VirtualHost>
+  </pre>
 
-I've replaced that with a much simpler apache config that proxies requests to my new "mongrel":http://mongrel.rubyforge.org/ redirection handler thing ("source":http://chrisroos.co.uk/code/mongrel-redirection - hey, even that URL passes through my redirection service).
+  I've replaced that with a much simpler apache config that proxies requests to my new "mongrel":http://mongrel.rubyforge.org/ redirection handler thing ("source":http://chrisroos.co.uk/code/mongrel-redirection - hey, even that URL passes through my redirection service).
 
-<pre class="code">
-<VirtualHost *:80>
-  ServerName www.chrisroos.co.uk
-  ServerAlias chrisroos.co.uk
-  RewriteEngine On
-  RewriteRule (.*) http://localhost:4010$1 [P]
-</VirtualHost>
-</pre>
+  <pre class="code">
+  <VirtualHost *:80>
+    ServerName www.chrisroos.co.uk
+    ServerAlias chrisroos.co.uk
+    RewriteEngine On
+    RewriteRule (.*) http://localhost:4010$1 [P]
+  </VirtualHost>
+  </pre>
 
-Feel free to go run this on your own server if you're so inclined.  At the moment you'll have to generate the redirection rules by hand.  In irb, you can do something like:
+  Feel free to go run this on your own server if you're so inclined.  At the moment you'll have to generate the redirection rules by hand.  In irb, you can do something like:
 
-<pre class="code ruby">
-# require 'yaml'
-# # For www.example.com
-# rules = { 'www.example.com' => 'example.com' }
-# File.open('PATH_TO_RULES_FOLDER' + '/www.example.com', 'w') { |file| file.puts(rules.to_yaml) }
-# # For example.com
-# rules = { '/google' => 'www.google.com' }
-# File.open('PATH_TO_RULES_FOLDER' + '/example.com', 'w') { |file| file.puts(rules.to_yaml) }
-</pre>
+  <pre class="code ruby">
+  # require 'yaml'
+  # # For www.example.com
+  # rules = { 'www.example.com' => 'example.com' }
+  # File.open('PATH_TO_RULES_FOLDER' + '/www.example.com', 'w') { |file| file.puts(rules.to_yaml) }
+  # # For example.com
+  # rules = { '/google' => 'www.google.com' }
+  # File.open('PATH_TO_RULES_FOLDER' + '/example.com', 'w') { |file| file.puts(rules.to_yaml) }
+  </pre>
 
-Start the redirection server.
+  Start the redirection server.
 
-<pre class="code shell">
-$ REDIRECTION_PORT=XXXX ruby mongrel-redir.rb &
-$# Leaving out REDIRECTION_PORT will mean that the server starts on port 4000
-$# Leaving out the final ampersand (&) will mean that server runs in the foreground
-</pre>
+  <pre class="code shell">
+  $ REDIRECTION_PORT=XXXX ruby mongrel-redir.rb &
+  $# Leaving out REDIRECTION_PORT will mean that the server starts on port 4000
+  $# Leaving out the final ampersand (&) will mean that server runs in the foreground
+  </pre>
 
-Visit www.example.com/google[1] and watch[2] as you're redirected first to example.com/google and then onto www.google.com.  Cool huh.
+  Visit www.example.com/google[1] and watch[2] as you're redirected first to example.com/google and then onto www.google.com.  Cool huh.
 
-Lots to do - notably a user interface for managing rules but it's not a bad start.
+  Lots to do - notably a user interface for managing rules but it's not a bad start.
 
-Oh, and this is specifically so that you can redirect from your own domain.  If you don't care about the domain then you could try "tinyurl":http://tinyurl.com or, for human friendly URLs, "decent url":http://decenturl.com.
+  Oh, and this is specifically so that you can redirect from your own domain.  If you don't care about the domain then you could try "tinyurl":http://tinyurl.com or, for human friendly URLs, "decent url":http://decenturl.com.
 
-[1] Assuming, of course, that www.example.com and example.com both point to the server that this redirection server is running on.
+  fn1. Assuming, of course, that www.example.com and example.com both point to the server that this redirection server is running on.
 
-[2] You probably won't be able to watch as it'll redirect too quickly in the browser - your best bet is to use "curl":http://curl.haxx.se/ or the "Live HTTP Headers":http://livehttpheaders.mozdev.org/ "firefox":http://www.mozilla.com/en-US/firefox/ extension so see what's actually going on.
+  fn2. You probably won't be able to watch as it'll redirect too quickly in the browser - your best bet is to use "curl":http://curl.haxx.se/ or the "Live HTTP Headers":http://livehttpheaders.mozdev.org/ "firefox":http://www.mozilla.com/en-US/firefox/ extension so see what's actually going on.

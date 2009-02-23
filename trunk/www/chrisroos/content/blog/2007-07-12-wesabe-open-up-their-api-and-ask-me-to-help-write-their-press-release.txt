@@ -2,78 +2,77 @@
 blog_post: true
 guid: be6d4d23-532f-46ba-9bf8-fe0dde4d28b5
 title: Wesabe open up their API and ask me to help write their press release...
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-07-12 23:49:00 +01:00
 layout: blog
 ---
-Ok, so that second bit isn't strictly true ;-)  I was, however, flattered to be contacted by Debbie from "Wesabe":http://www.wesabe.com to answer a few questions and maybe provide a quote for their press release.  They have just improved their service by "offering":http://blog.wesabe.com/index.php/2007/07/12/your-bank-has-a-rest-api-now-shhh-dont-tell-them/ an "API":http://www.wikipedia.org/wiki/API after all.
+:textile
+  Ok, so that second bit isn't strictly true ;-)  I was, however, flattered to be contacted by Debbie from "Wesabe":http://www.wesabe.com to answer a few questions and maybe provide a quote for their press release.  They have just improved their service by "offering":http://blog.wesabe.com/index.php/2007/07/12/your-bank-has-a-rest-api-now-shhh-dont-tell-them/ an "API":http://www.wikipedia.org/wiki/API after all.
 
-They asked, and I answered by rambling quite a bit.  In the preview of the press release I've seen, my ramblings have been summarized in three words :-)  Hey, I'm just honoured they asked.  I also asked if I could post their questions and my reply here, so, in all its glory, here it be.
+  They asked, and I answered by rambling quite a bit.  In the preview of the press release I've seen, my ramblings have been summarized in three words :-)  Hey, I'm just honoured they asked.  I also asked if I could post their questions and my reply here, so, in all its glory, here it be.
 
-*Debbie Pfeifer*
+  *Debbie Pfeifer*
 
-Hey, Chris.
+  Hey, Chris.
 
-I work with Marc Hedlund at Wesabe.  I know he gave you a heads up that we're working on releasing an API.  We're getting close - we plan to get it out either late this week or early next week - and I was writing to ask for a favor.
+  I work with Marc Hedlund at Wesabe.  I know he gave you a heads up that we're working on releasing an API.  We're getting close - we plan to get it out either late this week or early next week - and I was writing to ask for a favor.
 
-I'm putting together a press release announcing the API and we thought it would be cool to get a quote from a developer who has done some hacks.  If you'd rather not participate, no worries whatsoever.  If you'd be willing, following is a quick list of questions:
+  I'm putting together a press release announcing the API and we thought it would be cool to get a quote from a developer who has done some hacks.  If you'd rather not participate, no worries whatsoever.  If you'd be willing, following is a quick list of questions:
 
-*Chris Roos*
+  *Chris Roos*
 
-Cool, I appreciate being considered.
+  Cool, I appreciate being considered.
 
-*Debbie Pfeifer*
+  *Debbie Pfeifer*
 
-Why do you use Wesabe?
+  Why do you use Wesabe?
 
-*Chris Roos*
+  *Chris Roos*
 
-Because it's a great application :-)   No, seriously it's because tagging makes sense to me.  It makes sense that, if I buy an apple, I should be able to categorise it as an apple, fruit, lunch, food, groceries and others that I can't think of right now.  It's a bit looser than traditional finance applications which I find perfect.  I must admit that I don't currently use the social side of wesabe, helping others out with tips and advice, but that in no way detracts from the usefulness of the service to me.  I also love the fact that I'm able to interact with you guys, it means a lot to know that you're listening.
+  Because it's a great application :-)   No, seriously it's because tagging makes sense to me.  It makes sense that, if I buy an apple, I should be able to categorise it as an apple, fruit, lunch, food, groceries and others that I can't think of right now.  It's a bit looser than traditional finance applications which I find perfect.  I must admit that I don't currently use the social side of wesabe, helping others out with tips and advice, but that in no way detracts from the usefulness of the service to me.  I also love the fact that I'm able to interact with you guys, it means a lot to know that you're listening.
 
-*Debbie Pfeifer*
+  *Debbie Pfeifer*
 
-From your blog, I saw the projects you've already done (automating downloads).  Are there other things you'd like to do with Wesabe once you have the API?
+  From your blog, I saw the projects you've already done (automating downloads).  Are there other things you'd like to do with Wesabe once you have the API?
 
-*Chris Roos*
+  *Chris Roos*
 
-Hmm, let's see.  I'm a big fan of the command line.  I've already been thinking about tidying up some of the previous work I've done so that it effectively provides a command line interface to my banking websites.  I can see that a command line interface to Wesabe might be quite appealing to me too.  I'm just wondering about some potential mapping mashups too.  I try to tag my transactions with the place they were purchased. Assuming I tagged every purchase with at least a town or city it'd be cool to see the distribution geographically.  Actually, I have a feeling I could do this with what's available right now so maybe scrap that thought.
+  Hmm, let's see.  I'm a big fan of the command line.  I've already been thinking about tidying up some of the previous work I've done so that it effectively provides a command line interface to my banking websites.  I can see that a command line interface to Wesabe might be quite appealing to me too.  I'm just wondering about some potential mapping mashups too.  I try to tag my transactions with the place they were purchased. Assuming I tagged every purchase with at least a town or city it'd be cool to see the distribution geographically.  Actually, I have a feeling I could do this with what's available right now so maybe scrap that thought.
 
-*Debbie Pfeifer*
+  *Debbie Pfeifer*
 
-Anything else you'd like to add?
+  Anything else you'd like to add?
 
-*Chris Roos*
+  *Chris Roos*
 
-I originally had this bit under the question of why I like Wesabe, but felt it best here.  To be fair, it probably doesn't matter too much. Anyway, I like the fact that Wesabe is developing the software that my greedy, super-rich banks should be developing ;-)   I love the fact that you are, in a small way, changing the world.  Sticking two fingers up at traditional finance applications and banking web apps themselves, because, I assume, you know that you're doing it right.
+  I originally had this bit under the question of why I like Wesabe, but felt it best here.  To be fair, it probably doesn't matter too much. Anyway, I like the fact that Wesabe is developing the software that my greedy, super-rich banks should be developing ;-)   I love the fact that you are, in a small way, changing the world.  Sticking two fingers up at traditional finance applications and banking web apps themselves, because, I assume, you know that you're doing it right.
 
-One other idea I've been thinking about is uploading my mobile phone statements to Wesabe.  I currently have access to a pdf representation of my itemised bill.  I'm thinking that if I can parse the pdf, or even just copy the content into a text file that I can parse, I could upload and use all the features of Wesabe to analyse my bills.  I think this'd be great as I've personally never come across a phone company that allows ready, easy access to itemised call data in a useful format.  I guess this is because they don't want to make it to easy for us to work out that they're screwing us over in some way (cynical huh?).  Anyway, just a thought and I'm obviously not sure how that'd sit with you guys...?
+  One other idea I've been thinking about is uploading my mobile phone statements to Wesabe.  I currently have access to a pdf representation of my itemised bill.  I'm thinking that if I can parse the pdf, or even just copy the content into a text file that I can parse, I could upload and use all the features of Wesabe to analyse my bills.  I think this'd be great as I've personally never come across a phone company that allows ready, easy access to itemised call data in a useful format.  I guess this is because they don't want to make it to easy for us to work out that they're screwing us over in some way (cynical huh?).  Anyway, just a thought and I'm obviously not sure how that'd sit with you guys...?
 
-*Debbie Pfeifer*
+  *Debbie Pfeifer*
 
-Again, if you'd rather not do this, I totally understand.  If you're game, could we use your name?  Also, how would you describe yourself... a (your job) from (city)?
+  Again, if you'd rather not do this, I totally understand.  If you're game, could we use your name?  Also, how would you describe yourself... a (your job) from (city)?
 
-*Chris Roos*
+  *Chris Roos*
 
-Feel free to use my name.  Although not really one for titles, I guess I'd be classed as a software developer working in London, but from Ramsgate.
+  Feel free to use my name.  Although not really one for titles, I guess I'd be classed as a software developer working in London, but from Ramsgate.
 
-*Debbie Pfeifer*
+  *Debbie Pfeifer*
 
-Thanks, Chris.  Please let me know if you have any questions.
+  Thanks, Chris.  Please let me know if you have any questions.
 
-*Chris Roos*
+  *Chris Roos*
 
-One quick question.  Am I able to publish this email to my blog?  If not, I'll probably just published my answers to your questions, which I could paraphrase to offer context.
+  One quick question.  Am I able to publish this email to my blog?  If not, I'll probably just published my answers to your questions, which I could paraphrase to offer context.
 
-Cheers, and hope there's at least something useful in these ramblings.
+  Cheers, and hope there's at least something useful in these ramblings.
 
-Chris
+  Chris
 
-*Debbie Pfeifer*
+  *Debbie Pfeifer*
 
-Best,
-Debbie Pfeifer
-Wesabe
+  Best,
+  Debbie Pfeifer
+  Wesabe
 
-*Update 17:10 - made the email legible. Thanks Paul.*
+  *Update 17:10 - made the email legible. Thanks Paul.*

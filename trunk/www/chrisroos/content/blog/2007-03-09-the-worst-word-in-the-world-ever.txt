@@ -2,10 +2,9 @@
 blog_post: true
 guid: a268904a-6779-4135-8fd8-91f0987d6185
 title: The worst word in the world... ever
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-03-09 10:28:00 +00:00
 layout: blog
 ---
-I don't know why, but I really don't like the word 'texted'.  It hurts my ears when I hear it, and my eyes when I see it.
+:textile
+  I don't know why, but I really don't like the word 'texted'.  It hurts my ears when I hear it, and my eyes when I see it.

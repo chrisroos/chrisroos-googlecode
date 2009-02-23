@@ -17,13 +17,12 @@ layout: blog
 
   It appears to be available by default (appearing in the example database.yml file) as
 
-%pre.code.yaml
-  :code
-    sqlite3_in_memory_example:
-      adapter: sqlite3
-      database: ":memory:"
+  <pre class="code yaml">
+  sqlite3_in_memory_example:
+    adapter: sqlite3
+    database: ":memory:"
+  </pre>
 
-:textile
   Unfortunately, it doesn't appear to be quite as easy as just replacing sqlite3_in_memory_example with test...  The main problem being that in-memory databases have a tendency not to hang around (odd that).
 
   My solution (which has every chance of being bad or downright incorrect) is to force the creation of the database in memory at the beginning of the tests.
@@ -32,41 +31,38 @@ layout: blog
 
   If you wish to use the schema.rb approach then uncomment the following line in your environment.rb file.
 
-%pre.code.ruby
-  :code
-    config.active_record.schema_format = :ruby
+  <pre class="code ruby">
+  config.active_record.schema_format = :ruby
+  </pre>
 
-:textile
   Un-commenting this option ensures that the database schema is exported to schema.rb rather than adapter specific sql (ENV_database.sql).
 
   Add the following code right below the "# Include your application configuration below" line in environment.rb.
 
-%pre.code.ruby
-  :code
-    def in_memory_database?
-      ENV["RAILS_ENV"] == "test" and 
-      ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
-      Rails::Configuration.new.database_configuration['test']['database'] == ':memory:'
-    end
+  <pre class="code ruby">
+  def in_memory_database?
+    ENV["RAILS_ENV"] == "test" and 
+    ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
+    Rails::Configuration.new.database_configuration['test']['database'] == ':memory:'
+  end
 
-    if in_memory_database?
-      puts "creating sqlite in memory database"
-      load "\#{RAILS_ROOT}/db/schema.rb" # use db agnostic schema by default
-      # ActiveRecord::Migrator.up('db/migrate') # use migrations
-    end
+  if in_memory_database?
+    puts "creating sqlite in memory database"
+    load "\#{RAILS_ROOT}/db/schema.rb" # use db agnostic schema by default
+    # ActiveRecord::Migrator.up('db/migrate') # use migrations
+  end
+  </pre>
 
-:textile
   The reason for adding this code at this point and not just at the end of the environment file is that you may have further logic in environment that actually relies on the database being present.
 
   If you are running your tests using rake then it shouldn't matter whether you use the schema or migrations to create the database.  This is because the rake test tasks rely on the test database being set-up, which involves exporting the development db schema to file.
 
   If you wish to run tests individually (which, of course, you do) and you choose to use the schema to create your test scructure, you must make sure that it first exists.  The easiest way is to run the following rake task.
 
-%pre.code.shell
-  :code
-    $ rake db_schema_dump
-
-:textile
+  <pre class="code shell">
+  $ rake db_schema_dump
+  </pre>
+  
   That should be all there is to it; although I must confess that I've seen additional strange problems when running certain tests against the sqlite in-memory database.  In certain cases I think these may be fixture related.  Where, in "MySql":http://www.mysql.org, you seem to be able to omit required fields (not null) from a fixtures file, sqlite requires their presence.  In other cases; who knows...
 
   h2. Testing your sqlite installation

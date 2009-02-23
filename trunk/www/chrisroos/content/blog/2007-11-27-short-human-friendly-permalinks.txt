@@ -2,14 +2,13 @@
 blog_post: true
 guid: ffb5b1fc-23ce-4c9a-91aa-354b2a5ff75f
 title: Short, Human Friendly, Permalinks
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-11-27 09:31:00 +00:00
 layout: blog
 ---
-I was recently asked for my Amazon wishlist.  I wasn't able to use email and was expected to write down the URL.  I had a look and found that the URL ("http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD":http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD) wasn't paper or speech friendly.  Instead of attempting to convey this URL, I used the opportunity to create my own human friendly permalink for my wishlist ("chrisroos.co.uk/amazonwishlist":http://chrisroos.co.uk/amazonwishlist).  I actually started with a hyphenated variant (amazon-wishlist) but realised that the non-hyphenated version would be easier for someone to understand in conversation.
+:textile
+  I was recently asked for my Amazon wishlist.  I wasn't able to use email and was expected to write down the URL.  I had a look and found that the URL ("http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD":http://www.amazon.co.uk/gp/registry/IO9HVNCPEWGD) wasn't paper or speech friendly.  Instead of attempting to convey this URL, I used the opportunity to create my own human friendly permalink for my wishlist ("chrisroos.co.uk/amazonwishlist":http://chrisroos.co.uk/amazonwishlist).  I actually started with a hyphenated variant (amazon-wishlist) but realised that the non-hyphenated version would be easier for someone to understand in conversation.
 
-This seems to tie in with what "Dave Winer":http://www.scripting.com has been talking about "recently":http://www.scripting.com/stories/2007/11/20/solvingTheTinyurlCentraliz.html.
+  This seems to tie in with what "Dave Winer":http://www.scripting.com has been talking about "recently":http://www.scripting.com/stories/2007/11/20/solvingTheTinyurlCentraliz.html.
 
-I think this'd be quite a neat, and fairly easy, little webapp to build.  It would need a simple interface for managing permalinks and the ability to work with multiple domains.  Hmm, I'm tempted to give this a shot unless anyone knows of anything similar already out there?
+  I think this'd be quite a neat, and fairly easy, little webapp to build.  It would need a simple interface for managing permalinks and the ability to work with multiple domains.  Hmm, I'm tempted to give this a shot unless anyone knows of anything similar already out there?

@@ -2,14 +2,13 @@
 blog_post: true
 guid: eae04aef-89a8-4bc6-8e00-08116e516851
 title: A trip to the tip
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2008-05-19 09:42:29.739515 +01:00
 layout: blog
 ---
-A recent trip to the local tip got me thinking.  Shouldn't the council be pimping alternative services (freecycle and charity shops come to mind) at the tip?  I saw a couple of things that I struggle to believe couldn't have been of use to someone else: a golf bag and computer tower (even if it didn't contain a computer - I just sold a similar case on ebay, proving the demand).  In addition to these two items were the mountain (ok, not a mountain, but a fair number) of discarded fridge/freezers.  I wonder how many of these had actually broken and how many were no longer required for different reasons: maybe England beer fridges are out of fashion now?
+:textile
+  A recent trip to the local tip got me thinking.  Shouldn't the council be pimping alternative services (freecycle and charity shops come to mind) at the tip?  I saw a couple of things that I struggle to believe couldn't have been of use to someone else: a golf bag and computer tower (even if it didn't contain a computer - I just sold a similar case on ebay, proving the demand).  In addition to these two items were the mountain (ok, not a mountain, but a fair number) of discarded fridge/freezers.  I wonder how many of these had actually broken and how many were no longer required for different reasons: maybe England beer fridges are out of fashion now?
 
-So, at the very least, I think the council should just pop some signs up suggesting alternative fates for your unwanted stuff.  But, taking it further, I wonder whether the council couldn't operate a similar sized (to the current tip) site that served as a drop-off/pick-up point for freecycle?  I'd hope that, after a while, the cost of this second site would be offset by the savings made at the tip by the reduction in use (although that may be wishful thinking).
+  So, at the very least, I think the council should just pop some signs up suggesting alternative fates for your unwanted stuff.  But, taking it further, I wonder whether the council couldn't operate a similar sized (to the current tip) site that served as a drop-off/pick-up point for freecycle?  I'd hope that, after a while, the cost of this second site would be offset by the savings made at the tip by the reduction in use (although that may be wishful thinking).
 
-Maybe a hybrid alternative would be to train the current tip workers to filter out items of possible reuse from the actual rubbish, thereby allowing the existing site to be use for both purposes.
+  Maybe a hybrid alternative would be to train the current tip workers to filter out items of possible reuse from the actual rubbish, thereby allowing the existing site to be use for both purposes.

@@ -17,43 +17,41 @@ layout: blog
 
   The implementation I have at the moment comprises four methods, although we could quite easily do away with 'stub_instance_method' (it just adds some safety checking to 'define_instance_method').
 
-%pre.code.ruby
-  :code
-    class Object
+  <pre class="code ruby">
+  class Object
 
-      def metaclass
-        class << self; self; end
-      end
-
-      def define_instance_method(sym, &block)
-        metaclass.__send__(:define_method, sym, &block)
-      end
-
-      def stub_instance_method(sym, &block)
-        raise "\#{self} does not respond to <\#{sym}> and therefore cannot be stubbed" unless self.respond_to?(sym)
-        define_instance_method(sym, &block)
-      end
-
-      def __log__
-        @__log__ ||= []
-      end
-
+    def metaclass
+      class << self; self; end
     end
 
-:textile
+    def define_instance_method(sym, &block)
+      metaclass.__send__(:define_method, sym, &block)
+    end
+
+    def stub_instance_method(sym, &block)
+      raise "\#{self} does not respond to <\#{sym}> and therefore cannot be stubbed" unless self.respond_to?(sym)
+      define_instance_method(sym, &block)
+    end
+
+    def __log__
+      @__log__ ||= []
+    end
+
+  end
+  </pre>
+
   A (partially adapted and potentially non-working) example of this code being used in my tests is as follows.
 
-%pre.code.ruby
-  :code
-    def test_should_use_net_http_to_get_html_content
-      url = 'http://localhost/page.htm'
-      net_http = Object.new
-      net_http.define_instance_method(:get) { |path| __log__ << "get(\#{path})" }
-      http_client = HttpClient.new
-      http_client.get_html(url, net_http)
+  <pre class="code ruby">
+  def test_should_use_net_http_to_get_html_content
+    url = 'http://localhost/page.htm'
+    net_http = Object.new
+    net_http.define_instance_method(:get) { |path| __log__ << "get(\#{path})" }
+    http_client = HttpClient.new
+    http_client.get_html(url, net_http)
 
-      assert_equal ['get(/page.htm)'], net_http.__log__
-    end
+    assert_equal ['get(/page.htm)'], net_http.__log__
+  end
+  </pre>
 
-:textile
   I define a 'mock' Net::HTTP object (net_http) that records a message when it gets sent the 'get' message.  I can then check the log to ensure that the expected method was called; and be (hopefully) safe in the knowledge that when I supply an actual Net::HTTP object the code does what I expect.

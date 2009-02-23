@@ -13,45 +13,43 @@ layout: blog
 
   I've also started to create my test cases as anonymous classes derived from Test::Unit::TestCase.
 
-%pre.code.ruby
-  :code
-    Class.new(Test::Unit::TestCase) do
-      def test_
-        assert true
-      end
+  <pre class="code ruby">
+  Class.new(Test::Unit::TestCase) do
+    def test_
+      assert true
     end
+  end
+  </pre>
 
-:textile
   I find that this helps when trying to determine where a new test should be placed.  If the class has a name I'm tempted to scan that and make a decision as to whether a new test belongs in this case.  By keeping them anonymous, I have to inspect the test fixture in order to understand whether a new test belongs here.
 
   *Note* I may also add a comment right below Class.new to explicitly specify the fixture for this testcase.  This may seem to go against not naming the classes in the first place but I think part of the problem with class names is the lack of punctuation and therefore the difficulty in clearly expressing the test fixture.
 
   I've chosen a somewhat contrived example to demonstrate my new found test structure.
 
-%pre.code.ruby
-  :code
-    Class.new(Test::Unit::TestCase) do
-      # An empty stack
+  <pre class="code ruby">
+  Class.new(Test::Unit::TestCase) do
+    # An empty stack
 
-      def setup
-        @stack = Stack.new
-      end
-
-      def test_should_accept_an_item_when_sent_push
-        assert_nothing_raised { @stack.push(1) }
-      end
-
-      def test_should_complain_when_sent_top
-        assert_raise(StackUnderflowError) { @stack.top }
-      end
-
-      def test_should_complain_when_sent_pop
-        assert_raise(StackUnderflowError) { @stack.pop }
-      end
-
+    def setup
+      @stack = Stack.new
     end
 
-:textile
+    def test_should_accept_an_item_when_sent_push
+      assert_nothing_raised { @stack.push(1) }
+    end
+
+    def test_should_complain_when_sent_top
+      assert_raise(StackUnderflowError) { @stack.top }
+    end
+
+    def test_should_complain_when_sent_pop
+      assert_raise(StackUnderflowError) { @stack.pop }
+    end
+
+  end
+  </pre>
+
   The fixture for this test is an empty stack.  The individual tests prod and query the empty stack to ensure that it behaves as expected.  Although the example above is incredibly simple, I have consistently found that my individual test methods become much smaller.
 
   Notice that the names of the tests all start 'test_should'.  Not only does this help us think about the responsibilities of the object; but it enables us to maintain living system specifications based on the tests.  I believe this idea first came from "testdox for Java":http://agiledox.sourceforge.net/index.html but was introduced to me by "Ben":http://www.reevoo.com/blogs/bengriffiths/ at "work":http://www.reevoo.com.  In fact Ben has written a cool "Agiledox server":http://www.reevoo.com/blogs/bengriffiths/2006/04/05/rails-agiledox-browser/ that displays the system specifications for your rails project.

@@ -9,11 +9,10 @@ layout: blog
 :textile
   Summary..
 
-%pre.code
-  :code
-    $ ruby [programfile] -n [testmethod]
+  <pre class="code shell">
+  $ ruby [programfile] -n [testmethod]
+  </pre>
 
-:textile
   "Source Page":http://wiki.rubyonrails.com/rails/pages/HowtoRunOneTest
 
   "Explanation":http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/163358 from ruby mailing list

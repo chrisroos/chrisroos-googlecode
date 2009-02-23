@@ -2,95 +2,94 @@
 blog_post: true
 guid: 874b338e-23aa-4494-94da-5464ccce7cca
 title: A microformat for my contact details (instant messaging, twitter et al)
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-10-03 23:52:00 +01:00
 layout: blog
 ---
-I haven't done any research on this so it may have already been proposed over at the "microformats":http://microformats.org/ site.
+:textile
+  I haven't done any research on this so it may have already been proposed over at the "microformats":http://microformats.org/ site.
 
-h2. The problem
+  h2. The problem
 
-Sometimes I want to communicate with the author of a webpage.  I don't want to have to hunt around to find contact details and I probably don't want to fill in a form.
+  Sometimes I want to communicate with the author of a webpage.  I don't want to have to hunt around to find contact details and I probably don't want to fill in a form.
 
-h2. A proposal to fix part of the problem
+  h2. A proposal to fix part of the problem
 
-If the author's contact details were semantically marked up, either on the page I was looking at or linked to elsewhere on the web, then I could use a simple parser to extract those details and select the best communication tool to use manually.
+  If the author's contact details were semantically marked up, either on the page I was looking at or linked to elsewhere on the web, then I could use a simple parser to extract those details and select the best communication tool to use manually.
 
-Maybe some code can help explain what I mean.
+  Maybe some code can help explain what I mean.
 
-h3. A semantically marked up contact page.
+  h3. A semantically marked up contact page.
 
-<pre class="code html">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+  <pre class="code html">
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 
-<html>
+  <html>
 
-  <head>
-    <title>Contact Details</title>
-  </head>
+    <head>
+      <title>Contact Details</title>
+    </head>
 
-  <body>
-    <dl class="contactDetails">
-      <dt>Skype</dt>
-      <dd class="skype identifier">skype-username</dd>
-      <dt>MSN</dt>
-      <dd class="msn identifier">msn-username</dd>
-    </dl>
-  </body>
+    <body>
+      <dl class="contactDetails">
+        <dt>Skype</dt>
+        <dd class="skype identifier">skype-username</dd>
+        <dt>MSN</dt>
+        <dd class="msn identifier">msn-username</dd>
+      </dl>
+    </body>
 
-</html>
-</pre>
+  </html>
+  </pre>
 
-h3. A parser in "ruby":http://www.ruby-lang.org/
+  h3. A parser in "ruby":http://www.ruby-lang.org/
 
-<pre class="code ruby">
-require 'rubygems'
-require 'hpricot'
+  <pre class="code ruby">
+  require 'rubygems'
+  require 'hpricot'
 
-class ContactParser
-  def self.from_html(html)
-    doc = Hpricot(html)
-    new(doc)
-  end
-  def initialize(hpricot_doc)
-    @hpricot_doc = hpricot_doc
-  end
-  def service_identifiers
-    (@hpricot_doc/'.contactDetails .identifier').inject({}) do |hash, e|
-       service = (e.classes - ['identifier']).first
-       identifier = e.inner_text
-       hash[service] = identifier
-       hash
+  class ContactParser
+    def self.from_html(html)
+      doc = Hpricot(html)
+      new(doc)
+    end
+    def initialize(hpricot_doc)
+      @hpricot_doc = hpricot_doc
+    end
+    def service_identifiers
+      (@hpricot_doc/'.contactDetails .identifier').inject({}) do |hash, e|
+         service = (e.classes - ['identifier']).first
+         identifier = e.inner_text
+         hash[service] = identifier
+         hash
+      end
+    end
+    def identifier(service)
+      (@hpricot_doc/".contactDetails .\#{service}.identifier").inner_text
     end
   end
-  def identifier(service)
-    (@hpricot_doc/".contactDetails .#{service}.identifier").inner_text
-  end
-end
 
-contact_details_file = File.dirname(__FILE__) + '/contact-details.html'
-html = File.open(contact_details_file) { |f| f.read }
-parser = ContactParser.from_html(html)
+  contact_details_file = File.dirname(__FILE__) + '/contact-details.html'
+  html = File.open(contact_details_file) { |f| f.read }
+  parser = ContactParser.from_html(html)
 
-p parser.service_identifiers
-# => {"skype"=>"skype-username", "msn"=>"msn-username"}
-p parser.identifier('skype')
-# => 'skype-username'
-p parser.identifier('blurgh')
-# => ''
-</pre>
+  p parser.service_identifiers
+  # => {"skype"=>"skype-username", "msn"=>"msn-username"}
+  p parser.identifier('skype')
+  # => 'skype-username'
+  p parser.identifier('blurgh')
+  # => ''
+  </pre>
 
-h2. Further considerations
+  h2. Further considerations
 
-* If existing communication tools[1] were to integrate this parser then it would be easy to add a contact by giving the url of, for example, their blog.
-* Author's should be able to specify the order of the tools that they wish to use for communication.  We could just assume that the list of contact details is in the author's preferred order.
-* This would be open to spam.  Err, not too sure what to do about this.
-* Ultimately, I'd like to hit a 'communicate' button in "firefox":http://www.mozilla.com/en-US/firefox/ that automatically decides which communication protocols we have in common and allows me to get my message through.
+  * If existing communication tools[1] were to integrate this parser then it would be easy to add a contact by giving the url of, for example, their blog.
+  * Author's should be able to specify the order of the tools that they wish to use for communication.  We could just assume that the list of contact details is in the author's preferred order.
+  * This would be open to spam.  Err, not too sure what to do about this.
+  * Ultimately, I'd like to hit a 'communicate' button in "firefox":http://www.mozilla.com/en-US/firefox/ that automatically decides which communication protocols we have in common and allows me to get my message through.
 
-Anyone have any thoughts?
+  Anyone have any thoughts?
 
-Code is all over on "google code":http://chrisroos.googlecode.com/svn/trunk/contact-microformat/.
+  Code is all over on "google code":http://chrisroos.googlecode.com/svn/trunk/contact-microformat/.
 
-fn1. I'm thinking of multi protocol tools, like "adium":http://www.adiumx.com/, in particular.
+  fn1. I'm thinking of multi protocol tools, like "adium":http://www.adiumx.com/, in particular.

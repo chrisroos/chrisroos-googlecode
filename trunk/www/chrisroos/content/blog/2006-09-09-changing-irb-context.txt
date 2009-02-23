@@ -9,22 +9,21 @@ layout: blog
 :textile
   I picked up on this yesterday and now cannot find the article (it was something to do with manipulating a rails app from the console).  Sorry.
 
-%pre.code.ruby
-  :code
-    irb(main):001:0> class Foo
-    irb(main):002:1> private
-    irb(main):003:1> def bar
-    irb(main):004:2> 'bar'
-    irb(main):005:2> end
-    irb(main):006:1> end
-    => nil
-    irb(main):007:0> Foo.new.bar
-    NoMethodError: private method `bar' called for #<Foo:0x358304>
-            from (irb):7
-            from :0
-    irb(main):009:0> irb Foo.new # IMPORTANT BIT
-    irb#1(#<Foo:0x31c5fc>):001:0> bar
-    => "bar"
+  <pre class="code ruby">
+  irb(main):001:0> class Foo
+  irb(main):002:1> private
+  irb(main):003:1> def bar
+  irb(main):004:2> 'bar'
+  irb(main):005:2> end
+  irb(main):006:1> end
+  => nil
+  irb(main):007:0> Foo.new.bar
+  NoMethodError: private method `bar' called for #<Foo:0x358304>
+          from (irb):7
+          from :0
+  irb(main):009:0> irb Foo.new # IMPORTANT BIT
+  irb#1(#<Foo:0x31c5fc>):001:0> bar
+  => "bar"
+  </pre>
 
-:textile
   Although cool, I can't think of any situations where this would have been useful.  Ho hum.

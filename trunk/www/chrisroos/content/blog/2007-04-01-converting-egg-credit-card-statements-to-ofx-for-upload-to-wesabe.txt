@@ -2,20 +2,19 @@
 blog_post: true
 guid: e2764d81-1c82-47e7-8a66-51dd711a680f
 title: Converting Egg Credit Card Statements to Ofx (for upload to wesabe)
-filter: 
-- erb
-- textile
+filter: haml
 created_at: 2007-04-01 13:48:00 +01:00
 layout: blog
 ---
-I've cobbled together some pretty nasty code to convert an "Egg":http://www.egg.com Credit Card statement to "Ofx":http://www.ofx.net.
+:textile
+  I've cobbled together some pretty nasty code to convert an "Egg":http://www.egg.com Credit Card statement to "Ofx":http://www.ofx.net.
 
-Grab the "source":http://chrisroos.googlecode.com/svn/trunk/egg-ofx/ from "google code":http://code.google.com.
+  Grab the "source":http://chrisroos.googlecode.com/svn/trunk/egg-ofx/ from "google code":http://code.google.com.
 
-<pre class="code shell">
-svn checkout http://chrisroos.googlecode.com/svn/trunk/egg-ofx
-</pre>
+  <pre class="code shell">
+  $ svn checkout http://chrisroos.googlecode.com/svn/trunk/egg-ofx
+  </pre>
 
-As well as requiring "hpricot":http://code.whytheluckystiff.net/hpricot/, you will need to edit the StatementsFolder and OfxOutputFolder variables in egg.rb.  These need to point to a directory containing html statements, and an empty output directory respectively.
+  As well as requiring "hpricot":http://code.whytheluckystiff.net/hpricot/, you will need to edit the StatementsFolder and OfxOutputFolder variables in egg.rb.  These need to point to a directory containing html statements, and an empty output directory respectively.
 
-I've used the script to upload my last 12 statements to "wesabe":http://www.wesabe.com and everything seems to work Ok. If you have any questions, just post a comment here.
+  I've used the script to upload my last 12 statements to "wesabe":http://www.wesabe.com and everything seems to work Ok. If you have any questions, just post a comment here.

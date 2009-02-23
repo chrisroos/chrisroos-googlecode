@@ -13,7 +13,7 @@ layout: blog
 
   "James":http://blog.floehopper.org was looking into it...
 
-%pre
+  <pre>
   James: it seems like the ones defined by Class.new(Test::Unit::TestCase) aren't always being found in the ObjectSpace
   James: but I can't quite work out why
   James: i'm tempted to name them all as defined classes
@@ -39,8 +39,8 @@ layout: blog
   James: aha
   Chris: no more anonymous test classes for christopher
   James: that explains - why they were in the ObjectSpace one minute and not the next
+  </pre>
 
-:textile
   Note that p_l_i_test mentioned above is just a shorthand for one of our tests that was failing individually but 'running' (or as we now know, not running) from rake.
 
   So, although you get a little added excitement to your testing ("Will this test class run before it gets garbage collected???"), it's probably a lot safer to not use anonymous classes when testing.

@@ -5,20 +5,19 @@ title:      A Utility to Manage Apache Virtual Hosts on a Mac (Like the Passenge
 created_at: 2008-12-15 20:21:47.221105 +00:00
 guid:       aa8632ff-c37c-46db-9482-502915ac5259
 layout:     blog
-filter:
-  - erb
-  - textile
+filter:     haml
 ---
-I really like the "Passenger preference pane":http://www.fngtps.com/2008/06/putting-the-pane-back-into-deployment, for both its functionality and simplicity.  I wondered whether there was anything similar that would allow me to create simple "virtual hosts":http://en.wikipedia.org/wiki/Virtual_hosting in the same way (i.e. create the "apache":http://httpd.apache.org/ config and register the hostname with "directory services":http://developer.apple.com/opensource/dirservices/).  I saw mention of something called headdress (that supposedly makes apache config easier) but the site's been down for the last couple of days and I believe it's pay-for software anyway.  I decided to steal the concepts (and the code for the "dscl":http://developer.apple.com/documentation/Darwin/Reference/ManPages/man1/dscl.1.html stuff) from the "passenger pref pane code":http://github.com/alloy/passengerpane/tree/master and create a little shell script that allows me to manage virtual hosts on my Mac.
+:textile
+  I really like the "Passenger preference pane":http://www.fngtps.com/2008/06/putting-the-pane-back-into-deployment, for both its functionality and simplicity.  I wondered whether there was anything similar that would allow me to create simple "virtual hosts":http://en.wikipedia.org/wiki/Virtual_hosting in the same way (i.e. create the "apache":http://httpd.apache.org/ config and register the hostname with "directory services":http://developer.apple.com/opensource/dirservices/).  I saw mention of something called headdress (that supposedly makes apache config easier) but the site's been down for the last couple of days and I believe it's pay-for software anyway.  I decided to steal the concepts (and the code for the "dscl":http://developer.apple.com/documentation/Darwin/Reference/ManPages/man1/dscl.1.html stuff) from the "passenger pref pane code":http://github.com/alloy/passengerpane/tree/master and create a little shell script that allows me to manage virtual hosts on my Mac.
 
-You can get it by checking out the "source":http://chrisroos.googlecode.com/svn/trunk/apacherb/:
+  You can get it by checking out the "source":http://chrisroos.googlecode.com/svn/trunk/apacherb/:
 
-<pre class="code">
-svn co http://chrisroos.googlecode.com/svn/trunk/apacherb
-</pre>
+  <pre class="code">
+  svn co http://chrisroos.googlecode.com/svn/trunk/apacherb
+  </pre>
 
-It works in a very similar way to the Passenger preference pane: you give it a domain and directory (<code>sudo apacherb create chrisroos.local /path/to/chrisroos.local</code>) and it'll create the necessary config (in /etc/apache2/apacherb_vhosts/) and register the domain with directory services.  You can also delete (<code>sudo apacherb delete chrisroos.local</code>) and list (<code>apacherb list</code>) these vhosts.  Just execute the script to see the help message (or look at the code).
+  It works in a very similar way to the Passenger preference pane: you give it a domain and directory (<code>sudo apacherb create chrisroos.local /path/to/chrisroos.local</code>) and it'll create the necessary config (in /etc/apache2/apacherb_vhosts/) and register the domain with directory services.  You can also delete (<code>sudo apacherb delete chrisroos.local</code>) and list (<code>apacherb list</code>) these vhosts.  Just execute the script to see the help message (or look at the code).
 
-I use this script to generate apache virtual hosts, instead of using the built in "webrick":http://www.webrick.org/ server, for my "webby":http://webby.rubyforge.org/ sites so that I can see them exactly as they'll appear when they're deployed.
+  I use this script to generate apache virtual hosts, instead of using the built in "webrick":http://www.webrick.org/ server, for my "webby":http://webby.rubyforge.org/ sites so that I can see them exactly as they'll appear when they're deployed.
 
-I'd be interested to know if this is of use to anyone else and if there's anything else you'd like to see it do.
+  I'd be interested to know if this is of use to anyone else and if there's anything else you'd like to see it do.

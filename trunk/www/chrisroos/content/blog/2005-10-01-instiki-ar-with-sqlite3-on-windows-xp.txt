@@ -19,11 +19,10 @@ layout: blog
 
   First off, I installed the sqlite3 gem (sqlite3-ruby 1.1.0 (mswin32)).
 
-%pre.code
-  :code
-    $ gem install sqlite3
+  <pre class="code">
+  $ gem install sqlite3
+  </pre>
 
-:textile
   This was followed by downloading the "sqlite dll":http://www.sqlite.org/sqlitedll-3_2_7.zip and placing it in a directory in my path environment variable.  This was all that was actually required.
 
   I used script/create_db to create the database files and tables as with the mysql implementation and everything just worked.
@@ -36,32 +35,29 @@ layout: blog
 
   In the instiki-ar version I then ran the following (from Alexey's original email) to output a sql script that will import all of my wiki content into the database.
 
-%pre.code
-  :code
-    $ ruby script\import_storage -i d:\instiki -t d:\instiki-ar\storage\2500 -o i.sql -d sqlite
+  <pre class="code">
+  $ ruby script\import_storage -i d:\instiki -t d:\instiki-ar\storage\2500 -o i.sql -d sqlite
+  </pre>
 
-:textile
   I then downloaded the "sqlite3":http://sqlite.org/sqlite-3_2_7.zip utility to administer sqlite databases.  I placed this in a directory included in my path environment variable.
 
   Start sqlite3 with the location of the production database as the argument.
 
-%pre.code
-  :code
-    $ sqlite3 db\prod.db
+  <pre class="code">
+  $ sqlite3 db\prod.db
+  </pre>
 
-:textile
   Execute the i.sql script to import all of the data to sqlite.
 
-%pre.code
-  :code
-    sqlite> .read i.sql
-    sqlite> .quit
+  <pre class="code">
+  sqlite> .read i.sql
+  sqlite> .quit
+  </pre>
 
-:textile
   That's it.  My original wiki content is now in the AR version and everything seems to work great.
 
   *Note* To get instiki-ar from subversion.
 
-%pre.code
-  :code
-    $ svn export --revision 397 http://svn.instiki.org/instiki/branches/instiki-ar/
+  <pre class="code">
+  $ svn export --revision 397 http://svn.instiki.org/instiki/branches/instiki-ar/
+  </pre>

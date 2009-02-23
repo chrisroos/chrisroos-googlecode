@@ -11,6 +11,6 @@ layout: blog
 
   View the source "on-line":http://chrisroos.googlecode.com/svn/trunk/micro-id-verifier/ or checkout from anonymous subversion.
 
-%pre.code
-  :code
-    $ svn co http://chrisroos.googlecode.com/svn/trunk/micro-id-verifier/
+  <pre class="code shell">
+  $ svn co http://chrisroos.googlecode.com/svn/trunk/micro-id-verifier/
+  </pre>
