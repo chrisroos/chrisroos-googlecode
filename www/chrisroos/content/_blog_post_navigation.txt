@@ -1,27 +1,21 @@
 ---
-filter: erb
+filter: haml
 ---
-<% if @page.blog_post %>
-  <div class="navigation">
-    <% posts = blog_posts(:all, :reverse => false) %>
-    <% post_index = posts.index(@page) %>
+- if @page.blog_post
+  .navigation
+    - posts = blog_posts(:all, :reverse => false)
+    - post_index = posts.index(@page)
 
-    <% if post_index > 0 && previous_post = posts[post_index - 1] %>
-      <span class="previousPost">
+    - if post_index > 0 && previous_post = posts[post_index - 1]
+      %span.previousPost
         &laquo; (older)
-        <a rel="prev" class="previousPost" href="<%= friendly_url(previous_post) %>" title="<%= h(previous_post.title) %>">
-          <% previous_post_title = previous_post.title.length > 55 ? previous_post.title[0..55] + '...' : previous_post.title %>
-          <%= h(previous_post_title) %>
-        </a> 
-      </span>
-    <% end %>
-    <% if next_post = posts[post_index + 1] %>
-      <span class="nextPost">
-        <a rel="next" class="nextPost" href="<%= friendly_url(next_post) %>" title="<%= h(next_post.title) %>">
-          <% next_post_title = next_post.title.length > 55 ? next_post.title[0..55] + '...' : next_post.title %>
-          <%= h(next_post_title) %>
-        </a> (newer) &raquo;
-      </span>
-    <% end %>
-  </div>
-<% end %>
+        %a.previousPost{:rel => "prev", :href => "#{friendly_url(previous_post)}", :title => "#{h(previous_post.title)}"}
+          - previous_post_title = previous_post.title.length > 55 ? previous_post.title[0..55] + '...' : previous_post.title
+          = h(previous_post_title)
+          
+    - if next_post = posts[post_index + 1]
+      %span.nextPost
+        %a.nextPost{:rel => "next", :href => "#{friendly_url(next_post)}", :title => "#{h(next_post.title)}"}
+          - next_post_title = next_post.title.length > 55 ? next_post.title[0..55] + '...' : next_post.title
+          = h(next_post_title)
+        (newer) &raquo;

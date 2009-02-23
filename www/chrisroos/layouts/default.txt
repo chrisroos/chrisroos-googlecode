@@ -1,33 +1,24 @@
 ---
 extension: html
-filter:    erb
+filter:    haml
 ---
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en"}
 
-  <head>
-    <%= render(:partial => "/html-header") %>
-  </head>
+  %head
+    = render(:partial => "/html-header")
 
-  <body class="contents">
-    <div id="doc3" class="yui-t7">
-      <div id="hd" class="header">
-        <div id="headerAndSearchContainer">
-          <%= render(:partial => "/header") %>
-          <%= render(:partial => "/google-search") %>
-        </div>
-        <%= render(:partial => "/navigation") %>
-      </div>
-      <div id="bd">
-        <div class="yui-g">
-          <%= @content %>
-        </div>
-      </div>
-      <div id="ft">
-        <%= render(:partial => "/footer") %>
-      </div>
-    </div>
-    <%= render(:partial => "/google-analytics") %>
-  </body>
-</html>
+  %body.contents
+    #doc3.yui-t7
+      #hd.header
+        #headerAndSearchContainer
+          = render(:partial => "/header")
+          = render(:partial => "/google-search")
+        = render(:partial => "/navigation")
+      #bd
+        .yui-g
+          = @content
+      #ft
+        = render(:partial => "/footer")
+    = render(:partial => "/google-analytics")
