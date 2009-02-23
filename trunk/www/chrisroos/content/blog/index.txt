@@ -7,12 +7,4 @@ filter:      haml
 
 %p A nice list of all my previous blog posts with, where I've been bothered, a little summary to entice you in.
 
-%ol.posts
-  - blog_posts.each do |post|
-    %li.post
-      %h2.title
-        = short_date(post)
-        \-
-        %a{ :href => "#{h(friendly_url(post))}" }
-        = h(post.title)
-      %p= h(post.summary)
+= render(:partial => "/blog_post_list")

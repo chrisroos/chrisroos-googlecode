@@ -1,0 +1,12 @@
+---
+filter: haml
+---
+%ol.posts
+  - blog_posts.each do |post|
+    %li.post
+      %h2.title
+        = short_date(post)
+        \-
+        %a{ :href => "#{h(friendly_url(post))}" }
+          = h(post.title)
+      %p= h(post.summary)

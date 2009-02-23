@@ -16,12 +16,4 @@ filter:      haml
 
   h2. Recent blog posts
 
-%ol.posts
-  - blog_posts(3).each do |post|
-    %li.post
-      %h2.title
-        = short_date(post)
-        \-
-        %a{ :href => "#{h(friendly_url(post))}" }
-        = h(post.title)
-      %p= h(post.summary)
+= render(:partial => "/blog_post_list", :locals => {:blog_posts => blog_posts(3)})
