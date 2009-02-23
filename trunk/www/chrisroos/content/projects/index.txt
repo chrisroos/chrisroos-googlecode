@@ -1,12 +1,11 @@
 ---
 title:       Projects
 created_at:  2008-08-02 14:06:40.000000 -06:00
-filter:
-  - erb
-  - textile
+filter:      haml
 ---
-h1. <%= @page.title %>
+:textile
+  h1. #{h(@page.title)}
 
-h2(project). "PwdHash Dashboard Widget":/projects/pwdhash-dashboard-widget
+  h2(project). "PwdHash Dashboard Widget":/projects/pwdhash-dashboard-widget
 
-This little dashboard widget replicates the functionality found at "pwdhash.com":http://pwdhash.com.  I find it useful for entering passwords into the desktop counterparts of various websites.  There's a little more info on my "post about the widget":/blog/2008-05-19-pwdhash-widget.
+  This little dashboard widget replicates the functionality found at "pwdhash.com":http://pwdhash.com.  I find it useful for entering passwords into the desktop counterparts of various websites.  There's a little more info on my "post about the widget":/blog/2008-05-19-pwdhash-widget.
