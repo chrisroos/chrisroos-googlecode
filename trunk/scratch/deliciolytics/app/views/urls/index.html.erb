@@ -1,0 +1,22 @@
+<table class="urls">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Url hash</th>
+      <th>Total posts</th>
+      <th>Top tags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @urls.each do |url| %>
+      <tr>
+        <td class="title"><%= h(url.title) %></td>
+        <td class="url"><%= h(url.url) %></td>
+        <td class="urlHash"><%= h(url.url_hash) %></td>
+        <td class="totalPosts"><%= h(url.total_posts) %></td>
+        <td class="topTags"><%= h(url.top_tags) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
