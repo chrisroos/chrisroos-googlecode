@@ -11,6 +11,6 @@
       %tr
         %td.title= h(url.title)
         %td.url= h(url.url)
-        %td.urlHash= h(url.url_hash)
+        %td.urlHash= link_to_delicious_url_history(url)
         %td.totalPosts= h(url.total_posts)
         %td.topTags= tags_list(url.top_tags)
