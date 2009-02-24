@@ -1,0 +1,16 @@
+%table.urls
+  %thead
+    %tr
+      %th Title
+      %th Url
+      %th Url hash
+      %th Total posts
+      %th Top tags
+  %tbody
+    - @urls.each do |url|
+      %tr
+        %td.title= h(url.title)
+        %td.url= h(url.url)
+        %td.urlHash= h(url.url_hash)
+        %td.totalPosts= h(url.total_posts)
+        %td.topTags= h(url.top_tags)
