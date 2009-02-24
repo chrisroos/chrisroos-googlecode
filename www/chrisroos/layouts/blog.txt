@@ -39,4 +39,5 @@ filter:    haml
           = render(:partial => "/blog_post_disqus_js")
       #ft
         = render(:partial => "/footer")
+    %script{ :src => "/javascripts/google-custom-search.js", :type => "text/javascript", :charset => "utf-8" }
     = render(:partial => "/google-analytics")
