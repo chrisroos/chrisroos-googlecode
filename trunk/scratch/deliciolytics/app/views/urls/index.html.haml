@@ -13,4 +13,4 @@
         %td.url= link_to_source_url(url)
         %td.urlHash= link_to_delicious_url_history(url)
         %td.totalPosts= h(url.total_posts)
-        %td.topTags= tags_list(url.top_tags)
+        %td.topTags= linked_tag_list(url.top_tags)
