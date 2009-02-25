@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'urls'
+  
+  map.route 'domains/:domain_hash', :controller => 'urls'
+  map.urls 'domains/:domain_hash/urls', :controller => 'urls'
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

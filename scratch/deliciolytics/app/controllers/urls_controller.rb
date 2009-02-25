@@ -1,7 +1,8 @@
 class UrlsController < ApplicationController
   
   def index
-    @urls = Url.find(:all, :order => 'total_posts DESC')
+    @domain = Domain.find_by_domain_hash(params[:domain_hash])
+    @urls = @domain.urls.all(:order => 'total_posts DESC')
   end
   
 end
