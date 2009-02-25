@@ -1,8 +1,12 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def link_to_source_url(url)
+    link_to h(url.url), h(url.url)
+  end
+  
   def link_to_delicious_url_history(url)
-    link_to h(url.url_hash), "http://delicious.com/url/#{url.url_hash}"
+    link_to h(url.url_hash), h("http://delicious.com/url/#{url.url_hash}")
   end
   
   def tags_list(tags_and_counts)
