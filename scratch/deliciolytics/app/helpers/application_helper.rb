@@ -9,9 +9,11 @@ module ApplicationHelper
     link_to h(url.url_hash), h("http://delicious.com/url/#{url.url_hash}")
   end
   
-  def tags_list(tags_and_counts)
+  def linked_tag_list(tags_and_counts)
     ordered_tags = tags_and_counts.sort_by { |tag, count| count }.reverse.collect { |tag, count| tag }
-    h(ordered_tags.join(', '))
+    ordered_tags.collect do |tag|
+      link_to h(tag), h("http://delicious.com/tag/#{tag}")
+    end.join(', ')
   end
   
 end
