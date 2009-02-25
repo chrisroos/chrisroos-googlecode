@@ -1,3 +1,5 @@
+%h1== Urls for #{h(@domain.domain)}
+
 %table.urls
   %thead
     %tr
@@ -12,5 +14,5 @@
         %td.title= h(url.title)
         %td.url= link_to_source_url(url)
         %td.urlHash= link_to_delicious_url_history(url)
-        %td.totalPosts= h(url.total_posts)
+        %td.totalPosts= h(url.total_posts || 0)
         %td.topTags= linked_tag_list(url.top_tags)
