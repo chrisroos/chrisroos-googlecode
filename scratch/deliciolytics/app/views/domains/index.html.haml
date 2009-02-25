@@ -1,0 +1,5 @@
+%h1 All domains
+
+%ul.domains
+  - @domains.each do |domain|
+    %li.domain= link_to h(domain.domain), urls_path(domain)
