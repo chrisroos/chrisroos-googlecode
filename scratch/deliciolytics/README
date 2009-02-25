@@ -12,3 +12,5 @@ Things I'm currently thinking:
 ** I don't think I need to worry about security as all this stuff is publicly available anyway.
 * Could/should I store the data in Simple DB (or equivalent)?
 * Delicious might get annoyed if I were to poll them too frequently.
+
+There are scripts in the bin folder to download url history for a set of urls (download-bookmarked-urls.rb) and then to persist those urls in the database (create-bookmarked-urls.rb).
