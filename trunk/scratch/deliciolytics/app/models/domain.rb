@@ -10,4 +10,8 @@ class Domain < ActiveRecord::Base
     self.domain_hash = MD5.md5(domain).to_s
   end
   
+  def to_param
+    domain_hash
+  end
+  
 end
