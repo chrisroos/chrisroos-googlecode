@@ -4,9 +4,14 @@ require 'net/http'
 domain_url = ARGV.shift
 raise "You must specify the url of the domain that you wish to download bookmarks for" unless domain_url
 
-sitemap_url = "#{domain_url}/sitemap.xml"
+sitemap_file = ARGV.shift
 
-sitemap = Net::HTTP.get(URI.parse(sitemap_url))
+if sitemap_file
+  sitemap = File.read(sitemap_file)
+else
+  sitemap_url = "#{domain_url}/sitemap.xml"
+  sitemap = Net::HTTP.get(URI.parse(sitemap_url))
+end
 urls = sitemap.scan(/<loc>(.*?)<\/loc>/).flatten
 
 domain = Domain.find_or_create_by_domain(domain_url)
