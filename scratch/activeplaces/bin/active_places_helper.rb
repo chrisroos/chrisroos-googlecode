@@ -6,7 +6,7 @@ module ActivePlacesHelper
   def create_file_with_metadata(filename, data)
     datetime = Time.now.strftime("%Y%d%m%H%M%S")
     File.open(filename, 'w') { |f| f.puts(data) }
-    File.open("#{filename}.#{datetime}", 'w')
+    File.open("#{filename}.updated_at", 'w') { |f| f.puts(datetime) }
   end
   
 end
