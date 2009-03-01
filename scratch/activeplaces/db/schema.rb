@@ -9,10 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090301175320) do
+ActiveRecord::Schema.define(:version => 20090301182816) do
 
   create_table "facility_types", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites", :force => true do |t|
+    t.string   "name"
+    t.string   "telephone"
+    t.string   "address"
+    t.integer  "ward_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
