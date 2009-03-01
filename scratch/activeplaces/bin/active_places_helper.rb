@@ -1,5 +1,6 @@
 module ActivePlacesHelper
   
+  ACTIVE_PLACES_COOKIE_FILE = File.join(Rails.root, 'tmp', 'activeplaces.cookie')
   SEARCH_FORM_HTML_FILE = File.join(Rails.root, 'data', 'search-form.html')
   
   def create_file_with_metadata(filename, data)
