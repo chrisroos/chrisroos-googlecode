@@ -12,6 +12,7 @@ doc = Hpricot(html)
   table_rows = (table/'tr')
   next unless table_rows.length == 5
   
+  # TODO: Convert this to use :nth(x) selectors
   name = (((table/'tr')[0])/'td').inner_text[/\d+\.(.*)/, 1].strip
   id = Integer((((table/'tr')[1])/'td')[0].inner_text.strip)
   distance = (((table/'tr')[1])/'td')[1].inner_text.strip
