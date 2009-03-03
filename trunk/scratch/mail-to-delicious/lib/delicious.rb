@@ -48,7 +48,11 @@ module Delicious
       request = Net::HTTP::Get.new(uri.request_uri, 'User-Agent' => UserAgent)
       request.basic_auth Credentials[:username], Credentials[:password]
       response = http.request(request)
-      response.body
+      if response.body =~ /something went wrong/
+        false
+      else
+        true
+      end
     end
     private
       attr_reader :url, :title, :notes
