@@ -1,0 +1,5 @@
+* Remove reliance on curl
+
+* Customise switching the 'shared' state of bookmarks
+
+* Return different http output based on whether the bookmark was saved to twitter or not (e.g. 200 if saved, 4xx if not)
