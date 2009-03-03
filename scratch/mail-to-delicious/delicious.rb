@@ -30,11 +30,17 @@ module Delicious
     Username = 'chrisjroos'
     Password = '<top-secret>'
     UserAgent = "simply delicious ruby wrapper - chrisroos.co.uk"
+    def self.from_email(email)
+      parser = BookmarkParser.new(email)
+      parser.parse!
+      new(parser.url, parser.title, parser.notes, *parser.tags)
+    end
     def initialize(url, title, notes, *tags)
       @url, @title, @notes, @tags = url, title, notes, tags
     end
     def save
-      `curl "#{api_url}" --user "#{basic_auth_credentials}" --user-agent "#{UserAgent}"`
+      cmd = %%curl "#{api_url}" --user "#{basic_auth_credentials}" --user-agent "#{UserAgent}"%
+      `#{cmd}`
     end
     private
       attr_reader :url, :title, :notes
@@ -67,3 +73,5 @@ module Delicious
 end
 
 # p Delicious::Bookmark.new('http://www.example.com', 'my & unsafe magical :: title', "some\nmulti\nline\nnotes").save
+# email = File.read('delicious_test.rb')[/__END__\n(.*)/m, 1]
+# p Delicious::Bookmark.from_email(email).save
