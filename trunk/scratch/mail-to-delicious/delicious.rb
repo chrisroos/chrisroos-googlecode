@@ -1,6 +1,30 @@
+require 'rubygems'
+require 'tmail'
 require 'cgi'
 
-class Delicious
+module Delicious
+  
+  class BookmarkParser
+    attr_reader :title, :url, :notes, :tags
+    def initialize(email)
+      tmail = TMail::Mail.parse(email)
+      @title = tmail.subject
+      @body = tmail.parts[0].body # We assume that part 0 is text/plain, this could be somewhat more robust
+      @notes = ''
+    end
+    def parse!
+      @body.each_with_index do |line, index|
+        if index == 0
+          @url = line.chomp
+        elsif line =~ /^T /
+          @tags = line.sub(/^T /, '').split(' ')
+        else
+          @notes << line.chomp
+        end
+      end
+    end
+  end
+  
   class Bookmark
     Url = 'https://api.del.icio.us/v1/posts/add'
     Username = 'chrisjroos'
@@ -39,6 +63,7 @@ class Delicious
         [Url, querystring].join('?')
       end
   end
+  
 end
 
-p Delicious::Bookmark.new('http://www.example.com', 'my & unsafe magical :: title', "some\nmulti\nline\nnotes").save
+# p Delicious::Bookmark.new('http://www.example.com', 'my & unsafe magical :: title', "some\nmulti\nline\nnotes").save
