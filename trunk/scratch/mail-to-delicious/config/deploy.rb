@@ -13,3 +13,7 @@ set :deploy_to, "/home/chrisroos/apps/#{application}"
 role :app, "seagul.co.uk"
 role :web, "seagul.co.uk"
 role :db,  "seagul.co.uk", :primary => true
+
+after "deploy:update" do
+  run "ln -s #{File.join(deploy_to, shared_dir, 'config', 'delicious.yml')} #{File.join(deploy_to, current_dir, 'config', 'delicious.yml')}"
+end
