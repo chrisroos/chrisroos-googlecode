@@ -1,5 +1,5 @@
 require 'test/unit'
-require File.join(File.dirname(__FILE__), 'delicious')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'delicious')
 
 module Delicious
   class BookmarkParserTest < Test::Unit::TestCase
