@@ -14,7 +14,11 @@ module Delicious
     def initialize(email)
       tmail = TMail::Mail.parse(email)
       @title = tmail.subject
-      @body = tmail.parts[0].body rescue '' # We assume that part 0 is text/plain, this could be somewhat more robust
+      @body = if tmail.multipart?
+        tmail.parts[0].body rescue '' # We assume that part 0 is text/plain, this could be somewhat more robust
+      else
+        tmail.body
+      end
       @notes, @url, @tags = '', '', []
     end
     def parse!
