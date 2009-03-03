@@ -2,7 +2,7 @@ require 'test/unit'
 require File.join(File.dirname(__FILE__), '..', 'lib', 'delicious')
 
 module Delicious
-  class BookmarkParserHappyPathTest < Test::Unit::TestCase
+  class BookmarkParserMultipartHappyPathTest < Test::Unit::TestCase
   
     Email = DATA.read
   
@@ -29,7 +29,7 @@ module Delicious
   
   end
   
-  class BookmarkParserWithEmptyEmailTest < Test::Unit::TestCase
+  class BookmarkParserMultipartWithEmptyEmailTest < Test::Unit::TestCase
     
     def setup
       @parser = BookmarkParser.new('')
