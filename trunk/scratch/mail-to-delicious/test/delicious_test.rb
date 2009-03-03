@@ -2,7 +2,7 @@ require 'test/unit'
 require File.join(File.dirname(__FILE__), '..', 'lib', 'delicious')
 
 module Delicious
-  class BookmarkParserTest < Test::Unit::TestCase
+  class BookmarkParserHappyPathTest < Test::Unit::TestCase
   
     Email = DATA.read
   
@@ -28,6 +28,32 @@ module Delicious
     end
   
   end
+  
+  class BookmarkParserWithEmptyEmailTest < Test::Unit::TestCase
+    
+    def setup
+      @parser = BookmarkParser.new('')
+      @parser.parse!
+    end
+    
+    def test_should_return_an_empty_string_for_the_url
+      assert_equal '', @parser.url
+    end
+    
+    def test_should_return_an_empty_string_for_the_title
+      assert_equal '', @parser.title
+    end
+    
+    def test_should_return_an_empty_string_for_the_notes
+      assert_equal '', @parser.notes
+    end
+    
+    def test_should_return_an_empty_array_for_the_tags
+      assert_equal [], @parser.tags
+    end
+    
+  end
+  
 end
 
 __END__
