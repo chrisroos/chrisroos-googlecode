@@ -1,8 +1,11 @@
 require 'rubygems'
 require 'tmail'
 require 'cgi'
+require 'yaml'
 
 module Delicious
+  
+  Credentials = YAML.load(File.read(File.join(File.dirname(__FILE__), '..', 'config', 'delicious.yml')))
   
   class BookmarkParser
     attr_reader :title, :url, :notes, :tags
@@ -27,8 +30,6 @@ module Delicious
   
   class Bookmark
     Url = 'https://api.del.icio.us/v1/posts/add'
-    Username = 'chrisjroos'
-    Password = '<top-secret>'
     UserAgent = "simply delicious ruby wrapper - chrisroos.co.uk"
     def self.from_email(email)
       parser = BookmarkParser.new(email)
@@ -63,7 +64,7 @@ module Delicious
         CGI.escape(value)
       end
       def basic_auth_credentials
-        [Username, Password].join(':')
+        [Credentials[:username], Credentials[:password]].join(':')
       end
       def api_url
         [Url, querystring].join('?')
