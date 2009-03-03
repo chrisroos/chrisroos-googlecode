@@ -1,7 +1,9 @@
 require 'rubygems'
-require 'tmail'
+require 'net/https'
+require 'uri'
 require 'cgi'
 require 'yaml'
+require 'tmail'
 
 module Delicious
   
@@ -40,8 +42,13 @@ module Delicious
       @url, @title, @notes, @tags = url, title, notes, tags
     end
     def save
-      cmd = %%curl "#{api_url}" --user "#{basic_auth_credentials}" --user-agent "#{UserAgent}"%
-      `#{cmd}`
+      uri = URI.parse(api_url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Get.new(uri.request_uri, 'User-Agent' => UserAgent)
+      request.basic_auth Credentials[:username], Credentials[:password]
+      response = http.request(request)
+      response.body
     end
     private
       attr_reader :url, :title, :notes
@@ -62,9 +69,6 @@ module Delicious
       end
       def sanitize(value)
         CGI.escape(value)
-      end
-      def basic_auth_credentials
-        [Credentials[:username], Credentials[:password]].join(':')
       end
       def api_url
         [Url, querystring].join('?')
