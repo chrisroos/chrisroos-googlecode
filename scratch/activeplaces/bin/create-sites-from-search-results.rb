@@ -12,13 +12,12 @@ doc = Hpricot(html)
   table_rows = (table/'tr')
   next unless table_rows.length == 5
   
-  # TODO: Convert this to use :nth(x) selectors
-  name = (((table/'tr')[0])/'td').inner_text[/\d+\.(.*)/, 1].strip
-  id = Integer((((table/'tr')[1])/'td')[0].inner_text.strip)
-  distance = (((table/'tr')[1])/'td')[1].inner_text.strip
-  telephone = (((table/'tr')[3])/'td')[0].inner_text.sub(/^Tel:/, '').strip
-  address = (((table/'tr')[4])/'td')[0].inner_text.strip
-  site_link = (((((table/'tr')[4])/'td')[1])/'a').first['href']
+  name = (table/'tr:nth(0) td').inner_text[/\d+\.(.*)/, 1].strip
+  id = Integer((table/'tr:nth(1) td:nth(0)').inner_text.strip)
+  distance = (table/'tr:nth(1) td:nth(1)').inner_text.strip
+  telephone = (table/'tr:nth(3) td:nth(0)').inner_text.sub(/^Tel:/, '').strip
+  address = (table/'tr:nth(4) td:nth(0)').inner_text.strip
+  site_link = (table/'tr:nth(4) td:nth(1) a:nth(0)').first['href']
   ward_id = Integer(site_link[/wardId=(\d+)/, 1])
   
   attrs = {
