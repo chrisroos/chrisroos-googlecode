@@ -1,0 +1,21 @@
+---
+summary:    By hooking together Email, a simple Ruby/Rack server and the delicious API I'm able to post bookmarks from my G1 to delicious
+blog_post:  true
+title:      Posting Bookmarks to Delicious From My Android G1
+created_at: 2009-03-04 23:09:41.344393 +00:00
+guid:       583b9942-cc0e-41e1-924f-f5b6d7c522b9
+layout:     blog
+filter:     haml
+---
+:textile
+  For a while I've wanted the ability to bookmark pages in "delicious":http://delicious.com from my "Android":http://code.google.com/android/ "G1":http://www.t-mobileg1.com/.  After a few weeks of occasionally looking to see if anyone had done the work for me I started to investigate building an Android app.  I got about as far as reading through some of the tutorials but never seemed to find the time to really get stuck in.  In the meantime, to get around the limitations of the client side only bookmarks on the G1, I would save a draft email containing the "URL":http://en.wikipedia.org/wiki/Uniform_Resource_Locator of the page I was interested in and later open it on a desktop machine and post to delicious.  Saving a draft is fairly trivial in that you visit a page in the browser, hit the share menu item, choose "gmail":http://mail.google.com and hit save draft (sharing via gmail pastes the URL of the current page into the body of the email) but the whole process was a bit cumbersome.  I think it was about a week ago when I realised that I should just be able to email my bookmarks to delicious directly.  A little searching appeared to suggest that there was nothing to let me do this[1] so I went about hooking a few things together in order to get the functionality I was after.
+  
+  I have recently discovered just how simple and powerful "rack":http://rack.rubyforge.org/ is, especially when combined with "Phusion Passenger":http://www.modrails.com/ (which makes it stupidly easy to deploy rack apps).  It seemed ideal for the job.  Combine that with "smtp2web":http://smtp2web.com/ (I recently rediscovered this after catching up on all the "webhook":http://blog.webhooks.org/ buzz that seems to be doing the rounds) and a little bit of "ruby":http://www.ruby-lang.org/en/ to talk to delicious and I had everything I needed.  So, I spent an hour or so last night getting a little end to end proof of concept up and running.  Happy that I could hook all the components together I spent a further two or three hours tidying everything up and getting an app together ("source in google code":http://chrisroos.googlecode.com/svn/trunk/scratch/mail-to-delicious/) that I could deploy to my "exonetric":http://www.exonetric.com/ "VPS":http://en.wikipedia.org/wiki/Virtual_private_server.  I was even able to use the service for real on the train this morning.
+  
+  Feel free to deploy the code to your own server (or the awesome "heroku":http://heroku.com/) if you wish to post bookmarks to your own account.  You'll need to copy config/delicious.yml.example to config/delicious.yml and enter your delicious credentials.  The email parser expects to get the bookmark title in the subject line of the email (required), the URL on the first line of the email body (required) and tags on a line in the body beginning with T (i.e. /^T (.*)/).  The rest of the body is treated as the notes.  I was originally going to see if there was any interest in a hosted service whereby you register your delicious credentials and receive a secret email address to use in order to post to delicious.  It seems that ping.fm already has this covered so I'm not going to worry about hosting it for anyone but me.
+  
+  I love how relatively easy it is to hook these things together, in a short period of time, to produce something useful.
+
+  *Note*.  I searched again for android delicious clients just before I started writing this post and was slightly surprised to see that there are now two apps that offer this functionality: "Android delicious bookmarks":http://code.google.com/p/android-delicious-bookmarks/ and Beelicious (for which I couldn't find a link).
+  
+  fn1. Having just repeated the search I found "this post":http://www.labnol.org/internet/post-links-to-delicious-via-email-mobile/4470/ that suggests using "ping.fm":http://ping.fm to do exactly what I'm after.  Oh well.
