@@ -2,10 +2,8 @@ require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
 require File.join(File.dirname(__FILE__), 'active_places_helper')
 include ActivePlacesHelper
 
-search_result_html_file = File.join(Rails.root, 'data', "search-results-ct11-swimming-pool.html")
+search_result_html_file = File.join(SEARCH_RESULTS_DIRECTORY, "search-results-CT12-all.html")
 html = File.read(search_result_html_file)
-
-require 'hpricot'
 
 doc = Hpricot(html)
 (doc/'table').each do |table|
@@ -23,19 +21,30 @@ doc = Hpricot(html)
   attrs = {
     'id' => id,
     'name' => name,
-    'telephone' => telephone,
+    'telephone' => telephone.blank? ? 'NA' : telephone,
     'address' => address,
     'ward_id' => ward_id
   }
   
   if existing_site = Site.find_by_id(id)
-    # Duplicate site
-    unless existing_site.attributes == attrs
+    puts "Duplicate site: Id: #{id} and name: #{name}"
+    existing_attrs = {
+      'id' => existing_site.attributes['id'],
+      'name' => existing_site.attributes['name'],
+      'telephone' => existing_site.attributes['telephone'],
+      'address' => existing_site.attributes['address'],
+      'ward_id' => existing_site.attributes['ward_id']
+    }
+    unless existing_attrs == attrs
       raise "There's already a record for the site with Id: #{id}.  Unfortunately the existing attributes don't match the new attributes.  This is probably bad."
     end
   else
     site = Site.new(attrs)
     site.id = id
-    site.save!
+    if site.save
+      puts "Created site: Id: #{id} and name: #{name}"
+    else
+      raise "*** ERRORS ON SAVE (#{id}, #{name}): #{site.errors.full_messages}"
+    end
   end
 end
