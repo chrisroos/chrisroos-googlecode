@@ -4,7 +4,7 @@ require 'erb'
 require 'trackback_renderer'
 require 'hpricot'
 
-TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'templates')
+TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'views')
 
 class TrackbacksListingTest < Test::Unit::TestCase
   
@@ -17,7 +17,7 @@ class TrackbacksListingTest < Test::Unit::TestCase
       'excerpt' => nil
     }
     trackbacks = [trackback]
-    template = File.open(File.join(TEMPLATE_DIRECTORY, 'trackbacks.html.erb')) { |f| f.read }
+    template = File.open(File.join(TEMPLATE_DIRECTORY, 'trackbacks.erb')) { |f| f.read }
     erb = ERB.new(template)
     rendered_template = erb.result(binding)
     
