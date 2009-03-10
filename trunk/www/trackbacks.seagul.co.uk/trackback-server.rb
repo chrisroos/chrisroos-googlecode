@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
-DATA_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'data')
-TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'views')
+DATA_DIRECTORY = File.join(File.dirname(__FILE__), 'data')
+TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), 'views')
 
 require 'rubygems'
 require 'mongrel'
-require File.join(File.dirname(__FILE__), '..', 'lib', 'trackback_http_request')
-require File.join(File.dirname(__FILE__), '..', 'lib', 'trackback_renderer')
-require File.join(File.dirname(__FILE__), '..', 'lib', 'trackbacks')
-require File.join(File.dirname(__FILE__), '..', 'lib', 'erb_renderer')
+require File.join(File.dirname(__FILE__), 'lib', 'trackback_http_request')
+require File.join(File.dirname(__FILE__), 'lib', 'trackback_renderer')
+require File.join(File.dirname(__FILE__), 'lib', 'trackbacks')
+require File.join(File.dirname(__FILE__), 'lib', 'erb_renderer')
 
 class TrackbackListHandler < Mongrel::HttpHandler
   def process(request, response)
@@ -39,9 +39,9 @@ class TrackbackHandler < Mongrel::HttpHandler
   end
 end
 
-pid_file = File.join(File.dirname(__FILE__), *%w[.. log trackback-server.pid])
+pid_file = File.join(File.dirname(__FILE__), *%w[log trackback-server.pid])
 config = Mongrel::Configurator.new :host => '127.0.0.1', :port => '4000', :pid_file => pid_file do
-  log_file = File.join(File.dirname(__FILE__), *%w[.. log trackback-server.log])
+  log_file = File.join(File.dirname(__FILE__), *%w[log trackback-server.log])
   daemonize :cwd => Dir.pwd, :log_file => log_file
   write_pid_file
   listener do
