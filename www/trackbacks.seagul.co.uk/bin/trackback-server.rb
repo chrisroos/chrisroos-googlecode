@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 DATA_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'data')
-TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'templates')
+TEMPLATE_DIRECTORY = File.join(File.dirname(__FILE__), '..', 'views')
 
 require 'rubygems'
 require 'mongrel'
