@@ -15,7 +15,7 @@ class TrackbackListHandler < Mongrel::HttpHandler
     trackbacks = Trackbacks.find_all
     response.start do |head, out|
       head['Content-Type'] = 'text/html'
-      template = File.join(TEMPLATE_DIRECTORY, 'trackbacks.html.erb')
+      template = File.join(TEMPLATE_DIRECTORY, 'trackbacks.erb')
       ErbRenderer.new(template, binding).render(out)
     end
   end
@@ -28,9 +28,9 @@ class TrackbackHandler < Mongrel::HttpHandler
     if trackback_http_request.valid?
       data = trackback_http_request.trackback.to_hash
       Trackbacks.create(data)
-      template = File.join(TEMPLATE_DIRECTORY, 'trackback_success.xml.erb')
+      template = File.join(TEMPLATE_DIRECTORY, 'trackback_success.erb')
     else
-      template = File.join(TEMPLATE_DIRECTORY, 'trackback_failure.xml.erb')
+      template = File.join(TEMPLATE_DIRECTORY, 'trackback_failure.erb')
     end
     
     response.start do |head, out|
