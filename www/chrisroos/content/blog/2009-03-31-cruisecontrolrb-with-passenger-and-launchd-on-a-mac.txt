@@ -1,0 +1,103 @@
+---
+summary:    Getting CruiseControl.rb running under Passenger (mod_rails) with the builders being started automatically via launchd (on a Mac).
+blog_post:  true
+title:      CruiseControlrb With Passenger and Launchd on a Mac
+created_at: 2009-03-31 18:27:25.028934 +01:00
+guid:       7442682a-92a4-4d9e-91ef-49e6143e8854
+layout:     blog
+filter:     haml
+---
+:textile
+  This has taken me ages, is quite fiddly and I'm still not 100% happy with it but it seems to work well enough to document here.
+  
+  h2. Configuring the server to run under Passenger
+  
+  * Buy a Mac.  Hmm, maybe that's starting a little too early in the process...
+  
+  * Install "Passenger":http://www.modrails.com/.
+  
+  * Download "cruisecontrol.rb":http://cruisecontrolrb.thoughtworks.com/ (from "github":http://github.com/thoughtworks/cruisecontrol.rb/tree/master or "rubyforge":http://rubyforge.org/projects/cruisecontrolrb/).  We're using the version from "github":http://github.com/ as it has "git":http://git-scm.com/ support built in.
+  
+  * Edit the cruisecontrol.rb production environment (cc.rb/config/environments/production.rb) so that we can disable the builders by setting an environment variable.  By default, starting the server (even through Passenger) starts the builders too.  This doesn't work by default because the PATH environment variable isn't set which means the builders can't find git.  Although it doesn't feel like entirely the right approach I actually wonder if I could use the ruby-wrapper-approach (detailed below) to have these builders work correctly.
+  
+  <pre class="code diff">
+     config.after_initialize do
+       require CRUISE_DATA_ROOT + '/site_config' if File.exists?(CRUISE_DATA_ROOT + "/site_config.rb")
+       require RAILS_ROOT + '/config/dashboard_initialize' 
+    -  BuilderStarter.start_builders 
+    +  BuilderStarter.start_builders unless ENV['CCRB_WITHOUT_BUILDERS']
+     end
+  </pre>
+  
+  * Create a wrapper around "ruby":http://www.ruby-lang.org/ that allows us to pass environment variables to our Passenger apps.  I actually made the amendment to the code above before realising that it's not entirely trivial to pass environment variables from "Apache":http://httpd.apache.org/ to a Passenger app ("this ticket":http://code.google.com/p/phusion-passenger/issues/detail?id=81 details the problem).  I wasn't keen on the idea of this wrapper ("explanation on the phusion blog":http://blog.phusion.nl/2008/12/16/passing-environment-variables-to-ruby-from-phusion-passenger/) at first but I ended up thinking it was the neatest solution.
+  
+  <pre class="code shell">
+    $ cat > ~/ruby_for_passenger
+    #!/bin/sh
+
+    export CCRB_WITHOUT_BUILDERS=true
+
+    exec "/usr/bin/ruby" "$@"
+  
+    $ sudo mv ~/ruby_for_passenger /usr/local/bin/
+    $ sudo chmod +x /usr/local/bin/ruby_for_passenger
+  </pre>
+  
+  * Change the value of the PassengerRuby configuration option in your apache httpd config.  We need to tell Passenger to use our wrapper script instead of the default ruby binary it found during installation.
+  
+  <pre class="code shell">
+    $ sudo vi /etc/apache2/httpd.conf
+    #PassengerRuby /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+    PassengerRuby /usr/local/bin/ruby_for_passenger
+  </pre>
+  
+  * Configure the passenger virtual host for your cruise instance.  I strongly recommend using the "Passenger preference pane":http://www.fngtps.com/passenger-preference-pane to do this (remember to set it to use the production environment).
+  
+  * Navigate to your chosen local domain and you should be presented with the default cruise web interface.
+  
+  h2. Configuring the builders to start under launchd
+  
+  * Edit the cc.rb/script/builder file to set the default log directory to a path relative to the project root.  This is so that we can run the builders from a location other than within cc.rb and still have them log correctly (the default behaviour is that we receive a warning about a missing log directory and the log output is redirected to stdout).
+  
+  <pre class="code diff">
+    -  CRUISE_OPTIONS[:log_file_name] = "log/\#{CRUISE_OPTIONS[:project_name]}_builder.log"
+    +  CRUISE_OPTIONS[:log_file_name] = File.join(RAILS_ROOT, 'log', "\#{CRUISE_OPTIONS[:project_name]}_builder.log")
+  </pre>
+  
+  * Create a "launchd":http://en.wikipedia.org/wiki/Launchd "property list":http://en.wikipedia.org/wiki/Property_list for each task.  I've got mine in ~/Library/LaunchAgents/label-from-plist in the home directory of a user that has public key access to the git repository.  This is my one annoyance with this current solution: It requires the user mentioned above to be logged in.  I spent a very long time trying to get the builders working as "launch daemons":http://developer.apple.com/technotes/tn2005/tn2083.html#SECDAEMONS, rather than "agents":http://developer.apple.com/technotes/tn2005/tn2083.html#SECAGENTS, so that they would build without a user having to be logged in.  I was hoping to find an environment variable I could set so that git or "SSH":http://en.wikipedia.org/wiki/Secure_Shell knew to use the public key from a user other than root (who the launch daemons run as) but didn't have any such luck.  If anyone has any ideas about this I'd love to hear them.  *Note* Although I haven't tried it, I suspect that it'd be trivial to get non-public-key subversion builders to run as daemons.
+  
+  <pre class="code xml">
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+      <dict>
+        <key>EnvironmentVariables</key>
+        <dict>
+          <key>PATH</key>
+          <string>/usr/bin:/opt/local/bin</string>
+        </dict>
+        <key>Label</key>
+        <string>label-describing-your-builder</string>
+        <key>ProgramArguments</key>
+        <array>
+          <string>/Users/chrisroos/cruisecontrol.rb/cruise</string>
+          <string>build</string>
+          <string>name-of-project-to-build</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+      </dict>
+    </plist>
+    
+    # Notes:
+    # We set the PATH environment variable so that both git and ruby can be found.
+    # We set RunAtLoad so that as soon as the plist is loaded by launchctl it will start to run.
+  </pre>
+  
+  * Load the agent using "launchctl":http://developer.apple.com/DOCUMENTATION/DARWIN/Reference/ManPages/man1/launchctl.1.html as the user named above (i.e. not root).
+  
+  <pre class="code shell">
+    $ launchctl load ~/Library/LaunchAgents/label-from-plist
+  </pre>
+  
+  And that should be about it.  I'd appreciate any feedback anyone has about this approach and to hear about alternative approaches of getting cruise running automatically on system boot.
