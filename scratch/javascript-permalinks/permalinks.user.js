@@ -32,12 +32,12 @@ Permalink.prototype.href = function() {
     var rule = Permalink.rules[i];
     if (rule.urlPattern.test(this.location.href)) {
       // Parse the querystring
-      var keys_and_values = new Url(this.location.href).queryString();
+      var keysAndValues = new Url(this.location.href).queryString();
 
       // Generate the permalink
       var url = this.location;
-      if (rule.key && keys_and_values && keys_and_values[rule.key]) {
-        var queryString = [rule.key, keys_and_values[rule.key]].join('=')
+      if (rule.key && keysAndValues && keysAndValues[rule.key]) {
+        var queryString = [rule.key, keysAndValues[rule.key]].join('=')
         permalink = url.protocol + '//' + url.host + url.pathname + '?' + queryString;
       } else if (rule.modifier) {
         permalink = rule.modifier(url.href);
@@ -64,9 +64,17 @@ var ebayRule = {
 }
 Permalink.rules.push(ebayRule);
 
+CanonicalLink = {
+  'write' : function(permalink) {
+    if (href = permalink.href()) {
+      var canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      canonicalLink.setAttribute('href', href);
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(canonicalLink);
+    }
+  }
+}
+
 var permalink = new Permalink(document.location);
-var canonicalLink = document.createElement('link');
-canonicalLink.setAttribute('rel', 'canonical');
-canonicalLink.setAttribute('href', permalink.href());
-var head = document.getElementsByTagName('head')[0];
-head.appendChild(canonicalLink);
+CanonicalLink.write(permalink);
