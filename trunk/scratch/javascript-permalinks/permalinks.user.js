@@ -1,7 +1,9 @@
 // TODO
 // * Deal with multiple keys.
-// * Actually write the permalink element into the page.
-// * Deal with multiple rules.
+// * It'd be good to be able to supply callbacks instead of simply extracting a key from the querystring.  This would allow me to construct a permalink for ebay auctions.  Turning something like:
+// ** http://cgi.ebay.co.uk/Netgear-RangeMax-WPN824-MIMO-Wireless-Router-108MBPS_W0QQitemZ120398909420QQcmdZViewItemQQptZUK_Computing_Networking_SM?hash=item120398909420&_trksid=p3286.c0.m14&_trkparms=72%3A1690|66%3A2|65%3A12|39%3A1|240%3A1308
+// into
+// ** http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=120398909420
 
 function Url(url) {
   this.url = url;
