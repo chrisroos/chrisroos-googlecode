@@ -1,6 +1,5 @@
 // TODO
 // * Deal with multiple keys.
-// * Think about creating a Location like object that adheres to the same interface but allows me to construct them from a URL.  This would allow me to remove some duplication from my tests.
 // * Actually write the permalink element into the page.
 // * Deal with multiple rules.
 

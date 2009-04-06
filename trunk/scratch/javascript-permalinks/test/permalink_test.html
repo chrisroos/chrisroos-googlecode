@@ -28,6 +28,7 @@
     // <![CDATA[
       new Test.Unit.Runner({
         setup: function() {
+          this.locationProxy = document.createElement('a');
         },
     
         teardown: function() {
@@ -39,19 +40,8 @@
             'urlPattern' : /localhost/,
             'key' : 'id'
           }
-          // Location Object attributes
-          // hash, host, hostname, href, pathname, port, protocol, search
-          var location = {
-            'hash'     : '',
-            'host'     : 'localhost',
-            'hostname' : 'localhost',
-            'href'     : 'http://localhost/?id=123',
-            'pathname' : '/',
-            'port'     : '',
-            'protocol' : 'http:',
-            'search'   : '?id=123'
-          }
-          permalink = new Permalink(location, rule)
+          this.locationProxy.href = 'http://localhost/?id=123';
+          permalink = new Permalink(this.locationProxy, rule)
           
           assertEqual('http://localhost/?id=123', permalink.href());
         }},
@@ -61,19 +51,8 @@
             'urlPattern' : /localhost/,
             'key' : 'id'
           }
-          // Location Object attributes
-          // hash, host, hostname, href, pathname, port, protocol, search
-          var location = {
-            'hash'     : '',
-            'host'     : 'localhost',
-            'hostname' : 'localhost',
-            'href'     : 'http://localhost/?foo=bar&id=123&bar=baz',
-            'pathname' : '/',
-            'port'     : '',
-            'protocol' : 'http:',
-            'search'   : '?foo=bar&id=123&bar=baz'
-          }
-          permalink = new Permalink(location, rule)
+          this.locationProxy.href = 'http://localhost/?foo=bar&id=123&bar=baz';
+          permalink = new Permalink(this.locationProxy, rule)
           
           assertEqual('http://localhost/?id=123', permalink.href());
         }},
@@ -83,19 +62,8 @@
             'urlPattern' : /localhost/,
             'key' : 'id'
           }
-          // Location Object attributes
-          // hash, host, hostname, href, pathname, port, protocol, search
-          var location = {
-            'hash'     : '',
-            'host'     : 'localhost',
-            'hostname' : 'localhost',
-            'href'     : 'http://localhost/?foo=bar&bar=baz',
-            'pathname' : '/',
-            'port'     : '',
-            'protocol' : 'http:',
-            'search'   : '?foo=bar&bar=baz'
-          }
-          permalink = new Permalink(location, rule)
+          this.locationProxy.href = 'http://localhost/?foo=bar&bar=baz';
+          permalink = new Permalink(this.locationProxy, rule)
           
           assertEqual('', permalink.href());
         }},
@@ -105,19 +73,8 @@
             'urlPattern' : /example.com/,
             'key' : 'id'
           }
-          // Location Object attributes
-          // hash, host, hostname, href, pathname, port, protocol, search
-          var location = {
-            'hash'     : '',
-            'host'     : 'localhost',
-            'hostname' : 'localhost',
-            'href'     : 'http://localhost/?id=123',
-            'pathname' : '/',
-            'port'     : '',
-            'protocol' : 'http:',
-            'search'   : '?id=123'
-          }
-          permalink = new Permalink(location, rule)
+          this.locationProxy.href = 'http://localhost/?id=123';
+          permalink = new Permalink(this.locationProxy, rule);
           
           assertEqual('', permalink.href());
         }}
