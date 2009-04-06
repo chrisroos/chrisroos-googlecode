@@ -36,6 +36,25 @@
       
         },
 
+        'test should generate the permalink for a url using a callback function': function() { with(this) {
+          var rule = {
+            'urlPattern' : /cgi\.ebay\.co\.uk/,
+            'modifier'   : function(url) {
+              var queryString = new Url(url).queryString();
+              var hash = queryString.hash;
+              if (m = hash.match(/item(\d+)/)) {
+                var itemId = m[1];
+                return 'http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=' + itemId;
+              }
+            }
+          }
+          Permalink.rules.push(rule);
+          this.locationProxy.href = 'http://cgi.ebay.co.uk/Netgear-RangeMax-WPN824-MIMO-Wireless-Router-108MBPS_W0QQitemZ120398909420QQcmdZViewItemQQptZUK_Computing_Networking_SM?hash=item120398909420&_trksid=p3286.c0.m14&_trkparms=72%3A1690|66%3A2|65%3A12|39%3A1|240%3A1308';
+          permalink = new Permalink(this.locationProxy);
+          
+          assertEqual('http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=120398909420', permalink.href());
+        }},
+        
         'test should generate the permalink for a url that contains our required key only in the querystring': function() { with(this) {
           var rule = {
             'urlPattern' : /localhost/,
