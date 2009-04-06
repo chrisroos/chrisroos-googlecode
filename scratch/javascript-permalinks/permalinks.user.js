@@ -46,3 +46,16 @@ Permalink.prototype.href = function() {
   
   return permalink;
 }
+
+
+// A rule for they work for you
+var twfyRule = {
+  'urlPattern' : /theyworkforyou\.com\/wrans/,
+  'key' : 'id'
+}
+var permalink = new Permalink(document.location, twfyRule);
+var canonicalLink = document.createElement('link');
+canonicalLink.setAttribute('rel', 'canonical');
+canonicalLink.setAttribute('href', permalink.href());
+var head = document.getElementsByTagName('head')[0];
+head.appendChild(canonicalLink);
