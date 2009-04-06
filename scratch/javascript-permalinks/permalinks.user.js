@@ -1,6 +1,10 @@
 // TODO: Deal with multiple keys (find an example that actually requires this before implementing though).
-// TODO: Only write the canonical link tag if a permalink is returned.
 // TODO: Check that the modifier callback is a function.
+// TODO: Find a way to run all javascript tests at once.
+// TODO: Make the code more 'javascript' like.
+// TODO: Test that the link rel=canonical actually gets added to the head of the document.
+// TODO: Think about Permalink.add_rule(name, key_or_callback) type method instead of pushing directly onto the rules array.
+// TODO: Think about I can externalise all the rules (maybe GM_xmlhttpRequest will help?)
 
 function Url(url) {
   this.url = url;
