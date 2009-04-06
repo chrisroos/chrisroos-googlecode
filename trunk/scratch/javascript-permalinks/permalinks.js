@@ -1,32 +1,49 @@
 // TODO
-// * Deal with multiple keys
+// * Deal with multiple keys.
+// * Think about creating a Location like object that adheres to the same interface but allows me to construct them from a URL.  This would allow me to remove some duplication from my tests.
+// * Actually write the permalink element into the page.
+// * Deal with multiple rules.
 
-// The rule
-var urlRegex = /http:\/\/localhost/
-var wanted_key = 'id';
+function Url(url) {
+  this.url = url;
+}
+Url.prototype.queryString = function() {
+  var keysAndValues = {};
+  if (m = this.url.match(/\?(.*)/)) {
+    var queryString = m[1];
+    var keyValuePairs = queryString.split('&');
+    if (keyValuePairs.length > 0) {
+      for (var i = 0; i < keyValuePairs.length; i++) {
+        var key = keyValuePairs[i].split('=')[0];
+        var value = keyValuePairs[i].split('=')[1];
+        if (key)
+          keysAndValues[key] = value;
+      }
+    }
+  }
+  return keysAndValues;
+}
 
-if (urlRegex.test(document.location.href)) {
+function Permalink(location, rule) {
+  this.location = location;
+  this.rule = rule;
+}
+Permalink.prototype.href = function() {
+  var urlRegex = this.rule.urlPattern;
+  var wanted_key = this.rule.key;
+  var permalink = '';
+  
+  if (urlRegex.test(this.location.href)) {
+    // Parse the querystring
+    var keys_and_values = new Url(this.location.href).queryString();
 
-  // Parse the querystring
-  var url = document.location;
-  var queryString = url.search.replace(/^\?/, ''); // Remove leading question mark
-  var key_value_pairs = queryString.split('&');
-  if (key_value_pairs.length > 0 && key_value_pairs[0] != '') {
-    var keys_and_values = {};
-    for (var i = 0; i < key_value_pairs.length; i++) {
-      var key = key_value_pairs[i].split('=')[0];
-      var value = key_value_pairs[i].split('=')[1];
-      keys_and_values[key] = value;
+    // Generate the permalink
+    var url = this.location;
+    if (keys_and_values && keys_and_values[wanted_key]) {
+      var queryString = [wanted_key, keys_and_values[wanted_key]].join('=')
+      var permalink = url.protocol + '//' + url.host + url.pathname + '?' + queryString;
     }
   }
   
-  // Generate the permalink
-  if (keys_and_values && keys_and_values[wanted_key]) {
-    var queryString = [wanted_key, keys_and_values[wanted_key]].join('=')
-    var permalink = url.protocol + '//' + url.host + url.pathname + '?' + queryString;
-    console.log('Permalink for ' + url + ' is ' + permalink);
-    // document.location.replace(permalink);
-  } else {
-    console.log('Permalink could not be generated for ' + url);
-  }
+  return permalink;
 }
