@@ -28,6 +28,7 @@
     // <![CDATA[
       new Test.Unit.Runner({
         setup: function() {
+          Permalink.rules = []; // Reset the rules array
           this.locationProxy = document.createElement('a');
         },
     
@@ -40,8 +41,9 @@
             'urlPattern' : /localhost/,
             'key' : 'id'
           }
+          Permalink.rules.push(rule);
           this.locationProxy.href = 'http://localhost/?id=123';
-          permalink = new Permalink(this.locationProxy, rule)
+          permalink = new Permalink(this.locationProxy)
           
           assertEqual('http://localhost/?id=123', permalink.href());
         }},
@@ -51,10 +53,28 @@
             'urlPattern' : /localhost/,
             'key' : 'id'
           }
+          Permalink.rules.push(rule);
           this.locationProxy.href = 'http://localhost/?foo=bar&id=123&bar=baz';
-          permalink = new Permalink(this.locationProxy, rule)
+          permalink = new Permalink(this.locationProxy)
           
           assertEqual('http://localhost/?id=123', permalink.href());
+        }},
+        
+        'test should generate the permalink for a url when there are multiple rules defined': function() { with(this) {
+          var rule1 = {
+            'urlPattern' : /localhost/,
+            'key' : 'id'
+          }
+          var rule2 = {
+            'urlPattern' : /example\.com/,
+            'key' : 'bar'
+          }
+          Permalink.rules.push(rule1);
+          Permalink.rules.push(rule2);
+          this.locationProxy.href = 'http://example.com/?foo=bar&id=123&bar=baz';
+          permalink = new Permalink(this.locationProxy)
+          
+          assertEqual('http://example.com/?bar=baz', permalink.href());
         }},
         
         'test should return an empty string if our required key could not be found in the querystring': function() { with(this) {
@@ -62,8 +82,9 @@
             'urlPattern' : /localhost/,
             'key' : 'id'
           }
+          Permalink.rules.push(rule);
           this.locationProxy.href = 'http://localhost/?foo=bar&bar=baz';
-          permalink = new Permalink(this.locationProxy, rule)
+          permalink = new Permalink(this.locationProxy)
           
           assertEqual('', permalink.href());
         }},
@@ -73,8 +94,9 @@
             'urlPattern' : /example.com/,
             'key' : 'id'
           }
+          Permalink.rules.push(rule);
           this.locationProxy.href = 'http://localhost/?id=123';
-          permalink = new Permalink(this.locationProxy, rule);
+          permalink = new Permalink(this.locationProxy);
           
           assertEqual('', permalink.href());
         }}

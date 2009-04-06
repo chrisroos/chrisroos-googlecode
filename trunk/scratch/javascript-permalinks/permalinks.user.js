@@ -23,37 +23,35 @@ Url.prototype.queryString = function() {
   return keysAndValues;
 }
 
-function Permalink(location, rule) {
+function Permalink(location) {
   this.location = location;
-  this.rule = rule;
 }
 Permalink.prototype.href = function() {
-  var urlRegex = this.rule.urlPattern;
-  var wanted_key = this.rule.key;
   var permalink = '';
-  
-  if (urlRegex.test(this.location.href)) {
-    // Parse the querystring
-    var keys_and_values = new Url(this.location.href).queryString();
 
-    // Generate the permalink
-    var url = this.location;
-    if (keys_and_values && keys_and_values[wanted_key]) {
-      var queryString = [wanted_key, keys_and_values[wanted_key]].join('=')
-      var permalink = url.protocol + '//' + url.host + url.pathname + '?' + queryString;
+  for (var i = 0; i < Permalink.rules.length; i++) {
+    var rule = Permalink.rules[i];
+    if (rule.urlPattern.test(this.location.href)) {
+      // Parse the querystring
+      var keys_and_values = new Url(this.location.href).queryString();
+
+      // Generate the permalink
+      var url = this.location;
+      if (keys_and_values && keys_and_values[rule.key]) {
+        var queryString = [rule.key, keys_and_values[rule.key]].join('=')
+        var permalink = url.protocol + '//' + url.host + url.pathname + '?' + queryString;
+      }
     }
   }
   
   return permalink;
 }
 
+Permalink.rules = [];
+Permalink.rules.push({'urlPattern' : /google\.co\.uk\/search/, 'key' : 'q'});
+Permalink.rules.push({'urlPattern' : /theyworkforyou\.com\/wrans/, 'key' : 'id'});
 
-// A rule for they work for you
-var twfyRule = {
-  'urlPattern' : /theyworkforyou\.com\/wrans/,
-  'key' : 'id'
-}
-var permalink = new Permalink(document.location, twfyRule);
+var permalink = new Permalink(document.location);
 var canonicalLink = document.createElement('link');
 canonicalLink.setAttribute('rel', 'canonical');
 canonicalLink.setAttribute('href', permalink.href());
