@@ -1,9 +1,6 @@
-// TODO
-// * Deal with multiple keys.
-// * It'd be good to be able to supply callbacks instead of simply extracting a key from the querystring.  This would allow me to construct a permalink for ebay auctions.  Turning something like:
-// ** http://cgi.ebay.co.uk/Netgear-RangeMax-WPN824-MIMO-Wireless-Router-108MBPS_W0QQitemZ120398909420QQcmdZViewItemQQptZUK_Computing_Networking_SM?hash=item120398909420&_trksid=p3286.c0.m14&_trkparms=72%3A1690|66%3A2|65%3A12|39%3A1|240%3A1308
-// into
-// ** http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=120398909420
+// TODO: Deal with multiple keys (find an example that actually requires this before implementing though).
+// TODO: Only write the canonical link tag if a permalink is returned.
+// TODO: Check that the modifier callback is a function.
 
 function Url(url) {
   this.url = url;
@@ -39,9 +36,11 @@ Permalink.prototype.href = function() {
 
       // Generate the permalink
       var url = this.location;
-      if (keys_and_values && keys_and_values[rule.key]) {
+      if (rule.key && keys_and_values && keys_and_values[rule.key]) {
         var queryString = [rule.key, keys_and_values[rule.key]].join('=')
-        var permalink = url.protocol + '//' + url.host + url.pathname + '?' + queryString;
+        permalink = url.protocol + '//' + url.host + url.pathname + '?' + queryString;
+      } else if (rule.modifier) {
+        permalink = rule.modifier(url.href);
       }
     }
   }
@@ -52,6 +51,18 @@ Permalink.prototype.href = function() {
 Permalink.rules = [];
 Permalink.rules.push({'urlPattern' : /google\.co\.uk\/search/, 'key' : 'q'});
 Permalink.rules.push({'urlPattern' : /theyworkforyou\.com\/wrans/, 'key' : 'id'});
+var ebayRule = {
+  'urlPattern' : /cgi\.ebay\.co\.uk/,
+  'modifier'   : function(url) {
+    var queryString = new Url(url).queryString();
+    var hash = queryString.hash;
+    if (m = hash.match(/item(\d+)/)) {
+      var itemId = m[1];
+      return 'http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=' + itemId;
+    }
+  }
+}
+Permalink.rules.push(ebayRule);
 
 var permalink = new Permalink(document.location);
 var canonicalLink = document.createElement('link');
