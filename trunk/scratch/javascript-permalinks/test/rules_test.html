@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>JavaScript unit test file</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="assets/jsunittest.js" type="text/javascript"></script>
+    <script src="../permalinks.user.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+  </head>
+  <body>
+
+    <div id="content">
+
+      <div id="header">
+        <h1>JavaScript unit test file</h1>
+      </div>
+
+      <!-- Log output (one per Runner, via {testLog: "testlog"} option)-->
+      <div id="testlog"></div>
+  
+      <!-- Put sample/test html here -->
+      <div id="sample">
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    // <![CDATA[
+      new Test.Unit.Runner({
+        setup: function() {
+          this.locationProxy = document.createElement('a');
+        },
+    
+        teardown: function() {
+        },
+
+        'test should generate the permalink for a url that contains our required key only in the querystring': function() { with(this) {
+          this.locationProxy.href = 'http://localhost/?id=123';
+          assertEqual('http://localhost/?id=123', requiredKeyRule(this.locationProxy, 'id'));
+        }},
+        
+        'test should generate the permalink for a url that contains our required key within mulitple key and value pairs in the querystring': function() { with(this) {
+          this.locationProxy.href = 'http://localhost/?foo=bar&id=123&bar=baz';
+          assertEqual('http://localhost/?id=123', requiredKeyRule(this.locationProxy, 'id'));
+        }},
+        
+        'test should return an empty string if our required key could not be found in the querystring': function() { with(this) {
+          this.locationProxy.href = 'http://localhost/?foo=bar&bar=baz';
+          assertEqual('', requiredKeyRule(this.locationProxy, 'id'));
+        }}
+
+      }); 
+    // ]]>
+    </script>
+  </body>
+</html>

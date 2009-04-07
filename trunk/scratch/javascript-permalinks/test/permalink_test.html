@@ -38,83 +38,59 @@
 
         'test should generate the permalink for a url using a callback function': function() { with(this) {
           var rule = {
-            'urlPattern' : /cgi\.ebay\.co\.uk/,
-            'modifier'   : function(url) {
-              var queryString = new Url(url).queryString();
-              var hash = queryString.hash;
-              if (m = hash.match(/item(\d+)/)) {
-                var itemId = m[1];
-                return 'http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=' + itemId;
-              }
+            'urlPattern' : /localhost/,
+            'modifier'   : function(location) {
+              return 'my-permalink';
             }
           }
           Permalink.rules.push(rule);
-          this.locationProxy.href = 'http://cgi.ebay.co.uk/Netgear-RangeMax-WPN824-MIMO-Wireless-Router-108MBPS_W0QQitemZ120398909420QQcmdZViewItemQQptZUK_Computing_Networking_SM?hash=item120398909420&_trksid=p3286.c0.m14&_trkparms=72%3A1690|66%3A2|65%3A12|39%3A1|240%3A1308';
+          this.locationProxy.href = 'http://localhost';
           permalink = new Permalink(this.locationProxy);
           
-          assertEqual('http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=120398909420', permalink.href());
-        }},
-        
-        'test should generate the permalink for a url that contains our required key only in the querystring': function() { with(this) {
-          var rule = {
-            'urlPattern' : /localhost/,
-            'key' : 'id'
-          }
-          Permalink.rules.push(rule);
-          this.locationProxy.href = 'http://localhost/?id=123';
-          permalink = new Permalink(this.locationProxy)
-          
-          assertEqual('http://localhost/?id=123', permalink.href());
-        }},
-        
-        'test should generate the permalink for a url that contains our required key within mulitple key and value pairs in the querystring': function() { with(this) {
-          var rule = {
-            'urlPattern' : /localhost/,
-            'key' : 'id'
-          }
-          Permalink.rules.push(rule);
-          this.locationProxy.href = 'http://localhost/?foo=bar&id=123&bar=baz';
-          permalink = new Permalink(this.locationProxy)
-          
-          assertEqual('http://localhost/?id=123', permalink.href());
+          assertEqual('my-permalink', permalink.href());
         }},
         
         'test should generate the permalink for a url when there are multiple rules defined': function() { with(this) {
           var rule1 = {
             'urlPattern' : /localhost/,
-            'key' : 'id'
+            'modifier' : function(location) {
+              return 'localhost-permalink';
+            }
           }
           var rule2 = {
             'urlPattern' : /example\.com/,
-            'key' : 'bar'
+            'modifier' : function(location) {
+              return 'example-dot-com-permalink';
+            }
           }
           Permalink.rules.push(rule1);
           Permalink.rules.push(rule2);
           this.locationProxy.href = 'http://example.com/?foo=bar&id=123&bar=baz';
           permalink = new Permalink(this.locationProxy)
           
-          assertEqual('http://example.com/?bar=baz', permalink.href());
-        }},
-        
-        'test should return an empty string if our required key could not be found in the querystring': function() { with(this) {
-          var rule = {
-            'urlPattern' : /localhost/,
-            'key' : 'id'
-          }
-          Permalink.rules.push(rule);
-          this.locationProxy.href = 'http://localhost/?foo=bar&bar=baz';
-          permalink = new Permalink(this.locationProxy)
-          
-          assertEqual('', permalink.href());
+          assertEqual('example-dot-com-permalink', permalink.href());
         }},
         
         'test should return an empty string if the url pattern in our rule does not match the url of the location object': function() { with(this) {
           var rule = {
             'urlPattern' : /example.com/,
-            'key' : 'id'
+            'modifier' : function(location) {
+              return 'example-dot-com-permalink';
+            }
           }
           Permalink.rules.push(rule);
           this.locationProxy.href = 'http://localhost/?id=123';
+          permalink = new Permalink(this.locationProxy);
+          
+          assertEqual('', permalink.href());
+        }},
+        
+        'test should return an empty string it the url pattern in our rule matches the url of the location object, but the rule does not contain a modifier function': function() { with(this) {
+          var rule = {
+            'urlPattern' : /localhost/
+          }
+          Permalink.rules.push(rule);
+          this.locationProxy.href = 'http://localhost';
           permalink = new Permalink(this.locationProxy);
           
           assertEqual('', permalink.href());
