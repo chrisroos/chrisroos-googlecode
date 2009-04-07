@@ -105,5 +105,4 @@ CanonicalUrl.CanonicalLink = {
   }
 }
 
-var permalink = new CanonicalUrl.Permalink(document.location);
-CanonicalUrl.CanonicalLink.write(permalink);
+CanonicalUrl.CanonicalLink.write(new CanonicalUrl.Permalink(document.location));
