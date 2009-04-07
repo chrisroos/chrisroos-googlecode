@@ -29,7 +29,7 @@
       new Test.Unit.Runner({
         setup: function() {
           Permalink.rules = []; // Reset the rules array
-          this.locationProxy = document.createElement('a');
+          this.location = document.createElement('a');
         },
     
         teardown: function() {
@@ -44,8 +44,8 @@
             }
           }
           Permalink.rules.push(rule);
-          this.locationProxy.href = 'http://localhost';
-          permalink = new Permalink(this.locationProxy);
+          this.location.href = 'http://localhost';
+          permalink = new Permalink(this.location);
           
           assertEqual('my-permalink', permalink.href());
         }},
@@ -65,8 +65,8 @@
           }
           Permalink.rules.push(rule1);
           Permalink.rules.push(rule2);
-          this.locationProxy.href = 'http://example.com/?foo=bar&id=123&bar=baz';
-          permalink = new Permalink(this.locationProxy)
+          this.location.href = 'http://example.com/?foo=bar&id=123&bar=baz';
+          permalink = new Permalink(this.location)
           
           assertEqual('example-dot-com-permalink', permalink.href());
         }},
@@ -79,8 +79,8 @@
             }
           }
           Permalink.rules.push(rule);
-          this.locationProxy.href = 'http://localhost/?id=123';
-          permalink = new Permalink(this.locationProxy);
+          this.location.href = 'http://localhost/?id=123';
+          permalink = new Permalink(this.location);
           
           assertEqual('', permalink.href());
         }},
@@ -90,8 +90,8 @@
             'urlPattern' : /localhost/
           }
           Permalink.rules.push(rule);
-          this.locationProxy.href = 'http://localhost';
-          permalink = new Permalink(this.locationProxy);
+          this.location.href = 'http://localhost';
+          permalink = new Permalink(this.location);
           
           assertEqual('', permalink.href());
         }}
