@@ -70,6 +70,12 @@ var requiredKeyRule = function(url, key) {
 
 Permalink.rules = [];
 Permalink.rules.push({
+  'urlPattern' : /example\.com/, 
+  'modifier' : function(url) { 
+    return requiredKeyRule(url, 'foo');
+  }
+});
+Permalink.rules.push({
   'urlPattern' : /google\.co\.uk\/search/, 
   'modifier' : function(url) { 
     return requiredKeyRule(url, 'q');
