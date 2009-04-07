@@ -36,17 +36,20 @@
 
         'test should generate the permalink for a url that contains our required key only in the querystring': function() { with(this) {
           this.locationProxy.href = 'http://localhost/?id=123';
-          assertEqual('http://localhost/?id=123', requiredKeyRule(this.locationProxy, 'id'));
+          var url = new CanonicalUrl.Url(this.locationProxy);
+          assertEqual('http://localhost/?id=123', requiredKeyRule(url, 'id'));
         }},
         
         'test should generate the permalink for a url that contains our required key within mulitple key and value pairs in the querystring': function() { with(this) {
           this.locationProxy.href = 'http://localhost/?foo=bar&id=123&bar=baz';
-          assertEqual('http://localhost/?id=123', requiredKeyRule(this.locationProxy, 'id'));
+          var url = new CanonicalUrl.Url(this.locationProxy);
+          assertEqual('http://localhost/?id=123', requiredKeyRule(url, 'id'));
         }},
         
         'test should return an empty string if our required key could not be found in the querystring': function() { with(this) {
           this.locationProxy.href = 'http://localhost/?foo=bar&bar=baz';
-          assertEqual('', requiredKeyRule(this.locationProxy, 'id'));
+          var url = new CanonicalUrl.Url(this.locationProxy);
+          assertEqual('', requiredKeyRule(url, 'id'));
         }}
 
       }); 

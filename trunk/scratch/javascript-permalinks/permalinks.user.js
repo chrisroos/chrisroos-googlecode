@@ -53,17 +53,16 @@ Permalink.prototype.href = function() {
     var rule = Permalink.rules[i];
     if (rule.urlPattern.test(this.location.href)) {
       if (rule.modifier)
-        permalink = rule.modifier(this.location);
+        permalink = rule.modifier(new CanonicalUrl.Url(this.location));
     }
   }
   return permalink;
 }
 
-var requiredKeyRule = function(location, key) {
-  var queryStringKeysAndValues = new CanonicalUrl.Url(location).queryString;
-  if (key && queryStringKeysAndValues && queryStringKeysAndValues[key]) {
-    var queryString = [key, queryStringKeysAndValues[key]].join('=');
-    return location.protocol + '//' + location.host + location.pathname + '?' + queryString;
+var requiredKeyRule = function(url, key) {
+  if (key && url.queryString && url.queryString[key]) {
+    var queryString = [key, url.queryString[key]].join('=');
+    return url.protocol + '//' + url.host + url.pathname + '?' + queryString;
   } else {
     return '';
   }
@@ -72,21 +71,20 @@ var requiredKeyRule = function(location, key) {
 Permalink.rules = [];
 Permalink.rules.push({
   'urlPattern' : /google\.co\.uk\/search/, 
-  'modifier' : function(location) { 
-    return requiredKeyRule(location, 'q');
+  'modifier' : function(url) { 
+    return requiredKeyRule(url, 'q');
   }
 });
 Permalink.rules.push({
   'urlPattern' : /theyworkforyou\.com\/wrans/, 
-  'modifier' : function(location) { 
-    return requiredKeyRule(location, 'id');
+  'modifier' : function(url) { 
+    return requiredKeyRule(url, 'id');
   }
 });
 Permalink.rules.push({
   'urlPattern' : /cgi\.ebay\.co\.uk/,
-  'modifier'   : function(location) {
-    var queryString = new CanonicalUrl.Url(location).queryString;
-    var hash = queryString.hash;
+  'modifier'   : function(url) {
+    var hash = url.queryString.hash;
     if (m = hash.match(/item(\d+)/)) {
       var itemId = m[1];
       return 'http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=' + itemId;
