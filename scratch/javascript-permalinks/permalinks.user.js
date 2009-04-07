@@ -5,6 +5,12 @@
 // TODO: Test that the link rel=canonical actually gets added to the head of the document.
 // TODO: Think about Permalink.add_rule(name, key_or_callback) type method instead of pushing directly onto the rules array.
 // TODO: Think about I can externalise all the rules (maybe GM_xmlhttpRequest will help?)
+// TODO: Should I be returning empty strings (or undefined) when permalinks cannot be generated?
+// TODO: Name the rules and test them (e.g. test the ebay rule).
+// TODO: Create a rule object (which has url and callback).
+// TODO: Rename modifier to something more useful (apply, for example).
+// TODO: Namespace stuff!
+// TODO: Investigate requiring other files from the extension, that way I could have a rule per file that just get required.
 
 function Url(url) {
   this.url = url;
@@ -31,42 +37,50 @@ function Permalink(location) {
 }
 Permalink.prototype.href = function() {
   var permalink = '';
-
   for (var i = 0; i < Permalink.rules.length; i++) {
     var rule = Permalink.rules[i];
     if (rule.urlPattern.test(this.location.href)) {
-      // Parse the querystring
-      var keysAndValues = new Url(this.location.href).queryString();
-
-      // Generate the permalink
-      var url = this.location;
-      if (rule.key && keysAndValues && keysAndValues[rule.key]) {
-        var queryString = [rule.key, keysAndValues[rule.key]].join('=')
-        permalink = url.protocol + '//' + url.host + url.pathname + '?' + queryString;
-      } else if (rule.modifier) {
-        permalink = rule.modifier(url.href);
-      }
+      if (rule.modifier)
+        permalink = rule.modifier(this.location);
     }
   }
-  
   return permalink;
 }
 
+var requiredKeyRule = function(location, key) {
+  var queryStringKeysAndValues = new Url(location.href).queryString();
+  if (key && queryStringKeysAndValues && queryStringKeysAndValues[key]) {
+    var queryString = [key, queryStringKeysAndValues[key]].join('=');
+    return location.protocol + '//' + location.host + location.pathname + '?' + queryString;
+  } else {
+    return '';
+  }
+}
+
 Permalink.rules = [];
-Permalink.rules.push({'urlPattern' : /google\.co\.uk\/search/, 'key' : 'q'});
-Permalink.rules.push({'urlPattern' : /theyworkforyou\.com\/wrans/, 'key' : 'id'});
-var ebayRule = {
+Permalink.rules.push({
+  'urlPattern' : /google\.co\.uk\/search/, 
+  'modifier' : function(location) { 
+    return requiredKeyRule(location, 'q');
+  }
+});
+Permalink.rules.push({
+  'urlPattern' : /theyworkforyou\.com\/wrans/, 
+  'modifier' : function(location) { 
+    return requiredKeyRule(location, 'id');
+  }
+});
+Permalink.rules.push({
   'urlPattern' : /cgi\.ebay\.co\.uk/,
-  'modifier'   : function(url) {
-    var queryString = new Url(url).queryString();
+  'modifier'   : function(location) {
+    var queryString = new Url(location.href).queryString();
     var hash = queryString.hash;
     if (m = hash.match(/item(\d+)/)) {
       var itemId = m[1];
       return 'http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=' + itemId;
     }
   }
-}
-Permalink.rules.push(ebayRule);
+});
 
 CanonicalLink = {
   'write' : function(permalink) {
