@@ -14,10 +14,12 @@
 // TODO: Add metadata
 // TODO: Make my own Location-like object that also comes with a queryString method.  Supply this to the rules so that they don't have to generate the querystring themselves.
 
-function Url(url) {
+CanonicalUrl = {}
+
+CanonicalUrl.Url = function(url) {
   this.url = url;
 }
-Url.prototype.queryString = function() {
+CanonicalUrl.Url.prototype.queryString = function() {
   var keysAndValues = {};
   if (m = this.url.match(/\?(.*)/)) {
     var queryString = m[1];
@@ -50,7 +52,7 @@ Permalink.prototype.href = function() {
 }
 
 var requiredKeyRule = function(location, key) {
-  var queryStringKeysAndValues = new Url(location.href).queryString();
+  var queryStringKeysAndValues = new CanonicalUrl.Url(location.href).queryString();
   if (key && queryStringKeysAndValues && queryStringKeysAndValues[key]) {
     var queryString = [key, queryStringKeysAndValues[key]].join('=');
     return location.protocol + '//' + location.host + location.pathname + '?' + queryString;
@@ -75,7 +77,7 @@ Permalink.rules.push({
 Permalink.rules.push({
   'urlPattern' : /cgi\.ebay\.co\.uk/,
   'modifier'   : function(location) {
-    var queryString = new Url(location.href).queryString();
+    var queryString = new CanonicalUrl.Url(location.href).queryString();
     var hash = queryString.hash;
     if (m = hash.match(/item(\d+)/)) {
       var itemId = m[1];
