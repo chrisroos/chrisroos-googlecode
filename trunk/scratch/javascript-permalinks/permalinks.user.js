@@ -16,12 +16,12 @@
 
 CanonicalUrl = {}
 
-CanonicalUrl.Url = function(url) {
-  this.url = url;
+CanonicalUrl.Url = function(location) {
+  this.location = location;
 }
 CanonicalUrl.Url.prototype.queryString = function() {
   var keysAndValues = {};
-  if (m = this.url.match(/\?(.*)/)) {
+  if (m = this.location.href.match(/\?(.*)/)) {
     var queryString = m[1];
     var keyValuePairs = queryString.split('&');
     if (keyValuePairs.length > 0) {
@@ -52,7 +52,7 @@ Permalink.prototype.href = function() {
 }
 
 var requiredKeyRule = function(location, key) {
-  var queryStringKeysAndValues = new CanonicalUrl.Url(location.href).queryString();
+  var queryStringKeysAndValues = new CanonicalUrl.Url(location).queryString();
   if (key && queryStringKeysAndValues && queryStringKeysAndValues[key]) {
     var queryString = [key, queryStringKeysAndValues[key]].join('=');
     return location.protocol + '//' + location.host + location.pathname + '?' + queryString;
@@ -77,7 +77,7 @@ Permalink.rules.push({
 Permalink.rules.push({
   'urlPattern' : /cgi\.ebay\.co\.uk/,
   'modifier'   : function(location) {
-    var queryString = new CanonicalUrl.Url(location.href).queryString();
+    var queryString = new CanonicalUrl.Url(location).queryString();
     var hash = queryString.hash;
     if (m = hash.match(/item(\d+)/)) {
       var itemId = m[1];
