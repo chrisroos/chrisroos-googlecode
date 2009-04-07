@@ -8,7 +8,7 @@
 // TODO: Investigate requiring other files from the extension, that way I could have a rule per file that just get required.
 
 // ==UserScript==
-// @name          CanonicalUrl
+// @name          Canonical Url Generation and Insertion
 // @namespace     http://chrisroos.co.uk/
 // @description   A script that allows me to construct rules to determine the permalink of a given URL and write that permalink into the page as a link element with rel=canonical.
 // @include       *
