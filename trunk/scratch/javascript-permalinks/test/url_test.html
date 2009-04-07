@@ -33,6 +33,20 @@
     
         teardown: function() {
         },
+        
+        'test should delegate to the Location object for all location properties': function() { with(this) {
+          location.href = 'http://www.example.com:8080/foo/bar/?q=query#my-hash';
+          var url = new CanonicalUrl.Url(location);
+          
+          assertEqual(location.hash, url.hash);
+          assertEqual(location.host, url.host);
+          assertEqual(location.hostname, url.hostname);
+          assertEqual(location.href, url.href);
+          assertEqual(location.pathname, url.pathname);
+          assertEqual(location.port, url.port);
+          assertEqual(location.protocol, url.protocol);
+          assertEqual(location.search, url.search);
+        }},
 
         'test should return an empty object if the querystring is missing': function() { with(this) {
           location.href = 'http://localhost/';

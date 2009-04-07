@@ -17,10 +17,17 @@
 CanonicalUrl = {}
 
 CanonicalUrl.Url = function(location) {
-  this.location = location;
+  this.hash = location.hash;
+  this.host = location.host;
+  this.hostname = location.hostname;
+  this.href = location.href;
+  this.pathname = location.pathname;
+  this.port = location.port;
+  this.protocol = location.protocol;
+  this.search = location.search;
   this._queryString = function() {
     var keysAndValues = {};
-    if (m = this.location.href.match(/\?(.*)/)) {
+    if (m = this.href.match(/\?(.*)/)) {
       var queryString = m[1];
       var keyValuePairs = queryString.split('&');
       if (keyValuePairs.length > 0) {
