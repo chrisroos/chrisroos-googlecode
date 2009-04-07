@@ -1,5 +1,4 @@
 // TODO: Deal with multiple keys (find an example that actually requires this before implementing though).
-// TODO: Check that the modifier callback is a function.
 // TODO: Find a way to run all javascript tests at once.
 // TODO: Test that the link rel=canonical actually gets added to the *head* of the document.
 // TODO: Think about Permalink.add_rule(name, key_or_callback) type method instead of pushing directly onto the rules array.
@@ -48,7 +47,7 @@ CanonicalUrl.Permalink.prototype.href = function() {
   for (var i = 0; i < CanonicalUrl.Rules.length; i++) {
     var rule = CanonicalUrl.Rules[i];
     if (rule.urlPattern.test(this.location.href)) {
-      if (rule.modifier)
+      if (rule.modifier && typeof(rule.modifier) == 'function')
         permalink = rule.modifier(new CanonicalUrl.Url(this.location));
     }
   }

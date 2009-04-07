@@ -93,6 +93,18 @@
           permalink = new CanonicalUrl.Permalink(this.location);
           
           assertEqual('', permalink.href());
+        }},
+        
+        'test should return an empty string if the url pattern in our rule matches the url of the location object, but the rule modifier is not a function': function() { with(this) {
+          var rule = {
+            'urlPattern' : /localhost/,
+            'modifier' : 'foo-bar-baz'
+          }
+          CanonicalUrl.Rules.push(rule);
+          this.location.href = 'http://localhost';
+          permalink = new CanonicalUrl.Permalink(this.location);
+          
+          assertEqual('', permalink.href());
         }}
 
       }); 
