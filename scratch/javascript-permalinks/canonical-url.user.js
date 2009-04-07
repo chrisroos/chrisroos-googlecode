@@ -1,5 +1,4 @@
 // TODO: Deal with multiple keys (find an example that actually requires this before implementing though).
-// TODO: Find a way to run all javascript tests at once.
 // TODO: Think about Permalink.add_rule(name, key_or_callback) type method instead of pushing directly onto the rules array.
 // TODO: Think about I can externalise all the rules (maybe GM_xmlhttpRequest will help?)
 // TODO: Should I be returning empty strings (or undefined) when permalinks cannot be generated?
