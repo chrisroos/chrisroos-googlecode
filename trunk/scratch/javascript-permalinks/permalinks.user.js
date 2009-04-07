@@ -12,7 +12,6 @@
 // TODO: Namespace stuff!
 // TODO: Investigate requiring other files from the extension, that way I could have a rule per file that just get required.
 // TODO: Add metadata
-// TODO: Make my own Location-like object that also comes with a queryString method.  Supply this to the rules so that they don't have to generate the querystring themselves.
 
 CanonicalUrl = {}
 
