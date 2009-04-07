@@ -1,0 +1,9 @@
+task :default do
+  test_files = Dir[File.join(File.dirname(__FILE__), 'test', '**', '*_test.html')]
+  first_file = test_files.shift
+  `open #{first_file}`
+  # Give the browser a chance to open before we open the rest of the files.  
+  # If the browser isn't open then each subsequent file opens in its own window which isn't cool.
+  sleep 3
+  `open #{test_files.join(' ')}`
+end
