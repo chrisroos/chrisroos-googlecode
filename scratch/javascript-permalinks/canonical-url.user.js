@@ -1,11 +1,3 @@
-// TODO: Deal with multiple keys (find an example that actually requires this before implementing though).
-// TODO: Think about Permalink.add_rule(name, key_or_callback) type method instead of pushing directly onto the rules array.
-// TODO: Think about I can externalise all the rules (maybe GM_xmlhttpRequest will help?)
-// TODO: Should I be returning empty strings (or undefined) when permalinks cannot be generated?
-// TODO: Create a rule object (which has url and callback).
-// TODO: Rename modifier to something more useful (apply, for example).
-// TODO: Investigate requiring other files from the extension, that way I could have a rule per file that just get required.
-
 // ==UserScript==
 // @name          Canonical Url Generation and Insertion
 // @namespace     http://chrisroos.co.uk/
