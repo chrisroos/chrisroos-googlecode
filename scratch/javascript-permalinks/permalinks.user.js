@@ -50,8 +50,8 @@ function Permalink(location) {
 }
 Permalink.prototype.href = function() {
   var permalink = '';
-  for (var i = 0; i < Permalink.rules.length; i++) {
-    var rule = Permalink.rules[i];
+  for (var i = 0; i < CanonicalUrl.Rules.length; i++) {
+    var rule = CanonicalUrl.Rules[i];
     if (rule.urlPattern.test(this.location.href)) {
       if (rule.modifier)
         permalink = rule.modifier(new CanonicalUrl.Url(this.location));
@@ -69,26 +69,26 @@ var requiredKeyRule = function(url, key) {
   }
 }
 
-Permalink.rules = [];
-Permalink.rules.push({
+CanonicalUrl.Rules = [];
+CanonicalUrl.Rules.push({
   'urlPattern' : /example\.com/, 
   'modifier' : function(url) { 
     return requiredKeyRule(url, 'foo');
   }
 });
-Permalink.rules.push({
+CanonicalUrl.Rules.push({
   'urlPattern' : /google\.co\.uk\/search/, 
   'modifier' : function(url) { 
     return requiredKeyRule(url, 'q');
   }
 });
-Permalink.rules.push({
+CanonicalUrl.Rules.push({
   'urlPattern' : /theyworkforyou\.com\/wrans/, 
   'modifier' : function(url) { 
     return requiredKeyRule(url, 'id');
   }
 });
-Permalink.rules.push({
+CanonicalUrl.Rules.push({
   'urlPattern' : /cgi\.ebay\.co\.uk/,
   'modifier'   : function(url) {
     var hash = url.queryString.hash;
