@@ -6,7 +6,13 @@
 // TODO: Create a rule object (which has url and callback).
 // TODO: Rename modifier to something more useful (apply, for example).
 // TODO: Investigate requiring other files from the extension, that way I could have a rule per file that just get required.
-// TODO: Add metadata
+
+// ==UserScript==
+// @name          CanonicalUrl
+// @namespace     http://chrisroos.co.uk/
+// @description   A script that allows me to construct rules to determine the permalink of a given URL and write that permalink into the page as a link element with rel=canonical.
+// @include       *
+// ==/UserScript==
 
 CanonicalUrl = {}
 
