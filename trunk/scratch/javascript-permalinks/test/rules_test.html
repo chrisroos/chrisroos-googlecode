@@ -28,27 +28,27 @@
     // <![CDATA[
       new Test.Unit.Runner({
         setup: function() {
-          this.locationProxy = document.createElement('a');
+          this.location = document.createElement('a');
         },
     
         teardown: function() {
         },
 
         'test should generate the permalink for a url that contains our required key only in the querystring': function() { with(this) {
-          this.locationProxy.href = 'http://localhost/?id=123';
-          var url = new CanonicalUrl.Url(this.locationProxy);
+          this.location.href = 'http://localhost/?id=123';
+          var url = new CanonicalUrl.Url(this.location);
           assertEqual('http://localhost/?id=123', requiredKeyRule(url, 'id'));
         }},
         
         'test should generate the permalink for a url that contains our required key within mulitple key and value pairs in the querystring': function() { with(this) {
-          this.locationProxy.href = 'http://localhost/?foo=bar&id=123&bar=baz';
-          var url = new CanonicalUrl.Url(this.locationProxy);
+          this.location.href = 'http://localhost/?foo=bar&id=123&bar=baz';
+          var url = new CanonicalUrl.Url(this.location);
           assertEqual('http://localhost/?id=123', requiredKeyRule(url, 'id'));
         }},
         
         'test should return an empty string if our required key could not be found in the querystring': function() { with(this) {
-          this.locationProxy.href = 'http://localhost/?foo=bar&bar=baz';
-          var url = new CanonicalUrl.Url(this.locationProxy);
+          this.location.href = 'http://localhost/?foo=bar&bar=baz';
+          var url = new CanonicalUrl.Url(this.location);
           assertEqual('', requiredKeyRule(url, 'id'));
         }}
 
