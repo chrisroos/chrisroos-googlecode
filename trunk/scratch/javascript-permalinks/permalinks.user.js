@@ -97,7 +97,7 @@ CanonicalUrl.Rules.push({
   }
 });
 
-CanonicalLink = {
+CanonicalUrl.CanonicalLink = {
   'write' : function(permalink) {
     if (href = permalink.href()) {
       var canonicalLink = document.createElement('link');
@@ -110,4 +110,4 @@ CanonicalLink = {
 }
 
 var permalink = new CanonicalUrl.Permalink(document.location);
-CanonicalLink.write(permalink);
+CanonicalUrl.CanonicalLink.write(permalink);
