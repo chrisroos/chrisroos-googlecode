@@ -12,6 +12,7 @@
 // TODO: Namespace stuff!
 // TODO: Investigate requiring other files from the extension, that way I could have a rule per file that just get required.
 // TODO: Add metadata
+// TODO: Add a test around the behaviour of this script itself, i.e. it looks at the location and attempts to insert a link rel=canonical element into the page.
 
 CanonicalUrl = {}
 
