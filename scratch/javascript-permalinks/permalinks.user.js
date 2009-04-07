@@ -43,10 +43,10 @@ CanonicalUrl.Url = function(location) {
   this.queryString = this._queryString();
 }
 
-function Permalink(location) {
+CanonicalUrl.Permalink = function(location) {
   this.location = location;
 }
-Permalink.prototype.href = function() {
+CanonicalUrl.Permalink.prototype.href = function() {
   var permalink = '';
   for (var i = 0; i < CanonicalUrl.Rules.length; i++) {
     var rule = CanonicalUrl.Rules[i];
@@ -109,5 +109,5 @@ CanonicalLink = {
   }
 }
 
-var permalink = new Permalink(document.location);
+var permalink = new CanonicalUrl.Permalink(document.location);
 CanonicalLink.write(permalink);
