@@ -51,7 +51,7 @@
           var canonicalLinkElements = TestHelper.getCanonicalLinkElements();
           assertEqual(0, canonicalLinkElements.length);
 
-          CanonicalLink.write(permalink);
+          CanonicalUrl.CanonicalLink.write(permalink);
           
           var canonicalLinkElements = TestHelper.getCanonicalLinkElements();
           assertEqual(1, canonicalLinkElements.length);
@@ -68,7 +68,7 @@
           var canonicalLinkElements = TestHelper.getCanonicalLinkElements();
           assertEqual(0, canonicalLinkElements.length);
           
-          CanonicalLink.write(permalink);
+          CanonicalUrl.CanonicalLink.write(permalink);
           
           var canonicalLinkElements = TestHelper.getCanonicalLinkElements();
           assertEqual(0, canonicalLinkElements.length);
