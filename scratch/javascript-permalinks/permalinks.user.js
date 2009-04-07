@@ -58,7 +58,7 @@ CanonicalUrl.Permalink.prototype.href = function() {
   return permalink;
 }
 
-var requiredKeyRule = function(url, key) {
+CanonicalUrl.requiredKeyRule = function(url, key) {
   if (key && url.queryString && url.queryString[key]) {
     var queryString = [key, url.queryString[key]].join('=');
     return url.protocol + '//' + url.host + url.pathname + '?' + queryString;
@@ -77,13 +77,13 @@ CanonicalUrl.Rules.push({
 CanonicalUrl.Rules.push({
   'urlPattern' : /google\.co\.uk\/search/, 
   'modifier' : function(url) { 
-    return requiredKeyRule(url, 'q');
+    return CanonicalUrl.requiredKeyRule(url, 'q');
   }
 });
 CanonicalUrl.Rules.push({
   'urlPattern' : /theyworkforyou\.com\/wrans/, 
   'modifier' : function(url) { 
-    return requiredKeyRule(url, 'id');
+    return CanonicalUrl.requiredKeyRule(url, 'id');
   }
 });
 CanonicalUrl.Rules.push({
