@@ -44,7 +44,7 @@
           }
           CanonicalUrl.Rules.push(rule);
           this.location.href = 'http://localhost';
-          permalink = new Permalink(this.location);
+          permalink = new CanonicalUrl.Permalink(this.location);
           
           assertEqual('my-permalink', permalink.href());
         }},
@@ -65,7 +65,7 @@
           CanonicalUrl.Rules.push(rule1);
           CanonicalUrl.Rules.push(rule2);
           this.location.href = 'http://example.com/?foo=bar&id=123&bar=baz';
-          permalink = new Permalink(this.location)
+          permalink = new CanonicalUrl.Permalink(this.location)
           
           assertEqual('example-dot-com-permalink', permalink.href());
         }},
@@ -79,7 +79,7 @@
           }
           CanonicalUrl.Rules.push(rule);
           this.location.href = 'http://localhost/?id=123';
-          permalink = new Permalink(this.location);
+          permalink = new CanonicalUrl.Permalink(this.location);
           
           assertEqual('', permalink.href());
         }},
@@ -90,7 +90,7 @@
           }
           CanonicalUrl.Rules.push(rule);
           this.location.href = 'http://localhost';
-          permalink = new Permalink(this.location);
+          permalink = new CanonicalUrl.Permalink(this.location);
           
           assertEqual('', permalink.href());
         }}
