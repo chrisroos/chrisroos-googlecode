@@ -71,9 +71,9 @@ var requiredKeyRule = function(url, key) {
 
 CanonicalUrl.Rules = [];
 CanonicalUrl.Rules.push({
-  'urlPattern' : /example\.com/, 
+  'urlPattern' : /userscript_integration_test\.html/, 
   'modifier' : function(url) { 
-    return requiredKeyRule(url, 'foo');
+    return 'userscript-permalink';
   }
 });
 CanonicalUrl.Rules.push({
