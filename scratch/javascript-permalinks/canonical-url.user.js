@@ -59,35 +59,27 @@ CanonicalUrl.requiredKeyRule = function(url, key) {
   }
 }
 
+CanonicalUrl.Rule = function(urlPattern, modifier) {
+  this.urlPattern = urlPattern;
+  this.modifier = modifier;
+}
 CanonicalUrl.Rules = [];
-CanonicalUrl.Rules.push({
-  'urlPattern' : /userscript_integration_test\.html/, 
-  'modifier' : function(url) { 
-    return 'userscript-permalink';
+CanonicalUrl.Rules.push(new CanonicalUrl.Rule(/userscript_integration_test\.html/, function(url) { 
+  return 'userscript-permalink';
+}));
+CanonicalUrl.Rules.push(new CanonicalUrl.Rule(/google\.co\.uk\/search/, function(url) { 
+  return CanonicalUrl.requiredKeyRule(url, 'q');
+}));
+CanonicalUrl.Rules.push(new CanonicalUrl.Rule(/theyworkforyou\.com\/wrans/, function(url) { 
+  return CanonicalUrl.requiredKeyRule(url, 'id');
+}));
+CanonicalUrl.Rules.push(new CanonicalUrl.Rule(/cgi\.ebay\.co\.uk/, function(url) {
+  var hash = url.queryString.hash;
+  if (m = hash.match(/item(\d+)/)) {
+    var itemId = m[1];
+    return 'http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=' + itemId;
   }
-});
-CanonicalUrl.Rules.push({
-  'urlPattern' : /google\.co\.uk\/search/, 
-  'modifier' : function(url) { 
-    return CanonicalUrl.requiredKeyRule(url, 'q');
-  }
-});
-CanonicalUrl.Rules.push({
-  'urlPattern' : /theyworkforyou\.com\/wrans/, 
-  'modifier' : function(url) { 
-    return CanonicalUrl.requiredKeyRule(url, 'id');
-  }
-});
-CanonicalUrl.Rules.push({
-  'urlPattern' : /cgi\.ebay\.co\.uk/,
-  'modifier'   : function(url) {
-    var hash = url.queryString.hash;
-    if (m = hash.match(/item(\d+)/)) {
-      var itemId = m[1];
-      return 'http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=' + itemId;
-    }
-  }
-});
+}));
 
 CanonicalUrl.CanonicalLink = {
   'write' : function(permalink) {
