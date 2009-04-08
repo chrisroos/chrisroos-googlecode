@@ -28,6 +28,8 @@
     // <![CDATA[
       new Test.Unit.Runner({
         setup: function() {
+          // Set the playing field by removing any link rel=canonical elements
+          TestHelper.removeCanonicalLinkElements();
         },
     
         teardown: function() {
