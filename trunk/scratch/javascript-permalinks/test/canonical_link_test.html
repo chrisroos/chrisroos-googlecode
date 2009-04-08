@@ -30,12 +30,7 @@
       new Test.Unit.Runner({
         setup: function() {
           // Set the playing field by removing any link rel=canonical elements
-          var linkElements = document.getElementsByTagName('link');
-          for (var i = 0; i < linkElements.length; i++) {
-            if (linkElements[i].getAttribute('rel') == 'canonical') {
-              linkElements[i].parentNode.removeChild(linkElements[i]);
-            }
-          }
+          TestHelper.removeCanonicalLinkElements();
         },
     
         teardown: function() {
