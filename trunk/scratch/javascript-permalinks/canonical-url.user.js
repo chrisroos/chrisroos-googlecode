@@ -39,14 +39,8 @@ CanonicalUrl.Permalink = function(location) {
   this.location = location;
 }
 CanonicalUrl.Permalink.prototype.href = function() {
-  var permalink = '';
-  for (var i = 0; i < CanonicalUrl.Rules.length; i++) {
-    var rule = CanonicalUrl.Rules[i];
-    if (rule.urlPattern.test(this.location.href)) {
-      if (rule.modifier && typeof(rule.modifier) == 'function')
-        permalink = rule.modifier(new CanonicalUrl.Url(this.location));
-    }
-  }
+  var permalink = CanonicalUrl.Rules.apply(this.location);
+  if (!permalink) { permalink = ''; }
   return permalink;
 }
 
@@ -62,24 +56,40 @@ CanonicalUrl.requiredKeyRule = function(url, key) {
 CanonicalUrl.Rule = function(urlPattern, modifier) {
   this.urlPattern = urlPattern;
   this.modifier = modifier;
+};
+CanonicalUrl.RuleCollection = function() {
+  this.rules = [];
 }
-CanonicalUrl.Rules = [];
-CanonicalUrl.Rules.push(new CanonicalUrl.Rule(/userscript_integration_test\.html/, function(url) { 
+CanonicalUrl.RuleCollection.prototype.add = function(urlPattern, modifier) {
+  var rule = new CanonicalUrl.Rule(urlPattern, modifier);
+  this.rules.push(rule);
+};
+CanonicalUrl.RuleCollection.prototype.apply = function(location) {
+  for (var i = 0; i < this.rules.length; i++) {
+    var rule = this.rules[i];
+    if (rule.urlPattern.test(location.href)) {
+      if (rule.modifier && typeof(rule.modifier) == 'function')
+        return rule.modifier(new CanonicalUrl.Url(location));
+    }
+  }
+}
+CanonicalUrl.Rules = new CanonicalUrl.RuleCollection();
+CanonicalUrl.Rules.add(/userscript_integration_test\.html/, function(url) { 
   return 'userscript-permalink';
-}));
-CanonicalUrl.Rules.push(new CanonicalUrl.Rule(/google\.co\.uk\/search/, function(url) { 
+});
+CanonicalUrl.Rules.add(/google\.co\.uk\/search/, function(url) { 
   return CanonicalUrl.requiredKeyRule(url, 'q');
-}));
-CanonicalUrl.Rules.push(new CanonicalUrl.Rule(/theyworkforyou\.com\/wrans/, function(url) { 
+});
+CanonicalUrl.Rules.add(/theyworkforyou\.com\/wrans/, function(url) { 
   return CanonicalUrl.requiredKeyRule(url, 'id');
-}));
-CanonicalUrl.Rules.push(new CanonicalUrl.Rule(/cgi\.ebay\.co\.uk/, function(url) {
+});
+CanonicalUrl.Rules.add(/cgi\.ebay\.co\.uk/, function(url) {
   var hash = url.queryString.hash;
   if (m = hash.match(/item(\d+)/)) {
     var itemId = m[1];
     return 'http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=' + itemId;
   }
-}));
+});
 
 CanonicalUrl.CanonicalLink = {
   'write' : function(permalink) {
