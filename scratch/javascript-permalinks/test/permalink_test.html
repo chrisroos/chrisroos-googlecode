@@ -28,7 +28,7 @@
     // <![CDATA[
       new Test.Unit.Runner({
         setup: function() {
-          CanonicalUrl.Rules = []; // Reset the rules array
+          CanonicalUrl.Rules = new CanonicalUrl.RuleCollection(); // Reset the rules array
           this.location = document.createElement('a');
         },
     
@@ -36,13 +36,9 @@
         },
 
         'test should generate the permalink for a url using a callback function': function() { with(this) {
-          var rule = {
-            'urlPattern' : /localhost/,
-            'modifier'   : function(location) {
-              return 'my-permalink';
-            }
-          }
-          CanonicalUrl.Rules.push(rule);
+          CanonicalUrl.Rules.add(/localhost/, function(location) {
+            return 'my-permalink';
+          });
           this.location.href = 'http://localhost';
           permalink = new CanonicalUrl.Permalink(this.location);
           
@@ -50,20 +46,12 @@
         }},
         
         'test should generate the permalink for a url when there are multiple rules defined': function() { with(this) {
-          var rule1 = {
-            'urlPattern' : /localhost/,
-            'modifier' : function(location) {
-              return 'localhost-permalink';
-            }
-          }
-          var rule2 = {
-            'urlPattern' : /example\.com/,
-            'modifier' : function(location) {
-              return 'example-dot-com-permalink';
-            }
-          }
-          CanonicalUrl.Rules.push(rule1);
-          CanonicalUrl.Rules.push(rule2);
+          CanonicalUrl.Rules.add(/localhost/, function(location) {
+            return 'localhost-permalink';
+          });
+          CanonicalUrl.Rules.add(/example\.com/, function(location) {
+            return 'example-dot-com-permalink';
+          });
           this.location.href = 'http://example.com/?foo=bar&id=123&bar=baz';
           permalink = new CanonicalUrl.Permalink(this.location)
           
@@ -71,13 +59,9 @@
         }},
         
         'test should return an empty string if the url pattern in our rule does not match the url of the location object': function() { with(this) {
-          var rule = {
-            'urlPattern' : /example.com/,
-            'modifier' : function(location) {
-              return 'example-dot-com-permalink';
-            }
-          }
-          CanonicalUrl.Rules.push(rule);
+          CanonicalUrl.Rules.add(/example.com/, function(location) {
+            return 'example-dot-com-permalink';
+          });
           this.location.href = 'http://localhost/?id=123';
           permalink = new CanonicalUrl.Permalink(this.location);
           
@@ -85,10 +69,7 @@
         }},
         
         'test should return an empty string it the url pattern in our rule matches the url of the location object, but the rule does not contain a modifier function': function() { with(this) {
-          var rule = {
-            'urlPattern' : /localhost/
-          }
-          CanonicalUrl.Rules.push(rule);
+          CanonicalUrl.Rules.add(/localhost/);
           this.location.href = 'http://localhost';
           permalink = new CanonicalUrl.Permalink(this.location);
           
@@ -96,11 +77,7 @@
         }},
         
         'test should return an empty string if the url pattern in our rule matches the url of the location object, but the rule modifier is not a function': function() { with(this) {
-          var rule = {
-            'urlPattern' : /localhost/,
-            'modifier' : 'foo-bar-baz'
-          }
-          CanonicalUrl.Rules.push(rule);
+          CanonicalUrl.Rules.add(/localhost/, 'foo-bar-baz');
           this.location.href = 'http://localhost';
           permalink = new CanonicalUrl.Permalink(this.location);
           
