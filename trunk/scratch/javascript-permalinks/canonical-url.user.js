@@ -61,21 +61,19 @@ CanonicalUrl.RuleCollection = function() {
   this.rules = [];
 }
 
-CanonicalUrl.CanonicalLink = {
-  'write' : function(permalink) {
-    if (href = permalink.href()) {
-      var canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      canonicalLink.setAttribute('href', href);
-      var head = document.getElementsByTagName('head')[0];
-      head.appendChild(canonicalLink);
-    }
+CanonicalUrl.writeLink = function(permalink) {
+  if (href = permalink.href()) {
+    var canonicalLink = document.createElement('link');
+    canonicalLink.setAttribute('rel', 'canonical');
+    canonicalLink.setAttribute('href', href);
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(canonicalLink);
   }
 }
 
 CanonicalUrl.insert = function(location) {
   var permalink = new CanonicalUrl.Permalink(location);
-  CanonicalUrl.CanonicalLink.write(permalink);
+  CanonicalUrl.writeLink(permalink);
 }
 
 // **********************************************
