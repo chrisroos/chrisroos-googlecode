@@ -5,75 +5,77 @@
 // @include       *
 // ==/UserScript==
 
-CanonicalUrl = {}
-
 // **********************************************
 // CanonicalUrl members
 
-CanonicalUrl.queryString = function(location) {
-  var keysAndValues = {};
-  if (m = location.href.match(/\?(.*)/)) {
-    var queryString = m[1];
-    var keyValuePairs = queryString.split('&');
-    if (keyValuePairs.length > 0) {
-      for (var i = 0; i < keyValuePairs.length; i++) {
-        var key = keyValuePairs[i].split('=')[0];
-        var value = keyValuePairs[i].split('=')[1];
-        if (key)
-          keysAndValues[key] = value;
+CanonicalUrl = {
+  
+  queryString : function(location) {
+    var keysAndValues = {};
+    if (m = location.href.match(/\?(.*)/)) {
+      var queryString = m[1];
+      var keyValuePairs = queryString.split('&');
+      if (keyValuePairs.length > 0) {
+        for (var i = 0; i < keyValuePairs.length; i++) {
+          var key = keyValuePairs[i].split('=')[0];
+          var value = keyValuePairs[i].split('=')[1];
+          if (key)
+            keysAndValues[key] = value;
+        }
       }
     }
+    return keysAndValues;
+  },
+  
+  Url : function(location) {
+    this.hash = location.hash;
+    this.host = location.host;
+    this.hostname = location.hostname;
+    this.href = location.href;
+    this.pathname = location.pathname;
+    this.port = location.port;
+    this.protocol = location.protocol;
+    this.search = location.search;
+    this.queryString = CanonicalUrl.queryString(location);
+  },
+  
+  Permalink : function(location) {
+    this.location = location;
+  },
+  
+  requiredKeyRule : function(url, key) {
+    if (key && url.queryString && url.queryString[key]) {
+      var queryString = [key, url.queryString[key]].join('=');
+      return url.protocol + '//' + url.host + url.pathname + '?' + queryString;
+    } else {
+      return '';
+    }
+  },
+  
+  Rule : function(urlPattern, modifier) {
+    this.urlPattern = urlPattern;
+    this.modifier = modifier;
+  },
+  
+  RuleCollection : function() {
+    this.rules = [];
+  },
+  
+  writeLink : function(permalink) {
+    if (href = permalink.href()) {
+      var canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      canonicalLink.setAttribute('href', href);
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(canonicalLink);
+    }
+  },
+  
+  insert : function(location) {
+    var permalink = new CanonicalUrl.Permalink(location);
+    CanonicalUrl.writeLink(permalink);
   }
-  return keysAndValues;
-}
-
-CanonicalUrl.Url = function(location) {
-  this.hash = location.hash;
-  this.host = location.host;
-  this.hostname = location.hostname;
-  this.href = location.href;
-  this.pathname = location.pathname;
-  this.port = location.port;
-  this.protocol = location.protocol;
-  this.search = location.search;
-  this.queryString = CanonicalUrl.queryString(location);
-}
-
-CanonicalUrl.Permalink = function(location) {
-  this.location = location;
-}
-
-CanonicalUrl.requiredKeyRule = function(url, key) {
-  if (key && url.queryString && url.queryString[key]) {
-    var queryString = [key, url.queryString[key]].join('=');
-    return url.protocol + '//' + url.host + url.pathname + '?' + queryString;
-  } else {
-    return '';
-  }
-}
-
-CanonicalUrl.Rule = function(urlPattern, modifier) {
-  this.urlPattern = urlPattern;
-  this.modifier = modifier;
-};
-
-CanonicalUrl.RuleCollection = function() {
-  this.rules = [];
-}
-
-CanonicalUrl.writeLink = function(permalink) {
-  if (href = permalink.href()) {
-    var canonicalLink = document.createElement('link');
-    canonicalLink.setAttribute('rel', 'canonical');
-    canonicalLink.setAttribute('href', href);
-    var head = document.getElementsByTagName('head')[0];
-    head.appendChild(canonicalLink);
-  }
-}
-
-CanonicalUrl.insert = function(location) {
-  var permalink = new CanonicalUrl.Permalink(location);
-  CanonicalUrl.writeLink(permalink);
+  
 }
 
 // **********************************************
