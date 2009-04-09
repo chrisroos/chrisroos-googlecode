@@ -7,6 +7,23 @@
 
 CanonicalUrl = {}
 
+CanonicalUrl.queryString = function(location) {
+  var keysAndValues = {};
+  if (m = location.href.match(/\?(.*)/)) {
+    var queryString = m[1];
+    var keyValuePairs = queryString.split('&');
+    if (keyValuePairs.length > 0) {
+      for (var i = 0; i < keyValuePairs.length; i++) {
+        var key = keyValuePairs[i].split('=')[0];
+        var value = keyValuePairs[i].split('=')[1];
+        if (key)
+          keysAndValues[key] = value;
+      }
+    }
+  }
+  return keysAndValues;
+}
+
 CanonicalUrl.Url = function(location) {
   this.hash = location.hash;
   this.host = location.host;
@@ -16,23 +33,7 @@ CanonicalUrl.Url = function(location) {
   this.port = location.port;
   this.protocol = location.protocol;
   this.search = location.search;
-  this._queryString = function() {
-    var keysAndValues = {};
-    if (m = this.href.match(/\?(.*)/)) {
-      var queryString = m[1];
-      var keyValuePairs = queryString.split('&');
-      if (keyValuePairs.length > 0) {
-        for (var i = 0; i < keyValuePairs.length; i++) {
-          var key = keyValuePairs[i].split('=')[0];
-          var value = keyValuePairs[i].split('=')[1];
-          if (key)
-            keysAndValues[key] = value;
-        }
-      }
-    }
-    return keysAndValues;
-  };
-  this.queryString = this._queryString();
+  this.queryString = CanonicalUrl.queryString(location);
 }
 
 CanonicalUrl.Permalink = function(location) {
