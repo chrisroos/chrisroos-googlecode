@@ -10,21 +10,23 @@
 
 CanonicalUrl = {
   
-  queryString : function(location) {
-    var keysAndValues = {};
-    if (m = location.href.match(/\?(.*)/)) {
-      var queryString = m[1];
-      var keyValuePairs = queryString.split('&');
-      if (keyValuePairs.length > 0) {
-        for (var i = 0; i < keyValuePairs.length; i++) {
-          var key = keyValuePairs[i].split('=')[0];
-          var value = keyValuePairs[i].split('=')[1];
-          if (key)
-            keysAndValues[key] = value;
+  utilities : {
+    queryString : function(location) {
+      var keysAndValues = {};
+      if (m = location.href.match(/\?(.*)/)) {
+        var queryString = m[1];
+        var keyValuePairs = queryString.split('&');
+        if (keyValuePairs.length > 0) {
+          for (var i = 0; i < keyValuePairs.length; i++) {
+            var key = keyValuePairs[i].split('=')[0];
+            var value = keyValuePairs[i].split('=')[1];
+            if (key)
+              keysAndValues[key] = value;
+          }
         }
       }
+      return keysAndValues;
     }
-    return keysAndValues;
   },
   
   Url : function(location) {
@@ -36,7 +38,7 @@ CanonicalUrl = {
     this.port = location.port;
     this.protocol = location.protocol;
     this.search = location.search;
-    this.queryString = CanonicalUrl.queryString(location);
+    this.queryString = CanonicalUrl.utilities.queryString(location);
   },
   
   Permalink : function(location) {
