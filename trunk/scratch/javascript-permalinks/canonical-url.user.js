@@ -81,23 +81,26 @@ CanonicalUrl = {
 // **********************************************
 // CanonicalUrl member prototypes
 
-CanonicalUrl.Permalink.prototype.href = function() {
-  var permalink = CanonicalUrl.Rules.apply(this.location);
-  if (!permalink) { permalink = ''; }
-  return permalink;
+CanonicalUrl.Permalink.prototype = {
+  href : function() {
+    var permalink = CanonicalUrl.Rules.apply(this.location);
+    if (!permalink) { permalink = ''; }
+    return permalink;
+  }
 }
 
-CanonicalUrl.RuleCollection.prototype.add = function(urlPattern, modifier) {
-  var rule = new CanonicalUrl.Rule(urlPattern, modifier);
-  this.rules.push(rule);
-};
-
-CanonicalUrl.RuleCollection.prototype.apply = function(location) {
-  for (var i = 0; i < this.rules.length; i++) {
-    var rule = this.rules[i];
-    if (rule.urlPattern.test(location.href)) {
-      if (rule.modifier && typeof(rule.modifier) == 'function')
-        return rule.modifier(new CanonicalUrl.Url(location));
+CanonicalUrl.RuleCollection.prototype = {
+  add : function(urlPattern, modifier) {
+    var rule = new CanonicalUrl.Rule(urlPattern, modifier);
+    this.rules.push(rule);
+  },
+  apply : function(location) {
+    for (var i = 0; i < this.rules.length; i++) {
+      var rule = this.rules[i];
+      if (rule.urlPattern.test(location.href)) {
+        if (rule.modifier && typeof(rule.modifier) == 'function')
+          return rule.modifier(new CanonicalUrl.Url(location));
+      }
     }
   }
 }
