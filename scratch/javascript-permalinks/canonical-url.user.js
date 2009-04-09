@@ -56,9 +56,9 @@ CanonicalUrl = {
     this.location = location;
   },
   
-  Rule : function(urlPattern, modifier) {
+  Rule : function(urlPattern, urlRewriter) {
     this.urlPattern = urlPattern;
-    this.modifier = modifier;
+    this.urlRewriter = urlRewriter;
   },
   
   RuleCollection : function() {
@@ -94,16 +94,16 @@ CanonicalUrl.Permalink.prototype = {
 }
 
 CanonicalUrl.RuleCollection.prototype = {
-  add : function(urlPattern, modifier) {
-    var rule = new CanonicalUrl.Rule(urlPattern, modifier);
+  add : function(urlPattern, urlRewriter) {
+    var rule = new CanonicalUrl.Rule(urlPattern, urlRewriter);
     this.rules.push(rule);
   },
   apply : function(location) {
     for (var i = 0; i < this.rules.length; i++) {
       var rule = this.rules[i];
       if (rule.urlPattern.test(location.href)) {
-        if (rule.modifier && typeof(rule.modifier) == 'function')
-          return rule.modifier(new CanonicalUrl.Url(location));
+        if (rule.urlRewriter && typeof(rule.urlRewriter) == 'function')
+          return rule.urlRewriter(new CanonicalUrl.Url(location));
       }
     }
   }
