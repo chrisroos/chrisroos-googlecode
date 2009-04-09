@@ -1,7 +1,6 @@
 TODO: Deal with multiple keys (find an example that actually requires this before implementing though).
 TODO: Think about I can externalise all the rules (maybe GM_xmlhttpRequest will help?)
 TODO: Should I be returning empty strings (or undefined) when permalinks cannot be generated?
-TODO: Rename modifier to something more useful (apply, for example).
 TODO: Investigate requiring other files from the extension, that way I could have a rule per file that just get required.
 TODO: Move some of the rule checking logic from the RulesCollection into the Rule objects themselves.
 TODO: Physically move the rules to the bottom of the page - they're the actual instances of the objects defined at the top of the file.
