@@ -29,6 +29,17 @@ CanonicalUrl = {
     }
   },
   
+  urlRewriters : {
+    requiredKey : function(url, key) {
+      if (key && url.queryString && url.queryString[key]) {
+        var queryString = [key, url.queryString[key]].join('=');
+        return url.protocol + '//' + url.host + url.pathname + '?' + queryString;
+      } else {
+        return '';
+      }
+    }
+  },
+  
   Url : function(location) {
     this.hash = location.hash;
     this.host = location.host;
@@ -43,15 +54,6 @@ CanonicalUrl = {
   
   Permalink : function(location) {
     this.location = location;
-  },
-  
-  requiredKeyRule : function(url, key) {
-    if (key && url.queryString && url.queryString[key]) {
-      var queryString = [key, url.queryString[key]].join('=');
-      return url.protocol + '//' + url.host + url.pathname + '?' + queryString;
-    } else {
-      return '';
-    }
   },
   
   Rule : function(urlPattern, modifier) {
@@ -115,10 +117,10 @@ CanonicalUrl.Rules.add(/userscript_integration_test\.html/, function(url) {
   return 'userscript-permalink';
 });
 CanonicalUrl.Rules.add(/google\.co\.uk\/search/, function(url) { 
-  return CanonicalUrl.requiredKeyRule(url, 'q');
+  return CanonicalUrl.urlRewriters.requiredKey(url, 'q');
 });
 CanonicalUrl.Rules.add(/theyworkforyou\.com\/wrans/, function(url) { 
-  return CanonicalUrl.requiredKeyRule(url, 'id');
+  return CanonicalUrl.urlRewriters.requiredKey(url, 'id');
 });
 CanonicalUrl.Rules.add(/cgi\.ebay\.co\.uk/, function(url) {
   var hash = url.queryString.hash;
