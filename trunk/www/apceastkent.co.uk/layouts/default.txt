@@ -29,8 +29,6 @@ filter:    haml
             %li
               %a{:href => "/qa.html"} q &amp; a
             %li
-              %a{:href => "/newsletters.html"} newsletters
-            %li
               %a{:href => "#", :onclick => "javascript:window.open('https://emea.netdespatch.com/mba/7023x0/','','height=480,width=800,menubar=no,resizable=yes');"} book online
             %li
               %a{:href => "#", :onclick => "javascript:window.open('http://www.apc-overnight.com','','height=600,width=800,menubar=no,resizable=yes,scrollbars=yes');"} track online
