@@ -1,61 +1,39 @@
 ---
 extension: html
-filter:    erb
+filter:    haml
 ---
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+!!! Strict
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title><%= @page.title %></title>
-   <meta name="author" content="<%= @page.author %>" />
-
-   <!--- Blueprint CSS Framework -->
-   <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
-   <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
-   <!--[if IE]>
-      <link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
-   <![endif]-->
-
-   <!-- CodeRay syntax highlighting CSS -->
-   <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
-
-   <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
-</head>
-<body>
-
-<div class="container">
-
-   <div class="column span-20 prepend-2 append-2 first last" id="header">
-     <p class="title">A New Website</p>
-     <hr>
-   </div>
-
-   <div class="column span-15 prepend-2 first">
-      <%= @content %>
-   </div>
-
-   <div class="column span-5 append-2 last">
-      <h4>Sidebar</h4>
-      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue. </p>
-
-      <div class="box">
-         <p class="last">Mauris a lectus. Aliquam erat volutpat. Phasellus ultrices mi a sapien. Nunc rutrum egestas lorem. Duis ac sem sagittis elit tincidunt gravida.</p>
-      </div>
-
-      <p class="quiet">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue.</p>
-
-      <h5>Incremental leading</h5>
-      <p class="incr">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue. sed aliquet vehicula, lectus tellus.</p>
-   </div>
-
-   <div class="column span-20 prepend-2 append-2 first last" id="footer">
-     <hr />
-     <p>This website was created with <a href="http://webby.rubyforge.org">Webby</a></p>
-   </div>
-
-</div>
-</body>
-</html>
+%html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => "en", :lang => "en"}
+  %head
+    %meta{'http-equiv' => "Content-type", :content => "text/html; charset=utf-8"}
+    %title Apc East Kent
+    %link{:rel => "stylesheet", :href => "/stylesheets/yui-reset-fonts-grids.css", :type => "text/css"}
+    %link{:rel => "stylesheet", :href => "/stylesheets/apc.css", :type => "text/css"}
+  %body
+    #custom-doc.yui-t1
+      #hd
+        %img{:src => "/images/header.jpg", :alt => "", :width => "770px", :height => "116px"}
+      #bd
+        #yui-main
+          .yui-b
+            .yui-g
+              = @content
+        .yui-b{:style => "border-right: solid 1px #fff;"}
+          <!-- YOUR NAVIGATION GOES HERE -->
+          %ul.navigation
+            %li
+              %a{:href => "/"} home
+            %li
+              %a{:href => "/contact.html"} contact details
+            %li
+              %a{:href => "/qa.html"} q &amp; a
+            %li
+              %a{:href => "/newsletters.html"} newsletters
+            %li
+              %a{:href => "#", :onclick => "javascript:window.open('https://emea.netdespatch.com/mba/7023x0/','','height=480,width=800,menubar=no,resizable=yes');"} book online
+            %li
+              %a{:href => "#", :onclick => "javascript:window.open('http://www.apc-overnight.com','','height=600,width=800,menubar=no,resizable=yes,scrollbars=yes');"} track online
+            %li
+              %a{:href => "#", :onclick => "javascript:window.open('http://www.apc-overnight.com/findadepot.php','','height=480,width=800,menubar=no,resizable=yes');"} find your local depot
+      #ft
