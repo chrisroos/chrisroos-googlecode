@@ -6,11 +6,11 @@ filter:     haml
 %h1= h(@page.title)
 
 %p
-  The APC EAST KENT has been established since the early 1990's, and has always specialised in overnight parcels servicing clients in the CT postcode area.
+  The APC EAST KENT has been established since the early 1990's, and has always specialised in overnight parcels servicing clients in the CT postcode area both residential and business door to door.
 %p
   Now, nearly 15 years on, the service range has increased to cover Same Day and International Deliveries.
 %p
-  We now offer online booking and tracking of parcels. This has been incredibly useful for many of our customers, just check the <a href="/newsletters.html">newsletters</a> for testimonials. If you'd be interested in this free and easy to use service please <a href="/contact.html">contact us</a> and we'll get you an account set-up and online within minutes.
+  We now offer online booking and tracking of parcels. This has been incredibly useful for many of our customers. If you'd be interested in this free and easy to use service please <a href="/contact.html">contact us</a> and we'll get you an account set-up and online within minutes.
 %p
   APC is one of the most reliable, secure and cost effective overnight parcel delivery companies in the UK. With over 125 local depots, APC offers unrivalled national coverage and unlike other parcel delivery networks, all of the depots are independently owned and managed. Your business matters to them, they really care. This provides impressive levels of customer attention to ensure your needs are expertly met in a secure, reliable and professional way.
 %p
@@ -20,7 +20,9 @@ filter:     haml
 %p
   In 2005 we were presented the award for best depot in the South.
 %p
-  And 2006 has seen us win the best depot in the south once again.
+  2006 saw us win the best depot in the South once again.
+%p
+  And in 2007 &amp; 2008 we have been awarded certificates of excellence for service to the Apc network.
 %div
   %img{:src => "/images/thumbs/dub-dek-at-hub.jpg", :alt => ""}
   %img{:src => "/images/thumbs/dub-dek-moving.jpg", :alt => ""}
