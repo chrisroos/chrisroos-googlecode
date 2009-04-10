@@ -1,0 +1,28 @@
+---
+title:      Index
+created_at: 2009-04-10 13:40:47.835684 +01:00
+filter:     haml
+---
+%h1 Apc East Kent
+%p
+  The APC EAST KENT has been established since the early 1990's, and has always specialised in overnight parcels servicing clients in the CT postcode area.
+%p
+  Now, nearly 15 years on, the service range has increased to cover Same Day and International Deliveries.
+%p
+  We now offer online booking and tracking of parcels. This has been incredibly useful for many of our customers, just check the <a href="/newsletters.html">newsletters</a> for testimonials. If you'd be interested in this free and easy to use service please <a href="/contact.html">contact us</a> and we'll get you an account set-up and online within minutes.
+%p
+  APC is one of the most reliable, secure and cost effective overnight parcel delivery companies in the UK. With over 125 local depots, APC offers unrivalled national coverage and unlike other parcel delivery networks, all of the depots are independently owned and managed. Your business matters to them, they really care. This provides impressive levels of customer attention to ensure your needs are expertly met in a secure, reliable and professional way.
+%p
+  Quality of service is maintained on a long term basis by the implementation of a stringent review procedure based upon on spot audits by the APC.
+%p
+  In 2004 APC East Kent was awarded depot of the year for our services to the APC network.
+%p
+  In 2005 we were presented the award for best depot in the South.
+%p
+  And 2006 has seen us win the best depot in the south once again.
+%div
+  %img{:src => "/images/thumbs/dub-dek-at-hub.jpg", :alt => ""}
+  %img{:src => "/images/thumbs/dub-dek-moving.jpg", :alt => ""}
+  %img{:src => "/images/thumbs/dub-dek-rear.jpg", :alt => ""}
+  %img{:src => "/images/thumbs/moving-sprinter.jpg", :alt => ""}
+%p.callNow Call now on 01843 596600

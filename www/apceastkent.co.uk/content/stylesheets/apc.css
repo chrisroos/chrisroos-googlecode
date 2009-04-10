@@ -1,0 +1,48 @@
+#custom-doc { 
+  width:59.54em;
+  *width:58.1em;
+  min-width:774px;
+  margin:auto;
+  text-align:left;
+}
+#hd, #bd {
+  background-color: #003D7C;
+  color: #FFF;
+}
+#bd a {
+  color: #FFF;
+}
+#yui-main a {
+  color: #E31836;
+}
+#yui-main p {
+  padding: 4px 0;
+}
+h1 {
+  font-size: 136%;
+  margin-bottom: 5px;
+}
+h2 {
+  font-size: 122%;
+}
+div.address, div.contact, div.hours, div.company_info {
+  margin-bottom: 10px;
+}
+ul.navigation {
+  margin: 5px;
+  text-align: center;
+}
+ul.navigation li {
+  padding: 2px 0;
+}
+dl dt.question {
+  margin-bottom: 5px;
+}
+dl dd.answer {
+  margin-bottom: 15px;
+}
+.callNow {
+  font-size: 150%;
+  margin-top: 20px;
+  text-align: center;
+}
