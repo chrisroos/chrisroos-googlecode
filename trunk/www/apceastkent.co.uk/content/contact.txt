@@ -1,0 +1,47 @@
+---
+title:      Contact Details
+created_at: 2009-04-10 14:20:08.803288 +01:00
+filter:     haml
+---
+%h1= h(@page.title)
+
+%p Remember the personal touch? Call 01843 596600 and speak to Ant, Paul or Graham
+
+%h2 Address
+.address
+  APC East Kent Ltd<br/>
+  Unit 5, Little Cliffsend Farm<br/>
+  Chalk Hill<br/>
+  Cliffsend, Ramsgate<br/>
+  CT12 5HP<br/>
+  Map:
+  %a{:href => "http://www.multimap.com/map/browse.cgi?lat=51.3299&amp;lon=1.3819&amp;scale=10000&amp;icon=x"} multimap
+
+%h2 Contact Methods
+.contact
+  %ul
+    %li Telephone: 01843 596600
+    %li Fax: 01843 596611
+    %li
+      Email:
+      %a{:href => "mailto:mail@apceastkent.co.uk"} mail@apceastkent.co.uk
+
+%h2 Office Hours
+.hours
+  %ul
+    %li 06:00 to 19:00 Monday to Friday
+    %li 06:00 to 11:30 Saturday
+
+%h2 Company Info
+.company_info
+  %ul
+    %li VAT Registration no. GB 812 383839
+    %li Company registered in England no. 4748692
+
+%h2 Cards accepted
+.cards_accepted
+  %img{:src => "/images/visa.gif", :alt => "VISA Logo"}
+  %img{:src => "/images/visa_electron.gif", :alt => "VISA Electron Logo"}
+  %img{:src => "/images/mastercard.gif", :alt => "Mastercard Logo"}
+  %img{:src => "/images/maestro.gif", :alt => "Maestro Logo"}
+  %img{:src => "/images/solo.gif", :alt => "Solo logo"}
