@@ -47,51 +47,11 @@
           assertEqual(location.protocol, url.protocol);
           assertEqual(location.search, url.search);
         }},
-
-        'test should return an empty object if the querystring is missing': function() { with(this) {
-          location.href = 'http://localhost/';
-          var url = new CanonicalUrl.Url(location);
-          var expectedQueryString = {};
-          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
-          assertEqual(expectedQueryString.toSource(), url.queryString.toSource());
-        }},
-
-        'test should return an empty object if the querystring is empty': function() { with(this) {
-          location.href = 'http://localhost/?';
-          var url = new CanonicalUrl.Url(location);
-          var expectedQueryString = {};
-          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
-          assertEqual(expectedQueryString.toSource(), url.queryString.toSource());
-        }},
         
-        'test should construct an object representing a single key value pair from the querystring': function() { with(this) {
-          location.href = 'http://localhost/?foo=bar';
-          var url = new CanonicalUrl.Url(location);
-          var expectedQueryString = { 'foo' : 'bar' };
-          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
-          assertEqual(expectedQueryString.toSource(), url.queryString.toSource());
-        }},
-        
-        'test should construct an object representing multiple keys and values from the querystring': function() { with(this) {
+        'test should return an object representing the querystring' : function() { with(this) {
           location.href = 'http://localhost/?foo=bar&bar=baz';
           var url = new CanonicalUrl.Url(location);
           var expectedQueryString = { 'foo' : 'bar', 'bar' : 'baz' };
-          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
-          assertEqual(expectedQueryString.toSource(), url.queryString.toSource());
-        }},
-        
-        'test should return an object representing a key with an empty value from the querystring': function() { with(this) {
-          location.href = 'http://localhost/?foo=';
-          var url = new CanonicalUrl.Url(location);
-          var expectedQueryString = { 'foo' : '' };
-          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
-          assertEqual(expectedQueryString.toSource(), url.queryString.toSource());
-        }},
-        
-        'test should return an empty object if the querystring contains an empty key': function() { with(this) {
-          location.href = 'http://localhost/?=bar';
-          var url = new CanonicalUrl.Url(location);
-          var expectedQueryString = { };
           // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
           assertEqual(expectedQueryString.toSource(), url.queryString.toSource());
         }}
