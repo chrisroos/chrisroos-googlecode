@@ -26,6 +26,13 @@ CanonicalUrl = {
         }
       }
       return keysAndValues;
+    },
+    insertCanonicalLink : function(href) {
+      var canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      canonicalLink.setAttribute('href', href);
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(canonicalLink);
     }
   },
   
@@ -65,19 +72,10 @@ CanonicalUrl = {
     this.rules = [];
   },
   
-  writeLink : function(permalink) {
-    if (href = permalink.href()) {
-      var canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      canonicalLink.setAttribute('href', href);
-      var head = document.getElementsByTagName('head')[0];
-      head.appendChild(canonicalLink);
-    }
-  },
-  
   insert : function(location) {
     var permalink = new CanonicalUrl.Permalink(location);
-    CanonicalUrl.writeLink(permalink);
+    if (href = permalink.href())
+      CanonicalUrl.utilities.insertCanonicalLink(href);
   }
   
 }
@@ -113,7 +111,7 @@ CanonicalUrl.RuleCollection.prototype = {
 // The actual real-life rules
 
 CanonicalUrl.Rules = new CanonicalUrl.RuleCollection();
-CanonicalUrl.Rules.add(/userscript_integration_test\.html/, function(url) { 
+CanonicalUrl.Rules.add(/userscript_integration_matching_rule_test\.html/, function(url) { 
   return 'userscript-permalink';
 });
 CanonicalUrl.Rules.add(/google\.co\.uk\/search/, function(url) { 

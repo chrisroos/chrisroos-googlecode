@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Utilities - Querystring Test</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="assets/jsunittest.js" type="text/javascript"></script>
+    <script src="../canonical-url.user.js" type="text/javascript"></script>
+    <script src="test_helper.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+  </head>
+  <body>
+
+    <div id="content">
+
+      <div id="header">
+        <h1>JavaScript unit test file</h1>
+      </div>
+
+      <!-- Log output (one per Runner, via {testLog: "testlog"} option)-->
+      <div id="testlog"></div>
+  
+      <!-- Put sample/test html here -->
+      <div id="sample">
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    // <![CDATA[
+      new Test.Unit.Runner({
+        setup: function() {
+          this.location = document.createElement('a');
+        },
+    
+        teardown: function() {
+        },
+
+        'test should return an empty object if the querystring is missing': function() { with(this) {
+          location.href = 'http://localhost/';
+          var queryString = CanonicalUrl.utilities.queryString(location);
+          var expectedQueryString = {};
+          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
+          assertEqual(expectedQueryString.toSource(), queryString.toSource());
+        }},
+
+        'test should return an empty object if the querystring is empty': function() { with(this) {
+          location.href = 'http://localhost/?';
+          var queryString = CanonicalUrl.utilities.queryString(location);
+          var expectedQueryString = {};
+          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
+          assertEqual(expectedQueryString.toSource(), queryString.toSource());
+        }},
+        
+        'test should construct an object representing a single key value pair from the querystring': function() { with(this) {
+          location.href = 'http://localhost/?foo=bar';
+          var queryString = CanonicalUrl.utilities.queryString(location);
+          var expectedQueryString = { 'foo' : 'bar' };
+          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
+          assertEqual(expectedQueryString.toSource(), queryString.toSource());
+        }},
+        
+        'test should construct an object representing multiple keys and values from the querystring': function() { with(this) {
+          location.href = 'http://localhost/?foo=bar&bar=baz';
+          var queryString = CanonicalUrl.utilities.queryString(location);
+          var expectedQueryString = { 'foo' : 'bar', 'bar' : 'baz' };
+          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
+          assertEqual(expectedQueryString.toSource(), queryString.toSource());
+        }},
+        
+        'test should return an object representing a key with an empty value from the querystring': function() { with(this) {
+          location.href = 'http://localhost/?foo=';
+          var queryString = CanonicalUrl.utilities.queryString(location);
+          var expectedQueryString = { 'foo' : '' };
+          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
+          assertEqual(expectedQueryString.toSource(), queryString.toSource());
+        }},
+        
+        'test should return an empty object if the querystring contains an empty key': function() { with(this) {
+          location.href = 'http://localhost/?=bar';
+          var queryString = CanonicalUrl.utilities.queryString(location);
+          var expectedQueryString = { };
+          // I'm not sure whether toSource can be guaranteed to give reliable serialization of objects
+          assertEqual(expectedQueryString.toSource(), queryString.toSource());
+        }}
+
+      }); 
+    // ]]>
+    </script>
+  </body>
+</html>
