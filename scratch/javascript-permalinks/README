@@ -1,0 +1,8 @@
+15-Apr-2009
+
+This is a greasemonkey script that generates a permalink based on url rewriters that operate on matched domains (together, the url regex and rewriter callback make up a Rule).  If a permalink can be generated then that's written into the head of the document as a link with rel attribute of canonical[1].  A brief blog overview is here[2].
+
+The driver for this was my desire to ensure I was always bookmarking (in delicious) the canonical representation of a url.  Although that requires further work on the delicious extension if I actually want to get that far.
+
+[1] http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html
+[2] http://chrisroos.co.uk/blog/2009-04-14-generating-and-inserting-a-rel=canonical-link-into-pages-with-firefox-and-greasemonkey
