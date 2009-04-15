@@ -91,6 +91,15 @@ CanonicalUrl.Permalink.prototype = {
   }
 }
 
+CanonicalUrl.Rule.prototype = {
+  rewriteUrl : function(url) {
+    if (this.urlPattern.test(url.href)) {
+      if (this.urlRewriter && typeof(this.urlRewriter) == 'function')
+        return this.urlRewriter(url);
+    }
+  }
+}
+
 CanonicalUrl.RuleCollection.prototype = {
   add : function(urlPattern, urlRewriter) {
     var rule = new CanonicalUrl.Rule(urlPattern, urlRewriter);
@@ -99,10 +108,9 @@ CanonicalUrl.RuleCollection.prototype = {
   apply : function(location) {
     for (var i = 0; i < this.rules.length; i++) {
       var rule = this.rules[i];
-      if (rule.urlPattern.test(location.href)) {
-        if (rule.urlRewriter && typeof(rule.urlRewriter) == 'function')
-          return rule.urlRewriter(new CanonicalUrl.Url(location));
-      }
+      var url = new CanonicalUrl.Url(location);
+      if (rewrittenUrl = rule.rewriteUrl(url))
+        return rewrittenUrl;
     }
   }
 }
