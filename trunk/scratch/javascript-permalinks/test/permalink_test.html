@@ -58,30 +58,30 @@
           assertEqual('example-dot-com-permalink', permalink.href());
         }},
         
-        'test should return an empty string if the url pattern in our rule does not match the url of the location object': function() { with(this) {
+        'test should return undefined if the url pattern in our rule does not match the url of the location object': function() { with(this) {
           CanonicalUrl.Rules.add(/example.com/, function(location) {
             return 'example-dot-com-permalink';
           });
           this.location.href = 'http://localhost/?id=123';
           permalink = new CanonicalUrl.Permalink(this.location);
           
-          assertEqual('', permalink.href());
+          assertEqual(undefined, permalink.href());
         }},
         
-        'test should return an empty string it the url pattern in our rule matches the url of the location object, but the rule does not contain a urlRewriter function': function() { with(this) {
+        'test should return undefined if the url pattern in our rule matches the url of the location object, but the rule does not contain a urlRewriter function': function() { with(this) {
           CanonicalUrl.Rules.add(/localhost/);
           this.location.href = 'http://localhost';
           permalink = new CanonicalUrl.Permalink(this.location);
           
-          assertEqual('', permalink.href());
+          assertEqual(undefined, permalink.href());
         }},
         
-        'test should return an empty string if the url pattern in our rule matches the url of the location object, but the rule urlRewriter is not a function': function() { with(this) {
+        'test should return undefined if the url pattern in our rule matches the url of the location object, but the rule urlRewriter is not a function': function() { with(this) {
           CanonicalUrl.Rules.add(/localhost/, 'foo-bar-baz');
           this.location.href = 'http://localhost';
           permalink = new CanonicalUrl.Permalink(this.location);
           
-          assertEqual('', permalink.href());
+          assertEqual(undefined, permalink.href());
         }}
 
       }); 

@@ -85,9 +85,7 @@ CanonicalUrl = {
 
 CanonicalUrl.Permalink.prototype = {
   href : function() {
-    var permalink = CanonicalUrl.Rules.apply(this.location);
-    if (!permalink) { permalink = ''; }
-    return permalink;
+    return CanonicalUrl.Rules.apply(this.location);
   }
 }
 
