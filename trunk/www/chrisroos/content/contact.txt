@@ -52,13 +52,15 @@ filter:     haml
     %li
       %a.url{ :href => "http://getsatisfaction.com/people/chrisroos" } Get Satisfaction
     %li
-      %a.url{ :href => "http://www.dailymugshot.com/main/show/13817" } Daily Mug Show
+      %a.url{ :href => "http://www.dailymugshot.com/main/show/13817" } Daily Mug Shot
     %li
       %a.url{ :href => "http://upcoming.yahoo.com/user/486473/" } Upcoming
 
   %h3 Infrequent use
 
   %ul
+    %li
+      %a.url{ :href => "http://userscripts.org/users/87038" } Userscripts
     %li
       %a.url{ :href => "http://vimeo.com/chrisroos" } Vimeo
     %li
