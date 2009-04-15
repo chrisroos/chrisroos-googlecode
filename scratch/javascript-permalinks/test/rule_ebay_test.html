@@ -2,11 +2,11 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>Rule - TheyWorkForYou Test</title>
+    <title>Rule - ebay Test</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <script src="../assets/jsunittest.js" type="text/javascript"></script>
-    <script src="../../canonical-url.user.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="../assets/unittest.css" type="text/css" />
+    <script src="assets/jsunittest.js" type="text/javascript"></script>
+    <script src="../canonical-url.user.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
   </head>
   <body>
 
@@ -29,7 +29,7 @@
       new Test.Unit.Runner({
         setup: function() {
           this.location = document.createElement('a');
-          this.location.href = 'http://www.theyworkforyou.com/wrans/?id=2009-03-23a.263385.h&s=activeplaces#g263385.r0';
+          this.location.href = 'http://cgi.ebay.co.uk/Netgear-RangeMax-WPN824-MIMO-Wireless-Router-108MBPS_W0QQitemZ120398909420QQcmdZViewItemQQptZUK_Computing_Networking_SM?hash=item120398909420';
         },
     
         teardown: function() {
@@ -37,7 +37,7 @@
 
         'test should generate the permalink': function() { with(this) {
           var permalink = new CanonicalUrl.Permalink(this.location);
-          assertEqual('http://www.theyworkforyou.com/wrans/?id=2009-03-23a.263385.h', permalink.href());
+          assertEqual('http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=120398909420', permalink.href());
         }}
 
       }); 
