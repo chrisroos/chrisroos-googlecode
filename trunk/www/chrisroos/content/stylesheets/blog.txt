@@ -68,7 +68,13 @@ blockquote {
   background-repeat: no-repeat;
   background-position: top left;
 }
-
+th, td {
+  border: 1px solid #000;
+  padding: 0.4em;
+}
+th {
+  font-weight: bold;
+}
 
 /**********************************************************/
 /* Header                                                 */
