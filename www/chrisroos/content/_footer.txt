@@ -6,6 +6,7 @@ filter: haml
     %img{:alt => "Creative Commons License", :style => "border-width:0", :src => "http://i.creativecommons.org/l/by/2.0/uk/80x15.png"}
   %span{"xmlns:dc" => "http://purl.org/dc/elements/1.1/", :href => "http://purl.org/dc/dcmitype/Text", :property => "dc:title", :rel => "dc:type"} deferred until inspiration hits
   by 
-  %a{"xmlns:cc" => "http://creativecommons.org/ns#", :href => "http://chrisroos.co.uk", :property => "cc:attributionName", :rel => "cc:attributionURL"} Chris Roos
+  %span.vcard
+    %a{"xmlns:cc" => "http://creativecommons.org/ns#", :href => "/contact", :property => "cc:attributionName", :rel => "cc:attributionURL", :class => "url fn"} Chris Roos
   is licensed under a
   %a{:rel => "license", :href => "http://creativecommons.org/licenses/by/2.0/uk/"} Creative Commons Attribution 2.0 UK: England &amp; Wales License

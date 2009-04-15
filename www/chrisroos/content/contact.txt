@@ -8,7 +8,7 @@ filter:     haml
   %h1
     =h(@page.title)
     for me,
-    %a.url.fn{ :href => "http://chrisroos.co.uk"} Chris Roos
+    %a.url.fn{ :href => "/"} Chris Roos
 
   %h2 Email, twitter and instant messenger
 
