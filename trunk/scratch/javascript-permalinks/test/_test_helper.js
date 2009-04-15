@@ -1,8 +1,10 @@
 TestHelper = {  
+  
   getLinkElements: function() {
     var head = document.getElementsByTagName('head')[0];
     return head.getElementsByTagName('link');
   },
+  
   getCanonicalLinkElements: function() {
     var linkElements = TestHelper.getLinkElements();
     var canonicalLinkElements = [];
@@ -13,6 +15,7 @@ TestHelper = {
     }
     return canonicalLinkElements;
   },
+  
   removeCanonicalLinkElements: function() {
     var linkElements = TestHelper.getLinkElements();
     for (var i = 0; i < linkElements.length; i++) {
@@ -21,10 +24,12 @@ TestHelper = {
       }
     }
   },
+  
   insertCanonicalUrlUserScript: function() {
     var scriptElement = document.createElement('script');
     scriptElement.setAttribute('src', '../src/canonical-url.user.js');
     scriptElement.setAttribute('type', 'text/javascript');
     document.body.appendChild(scriptElement);
   }
+  
 }
