@@ -39,10 +39,7 @@
           var canonicalLinkElements = TestHelper.getCanonicalLinkElements();
           assertEqual(0, canonicalLinkElements.length);
           
-          var scriptElement = document.createElement('script');
-          scriptElement.setAttribute('src', '../src/canonical-url.user.js');
-          scriptElement.setAttribute('type', 'text/javascript');
-          document.body.appendChild(scriptElement);
+          TestHelper.insertCanonicalUrlUserScript();
           
           // We need to wait a very short amount of time: Just enough to ensure that when we check for the link element it's actually been inserted into the DOM
           wait(100, function() { 

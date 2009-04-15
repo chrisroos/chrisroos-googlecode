@@ -20,5 +20,11 @@ TestHelper = {
         linkElements[i].parentNode.removeChild(linkElements[i]);
       }
     }
+  },
+  insertCanonicalUrlUserScript: function() {
+    var scriptElement = document.createElement('script');
+    scriptElement.setAttribute('src', '../src/canonical-url.user.js');
+    scriptElement.setAttribute('type', 'text/javascript');
+    document.body.appendChild(scriptElement);
   }
 }
