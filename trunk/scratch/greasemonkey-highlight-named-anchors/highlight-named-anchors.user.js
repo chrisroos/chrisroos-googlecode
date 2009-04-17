@@ -1,4 +1,4 @@
-var interestingNodes = ['a', 'p', 'div'];
+var interestingNodes = ['a'];
 
 for (var nodeIndex = 0; nodeIndex < interestingNodes.length; nodeIndex++) {
   var nodeName = interestingNodes[nodeIndex];
