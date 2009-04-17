@@ -1,3 +1,12 @@
+// ==UserScript==
+// @name          Google site search
+// @namespace     http://chrisroos.co.uk/
+// @description   Insert a 'google site search' search form to every page.
+// @include       *
+// @exclude       google.co.uk
+// @exclude       google.com
+// ==/UserScript==
+
 (function() {
   var s1 = document.createElement('input');
   s1.setAttribute('type', 'hidden');
