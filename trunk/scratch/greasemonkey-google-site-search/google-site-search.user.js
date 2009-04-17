@@ -3,8 +3,8 @@
 // @namespace     http://chrisroos.co.uk/
 // @description   Insert a 'google site search' search form to every page.
 // @include       *
-// @exclude       google.co.uk
-// @exclude       google.com
+// @exclude       www.google.co.uk
+// @exclude       www.google.com
 // ==/UserScript==
 
 (function() {
