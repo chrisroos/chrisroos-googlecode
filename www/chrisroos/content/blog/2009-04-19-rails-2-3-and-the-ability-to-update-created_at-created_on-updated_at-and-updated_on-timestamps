@@ -1,0 +1,142 @@
+---
+summary:    There was a Rails 2.3 security note that suggested we could now set the AR timestamps.  It turns out we've always been able to set the created_at/on timestamps and that updated_at/on are also now assignable.
+blog_post:  true
+title:      Rails 2.3 and the ability to update created_at, created_on, updated_at and updated_on timestamps
+created_at: 2009-04-19 08:39:23.415625 +01:00
+guid:       866f3fd0-a5dd-4b6a-8800-9ff58940fd3d
+layout:     blog
+filter:     haml
+---
+:textile
+  The timing of the "automatically generated timestamps and attribute assignment in rails 2.3 security note":http://groups.google.com/group/rubyonrails-security/browse_thread/thread/1d2fb5dc524f9ff4 [1] was interesting to me because I'd just spent a while really trying to get my head around "attr_accessible":http://api.rubyonrails.org/classes/ActiveRecord/Base.html#M002226 and  "attr_protected":http://api.rubyonrails.org/classes/ActiveRecord/Base.html#M002225 and the best way to test their effects in an app I was working on.  Although I intend to write about the testing separately, the conclusion I came to was that I wanted to test the behaviour (more specifically, I was interested in what I could/couldn't assign) of my objects and not that I was specifically using attr_accessible or attr_protected.
+  
+  Reading Alex's post made me wonder whether the "rails":http://rubyonrails.org/ "API":http://en.wikipedia.org/wiki/API ever guaranteed that the timestamps would be readonly: If that was the case then I can see arguments for not wanting to test the behaviour of your objects (because you're essentially testing the framework itself).  I couldn't find any mention of whether they'd specifically be readonly so chose to do a bit of digging.  I created a "script":http://chrisroos.googlecode.com/svn/trunk/scratch/rails_timestamps_test/ that allowed me to, with relative ease, run tests against rails apps created with different versions of rails.  Using this I was able to test the mass assignment of timestamps (created_at, created_on, updated_at and updated_on) against multiple versions of rails.  The conclusion I came to (and I'd love for other people to replicate my experiment and prove/disprove my results) was that the created_at and created_on pair of attributes have always (at least as far back as rails 1.0.0) been assignable, while the updated_at and updated_on attributes have only recently become assignable.  While digging I managed to find the "lighthouse ticket":https://rails.lighthouseapp.com/projects/8994/tickets/1612-cant-create-ar-models-with-custom-updated_xx-timestamp (#1612) that requested the ability to set the updated_* timestamps and the "rails commit":http://github.com/rails/rails/commit/63aac338332a06d3c9e28dde7954679703ec7620 that closed that ticket.
+
+  h2(#replicating-my-experiment). Replicating my experiment
+  
+  * Get a copy of rails
+  
+  <pre class="code shell">
+    $ cd /path/to/code
+    $ git clone git://github.com/rails/rails.git
+  </pre>
+  
+  * Create a "mysql":http://www.mysql.com/ database called rails_timestamps_test, and create a table within that database called people.
+  
+  <pre class="code sql">
+    mysql> CREATE DATABASE rails_timestamps_test;
+    mysql> USE rails_timestamps_test;
+    mysql> CREATE TABLE people (id INTEGER AUTO_INCREMENT, created_on DATE, created_at DATETIME, updated_on DATE, updated_at DATETIME, PRIMARY KEY (id));
+  </pre>
+  
+  * Get a copy of my test script
+  
+  <pre class="code shell">
+    $ cd /path/to/code
+    $ svn co http://chrisroos.googlecode.com/svn/trunk/scratch/rails_timestamps_test
+  </pre>
+  
+  * Run my script against rails 2.3 (run setup_rails_project.rb without any arguments to see the options) and hopefully see output similar to below (which means that the tests passed as expected).
+  
+  <pre class="code shell">
+    $ cd /path/to/code/rails_timestamps_test
+    $ ruby setup_rails_project.rb 2.3.0 /path/to/code/rails
+    
+    *** Removing the rails app at /path/to/code/rails_timestamps_test/projects/rails-app-2-3-0
+    *** Checking out the rails version tagged v2.3.0
+    HEAD is now at beca1f2... Template#mime_type should not use Mime::Type when Action Controller is not included
+    *** Creating the rails app at /path/to/code/rails_timestamps_test/projects/rails-app-2-3-0
+    *** Vendorising rails from /path/to/code/rails to /path/to/code/rails_timestamps_test/projects/rails-app-2-3-0
+    *** Generating rails_version_test.rb in /path/to/code/rails_timestamps_test/projects/rails-app-2-3-0/test/unit to ensure we are testing against the correct version of rails
+    *** Copying assets to the new rails app
+    ****** Linking /path/to/code/rails_timestamps_test/assets/person_test.rb to /path/to/code/rails_timestamps_test/projects/rails-app-2-3-0/test/unit/person_test.rb
+    ****** Linking /path/to/code/rails_timestamps_test/assets/person.rb to /path/to/code/rails_timestamps_test/projects/rails-app-2-3-0/app/models/person.rb
+    ****** Linking /path/to/code/rails_timestamps_test/assets/database.yml to /path/to/code/rails_timestamps_test/projects/rails-app-2-3-0/config/database.yml
+    *** Running the rails version test to ensure that we're testing against the correct version of rails
+    Loaded suite test/unit/rails_version_test
+    Started
+    .
+    Finished in 0.000327 seconds.
+
+    1 tests, 1 assertions, 0 failures, 0 errors
+    *** Running the timestamps test
+    Loaded suite test/unit/person_test
+    Started
+    ....
+    Finished in 0.078819 seconds.
+
+    4 tests, 8 assertions, 0 failures, 0 errors
+  </pre>
+  
+  * Re-run the script against rails 2.2.2 (the last tag before 2.3) and you should see the same as above except for the last test which should now contain two failures.
+  
+  <pre class="code shell">
+    $ cd /path/to/code/rails_timestamps_test
+    $ ruby setup_rails_project.rb 2.2.2 /path/to/code/rails
+    
+    ... some lines snipped ...
+    *** Running the timestamps test
+    Loaded suite test/unit/person_test
+    Started
+    ..FF
+    Finished in 0.069429 seconds.
+
+      1) Failure:
+    test_should_be_able_to_set_updated_at(PersonTest)
+        [test/unit/person_test.rb:35:in `test_should_be_able_to_set_updated_at'
+         /path/to/code/rails_timestamps_test/projects/rails-app-2-2-2/vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb:94:in `__send__'
+         /path/to/code/rails_timestamps_test/projects/rails-app-2-2-2/vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb:94:in `run']:
+    FAIL: Couldn't persist the mass assigned updated_at attribute.
+    <Thu Jan 01 00:00:00 +0000 2009> expected but was
+    <Sun, 19 Apr 2009 09:23:46 UTC +00:00>.
+
+      2) Failure:
+    test_should_be_able_to_set_updated_on(PersonTest)
+        [test/unit/person_test.rb:28:in `test_should_be_able_to_set_updated_on'
+         /path/to/code/rails_timestamps_test/projects/rails-app-2-2-2/vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb:94:in `__send__'
+         /path/to/code/rails_timestamps_test/projects/rails-app-2-2-2/vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb:94:in `run']:
+    FAIL: Couldn't persist the mass assigned updated_on attribute.
+    <Thu, 01 Jan 2009> expected but was
+    <Sun Apr 19 09:23:46 UTC 2009>.
+
+    4 tests, 8 assertions, 2 failures, 0 errors
+  </pre>
+  
+  * Re-run the script against any other tagged version of rails you wish.
+  
+  h2(#notes-about-the-script). A couple of notes about the script
+  
+  * If you specify an invalid tag (i.e. a tag that doesn't exist in the rails repository) then the rails_version_test.rb will fail.
+  
+  <pre class="code shell">
+    $ cd /path/to/code/rails_timestamps_test
+    $ ruby setup_rails_project.rb made.up.tag /path/to/code/rails
+    
+    ... some lines snipped ...
+    Loaded suite test/unit/rails_version_test
+    Started
+    F
+    Finished in 0.045543 seconds.
+
+      1) Failure:
+    test_should_be_using_rails_made_up_tag(RailsVersionTest)
+        [test/unit/rails_version_test.rb:6:in `test_should_be_using_rails_made_up_tag'
+         /path/to/code/rails_timestamps_test/projects/rails-app-made-up-tag/vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb:94:in `__send__'
+         /path/to/code/rails_timestamps_test/projects/rails-app-made-up-tag/vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown.rb:94:in `run']:
+    <"made.up.tag"> expected but was
+    <"2.2.2">.
+
+    1 tests, 1 assertions, 1 failures, 0 errors
+  </pre>
+  
+  * If you specify a tag of rails that is anything other than a 3 part version number (e.g. the four part version 2.3.2.1, or the release candidate 2.1.0_RC1) then the version test will fail because the Rails::VERSION constant only contains the MAJOR, MINOR and TINY components and that's what we use to check the version our app uses.
+  
+  * The supplied database.yml file assumes a mysql database running on localhost that has a root user with no password.  You can update this to reflect your actual environment.
+  
+  * The projects are created in /path/to/code/rails_timestamps_test/projects/ with a name like rails-app-x-x-x (major, minor, tiny).
+  
+  * In order to ensure we are testing against the correct version of rails, I symlink rails from /path/to/code/rails (after changing to the requested tag) into rails-app-x-x-x/vendor/rails.  The problem here is that if you re-run the script with a different rails version and then attempt to run a test from your first project that it will be using the recently specified version of rails.  Luckily, the rails_version_test will fail fast which means you shouldn't have to waste time wondering why something is not working as expected.
+  
+  * I wonder whether it'd be useful to extract the 'create a rails app from a specific version of rails' functionality out of this script?
+  
+  fn1. "Alex MacCaw":http://www.eribium.org/ "raised the issue":http://www.madebymany.co.uk/a-rails-security-flaw-destroying-the-audit-trail-00820 in reference to number eight in the list of "10 cools things in Rails 2.3":http://railspikes.com/2009/3/30/10-cool-things-in-rails-23.
