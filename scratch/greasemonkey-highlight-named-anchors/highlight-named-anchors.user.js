@@ -16,7 +16,7 @@
     for (var elementIndex = 0; elementIndex < elements.length; elementIndex++) {
       var element = elements[elementIndex];
     
-      var target = element.getAttribute('name') || element.getAttribute('id');
+      var target = element.getAttribute('id') || element.getAttribute('name');
       if (target) {
         var anchor = document.createElement('a');
         anchor.setAttribute('href', '#' + target);
