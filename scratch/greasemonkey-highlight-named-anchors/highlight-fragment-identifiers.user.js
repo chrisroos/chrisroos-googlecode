@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name          Highlight named anchors
+// @name          Highlight fragment identifiers
 // @namespace     http://chrisroos.co.uk/
 // @description   Insert a link to the url that's implicitly generated with the addition of id or name to an element.
 // @include       *
