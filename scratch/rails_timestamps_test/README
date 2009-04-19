@@ -1,0 +1,9 @@
+19-Apr-2009
+
+The setup_rails_project.rb script uses a git cloned copy of rails to test the mass assignment of activerecord timestamp attributes in rails apps built against various versions of rails.
+
+It might be useful to extract the 'build a rails app against a specific version of rails' as a more generally useful tool.
+
+See my post[1] for more information.
+
+[1] http://chrisroos.co.uk/blog/2009-04-19-rails-2-3-and-the-ability-to-update-created_at-created_on-updated_at-and-updated_on-timestamps
