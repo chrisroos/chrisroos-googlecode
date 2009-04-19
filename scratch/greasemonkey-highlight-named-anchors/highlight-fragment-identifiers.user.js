@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 (function() {
-  var interestingNodes = ['a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'];
+  var interestingNodes = ['a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'li'];
 
   for (var nodeIndex = 0; nodeIndex < interestingNodes.length; nodeIndex++) {
     var nodeName = interestingNodes[nodeIndex];
@@ -16,7 +16,7 @@
     for (var elementIndex = 0; elementIndex < elements.length; elementIndex++) {
       var element = elements[elementIndex];
     
-      var target = element.getAttribute('id') || element.getAttribute('name');
+      var target = element.getAttribute('id') || element.getAttribute('name'); // Named anchors are kinda deprecated so let's prefer elements with ids over those with names
       if (target) {
         var anchor = document.createElement('a');
         anchor.setAttribute('href', '#' + target);
