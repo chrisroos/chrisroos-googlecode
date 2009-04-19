@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 (function() {
-  var interestingNodes = ['a'];
+  var interestingNodes = ['a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'];
 
   for (var nodeIndex = 0; nodeIndex < interestingNodes.length; nodeIndex++) {
     var nodeName = interestingNodes[nodeIndex];
@@ -22,7 +22,7 @@
         anchor.setAttribute('href', '#' + target);
         anchor.setAttribute('style', 'color: #f00; background-color: #ff0;')
         anchor.appendChild(document.createTextNode('#'));
-        element.parentNode.insertBefore(anchor, element);
+        element.insertBefore(anchor, element.firstChild);
       }
     }
   }
