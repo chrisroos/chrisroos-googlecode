@@ -3,14 +3,29 @@
 # The mysql database can be created with this sql
 # CREATE TABLE people (id INTEGER AUTO_INCREMENT, forename VARCHAR(40), created_on DATE, created_at DATETIME, updated_on DATE, updated_at DATETIME, PRIMARY KEY (id));
 
-# Specify the version of rails that you want to work against
-RAILS_VERSION     = '2.3.0'
-# Specify the location of your git cloned copy of rails (obtained with git clone git://github.com/rails/rails.git)
-RAILS_GIT_REPOS   = File.join(%w(/ Users chrisroos Code third-party rails))
-# Enable debugging which just displays the command being run
-CMD_DEBUG         = false
+if ARGV.empty?
+  puts "Usage: ruby setup_rails_project.rb rails-version rails-path [debug]"
+  puts ""
+  puts "  - rails-version   a version of rails that corresponds to a tag in the git repos (see all tags with 'cd /path/to/rails/clone && git tag -l)"
+  puts "  - rails-path      the location of your git cloned copy of rails"
+  puts "  - debug           if set to true you will see the actual commands being run"
+  puts ""
+  puts "Example: ruby setup_rails_project.rb 2.3.0 /Users/chrisroos/Code/third-party/rails"
+  puts "  where we are generating a rails app using rails 2.3.0"
+  puts "  and we have previously cloned rails to /Users/chrisroos/Code/third-party/rails"
+  puts "  and we don't want to see the actual commands being run"
+  puts ""
+  exit
+end
 
-# You shouldn't need to change anything below here
+RAILS_VERSION     = ARGV.shift
+raise "You must specify the rails version you want to test against as the first argument" unless RAILS_VERSION
+
+RAILS_GIT_REPOS   = File.expand_path(ARGV.shift) rescue nil
+raise "You must specify the location of your cloned (git clone git://github.com/rails/rails.git) rails repos as the second argument" unless RAILS_GIT_REPOS
+
+CMD_DEBUG         = ARGV.shift == 'true'
+
 RAILS_CMD         = File.join(RAILS_GIT_REPOS, *%w(railties bin rails))
 PROJECTS_DIR      = File.expand_path(File.join(File.dirname(__FILE__), 'projects'))
 ASSETS_DIR        = File.expand_path(File.join(File.dirname(__FILE__), 'assets'))
@@ -21,7 +36,7 @@ def Step(msg, stars = 3)
 end
 
 def execute(cmd)
-  p cmd if CMD_DEBUG
+  puts "debug: #{cmd}" if CMD_DEBUG
   `#{cmd}`
 end
 
