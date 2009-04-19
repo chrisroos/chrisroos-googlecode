@@ -1,0 +1,5 @@
+test:
+  adapter: mysql
+  host: localhost
+  database: rails_timestamps_test
+  username: root
