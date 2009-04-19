@@ -1,7 +1,8 @@
-# A simple script to test the ability to mass assign the timestamp fields (created_at, created_on, updated_at, updated_on) in various versions of rails
 # To replicate, you need to create a mysql database called rails_timestamps_test (or change the details in assets/database.yml)
-# The mysql database can be created with this sql
+# CREATE DATABASE rails_timestamps_test;
+# The database must contain a table called people which can be created with this sql
 # CREATE TABLE people (id INTEGER AUTO_INCREMENT, created_on DATE, created_at DATETIME, updated_on DATE, updated_at DATETIME, PRIMARY KEY (id));
+# See the README for more info and a link to the explanatory blog post
 
 if ARGV.empty?
   puts "Usage: ruby setup_rails_project.rb rails-version rails-path [debug]"
