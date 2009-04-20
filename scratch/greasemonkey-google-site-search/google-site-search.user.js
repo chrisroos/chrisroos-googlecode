@@ -29,11 +29,10 @@
   
   var sitesSelect = document.createElement('select');
   sitesSelect.setAttribute('name', 'q');
-  // TODO: This isn't working when the script is installed as a greasemonkey extension
-  // sitesSelect.onkeypress = function(event) {
-  //   if (event.keyCode == 13)
-  //     this.parentNode.submit();
-  // };
+  sitesSelect.addEventListener('keypress', function(event) {
+    if (event.keyCode == 13)
+      document.getElementById('greasemonkey-google-site-search-form').submit();
+  }, true);
   sites.sort(); // This should result in a list of sites ordered by length
    for (var i = 0; i < sites.length; i++) {
      var site = sites[i];
@@ -54,6 +53,7 @@
   s3.setAttribute('value', 'google site search');
 
   var f = document.createElement('form');
+  f.setAttribute('id', 'greasemonkey-google-site-search-form')
   f.setAttribute('action', 'http://www.google.co.uk/search');
 
   f.appendChild(s2);
