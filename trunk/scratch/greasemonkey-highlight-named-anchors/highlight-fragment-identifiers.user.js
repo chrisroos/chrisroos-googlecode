@@ -4,6 +4,7 @@
 // @description   Insert a link to the url that's implicitly generated with the addition of id or name to an element.
 // @include       *
 // @exclude       http://www.google.com/reader*
+// @exclude       *hsbc.co.uk*
 // ==/UserScript==
 
 (function() {
