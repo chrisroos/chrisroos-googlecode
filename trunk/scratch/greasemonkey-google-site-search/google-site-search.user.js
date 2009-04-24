@@ -7,6 +7,9 @@
 // @exclude       http://www.google.com*
 // ==/UserScript==
 
+// TODO: Try use object.style.property = xxx to set styles.  That way I might be able to keep the style of the container consistent but hide/show it with display: none / block
+// TODO: Refactor the code
+
 (function() {
   // Create an array of 'sites' (either the domain or domain + paths) that the user can use to search google with
   var sites = [window.location.host];
@@ -31,8 +34,14 @@
   sitesSelect.setAttribute('name', 'q');
   sitesSelect.setAttribute('style', 'margin-left: 5px;');
   sitesSelect.addEventListener('keypress', function(event) {
-    if (event.keyCode == 13)
+    if (event.keyCode == 13) {
+      // Submit the form when someone presses enter on the list box
       document.getElementById('greasemonkey-google-site-search-form').submit();
+    } else if (event.keyCode == 27) {
+      // Hide the search container when someone presses escape
+      var container = document.getElementById('greasemonkey-google-site-search-container');
+      container.setAttribute('style', 'position: absolute; left: -3000px;');
+    }
   }, true);
   sites.sort(); // This should result in a list of sites ordered by length
   for (var i = 0; i < sites.length; i++) {
@@ -44,16 +53,30 @@
   }
 
   var s2 = document.createElement('input');
+  s2.setAttribute('id', 'greasemonkey-google-site-search-q');
   s2.setAttribute('type', 'text');
   s2.setAttribute('name', 'q');
-  s2.setAttribute('accesskey', '9');
   s2.setAttribute('style', 'margin-left: 5px;');
+  s2.addEventListener('keypress', function(event) {
+    if (event.keyCode == 27) {
+      // Hide the search container when someone presses escape
+      var container = document.getElementById('greasemonkey-google-site-search-container');
+      container.setAttribute('style', 'position: absolute; left: -3000px;');
+    }
+  }, true);
 
   var s3 = document.createElement('input');
   s3.setAttribute('type', 'submit');
   s3.setAttribute('name', 'sa'); // Is this name important?
   s3.setAttribute('value', 'google site search');
   s3.setAttribute('style', 'margin-left: 5px;');
+  s3.addEventListener('keypress', function(event) {
+    if (event.keyCode == 27) {
+      // Hide the search container when someone presses escape
+      var container = document.getElementById('greasemonkey-google-site-search-container');
+      container.setAttribute('style', 'position: absolute; left: -3000px;');
+    }
+  }, true);
 
   var f = document.createElement('form');
   f.setAttribute('id', 'greasemonkey-google-site-search-form')
@@ -64,9 +87,22 @@
   f.appendChild(s3);
 
   var d = document.createElement('div');
-  d.setAttribute('style', 'width: 99%; padding: 5px; text-align: right');
+  d.setAttribute('id', 'greasemonkey-google-site-search-container');
+  d.setAttribute('style', 'position: absolute; left: -3000px;')
 
   d.appendChild(f);
 
+  var s4 = document.createElement('input');
+  s4.setAttribute('id', 'greasemonkey-google-site-search-input-for-focus');
+  s4.setAttribute('style', 'position: absolute; left: -3000px; top: 0')
+  s4.setAttribute('type', 'text');
+  s4.setAttribute('accesskey', 9);
+  s4.addEventListener('focus', function(event) {
+    var container = document.getElementById('greasemonkey-google-site-search-container');
+    container.setAttribute('style', 'background-color: #ec5; position: absolute; top: 0; left: 0; width: 99%; padding: 5px; text-align: right; z-index: 1000000');
+    document.getElementById('greasemonkey-google-site-search-q').focus();
+  }, true);
+  
   document.body.insertBefore(d, document.body.firstChild);
+  document.body.appendChild(s4);
 })()
