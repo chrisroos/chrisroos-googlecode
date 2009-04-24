@@ -7,8 +7,10 @@
 // @exclude       http://www.google.com*
 // ==/UserScript==
 
+// TODO: ADD README
 // TODO: Try use object.style.property = xxx to set styles.  That way I might be able to keep the style of the container consistent but hide/show it with display: none / block
 // TODO: Refactor the code
+// TODO: Make the search form consistent across sites, even though they specically style form elements in a certain way
 
 (function() {
   // Create an array of 'sites' (either the domain or domain + paths) that the user can use to search google with
