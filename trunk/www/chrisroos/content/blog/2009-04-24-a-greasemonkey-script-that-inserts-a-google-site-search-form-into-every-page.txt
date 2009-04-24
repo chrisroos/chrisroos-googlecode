@@ -1,0 +1,19 @@
+---
+summary:    A greasemonkey script that makes it really easy to use google to search within the current site.  Press ctrl-9 to visit the search form.
+blog_post:  true
+title:      A Greasemonkey Script that inserts a Google Site Search form into every page
+created_at: 2009-04-24 14:09:30.391671 +01:00
+guid:       bdb63bd0-cf82-404b-9b48-83b10fa27195
+layout:     blog
+filter:     haml
+---
+:textile
+  I often find myself wanting to use "google":http://google.com to search within a site I'm visiting.  My current method is to navigate to the search box in "firefox":http://firefox.com (cmd-k) and type "site:domain-of-site search-term".  That's a bit painful so I finally got around to creating a "greasemonkey":http://en.wikipedia.org/wiki/Greasemonkey script to make it easier.  "Install the script":http://userscripts.org/scripts/show/47192 from the "userscripts":http://userscripts.org site.
+  
+  Once installed, you can hit ctrl-9 on any page (except google, that'd be crazy) and a search form will appear at the top of the page ready for you to type into.
+  
+  "!http://farm4.static.flickr.com/3536/3470172619_99f12d3ca9.jpg!":http://www.flickr.com/photos/chrisjroos/3470172619/
+  
+  The simplest thing is to type your search term and tap enter to view the google results.  However, it's often useful to restrict your search to more than just the domain of the site (I might want to search for things I've said in twitter, site:twitter.com/chrisroos, for example) so there's a drop down list of url components that you can use to restrict which areas of the site you want to search.  Pressing escape within any of the fields in the search form will hide it again.
+  
+  A previous version of this script would display the search form at the top of each page all the time.  That didn't play nice with absolutely positioned elements already in the page though, hence my decision to only show it when you actually need it.  There's still work to do (one of the main problems is that the search form will currently be inserted into every frame on a page, including iframes) but I think it's useful enough to get out there.
