@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Google site search
 // @namespace     http://chrisroos.co.uk/
-// @description   Insert a 'google site search' search form to every page.
+// @description   Insert a 'google site search' search form to every page.  It's not visible by default, instead it appears at the top of the page when you hit the accesskey combo (ctrl-9).  Hide it again by pressing escape within the form.
 // @include       *
 // @exclude       http://www.google.co.uk*
 // @exclude       http://www.google.com*
@@ -103,7 +103,7 @@
   s4.setAttribute('accesskey', 9);
   s4.addEventListener('focus', function(event) {
     var container = document.getElementById('greasemonkey-google-site-search-container');
-    container.setAttribute('style', 'background-color: #ec5; position: absolute; top: 0; left: 0; width: 99%; padding: 5px; text-align: right; z-index: 1000000');
+    container.setAttribute('style', 'background-color: #ec5; position: absolute; top: 0; left: 0; width: 99%; padding: 5px; text-align: right; z-index: 1000000; border-bottom: solid 5px #fff');
     document.getElementById('greasemonkey-google-site-search-q').focus();
   }, true);
   
