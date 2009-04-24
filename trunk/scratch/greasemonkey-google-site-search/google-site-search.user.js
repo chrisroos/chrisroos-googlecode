@@ -11,6 +11,8 @@
 // TODO: Try use object.style.property = xxx to set styles.  That way I might be able to keep the style of the container consistent but hide/show it with display: none / block
 // TODO: Refactor the code
 // TODO: Make the search form consistent across sites, even though they specically style form elements in a certain way
+// TODO: Deal with frames.  At the moment, a search box will be inserted into each frame.
+// TODO: Truncate the length of the text displayed in the listbox for long urls
 
 (function() {
   // Create an array of 'sites' (either the domain or domain + paths) that the user can use to search google with
