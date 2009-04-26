@@ -1,9 +1,0 @@
-# Make changes to extension
-
-# Increase version number in extension.yml
-
-# Update CHANGELOG
-
-$ rake build
-
-$ cap update_site
