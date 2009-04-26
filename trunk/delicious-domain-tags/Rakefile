@@ -1,6 +1,5 @@
 task :build do
   `ruby bin/generate_install_manifest.rb`
-  `ruby bin/generate_update_manifest.rb`
   `cd src && zip -r delicious-domain-tags.xpi *`
   `mv src/delicious-domain-tags.xpi public/`
   hash = `md5 public/delicious-domain-tags.xpi`[/= (.+)/, 1]
