@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'builder'
 require 'yaml'
 

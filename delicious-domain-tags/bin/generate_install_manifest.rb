@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'builder'
 require 'yaml'
 
@@ -18,7 +19,6 @@ builder.RDF(:xmlns => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'xmlns:em' 
     builder.em(:version, extension[:version])
     builder.em(:creator, extension[:creator])
     builder.em(:description, extension[:description])
-    builder.em(:updateURL, extension[:update_url])
     builder.em(:targetApplication) do
       builder.Description do
         builder.em(:id, target_application[:id])
