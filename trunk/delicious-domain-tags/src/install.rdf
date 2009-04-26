@@ -3,14 +3,13 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>delicious-domain-tags@googlegroups.com</em:id>
     <em:name>Del.icio.us Domain Tags</em:name>
-    <em:version>0.3</em:version>
+    <em:version>0.4</em:version>
     <em:creator>Chris Roos</em:creator>
-    <em:description>Builds on the del.icio.us bookmarks extension to add permalinks to each bookmark.</em:description>
-    <em:updateURL>http://delicious-domain-tags.seagul.co.uk/update.rdf</em:updateURL>
+    <em:description>Builds on the del.icio.us bookmarks extension to automatically add a tag containing the domain of the site you're visiting to each bookmark.</em:description>
     <em:targetApplication>
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-        <em:minVersion>2.0.0</em:minVersion>
+        <em:minVersion>2.0</em:minVersion>
         <em:maxVersion>3.0.*</em:maxVersion>
       </Description>
     </em:targetApplication>
