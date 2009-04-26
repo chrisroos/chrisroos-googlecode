@@ -1,5 +1,0 @@
-* Get capistrano task to read from config/extension.yml so that we're not duplicating the URL (delicious-permalinks.seagul.co.uk)
-
-* Make the update.rdf and install.rdf use consistent namespacing
-
-* Serve the .xpi up using the correct content-type
