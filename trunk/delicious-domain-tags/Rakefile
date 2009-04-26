@@ -2,9 +2,4 @@ task :build do
   `ruby bin/generate_install_manifest.rb`
   `cd src && zip -r delicious-domain-tags.xpi *`
   `mv src/delicious-domain-tags.xpi public/`
-  hash = `md5 public/delicious-domain-tags.xpi`[/= (.+)/, 1]
-  installation_html_file = File.join(File.dirname(__FILE__), 'public', 'installation.html')
-  installation_html = File.open(installation_html_file) { |f| f.read }
-  installation_html.gsub!(/'md5:(.*)'/, "'md5:#{hash}'")
-  File.open(installation_html_file, 'w') { |f| f.puts(installation_html) }
 end
