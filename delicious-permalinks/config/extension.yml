@@ -6,8 +6,7 @@
   :creator: Chris Roos
   :description: Builds on the del.icio.us bookmarks extension to add permalinks to each bookmark.
   :install_url: http://delicious-permalinks.seagul.co.uk/delicious-permalinks.xpi
-  :update_url: http://delicious-permalinks.seagul.co.uk/update.rdf
 :target_application:
   :id: "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-  :min_version: 2.0.0
-  :max_version: 2.0.12
+  :min_version: 2.0
+  :max_version: 3.0.*
