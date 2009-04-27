@@ -1,19 +1,10 @@
 <VirtualHost *:80>
   ServerAdmin www-admin@seagul.co.uk
   ServerName delicious-permalinks.seagul.co.uk
-  DocumentRoot <%= public_directory %>
-  <Directory <%= public_directory %>>
-    AllowOverride All
-    allow from all
-  </Directory>
-  <DirectoryMatch "^/.*/\.svn/">
-    ErrorDocument 403 /404.html
-    Order allow,deny
-    Deny from all
-    Satisfy All
-  </DirectoryMatch>
-  ErrorLog <%= log_directory %>/error_log
-  CustomLog <%= log_directory %>/access_log common
-  # RewriteLogLevel 3
-  RewriteLog <%= log_directory %>/rewrite_log
+  
+  RewriteEngine On
+  
+  # Redirect to the addon at addons.mozilla.org
+  RewriteCond %{HTTP_HOST} delicious-permalinks.seagul.co.uk [NC]
+  RewriteRule ^/(.*)$ https://addons.mozilla.org/en-US/firefox/addon/11664/ [R=301,L]
 </VirtualHost>
