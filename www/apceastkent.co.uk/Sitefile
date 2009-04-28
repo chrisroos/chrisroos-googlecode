@@ -1,6 +1,6 @@
 SITE.user       = "chrisroos"
 SITE.host       = "seagul.co.uk"
-SITE.remote_dir = "/home/chrisroos/www/apceastkent.co.uk/current/public/"
+SITE.remote_dir = "/home/chrisroos/www/apceastkent.co.uk/"
 
 task :default => :build
 
