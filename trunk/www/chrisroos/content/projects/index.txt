@@ -9,3 +9,7 @@ filter:      haml
   h2(project). "PwdHash Dashboard Widget":/projects/pwdhash-dashboard-widget
 
   This little dashboard widget replicates the functionality found at "pwdhash.com":http://pwdhash.com.  I find it useful for entering passwords into the desktop counterparts of various websites.  There's a little more info on my "post about the widget":/blog/2008-05-19-pwdhash-widget.
+  
+  h2(project). Greasemonkey extension for searching sites you visit with google
+  
+  Google's nearly always better at searching a website than the site is itself.  This greasemonkey extension makes it really easy to use google to search the site you're visiting.  "Install the script":http://userscripts.org/scripts/source/47192.user.js or, for more information, visit my "post about the extension":/blog/2009-04-24-a-greasemonkey-script-that-inserts-a-google-site-search-form-into-every-page.
