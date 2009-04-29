@@ -1,5 +1,6 @@
-desc "Build the extension, i.e. zip up the content of src/ as a .xpi and move it to public"
+desc "Build the extension, i.e. zip up the content of src/ as a .xpi and move it to the the build directory"
 task :build do
+  `mkdir -p build`
   `cd src && zip -r delicious-permalinks.xpi *`
-  `mv src/delicious-permalinks.xpi public/`
+  `mv src/delicious-permalinks.xpi build/`
 end
