@@ -1,8 +1,0 @@
---- 
-:published_at: 2006-11-01 09:01:00 +00:00
-:body: |-
-  This has come up on the "list":http://groups-beta.google.com/group/adwords-api a few times.
-  
-  I've personally found it to occur when the sandbox gets reset (i.e. data from the sandbox is deleted by google).  The solution in this instance is to remove the clientEmail from the soap headers.  Make one request without it and then you can add it back in again.  I guess it's to do with the way that the accounts get auto created on the first request.
-:title: Google AdWords Api Internal Error using the Sandbox
-:guid: f5c74636-8e53-4d07-934d-f282ffde8b68

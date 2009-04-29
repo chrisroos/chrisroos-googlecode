@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>http://chrisroos.co.uk/</loc></url>
-  <url><loc>http://chrisroos.co.uk/contents</loc></url>
-  <url><loc>http://chrisroos.co.uk/projects</loc></url>
-  <% articles.each do |article| %>
-    <url><loc>http://chrisroos.co.uk<%= h(article.url) %></loc></url>
-  <% end %>
-</urlset>
