@@ -1,3 +1,7 @@
+0.5 (29th Apr 2009)
+-------------------
+Delicious.com now url encodes the tags.  This means that a tag of url/md5-hash is now stored as url%2fmd5-hash.  This makes it harder for me to keep the same interface as the existing url/ interface on delicious.  Instead, I'm chosing to just store the md5-hash as the tag.  This means that you can swap between something like .../chrisjroos/md5-hash and ...url/md5-hash to see an individuals post about a site and all history for a site.
+
 0.4 (26th Apr 2009)
 -------------------
 Bumping the version number and deploying to addons.mozilla.org
