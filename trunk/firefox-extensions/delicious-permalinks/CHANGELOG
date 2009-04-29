@@ -1,3 +1,7 @@
+0.4 (26th Apr 2009)
+-------------------
+Bumping the version number and deploying to addons.mozilla.org
+
 0.3 (3rd Apr 2008)
 ------------------
 * Add auto-update capability to the extension
