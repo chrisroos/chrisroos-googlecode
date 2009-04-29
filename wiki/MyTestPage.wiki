@@ -1,9 +1,0 @@
-hello world
-
-|| table ||
-foo || table 2 ||
-
-
-=heading1=
-
-== heading 2 ==
