@@ -1,5 +1,5 @@
+desc "Build the extension, i.e. zip up the content of src/ as a .xpi and move it to public"
 task :build do
-  `ruby bin/generate_install_manifest.rb`
   `cd src && zip -r delicious-permalinks.xpi *`
   `mv src/delicious-permalinks.xpi public/`
 end
