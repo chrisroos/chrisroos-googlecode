@@ -1,0 +1,3 @@
+content delicious-domain-tags chrome/content/
+
+overlay chrome://ybookmarks/content/yAddBookMark.xul chrome://delicious-domain-tags/content/addBookMark.xul
