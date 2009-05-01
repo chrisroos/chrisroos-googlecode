@@ -1,3 +1,3 @@
-content delicious-domain-tags chrome/content/
+content delicious-canonical-url chrome/content/
 
-overlay chrome://ybookmarks/content/yAddBookMark.xul chrome://delicious-domain-tags/content/addBookMark.xul
+overlay chrome://ybookmarks/content/yAddBookMark.xul chrome://delicious-canonical-url/content/addBookMark.xul
