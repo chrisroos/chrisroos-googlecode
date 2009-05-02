@@ -1,0 +1,35 @@
+* Wait for secure.chrisroos.co.uk to propagate so that I can use that as my host.
+
+* Build two versions of the .xpi.  One for addons.mozilla.org and one to be hosted on Amazon s3.  I'm thinking about creating delicious-permalinks-amo.xpi and delicious-permalinks-s3.xpi.
+
+* The version for addons.mozilla.org cannot contain the updateURL element in install.rdf
+
+* The version for s3 must contain the updateURL element and look something like this:
+
+  <em:updateURL>https://secure.chrisroos.co.uk/firefox-extensions/delicious-permalinks-update.rdf</em:updateURL>
+  
+* The update.rdf must look something like this and be generated in the build folder:
+
+  <?xml version="1.0" encoding="UTF-8"?>
+  <r:RDF xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.mozilla.org/2004/em-rdf#">
+    <r:Description about="urn:mozilla:extension:delicious-permalinks@googlegroups.com">
+      <updates>
+        <r:Seq>
+          <r:li>
+            <r:Description>
+              <version>0.8</version>
+              <targetApplication>
+                <r:Description>
+                  <id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</id>
+                  <minVersion>2.0</minVersion>
+                  <maxVersion>3.0.*</maxVersion>
+                  <updateLink>https://secure.chrisroos.co.uk/firefox-extensions/delicious-permalinks.xpi</updateLink>
+                </r:Description>
+              </targetApplication>
+            </r:Description>
+          </r:li>
+        </r:Seq>
+      </updates>
+    </r:Description>
+  </r:RDF>
+  
