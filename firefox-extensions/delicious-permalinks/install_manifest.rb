@@ -3,7 +3,7 @@ require 'builder'
 require 'yaml'
 
 class InstallManifest
-  def self.generate(configuration)
+  def self.generate(configuration, include_update_url = false)
     install_rdf_buffer = StringIO.new
 
     builder = Builder::XmlMarkup.new(:target=>install_rdf_buffer, :indent=>2)
@@ -15,7 +15,7 @@ class InstallManifest
         builder.em(:version, configuration[:extension][:version])
         builder.em(:creator, configuration[:extension][:creator])
         builder.em(:description, configuration[:extension][:description])
-        # builder.em(:updateURL, configuration[:extension][:update_url])
+        builder.em(:updateURL, configuration[:extension][:update_url]) if include_update_url
         builder.em(:targetApplication) do
           builder.Description do
             builder.em(:id, configuration[:target_application][:id])
