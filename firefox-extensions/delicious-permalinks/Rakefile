@@ -1,6 +1,13 @@
+require File.join(File.dirname(__FILE__), 'generate_install_manifest.rb')
+
 desc "Build the extension, i.e. zip up the content of src/ as a .xpi and move it to the the build directory"
-task :build do
+task :build => [:generate_install_manifest] do
   `mkdir -p build`
   `cd src && zip -r delicious-permalinks.xpi *`
   `mv src/delicious-permalinks.xpi build/`
+end
+
+task :generate_install_manifest do
+  config = YAML.load_file(File.join(File.dirname(__FILE__), *%w[config extension.yml]))
+  InstallManifest.generate(config)
 end
