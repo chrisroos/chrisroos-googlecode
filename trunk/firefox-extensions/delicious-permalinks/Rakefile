@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__), 'generate_install_manifest.rb')
-require File.join(File.dirname(__FILE__), 'generate_update_manifest.rb')
+require File.join(File.dirname(__FILE__), 'install_manifest.rb')
+require File.join(File.dirname(__FILE__), 'update_manifest.rb')
 
 desc "Build the extension, i.e. zip up the content of src/ as a .xpi and move it to the the build directory"
 task :build => [:generate_install_manifest, :generate_update_manifest] do
