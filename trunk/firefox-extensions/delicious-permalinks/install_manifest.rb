@@ -3,7 +3,7 @@ require 'builder'
 require 'yaml'
 
 class InstallManifest
-  def self.generate(configuration, include_update_url = false)
+  def self.generate(configuration, output_directory, include_update_url = false)
     install_rdf_buffer = StringIO.new
 
     builder = Builder::XmlMarkup.new(:target=>install_rdf_buffer, :indent=>2)
@@ -26,7 +26,7 @@ class InstallManifest
       end
     end
 
-    install_rdf_file = File.join(File.dirname(__FILE__), *%w[src install.rdf])
+    install_rdf_file = File.join(output_directory, 'install.rdf')
     File.open(install_rdf_file, 'w') { |f| f.puts(install_rdf_buffer.string) }
   end
 end
