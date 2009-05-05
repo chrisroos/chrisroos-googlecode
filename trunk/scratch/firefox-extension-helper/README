@@ -13,6 +13,10 @@ load File.join(File.dirname(__FILE__), 'vendor', 'firefox-extension', 'Rakefile'
 
 * Create a config directory and a file named extension.yml within it.  This contains the metadata about your extension and will look like this example (stolen from my delicious-permalinks extension).
 
+* You'll probably want to svn:ignore src/install.rdf (and remove it from the repository if it's already committed)
+
+* You'll probably want to svn:ignore the build directory.
+
 ---
 :extension:
   :id: delicious-permalinks@googlegroups.com
