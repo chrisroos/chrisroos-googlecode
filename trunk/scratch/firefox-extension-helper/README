@@ -1,7 +1,17 @@
 A fairly basic project that helps me build my firefox extensions.  It consists of a Rake task and a couple of classes (that represent the install and update manifests).  The build rake task builds two versions of the extension, one with the update url (suitable for hosting somewhere other than addons.mozilla.org, e.g. on https s3) and one without (suitable for hosting on addons.mozilla.org).
 
-To 'install', svn:externalise it into the vendor/firefox-permalinks directory (i.e. set the svn:externals property on the vendor directory to something like firefox-extension http://chrisroos.googlecode.com/svn/trunk/scratch/firefox-extension-helper
-).  You'll also need a src directory (that contains the source of your extension) and a config directory.  The config directory needs a file named extension.yml that looks something like this example (stolen from my delicious-permalinks extension).
+Installation
+============
+* svn:externalise it into the vendor/firefox-permalinks directory (i.e. set the svn:externals property on the vendor directory to something like firefox-extension http://chrisroos.googlecode.com/svn/trunk/scratch/firefox-extension-helper
+).
+
+* Make sure you've got a src directory that contains the actual source of your extension (so it'll contain your chrome.manifest and chrome folders)
+
+* Create a Rakefile in the root of your extension directory and load the Rakefile from this helper.  This line should do it:
+
+load File.join(File.dirname(__FILE__), 'vendor', 'firefox-extension', 'Rakefile')
+
+* Create a config directory and a file named extension.yml within it.  This contains the metadata about your extension and will look like this example (stolen from my delicious-permalinks extension).
 
 ---
 :extension:
