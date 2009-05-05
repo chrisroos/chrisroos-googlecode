@@ -8,12 +8,12 @@ task :build do
   `mkdir #{FirefoxExtension::EXTENSION_BUILD_DIRECTORY}`
   
   FirefoxExtension::InstallManifest.generate(config, FirefoxExtension::EXTENSION_SRC_DIRECTORY)
-  filename = "#{config[:extension][:filename]}-without-update-url.xpi"
+  filename = "#{config[:extension][:filename]}-without-update-url-#{config[:extension][:version]}.xpi"
   `cd #{FirefoxExtension::EXTENSION_SRC_DIRECTORY} && zip -r #{filename} *`
   `mv #{File.join(FirefoxExtension::EXTENSION_SRC_DIRECTORY, filename)} #{FirefoxExtension::EXTENSION_BUILD_DIRECTORY}`
   
   FirefoxExtension::InstallManifest.generate(config, FirefoxExtension::EXTENSION_SRC_DIRECTORY, include_update_url = true)
-  filename = "#{config[:extension][:filename]}.xpi"
+  filename = "#{config[:extension][:filename]}-#{config[:extension][:version]}.xpi"
   `cd #{FirefoxExtension::EXTENSION_SRC_DIRECTORY} && zip -r #{filename} *`
   `mv #{File.join(FirefoxExtension::EXTENSION_SRC_DIRECTORY, filename)} #{FirefoxExtension::EXTENSION_BUILD_DIRECTORY}`
   
