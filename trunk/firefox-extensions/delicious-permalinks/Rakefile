@@ -9,12 +9,12 @@ task :build do
   `mkdir build`
   
   InstallManifest.generate(config)
-  `cd src && zip -r delicious-permalinks-without-update-url.xpi *`
-  `mv src/delicious-permalinks-without-update-url.xpi build/`
+  `cd src && zip -r #{config[:extension][:filename]}-without-update-url.xpi *`
+  `mv src/#{config[:extension][:filename]}-without-update-url.xpi build/`
   
   InstallManifest.generate(config, include_update_url = true)
-  `cd src && zip -r delicious-permalinks.xpi *`
-  `mv src/delicious-permalinks.xpi build/`
+  `cd src && zip -r #{config[:extension][:filename]}.xpi *`
+  `mv src/#{config[:extension][:filename]}.xpi build/`
   
   UpdateManifest.generate(config)
 end
