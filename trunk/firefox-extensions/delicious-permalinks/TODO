@@ -1,3 +1,0 @@
-* Think about whether I want to follow the rails approach (an app/script that generates my application directory) or a more vendorising type approach (where I try to fit it with existing extension directory structures).
-
-* Add a task that generates the expected directory structure (including an example extension.yml).
