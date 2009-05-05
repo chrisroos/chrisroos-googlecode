@@ -1,0 +1,18 @@
+A fairly basic project that helps me build my firefox extensions.  It consists of a Rake task and a couple of classes (that represent the install and update manifests).  The build rake task builds two versions of the extension, one with the update url (suitable for hosting somewhere other than addons.mozilla.org, e.g. on https s3) and one without (suitable for hosting on addons.mozilla.org).
+
+To 'install', svn:externalise it into the vendor/firefox-permalinks directory (i.e. set the svn:externals property on the vendor directory).  You'll also need a src directory (that contains the source of your extension) and a config directory.  The config directory needs a file named extension.yml that looks something like this example (stolen from my delicious-permalinks extension).
+
+---
+:extension:
+  :id: delicious-permalinks@googlegroups.com
+  :name: Del.icio.us Permalinks
+  :filename: delicious-permalinks
+  :version: 0.5
+  :creator: Chris Roos
+  :description: Builds on the del.icio.us bookmarks extension to add permalinks to each bookmark.
+  :install_url: https://chrisroos.s3.amazonaws.com/firefox-extensions/delicious-permalinks.xpi
+  :update_url: https://chrisroos.s3.amazonaws.com/firefox-extensions/delicious-permalinks-update.rdf
+:target_application:
+  :id: "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+  :min_version: 2.0
+  :max_version: 3.0.*
