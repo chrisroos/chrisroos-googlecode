@@ -1,7 +1,3 @@
-require 'rubygems'
-require 'builder'
-require 'yaml'
-
 module FirefoxExtension
   class InstallManifest
     def self.generate(configuration, output_directory, include_update_url = false)

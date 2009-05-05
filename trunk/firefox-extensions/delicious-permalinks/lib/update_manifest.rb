@@ -1,7 +1,3 @@
-require 'rubygems'
-require 'builder'
-require 'yaml'
-
 module FirefoxExtension
   class UpdateManifest
     def self.generate(configuration, output_directory)
