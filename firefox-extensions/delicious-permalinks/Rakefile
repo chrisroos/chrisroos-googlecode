@@ -4,15 +4,17 @@ require File.join(File.dirname(__FILE__), 'update_manifest.rb')
 desc "Build the extension, i.e. zip up the content of src/ as a .xpi and move it to the the build directory"
 task :build do
   config = YAML.load_file(File.join(File.dirname(__FILE__), *%w[config extension.yml]))
-  `mkdir -p build`
+  
+  `rm -rf build`
+  `mkdir build`
   
   InstallManifest.generate(config)
-  `cd src && zip -r delicious-permalinks-amo.xpi *`
-  `mv src/delicious-permalinks-amo.xpi build/`
+  `cd src && zip -r delicious-permalinks-without-update-url.xpi *`
+  `mv src/delicious-permalinks-without-update-url.xpi build/`
   
   InstallManifest.generate(config, include_update_url = true)
-  `cd src && zip -r delicious-permalinks-s3.xpi *`
-  `mv src/delicious-permalinks-s3.xpi build/`
+  `cd src && zip -r delicious-permalinks.xpi *`
+  `mv src/delicious-permalinks.xpi build/`
   
   UpdateManifest.generate(config)
 end
