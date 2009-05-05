@@ -1,20 +1,23 @@
-require File.join(File.dirname(__FILE__), 'install_manifest.rb')
-require File.join(File.dirname(__FILE__), 'update_manifest.rb')
+require File.join(File.dirname(__FILE__), 'firefox-extension.rb')
 
 desc "Build the extension, i.e. zip up the content of src/ as a .xpi and move it to the the build directory"
 task :build do
-  config = YAML.load_file(File.join(File.dirname(__FILE__), *%w[config extension.yml]))
+  config = YAML.load_file(File.join(EXTENSION_CONFIG_DIRECTORY, 'extension.yml'))
   
-  `rm -rf build`
-  `mkdir build`
+  `rm -rf #{EXTENSION_BUILD_DIRECTORY}`
+  `mkdir #{EXTENSION_BUILD_DIRECTORY}`
   
-  InstallManifest.generate(config)
-  `cd src && zip -r #{config[:extension][:filename]}-without-update-url.xpi *`
-  `mv src/#{config[:extension][:filename]}-without-update-url.xpi build/`
+  InstallManifest.generate(config, EXTENSION_SRC_DIRECTORY)
+  filename = "#{config[:extension][:filename]}-without-update-url.xpi"
+  `cd #{EXTENSION_SRC_DIRECTORY} && zip -r #{filename} *`
+  `mv #{File.join(EXTENSION_SRC_DIRECTORY, filename)} #{EXTENSION_BUILD_DIRECTORY}`
   
-  InstallManifest.generate(config, include_update_url = true)
-  `cd src && zip -r #{config[:extension][:filename]}.xpi *`
-  `mv src/#{config[:extension][:filename]}.xpi build/`
+  InstallManifest.generate(config, EXTENSION_SRC_DIRECTORY, include_update_url = true)
+  filename = "#{config[:extension][:filename]}.xpi"
+  `cd #{EXTENSION_SRC_DIRECTORY} && zip -r #{filename} *`
+  `mv #{File.join(EXTENSION_SRC_DIRECTORY, filename)} #{EXTENSION_BUILD_DIRECTORY}`
   
-  UpdateManifest.generate(config)
+  UpdateManifest.generate(config, EXTENSION_BUILD_DIRECTORY)
+  filename = "#{config[:extension][:filename]}-update.rdf"
+  `mv #{File.join(EXTENSION_BUILD_DIRECTORY, 'update.rdf')} #{File.join(EXTENSION_BUILD_DIRECTORY, filename)}`
 end

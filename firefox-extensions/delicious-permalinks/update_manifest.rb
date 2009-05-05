@@ -3,7 +3,7 @@ require 'builder'
 require 'yaml'
 
 class UpdateManifest
-  def self.generate(configuration)
+  def self.generate(configuration, output_directory)
     buffer = StringIO.new
 
     builder = Builder::XmlMarkup.new(:target=>buffer, :indent=>2)
@@ -30,7 +30,7 @@ class UpdateManifest
       end
     end
 
-    output_file = File.join(File.dirname(__FILE__), *%w[build delicious-permalinks-update.rdf])
+    output_file = File.join(output_directory, 'update.rdf')
     File.open(output_file, 'w') { |f| f.puts(buffer.string) }
   end
 end
