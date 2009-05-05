@@ -2,6 +2,7 @@
 :extension:
   :id: delicious-permalinks@googlegroups.com
   :name: Del.icio.us Permalinks
+  :filename: delicious-permalinks
   :version: 0.5
   :creator: Chris Roos
   :description: Builds on the del.icio.us bookmarks extension to add permalinks to each bookmark.
