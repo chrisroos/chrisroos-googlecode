@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'builder'
+require 'yaml'
+
 require File.join(File.dirname(__FILE__), 'lib', 'install_manifest')
 require File.join(File.dirname(__FILE__), 'lib', 'update_manifest')
 
