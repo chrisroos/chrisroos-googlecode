@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#" xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest">
     <em:id>delicious-domain-tags@googlegroups.com</em:id>
     <em:name>Del.icio.us Domain Tags</em:name>
-    <em:version>0.4</em:version>
+    <em:version>0.5</em:version>
     <em:creator>Chris Roos</em:creator>
     <em:description>Builds on the del.icio.us bookmarks extension to automatically add a tag containing the domain of the site you're visiting to each bookmark.</em:description>
+    <em:updateURL>https://chrisroos.s3.amazonaws.com/firefox-extensions/delicious-domain-tags-update.rdf</em:updateURL>
     <em:targetApplication>
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>

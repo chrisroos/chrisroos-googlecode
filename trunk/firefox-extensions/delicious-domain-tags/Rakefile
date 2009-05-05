@@ -1,5 +1,1 @@
-task :build do
-  `ruby bin/generate_install_manifest.rb`
-  `cd src && zip -r delicious-domain-tags.xpi *`
-  `mv src/delicious-domain-tags.xpi public/`
-end
+load File.join(File.dirname(__FILE__), 'vendor', 'firefox-extension', 'Rakefile')

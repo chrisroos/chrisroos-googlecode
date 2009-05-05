@@ -2,10 +2,12 @@
 :extension:
   :id: delicious-domain-tags@googlegroups.com
   :name: Del.icio.us Domain Tags
+  :filename: delicious-domain-tags
   :version: 0.4
   :creator: Chris Roos
   :description: Builds on the del.icio.us bookmarks extension to automatically add a tag containing the domain of the site you're visiting to each bookmark.
-  :install_url: http://delicious-domain-tags.seagul.co.uk/delicious-domain-tags.xpi
+  :install_url: https://chrisroos.s3.amazonaws.com/firefox-extensions/delicious-domain-tags.xpi
+  :update_url: https://chrisroos.s3.amazonaws.com/firefox-extensions/delicious-domain-tags-update.rdf
 :target_application:
   :id: "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
   :min_version: 2.0
