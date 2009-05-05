@@ -4,4 +4,4 @@
 
 * Generate a proper skeleton extension with this utility (including the src/chrome.manifest src/chrome/ folders etc)
 
-* Think about including the version number in the zipped extension in the build directory.
+* Improve the way in which I currently get the version number in the 'compiled' extension, particularly remove the requirement to duplication the version number in the extension config.
