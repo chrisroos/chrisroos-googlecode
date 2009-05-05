@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__), 'install_manifest')
-require File.join(File.dirname(__FILE__), 'update_manifest')
+require File.join(File.dirname(__FILE__), 'lib', 'install_manifest')
+require File.join(File.dirname(__FILE__), 'lib', 'update_manifest')
 
 EXTENSION_ROOT             = File.expand_path(File.join(File.dirname(__FILE__)))
 EXTENSION_BUILD_DIRECTORY  = File.join(EXTENSION_ROOT, 'build')
