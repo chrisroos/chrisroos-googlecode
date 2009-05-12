@@ -1,9 +1,0 @@
-  <% @page_heading = 'Articles' %>
-
-  <% content_for('tasks') do %>
-    <%= task_new 'Create new article' %>
-  <% end %>
-
-  <div class="list" id="articles">	
-    <%= render :partial => 'articles' %>
-  </div>
