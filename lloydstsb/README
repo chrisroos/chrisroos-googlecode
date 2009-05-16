@@ -1,0 +1,1 @@
+A ruby+curl script that logs into your Lloyds Tsb account and automatically downloads the recent transactions.
