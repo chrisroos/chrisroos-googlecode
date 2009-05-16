@@ -1,0 +1,1 @@
+The smile.rb ruby+curl script appears to download the html representation of your recent transactions.  The transaction parser appears to be an attempt at parsing this html into something more sensible.  It certainly doesn't look complete though.
