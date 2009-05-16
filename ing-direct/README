@@ -1,0 +1,3 @@
+The ing-direct.rb ruby+curl script appears to download the html representation of recent transactions from the ing site.
+
+The page-parsing.rb script appears to explain how to login to the magical on-screen keypad thing.
