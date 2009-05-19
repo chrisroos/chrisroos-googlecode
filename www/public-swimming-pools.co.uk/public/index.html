@@ -1,65 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
   <head>
-    <link rel="stylesheet" href="/stylesheets/swimming-pools.css" type="text/css" media="screen" charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Public Swimming Pools</title>
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAKHjf8pvj0mv3o07jD0Tc5RQaqNW12GnHBM9UqBhN-tKTStROsxS_YKqdsgFyjjinVKdFKNOHhZmPOQ"
-      type="text/javascript"></script>
-    <script type="text/javascript">
-
-    //<![CDATA[
-
-    function load() {
-      if (GBrowserIsCompatible()) {
-        var map = new GMap2(document.getElementById("map"));
-        geoXml = new GGeoXml("http://public-swimming-pools.co.uk/swimming-pools.kml");
-        map.addControl(new GLargeMapControl());
-        map.setCenter(new GLatLng(51.441115,-0.152607), 7); 
-        map.addControl(new GLargeMapControl());
-        map.addOverlay(geoXml);
+    <meta content='text/html; charset=utf-8' http-equiv='content-type' />
+    <style type="text/css" media="screen">
+      body {
+        font-family: arial; sans-serif;
+        font-size: 1.2em;
+        margin: 0 25%;
       }
-    }
-
-    //]]>
-    </script>
+      h1 {
+        color: #005A9C;
+        text-align: center;
+      }
+      .notice {
+        background-color: #FFFFCC;
+        border: 1px solid #FFFF00;
+        padding: 0.5em;
+      }
+      #footer {
+        text-align: left;
+      }
+    </style>
+    <title>Public swimming pools</title>
   </head>
-  <body onload="load()" onunload="GUnload()">
-    <h1>Public Swimming Pools in the UK</h1>
-    
-    <h2>Wait, it's not ready yet (you could still see what it's all <a href="/about">about</a> though)</h2>
-    
-    <div id="map" style="width: 500px; height: 300px"></div>
-    
-    <ul class="swimmingPools">
-    
-      <li class="swimmingPool">
-        <a href="/balham-leisure-centre-elmfield-road-balham-greater-london">Balham Leisure Centre</a>
-      </li>
-    
-      <li class="swimmingPool">
-        <a href="/hartsdown-leisure-centre-hartsdown-park-hartsdown-road-margate-kent">Hartsdown Leisure Centre</a>
-      </li>
-    
-      <li class="swimmingPool">
-        <a href="/ramsgate-swimming-centre-newington-road-ramsgate-kent">Ramsgate Swimming Centre</a>
-      </li>
-    
-      <li class="swimmingPool">
-        <a href="/westcroft-leisure-centre-westcroft-road-carshalton-surrey">Westcroft Leisure Centre</a>
-      </li>
-    
-    </ul>
-    
-    <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-      var pageTracker = _gat._getTracker("UA-160238-6");
-      pageTracker._initData();
-      pageTracker._trackPageview();
-    </script>
+  <body>
+    <h1>Public swimming pools</h1>
+    <p class="notice">I'm removing this placeholder site because I don't think it's adding any value to the web.</p>
+    <p>The intention was, and kinda still is, to create a site all about publicly accessible swimming pools (i.e. those that don't require you to be a member to use).  I was driven to start the project by the lack of a similar site that would serve my needs (there is <a href="http://activeplaces.co.uk">activeplaces</a> but that's one of the least useful sites I've ever come across).</p>
+    <p>If you're in any way interested in this project then you might be interested in the <a href="http://rewiredstate.org">rewiredstate</a> <a href="http://rewiredstate.org/projects/active-places-reloaded">active places reloaded</a> hack that I participated in.</p>
+    <p id="footer"><a href="http://chrisroos.co.uk">Chris</a></p>
   </body>
 </html>
