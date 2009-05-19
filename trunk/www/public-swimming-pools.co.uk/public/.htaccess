@@ -1,25 +1,6 @@
 RewriteEngine On
 RewriteBase /
 
-# RewriteRule .* http://example.com?request_uri=%{REQUEST_URI}&the_request=%{THE_REQUEST}
-
-# Permanently (301) redirect /index.html to / (regex copied from http://www.webmasterworld.com/apache/3155094.htm)
-# RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
-# RewriteRule ^(.*)index\.html$ $1 [R=301,L]
-
-# Permanently (301) redirect /<pool>.html to /<pool>, ensuring that we don't try to redirect index.html to index
+# Redirect all .html requests to the index page.  Everything else should 404.
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.+\.html\ HTTP/
-RewriteCond %{THE_REQUEST} !index\.html\ HTTP/
-RewriteRule ^(.*)\.html$ $1 [R=301,L]
-
-# If we receive a request for a pool without a .html (as long as it's not a .xml or .kml file) extension then let's rewrite internally to render the file with the .html extension
-RewriteCond %{REQUEST_URI} ^/.+$
-RewriteCond %{REQUEST_URI} !\.html$
-RewriteCond %{REQUEST_URI} !\.xml$
-RewriteCond %{REQUEST_URI} !\.kml$
-RewriteCond %{REQUEST_URI} !\.css$
-RewriteRule ^(.*)$ $1.html [L]
-
-# Permanently (301) remove www.
-RewriteCond %{HTTP_HOST} ^www.public-swimming-pools.co.uk$ [NC]
-RewriteRule ^(.*)$ http://public-swimming-pools.co.uk/$1 [R=301,L]
+RewriteRule ^.*$ / [R=301,L]
