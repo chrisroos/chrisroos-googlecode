@@ -1,0 +1,11 @@
+---
+filename: .htaccess
+extension: none
+layout: none
+---
+RewriteEngine On
+RewriteBase /
+
+# Redirect all .html requests to the index page.  Everything else should 404.
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.+\.html\ HTTP/
+RewriteRule ^.*$ / [R=301,L]
