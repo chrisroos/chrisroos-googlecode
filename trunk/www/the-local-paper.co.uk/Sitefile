@@ -1,0 +1,10 @@
+SITE.user       = "chrisroos"
+SITE.host       = "seagul.co.uk"
+SITE.remote_dir = "/home/chrisroos/www/the-local-paper.co.uk/"
+
+task :default => :build
+
+desc 'deploy the site to the webserver'
+task :deploy => [:build, 'deploy:rsync']
+
+# EOF
