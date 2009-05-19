@@ -1,0 +1,11 @@
+---
+title:       Home Page
+created_at:  2008-08-02 14:06:40.000000 -06:00
+filter:      haml
+---
+%h1 The Local Paper
+%p.notice I'm removing this site because I don't think it's adding any value to the web.
+%p The original intention (and one that I might return to) was to provide a permalink for each story in my local papers.  I wanted it to be easy for people to discuss the stories in the local papers.  I think some or all of the online versions of my local papers now have commenting enabled.
+%p There's a little more info on the background of the project on <a href="http://chrisroos.co.uk/blog/2007-06-01-an-open-letter-to-my-local-newspapers">my blog</a>.
+%p 
+  %a{:href => 'http://chrisroos.co.uk'} Chris
