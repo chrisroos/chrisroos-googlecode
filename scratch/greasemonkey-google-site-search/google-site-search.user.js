@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Google site search
 // @namespace     http://chrisroos.co.uk/
-// @description   Insert a 'google site search' search form to every page.  *NOTE* It's not visible by default, instead it appears at the top of the page when you hit the accesskey combo (ctrl-9).  Hide it again by pressing escape within the form.
+// @description   Insert a 'google site search' search form to every page.  *NOTE* It's not visible by default, instead it appears at the top of the page when you hit the accesskey combo (ctrl-9 on Mac, shift+alt+9 on Windows).  Hide it again by pressing escape within the form.
 // @include       *
 // @exclude       http://www.google.co.uk*
 // @exclude       http://www.google.com*
