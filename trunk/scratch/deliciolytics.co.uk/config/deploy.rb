@@ -12,3 +12,20 @@ set :repository,  "http://chrisroos.googlecode.com/svn/trunk/scratch/#{applicati
 role :app, "seagul.co.uk"
 role :web, "seagul.co.uk"
 role :db,  "seagul.co.uk", :primary => true
+
+after 'deploy:update_code', 'symlink:db'
+after 'deploy:setup', 'filesystem:create_shared_directories'
+
+namespace :filesystem do
+  desc 'Create the directories required for the app to function correctly'
+  task :create_shared_directories do
+    run "mkdir #{File.join(shared_path, 'config')}"
+  end
+end
+
+namespace :symlink do
+  desc "symlink database yaml" 
+  task :db do
+    run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml" 
+  end
+end
