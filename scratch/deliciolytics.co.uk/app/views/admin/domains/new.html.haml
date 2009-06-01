@@ -1,0 +1,11 @@
+%h1 New domain
+
+-form_for [:admin, @domain] do |f|
+  =f.error_messages
+  %fieldset
+    %legend Domain
+    %div
+      =f.label :domain
+      =f.text_field :domain
+    %div
+      = f.submit
