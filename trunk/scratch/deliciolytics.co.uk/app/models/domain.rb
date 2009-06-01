@@ -15,11 +15,15 @@ class Domain < ActiveRecord::Base
     domain_hash
   end
   
-  def retrieve_urls_from_sitemap
+  def retrieve_urls_from_sitemap!
     sitemap = Sitemap.new(domain)
     sitemap.urls.each do |url|
       self.urls.create!(:url => url)
     end
+  end
+  
+  def update_urlinfo_from_delicious!
+    self.urls.each { |url| url.update_urlinfo_from_delicious!; sleep 0.5 }
   end
   
 end
