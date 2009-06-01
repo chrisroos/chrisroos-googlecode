@@ -3,14 +3,16 @@
 %table.urls
   %thead
     %tr
+      %th
       %th Title
       %th Url
       %th Url hash
       %th Total posts
       %th Top tags
   %tbody
-    - @urls.each do |url|
+    - @urls.each_with_index do |url, index|
       %tr
+        %td= index+1
         %td.title= h(url.title)
         %td.url= link_to_source_url(url)
         %td.urlHash= link_to_delicious_url_history(url)
