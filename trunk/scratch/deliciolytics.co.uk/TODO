@@ -1,0 +1,13 @@
+* Add bookmarks to urls (i.e. url has_many bookmarks).  Populate these bookmarks from the json feed at http://feeds.delicious.com/v2/json/url/e7ab3aab895177dcdc7ffce2d0afdc20?count=100.
+
+* Produce an atom feed of bookmarks, ordered by bookmark date (so that you get alerts when people bookmark your stuff).
+
+* Make the sitemap downloader more robust, i.e. make it follow the same rules as actual spiders.
+
+* Add navigation.
+
+* Add a button in the interface for grabbing the sitemap.
+
+* Don't add a button in the interface for grabbing all urlinfo/bookmarks (this needs to be offline i think).
+
+* Only poll delicious once or twice a day per distinct feed.
