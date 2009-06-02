@@ -1,0 +1,20 @@
+%h1== Bookmarks for #{h(@uri.url)}
+
+%table.bookmarks
+  %thead
+    %tr
+      %th
+      %th Username
+      %th Title
+      %th Notes
+      %th Tags
+      %th Bookmarked at
+  %tbody
+    - @uri.bookmarks.each_with_index do |bookmark, index|
+      %tr
+        %td= index+1
+        %td.username= link_to_delicious_user(bookmark.username)
+        %td.title= h(bookmark.title)
+        %td.notes= h(bookmark.notes)
+        %td.tags= linked_tags(bookmark.tags)
+        %td.bookmarked_at= h(bookmark.bookmarked_at)
