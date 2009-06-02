@@ -1,0 +1,4 @@
+%h1== Details for #{h(@domain.domain)}
+
+%p== Number of URLs: #{link_to @domain.urls.length, domain_urls_path(@domain) }
+%p== Number of bookmarks: #{link_to @domain.bookmarks.length, domain_bookmarks_path(@domain) }

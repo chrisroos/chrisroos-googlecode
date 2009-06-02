@@ -3,6 +3,7 @@ require 'md5'
 class Domain < ActiveRecord::Base
   
   has_many :urls
+  has_many :bookmarks, :through => :urls
   validates_presence_of :domain, :domain_hash
   validates_uniqueness_of :domain
   before_validation_on_create :hash_domain
