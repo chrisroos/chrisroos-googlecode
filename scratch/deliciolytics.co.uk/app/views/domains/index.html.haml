@@ -2,4 +2,4 @@
 
 %ul.domains
   - @domains.each do |domain|
-    %li.domain= link_to h(domain.domain), domain_urls_path(domain)
+    %li.domain= link_to h(domain.domain), domain_path(domain)
