@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090225211025) do
+ActiveRecord::Schema.define(:version => 20090602202805) do
+
+  create_table "bookmarks", :force => true do |t|
+    t.integer  "url_id"
+    t.string   "username"
+    t.string   "title"
+    t.text     "notes"
+    t.text     "tags"
+    t.datetime "bookmarked_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "domains", :force => true do |t|
     t.string   "domain"
