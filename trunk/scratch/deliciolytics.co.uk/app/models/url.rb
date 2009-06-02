@@ -28,4 +28,8 @@ class Url < ActiveRecord::Base
     end
   end
   
+  def to_param
+    url_hash
+  end
+  
 end

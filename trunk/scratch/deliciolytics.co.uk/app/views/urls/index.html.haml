@@ -16,5 +16,5 @@
         %td.title= h(url.title)
         %td.url= link_to_source_url(url)
         %td.urlHash= link_to_delicious_url_history(url)
-        %td.totalPosts= link_to h(url.total_posts || 0), url_path(@domain.domain_hash, url.url_hash)
+        %td.totalPosts= link_to h(url.total_posts || 0), domain_url_bookmarks_path(@domain, url)
         %td.topTags= linked_tag_list(url.top_tags)
