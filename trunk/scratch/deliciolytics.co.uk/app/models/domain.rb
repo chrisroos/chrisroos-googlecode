@@ -27,4 +27,8 @@ class Domain < ActiveRecord::Base
     self.urls.each { |url| url.update_urlinfo_from_delicious!; sleep 0.5 }
   end
   
+  def import_bookmarks_from_delicious!
+    self.urls.each { |url| url.import_bookmarks_from_delicious!; sleep 0.5 }
+  end
+  
 end
