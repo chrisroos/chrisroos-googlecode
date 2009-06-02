@@ -11,3 +11,7 @@
 * Don't add a button in the interface for grabbing all urlinfo/bookmarks (this needs to be offline i think).
 
 * Only poll delicious once or twice a day per distinct feed.
+
+* Respect rev=canonical to find out where else this resource used to live and grab history for them too.
+
+* Add attr_accessible
