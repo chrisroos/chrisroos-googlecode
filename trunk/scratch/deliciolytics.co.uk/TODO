@@ -1,5 +1,3 @@
-* Produce an atom feed of bookmarks, ordered by bookmark date (so that you get alerts when people bookmark your stuff).
-
 * Make the sitemap downloader more robust, i.e. make it follow the same rules as actual spiders.
 
 * Add navigation.
@@ -8,10 +6,12 @@
 
 * Don't add a button in the interface for grabbing all urlinfo/bookmarks (this needs to be offline i think).
 
-* Only poll delicious once or twice a day per distinct feed.
+* Only poll delicious once or twice a day per distinct feed (stored the last_polled_at, or something).
 
 * Respect rev=canonical to find out where else this resource used to live and grab history for them too.
 
 * Add attr_accessible
 
 * Show stats per user, number of users bookmarks per domain and number of users bookmarks across all domains, for example.
+
+* Add a link to the bookmarks atom feed

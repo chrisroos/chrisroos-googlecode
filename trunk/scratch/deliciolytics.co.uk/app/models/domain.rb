@@ -23,7 +23,7 @@ class Domain < ActiveRecord::Base
   def retrieve_urls_from_sitemap!
     sitemap = Sitemap.new(domain)
     sitemap.urls.each do |url|
-      self.urls.create!(:url => url)
+      self.urls.create(:url => url)
     end
   end
   
