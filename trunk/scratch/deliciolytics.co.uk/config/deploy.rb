@@ -29,3 +29,17 @@ namespace :symlink do
     run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml" 
   end
 end
+
+namespace :deploy do
+
+  desc "Restart Application"
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+  
+  [:start, :stop].each do |t|
+    desc "#{t} task is a no-op with mod_rails"
+    task t, :roles => :app do ; end
+  end
+  
+end
