@@ -3,7 +3,7 @@ require 'md5'
 class Url < ActiveRecord::Base
   
   belongs_to :domain
-  has_many :bookmarks
+  has_many :bookmarks, :order => 'bookmarked_at DESC'
   validates_presence_of :domain, :url, :url_hash
   validates_uniqueness_of :url
   serialize :top_tags
