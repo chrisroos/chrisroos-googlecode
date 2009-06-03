@@ -8,6 +8,10 @@ class Domain < ActiveRecord::Base
   validates_uniqueness_of :domain
   before_validation_on_create :hash_domain
   
+  def most_recent_bookmark_at
+    bookmarks.first.bookmarked_at
+  end
+  
   def hash_domain
     self.domain_hash = MD5.md5(domain).to_s
   end
