@@ -15,7 +15,3 @@
 * Add attr_accessible
 
 * Show stats per user, number of users bookmarks per domain and number of users bookmarks across all domains, for example.
-
-* Link to the individual url bookmarks from the domain bookmarks controller.
-
-* Order the bookmarks in descending date order (i.e. newest first).
