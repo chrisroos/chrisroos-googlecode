@@ -12,6 +12,7 @@ class Domain < ActiveRecord::Base
   before_create :set_default_state
   
   def normalise!
+    return unless new?
     log_event('normalising') do 
       self.domain      = DomainUrlNormaliser.normalise(self)
       self.domain_hash = MD5.md5(domain).to_s
@@ -53,6 +54,10 @@ private
   
   def set_default_state
     self.state = 'new'
+  end
+  
+  def new?
+    state == 'new'
   end
   
   def log_event(description, &blk)
