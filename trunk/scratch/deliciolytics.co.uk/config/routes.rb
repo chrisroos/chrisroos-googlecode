@@ -10,7 +10,9 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.namespace :admin do |admin|
-    admin.resources :domains, :only => [:index, :new, :create]
+    admin.resources :domains, :only => [:index, :new, :create] do |domain|
+      domain.resources :events, :only => [:index], :controller => 'domain_events'
+    end
   end
   
 end
