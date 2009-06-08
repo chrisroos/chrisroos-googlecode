@@ -32,12 +32,12 @@ class Domain < ActiveRecord::Base
     end
   end
   
-  def update_urlinfo_from_delicious!
-    self.urls.each { |url| url.update_urlinfo_from_delicious!; sleep 0.5 }
+  def update_urlinfo_from_delicious!(interval = 0.5)
+    self.urls.each { |url| url.update_urlinfo_from_delicious!; sleep interval }
   end
   
-  def import_bookmarks_from_delicious!
-    self.urls.each { |url| url.import_bookmarks_from_delicious!; sleep 0.5 }
+  def import_bookmarks_from_delicious!(interval = 0.5)
+    self.urls.each { |url| url.import_bookmarks_from_delicious!; sleep interval }
   end
   
 private
