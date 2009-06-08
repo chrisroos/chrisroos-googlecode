@@ -4,16 +4,21 @@ class Domain < ActiveRecord::Base
   
   has_many :urls
   has_many :bookmarks, :through => :urls, :order => 'bookmarked_at DESC'
-  validates_presence_of :domain, :domain_hash
+  
+  validates_presence_of :domain
   validates_uniqueness_of :domain
-  before_validation_on_create :hash_domain
+  
+  before_create :set_default_state
+  
+  def normalise!
+    self.domain      = DomainUrlNormaliser.normalise(self)
+    self.domain_hash = MD5.md5(domain).to_s
+    self.state       = 'normalised'
+    save
+  end
   
   def most_recent_bookmark_at
     bookmarks.first.bookmarked_at
-  end
-  
-  def hash_domain
-    self.domain_hash = MD5.md5(domain).to_s
   end
   
   def to_param
@@ -33,6 +38,12 @@ class Domain < ActiveRecord::Base
   
   def import_bookmarks_from_delicious!
     self.urls.each { |url| url.import_bookmarks_from_delicious!; sleep 0.5 }
+  end
+  
+private
+  
+  def set_default_state
+    self.state = 'new'
   end
   
 end
