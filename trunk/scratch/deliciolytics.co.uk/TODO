@@ -14,4 +14,12 @@
 
 * Show stats per user, number of users bookmarks per domain and number of users bookmarks across all domains, for example.
 
-* Add a link to the bookmarks atom feed
+* Consider using /d, /u and /b instead of /domains, /urls and /bookmarks respectively
+
+* Normalise entered domains in the same way that delicious does (prob have to play around with delicious to find out exactly what they're doing)
+
+* show tag counts for your domain
+
+* don't list domains.  have a search box where you can enter the domain that you're interested in viewing stats for.  if a new domain is entered i could possibly offer to spider it.
+
+* make it obvious that the stats against a url (top_tags and total_posts) might not reflect the actual bookmarks i have because i'm only retrieving the 100 most recent bookmarks for each url.
