@@ -15,7 +15,9 @@
     - @domains.each do |domain|
       %tr
         %td= h(domain.id)
-        %td= h(domain.domain)
+        %td
+          = h(domain.domain)
+          = link_to 'log', admin_domain_events_path(domain.id)
         %td= h(domain.domain_hash)
         %td= h(domain.created_at)
         %td= h(domain.updated_at)
