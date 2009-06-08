@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090602202805) do
+ActiveRecord::Schema.define(:version => 20090608071722) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "url_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20090602202805) do
     t.string   "domain_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
   end
 
   create_table "urls", :force => true do |t|
