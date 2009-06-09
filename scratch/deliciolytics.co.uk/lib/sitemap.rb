@@ -10,5 +10,9 @@ class Sitemap
 private
   def sitemap
     @sitemap = Net::HTTP.get(URI.parse(@sitemap_url))
+    if @sitemap =~ /<sitemapindex.*<sitemap.*<loc>(.*?)<\/loc>/m
+      @sitemap = Net::HTTP.get(URI.parse($1))
+    end
+    @sitemap
   end
 end
