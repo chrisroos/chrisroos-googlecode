@@ -1,4 +1,4 @@
-%h1== Bookmarks for #{h(@domain.domain)}
+%h1== #{link_to_domain_host(@domain)} bookmarks
 
 %table.bookmarks
   %thead
@@ -21,3 +21,6 @@
         
 - content_for(:atom_feed) do
   %link{ :rel => "alternate", :type => "application/atom+xml", :title => "Bookmarks for #{@domain.domain}", :href => "#{domain_bookmarks_url(@domain, :format => 'atom')}" }
+  
+- content_for :title do
+  == Bookmarks for #{domain_host(@domain)} at deliciolytics

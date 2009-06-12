@@ -1,4 +1,4 @@
-%h1== Urls for #{h(@domain.domain)}
+%h1== #{link_to_domain_host(@domain)} URLs
 
 %table.urls
   %thead
@@ -18,3 +18,6 @@
         %td.urlHash= link_to_delicious_url_history(url)
         %td.totalPosts= link_to h(url.total_posts || 0), domain_url_bookmarks_path(@domain, url)
         %td.topTags= linked_tag_list(url.top_tags)
+        
+- content_for :title do
+  == URLs for #{domain_host(@domain)} at deliciolytics
