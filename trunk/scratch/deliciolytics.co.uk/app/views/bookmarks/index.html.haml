@@ -1,4 +1,4 @@
-%h1== Bookmarks for #{h(@uri.url)}
+%h1== #{link_to_domain_host(@domain)} #{link_to url_path(@uri), @uri.url} bookmarks
 
 %table.bookmarks
   %thead
@@ -18,3 +18,6 @@
         %td.notes= h(bookmark.notes)
         %td.tags= linked_tags(bookmark.tags)
         %td.bookmarked_at= h(bookmark.bookmarked_at)
+        
+- content_for :title do
+  == Bookmarks for #{url(@uri)} at deliciolytics
