@@ -7,12 +7,11 @@ ActionController::Routing::Routes.draw do |map|
       url.resources :bookmarks, :only => [:index]
     end
     domain.resources :bookmarks, :controller => 'domain_bookmarks'
+    domain.resources :events, :only => [:index], :controller => 'domain_events'
   end
   
   map.namespace :admin do |admin|
-    admin.resources :domains, :only => [:index, :new, :create] do |domain|
-      domain.resources :events, :only => [:index], :controller => 'domain_events'
-    end
+    admin.resources :domains, :only => [:index, :new, :create]
   end
   
 end
