@@ -2,6 +2,7 @@
 
 %p== #{link_to "#{@domain.urls.length} URLs", domain_urls_path(@domain) }
 %p== #{link_to "#{@domain.bookmarks.length} Bookmarks", domain_bookmarks_path(@domain) }
+%p== #{link_to "Event history", domain_events_path(@domain) }
 
 - content_for :title do
   == Overview of #{domain_host(@domain)} at deliciolytics

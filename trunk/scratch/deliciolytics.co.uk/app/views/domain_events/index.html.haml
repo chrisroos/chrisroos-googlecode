@@ -1,4 +1,4 @@
-%h1== All events for #{@domain.domain}
+%h1== #{link_to_domain_host(@domain)} events
 
 %table.domain_events
   %thead
@@ -16,3 +16,6 @@
         %td.started_at= h(domain_event.started_at)
         %td.finished_at= h(domain_event.finished_at)
         %td.duration= distance_of_time_in_words(domain_event.started_at, domain_event.finished_at) if domain_event.finished_at
+        
+- content_for :title do
+  == Event history for #{domain_host(@domain)} at deliciolytics
