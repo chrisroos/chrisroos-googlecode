@@ -1,18 +1,32 @@
 require 'net/http'
+require 'hpricot'
 
 class Sitemap
   def initialize(domain)
     @sitemap_url = "#{domain}sitemap.xml"
+    @urls        = []
   end
   def urls
-    @urls ||= sitemap.scan(/<loc>(.*?)<\/loc>/).flatten
+    sitemap = get_sitemap_xml(@sitemap_url)
+    if (sitemap/:sitemapindex).length > 0
+      (sitemap/:sitemapindex/:sitemap/:loc).each do |sitemap_location_element|
+        sitemap_x = get_sitemap_xml(sitemap_location_element.inner_text)
+        (sitemap_x/:urlset/:url/:loc).each do |resource_location_element|
+          @urls << resource_location_element.inner_text
+        end
+      end
+    else
+      (sitemap/:urlset/:url/:loc).each do |resource_location_element|
+        @urls << resource_location_element.inner_text
+      end
+    end
+    @urls
   end
 private
-  def sitemap
-    @sitemap = Net::HTTP.get(URI.parse(@sitemap_url))
-    if @sitemap =~ /<sitemapindex.*<sitemap.*<loc>(.*?)<\/loc>/m
-      @sitemap = Net::HTTP.get(URI.parse($1))
-    end
-    @sitemap
+  def get_sitemap_xml(url)
+    Hpricot.XML(get_sitemap(url))
+  end
+  def get_sitemap(url)
+    Net::HTTP.get(URI.parse(url))
   end
 end
