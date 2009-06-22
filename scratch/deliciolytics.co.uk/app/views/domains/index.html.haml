@@ -2,4 +2,7 @@
 
 %ul.domains
   - @domains.each do |domain|
-    %li.domain= link_to h(domain.domain), domain_path(domain)
+    - if domain.normalised?
+      %li.domain= link_to h(domain.domain), domain_path(domain)
+    - else
+      %li.domain== #{h(domain.domain)} (pending)
