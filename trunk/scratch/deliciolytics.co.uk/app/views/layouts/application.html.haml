@@ -3,7 +3,8 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en"}
   %head
     %meta{ :content => 'text/html; charset=utf-8', 'http-equiv' => 'content-type' }
-    %link{ :rel => "stylesheet", :type => "text/css", :href => "http://yui.yahooapis.com/combo?2.7.0/build/reset-fonts/reset-fonts.css&amp;2.7.0/build/base/base-min.css" }
+    = stylesheet_link_tag 'deliciolytics'
+    = stylesheet_link_tag 'http://yui.yahooapis.com/combo?2.7.0/build/reset-fonts/reset-fonts.css&amp;2.7.0/build/base/base-min.css'
     %title= yield :title
     = yield :atom_feed
 

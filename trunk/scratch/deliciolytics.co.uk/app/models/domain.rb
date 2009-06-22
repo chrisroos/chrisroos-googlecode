@@ -50,6 +50,10 @@ class Domain < ActiveRecord::Base
     end
   end
   
+  def normalised?
+    state == 'normalised'
+  end
+  
 private
   
   def set_default_state
