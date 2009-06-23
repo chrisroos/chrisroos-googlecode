@@ -12,6 +12,6 @@ task :clean_build do
 end
 
 desc 'deploy the site to the webserver'
-task :deploy => [:clean_build, 'deploy:rsync']
+task :deploy => [:build, 'deploy:rsync']
 
 # EOF
