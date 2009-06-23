@@ -55,7 +55,7 @@ ul li {
   list-style-type: disc;
 }
 p {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 p, li, span {
   font-size: 116%;
@@ -166,7 +166,7 @@ ul.navigation {
 }
 pre.code {
   background-color:#eee;
-  padding:1em;
+  padding:0.5em;
   margin-bottom:1em;
   font-size: 116%;
   font-family: monospace;
