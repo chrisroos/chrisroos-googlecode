@@ -1,0 +1,15 @@
+---
+summary:    Introducing a proof of concept service that lets you view an aggregated feed of all delicious bookmarks for your domain.
+blog_post:  true
+title:      Introducing Deliciolytics
+created_at: 2009-06-23 21:03:47.692186 +01:00
+guid:       42cacda7-e207-40b2-b618-bc643a320ec7
+layout:     blog
+filter:     haml
+---
+:textile
+  I've been playing around with this for a little while and although it doesn't do most of the stuff I'd like I figure it's still worth allowing other people to use it: "deliciolytics":http://deliciolytics.co.uk
+  
+  Its main purpose in life at the moment is to provide an aggregated feed of every bookmark in delicious for pages within your domain.  Feel free to go ahead and "add your own domain":http://deliciolytics.co.uk/domains/new.  You'll need to have a "sitemap":http://sitemaps.org and that sitemap will currently need to be at /sitemap.xml (it can be an index to actual sitemaps though).  After you add a domain it'll be in a pending state for up to five minutes before a task runs to 'normalise' it.  After that you just have to wait until the task runs to download your urls (from the sitemap) and query delicious for any bookmarks against each of them.  This currently happens once every 24 hours.  Your best bet would be to subscribe to the bookmarks feed (click through to your domain and then through to bookmarks) and wait for the task to populate it with bookmarking goodness.
+  
+  You could easily launch a DoS attack by automating the process of adding domains but it be great if you didn't.  Thanks.
