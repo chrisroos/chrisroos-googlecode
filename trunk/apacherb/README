@@ -1,0 +1,6 @@
+This little utility has moved to github[1].  James Adam[2] kindly renamed and gemificated the utility so that you can now install it with:
+
+$ sudo gem install hostess
+
+[1] http://github.com/lazyatom/hostess/tree/master
+[2] http://interblah.net/
