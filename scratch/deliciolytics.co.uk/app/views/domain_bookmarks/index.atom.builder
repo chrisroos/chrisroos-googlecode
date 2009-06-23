@@ -3,7 +3,11 @@ xml.feed(:xmlns => 'http://www.w3.org/2005/Atom') do
   xml.title "Bookmarks for #{@domain.domain}"
   xml.link :href => domain_bookmarks_url(@domain)
   xml.link :href => domain_bookmarks_url(@domain, :format => 'atom'), :rel => 'self'
-  xml.updated atom_datetime(@domain.most_recent_bookmark_at)
+  if @domain.bookmarks.any?
+    xml.updated atom_datetime(@domain.most_recent_bookmark_at)
+  else
+    xml.updated atom_datetime(Time.at(0))
+  end
   xml.id tag_uri(@domain)
   @domain.bookmarks.each do |bookmark|
     xml.entry do
