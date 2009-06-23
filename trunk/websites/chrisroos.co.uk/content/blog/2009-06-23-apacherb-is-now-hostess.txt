@@ -1,0 +1,38 @@
+---
+summary:    The utility for serving local directories as virtual hosts in a local apache installation has been gemificated and moved to github
+blog_post:  true
+title:      Apacherb Is Now Hostess
+created_at: 2009-06-23 21:41:27.966449 +01:00
+guid:       b37f5463-b2b5-4f07-b17e-6e014700ce80
+layout:     blog
+filter:     haml
+---
+:textile
+  A little while ago I wrote about a utility called "apacherb":/blog/2008-12-15-a-utility-to-manage-apache-virtual-hosts-on-a-mac-like-the-passenger-pref-pane-but-for-simple-static-sites.  It took the concept of the "passenger preference pane":http://www.fngtps.com/2008/06/putting-the-pane-back-into-deployment and applied it to any local directory (rather than specifically rails apps).  I'd always meant to turn the utility into a "gem":http://rubygems.org/ but never quite got round to it.  Luckily, "James Adam":http://interblah.net/ moved the code to "github":http://github.com/lazyatom/hostess/tree/master, tidied it a little (notably making it restart apache after a change), renamed it and gemifimibulated it.
+  
+  Install it with:
+  
+  <pre class="code shell">
+  $ gem install hostess
+  </pre>
+  
+  Executing it without any arguments will display some simple instructions.
+  
+  <pre class="code shell">
+  $ hostess
+    Usage:
+      hostess create domain directory - create a new virtual host
+      hostess delete domain           - delete a virtual host
+      hostess list                    - list hostess virtual hosts
+      hostess help                    - this info
+  </pre>
+      
+  You'll need to run it as "sudo":http://en.wikipedia.org/wiki/Sudo as it writes the configuration into /etc/apache2 and restarts apache.
+  
+  To create a domain pointing at a local directory, you'd do something like:
+  
+  <pre class="code shell">
+  $ sudo hostess create example.local ~/Sites/example.local/
+  </pre>
+  
+  This will register the local domain (the .local suffix is a convention rather than a rule) using "directory services":http://developer.apple.com/opensource/dirservices/ and add the "apache":http://httpd.apache.org/ "virtual host":http://httpd.apache.org/docs/1.3/vhosts/.  Open your browser and visit example.local to see your local site.  Good huh.
