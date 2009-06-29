@@ -8,6 +8,8 @@ layout:     blog
 filter:     haml
 ---
 :textile
+  div(notice). 29 June 2009.  See the "updated post":/blog/2009-06-23-apacherb-is-now-hostess about this utility.
+  
   I really like the "Passenger preference pane":http://www.fngtps.com/2008/06/putting-the-pane-back-into-deployment, for both its functionality and simplicity.  I wondered whether there was anything similar that would allow me to create simple "virtual hosts":http://en.wikipedia.org/wiki/Virtual_hosting in the same way (i.e. create the "apache":http://httpd.apache.org/ config and register the hostname with "directory services":http://developer.apple.com/opensource/dirservices/).  I saw mention of something called headdress (that supposedly makes apache config easier) but the site's been down for the last couple of days and I believe it's pay-for software anyway.  I decided to steal the concepts (and the code for the "dscl":http://developer.apple.com/documentation/Darwin/Reference/ManPages/man1/dscl.1.html stuff) from the "passenger pref pane code":http://github.com/alloy/passengerpane/tree/master and create a little shell script that allows me to manage virtual hosts on my Mac.
 
   You can get it by checking out the "source":http://chrisroos.googlecode.com/svn/trunk/apacherb/:
