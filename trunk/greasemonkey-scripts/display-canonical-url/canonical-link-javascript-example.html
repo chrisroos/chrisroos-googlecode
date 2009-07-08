@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='content-type' />
+    <base href="http://good.example.com/foo/bar/" />
+    <link rel="canonical" href="http://example.com/fully-qualified" />
+    <link rel="canonical" href="/absolute-path" />
+    <link rel="canonical" href="relative-path" />
+    <link rel="canonical" href="http://CASE-test.com/" />
+    <link rel="CANONICAL" href="http://example.com/REL-CASE-TEST" />
+    <title>Canonical Link Javascript example</title>
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      //<![CDATA[
+      
+        // Use this function to insert a canonical link that points to the location that this document is currently being served at
+        (function() {
+          var head           = document.getElementsByTagName('head')[0];
+          var canonicalLink  = document.createElement('link');
+          canonicalLink.rel  = 'canonical';
+          canonicalLink.href = document.location.href;
+          // Let's insert as the first child within the head element so that it becomes the canonical url
+          head.insertBefore(canonicalLink, head.childNodes[0]);
+        })();
+        
+        // This function illustrates the difference between using elm.rel and elm.getAttribute('rel')
+        (function() {
+          var head                  = document.getElementsByTagName('head')[0];
+          var linkElements          = head.getElementsByTagName('link');
+          var canonicalLinkElements = [];
+          
+          for (var i = 0; i < linkElements.length; i++) {
+            var linkElement = linkElements[i];
+            if (/canonical/i.test(linkElement.rel)) {
+              canonicalLinkElements.push(linkElement)
+            }
+          }
+          
+          for (var i = 0; i < canonicalLinkElements.length; i++) {
+            console.log("elm.getAttribute('href') : " + canonicalLinkElements[i].getAttribute('href'));
+            console.log("elm.href                 : " + canonicalLinkElements[i].href);
+          }
+        })();
+        
+      //]]>
+    </script>
+  </body>
+</html>
