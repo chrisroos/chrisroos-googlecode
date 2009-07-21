@@ -1,0 +1,35 @@
+---
+summary:    Some notes about applying a greasemonkey script to the Firefox 'Problem Loading Page' error page.
+blog_post:  true
+title:      Creating a Greasemonkey Script That Applies to the Firefox 'Problem Loading Page' Error Page
+created_at: 2009-07-21 07:50:54.885891 +01:00
+guid:       42ef8f73-bda4-425f-9f79-0eb7beba5cc2
+layout:     blog
+filter:     haml
+---
+:textile
+  I found a few things when developing the "down for everyone":/blog/2009-06-24-down-for-everyone-or-just-me-greasemonkey-script greasemonkey script that might be of use to someone else wanting to customise the 'Problem loading page' error page.
+
+  I originally based my script on this "Server not found? Try and try again":http://userscripts.org/scripts/show/4125 script.  Specifically, I used something like this to determine whether or not the error page was being displayed.
+
+  <pre class="code javascript">
+    if (document.documentURI.substr(0,14)=="about:neterror") {
+  </pre>
+
+  Given this I was able to find, and use, this similar code from "chrome://browser/content/browser.js":chrome://browser/content/browser.js (paste that link into the location bar and search for about:neterror or the aboutNeterror constant).
+
+  <pre class="code javascript">
+    if (/^about:neterror/.test(document.documentURI)) { 
+  </pre>
+
+  I'm still not exactly sure of the purpose of document.documentURI except that it appears to allow you to display one URI and actually render another (in this case it displays the URI you're trying to access but renders the error page).  This error page also appears to screw with "firebug":http://getfirebug.com.  If you want to see the value of documentURI you'll need to use this little bit of javascript in the location bar:
+
+  <pre class="code javascript">
+    javascript:alert(document.documentURI);
+  </pre>
+
+  It turns out that you can't directly view the source of the 'Problem loading page' error page: Press Ctrl-U, or select View > Page Source from the menu, and you'll be presented with the error page in a popup window.  In order to view the source you'll need to load it, using the chrome protocol, from "chrome://global/content/netError.xhtml":chrome://global/content/netError.xhtml (paste that into the location bar).  The error page (which lives in firefox-dir/chrome/toolkit.jar/content/global/netError.xhtml) is pretty empty as it uses javascript to read querystring parameters and populate it on the fly.  This allows the same error page to be used for multiple types of error.  You can see an example of changing the description in this link: ["about:neterror?e=dnsNotFound&u=http%3A//example.com&d=I%20can%20see%20you...":chrome://global/content/netError.xhtml?e=dnsNotFound&u=http%3A//example.com&d=I%20can%20see%20you...] (paste that link into the location bar).
+
+  I initially tried to add a button next to the 'Try Again' button that appears on the page.  My first attempt was to create a xul:button (which is the type of the 'Try Again' button) but that didn't work.  I don't remember the exact details but I don't think I was able to get addEventListener working in order to attach events to the button.  I was able to create a standard html button but the xul.css stylesheet didn't get applied and it therefore looked odd next to the 'Try Again' button.  Comments in the source of the "Server not found? Try and try again":http://userscripts.org/scripts/review/4125 script lead me to believe that the developer of that script ran into these same problems with the button.
+
+  While digging through the firefox source files I noticed a few files that I found interesting/amusing and hadn't come across before: "about:mozilla":about:mozilla, "about:robots":about:robots and "about:crashes":about:crashes (I'm not sure why but this link doesn't appear to work directly, copy and paste it to the location bar to see the page).
