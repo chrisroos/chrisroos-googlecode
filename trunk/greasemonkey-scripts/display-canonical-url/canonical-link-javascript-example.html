@@ -10,8 +10,36 @@
     <link rel="canonical" href="http://CASE-test.com/" />
     <link rel="CANONICAL" href="http://example.com/REL-CASE-TEST" />
     <title>Canonical Link Javascript example</title>
+    <style type="text/css" media="screen">
+      body, table {
+        font-family: arial,helvetica,clean,sans-serif;
+        font-size: 0.9em;
+      }
+      table, td, th {
+        border: 1px solid #000;
+        text-align: left;
+      }
+      td, th {
+        padding: 0.5em;
+      }
+    </style>
   </head>
   <body>
+    
+    <h1>Link.getAttribute vs Link.href</h1>
+    
+    <table id="canonicalLinkElements">
+      <thead>
+        <tr>
+          <th>Base href</th>
+          <th>elm.getAttribute('href')</th>
+          <th>elm.href</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    
     <script type="text/javascript" charset="utf-8">
       //<![CDATA[
       
@@ -25,7 +53,7 @@
           head.insertBefore(canonicalLink, head.childNodes[0]);
         })();
         
-        // This function illustrates the difference between using elm.rel and elm.getAttribute('rel')
+        // This function displays the difference between using elm.rel and elm.getAttribute('rel')
         (function() {
           var head                  = document.getElementsByTagName('head')[0];
           var linkElements          = head.getElementsByTagName('link');
@@ -38,13 +66,31 @@
             }
           }
           
+          var table     = document.getElementById('canonicalLinkElements');
+          var tableBody = table.getElementsByTagName('tbody')[0];
+          var baseHref  = head.getElementsByTagName('base')[0].href;
+          
           for (var i = 0; i < canonicalLinkElements.length; i++) {
-            console.log("elm.getAttribute('href') : " + canonicalLinkElements[i].getAttribute('href'));
-            console.log("elm.href                 : " + canonicalLinkElements[i].href);
+            var row = document.createElement('tr');
+            
+            var cellBaseHref = document.createElement('td');
+            cellBaseHref.appendChild(document.createTextNode(baseHref));
+            row.appendChild(cellBaseHref);
+            
+            var cellElementGetAttributeHref = document.createElement('td');
+            cellElementGetAttributeHref.appendChild(document.createTextNode(canonicalLinkElements[i].getAttribute('href')));
+            row.appendChild(cellElementGetAttributeHref);
+            
+            var cellElementHref = document.createElement('td');
+            cellElementHref.appendChild(document.createTextNode(canonicalLinkElements[i].href));
+            row.appendChild(cellElementHref);
+            
+            tableBody.appendChild(row);
           }
         })();
         
       //]]>
     </script>
+    
   </body>
 </html>
