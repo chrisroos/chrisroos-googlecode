@@ -1,6 +1,4 @@
 # min     hour    day     month   weekday  command
-# */1     *       *       *       *        /usr/local/bin/ruby -e "puts 'hello world'" >> /home/chrisroos/crontab.out
-  0       9       *       *       *        /usr/bin/env ruby /home/chrisroos/www/thisiskent.seagul.co.uk/current/bin/create_atom_feed.rb >> /home/chrisroos/www/thisiskent.seagul.co.uk/current/log/cron.log
   0       */1     *       *       *        /home/chrisroos/bin/grab-ramsgate-harbour-webcam-image/grab-ramsgate-harbour-webcam-image
   */5     *       *       *       *        cd /u/apps/deliciolytics.co.uk/current && RAILS_ENV=production /usr/local/bin/rake deliciolytics:domain:normalise >> /u/apps/deliciolytics.co.uk/current/log/deliciolytics.log
   0       0       *       *       *        cd /u/apps/deliciolytics.co.uk/current && RAILS_ENV=production /usr/local/bin/rake deliciolytics:domain:update_urls >> /u/apps/deliciolytics.co.uk/current/log/deliciolytics.log
