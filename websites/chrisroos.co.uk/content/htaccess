@@ -196,3 +196,7 @@ RewriteRule ^(.*)$ $1.html [L]
 # Redirect old style article URLs to their new style counterpart
 RewriteCond %{REQUEST_URI} ^/articles/[0-9]{4}/[0-9]{2}/[0-9]{2}/.+$
 RewriteRule ^articles/([0-9]{4})/([0-9]{2})/([0-9]{2})/(.*)$ /articles/$1-$2-$3-$4 [R=301,L]
+
+# Short url redirects
+RewriteCond %{REQUEST_URI} ^/r/226$
+RewriteRule .* /blog/2009-09-14-pouring-factlets-into-your-brain-holder-via-your-ear-sieves [R=301,L]
