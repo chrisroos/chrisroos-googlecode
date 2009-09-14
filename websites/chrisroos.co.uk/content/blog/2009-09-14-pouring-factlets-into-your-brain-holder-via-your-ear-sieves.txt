@@ -1,0 +1,28 @@
+---
+summary:    An idea for a dynamic audio guidebook on your gps enabled mobile device.
+blog_post:  true
+title:      Pouring Factlets Into Your Brain Holder via Your Ear Sieves
+created_at: 2009-09-14 20:45:38.770893 +01:00
+guid:       1d0b0f68-2e97-4d1b-8a3f-4f9c4b303900
+layout:     blog
+filter:     haml
+---
+:textile
+
+  I was walking past "Hays Galleria":http://www.haysgalleria.co.uk/ on the way to work the other morning and realised that I didn't really know anything about it.  I was listening to "streaming podcasts":http://listen.googlelabs.com/ on my "GPS":http://en.wikipedia.org/wiki/Global_Positioning_System enabled "Android":http://www.android.com/ "G1":http://www.htc.com/www/product/g1/overview.html and started thinking about receiving little factlets (I originally wrote factoid but apparently that means an unverified statement taken as truth[1]) as I walk around.  I've thought about this a bit more and think it'd be really quite a good thing.  It'd be like the audio tours you get in museums and the like but defined purely by where *you* go, rather than you having to follow a pre-determined path.  So, assuming there's not already something similar out there (I wouldn't be surprised if there was) then I'm going to build it.  Does this sound interesting to anyone else, specifically developer types that can help me actually build it?
+
+  An off-the-top-of-my-head plan:
+
+  * Store some geotagged audio somewhere.
+  ** Could we use "twaud.io":http://twaud.io/ (directly or build on top of it)?
+  ** There is some "prior art":http://www.google.co.uk/search?q=geotagged+audio here
+  * Create an Android application.  We'd need to be able to:
+  ** Search for audio based on current location.
+  ** Stream and play audio.
+  * Make the creation of geotagged audio easier.
+  ** Can we use text to voice to convert fragments of "geotagged wikipedia articles":http://en.wikipedia.org/wiki/Geotagging#Wikipedia?
+  ** Can we create a game that makes the generation of this audio content appealing to more people?
+  * Allow people to upload their own factlets when they're out and about.
+  ** twaud.io already enables uploading of audio, we'd just need to geotag it.
+
+  fn1. Or does it?
