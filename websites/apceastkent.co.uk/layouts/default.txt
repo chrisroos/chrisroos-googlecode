@@ -13,7 +13,7 @@ filter:    haml
   %body
     #custom-doc.yui-t1
       #hd
-        %img{:src => "/images/header.jpg", :alt => "", :width => "770px", :height => "116px"}
+        %img{:src => "/images/postal-strike-banner.jpg", :alt => "", :width => "770px", :height => "116px"}
       #bd
         #yui-main
           .yui-b
