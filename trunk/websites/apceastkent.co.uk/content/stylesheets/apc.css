@@ -5,10 +5,7 @@
   margin:auto;
   text-align:left;
 }
-#hd {
-  background-color: #fff;
-}
-#bd {
+#hd, #bd {
   background-color: #003D7C;
   color: #FFF;
 }
