@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'sinatra'
-require '/Users/chrisroos/Code/personal/chrisroos/banking-scripts/egg2ofx/lib/egg.rb'
+
+$: << File.join(File.dirname(__FILE__), 'vendor', 'egg2ofx', 'lib')
+require 'egg.rb'
 
 # TODO - rename this to egg2ofx-server
 
