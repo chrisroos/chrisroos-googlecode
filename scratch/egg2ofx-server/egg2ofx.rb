@@ -4,10 +4,6 @@ require 'sinatra'
 $: << File.join(File.dirname(__FILE__), 'vendor', 'egg2ofx', 'lib')
 require 'egg.rb'
 
-# TODO - rename this to egg2ofx-server
-
-# TODO - work out a nice way of including the egg library.  i could vendorise it or create a gem from it and use gembundler or summit
-#      - REMEMBER TO DO THE SIMPLEST THING TO START WITH - probably just svn:externals
 # TODO - host this app somewhere on the interwebs
 
 get '/' do
