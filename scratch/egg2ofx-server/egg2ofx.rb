@@ -14,7 +14,7 @@ end
 
 post '/' do  
   content_type 'text/ofx' # TODO - what is the correct value here?
-  attachment 'statement.ofx'
+  attachment 'egg-statement.ofx'
 
   html = params['documentHtml']
   begin
