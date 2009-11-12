@@ -9,8 +9,17 @@
 (function() {
   try {
     
-    var egg2ofxService = 'http://egg2ofx.local/';
+    // Create the following string preference (in about:config) to send html to a different server
+    //   'greasemonkey.scriptvals.http://chrisroos.co.uk//Egg to Ofx.egg2ofxService'
+    //   (i.e. 'greasemonkey.scriptvals.<@namespace>/<@name>.<key>')
+    // Set the value to the URL of the server, e.g. http://egg2ofx.local/ for testing the local server
+    // IMPORTANT.  To revert to the default value you'll need to Reset the preference in about:config
+    //   so that it reverts to the 'default' state.
+    
+    var egg2ofxService = GM_getValue('egg2ofxService', 'http://egg2ofx.seagul.co.uk/');
     var transactionsTable;
+    
+    GM_log('Using the server at ' + egg2ofxService);
     
     if (transactionsTable = document.getElementById('tblTransactionsTable')) {
       var f = document.createElement('form');
@@ -37,7 +46,7 @@
       transactionsTable.parentNode.insertBefore(f, transactionsTable);
     }
   } catch(e) {
-    console.log('egg2ofx.user.js error');
-    console.log(e);
+    GM_log('ERROR')
+    GM_log(e);
   }
 })()
