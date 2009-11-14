@@ -1,8 +1,7 @@
-require 'rubygems'
-require 'sinatra'
+require File.join(File.dirname(__FILE__), 'vendor', 'gems', 'environment')
 
-$: << File.join(File.dirname(__FILE__), 'vendor', 'egg2ofx', 'lib')
-require 'egg.rb'
+require 'sinatra'
+require 'egg'
 
 # TODO - host this app somewhere on the interwebs
 
