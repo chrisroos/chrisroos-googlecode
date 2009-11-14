@@ -5,6 +5,5 @@ bin_path 'vendor/gems/bin'
 
 source 'http://gemcutter.org'
 
-gem 'nokogiri'
 gem 'sinatra'
 gem 'egg2ofx'
