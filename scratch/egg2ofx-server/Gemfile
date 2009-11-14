@@ -1,3 +1,4 @@
+disable_rubygems
 disable_system_gems
 
 bin_path 'vendor/gems/bin'
