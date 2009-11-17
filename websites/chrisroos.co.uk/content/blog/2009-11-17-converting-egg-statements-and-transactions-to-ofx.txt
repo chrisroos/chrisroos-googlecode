@@ -1,0 +1,39 @@
+---
+summary:    I've refreshed the little utility that converts egg html statements to ofx.
+blog_post:  true
+title:      Converting Egg Statements and Transactions to Ofx
+created_at: 2009-11-17 21:06:49.391972 +00:00
+guid:       487c906e-c7d6-4353-a06f-d0e541012cf1
+layout:     blog
+filter:     haml
+---
+:textile
+  Wow, it was around "two and half years ago":/blog/2007-04-01-converting-egg-credit-card-statements-to-ofx-for-upload-to-wesabe that I first hacked together a little utility to do this.  I've pretty much neglected the code since then but have always intended to get back to it.  Over the last week or so I've done just that ("egg2ofx on github":http://github.com/chrisroos/egg2ofx).
+  
+  I'd like to think that this version is a little more usable.  You can install it as a gem for a start.
+
+  <pre class="code shell">
+  $ gem install egg2ofx --source http://gemcutter.org
+  </pre>
+  
+  With that, you get a nice little binary that you can use to convert a downloaded copy of your statement or recent transactions.
+  
+  <pre class="code shell">
+  $ egg2ofx downloaded-statement.html > egg-statement.ofx
+  </pre>
+  
+  As if that wasn't enough, I've also created a little "web service":http://github.com/chrisroos/egg2ofx-server that exposes the conversion functionality over http.  Assuming you've got "ruby":http://www.ruby-lang.org/en/ and "curl":http://curl.haxx.se/ (and probably other stuff) installed you should be able to do something like this to try it out.
+  
+  <pre class="code shell">
+  $ cat downloaded-statement.html | ruby -rcgi -e "puts 'documentHtml=' + CGI.escape(STDIN.read)" | curl http://egg2ofx.seagul.co.uk -d@-
+  </pre>
+  
+  Where we pipe the content of the downloaded statement into a single line ruby script that constructs the key/value pair that we need to send to the service and pipes that into curl that actually makes the POST request (the magic <code>-d@-</code> means, read from stdin).
+  
+  The final little treat is a "greasemonkey":http://en.wikipedia.org/wiki/Greasemonkey script that adds a button to the egg transactions and statement pages allowing you to download them as Ofx right there.  Whoah.
+  
+  "!http://farm3.static.flickr.com/2764/4113433456_662c0fec1e_m.jpg!":http://www.flickr.com/photos/chrisjroos/4113433456/
+  
+  *VERY IMPORTANT*  If you happen to use the greasemonkey script, or manually send your data to the web service, you should be aware that you're sending your account details (including account number, balance and transactions) *IN THE CLEAR* to my server.  I certainly won't keep any logs of what gets sent but I can't promise the same thing of any of the servers in between your computer and my server.  I might see if I can get an SSL certificate installed but, unless I can get one freely or incredibly cheaply, you shouldn't hold out much hope for this.
+  
+  A much better idea would be to install the web service on your own machine.  I don't know how this might work on Windows but the combination of "Apache":http://httpd.apache.org/, "passenger":http://www.modrails.com/ and the "passenger preference pane":http://www.fngtps.com/passenger-preference-pane make it trivial on a Mac.  There are "instructions":http://github.com/chrisroos/egg2ofx-server#readme to get the web service installed locally on github, along with "instructions":http://github.com/chrisroos/egg2ofx-greasemonkey#readme to change the server that the greasemonkey script sends the data to.
