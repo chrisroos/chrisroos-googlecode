@@ -7,7 +7,7 @@ created_at: 2007-04-01 13:48:00 +01:00
 layout: blog
 ---
 :textile
-  div(notice). I've finally got around to updating this utility.  See "this later post":/blog/2009-11-17-converting-egg-statements-and-transactions-to-ofx for more details.
+  div(notice). 17th Nov 2009. I've finally got around to updating this utility.  See "this later post":/blog/2009-11-17-converting-egg-statements-and-transactions-to-ofx for more details.
   
   I've cobbled together some pretty nasty code to convert an "Egg":http://www.egg.com Credit Card statement to "Ofx":http://www.ofx.net.
 
