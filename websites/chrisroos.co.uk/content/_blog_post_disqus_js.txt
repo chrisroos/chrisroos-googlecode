@@ -1,9 +1,0 @@
----
-filter: haml
----
-#disqus_thread
-
-%script{:type => "text/javascript", :src => "http://disqus.com/forums/deferred-until-inspiration-hits/embed.js"}
-%noscript
-  %p
-    %a{:href => "http://deferred-until-inspiration-hits.disqus.com/?url=ref"} View the forum thread.
