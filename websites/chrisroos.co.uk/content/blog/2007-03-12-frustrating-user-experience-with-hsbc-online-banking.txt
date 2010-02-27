@@ -7,6 +7,8 @@ created_at: 2007-03-12 23:13:00 +00:00
 layout: blog
 ---
 :textile
+  div(notice). 27-Feb-2010.  I've updated the table of sort codes and account numbers based on comments (via disqus) and emails I've received.  I obviously can't make any guarantee as to the accuracy of this data.
+
   div(notice). 15-Apr-2009.  I've updated the link to the hmrc bank account site and added a table (to the bottom of this post) of sort code and account numbers to their cryptically named counterpart based on some of the comments to this post.
   
   I needed to pay some money to "HMRC":http://www.hmrc.gov.uk to cover my tax.  HMRC kindly supply me with their sort code and account number so that I could transfer the money directly from my bank account.  Logged into "Hsbc":http://www.hsbc.co.uk, I entered the relevant details and tried to make the payment.  Instead of going through like a good payment should, I was presented with this useless error message.
@@ -28,15 +30,57 @@ layout: blog
 %table.hsbcHmrcBankDetails
   %thead
     %tr
+      %th Hsbc name
       %th Sort code
       %th Account number
-      %th Hsbc name
+      %th Date reported
+      %th Notes
   %tbody
     %tr
+      %td.hsbcName HMRC CORP TAX CUMB
+      %td.sortCode 08-32-10
+      %td.accountNumber 12001039
+      %td.dateReported 20th Jan 2010
+      %td.notes (Contributed by Andy via email)
+    %tr
+      %td.hsbcName HMRC CORP TAX SHIP
       %td.sortCode 10-50-41
       %td.accountNumber 23456000
-      %td.hsbcName HMRC CORP TAX SHIP
+      %td.dateReported 12th Mar 2007
+      %td.notes (The details I wrote about in this post)
     %tr
+      %td.hsbcName HMRC NIC QUARTERLY
+      %td.sortCode NA
+      %td.accountNumber NA
+      %td.dateReported Feb 23rd 2010
+      %td.notes (Contributed by Chris via email) For paying your self employed National Insurance contributions
+    %tr
+      %td.hsbcName HMRC OTHER TAX
+      %td.sortCode 08.32.10
+      %td.accountNumber 12001020
+      %td.dateReported 1st Jul 2009
+      %td.notes (Contributed by Nick via disqus)
+    %tr
+      %td.hsbcName HMRC PAYE/NIC SHIP
+      %td.sortCode 08-32-10
+      %td.accountNumber 12001020
+      %td.dateReported 10th Aug 2009
+      %td.notes (Contributed by adamclark66 via disqus)
+    %tr
+      %td.hsbcName HMRC SELF AS CUMB
       %td.sortCode 10-51-67
       %td.accountNumber 23444401
-      %td.hsbcName HMRC SELF AS CUMB
+      %td.dateReported 8th Mar 2009
+      %td.notes (Contributed by Paul Atkin via Disqus)
+    %tr
+      %td.hsbcName HMRC VAT SOUTHEND
+      %td.sortCode 08-32-00
+      %td.accountNumber 11963155
+      %td.dateReported 24th Oct 2009
+      %td.notes (Contributed by Nickr via disqus)
+    %tr
+      %td.hsbcName HMRC VAT SOUTHEND
+      %td.sortCode 10.00.00
+      %td.accountNumber 52055000
+      %td.dateReported 1st Jul 2009
+      %td.notes (Contributed by Nick via disqus)
