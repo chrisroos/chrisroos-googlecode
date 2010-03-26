@@ -1,0 +1,214 @@
+---
+summary:    My solution to the problem of Nokogiri checking for a universal (ppc, i386) version of libxml2 and failing to install.
+blog_post:  true
+title:      Libxml2 Problems When Installing Nokogiri
+created_at: 2010-03-26 09:54:32.477491 +00:00
+guid:       d856b6b9-a7fd-43fb-afcd-16308cc6b56d
+layout:     blog
+filter:     haml
+---
+:textile
+  h2. The problem
+
+  Trying to install "nokogiri":http://nokogiri.org/ on Mac OS X 10.5.8 (Leopard) using "gem bundler":http://github.com/carlhuda/bundler, or more specifically as a non root user (e.g. installing into ~/.gem/), failed with the error below.
+
+  <pre class="code shell">
+    checking for xmlParseDoc() in -lxml2... no
+    libxml2 is missing.  try 'port install libxml2' or 'yum install libxml2'
+  </pre>
+
+  Using sudo to install (sudo gem install nokogiri or sudo gem bundle) resulted in the gem installing without a problem.
+
+  h2. The solution
+
+  The "gcc":http://gcc.gnu.org/ command being executed to test whether libxml2 existed was looking for both i386 and ppc (universal) libraries, where I only had the i386 versions installed via "Macports":http://www.macports.org/ (<code>$ file /opt/local/lib/libxml2.2.dylib #=> /opt/local/lib/libxml2.2.dylib: Mach-O dynamically linked shared library i386</code>)
+
+  h3. Solution 1
+  
+  <pre class="code shell">
+    # Instruct gcc to check for i386 libraries only
+
+    $ RC_ARCHS="i386" gem install nokogiri
+    # or
+    $ ARCHFLAGS="-arch i386" gem install nokogiri
+  </pre>
+
+  h3. Solution 2
+  
+  <pre class="code shell">
+    # Install universal (i.e. i386 and ppc) versions of libxml and libxslt
+
+    $ sudo port upgrade --enforce-variants libxml2 +universal
+    $ sudo port upgrade libxslt2 +universal
+  </pre>
+
+  h2. The explanation
+
+  The error message (libxml2 is missing) was somewhat cryptic.  I knew it was installed via macports and as part of the stock Leopard install.
+
+  <pre class="code shell">
+    $ port installed | grep libxml2.*active
+      libxml2 @2.7.5_0 (active)
+    $ ls -l /usr/lib | grep libxml2
+      -rwxr-xr-x   1 root  wheel   4502144 29 Sep 00:00 libxml2.2.dylib
+      lrwxr-xr-x   1 root  wheel        15 17 Aug 09:46 libxml2.dylib -> libxml2.2.dylib
+      -rwxr-xr-x   1 root  wheel       819 27 Jun  2008 libxml2.la
+  </pre>
+
+  After a little digging I discovered that the error was being raised by line 124 of "extconf.rb in nokogiri":http://github.com/tenderlove/nokogiri/blob/master/ext/nokogiri/extconf.rb.  In fact, I could replicate the error by checking out a copy of nokogiri and running the following command.
+
+  <pre class="code shell">
+    $ cd /path/to/clone/of/nokogiri && ruby ext/nokogiri/extconf.rb
+  </pre>
+
+  Trial and error using The One True Ruby Debugger (scattering p statements throughout the file) lead me to realise that the problem was being caused by the "dir_config":http://ruby-doc.org/stdlib/libdoc/mkmf/rdoc/files/mkmf_rb.html#M000549 call on line 62 of that same file.
+
+  The simplest example I came up with to expose the problem was as follows.
+
+  <pre class="code shell">
+    $ cat > wem_extconf.rb
+    require 'mkmf'
+    find_library('xml2', 'xmlParseDoc')
+    dir_config('any-string-here', '/opt/local/include', '/opt/local/lib')
+    find_library('xml2', 'xmlParseDoc')
+    <ctrl-d>
+    $ ruby wem_extconf.rb
+    checking for xmlParseDoc() in -lxml2... yes
+    checking for xmlParseDoc() in -lxml2... no
+  </pre>
+
+  After lots of digging into "mkmf.rb":http://ruby-doc.org/stdlib/libdoc/mkmf/rdoc/index.html I was able to determine the command being executed in order to check whether libxml2 existed (or, more accurately, whether the xmlParseDoc function existed in libxml2).  It turns out that the commands executed are actually logged to the mkmf.log that's generated as part of running extconf.rb but, although I was aware of the mkmf.log file, I didn't realise it contained the commands until now.
+
+  These are the relevant lines from mkmf.log after a failed install of nokogiri.  If you were trying to install nokogiri to your home gem directory then this log file would be in ~/.gem/ruby/1.8/gems/nokogiri-1.4.1/ext/nokogiri/mkmf.log (where the nokogiri version would be specific to the version you were installing).
+
+  <pre class="code shell">
+    find_library: checking for xmlParseDoc() in -lxml2... -------------------- no
+
+    "gcc -o conftest -I/opt/local/include/libxml2 -I/opt/local/include/ -I. -I/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/universal-darwin9.0 -I. -I/opt/local/include/ -I/opt/local/include/libxml2 -I/opt/local/include   -arch ppc -arch i386 -Os -pipe -fno-common  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib -L/opt/local/lib -L. -arch ppc -arch i386     -lruby -lxml2  -lpthread -ldl -lm   "
+    conftest.c: In function ‘t’:
+    conftest.c:3: error: ‘xmlParseDoc’ undeclared (first use in this function)
+    conftest.c:3: error: (Each undeclared identifier is reported only once
+    conftest.c:3: error: for each function it appears in.)
+    conftest.c: In function ‘t’:
+    conftest.c:3: error: ‘xmlParseDoc’ undeclared (first use in this function)
+    conftest.c:3: error: (Each undeclared identifier is reported only once
+    conftest.c:3: error: for each function it appears in.)
+    lipo: can't figure out the architecture type of: /var/folders/S+/S+yS7sHwHSur-zyGkiW5Q++++TI/-Tmp-//ccuu53Qp.out
+    checked program was:
+    /* begin */
+    1: /*top*/
+    2: int main() { return 0; }
+    3: int t() { void ((*volatile p)()); p = (void ((*)()))xmlParseDoc; return 0; }
+    /* end */
+
+    "gcc -o conftest -I/opt/local/include/libxml2 -I/opt/local/include/ -I. -I/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/universal-darwin9.0 -I. -I/opt/local/include/ -I/opt/local/include/libxml2 -I/opt/local/include   -arch ppc -arch i386 -Os -pipe -fno-common  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib -L/opt/local/lib -L. -arch ppc -arch i386     -lruby -lxml2  -lpthread -ldl -lm   "
+    conftest.c: In function ‘t’:
+    conftest.c:3: warning: implicit declaration of function ‘xmlParseDoc’
+    conftest.c: In function ‘t’:
+    conftest.c:3: warning: implicit declaration of function ‘xmlParseDoc’
+    ld warning: in /opt/local/lib/libxml2.dylib, file is not of required architecture
+    Undefined symbols for architecture ppc:
+      "_xmlParseDoc", referenced from:
+          _t in cc3mNZVe.o
+    ld: symbol(s) not found for architecture ppc
+    collect2: ld returned 1 exit status
+    lipo: can't open input file: /var/folders/S+/S+yS7sHwHSur-zyGkiW5Q++++TI/-Tmp-//ccjGbv8z.out (No such file or directory)
+    checked program was:
+    /* begin */
+    1: /*top*/
+    2: int main() { return 0; }
+    3: int t() { xmlParseDoc(); return 0; }
+    /* end */
+  </pre>
+
+  In order to detect whether a function exists within a library (my terminology is probably wrong here) mkmf uses gcc to execute some c code that tries to call the function.  It tries twice, changing the c code used.  We can see the two commands run in the above log extract (both starting gcc) and the source of the c code used (wrapped in the /begin/ and /end/ comments below the gcc lines).  Armed with this knowledge we can replicate the tests manually on the command line.
+
+  <pre class="code shell">
+    $ # Test 1
+    $ cat > conftest.c
+    int main() { return 0; }
+    int t() { void ((*volatile p)()); p = (void ((*)()))xmlParseDoc; return 0; }
+    <ctrl-d>
+    $ gcc -o conftest -I/opt/local/include/libxml2 -I/opt/local/include/ -I. -I/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/universal-darwin9.0 -I. -I/opt/local/include/ -I/opt/local/include/libxml2 -I/opt/local/include   -arch ppc -arch i386 -Os -pipe -fno-common  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib -L/opt/local/lib -L. -arch ppc -arch i386     -lruby -lxml2  -lpthread -ldl -lm
+    # Snipped output
+    $ echo $?
+    1
+
+    $ # Test 2
+    $ cat > conftest.c
+    int main() { return 0; }
+    int t() { xmlParseDoc(); return 0; }
+    <ctrl-d>
+    $ gcc -o conftest -I/opt/local/include/libxml2 -I/opt/local/include/ -I. -I/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/universal-darwin9.0 -I. -I/opt/local/include/ -I/opt/local/include/libxml2 -I/opt/local/include   -arch ppc -arch i386 -Os -pipe -fno-common  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib -L/opt/local/lib -L. -arch ppc -arch i386     -lruby -lxml2  -lpthread -ldl -lm
+    # Snipped output
+    $ echo $?
+    1
+  </pre>
+
+  The next step was to compare the gcc command being run when it reported the library as found to the above unsuccessful commands.  It turns out that the only difference in the commands was the presence of an additional -L option (-L/opt/local/lib) in the failed command.  This additional -L option was the effect of the call to dir_config (from the mkmf.rb rdoc for dir_config, "Note that dir_config only adds to the list of places to search for libraries and include files").
+
+  To double check that this was the case I repeated Test 2 with this additional -L switch removed.  We still get some warnings but we get an exit code of 0 representing success (i.e. the function was found).
+
+  <pre class="code shell">
+    $ # Test 2
+    $ cat > conftest.c
+    int main() { return 0; }
+    int t() { xmlParseDoc(); return 0; }
+    <ctrl-d>
+    $ gcc -o conftest -I/opt/local/include/libxml2 -I/opt/local/include/ -I. -I/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/universal-darwin9.0 -I. -I/opt/local/include/ -I/opt/local/include/libxml2 -I/opt/local/include   -arch ppc -arch i386 -Os -pipe -fno-common  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline conftest.c  -L. -L/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib  -L. -arch ppc -arch i386     -lruby -lxml2  -lpthread -ldl -lm
+    conftest.c: In function ‘t’:
+    conftest.c:2: warning: implicit declaration of function ‘xmlParseDoc’
+    conftest.c: In function ‘t’:
+    conftest.c:2: warning: implicit declaration of function ‘xmlParseDoc’
+    $ echo $?
+    0
+  </pre>
+
+  I figured that the presence of this flag meant that it was using libxml2 from /opt/local/lib (which was failing for some reason), and an absence meant it used libxml2 from /usr/lib (which worked).
+
+  Unfortunately, although you can tell gcc to consider additional paths when searching for the xml2 library (using something like <code>gem install nokogiri -- --with-xml2-dir=/usr</code>) these paths are added after those added by the call to dir_config.  Because I was trying to add a path that gcc considers by default (/usr/lib) the setting of this compile time option didn't actually have any effect.
+
+  Having got this far I was still unsure of a fix.  I thought about removing libxml2 from ports but it was required by "ImageMagick":http://www.imagemagick.org (among other things) which meant that this wasn't really an option.  Finally, after quite a bit of googling I came across "this post":http://passingcuriosity.com/2009/installing-pil-on-mac-os-x-leopard/ that covered a similar error encountered installing PIL (Python Imaging Library) on Leopard.  The solution here was to install the universal version of libxml2 from macports.  I tried the same thing (I had to install the universal version of libxslt2 too) and it appears to have done the trick, although I have absolutely no idea why.
+
+  Not content to leave it there I continued to investigate, albeit some time after I'd written the stuff above.
+
+  Although installing the libxml2 universal libraries did the trick I still wasn't sure why it worked as sudo (without the universal libs) but not as my regular user.  I continued to dig and worked out that it was all down to my setting the RUPYOPT environment variable to rubygems (RUBYOPT="rubygems").  It turns out that "rubygems.rb":http://rubygems.rubyforge.org/svn/tags/REL_1_3_5/lib/rubygems.rb (line 168 in rubygems v1.3.5 on my machine) requires rbconfig.rb (/usr/lib/ruby/1.8/universal-darwin9.0/rbconfig.rb on my machine) which in turn defines the ARCHFLAGS constant.
+
+  <pre class="code ruby">
+    ARCHFLAGS =
+      if e = ENV['ARCHFLAGS']
+        e
+      elsif e = ENV['RC_ARCHS']
+        e.split.map { |a| "-arch \#{a}" }.join(' ')
+      else
+        '-arch ppc -arch i386'
+      end
+  </pre>
+
+  We can see that ARCHFLAGS defaults to '-arch ppc -arch i386' if neither ARCHFLAGS or RC_ARCHS are defined (i.e. compile universal binaries; search for "-arch arch" in the "gcc man page":http://developer.apple.com/mac/library/DOCUMENTATION/Darwin/Reference/ManPages/man1/gcc.1.html). However, "extconf.rb in Nokogiri sets RC_ARCHS to an empty string":http://github.com/tenderlove/nokogiri/blob/REL_1.4.1/ext/nokogiri/extconf.rb#L1 meaning that as long as extconf.rb is required before rbconfig.rb then gcc won't try to compile against universal libraries.  When I installed nokogiri as sudo this is exactly what happened (extconf.rb is required which in turn requires "mkmf":http://svn.ruby-lang.org/repos/ruby/tags/v1_8_6_287/lib/mkmf.rb which in turn requires rbconfig.rb).  When I installed as my user (with RUBYOPT="rubygems") extconf.rb was required *after* rbconfig.rb which means that ARCHFLAGS had already been set to compile against universal binaries.
+
+  We can see the difference between requiring rubygems before requiring rbconfig with these two commands:
+
+  <pre class="code shell">
+    $ ruby -e'p [ENV["RUBYOPT"], require("rbconfig")]' #=> ["rubygems", false] (false because rbconfig has already been required)
+    $ sudo ruby -e'p [ENV["RUBYOPT"], require("rbconfig")]' #=> [nil, true] (true because rbconfig hasn't been required)
+  </pre>
+
+  NOTE. I noticed that there was a file named rbconfig.rb.orig in the same directory as rbconfig.rb and a little digging revealed this "apple patch to rbconfig.rb":http://opensource.apple.com/source/ruby/ruby-67.3/patches/rbconfig.diff.  I'm guessing this patch was applied to the stock Leopard install of Ruby 1.8.6 (i.e. it's been there since the OS was installed) but I can't be 100% sure.
+
+  Now, that's almost the story over, but not quite.  My original hypothesis was that installing with sudo was causing gcc to link against /usr/lib/libxml2.2.dylib (compiled for ppc, ppc64, i386 and x86_64; see below) and installing as my user was causing gcc to link against /opt/local/lib/libxml2.2.dylib (compiled for i386 only) which failed.
+
+  <pre class="code shell">
+    $  file /usr/lib/libxml2.2.dylib
+    /usr/lib/libxml2.2.dylib: Mach-O universal binary with 4 architectures
+    /usr/lib/libxml2.2.dylib (for architecture ppc7400):  Mach-O dynamically linked shared library ppc
+    /usr/lib/libxml2.2.dylib (for architecture ppc64):  Mach-O 64-bit dynamically linked shared library ppc64
+    /usr/lib/libxml2.2.dylib (for architecture i386):  Mach-O dynamically linked shared library i386
+    /usr/lib/libxml2.2.dylib (for architecture x86_64):  Mach-O 64-bit dynamically linked shared library x86_64
+  </pre>
+
+  But, the rubygems/rbconfig discovery changes things.  You see, when I install nokogiri now (using sudo and as my user), and compare the gcc commands from mkmf.log I see that the only difference is the lack of the ARCHFLAGS (-arch ppc -arch i386) when installed as sudo, and their presence when installed as my user.  NOTE. The -L /opt/local/lib argument is present in both cases.
+
+  I can't replicate my initial findings (the absence/presence of -L /opt/local/lib in the gcc commands) so can only assume that something else on the system has changed between my original writeup and continued investigation, or that I'm going mad.
+
+  I'm still not 100% sure that I've answered all my questions about everything I came across in my investigation but I've got to stop at some point.  I've been dipping into this post on and off for about a month and just want to get it published.
