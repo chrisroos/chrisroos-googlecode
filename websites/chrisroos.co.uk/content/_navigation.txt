@@ -14,5 +14,3 @@ filter: haml
     %a{:href => "/projects", :title => "Projects"} projects
   %li
     %a{:href => "/utilities", :title => "Utilities"} utilities
-  %li
-    %a{:href => "http://life.chrisroos.co.uk", :title => "All my feeds aggregated at tumblr"} everything
