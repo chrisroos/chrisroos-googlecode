@@ -8,11 +8,7 @@ filter:      haml
 
   h2. A little about me
 
-  I'm a software developer living in "Ramsgate":http://en.wikipedia.org/wiki/Ramsgate in the UK.  I'm currently employed at "Headshift":http://www.headshift.com after being made redundant from "reevoo":http://www.reevoo.com.
-
-  h2. A little about this site
-
-  This started out as a "typo":http://typosphere.org/ powered blog hosted at blog.seagul.co.uk.  I wanted to migrate it from a plain blog to a more general site that serves as a central place for my digital life.  To that end, I've slowly migrated away from typo (first to some "homegrown software":/blog/2008-01-23-migration-from-typo-to-a-static-site-is-complete and then to "webby":http://webby.rubyforge.org/), I've moved from blog.seagul.co.uk to chrisroos.co.uk and my "blog":/blog now sits at the same level as my "projects":/projects, "utilities":/utilities and "contact":/contact info.
+  I work with my friends at "Go Free Range":http://gofreerange.com/.  It's awesome.
 
   h2. Recent blog posts ("View all":/blog)
 
