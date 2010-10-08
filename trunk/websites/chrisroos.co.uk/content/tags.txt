@@ -1,8 +1,0 @@
----
-title: Tag pages
-filter: haml
----
-:textile
-  h1. Wait, this isn't what I was expecting
-
-  You're almost certainly here because you clicked a link on a search results page.  That link was taking you to one of my 'tag' pages: a page that contained all the posts with that tag (blog.seagul.co.uk/articles/tag/cool for example).  I didn't like these pages because you had to search within them to find the content that you were actually after (only to find that it probably wasn't relevant), because they're basically search results within search results.  So, I've got rid of them :-)  In the process of removing these tag pages, I've tagged all my posts in <a href="http://delicious.com">delicious</a> so that you can, if you really want, replicate the old tag pages.  To do so, you'll need to search my bookmarks for the blog.seagul.co.uk tag and whichever tag it was that you were trying to visit: to see all my posts tagged 'cool', you can visit <a href="http://delicious.com/chrisjroos/blog.seagul.co.uk+cool">http://delicious.com/chrisjroos/blog.seagul.co.uk+cool</a> (replace 'cool' with the tag you were trying to find).
