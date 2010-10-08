@@ -9,8 +9,17 @@ filter:     haml
   Although heavily influenced by my "begging for a job":/blog/2008-12-17-please-sir-can-i-have-a-job post I intend to keep this up to date so I don't feel too bad about replicating it here.
 
   h2. Employment
-
-  I currently work at "Headshift":http://www.headshift.com.  Before that I spent just over three years at "reevoo.com":http://www.reevoo.com, until being made redundant on Monday 8th Dec 2008.  I was very unsuccessfully (I basically ended up working for free) my own boss for just over a year before that and a software developer at "Tempest Technology":http://www.tempest-technology.com/ for about three years before that.
+  
+  h3. Currently
+  
+  * I currently work at "Go Free Range":http://gofreerange.com
+  
+  h3. Previously
+  
+  * Software developer at "Headshift":http://www.headshift.com for about 18 months
+  * Software developer at "reevoo.com":http://www.reevoo.com for about 3 years
+  * Unsuccessfully attempted to work for myself for about a year
+  * Software developer at "Tempest Technology":http://www.tempest-technology.com/ for about 3 years
 
   h2. Skills
 
