@@ -1,0 +1,24 @@
+---
+summary:    I played with google calendar backups and tsung.
+blog_post:  true
+title:      Day notes - Thurs 7th Oct 2010
+created_at: 2010-10-08 10:27:09.413602 +01:00
+guid:       e743b7a7-f06f-45a3-a99a-db04520c1361
+layout:     blog
+filter:     haml
+---
+:markdown
+
+  * Wrote up some meeting notes from yesterday.
+
+  * Noticed that our shared google calendars were empty.  Allowed myself to get distracted by this and spent some time building a simple backup thing so that our calendars are now regularly uploaded to git.  Using this [Command line util](http://gist.github.com/614972) and some cron magic.
+
+          # Min   Hour    Day   Month   Day of week   Command
+            0     */2     *     *       *             /path/to/bin/download-calendar http://link-to-google-calendar.ics /path/to/calendars >> /path/to/logs/download-calendar.log
+            2     */2     *     *       *             cd /path/to/calendars && /path/to/git add . && /path/to/git commit -m "Updating calendars" && /path/to/git push > /dev/null
+
+  * Spent longer than I'd hoped creating the backup thingy, partly because I was bitten by crontab treating the percent-sign as a newline.  From the [crontab manpage](http://unixhelp.ed.ac.uk/CGI/man-cgi?crontab+5)
+
+    > Percent-signs (%) in the command, unless escaped with backslash (\\), will be changed into newline characters, and all data after the first % will be sent to the command as standard input.
+
+  * Paired with [James M](http://blog.floehopper.org/) to attempt to understand [tsung](http://tsung.erlang-projects.org/).  The documentation around the format of the output is, err, somewhat lacking.
