@@ -1,8 +1,0 @@
----
-filename: .htaccess
-extension: none
-layout: none
----
-AddType text/html .shtml
-AddHandler server-parsed .shtml
-DirectoryIndex index.shtml

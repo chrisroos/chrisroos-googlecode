@@ -1,6 +1,0 @@
----
-filter: haml
----
-%p.blogTitleContainer
-  %a.blogTitle{:href => "/"}
-    chris roos - deferred until inspiration hits
