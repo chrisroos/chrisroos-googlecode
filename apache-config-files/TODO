@@ -1,1 +1,0 @@
-* Create a simple capistrano task to upload the config files *and* restart apache (using sudo)
