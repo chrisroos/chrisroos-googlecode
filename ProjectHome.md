@@ -1,0 +1,1 @@
+A place to house various ruby and rails code projects and snippets.
